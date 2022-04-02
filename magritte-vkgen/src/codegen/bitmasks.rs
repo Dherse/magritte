@@ -36,7 +36,12 @@ impl<'a> Bit<'a> {
     }
 
     /// Generate the code for a Bitflag variant
-    fn generate_bitmask_variant(&self, source: &Source<'a>, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_bitmask_variant(
+        &self,
+        source: &Source<'a>,
+        parent: &Origin<'a>,
+        doc: &AHashMap<String, String>,
+    ) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
             || quote! { #[doc = "No documentation found"]},
@@ -147,28 +152,29 @@ impl<'a> Bitmask<'a> {
         imports.push("std::iter::IntoIterator");
 
         // dealing with conditional compilation of flag bits
-        let bits_conditional_compilation = if bit_flag.origin() != self.origin() && !self.origin().requires(source, bit_flag.origin()) {
-            if let Some(condition) = bit_flag.origin().condition() {
-                imports.push_str(&format!(
-                    r##"
+        let bits_conditional_compilation =
+            if bit_flag.origin() != self.origin() && !self.origin().requires(source, bit_flag.origin()) {
+                if let Some(condition) = bit_flag.origin().condition() {
+                    imports.push_str(&format!(
+                        r##"
                     {}
                     pub use {}::{};
                 "##,
-                    bit_flag.origin().feature_gate().unwrap_or_default(),
-                    bit_flag.origin().as_path_str(),
-                    bit_flag.name()
-                ));
-                Some(condition)
+                        bit_flag.origin().feature_gate().unwrap_or_default(),
+                        bit_flag.origin().as_path_str(),
+                        bit_flag.name()
+                    ));
+                    Some(condition)
+                } else {
+                    imports.push_origin(bit_flag.origin(), bit_flag.name());
+
+                    None
+                }
             } else {
                 imports.push_origin(bit_flag.origin(), bit_flag.name());
 
                 None
-            }
-        } else {
-            imports.push_origin(bit_flag.origin(), bit_flag.name());
-
-            None
-        };
+            };
 
         quote::quote_each_token! {
             out

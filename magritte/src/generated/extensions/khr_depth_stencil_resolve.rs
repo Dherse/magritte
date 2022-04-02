@@ -7,7 +7,7 @@
 //!`pColorAttachments` array entries.
 //!This does not allow for a way to map the resolve attachments to the
 //!depth/stencil attachment.
-//!The [`CmdResolveImage`] command does not allow for depth/stencil images.
+//!The [`cmd_resolve_image`] command does not allow for depth/stencil images.
 //!While there are other ways to resolve the depth/stencil attachment, they can
 //!give sub-optimal performance.
 //!Extending the [`SubpassDescription2`] in this extension allows an

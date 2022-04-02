@@ -12,7 +12,7 @@ use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 use syn::PathSegment;
 
-use crate::{symbols::SymbolName, source::Source};
+use crate::{imports::Imports, source::Source, symbols::SymbolName};
 
 /// The origin of an element of the Vulkan spec
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
@@ -105,7 +105,7 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_1 => quote! { crate::vulkan1_1 },
             Origin::Vulkan1_2 => quote! { crate::vulkan1_2 },
             Origin::Vulkan1_3 => quote! { crate::vulkan1_3 },
-            Origin::Opaque => quote::quote! { crate::native },
+            Origin::Opaque => quote! { crate::native },
         }
     }
 
@@ -141,28 +141,47 @@ impl<'a> Origin<'a> {
     }
 
     /// As a boolean check whether the origin is enabled or not
-    pub fn as_bool_tokens(&self, var: &Ident) -> TokenStream {
+    pub fn as_bool_tokens(&self, imports: Option<&Imports>, var: &TokenStream) -> Option<TokenStream> {
         match self {
-            Origin::Unknown | Origin::Opaque | Origin::Core | Origin::Vulkan1_0 => quote::quote! {
-                true
-            },
+            Origin::Unknown | Origin::Opaque | Origin::Core | Origin::Vulkan1_0 => None,
             Origin::Extension(ext, _, _) => {
                 let ext_name = ext.trim_start_matches("VK_").to_case(Case::Snake);
                 let check = Ident::new(&ext_name, Span::call_site());
 
-                quote! {
+                Some(quote! {
                     #var.#check()
+                })
+            },
+            Origin::Vulkan1_1 => Some(if let Some(imports) = imports {
+                imports.push("crate::Version");
+                quote! {
+                    #var.version() >= Version::new(1, 1, 0)
                 }
-            },
-            Origin::Vulkan1_1 => quote::quote! {
-                #var.version() >= Version::new(1, 1, 0)
-            },
-            Origin::Vulkan1_2 => quote::quote! {
-                #var.version() >= Version::new(1, 2, 0)
-            },
-            Origin::Vulkan1_3 => quote::quote! {
-                #var.version() >= Version::new(1, 3, 0)
-            },
+            } else {
+                quote! {
+                    #var.version() >= crate::Version::new(1, 1, 0)
+                }
+            }),
+            Origin::Vulkan1_2 => Some(if let Some(imports) = imports {
+                imports.push("crate::Version");
+                quote! {
+                    #var.version() >= Version::new(1, 2, 0)
+                }
+            } else {
+                quote! {
+                    #var.version() >= crate::Version::new(1, 2, 0)
+                }
+            }),
+            Origin::Vulkan1_3 => Some(if let Some(imports) = imports {
+                imports.push("crate::Version");
+                quote! {
+                    #var.version() >= Version::new(1, 3, 0)
+                }
+            } else {
+                quote! {
+                    #var.version() >= crate::Version::new(1, 3, 0)
+                }
+            }),
         }
     }
 
@@ -177,16 +196,16 @@ impl<'a> Origin<'a> {
                     #var.#check()
                 }
             },
-            Origin::Core | Origin::Vulkan1_0 | Origin::Unknown | Origin::Opaque => quote::quote! {
+            Origin::Core | Origin::Vulkan1_0 | Origin::Unknown | Origin::Opaque => quote! {
                 Ok(())
             },
-            Origin::Vulkan1_1 => quote::quote! {
+            Origin::Vulkan1_1 => quote! {
                 #var.min_version(Version::new(1, 1, 0))
             },
-            Origin::Vulkan1_2 => quote::quote! {
+            Origin::Vulkan1_2 => quote! {
                 #var.min_version(Version::new(1, 2, 0))
             },
-            Origin::Vulkan1_3 => quote::quote! {
+            Origin::Vulkan1_3 => quote! {
                 #var.min_version(Version::new(1, 3, 0))
             },
         }
@@ -317,6 +336,21 @@ impl<'a> Origin<'a> {
         }
     }
 
+    /// Gets the shortened name/module name of the origin
+    pub fn as_short_name(&self) -> String {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Core => "Core".to_string(),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_case(Case::Camel),
+            Origin::Vulkan1_0 => "V1_0".to_string(),
+            Origin::Vulkan1_1 => "V1_1".to_string(),
+            Origin::Vulkan1_2 => "V1_2".to_string(),
+            Origin::Vulkan1_3 => "V1_3".to_string(),
+            Origin::Opaque => "Opaque".to_string(),
+        }
+    }
+
     /// Generate the feature gate (if any) for this origin
     pub fn condition(&self) -> Option<TokenStream> {
         match self {
@@ -356,10 +390,110 @@ impl<'a> Origin<'a> {
     /// Is another origin required for this origin
     pub fn requires(&self, source: &Source<'a>, other: &Origin) -> bool {
         match (self, other) {
-            (Origin::Extension(name, _, _), Origin::Extension(other, _, _)) => {
-                source.extensions.get_by_either(name).expect("unknown extension").requires(source, other)
+            (Origin::Extension(name, _, _), Origin::Extension(other, _, _)) => source
+                .extensions
+                .get_by_either(name)
+                .expect("unknown extension")
+                .requires(source, other),
+            (Origin::Extension(name, _, _), Origin::Vulkan1_0) => {
+                match source
+                    .extensions
+                    .get_by_either(name)
+                    .expect("unknown extension")
+                    .min_core()
+                {
+                    Origin::Vulkan1_0 => true,
+                    Origin::Vulkan1_1 => false,
+                    Origin::Vulkan1_2 => false,
+                    Origin::Vulkan1_3 => false,
+                    _ => unreachable!("unknown core version"),
+                }
+            },
+            (Origin::Extension(name, _, _), Origin::Vulkan1_1) => {
+                match source
+                    .extensions
+                    .get_by_either(name)
+                    .expect("unknown extension")
+                    .min_core()
+                {
+                    Origin::Vulkan1_0 => true,
+                    Origin::Vulkan1_1 => true,
+                    Origin::Vulkan1_2 => false,
+                    Origin::Vulkan1_3 => false,
+                    _ => unreachable!("unknown core version"),
+                }
+            },
+            (Origin::Extension(name, _, _), Origin::Vulkan1_2) => {
+                match source
+                    .extensions
+                    .get_by_either(name)
+                    .expect("unknown extension")
+                    .min_core()
+                {
+                    Origin::Vulkan1_0 => true,
+                    Origin::Vulkan1_1 => true,
+                    Origin::Vulkan1_2 => true,
+                    Origin::Vulkan1_3 => false,
+                    _ => unreachable!("unknown core version"),
+                }
+            },
+            (Origin::Extension(name, _, _), Origin::Vulkan1_3) => {
+                match source
+                    .extensions
+                    .get_by_either(name)
+                    .expect("unknown extension")
+                    .min_core()
+                {
+                    Origin::Vulkan1_0 => true,
+                    Origin::Vulkan1_1 => true,
+                    Origin::Vulkan1_2 => true,
+                    Origin::Vulkan1_3 => true,
+                    _ => unreachable!("unknown core version"),
+                }
             },
             _ => false,
+        }
+    }
+
+    /// Generate a conditional compilation flag for several origins
+    pub fn or<'b>(origins: impl Iterator<Item = &'b Origin<'a>>) -> Option<TokenStream>
+    where
+        'a: 'b,
+    {
+        let origins = origins
+            .filter(|f| f.is_extension() && !f.is_disabled())
+            .map(|o| o.name())
+            .collect::<Vec<_>>();
+
+        if origins.is_empty() {
+            None
+        } else {
+            Some(quote! {
+                #[cfg(any(#(feature = #origins),*))]
+            })
+        }
+    }
+
+    /// Generate a conditional boolean for several origins
+    pub fn or_bool<'b>(
+        origins: impl Iterator<Item = &'b Origin<'a>>,
+        variant: &TokenStream,
+        imports: Option<&Imports>,
+    ) -> Option<TokenStream>
+    where
+        'a: 'b,
+    {
+        let origins = origins
+            .filter(|f| f.is_extension() && !f.is_disabled())
+            .filter_map(|o| o.as_bool_tokens(imports, variant))
+            .collect::<Vec<_>>();
+
+        if origins.is_empty() {
+            None
+        } else {
+            Some(quote! {
+                #(#origins) ||*
+            })
         }
     }
 }

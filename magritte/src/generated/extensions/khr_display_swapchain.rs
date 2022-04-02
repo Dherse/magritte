@@ -13,7 +13,7 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display_swapchain
 //!   extension>>)
 //!# New functions & commands
-//! - [`CreateSharedSwapchainsKHR`]
+//! - [`create_shared_swapchains_khr`]
 //!# New structures
 //! - Extending [`PresentInfoKHR`]:  - [`DisplayPresentInfoKHR`]
 //!# New constants
@@ -37,8 +37,8 @@
 //!support for one but not the other, but in such cases applications must just
 //!take care to obey the reported capabilities and not use non-zero offsets or
 //!extents that require scaling, as appropriate.4) How can applications create multiple swapchains
-//! that use the same images? **RESOLVED** : By calling [`CreateSharedSwapchainsKHR`].An earlier
-//! resolution used [`CreateSwapchainKHR`], chaining multiple
+//! that use the same images? **RESOLVED** : By calling [`create_shared_swapchains_khr`].An earlier
+//! resolution used [`create_swapchain_khr`], chaining multiple
 //![`SwapchainCreateInfoKHR`] structures through `pNext`.
 //!In order to allow each swapchain to also allow other extension structs, a
 //!level of indirection was used: [`SwapchainCreateInfoKHR::p_next`]
@@ -80,7 +80,7 @@
 //! * - James Jones, NVIDIA  - Jeff Vigil, Qualcomm  - Jesse Hall, Google
 //!# Related
 //! - [`DisplayPresentInfoKHR`]
-//! - [`CreateSharedSwapchainsKHR`]
+//! - [`create_shared_swapchains_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -89,7 +89,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, Bool32, Rect2D, StructureType};
+use crate::{
+    extensions::khr_swapchain::{SwapchainCreateInfoKHR, SwapchainKHR},
+    vulkan1_0::{AllocationCallbacks, BaseInStructure, Bool32, Device, Rect2D, StructureType, VulkanResultCodes},
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -99,6 +102,85 @@ pub const KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION: u32 = 10;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME")]
 pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_display_swapchain");
+///[vkCreateSharedSwapchainsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateSharedSwapchainsKHR.html) - Create multiple swapchains that share presentable images
+///# C Specifications
+///When the [`VK_KHR_display_swapchain`] extension is enabled, multiple
+///swapchains that share presentable images are created by calling:
+///```c
+///// Provided by VK_KHR_display_swapchain
+///VkResult vkCreateSharedSwapchainsKHR(
+///    VkDevice                                    device,
+///    uint32_t                                    swapchainCount,
+///    const VkSwapchainCreateInfoKHR*             pCreateInfos,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSwapchainKHR*                             pSwapchains);
+///```
+/// # Parameters
+/// - [`device`] is the device to create the swapchains for.
+/// - [`swapchain_count`] is the number of swapchains to create.
+/// - [`p_create_infos`] is a pointer to an array of [`SwapchainCreateInfoKHR`] structures
+///   specifying the parameters of the created swapchains.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the swapchain objects when
+///   there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_swapchains`] is a pointer to an array of [`SwapchainKHR`] handles in which the created
+///   swapchain objects will be returned.
+/// # Description
+/// [`create_shared_swapchains_khr`] is similar to [`create_swapchain_khr`],
+/// except that it takes an array of [`SwapchainCreateInfoKHR`] structures,
+/// and returns an array of swapchain objects.The swapchain creation parameters that affect the
+/// properties and number of
+/// presentable images  **must**  match between all the swapchains.
+/// If the displays used by any of the swapchains do not use the same
+/// presentable image layout or are incompatible in a way that prevents sharing
+/// images, swapchain creation will fail with the result code
+/// `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`.
+/// If any error occurs, no swapchains will be created.
+/// Images presented to multiple swapchains  **must**  be re-acquired from all of
+/// them before transitioning away from `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`.
+/// After destroying one or more of the swapchains, the remaining swapchains and
+/// the presentable images  **can**  continue to be used.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_create_infos`] **must**  be a valid pointer to an array of [`swapchain_count`] valid
+///   [`SwapchainCreateInfoKHR`] structures
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_swapchains`] **must**  be a valid pointer to an array of
+///   [`swapchain_count`][`SwapchainKHR`] handles
+/// - [`swapchain_count`] **must**  be greater than `0`
+///
+/// ## Host Synchronization
+/// - Host access to [`p_create_infos`][].surface  **must**  be externally synchronized
+/// - Host access to [`p_create_infos`][].oldSwapchain  **must**  be externally synchronized
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_KHR_display_swapchain`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`SwapchainCreateInfoKHR`]
+/// - [`SwapchainKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateSharedSwapchainsKHR")]
+pub type FNCreateSharedSwapchainsKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        swapchain_count: u32,
+        p_create_infos: *const SwapchainCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_swapchains: *mut SwapchainKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkDisplayPresentInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPresentInfoKHR.html) - Structure describing parameters of a queue presentation to a swapchain
 ///# C Specifications
 ///The [`DisplayPresentInfoKHR`] structure is defined as:
@@ -112,7 +194,7 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VkBool32           persistent;
 ///} VkDisplayPresentInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_rect`] is a rectangular region of pixels to present. It  **must**  be a subset of the
@@ -131,33 +213,33 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   new image is presented. The display will instead maintain a copy of the last presented image.
 ///   This allows less power to be used, but  **may**  increase presentation latency. If
 ///   [`DisplayPresentInfoKHR`] is not specified, persistent mode will not be used.
-///# Description
-///If the extent of the [`src_rect`] and [`dst_rect`] are not equal, the
-///presented pixels will be scaled accordingly.
-///## Valid Usage
+/// # Description
+/// If the extent of the [`src_rect`] and [`dst_rect`] are not equal, the
+/// presented pixels will be scaled accordingly.
+/// ## Valid Usage
 /// - [`src_rect`] **must**  specify a rectangular region that is a subset of the image being
 ///   presented
 /// - [`dst_rect`] **must**  specify a rectangular region that is a subset of the `visibleRegion`
 ///   parameter of the display mode the swapchain being presented uses
 /// - If the `persistentContent` member of the [`DisplayPropertiesKHR`] structure returned by
-///   [`GetPhysicalDeviceDisplayPropertiesKHR`] for the display the present operation targets is
-///   [`FALSE`], then [`persistent`] **must**  be [`FALSE`]
+///   [`get_physical_device_display_properties_khr`] for the display the present operation targets
+///   is [`FALSE`], then [`persistent`] **must**  be [`FALSE`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_display_swapchain`]
 /// - [`Bool32`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPresentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -307,5 +389,28 @@ impl<'lt> DisplayPresentInfoKHR<'lt> {
     pub fn set_persistent(&mut self, value: bool) -> &mut Self {
         self.persistent = value as u8 as u32;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_KHR_display_swapchain
+pub struct DeviceKhrDisplaySwapchainVTable {
+    ///See [`FNCreateSharedSwapchainsKhr`] for more information.
+    pub create_shared_swapchains_khr: FNCreateSharedSwapchainsKhr,
+}
+impl DeviceKhrDisplaySwapchainVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_shared_swapchains_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateSharedSwapchainsKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::create_shared_swapchains_khr`]. See [`FNCreateSharedSwapchainsKhr`] for more
+    /// information.
+    pub fn create_shared_swapchains_khr(&self) -> FNCreateSharedSwapchainsKhr {
+        self.create_shared_swapchains_khr
     }
 }

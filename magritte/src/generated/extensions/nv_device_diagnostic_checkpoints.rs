@@ -16,8 +16,8 @@
 //!   @nsubtil%0A<<Here describe the issue or question you have about the
 //!   VK_NV_device_diagnostic_checkpoints extension>>)
 //!# New functions & commands
-//! - [`CmdSetCheckpointNV`]
-//! - [`GetQueueCheckpointDataNV`]
+//! - [`cmd_set_checkpoint_nv`]
+//! - [`get_queue_checkpoint_data_nv`]
 //!# New structures
 //! - [`CheckpointDataNV`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyCheckpointPropertiesNV`]
@@ -36,8 +36,8 @@
 //!# Related
 //! - [`CheckpointDataNV`]
 //! - [`QueueFamilyCheckpointPropertiesNV`]
-//! - [`CmdSetCheckpointNV`]
-//! - [`GetQueueCheckpointDataNV`]
+//! - [`cmd_set_checkpoint_nv`]
+//! - [`get_queue_checkpoint_data_nv`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -46,7 +46,9 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, PipelineStageFlagBits, PipelineStageFlags, StructureType};
+use crate::vulkan1_0::{
+    BaseOutStructure, CommandBuffer, Device, PipelineStageFlagBits, PipelineStageFlags, Queue, StructureType,
+};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
@@ -60,6 +62,106 @@ pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME")]
 pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_NV_device_diagnostic_checkpoints");
+///[vkGetQueueCheckpointDataNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetQueueCheckpointDataNV.html) - Retrieve diagnostic checkpoint data
+///# C Specifications
+///If the device encounters an error during execution, the implementation will
+///return a `VK_ERROR_DEVICE_LOST` error to the application at a certain
+///point during host execution.
+///When this happens, the application  **can**  call
+///[`get_queue_checkpoint_data_nv`] to retrieve information on the most recent
+///diagnostic checkpoints that were executed by the device.
+///```c
+///// Provided by VK_NV_device_diagnostic_checkpoints
+///void vkGetQueueCheckpointDataNV(
+///    VkQueue                                     queue,
+///    uint32_t*                                   pCheckpointDataCount,
+///    VkCheckpointDataNV*                         pCheckpointData);
+///```
+/// # Parameters
+/// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
+/// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
+///   markers available or queried, as described below.
+/// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointDataNV`]
+///   structures.
+/// # Description
+/// If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+/// available is returned in [`p_checkpoint_data_count`].Otherwise, [`p_checkpoint_data_count`]
+/// **must**  point to a variable set by the
+/// user to the number of elements in the [`p_checkpoint_data`] array, and on
+/// return the variable is overwritten with the number of structures actually
+/// written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+/// checkpoint markers
+/// available, at most [`p_checkpoint_data_count`] structures will be written.
+/// ## Valid Usage
+/// - The device that [`queue`] belongs to  **must**  be in the lost state
+///
+/// ## Valid Usage (Implicit)
+/// - [`queue`] **must**  be a valid [`Queue`] handle
+/// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and [`p_checkpoint_data`]
+///   is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to an array of
+///   [`p_checkpoint_data_count`][`CheckpointDataNV`] structures
+/// # Related
+/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`CheckpointDataNV`]
+/// - [`Queue`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetQueueCheckpointDataNV")]
+pub type FNGetQueueCheckpointDataNv = Option<
+    for<'lt> unsafe extern "system" fn(
+        queue: Queue,
+        p_checkpoint_data_count: *mut u32,
+        p_checkpoint_data: *mut CheckpointDataNV<'lt>,
+    ),
+>;
+///[vkCmdSetCheckpointNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetCheckpointNV.html) - Insert diagnostic checkpoint in command stream
+///# C Specifications
+///Device diagnostic checkpoints are inserted into the command stream by
+///calling [`cmd_set_checkpoint_nv`].
+///```c
+///// Provided by VK_NV_device_diagnostic_checkpoints
+///void vkCmdSetCheckpointNV(
+///    VkCommandBuffer                             commandBuffer,
+///    const void*                                 pCheckpointMarker);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer that will receive the marker
+/// - [`p_checkpoint_marker`] is an opaque application-provided value that will be associated with
+///   the checkpoint.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics,
+///   compute, or transfer operations
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`CommandBuffer`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdSetCheckpointNV")]
+pub type FNCmdSetCheckpointNv =
+    Option<unsafe extern "system" fn(command_buffer: CommandBuffer, p_checkpoint_marker: *const c_void)>;
 ///[VkQueueFamilyCheckpointPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyCheckpointPropertiesNV.html) - Return structure for queue family checkpoint information query
 ///# C Specifications
 ///The [`QueueFamilyCheckpointPropertiesNV`] structure is defined as:
@@ -71,29 +173,29 @@ pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &'static CStr =
 ///    VkPipelineStageFlags    checkpointExecutionStageMask;
 ///} VkQueueFamilyCheckpointPropertiesNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`checkpoint_execution_stage_mask`] is a mask indicating which pipeline stages the
 ///   implementation can execute checkpoint markers in.
-///# Description
-///Additional queue family information can be queried by setting
-///[`QueueFamilyProperties2`]::[`p_next`] to point to a
-///[`QueueFamilyCheckpointPropertiesNV`] structure.
-///## Valid Usage (Implicit)
+/// # Description
+/// Additional queue family information can be queried by setting
+/// [`QueueFamilyProperties2`]::[`p_next`] to point to a
+/// [`QueueFamilyCheckpointPropertiesNV`] structure.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
-///# Related
+/// # Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyCheckpointPropertiesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -188,33 +290,33 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 ///    void*                      pCheckpointMarker;
 ///} VkCheckpointDataNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stage`] is a [`PipelineStageFlagBits`] value specifying which pipeline stage the checkpoint
 ///   marker data refers to.
 /// - [`checkpoint_marker`] contains the value of the last checkpoint marker executed in the stage
 ///   that [`stage`] refers to.
-///# Description
-///The stages at which a checkpoint marker  **can**  be executed are
-///implementation-defined and  **can**  be queried by calling
-///[`GetPhysicalDeviceQueueFamilyProperties2`].
-///## Valid Usage (Implicit)
+/// # Description
+/// The stages at which a checkpoint marker  **can**  be executed are
+/// implementation-defined and  **can**  be queried by calling
+/// [`get_physical_device_queue_family_properties2`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlagBits`]
 /// - [`StructureType`]
-/// - [`GetQueueCheckpointDataNV`]
+/// - [`get_queue_checkpoint_data_nv`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCheckpointDataNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -327,5 +429,37 @@ impl<'lt> CheckpointDataNV<'lt> {
     pub fn set_checkpoint_marker(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
         self.checkpoint_marker = value as *mut _;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_NV_device_diagnostic_checkpoints
+pub struct DeviceNvDeviceDiagnosticCheckpointsVTable {
+    ///See [`FNGetQueueCheckpointDataNv`] for more information.
+    pub get_queue_checkpoint_data_nv: FNGetQueueCheckpointDataNv,
+    ///See [`FNCmdSetCheckpointNv`] for more information.
+    pub cmd_set_checkpoint_nv: FNCmdSetCheckpointNv,
+}
+impl DeviceNvDeviceDiagnosticCheckpointsVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_queue_checkpoint_data_nv: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetQueueCheckpointDataNV")))
+            },
+            cmd_set_checkpoint_nv: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCheckpointNV")))
+            },
+        }
+    }
+    ///Gets [`Self::get_queue_checkpoint_data_nv`]. See [`FNGetQueueCheckpointDataNv`] for more
+    /// information.
+    pub fn get_queue_checkpoint_data_nv(&self) -> FNGetQueueCheckpointDataNv {
+        self.get_queue_checkpoint_data_nv
+    }
+    ///Gets [`Self::cmd_set_checkpoint_nv`]. See [`FNCmdSetCheckpointNv`] for more information.
+    pub fn cmd_set_checkpoint_nv(&self) -> FNCmdSetCheckpointNv {
+        self.cmd_set_checkpoint_nv
     }
 }

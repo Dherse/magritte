@@ -23,8 +23,8 @@
 //!   @jjuliano%0A<<Here describe the issue or question you have about the
 //!   VK_NV_acquire_winrt_display extension>>)
 //!# New functions & commands
-//! - [`AcquireWinrtDisplayNV`]
-//! - [`GetWinrtDisplayNV`]
+//! - [`acquire_winrt_display_nv`]
+//! - [`get_winrt_display_nv`]
 //!# New constants
 //! - [`NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME`]
 //! - [`NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION`]
@@ -38,9 +38,9 @@
 //! suboptimal because there could be more than one
 //!relevant API on the Windows platform.
 //!There is preference to use the more-specific substring “Winrt”.2) Should
-//! [`AcquireWinrtDisplayNV`] take a winRT DisplayTarget, or a
+//! [`acquire_winrt_display_nv`] take a winRT DisplayTarget, or a
 //!Vulkan display handle as input? **RESOLVED** : A Vulkan display handle.
-//!This matches the design of [`AcquireXlibDisplayEXT`].3) Should the acquire command be
+//!This matches the design of [`acquire_xlib_display_ext`].3) Should the acquire command be
 //! platform-independent named
 //!“vkAcquireDisplayNV”, or platform-specific named
 //!“vkAcquireWinrtDisplayNV”? **RESOLVED** : Add a platform-specific command.The inputs to the
@@ -56,17 +56,17 @@
 //!that is not used for the X11 platform.
 //!Since a Windows 10 platform-specific command is needed anyway for converting
 //!between vkDisplayKHR and platform-native handles, opinion was to create a
-//!platform-specific acquire function.4) Should the [`GetWinrtDisplayNV`] parameter identifying a
-//! display be
+//!platform-specific acquire function.4) Should the [`get_winrt_display_nv`] parameter identifying
+//! a display be
 //!named “deviceRelativeId” or “adapterRelativeId”? **RESOLVED** : The WinRT name is
 //! “AdapterRelativeId”.
 //!The name “adapter” is the Windows analog to a Vulkan “physical device”.
 //!Vulkan already has precedent to use the name `deviceLUID` for the
 //!concept that Windows APIs call “AdapterLuid”.
 //!Keeping form with this precedent, the name “deviceRelativeId” is chosen.5) Does
-//! [`AcquireWinrtDisplayNV`] cause the Windows desktop compositor
+//! [`acquire_winrt_display_nv`] cause the Windows desktop compositor
 //!to release a display? **RESOLVED** : No.
-//![`AcquireWinrtDisplayNV`] does not itself cause the Windows desktop
+//![`acquire_winrt_display_nv`] does not itself cause the Windows desktop
 //!compositor to release a display.
 //!This action must be performed outside of Vulkan.Beginning with Windows 10 version 2004 it is
 //! possible to cause the Windows
@@ -93,8 +93,8 @@
 //! * No known IP claims.
 //! * - Jeff Juliano, NVIDIA
 //!# Related
-//! - [`AcquireWinrtDisplayNV`]
-//! - [`GetWinrtDisplayNV`]
+//! - [`acquire_winrt_display_nv`]
+//! - [`get_winrt_display_nv`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -103,6 +103,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    extensions::khr_display::DisplayKHR,
+    vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -112,3 +116,136 @@ pub const NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME")]
 pub const NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_acquire_winrt_display");
+///[vkAcquireWinrtDisplayNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireWinrtDisplayNV.html) - Acquire access to a VkDisplayKHR
+///# C Specifications
+///To acquire permission to directly access a display in Vulkan on Windows 10,
+///call:
+///```c
+///// Provided by VK_NV_acquire_winrt_display
+///VkResult vkAcquireWinrtDisplayNV(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkDisplayKHR                                display);
+///```
+/// # Parameters
+/// - [`physical_device`] The physical device the display is on.
+/// - [`display`] The display the caller wishes to control in Vulkan.
+/// # Description
+/// All permissions necessary to control the display are granted to the Vulkan
+/// instance associated with [`physical_device`] until the display is released
+/// or the application is terminated.
+/// Permission to access the display  **may**  be revoked by events that cause
+/// Windows 10 itself to lose access to [`display`].
+/// If this has happened, operations which require access to the display  **must**
+/// fail with an appropriate error code.
+/// If permission to access [`display`] has already been acquired by another
+/// entity, the call  **must**  return the error code
+/// `VK_ERROR_INITIALIZATION_FAILED`.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+/// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
+/// # Related
+/// - [`VK_NV_acquire_winrt_display`]
+/// - [`DisplayKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkAcquireWinrtDisplayNV")]
+pub type FNAcquireWinrtDisplayNv =
+    Option<unsafe extern "system" fn(physical_device: PhysicalDevice, display: DisplayKHR) -> VulkanResultCodes>;
+///[vkGetWinrtDisplayNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetWinrtDisplayNV.html) - Query the VkDisplayKHR corresponding to a WinRT DisplayTarget
+///# C Specifications
+///When acquiring displays on Windows 10, an application may also wish to
+///enumerate and identify them using a native handle rather than a
+///[`DisplayKHR`] handle.To determine the [`DisplayKHR`] handle corresponding to a
+///[“winrt::Windows::Devices::Display::Core::DisplayTarget”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget),
+///call:
+///```c
+///// Provided by VK_NV_acquire_winrt_display
+///VkResult vkGetWinrtDisplayNV(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t                                    deviceRelativeId,
+///    VkDisplayKHR*                               pDisplay);
+///```
+/// # Parameters
+/// - [`physical_device`] The physical device on which to query the display handle.
+/// - [`device_relative_id`] The value of the [“AdapterRelativeId”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget.adapterrelativeid)
+///   property of a [“DisplayTarget”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget)
+///   that is enumerated by a [“DisplayAdapter”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displayadapter)
+///   with an [“Id”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displayadapter.id)
+///   property matching the `deviceLUID` property of a [`PhysicalDeviceIdProperties`] for
+///   [`physical_device`].
+/// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
+/// # Description
+/// If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
+/// [`physical_device`], [`crate::utils::Handle::null`] **must**  be returned in
+/// [`p_display`].
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
+/// # Related
+/// - [`VK_NV_acquire_winrt_display`]
+/// - [`DisplayKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetWinrtDisplayNV")]
+pub type FNGetWinrtDisplayNv = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        device_relative_id: u32,
+        p_display: *mut DisplayKHR,
+    ) -> VulkanResultCodes,
+>;
+///The V-table of [`Instance`] for functions from VK_NV_acquire_winrt_display
+pub struct InstanceNvAcquireWinrtDisplayVTable {
+    ///See [`FNAcquireWinrtDisplayNv`] for more information.
+    pub acquire_winrt_display_nv: FNAcquireWinrtDisplayNv,
+    ///See [`FNGetWinrtDisplayNv`] for more information.
+    pub get_winrt_display_nv: FNGetWinrtDisplayNv,
+}
+impl InstanceNvAcquireWinrtDisplayVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            acquire_winrt_display_nv: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireWinrtDisplayNV")))
+            },
+            get_winrt_display_nv: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetWinrtDisplayNV")))
+            },
+        }
+    }
+    ///Gets [`Self::acquire_winrt_display_nv`]. See [`FNAcquireWinrtDisplayNv`] for more
+    /// information.
+    pub fn acquire_winrt_display_nv(&self) -> FNAcquireWinrtDisplayNv {
+        self.acquire_winrt_display_nv
+    }
+    ///Gets [`Self::get_winrt_display_nv`]. See [`FNGetWinrtDisplayNv`] for more information.
+    pub fn get_winrt_display_nv(&self) -> FNGetWinrtDisplayNv {
+        self.get_winrt_display_nv
+    }
+}

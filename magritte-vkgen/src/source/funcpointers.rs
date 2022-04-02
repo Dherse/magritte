@@ -53,10 +53,14 @@ impl<'a> FunctionPointer<'a> {
     #[inline]
     pub fn new_no_origin(
         original_name: &'a str,
-        name: String,
+        mut name: String,
         return_type: Option<Ty<'a>>,
         arguments: SymbolTable<'a, FunctionPointerArgument<'a>>,
     ) -> Self {
+        if name == "type" {
+            name = "type_".to_string();
+        }
+
         Self::new(original_name, name, arguments, return_type, Origin::Unknown)
     }
 

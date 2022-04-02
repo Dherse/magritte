@@ -22,7 +22,7 @@
 //!   @selcott%0A<<Here describe the issue or question you have about the VK_EXT_color_write_enable
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdSetColorWriteEnableEXT`]
+//! - [`cmd_set_color_write_enable_ext`]
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceColorWriteEnableFeaturesEXT`]
@@ -43,7 +43,7 @@
 //!# Related
 //! - [`PhysicalDeviceColorWriteEnableFeaturesEXT`]
 //! - [`PipelineColorWriteCreateInfoEXT`]
-//! - [`CmdSetColorWriteEnableEXT`]
+//! - [`cmd_set_color_write_enable_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -52,7 +52,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
+use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, StructureType};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -62,6 +62,71 @@ pub const EXT_COLOR_WRITE_ENABLE_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME")]
 pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_color_write_enable");
+///[vkCmdSetColorWriteEnableEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetColorWriteEnableEXT.html) - Enable or disable writes to a color attachment dynamically for a command buffer
+///# C Specifications
+///To [dynamically enable or disable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) writes to a
+///color attachment, call:
+///```c
+///// Provided by VK_EXT_color_write_enable
+///void                                    vkCmdSetColorWriteEnableEXT(
+///    VkCommandBuffer                             commandBuffer,
+///    uint32_t                                    attachmentCount,
+///    const VkBool32*                             pColorWriteEnables);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer into which the command will be recorded.
+/// - [`attachment_count`] is the number of [`Bool32`] elements in [`p_color_write_enables`].
+/// - [`p_color_write_enables`] is a pointer to an array of per target attachment boolean values
+///   specifying whether color writes are enabled for the given attachment.
+/// # Description
+/// This command sets the color write enables for subsequent drawing commands
+/// when the graphics pipeline is created with
+/// `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT` set in
+/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
+/// Otherwise, this state is specified by the
+/// [`PipelineColorWriteCreateInfoEXT`]::[`p_color_write_enables`] values
+/// used to create the currently active pipeline.
+/// ## Valid Usage
+/// - The [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable)
+///   feature  **must**  be enabled
+/// - [`attachment_count`] **must**  be less than or equal to the `maxColorAttachments` member of
+///   [`PhysicalDeviceLimits`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_color_write_enables`] **must**  be a valid pointer to an array of
+///   [`attachment_count`][`Bool32`] values
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - [`attachment_count`] **must**  be greater than `0`
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_EXT_color_write_enable`]
+/// - [`Bool32`]
+/// - [`CommandBuffer`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdSetColorWriteEnableEXT")]
+pub type FNCmdSetColorWriteEnableExt = Option<
+    unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        attachment_count: u32,
+        p_color_write_enables: *const Bool32,
+    ),
+>;
 ///[VkPhysicalDeviceColorWriteEnableFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceColorWriteEnableFeaturesEXT.html) - Structure describing whether writes to color attachments can be enabled and disabled dynamically
 ///# C Specifications
 ///The [`PhysicalDeviceColorWriteEnableFeaturesEXT`] structure is defined
@@ -74,34 +139,34 @@ pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkBool32           colorWriteEnable;
 ///} VkPhysicalDeviceColorWriteEnableFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`color_write_enable`] indicates that the implementation supports the dynamic state
 ///   `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT`.
-///If the [`PhysicalDeviceColorWriteEnableFeaturesEXT`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceColorWriteEnableFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceColorWriteEnableFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceColorWriteEnableFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_color_write_enable`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceColorWriteEnableFeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -220,32 +285,32 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 ///    const VkBool32*    pColorWriteEnables;
 ///} VkPipelineColorWriteCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attachment_count`] is the number of [`Bool32`] elements in [`color_write_enables`].
 /// - [`color_write_enables`] is a pointer to an array of per target attachment boolean values
 ///   specifying whether color writes are enabled for the given attachment.
-///# Description
-///When this structure is included in the [`p_next`] chain of
-///[`PipelineColorBlendStateCreateInfo`], it defines per-attachment color
-///write state.
-///If this structure is not included in the [`p_next`] chain, it is equivalent
-///to specifying this structure with [`attachment_count`] equal to the
-///[`attachment_count`] member of [`PipelineColorBlendStateCreateInfo`],
-///and [`color_write_enables`] pointing to an array of as many [`TRUE`]
-///values.If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled
-///on the device, all [`Bool32`] elements in the
-///[`color_write_enables`] array  **must**  be [`TRUE`].Color Write Enable interacts with the
+/// # Description
+/// When this structure is included in the [`p_next`] chain of
+/// [`PipelineColorBlendStateCreateInfo`], it defines per-attachment color
+/// write state.
+/// If this structure is not included in the [`p_next`] chain, it is equivalent
+/// to specifying this structure with [`attachment_count`] equal to the
+/// [`attachment_count`] member of [`PipelineColorBlendStateCreateInfo`],
+/// and [`color_write_enables`] pointing to an array of as many [`TRUE`]
+/// values.If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled
+/// on the device, all [`Bool32`] elements in the
+/// [`color_write_enables`] array  **must**  be [`TRUE`].Color Write Enable interacts with the
 /// [Color
-///Write Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-mask) as follows:
+/// Write Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-mask) as follows:
 /// - If `colorWriteEnable` is [`TRUE`], writes to the attachment are determined by the
 ///   `colorWriteMask`.
 /// - If `colorWriteEnable` is [`FALSE`], the `colorWriteMask` is ignored and writes to all
 ///   components of the attachment are disabled. This is equivalent to specifying a `colorWriteMask`
 ///   of 0.
 ///
-///## Valid Usage
+/// ## Valid Usage
 /// - If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable)
 ///   feature is not enabled, all elements of [`color_write_enables`] **must**  be [`TRUE`]
 /// - [`attachment_count`] **must**  be equal to the [`attachment_count`] member of the
@@ -253,22 +318,22 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 /// - [`attachment_count`] **must**  be less than or equal to the `maxColorAttachments` member of
 ///   [`PhysicalDeviceLimits`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`
 /// - If [`attachment_count`] is not `0`, [`color_write_enables`] **must**  be a valid pointer to an
 ///   array of [`attachment_count`][`Bool32`] values
-///# Related
+/// # Related
 /// - [`VK_EXT_color_write_enable`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineColorWriteCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -371,5 +436,28 @@ impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
         self.color_write_enables = value.as_ptr();
         self.attachment_count = len_;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_color_write_enable
+pub struct DeviceExtColorWriteEnableVTable {
+    ///See [`FNCmdSetColorWriteEnableExt`] for more information.
+    pub cmd_set_color_write_enable_ext: FNCmdSetColorWriteEnableExt,
+}
+impl DeviceExtColorWriteEnableVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            cmd_set_color_write_enable_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetColorWriteEnableEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::cmd_set_color_write_enable_ext`]. See [`FNCmdSetColorWriteEnableExt`] for more
+    /// information.
+    pub fn cmd_set_color_write_enable_ext(&self) -> FNCmdSetColorWriteEnableExt {
+        self.cmd_set_color_write_enable_ext
     }
 }

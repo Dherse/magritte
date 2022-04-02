@@ -148,6 +148,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_1::{FNCreateSamplerYcbcrConversion, FNDestroySamplerYcbcrConversion},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -157,3 +161,36 @@ pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME")]
 pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_sampler_ycbcr_conversion");
+///The V-table of [`Device`] for functions from VK_KHR_sampler_ycbcr_conversion
+pub struct DeviceKhrSamplerYcbcrConversionVTable {
+    ///See [`FNCreateSamplerYcbcrConversion`] for more information.
+    pub create_sampler_ycbcr_conversion: FNCreateSamplerYcbcrConversion,
+    ///See [`FNDestroySamplerYcbcrConversion`] for more information.
+    pub destroy_sampler_ycbcr_conversion: FNDestroySamplerYcbcrConversion,
+}
+impl DeviceKhrSamplerYcbcrConversionVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_sampler_ycbcr_conversion: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateSamplerYcbcrConversionKHR")))
+            },
+            destroy_sampler_ycbcr_conversion: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroySamplerYcbcrConversionKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::create_sampler_ycbcr_conversion`]. See [`FNCreateSamplerYcbcrConversion`] for
+    /// more information.
+    pub fn create_sampler_ycbcr_conversion(&self) -> FNCreateSamplerYcbcrConversion {
+        self.create_sampler_ycbcr_conversion
+    }
+    ///Gets [`Self::destroy_sampler_ycbcr_conversion`]. See [`FNDestroySamplerYcbcrConversion`] for
+    /// more information.
+    pub fn destroy_sampler_ycbcr_conversion(&self) -> FNDestroySamplerYcbcrConversion {
+        self.destroy_sampler_ycbcr_conversion
+    }
+}

@@ -81,6 +81,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_2::{FNCmdBeginRenderPass2, FNCmdEndRenderPass2, FNCmdNextSubpass2, FNCreateRenderPass2},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -90,3 +94,50 @@ pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_CREATE_RENDERPASS_2_EXTENSION_NAME")]
 pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_create_renderpass2");
+///The V-table of [`Device`] for functions from VK_KHR_create_renderpass2
+pub struct DeviceKhrCreateRenderpass2VTable {
+    ///See [`FNCreateRenderPass2`] for more information.
+    pub create_render_pass2: FNCreateRenderPass2,
+    ///See [`FNCmdBeginRenderPass2`] for more information.
+    pub cmd_begin_render_pass2: FNCmdBeginRenderPass2,
+    ///See [`FNCmdNextSubpass2`] for more information.
+    pub cmd_next_subpass2: FNCmdNextSubpass2,
+    ///See [`FNCmdEndRenderPass2`] for more information.
+    pub cmd_end_render_pass2: FNCmdEndRenderPass2,
+}
+impl DeviceKhrCreateRenderpass2VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_render_pass2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateRenderPass2KHR")))
+            },
+            cmd_begin_render_pass2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderPass2KHR")))
+            },
+            cmd_next_subpass2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdNextSubpass2KHR"))) },
+            cmd_end_render_pass2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderPass2KHR")))
+            },
+        }
+    }
+    ///Gets [`Self::create_render_pass2`]. See [`FNCreateRenderPass2`] for more information.
+    pub fn create_render_pass2(&self) -> FNCreateRenderPass2 {
+        self.create_render_pass2
+    }
+    ///Gets [`Self::cmd_begin_render_pass2`]. See [`FNCmdBeginRenderPass2`] for more information.
+    pub fn cmd_begin_render_pass2(&self) -> FNCmdBeginRenderPass2 {
+        self.cmd_begin_render_pass2
+    }
+    ///Gets [`Self::cmd_next_subpass2`]. See [`FNCmdNextSubpass2`] for more information.
+    pub fn cmd_next_subpass2(&self) -> FNCmdNextSubpass2 {
+        self.cmd_next_subpass2
+    }
+    ///Gets [`Self::cmd_end_render_pass2`]. See [`FNCmdEndRenderPass2`] for more information.
+    pub fn cmd_end_render_pass2(&self) -> FNCmdEndRenderPass2 {
+        self.cmd_end_render_pass2
+    }
+}

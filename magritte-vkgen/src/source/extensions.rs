@@ -111,7 +111,12 @@ impl<'a> Extension<'a> {
         for required in self.required() {
             if required.eq(other) {
                 return true;
-            } else if source.extensions.get_by_either(required).expect("unknown extension").requires(source, other) {
+            } else if source
+                .extensions
+                .get_by_either(required)
+                .expect("unknown extension")
+                .requires(source, other)
+            {
                 return true;
             }
         }

@@ -9,14 +9,14 @@ mod enums;
 mod expr;
 mod extensions;
 mod funcpointers;
+mod functions;
 mod handles;
 mod opaques;
 mod structs;
 pub mod ty;
 mod unions;
-mod functions;
 
-use std::{collections::BTreeMap, fmt::Write};
+use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -92,6 +92,16 @@ impl<'a> Source<'a> {
             funcpointer.generate_code(self, doc, imports, out);
         }
 
+        for function in self.functions.iter().chain(self.commands.iter().map(Deref::deref)) {
+            if function.origin().is_disabled() {
+                continue;
+            }
+
+            let (imports, _, out) = per_origin.get_mut(function.origin()).unwrap();
+
+            function.generate_type_code(self, doc, imports, out);
+        }
+
         for enum_ in &self.enums {
             if enum_.origin().is_disabled() {
                 continue;
@@ -150,6 +160,35 @@ impl<'a> Source<'a> {
             let (_, _, out) = per_origin.get_mut(handle.origin()).unwrap();
 
             handle.generate_code(self, doc, out);
+        }
+        for handle in &self.handles {
+            if handle.origin().is_disabled() {
+                continue;
+            }
+
+            if !handle.is_loader() {
+                continue;
+            }
+
+            let functions = handle.functions_by_origin(self);
+
+            let (imports, _, out) = per_origin.get_mut(handle.origin()).unwrap();
+
+            handle.generate_vtable_code(self, imports, functions.keys().map(|origin| *origin), out);
+
+            for (origin, functions) in functions.into_iter() {
+                if origin.is_disabled() {
+                    continue;
+                }
+
+                // first we generate the sub vtable in each origin.
+                // the main reason for doing this is the following: this avoids having
+                // conditional compilation for each field, instead the conditional compilation
+                // is done once per vtable
+                let (imports, _, out) = per_origin.get_mut(origin).unwrap();
+
+                handle.generate_sub_vtable_code(self, imports, origin, &functions, out);
+            }
         }
 
         for opaque in &self.opaque_types {

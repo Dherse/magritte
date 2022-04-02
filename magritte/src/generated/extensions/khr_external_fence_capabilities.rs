@@ -69,6 +69,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{vulkan1_0::Instance, vulkan1_1::FNGetPhysicalDeviceExternalFenceProperties};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -79,3 +80,29 @@ pub const KHR_EXTERNAL_FENCE_CAPABILITIES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME")]
 pub const KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_KHR_external_fence_capabilities");
+///The V-table of [`Instance`] for functions from VK_KHR_external_fence_capabilities
+pub struct InstanceKhrExternalFenceCapabilitiesVTable {
+    ///See [`FNGetPhysicalDeviceExternalFenceProperties`] for more information.
+    pub get_physical_device_external_fence_properties: FNGetPhysicalDeviceExternalFenceProperties,
+}
+impl InstanceKhrExternalFenceCapabilitiesVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_external_fence_properties: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceExternalFencePropertiesKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_external_fence_properties`]. See
+    /// [`FNGetPhysicalDeviceExternalFenceProperties`] for more information.
+    pub fn get_physical_device_external_fence_properties(&self) -> FNGetPhysicalDeviceExternalFenceProperties {
+        self.get_physical_device_external_fence_properties
+    }
+}

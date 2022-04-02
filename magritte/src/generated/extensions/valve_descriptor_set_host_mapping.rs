@@ -14,8 +14,8 @@
 //!   @HansKristian-Work%0A<<Here describe the issue or question you have about the
 //!   VK_VALVE_descriptor_set_host_mapping extension>>)
 //!# New functions & commands
-//! - [`GetDescriptorSetHostMappingVALVE`]
-//! - [`GetDescriptorSetLayoutHostMappingInfoVALVE`]
+//! - [`get_descriptor_set_host_mapping_valve`]
+//! - [`get_descriptor_set_layout_host_mapping_info_valve`]
 //!# New structures
 //! - [`DescriptorSetBindingReferenceVALVE`]
 //! - [`DescriptorSetLayoutHostMappingInfoVALVE`]
@@ -37,8 +37,8 @@
 //! - [`DescriptorSetBindingReferenceVALVE`]
 //! - [`DescriptorSetLayoutHostMappingInfoVALVE`]
 //! - [`PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE`]
-//! - [`GetDescriptorSetHostMappingVALVE`]
-//! - [`GetDescriptorSetLayoutHostMappingInfoVALVE`]
+//! - [`get_descriptor_set_host_mapping_valve`]
+//! - [`get_descriptor_set_layout_host_mapping_info_valve`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -47,8 +47,13 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, DescriptorSetLayout, StructureType};
-use std::{ffi::CStr, marker::PhantomData};
+use crate::vulkan1_0::{
+    BaseInStructure, BaseOutStructure, Bool32, DescriptorSet, DescriptorSetLayout, Device, StructureType,
+};
+use std::{
+    ffi::{c_void, CStr},
+    marker::PhantomData,
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION")]
@@ -58,6 +63,78 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME")]
 pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_VALVE_descriptor_set_host_mapping");
+///[vkGetDescriptorSetLayoutHostMappingInfoVALVE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDescriptorSetLayoutHostMappingInfoVALVE.html) - Stub description of vkGetDescriptorSetLayoutHostMappingInfoVALVE
+///# C Specifications
+///There is currently no specification language written for this command.
+///This section acts only as placeholder and to avoid dead links in the
+///specification and reference pages.
+///```c
+///// Provided by VK_VALVE_descriptor_set_host_mapping
+///void vkGetDescriptorSetLayoutHostMappingInfoVALVE(
+///    VkDevice                                    device,
+///    const VkDescriptorSetBindingReferenceVALVE* pBindingReference,
+///    VkDescriptorSetLayoutHostMappingInfoVALVE*  pHostMapping);
+///```
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_binding_reference`] **must**  be a valid pointer to a valid
+///   [`DescriptorSetBindingReferenceVALVE`] structure
+/// - [`p_host_mapping`] **must**  be a valid pointer to a
+///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
+/// # Related
+/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`DescriptorSetBindingReferenceVALVE`]
+/// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
+/// - [`Device`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDescriptorSetLayoutHostMappingInfoVALVE")]
+pub type FNGetDescriptorSetLayoutHostMappingInfoValve = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_binding_reference: *const DescriptorSetBindingReferenceVALVE<'lt>,
+        p_host_mapping: *mut DescriptorSetLayoutHostMappingInfoVALVE<'lt>,
+    ),
+>;
+///[vkGetDescriptorSetHostMappingVALVE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDescriptorSetHostMappingVALVE.html) - Stub description of vkGetDescriptorSetHostMappingVALVE
+///# C Specifications
+///There is currently no specification language written for this command.
+///This section acts only as placeholder and to avoid dead links in the
+///specification and reference pages.
+///```c
+///// Provided by VK_VALVE_descriptor_set_host_mapping
+///void vkGetDescriptorSetHostMappingVALVE(
+///    VkDevice                                    device,
+///    VkDescriptorSet                             descriptorSet,
+///    void**                                      ppData);
+///```
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
+/// - [`pp_data`] **must**  be a valid pointer to a pointer value
+/// # Related
+/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`DescriptorSet`]
+/// - [`Device`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDescriptorSetHostMappingVALVE")]
+pub type FNGetDescriptorSetHostMappingValve =
+    Option<unsafe extern "system" fn(device: Device, descriptor_set: DescriptorSet, pp_data: *mut *mut c_void)>;
 ///[VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE.html) - Stub description of VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE
 ///# C Specifications
 ///There is currently no specification language written for this type.
@@ -71,22 +148,22 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           descriptorSetHostMapping;
 ///} VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
-///# Related
+/// # Related
 /// - [`VK_VALVE_descriptor_set_host_mapping`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -205,24 +282,24 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 ///    uint32_t                 binding;
 ///} VkDescriptorSetBindingReferenceVALVE;
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
-///# Related
+/// # Related
 /// - [`VK_VALVE_descriptor_set_host_mapping`]
 /// - [`DescriptorSetLayout`]
 /// - [`StructureType`]
-/// - [`GetDescriptorSetLayoutHostMappingInfoVALVE`]
+/// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetBindingReferenceVALVE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -326,22 +403,22 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 ///    uint32_t           descriptorSize;
 ///} VkDescriptorSetLayoutHostMappingInfoVALVE;
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_VALVE_descriptor_set_host_mapping`]
 /// - [`StructureType`]
-/// - [`GetDescriptorSetLayoutHostMappingInfoVALVE`]
+/// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutHostMappingInfoVALVE")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -436,5 +513,41 @@ impl<'lt> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     pub fn set_descriptor_size(&mut self, value: u32) -> &mut Self {
         self.descriptor_size = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_VALVE_descriptor_set_host_mapping
+pub struct DeviceValveDescriptorSetHostMappingVTable {
+    ///See [`FNGetDescriptorSetLayoutHostMappingInfoValve`] for more information.
+    pub get_descriptor_set_layout_host_mapping_info_valve: FNGetDescriptorSetLayoutHostMappingInfoValve,
+    ///See [`FNGetDescriptorSetHostMappingValve`] for more information.
+    pub get_descriptor_set_host_mapping_valve: FNGetDescriptorSetHostMappingValve,
+}
+impl DeviceValveDescriptorSetHostMappingVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_descriptor_set_layout_host_mapping_info_valve: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDescriptorSetLayoutHostMappingInfoVALVE"),
+                ))
+            },
+            get_descriptor_set_host_mapping_valve: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDescriptorSetHostMappingVALVE")))
+            },
+        }
+    }
+    ///Gets [`Self::get_descriptor_set_layout_host_mapping_info_valve`]. See
+    /// [`FNGetDescriptorSetLayoutHostMappingInfoValve`] for more information.
+    pub fn get_descriptor_set_layout_host_mapping_info_valve(&self) -> FNGetDescriptorSetLayoutHostMappingInfoValve {
+        self.get_descriptor_set_layout_host_mapping_info_valve
+    }
+    ///Gets [`Self::get_descriptor_set_host_mapping_valve`]. See
+    /// [`FNGetDescriptorSetHostMappingValve`] for more information.
+    pub fn get_descriptor_set_host_mapping_valve(&self) -> FNGetDescriptorSetHostMappingValve {
+        self.get_descriptor_set_host_mapping_valve
     }
 }

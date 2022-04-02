@@ -13,7 +13,7 @@ use rayon::prelude::*;
 use smallvec::SmallVec;
 
 /// An order preserving map that gets its key from the [`SymbolName`] trait.
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct SymbolTable<'a, T>
 where
     T: SymbolName<'a>,
@@ -253,6 +253,11 @@ where
     /// Gets the last element
     pub fn last(&self) -> Option<&'_ T> {
         self.values.last()
+    }
+
+    /// Does the symbol table contain an element with a certain key
+    pub fn contains_key(&self, key: &str) -> bool {
+        self.symbols.contains_key(key) || self.symbols_pretty.contains_key(key)
     }
 }
 

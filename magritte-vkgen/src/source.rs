@@ -31,7 +31,7 @@ use vk_parse::{
 
 use crate::{
     expr::Expr,
-    name::{bit_name, const_name, enum_name, funcpointer_name, tag_of_type, type_name},
+    name::{bit_name, const_name, enum_name, funcpointer_name, function_name, tag_of_type, type_name},
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
     ty::{Mutability, Ty},
@@ -345,30 +345,43 @@ impl<'a> Source<'a> {
             )
         }));
 
-        for function in this.functions.iter().chain(this.commands.iter().map(std::ops::Deref::deref)) {
+        for function in this
+            .functions
+            .iter()
+            .chain(this.commands.iter().map(std::ops::Deref::deref))
+        {
             let first_arg = &function.arguments()[0];
 
             match first_arg.ty() {
-                Ty::Named(name) => {
-                    match this.resolve_type(name).expect("unknown type") {
-                        TypeRef::Handle(_) => {
-                            this.handles.get_by_name_mut(name).unwrap().add_function(function.original_name.clone());
-                        },
-                        other => {
-                            info!("First argument of type: {:?}, makes `{}` a global function", other.name(), function.original_name());
-        
-                            this.loader_functions.push(function.original_name.clone());
-                        }
-                    }
+                Ty::Named(name) => match this.resolve_type(name).expect("unknown type") {
+                    TypeRef::Handle(_) => {
+                        this.handles
+                            .get_by_name_mut(name)
+                            .unwrap()
+                            .add_function(function.original_name.clone());
+                    },
+                    other => {
+                        info!(
+                            "First argument of type: {:?}, makes `{}` a global function",
+                            other.name(),
+                            function.original_name()
+                        );
+
+                        this.loader_functions.push(function.original_name.clone());
+                    },
                 },
                 other => {
-                    info!("First argument of type: {:?}, makes `{}` a global function", other, function.original_name());
+                    info!(
+                        "First argument of type: {:?}, makes `{}` a global function",
+                        other,
+                        function.original_name()
+                    );
 
                     this.loader_functions.push(function.original_name.clone());
-                }
+                },
             }
 
-            const STARTS: &[&str] = &[ "vkFree", "vkDestroy", "vkRelease" ];
+            const STARTS: &[&str] = &["vkFree", "vkDestroy", "vkRelease"];
             if !STARTS.iter().any(|start| function.original_name().starts_with(*start)) {
                 continue;
             }
@@ -380,15 +393,22 @@ impl<'a> Source<'a> {
             match last_arg.ty() {
                 Ty::Pointer(Mutability::Const, box Ty::Named(Cow::Borrowed("VkAllocationCallbacks"))) => {
                     match before_last_arg.ty() {
-                        Ty::Named(name) | Ty::Slice(_, box Ty::Named(name), _) | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
+                        Ty::Named(name)
+                        | Ty::Slice(_, box Ty::Named(name), _)
+                        | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
                             match this.resolve_type(name).expect("unknown type") {
                                 TypeRef::Handle(_) => {
                                     let handle = this.handles.get_by_name_mut(name).unwrap();
                                     if let Some(name) = handle.destroyer() {
-                                        warn!("More than one destroyer for {}, was {} became {}", handle.original_name(), name, function.original_name());
+                                        warn!(
+                                            "More than one destroyer for {}, was {} became {}",
+                                            handle.original_name(),
+                                            name,
+                                            function.original_name()
+                                        );
                                         continue;
                                     }
-        
+
                                     handle.set_destroyer(function.original_name.clone());
                                 },
                                 _ => {},
@@ -397,12 +417,19 @@ impl<'a> Source<'a> {
                         _ => {},
                     }
                 },
-                Ty::Named(name) | Ty::Slice(_, box Ty::Named(name), _) | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
+                Ty::Named(name)
+                | Ty::Slice(_, box Ty::Named(name), _)
+                | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
                     match this.resolve_type(name).expect("unknown type") {
                         TypeRef::Handle(_) => {
                             let handle = this.handles.get_by_name_mut(name).unwrap();
                             if let Some(name) = handle.destroyer() {
-                                warn!("More than one destroyer for {}, was {} became {}", handle.original_name(), name, function.original_name());
+                                warn!(
+                                    "More than one destroyer for {}, was {} became {}",
+                                    handle.original_name(),
+                                    name,
+                                    function.original_name()
+                                );
                                 continue;
                             }
 
@@ -412,6 +439,21 @@ impl<'a> Source<'a> {
                     }
                 },
                 _ => {},
+            }
+        }
+
+        for alias in &this.command_aliases {
+            // ignore disabled aliases
+            if alias.origin().is_disabled() {
+                continue;
+            }
+
+            if let Some(function) = this.functions.get_by_name_mut(alias.of()) {
+                function.aliases_mut().push(alias.original_name.clone());
+            } else if let Some(command) = this.commands.get_by_name_mut(alias.of()) {
+                command.aliases_mut().push(alias.original_name.clone());
+            } else {
+                error!("unknwon alias: {} of {}", alias.original_name(), alias.of());
             }
         }
 
@@ -826,7 +868,7 @@ impl<'a> Source<'a> {
         let span = span!(Level::INFO, "command", ?original_name);
         let _guard = span.enter();
 
-        let name = funcpointer_name(original_name, &self.tags[..]);
+        let name = function_name(original_name);
         info!(?name, "generated rustified name");
 
         let (_, return_type) = Ty::new(def_.proto.type_name.as_ref().expect("no return type for command"), "");

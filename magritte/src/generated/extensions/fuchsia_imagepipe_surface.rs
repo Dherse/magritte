@@ -14,7 +14,7 @@
 //!   @cdotstout%0A<<Here describe the issue or question you have about the
 //!   VK_FUCHSIA_imagepipe_surface extension>>)
 //!# New functions & commands
-//! - [`CreateImagePipeSurfaceFUCHSIA`]
+//! - [`create_image_pipe_surface_fuchsia`]
 //!# New structures
 //! - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
 //!# New bitmasks
@@ -32,7 +32,7 @@
 //!# Related
 //! - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]
 //! - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
-//! - [`CreateImagePipeSurfaceFUCHSIA`]
+//! - [`create_image_pipe_surface_fuchsia`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -42,8 +42,9 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    extensions::khr_surface::SurfaceKHR,
     native::zx_handle_t,
-    vulkan1_0::{BaseInStructure, StructureType},
+    vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -54,23 +55,76 @@ pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME")]
 pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_FUCHSIA_imagepipe_surface");
+///[vkCreateImagePipeSurfaceFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateImagePipeSurfaceFUCHSIA.html) - Create a slink:VkSurfaceKHR object for a Fuchsia ImagePipe
+///# C Specifications
+///To create a [`SurfaceKHR`] object for a Fuchsia ImagePipe, call:
+///```c
+///// Provided by VK_FUCHSIA_imagepipe_surface
+///VkResult vkCreateImagePipeSurfaceFUCHSIA(
+///    VkInstance                                  instance,
+///    const VkImagePipeSurfaceCreateInfoFUCHSIA*  pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance to associate with the surface.
+/// - [`p_create_info`] is a pointer to a [`ImagePipeSurfaceCreateInfoFUCHSIA`] structure containing
+///   parameters affecting the creation of the surface object.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid
+///   [`ImagePipeSurfaceCreateInfoFUCHSIA`] structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_FUCHSIA_imagepipe_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
+/// - [`Instance`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateImagePipeSurfaceFUCHSIA")]
+pub type FNCreateImagePipeSurfaceFuchsia = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const ImagePipeSurfaceCreateInfoFUCHSIA<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImagePipeSurfaceCreateFlagsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImagePipeSurfaceCreateFlagsFUCHSIA.html) - Reserved for future use
 ///# C Specifications
 ///```c
 ///// Provided by VK_FUCHSIA_imagepipe_surface
 ///typedef VkFlags VkImagePipeSurfaceCreateFlagsFUCHSIA;
 ///```
-///# Related
+/// # Related
 /// - [`VK_FUCHSIA_imagepipe_surface`]
 /// - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -100,33 +154,33 @@ impl std::fmt::Debug for ImagePipeSurfaceCreateFlagsFUCHSIA {
 ///    zx_handle_t                             imagePipeHandle;
 ///} VkImagePipeSurfaceCreateInfoFUCHSIA;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`image_pipe_handle`] is a [`zx_handle_t`] referring to the ImagePipe to associate with the
 ///   surface.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`image_pipe_handle`] **must**  be a valid [`zx_handle_t`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_FUCHSIA_imagepipe_surface`]
 /// - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]
 /// - [`StructureType`]
-/// - [`CreateImagePipeSurfaceFUCHSIA`]
+/// - [`create_image_pipe_surface_fuchsia`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImagePipeSurfaceCreateInfoFUCHSIA")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -227,5 +281,28 @@ impl<'lt> ImagePipeSurfaceCreateInfoFUCHSIA<'lt> {
     pub fn set_image_pipe_handle(&mut self, value: crate::native::zx_handle_t) -> &mut Self {
         self.image_pipe_handle = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_FUCHSIA_imagepipe_surface
+pub struct InstanceFuchsiaImagepipeSurfaceVTable {
+    ///See [`FNCreateImagePipeSurfaceFuchsia`] for more information.
+    pub create_image_pipe_surface_fuchsia: FNCreateImagePipeSurfaceFuchsia,
+}
+impl InstanceFuchsiaImagepipeSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_image_pipe_surface_fuchsia: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateImagePipeSurfaceFUCHSIA")))
+            },
+        }
+    }
+    ///Gets [`Self::create_image_pipe_surface_fuchsia`]. See [`FNCreateImagePipeSurfaceFuchsia`]
+    /// for more information.
+    pub fn create_image_pipe_surface_fuchsia(&self) -> FNCreateImagePipeSurfaceFuchsia {
+        self.create_image_pipe_surface_fuchsia
     }
 }

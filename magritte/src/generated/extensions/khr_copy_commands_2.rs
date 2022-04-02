@@ -86,6 +86,13 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_3::{
+        FNCmdBlitImage2, FNCmdCopyBuffer2, FNCmdCopyBufferToImage2, FNCmdCopyImage2, FNCmdCopyImageToBuffer2,
+        FNCmdResolveImage2,
+    },
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -95,3 +102,66 @@ pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_COPY_COMMANDS_2_EXTENSION_NAME")]
 pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_copy_commands2");
+///The V-table of [`Device`] for functions from VK_KHR_copy_commands2
+pub struct DeviceKhrCopyCommands2VTable {
+    ///See [`FNCmdCopyBuffer2`] for more information.
+    pub cmd_copy_buffer2: FNCmdCopyBuffer2,
+    ///See [`FNCmdCopyImage2`] for more information.
+    pub cmd_copy_image2: FNCmdCopyImage2,
+    ///See [`FNCmdBlitImage2`] for more information.
+    pub cmd_blit_image2: FNCmdBlitImage2,
+    ///See [`FNCmdCopyBufferToImage2`] for more information.
+    pub cmd_copy_buffer_to_image2: FNCmdCopyBufferToImage2,
+    ///See [`FNCmdCopyImageToBuffer2`] for more information.
+    pub cmd_copy_image_to_buffer2: FNCmdCopyImageToBuffer2,
+    ///See [`FNCmdResolveImage2`] for more information.
+    pub cmd_resolve_image2: FNCmdResolveImage2,
+}
+impl DeviceKhrCopyCommands2VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            cmd_copy_buffer2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBuffer2KHR"))) },
+            cmd_copy_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImage2KHR"))) },
+            cmd_blit_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBlitImage2KHR"))) },
+            cmd_copy_buffer_to_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBufferToImage2KHR")))
+            },
+            cmd_copy_image_to_buffer2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImageToBuffer2KHR")))
+            },
+            cmd_resolve_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResolveImage2KHR")))
+            },
+        }
+    }
+    ///Gets [`Self::cmd_copy_buffer2`]. See [`FNCmdCopyBuffer2`] for more information.
+    pub fn cmd_copy_buffer2(&self) -> FNCmdCopyBuffer2 {
+        self.cmd_copy_buffer2
+    }
+    ///Gets [`Self::cmd_copy_image2`]. See [`FNCmdCopyImage2`] for more information.
+    pub fn cmd_copy_image2(&self) -> FNCmdCopyImage2 {
+        self.cmd_copy_image2
+    }
+    ///Gets [`Self::cmd_blit_image2`]. See [`FNCmdBlitImage2`] for more information.
+    pub fn cmd_blit_image2(&self) -> FNCmdBlitImage2 {
+        self.cmd_blit_image2
+    }
+    ///Gets [`Self::cmd_copy_buffer_to_image2`]. See [`FNCmdCopyBufferToImage2`] for more
+    /// information.
+    pub fn cmd_copy_buffer_to_image2(&self) -> FNCmdCopyBufferToImage2 {
+        self.cmd_copy_buffer_to_image2
+    }
+    ///Gets [`Self::cmd_copy_image_to_buffer2`]. See [`FNCmdCopyImageToBuffer2`] for more
+    /// information.
+    pub fn cmd_copy_image_to_buffer2(&self) -> FNCmdCopyImageToBuffer2 {
+        self.cmd_copy_image_to_buffer2
+    }
+    ///Gets [`Self::cmd_resolve_image2`]. See [`FNCmdResolveImage2`] for more information.
+    pub fn cmd_resolve_image2(&self) -> FNCmdResolveImage2 {
+        self.cmd_resolve_image2
+    }
+}

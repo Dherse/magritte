@@ -30,11 +30,11 @@
 //!The following is unchanged with this extension:
 //! - Applications create a swapchain matching the native orientation of the display. Applications
 //!   must also set the [`SwapchainCreateInfoKHR::pre_transform`] equal to the `currentTransform` as
-//!   returned by [`GetPhysicalDeviceSurfaceCapabilitiesKHR`].
+//!   returned by [`get_physical_device_surface_capabilities_khr`].
 //!The following is changed with this extension:
-//! - At [`CmdBeginRenderPass`], the application provides extension struct
+//! - At [`cmd_begin_render_pass`], the application provides extension struct
 //!   [`RenderPassTransformBeginInfoQCOM`] specifying the render pass transform parameters.
-//! - At [`BeginCommandBuffer`] for secondary command buffers, the application provides extension
+//! - At [`begin_command_buffer`] for secondary command buffers, the application provides extension
 //!   struct [`CommandBufferInheritanceRenderPassTransformInfoQCOM`] specifying the render pass
 //!   transform parameters.
 //! - The `renderArea`, viewports, scissors, and `fragmentSize` are all provided in the current
@@ -77,10 +77,10 @@
 //!You can decode the `uint32_t` value into a major.minor.patch version as
 //!shown below:
 //!```c
-//!uint32_t  major = ((driverVersion) >> 22);
-//!uint32_t  minor = ((driverVersion) >> 12) & 0x3ff);
-//!uint32_t  patch = ((driverVersion) & 0xfff);
-//!```
+//! uint32_t  major = ((driverVersion) >> 22);
+//! uint32_t  minor = ((driverVersion) >> 12) & 0x3ff);
+//! uint32_t  patch = ((driverVersion) & 0xfff);
+//! ```
 //!If the Adreno major.minor.patch version is greater than or equal to to
 //!512.469.0, then simply use the VK_STRUCTURE_TYPE values as defined in
 //!vulkan_core.h.
@@ -116,7 +116,7 @@
 //!coordinate system.The [set of supported shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate) **may**
 //!be different per transform.
 //!Supported rates queried from
-//![`GetPhysicalDeviceFragmentShadingRatesKHR`] are in the native (rotated)
+//![`get_physical_device_fragment_shading_rates_khr`] are in the native (rotated)
 //!coordinate system.
 //!This means that the application  **must**  swap the x/y of the reported rates to
 //!get the set of rates supported for 90 and 270 degree rotation.
@@ -159,7 +159,7 @@ pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static CStr = crate::cstr
 ///To begin a render pass instance with [render pass transform](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-renderpass-transform) enabled, add the
 ///[`RenderPassTransformBeginInfoQCOM`] to the [`p_next`] chain of
 ///[`RenderPassBeginInfo`] structure passed to the
-///[`CmdBeginRenderPass`] command specifying the render pass transform.The
+///[`cmd_begin_render_pass`] command specifying the render pass transform.The
 /// [`RenderPassTransformBeginInfoQCOM`] structure is defined as:
 ///```c
 ///// Provided by VK_QCOM_render_pass_transform
@@ -169,33 +169,33 @@ pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VkSurfaceTransformFlagBitsKHR    transform;
 ///} VkRenderPassTransformBeginInfoQCOM;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`transform`] is a [`SurfaceTransformFlagBitsKHR`] value describing the transform to be
 ///   applied to rasterization.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`transform`] **must**  be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
 ///   `VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR`, `VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR`, or
 ///   `VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR`
 /// - The `renderpass` **must**  have been created with [`RenderPassCreateInfo::flags`] containing
 ///   `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM`
-///# Related
+/// # Related
 /// - [`VK_QCOM_render_pass_transform`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassTransformBeginInfoQCOM")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -285,7 +285,7 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
 ///pass transform](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-renderpass-transform), add the
 ///[`CommandBufferInheritanceRenderPassTransformInfoQCOM`] to the
 ///[`p_next`] chain of [`CommandBufferInheritanceInfo`] structure passed
-///to the [`BeginCommandBuffer`] command specifying the parameters for
+///to the [`begin_command_buffer`] command specifying the parameters for
 ///transformed rasterization.The [`CommandBufferInheritanceRenderPassTransformInfoQCOM`] structure
 /// is
 ///defined as:
@@ -298,41 +298,41 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
 ///    VkRect2D                         renderArea;
 ///} VkCommandBufferInheritanceRenderPassTransformInfoQCOM;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`transform`] is a [`SurfaceTransformFlagBitsKHR`] value describing the transform to be
 ///   applied to the render pass.
 /// - [`render_area`] is the render area that is affected by the command buffer.
-///# Description
-///When the secondary is recorded to execute within a render pass instance
-///using [`CmdExecuteCommands`], the render pass transform parameters of
-///the secondary command buffer  **must**  be consistent with the render pass
-///transform parameters specified for the render pass instance.
-///In particular, the [`transform`] and [`render_area`] for command buffer
+/// # Description
+/// When the secondary is recorded to execute within a render pass instance
+/// using [`cmd_execute_commands`], the render pass transform parameters of
+/// the secondary command buffer  **must**  be consistent with the render pass
+/// transform parameters specified for the render pass instance.
+/// In particular, the [`transform`] and [`render_area`] for command buffer
 /// **must**  be identical to the [`transform`] and [`render_area`] of the render
-///pass instance.
-///## Valid Usage
+/// pass instance.
+/// ## Valid Usage
 /// - [`transform`] **must**  be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
 ///   `VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR`, `VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR`, or
 ///   `VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM`
-///# Related
+/// # Related
 /// - [`VK_QCOM_render_pass_transform`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceRenderPassTransformInfoQCOM")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

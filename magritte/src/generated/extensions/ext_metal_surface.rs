@@ -14,7 +14,7 @@
 //!   @kvark%0A<<Here describe the issue or question you have about the VK_EXT_metal_surface
 //!   extension>>)
 //!# New functions & commands
-//! - [`CreateMetalSurfaceEXT`]
+//! - [`create_metal_surface_ext`]
 //!# New structures
 //! - [`MetalSurfaceCreateInfoEXT`]
 //!# New bitmasks
@@ -33,7 +33,7 @@
 //! - [`CaMetalLayer`]
 //! - [`MetalSurfaceCreateFlagsEXT`]
 //! - [`MetalSurfaceCreateInfoEXT`]
-//! - [`CreateMetalSurfaceEXT`]
+//! - [`create_metal_surface_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -42,7 +42,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, StructureType};
+use crate::{
+    extensions::khr_surface::SurfaceKHR,
+    vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
+};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
@@ -68,35 +71,89 @@ pub const EXT_METAL_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 ///typedef void CAMetalLayer;
 ///#endif
 ///```
-///# Related
+/// # Related
 /// - [`VK_EXT_metal_surface`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "CAMetalLayer")]
 pub type CaMetalLayer = c_void;
+///[vkCreateMetalSurfaceEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateMetalSurfaceEXT.html) - Create a VkSurfaceKHR object for CAMetalLayer
+///# C Specifications
+///To create a [`SurfaceKHR`] object for a [`CaMetalLayer`], call:
+///```c
+///// Provided by VK_EXT_metal_surface
+///VkResult vkCreateMetalSurfaceEXT(
+///    VkInstance                                  instance,
+///    const VkMetalSurfaceCreateInfoEXT*          pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance with which to associate the surface.
+/// - [`p_create_info`] is a pointer to a [`MetalSurfaceCreateInfoEXT`] structure specifying
+///   parameters affecting the creation of the surface object.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`MetalSurfaceCreateInfoEXT`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+/// # Related
+/// - [`VK_EXT_metal_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`Instance`]
+/// - [`MetalSurfaceCreateInfoEXT`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateMetalSurfaceEXT")]
+pub type FNCreateMetalSurfaceExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const MetalSurfaceCreateInfoEXT<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkMetalSurfaceCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMetalSurfaceCreateFlagsEXT.html) - Reserved for future use
 ///# C Specifications
 ///```c
 ///// Provided by VK_EXT_metal_surface
 ///typedef VkFlags VkMetalSurfaceCreateFlagsEXT;
 ///```
-///# Related
+/// # Related
 /// - [`VK_EXT_metal_surface`]
 /// - [`MetalSurfaceCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -126,29 +183,29 @@ impl std::fmt::Debug for MetalSurfaceCreateFlagsEXT {
 ///    const CAMetalLayer*             pLayer;
 ///} VkMetalSurfaceCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`layer`] is a reference to a [`CaMetalLayer`] object representing a renderable surface.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_metal_surface`]
 /// - [`MetalSurfaceCreateFlagsEXT`]
 /// - [`StructureType`]
-/// - [`CreateMetalSurfaceEXT`]
+/// - [`create_metal_surface_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMetalSurfaceCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -246,5 +303,28 @@ impl<'lt> MetalSurfaceCreateInfoEXT<'lt> {
     pub fn set_layer(&mut self, value: &'lt crate::extensions::ext_metal_surface::CaMetalLayer) -> &mut Self {
         self.layer = value as *const _;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_EXT_metal_surface
+pub struct InstanceExtMetalSurfaceVTable {
+    ///See [`FNCreateMetalSurfaceExt`] for more information.
+    pub create_metal_surface_ext: FNCreateMetalSurfaceExt,
+}
+impl InstanceExtMetalSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_metal_surface_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateMetalSurfaceEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::create_metal_surface_ext`]. See [`FNCreateMetalSurfaceExt`] for more
+    /// information.
+    pub fn create_metal_surface_ext(&self) -> FNCreateMetalSurfaceExt {
+        self.create_metal_surface_ext
     }
 }

@@ -18,13 +18,13 @@
 //! - [`DisplayKHR`]
 //! - [`DisplayModeKHR`]
 //!# New functions & commands
-//! - [`CreateDisplayModeKHR`]
-//! - [`CreateDisplayPlaneSurfaceKHR`]
-//! - [`GetDisplayModePropertiesKHR`]
-//! - [`GetDisplayPlaneCapabilitiesKHR`]
-//! - [`GetDisplayPlaneSupportedDisplaysKHR`]
-//! - [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
-//! - [`GetPhysicalDeviceDisplayPropertiesKHR`]
+//! - [`create_display_mode_khr`]
+//! - [`create_display_plane_surface_khr`]
+//! - [`get_display_mode_properties_khr`]
+//! - [`get_display_plane_capabilities_khr`]
+//! - [`get_display_plane_supported_displays_khr`]
+//! - [`get_physical_device_display_plane_properties_khr`]
+//! - [`get_physical_device_display_properties_khr`]
 //!# New structures
 //! - [`DisplayModeCreateInfoKHR`]
 //! - [`DisplayModeParametersKHR`]
@@ -140,8 +140,8 @@
 //!overlay pair.16) Should devices be able to expose planes that can be moved between
 //!displays? If so, how? **RESOLVED** : Yes.
 //!Applications can determine which displays a given plane supports using
-//![`GetDisplayPlaneSupportedDisplaysKHR`].17) Should there be a way to destroy display modes? If
-//! so, does it support
+//![`get_display_plane_supported_displays_khr`].17) Should there be a way to destroy display modes?
+//! If so, does it support
 //!destroying “built in” modes? **RESOLVED** : Not in this extension.
 //!A future extension could add this functionality.18) What should the lifetime of display and
 //! built-in display mode objects
@@ -239,13 +239,13 @@
 //! - [`DisplaySurfaceCreateFlagsKHR`]
 //! - [`DisplaySurfaceCreateInfoKHR`]
 //! - [`SurfaceTransformFlagsKHR`]
-//! - [`CreateDisplayModeKHR`]
-//! - [`CreateDisplayPlaneSurfaceKHR`]
-//! - [`GetDisplayModePropertiesKHR`]
-//! - [`GetDisplayPlaneCapabilitiesKHR`]
-//! - [`GetDisplayPlaneSupportedDisplaysKHR`]
-//! - [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
-//! - [`GetPhysicalDeviceDisplayPropertiesKHR`]
+//! - [`create_display_mode_khr`]
+//! - [`create_display_plane_surface_khr`]
+//! - [`get_display_mode_properties_khr`]
+//! - [`get_display_plane_capabilities_khr`]
+//! - [`get_display_plane_supported_displays_khr`]
+//! - [`get_physical_device_display_plane_properties_khr`]
+//! - [`get_physical_device_display_properties_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -255,8 +255,11 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
-    extensions::khr_surface::SurfaceTransformFlagBitsKHR,
-    vulkan1_0::{BaseInStructure, Bool32, Extent2D, Offset2D, StructureType},
+    extensions::khr_surface::{SurfaceKHR, SurfaceTransformFlagBitsKHR},
+    vulkan1_0::{
+        AllocationCallbacks, BaseInStructure, Bool32, Extent2D, Instance, Offset2D, PhysicalDevice, StructureType,
+        VulkanResultCodes,
+    },
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -276,6 +279,439 @@ pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DISPLAY_EXTENSION_NAME")]
 pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_display");
+///[vkGetPhysicalDeviceDisplayPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html) - Query information about the available displays
+///# C Specifications
+///Various functions are provided for enumerating the available display devices
+///present on a Vulkan physical device.
+///To query information about the available displays, call:
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkGetPhysicalDeviceDisplayPropertiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t*                                   pPropertyCount,
+///    VkDisplayPropertiesKHR*                     pProperties);
+///```
+/// # Parameters
+/// - [`physical_device`] is a physical device.
+/// - [`p_property_count`] is a pointer to an integer related to the number of display devices
+///   available or queried, as described below.
+/// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayPropertiesKHR`]
+///   structures.
+/// # Description
+/// If [`p_properties`] is `NULL`, then the number of display devices available
+/// for [`physical_device`] is returned in [`p_property_count`].
+/// Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
+/// the number of elements in the [`p_properties`] array, and on return the
+/// variable is overwritten with the number of structures actually written to
+/// [`p_properties`].
+/// If the value of [`p_property_count`] is less than the number of display
+/// devices for [`physical_device`], at most [`p_property_count`] structures
+/// will be written, and `VK_INCOMPLETE` will be returned instead of
+/// `VK_SUCCESS`, to indicate that not all the available properties were
+/// returned.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
+///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
+///   [`p_property_count`][`DisplayPropertiesKHR`] structures
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayPropertiesKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceDisplayPropertiesKHR")]
+pub type FNGetPhysicalDeviceDisplayPropertiesKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_property_count: *mut u32,
+        p_properties: *mut DisplayPropertiesKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceDisplayPlanePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html) - Query the plane properties
+///# C Specifications
+///Images are presented to individual planes on a display.
+///Devices  **must**  support at least one plane on each display.
+///Planes  **can**  be stacked and blended to composite multiple images on one
+///display.
+///Devices  **may**  support only a fixed stacking order and fixed mapping between
+///planes and displays, or they  **may**  allow arbitrary application specified
+///stacking orders and mappings between planes and displays.
+///To query the properties of device display planes, call:
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkGetPhysicalDeviceDisplayPlanePropertiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t*                                   pPropertyCount,
+///    VkDisplayPlanePropertiesKHR*                pProperties);
+///```
+/// # Parameters
+/// - [`physical_device`] is a physical device.
+/// - [`p_property_count`] is a pointer to an integer related to the number of display planes
+///   available or queried, as described below.
+/// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayPlanePropertiesKHR`]
+///   structures.
+/// # Description
+/// If [`p_properties`] is `NULL`, then the number of display planes available
+/// for [`physical_device`] is returned in [`p_property_count`].
+/// Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
+/// the number of elements in the [`p_properties`] array, and on return the
+/// variable is overwritten with the number of structures actually written to
+/// [`p_properties`].
+/// If the value of [`p_property_count`] is less than the number of display
+/// planes for [`physical_device`], at most [`p_property_count`] structures
+/// will be written.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
+///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
+///   [`p_property_count`][`DisplayPlanePropertiesKHR`] structures
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayPlanePropertiesKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceDisplayPlanePropertiesKHR")]
+pub type FNGetPhysicalDeviceDisplayPlanePropertiesKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_property_count: *mut u32,
+        p_properties: *mut DisplayPlanePropertiesKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetDisplayPlaneSupportedDisplaysKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html) - Query the list of displays a plane supports
+///# C Specifications
+///To determine which displays a plane is usable with, call
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkGetDisplayPlaneSupportedDisplaysKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t                                    planeIndex,
+///    uint32_t*                                   pDisplayCount,
+///    VkDisplayKHR*                               pDisplays);
+///```
+/// # Parameters
+/// - [`physical_device`] is a physical device.
+/// - [`plane_index`] is the plane which the application wishes to use, and  **must**  be in the
+///   range [0, physical device plane count - 1].
+/// - [`p_display_count`] is a pointer to an integer related to the number of displays available or
+///   queried, as described below.
+/// - [`p_displays`] is either `NULL` or a pointer to an array of [`DisplayKHR`] handles.
+/// # Description
+/// If [`p_displays`] is `NULL`, then the number of displays usable with the
+/// specified [`plane_index`] for [`physical_device`] is returned in
+/// [`p_display_count`].
+/// Otherwise, [`p_display_count`] **must**  point to a variable set by the user to
+/// the number of elements in the [`p_displays`] array, and on return the
+/// variable is overwritten with the number of handles actually written to
+/// [`p_displays`].
+/// If the value of [`p_display_count`] is less than the number of usable
+/// display-plane pairs for [`physical_device`], at most [`p_display_count`]
+/// handles will be written, and `VK_INCOMPLETE` will be returned instead of
+/// `VK_SUCCESS`, to indicate that not all the available pairs were
+/// returned.
+/// ## Valid Usage
+/// - [`plane_index`] **must**  be less than the number of display planes supported by the device as
+///   determined by calling [`get_physical_device_display_plane_properties_khr`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_display_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_display_count`] is not `0`, and [`p_displays`] is not `NULL`,
+///   [`p_displays`] **must**  be a valid pointer to an array of [`p_display_count`][`DisplayKHR`]
+///   handles
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDisplayPlaneSupportedDisplaysKHR")]
+pub type FNGetDisplayPlaneSupportedDisplaysKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        plane_index: u32,
+        p_display_count: *mut u32,
+        p_displays: *mut DisplayKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetDisplayModePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDisplayModePropertiesKHR.html) - Query the set of mode properties supported by the display
+///# C Specifications
+///Each display has one or more supported modes associated with it by default.
+///These built-in modes are queried by calling:
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkGetDisplayModePropertiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkDisplayKHR                                display,
+///    uint32_t*                                   pPropertyCount,
+///    VkDisplayModePropertiesKHR*                 pProperties);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device associated with [`display`].
+/// - [`display`] is the display to query.
+/// - [`p_property_count`] is a pointer to an integer related to the number of display modes
+///   available or queried, as described below.
+/// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayModePropertiesKHR`]
+///   structures.
+/// # Description
+/// If [`p_properties`] is `NULL`, then the number of display modes available
+/// on the specified [`display`] for [`physical_device`] is returned in
+/// [`p_property_count`].
+/// Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
+/// the number of elements in the [`p_properties`] array, and on return the
+/// variable is overwritten with the number of structures actually written to
+/// [`p_properties`].
+/// If the value of [`p_property_count`] is less than the number of display
+/// modes for [`physical_device`], at most [`p_property_count`] structures will
+/// be written, and `VK_INCOMPLETE` will be returned instead of
+/// `VK_SUCCESS`, to indicate that not all the available display modes were
+/// returned.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+/// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
+///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
+///   [`p_property_count`][`DisplayModePropertiesKHR`] structures
+/// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayKHR`]
+/// - [`DisplayModePropertiesKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDisplayModePropertiesKHR")]
+pub type FNGetDisplayModePropertiesKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        display: DisplayKHR,
+        p_property_count: *mut u32,
+        p_properties: *mut DisplayModePropertiesKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkCreateDisplayModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayModeKHR.html) - Create a display mode
+///# C Specifications
+///Additional modes  **may**  also be created by calling:
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkCreateDisplayModeKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkDisplayKHR                                display,
+///    const VkDisplayModeCreateInfoKHR*           pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkDisplayModeKHR*                           pMode);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device associated with [`display`].
+/// - [`display`] is the display to create an additional mode for.
+/// - [`p_create_info`] is a pointer to a [`DisplayModeCreateInfoKHR`] structure describing the new
+///   mode to create.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the display mode object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_mode`] is a pointer to a [`DisplayModeKHR`] handle in which the mode created is returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`DisplayModeCreateInfoKHR`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_mode`] **must**  be a valid pointer to a [`DisplayModeKHR`] handle
+/// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+///
+/// ## Host Synchronization
+/// - Host access to [`display`] **must**  be externally synchronized
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_INITIALIZATION_FAILED`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`AllocationCallbacks`]
+/// - [`DisplayKHR`]
+/// - [`DisplayModeCreateInfoKHR`]
+/// - [`DisplayModeKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateDisplayModeKHR")]
+pub type FNCreateDisplayModeKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        display: DisplayKHR,
+        p_create_info: *const DisplayModeCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_mode: *mut DisplayModeKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetDisplayPlaneCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html) - Query capabilities of a mode and plane combination
+///# C Specifications
+///Applications that wish to present directly to a display  **must**  select which
+///layer, or “plane” of the display they wish to target, and a mode to use
+///with the display.
+///Each display supports at least one plane.
+///The capabilities of a given mode and plane combination are determined by
+///calling:
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkGetDisplayPlaneCapabilitiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkDisplayModeKHR                            mode,
+///    uint32_t                                    planeIndex,
+///    VkDisplayPlaneCapabilitiesKHR*              pCapabilities);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device associated with the display specified by [`mode`]
+/// - [`mode`] is the display mode the application intends to program when using the specified
+///   plane. Note this parameter also implicitly specifies a display.
+/// - [`plane_index`] is the plane which the application intends to use with the display, and is
+///   less than the number of display planes supported by the device.
+/// - [`p_capabilities`] is a pointer to a [`DisplayPlaneCapabilitiesKHR`] structure in which the
+///   capabilities are returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`mode`] **must**  be a valid [`DisplayModeKHR`] handle
+/// - [`p_capabilities`] **must**  be a valid pointer to a [`DisplayPlaneCapabilitiesKHR`] structure
+///
+/// ## Host Synchronization
+/// - Host access to [`mode`] **must**  be externally synchronized
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`DisplayModeKHR`]
+/// - [`DisplayPlaneCapabilitiesKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDisplayPlaneCapabilitiesKHR")]
+pub type FNGetDisplayPlaneCapabilitiesKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        mode: DisplayModeKHR,
+        plane_index: u32,
+        p_capabilities: *mut DisplayPlaneCapabilitiesKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkCreateDisplayPlaneSurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html) - Create a slink:VkSurfaceKHR structure representing a display plane and mode
+///# C Specifications
+///A complete display configuration includes a mode, one or more display planes
+///and any parameters describing their behavior, and parameters describing some
+///aspects of the images associated with those planes.
+///Display surfaces describe the configuration of a single plane within a
+///complete display configuration.
+///To create a [`SurfaceKHR`] object for a display plane, call:
+///```c
+///// Provided by VK_KHR_display
+///VkResult vkCreateDisplayPlaneSurfaceKHR(
+///    VkInstance                                  instance,
+///    const VkDisplaySurfaceCreateInfoKHR*        pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance corresponding to the physical device the targeted display is on.
+/// - [`p_create_info`] is a pointer to a [`DisplaySurfaceCreateInfoKHR`] structure specifying which
+///   mode, plane, and other parameters to use, as described below.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`DisplaySurfaceCreateInfoKHR`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_display`]
+/// - [`AllocationCallbacks`]
+/// - [`DisplaySurfaceCreateInfoKHR`]
+/// - [`Instance`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateDisplayPlaneSurfaceKHR")]
+pub type FNCreateDisplayPlaneSurfaceKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const DisplaySurfaceCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkDisplayPlaneAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneAlphaFlagBitsKHR.html) - Alpha blending type
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -290,7 +726,7 @@ pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_displ
 ///    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 0x00000008,
 ///} VkDisplayPlaneAlphaFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`DisplayPlaneAlphaOpaqueKhr`] specifies that the source image will be treated as opaque.
 /// - [`DisplayPlaneAlphaGlobalKhr`] specifies that a global alpha value  **must**  be specified
 ///   that will be applied to all pixels in the source image.
@@ -301,18 +737,18 @@ pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_displ
 /// - [`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is equivalent to
 ///   [`DisplayPlaneAlphaPerPixelKhr`], except the source alpha values are assumed to be
 ///   premultiplied into the source image’s other color components.
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneAlphaFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -379,7 +815,7 @@ impl DisplayPlaneAlphaFlagBitsKHR {
 ///    VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 0x00000008,
 ///} VkDisplayPlaneAlphaFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`DisplayPlaneAlphaOpaqueKhr`] specifies that the source image will be treated as opaque.
 /// - [`DisplayPlaneAlphaGlobalKhr`] specifies that a global alpha value  **must**  be specified
 ///   that will be applied to all pixels in the source image.
@@ -390,18 +826,18 @@ impl DisplayPlaneAlphaFlagBitsKHR {
 /// - [`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is equivalent to
 ///   [`DisplayPlaneAlphaPerPixelKhr`], except the source alpha values are assumed to be
 ///   premultiplied into the source image’s other color components.
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneAlphaFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -733,7 +1169,7 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 ///    VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR = 0x00000100,
 ///} VkSurfaceTransformFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`SurfaceTransformIdentityKhr`] specifies that image content is presented without being
 ///   transformed.
 /// - [`SurfaceTransformRotate90Khr`] specifies that image content is rotated 90 degrees clockwise.
@@ -750,7 +1186,7 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 ///   horizontally, then rotated 270 degrees clockwise.
 /// - [`SurfaceTransformInheritKhr`] specifies that the presentation transform is not specified, and
 ///   is instead determined by platform-specific considerations and mechanisms outside Vulkan.
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
 /// - [`CopyCommandTransformInfoQCOM`]
@@ -761,13 +1197,13 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 /// - [`SurfaceTransformFlagsKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceTransformFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1173,17 +1609,17 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
 ///// Provided by VK_KHR_display
 ///typedef VkFlags VkDisplayModeCreateFlagsKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1207,17 +1643,17 @@ impl std::fmt::Debug for DisplayModeCreateFlagsKHR {
 ///// Provided by VK_KHR_display
 ///typedef VkFlags VkDisplaySurfaceCreateFlagsKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1250,7 +1686,7 @@ impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
 ///    VkBool32                      persistentContent;
 ///} VkDisplayPropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`display`] is a handle that is used to refer to the display described here. This handle will
 ///   be valid for the lifetime of the Vulkan instance.
 /// - [`display_name`] is `NULL` or a pointer to a null-terminated UTF-8 string containing the name
@@ -1261,7 +1697,7 @@ impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
 ///   display, in millimeters.
 /// - [`physical_resolution`] describes the physical, native, or preferred resolution of the
 ///   display.
-///# Description
+/// # Description
 /// - [`supported_transforms`] is a bitmask of [`SurfaceTransformFlagBitsKHR`] describing which
 ///   transforms are supported by this display.
 /// - [`plane_reorder_possible`] tells whether the planes on this display  **can**  have their z
@@ -1270,22 +1706,22 @@ impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
 /// - [`persistent_content`] tells whether the display supports self-refresh/internal buffering. If
 ///   this is true, the application  **can**  submit persistent present operations on swapchains
 ///   created against this display.
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`Bool32`]
 /// - [`DisplayKHR`]
 /// - [`DisplayProperties2KHR`]
 /// - [`Extent2D`]
 /// - [`SurfaceTransformFlagsKHR`]
-/// - [`GetPhysicalDeviceDisplayPropertiesKHR`]
+/// - [`get_physical_device_display_properties_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1491,25 +1927,25 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
 ///    uint32_t        currentStackIndex;
 ///} VkDisplayPlanePropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`current_display`] is the handle of the display the plane is currently associated with. If
 ///   the plane is not currently attached to any displays, this will be
 ///   [`crate::utils::Handle::null`].
 /// - [`current_stack_index`] is the current z-order of the plane. This will be between 0 and the
-///   value returned by [`GetPhysicalDeviceDisplayPlanePropertiesKHR`] in `pPropertyCount`.
-///# Related
+///   value returned by [`get_physical_device_display_plane_properties_khr`] in `pPropertyCount`.
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayKHR`]
 /// - [`DisplayPlaneProperties2KHR`]
-/// - [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
+/// - [`get_physical_device_display_plane_properties_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlanePropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1522,7 +1958,7 @@ pub struct DisplayPlanePropertiesKHR {
     pub current_display: DisplayKHR,
     ///[`current_stack_index`] is the current z-order of the plane.
     ///This will be between 0 and the value returned by
-    ///[`GetPhysicalDeviceDisplayPlanePropertiesKHR`] in
+    ///[`get_physical_device_display_plane_properties_khr`] in
     ///`pPropertyCount`.
     pub current_stack_index: u32,
 }
@@ -1572,28 +2008,28 @@ impl DisplayPlanePropertiesKHR {
 ///    uint32_t      refreshRate;
 ///} VkDisplayModeParametersKHR;
 ///```
-///# Members
+/// # Members
 /// - [`visible_region`] is the 2D extents of the visible region.
 /// - [`refresh_rate`] is a `uint32_t` that is the number of times the display is refreshed each
 ///   second multiplied by 1000.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - The `width` member of [`visible_region`] **must**  be greater than `0`
 /// - The `height` member of [`visible_region`] **must**  be greater than `0`
 /// - [`refresh_rate`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeCreateInfoKHR`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`Extent2D`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeParametersKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1652,25 +2088,25 @@ impl DisplayModeParametersKHR {
 ///    VkDisplayModeParametersKHR    parameters;
 ///} VkDisplayModePropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`display_mode`] is a handle to the display mode described in this structure. This handle will
 ///   be valid for the lifetime of the Vulkan instance.
 /// - [`parameters`] is a [`DisplayModeParametersKHR`] structure describing the display parameters
 ///   associated with [`display_mode`].
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeKHR`]
 /// - [`DisplayModeParametersKHR`]
 /// - [`DisplayModeProperties2KHR`]
-/// - [`GetDisplayModePropertiesKHR`]
+/// - [`get_display_mode_properties_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModePropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1732,33 +2168,33 @@ impl DisplayModePropertiesKHR {
 ///    VkDisplayModeParametersKHR     parameters;
 ///} VkDisplayModeCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use, and  **must**  be zero.
 /// - [`parameters`] is a [`DisplayModeParametersKHR`] structure describing the display parameters
 ///   to use in creating the new mode. If the parameters are not compatible with the specified
 ///   display, the implementation  **must**  return `VK_ERROR_INITIALIZATION_FAILED`.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 /// - [`parameters`] **must**  be a valid [`DisplayModeParametersKHR`] structure
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeCreateFlagsKHR`]
 /// - [`DisplayModeParametersKHR`]
 /// - [`StructureType`]
-/// - [`CreateDisplayModeKHR`]
+/// - [`create_display_mode_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1869,7 +2305,7 @@ impl<'lt> DisplayModeCreateInfoKHR<'lt> {
 ///    VkExtent2D                     maxDstExtent;
 ///} VkDisplayPlaneCapabilitiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`supported_alpha`] is a bitmask of [`DisplayPlaneAlphaFlagBitsKHR`] describing the supported
 ///   alpha blending modes.
 /// - [`min_src_position`] is the minimum source rectangle offset supported by this plane using the
@@ -1885,50 +2321,50 @@ impl<'lt> DisplayModeCreateInfoKHR<'lt> {
 ///   similar semantics to their corresponding `*Src*` equivalents, but apply to the output region
 ///   within the mode rather than the input region within the source image. Unlike the `*Src*`
 ///   offsets, [`min_dst_position`] and [`max_dst_position`] **may**  contain negative values.
-///# Description
-///The minimum and maximum position and extent fields describe the
-///implementation limits, if any, as they apply to the specified display mode
-///and plane.
-///Vendors  **may**  support displaying a subset of a swapchain’s presentable images
-///on the specified display plane.
-///This is expressed by returning [`min_src_position`], [`max_src_position`],
-///[`min_src_extent`], and [`max_src_extent`] values that indicate a range of
-///possible positions and sizes which  **may**  be used to specify the region within
-///the presentable images that source pixels will be read from when creating a
-///swapchain on the specified display mode and plane.Vendors  **may**  also support mapping the
+/// # Description
+/// The minimum and maximum position and extent fields describe the
+/// implementation limits, if any, as they apply to the specified display mode
+/// and plane.
+/// Vendors  **may**  support displaying a subset of a swapchain’s presentable images
+/// on the specified display plane.
+/// This is expressed by returning [`min_src_position`], [`max_src_position`],
+/// [`min_src_extent`], and [`max_src_extent`] values that indicate a range of
+/// possible positions and sizes which  **may**  be used to specify the region within
+/// the presentable images that source pixels will be read from when creating a
+/// swapchain on the specified display mode and plane.Vendors  **may**  also support mapping the
 /// presentable images’ content to a
-///subset or superset of the visible region in the specified display mode.
-///This is expressed by returning [`min_dst_position`], [`max_dst_position`],
-///[`min_dst_extent`] and [`max_dst_extent`] values that indicate a range of
-///possible positions and sizes which  **may**  be used to describe the region
-///within the display mode that the source pixels will be mapped to.Other vendors  **may**  support
+/// subset or superset of the visible region in the specified display mode.
+/// This is expressed by returning [`min_dst_position`], [`max_dst_position`],
+/// [`min_dst_extent`] and [`max_dst_extent`] values that indicate a range of
+/// possible positions and sizes which  **may**  be used to describe the region
+/// within the display mode that the source pixels will be mapped to.Other vendors  **may**  support
 /// only a 1-1 mapping between pixels in the
-///presentable images and the display mode.
-///This  **may**  be indicated by returning (0,0) for [`min_src_position`],
-///[`max_src_position`], [`min_dst_position`], and [`max_dst_position`], and
-///(display mode width, display mode height) for [`min_src_extent`],
-///[`max_src_extent`], [`min_dst_extent`], and [`max_dst_extent`].The value [`supported_alpha`]
+/// presentable images and the display mode.
+/// This  **may**  be indicated by returning (0,0) for [`min_src_position`],
+/// [`max_src_position`], [`min_dst_position`], and [`max_dst_position`], and
+/// (display mode width, display mode height) for [`min_src_extent`],
+/// [`max_src_extent`], [`min_dst_extent`], and [`max_dst_extent`].The value [`supported_alpha`]
 /// **must**  contain at least one valid
-///[`DisplayPlaneAlphaFlagBitsKHR`] bit.These values indicate the limits of the implementation’s
+/// [`DisplayPlaneAlphaFlagBitsKHR`] bit.These values indicate the limits of the implementation’s
 /// individual fields.
-///Not all combinations of values within the offset and extent ranges returned
-///in [`DisplayPlaneCapabilitiesKHR`] are guaranteed to be supported.
-///Presentation requests specifying unsupported combinations  **may**  fail.
-///# Related
+/// Not all combinations of values within the offset and extent ranges returned
+/// in [`DisplayPlaneCapabilitiesKHR`] are guaranteed to be supported.
+/// Presentation requests specifying unsupported combinations  **may**  fail.
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
 /// - [`DisplayPlaneCapabilities2KHR`]
 /// - [`Extent2D`]
 /// - [`Offset2D`]
-/// - [`GetDisplayPlaneCapabilitiesKHR`]
+/// - [`get_display_plane_capabilities_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2123,7 +2559,7 @@ impl DisplayPlaneCapabilitiesKHR {
 ///    VkExtent2D                        imageExtent;
 ///} VkDisplaySurfaceCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use, and  **must**  be zero.
@@ -2138,17 +2574,17 @@ impl DisplayPlaneCapabilitiesKHR {
 /// - [`alpha_mode`] is a [`DisplayPlaneAlphaFlagBitsKHR`] value specifying the type of alpha
 ///   blending to use.
 /// - [`image_extent`] is the size of the presentable images to use with the surface.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`plane_index`] **must**  be less than the number of display planes supported by the device as
-///   determined by calling [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]
+///   determined by calling [`get_physical_device_display_plane_properties_khr`]
 /// - If the `planeReorderPossible` member of the [`DisplayPropertiesKHR`] structure returned by
-///   [`GetPhysicalDeviceDisplayPropertiesKHR`] for the display corresponding to [`display_mode`] is
-///   [`TRUE`] then [`plane_stack_index`] **must**  be less than the number of display planes
-///   supported by the device as determined by calling
-///   [`GetPhysicalDeviceDisplayPlanePropertiesKHR`]; otherwise [`plane_stack_index`] **must**
+///   [`get_physical_device_display_properties_khr`] for the display corresponding to
+///   [`display_mode`] is [`TRUE`] then [`plane_stack_index`] **must**  be less than the number of
+///   display planes supported by the device as determined by calling
+///   [`get_physical_device_display_plane_properties_khr`]; otherwise [`plane_stack_index`] **must**
 ///   equal the `currentStackIndex` member of [`DisplayPlanePropertiesKHR`] returned by
-///   [`GetPhysicalDeviceDisplayPlanePropertiesKHR`] for the display plane corresponding to
+///   [`get_physical_device_display_plane_properties_khr`] for the display plane corresponding to
 ///   [`display_mode`]
 /// - If [`alpha_mode`] is `VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR` then [`global_alpha`] **must**
 ///   be between `0` and `1`, inclusive
@@ -2157,14 +2593,14 @@ impl DisplayPlaneCapabilitiesKHR {
 /// - The `width` and `height` members of [`image_extent`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_image_dimension_2_d`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 /// - [`display_mode`] **must**  be a valid [`DisplayModeKHR`] handle
 /// - [`transform`] **must**  be a valid [`SurfaceTransformFlagBitsKHR`] value
 /// - [`alpha_mode`] **must**  be a valid [`DisplayPlaneAlphaFlagBitsKHR`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModeKHR`]
 /// - [`DisplayPlaneAlphaFlagBitsKHR`]
@@ -2172,15 +2608,15 @@ impl DisplayPlaneCapabilitiesKHR {
 /// - [`Extent2D`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]
-/// - [`CreateDisplayPlaneSurfaceKHR`]
+/// - [`create_display_plane_surface_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplaySurfaceCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2381,31 +2817,31 @@ impl<'lt> DisplaySurfaceCreateInfoKHR<'lt> {
 ///// Provided by VK_KHR_display
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayKHR)
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlanePropertiesKHR`]
 /// - [`DisplayPropertiesKHR`]
-/// - [`AcquireDrmDisplayEXT`]
-/// - [`AcquireWinrtDisplayNV`]
-/// - [`AcquireXlibDisplayEXT`]
-/// - [`CreateDisplayModeKHR`]
-/// - [`DisplayPowerControlEXT`]
-/// - [`GetDisplayModeProperties2KHR`]
-/// - [`GetDisplayModePropertiesKHR`]
-/// - [`GetDisplayPlaneSupportedDisplaysKHR`]
-/// - [`GetDrmDisplayEXT`]
-/// - [`GetRandROutputDisplayEXT`]
-/// - [`GetWinrtDisplayNV`]
-/// - [`RegisterDisplayEventEXT`]
-/// - [`ReleaseDisplayEXT`]
+/// - [`acquire_drm_display_ext`]
+/// - [`acquire_winrt_display_nv`]
+/// - [`acquire_xlib_display_ext`]
+/// - [`create_display_mode_khr`]
+/// - [`display_power_control_ext`]
+/// - [`get_display_mode_properties2_khr`]
+/// - [`get_display_mode_properties_khr`]
+/// - [`get_display_plane_supported_displays_khr`]
+/// - [`get_drm_display_ext`]
+/// - [`get_rand_r_output_display_ext`]
+/// - [`get_winrt_display_nv`]
+/// - [`register_display_event_ext`]
+/// - [`release_display_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2441,21 +2877,21 @@ impl Default for DisplayKHR {
 ///// Provided by VK_KHR_display
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayModeKHR)
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`DisplayPlaneInfo2KHR`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
-/// - [`CreateDisplayModeKHR`]
-/// - [`GetDisplayPlaneCapabilitiesKHR`]
+/// - [`create_display_mode_khr`]
+/// - [`get_display_plane_capabilities_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2482,5 +2918,93 @@ unsafe impl Send for DisplayModeKHR {}
 impl Default for DisplayModeKHR {
     fn default() -> Self {
         Self::null()
+    }
+}
+///The V-table of [`Instance`] for functions from VK_KHR_display
+pub struct InstanceKhrDisplayVTable {
+    ///See [`FNGetPhysicalDeviceDisplayPropertiesKhr`] for more information.
+    pub get_physical_device_display_properties_khr: FNGetPhysicalDeviceDisplayPropertiesKhr,
+    ///See [`FNGetPhysicalDeviceDisplayPlanePropertiesKhr`] for more information.
+    pub get_physical_device_display_plane_properties_khr: FNGetPhysicalDeviceDisplayPlanePropertiesKhr,
+    ///See [`FNGetDisplayPlaneSupportedDisplaysKhr`] for more information.
+    pub get_display_plane_supported_displays_khr: FNGetDisplayPlaneSupportedDisplaysKhr,
+    ///See [`FNGetDisplayModePropertiesKhr`] for more information.
+    pub get_display_mode_properties_khr: FNGetDisplayModePropertiesKhr,
+    ///See [`FNCreateDisplayModeKhr`] for more information.
+    pub create_display_mode_khr: FNCreateDisplayModeKhr,
+    ///See [`FNGetDisplayPlaneCapabilitiesKhr`] for more information.
+    pub get_display_plane_capabilities_khr: FNGetDisplayPlaneCapabilitiesKhr,
+    ///See [`FNCreateDisplayPlaneSurfaceKhr`] for more information.
+    pub create_display_plane_surface_khr: FNCreateDisplayPlaneSurfaceKhr,
+}
+impl InstanceKhrDisplayVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_display_properties_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceDisplayPropertiesKHR"),
+                ))
+            },
+            get_physical_device_display_plane_properties_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceDisplayPlanePropertiesKHR"),
+                ))
+            },
+            get_display_plane_supported_displays_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDisplayPlaneSupportedDisplaysKHR")))
+            },
+            get_display_mode_properties_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDisplayModePropertiesKHR")))
+            },
+            create_display_mode_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateDisplayModeKHR")))
+            },
+            get_display_plane_capabilities_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDisplayPlaneCapabilitiesKHR")))
+            },
+            create_display_plane_surface_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateDisplayPlaneSurfaceKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_display_properties_khr`]. See
+    /// [`FNGetPhysicalDeviceDisplayPropertiesKhr`] for more information.
+    pub fn get_physical_device_display_properties_khr(&self) -> FNGetPhysicalDeviceDisplayPropertiesKhr {
+        self.get_physical_device_display_properties_khr
+    }
+    ///Gets [`Self::get_physical_device_display_plane_properties_khr`]. See
+    /// [`FNGetPhysicalDeviceDisplayPlanePropertiesKhr`] for more information.
+    pub fn get_physical_device_display_plane_properties_khr(&self) -> FNGetPhysicalDeviceDisplayPlanePropertiesKhr {
+        self.get_physical_device_display_plane_properties_khr
+    }
+    ///Gets [`Self::get_display_plane_supported_displays_khr`]. See
+    /// [`FNGetDisplayPlaneSupportedDisplaysKhr`] for more information.
+    pub fn get_display_plane_supported_displays_khr(&self) -> FNGetDisplayPlaneSupportedDisplaysKhr {
+        self.get_display_plane_supported_displays_khr
+    }
+    ///Gets [`Self::get_display_mode_properties_khr`]. See [`FNGetDisplayModePropertiesKhr`] for
+    /// more information.
+    pub fn get_display_mode_properties_khr(&self) -> FNGetDisplayModePropertiesKhr {
+        self.get_display_mode_properties_khr
+    }
+    ///Gets [`Self::create_display_mode_khr`]. See [`FNCreateDisplayModeKhr`] for more information.
+    pub fn create_display_mode_khr(&self) -> FNCreateDisplayModeKhr {
+        self.create_display_mode_khr
+    }
+    ///Gets [`Self::get_display_plane_capabilities_khr`]. See [`FNGetDisplayPlaneCapabilitiesKhr`]
+    /// for more information.
+    pub fn get_display_plane_capabilities_khr(&self) -> FNGetDisplayPlaneCapabilitiesKhr {
+        self.get_display_plane_capabilities_khr
+    }
+    ///Gets [`Self::create_display_plane_surface_khr`]. See [`FNCreateDisplayPlaneSurfaceKhr`] for
+    /// more information.
+    pub fn create_display_plane_surface_khr(&self) -> FNCreateDisplayPlaneSurfaceKhr {
+        self.create_display_plane_surface_khr
     }
 }

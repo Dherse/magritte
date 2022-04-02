@@ -27,7 +27,7 @@
 //!spaces really want / need floating point color components to be useful).
 //!Therefore, do not plan on documenting what formats support which
 //!colorspaces.
-//!An application  **can**  call [`GetPhysicalDeviceSurfaceFormatsKHR`] to query
+//!An application  **can**  call [`get_physical_device_surface_formats_khr`] to query
 //!what a particular implementation supports.2) How does application determine if HW supports
 //! appropriate transfer
 //!function for a colorspace? **RESOLVED** : Extension indicates that implementation  **must**  not

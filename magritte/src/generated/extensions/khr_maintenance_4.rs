@@ -75,6 +75,13 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_3::{
+        FNGetDeviceBufferMemoryRequirements, FNGetDeviceImageMemoryRequirements,
+        FNGetDeviceImageSparseMemoryRequirements,
+    },
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -84,3 +91,52 @@ pub const KHR_MAINTENANCE_4_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_MAINTENANCE_4_EXTENSION_NAME")]
 pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_maintenance4");
+///The V-table of [`Device`] for functions from VK_KHR_maintenance4
+pub struct DeviceKhrMaintenance4VTable {
+    ///See [`FNGetDeviceBufferMemoryRequirements`] for more information.
+    pub get_device_buffer_memory_requirements: FNGetDeviceBufferMemoryRequirements,
+    ///See [`FNGetDeviceImageMemoryRequirements`] for more information.
+    pub get_device_image_memory_requirements: FNGetDeviceImageMemoryRequirements,
+    ///See [`FNGetDeviceImageSparseMemoryRequirements`] for more information.
+    pub get_device_image_sparse_memory_requirements: FNGetDeviceImageSparseMemoryRequirements,
+}
+impl DeviceKhrMaintenance4VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_device_buffer_memory_requirements: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceBufferMemoryRequirementsKHR"),
+                ))
+            },
+            get_device_image_memory_requirements: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDeviceImageMemoryRequirementsKHR")))
+            },
+            get_device_image_sparse_memory_requirements: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceImageSparseMemoryRequirementsKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_device_buffer_memory_requirements`]. See
+    /// [`FNGetDeviceBufferMemoryRequirements`] for more information.
+    pub fn get_device_buffer_memory_requirements(&self) -> FNGetDeviceBufferMemoryRequirements {
+        self.get_device_buffer_memory_requirements
+    }
+    ///Gets [`Self::get_device_image_memory_requirements`]. See
+    /// [`FNGetDeviceImageMemoryRequirements`] for more information.
+    pub fn get_device_image_memory_requirements(&self) -> FNGetDeviceImageMemoryRequirements {
+        self.get_device_image_memory_requirements
+    }
+    ///Gets [`Self::get_device_image_sparse_memory_requirements`]. See
+    /// [`FNGetDeviceImageSparseMemoryRequirements`] for more information.
+    pub fn get_device_image_sparse_memory_requirements(&self) -> FNGetDeviceImageSparseMemoryRequirements {
+        self.get_device_image_sparse_memory_requirements
+    }
+}

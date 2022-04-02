@@ -31,7 +31,7 @@
 //!   @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_hdr_metadata
 //!   extension>>)
 //!# New functions & commands
-//! - [`SetHdrMetadataEXT`]
+//! - [`set_hdr_metadata_ext`]
 //!# New structures
 //! - [`HdrMetadataEXT`]
 //! - [`XyColorEXT`]
@@ -55,7 +55,7 @@
 //!# Related
 //! - [`HdrMetadataEXT`]
 //! - [`XyColorEXT`]
-//! - [`SetHdrMetadataEXT`]
+//! - [`set_hdr_metadata_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -64,7 +64,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, StructureType};
+use crate::{
+    extensions::khr_swapchain::SwapchainKHR,
+    vulkan1_0::{BaseInStructure, Device, StructureType},
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -74,6 +77,59 @@ pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_HDR_METADATA_EXTENSION_NAME")]
 pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_hdr_metadata");
+///[vkSetHdrMetadataEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetHdrMetadataEXT.html) - Set Hdr metadata
+///# C Specifications
+///To provide Hdr metadata to an implementation, call:
+///```c
+///// Provided by VK_EXT_hdr_metadata
+///void vkSetHdrMetadataEXT(
+///    VkDevice                                    device,
+///    uint32_t                                    swapchainCount,
+///    const VkSwapchainKHR*                       pSwapchains,
+///    const VkHdrMetadataEXT*                     pMetadata);
+///```
+/// # Parameters
+/// - [`device`] is the logical device where the swapchain(s) were created.
+/// - [`swapchain_count`] is the number of swapchains included in [`p_swapchains`].
+/// - [`p_swapchains`] is a pointer to an array of [`swapchain_count`][`SwapchainKHR`] handles.
+/// - [`p_metadata`] is a pointer to an array of [`swapchain_count`][`HdrMetadataEXT`] structures.
+/// # Description
+/// The metadata will be applied to the specified [`SwapchainKHR`] objects
+/// at the next [`queue_present_khr`] call using that [`SwapchainKHR`]
+/// object.
+/// The metadata will persist until a subsequent [`set_hdr_metadata_ext`]
+/// changes it.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_swapchains`] **must**  be a valid pointer to an array of [`swapchain_count`] valid
+///   [`SwapchainKHR`] handles
+/// - [`p_metadata`] **must**  be a valid pointer to an array of [`swapchain_count`] valid
+///   [`HdrMetadataEXT`] structures
+/// - [`swapchain_count`] **must**  be greater than `0`
+/// - Both of [`device`], and the elements of [`p_swapchains`] **must**  have been created,
+///   allocated, or retrieved from the same [`Instance`]
+/// # Related
+/// - [`VK_EXT_hdr_metadata`]
+/// - [`Device`]
+/// - [`HdrMetadataEXT`]
+/// - [`SwapchainKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkSetHdrMetadataEXT")]
+pub type FNSetHdrMetadataExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        swapchain_count: u32,
+        p_swapchains: *const SwapchainKHR,
+        p_metadata: *const HdrMetadataEXT<'lt>,
+    ),
+>;
 ///[VkXYColorEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkXYColorEXT.html) - Specify X,Y chromaticity coordinates
 ///# C Specifications
 ///The [`XyColorEXT`] structure is defined as:
@@ -84,24 +140,24 @@ pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///    float    y;
 ///} VkXYColorEXT;
 ///```
-///# Members
+/// # Members
 /// - [`x`] is the x chromaticity coordinate.
 /// - [`y`] is the y chromaticity coordinate.
-///# Description
-///Chromaticity coordinates are as specified in CIE 15:2004 “Calculation of
-///chromaticity coordinates” (Section 7.3) and are limited to between 0 and 1
-///for real colors for the reference monitor.
-///# Related
+/// # Description
+/// Chromaticity coordinates are as specified in CIE 15:2004 “Calculation of
+/// chromaticity coordinates” (Section 7.3) and are limited to between 0 and 1
+/// for real colors for the reference monitor.
+/// # Related
 /// - [`VK_EXT_hdr_metadata`]
 /// - [`HdrMetadataEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkXYColorEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -164,7 +220,7 @@ impl XyColorEXT {
 ///    float              maxFrameAverageLightLevel;
 ///} VkHdrMetadataEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_primary_red`] is a [`XyColorEXT`] structure specifying the reference monitor’s red
@@ -179,23 +235,23 @@ impl XyColorEXT {
 /// - [`min_luminance`] is the minimum luminance of the reference monitor in nits
 /// - [`max_content_light_level`] is content’s maximum luminance in nits
 /// - [`max_frame_average_light_level`] is the maximum frame average light level in nits
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_HDR_METADATA_EXT`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_EXT_hdr_metadata`]
 /// - [`StructureType`]
 /// - [`XyColorEXT`]
-/// - [`SetHdrMetadataEXT`]
+/// - [`set_hdr_metadata_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkHdrMetadataEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -387,5 +443,27 @@ impl<'lt> HdrMetadataEXT<'lt> {
     pub fn set_max_frame_average_light_level(&mut self, value: f32) -> &mut Self {
         self.max_frame_average_light_level = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_hdr_metadata
+pub struct DeviceExtHdrMetadataVTable {
+    ///See [`FNSetHdrMetadataExt`] for more information.
+    pub set_hdr_metadata_ext: FNSetHdrMetadataExt,
+}
+impl DeviceExtHdrMetadataVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            set_hdr_metadata_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetHdrMetadataEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::set_hdr_metadata_ext`]. See [`FNSetHdrMetadataExt`] for more information.
+    pub fn set_hdr_metadata_ext(&self) -> FNSetHdrMetadataExt {
+        self.set_hdr_metadata_ext
     }
 }

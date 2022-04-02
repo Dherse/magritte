@@ -1,7 +1,7 @@
 //![VK_KHR_bind_memory2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_bind_memory2.html) - device extension
 //!# Description
-//!This extension provides versions of [`BindBufferMemory`] and
-//![`BindImageMemory`] that allow multiple bindings to be performed at
+//!This extension provides versions of [`bind_buffer_memory`] and
+//![`bind_image_memory`] that allow multiple bindings to be performed at
 //!once, and are extensible.This extension also introduces `VK_IMAGE_CREATE_ALIAS_BIT_KHR`, which
 //!allows “identical” images that alias the same memory to interpret the
 //!contents consistently, even across image layout changes.
@@ -48,6 +48,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_1::{FNBindBufferMemory2, FNBindImageMemory2},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -57,3 +61,34 @@ pub const KHR_BIND_MEMORY_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_BIND_MEMORY_2_EXTENSION_NAME")]
 pub const KHR_BIND_MEMORY_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_bind_memory2");
+///The V-table of [`Device`] for functions from VK_KHR_bind_memory2
+pub struct DeviceKhrBindMemory2VTable {
+    ///See [`FNBindBufferMemory2`] for more information.
+    pub bind_buffer_memory2: FNBindBufferMemory2,
+    ///See [`FNBindImageMemory2`] for more information.
+    pub bind_image_memory2: FNBindImageMemory2,
+}
+impl DeviceKhrBindMemory2VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            bind_buffer_memory2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindBufferMemory2KHR")))
+            },
+            bind_image_memory2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindImageMemory2KHR")))
+            },
+        }
+    }
+    ///Gets [`Self::bind_buffer_memory2`]. See [`FNBindBufferMemory2`] for more information.
+    pub fn bind_buffer_memory2(&self) -> FNBindBufferMemory2 {
+        self.bind_buffer_memory2
+    }
+    ///Gets [`Self::bind_image_memory2`]. See [`FNBindImageMemory2`] for more information.
+    pub fn bind_image_memory2(&self) -> FNBindImageMemory2 {
+        self.bind_image_memory2
+    }
+}

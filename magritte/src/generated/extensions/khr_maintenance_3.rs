@@ -49,6 +49,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{vulkan1_0::Device, vulkan1_1::FNGetDescriptorSetLayoutSupport};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -58,3 +59,26 @@ pub const KHR_MAINTENANCE_3_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_MAINTENANCE_3_EXTENSION_NAME")]
 pub const KHR_MAINTENANCE_3_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_maintenance3");
+///The V-table of [`Device`] for functions from VK_KHR_maintenance3
+pub struct DeviceKhrMaintenance3VTable {
+    ///See [`FNGetDescriptorSetLayoutSupport`] for more information.
+    pub get_descriptor_set_layout_support: FNGetDescriptorSetLayoutSupport,
+}
+impl DeviceKhrMaintenance3VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_descriptor_set_layout_support: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDescriptorSetLayoutSupportKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::get_descriptor_set_layout_support`]. See [`FNGetDescriptorSetLayoutSupport`]
+    /// for more information.
+    pub fn get_descriptor_set_layout_support(&self) -> FNGetDescriptorSetLayoutSupport {
+        self.get_descriptor_set_layout_support
+    }
+}

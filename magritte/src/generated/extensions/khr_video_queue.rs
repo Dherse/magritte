@@ -15,18 +15,18 @@
 //! - [`VideoSessionKHR`]
 //! - [`VideoSessionParametersKHR`]
 //!# New functions & commands
-//! - [`BindVideoSessionMemoryKHR`]
-//! - [`CmdBeginVideoCodingKHR`]
-//! - [`CmdControlVideoCodingKHR`]
-//! - [`CmdEndVideoCodingKHR`]
-//! - [`CreateVideoSessionKHR`]
-//! - [`CreateVideoSessionParametersKHR`]
-//! - [`DestroyVideoSessionKHR`]
-//! - [`DestroyVideoSessionParametersKHR`]
-//! - [`GetPhysicalDeviceVideoCapabilitiesKHR`]
-//! - [`GetPhysicalDeviceVideoFormatPropertiesKHR`]
-//! - [`GetVideoSessionMemoryRequirementsKHR`]
-//! - [`UpdateVideoSessionParametersKHR`]
+//! - [`bind_video_session_memory_khr`]
+//! - [`cmd_begin_video_coding_khr`]
+//! - [`cmd_control_video_coding_khr`]
+//! - [`cmd_end_video_coding_khr`]
+//! - [`create_video_session_khr`]
+//! - [`create_video_session_parameters_khr`]
+//! - [`destroy_video_session_khr`]
+//! - [`destroy_video_session_parameters_khr`]
+//! - [`get_physical_device_video_capabilities_khr`]
+//! - [`get_physical_device_video_format_properties_khr`]
+//! - [`get_video_session_memory_requirements_khr`]
+//! - [`update_video_session_parameters_khr`]
 //!# New structures
 //! - [`PhysicalDeviceVideoFormatInfoKHR`]
 //! - [`VideoBeginCodingInfoKHR`]
@@ -142,18 +142,18 @@
 //! - [`VideoSessionParametersCreateInfoKHR`]
 //! - [`VideoSessionParametersKHR`]
 //! - [`VideoSessionParametersUpdateInfoKHR`]
-//! - [`BindVideoSessionMemoryKHR`]
-//! - [`CmdBeginVideoCodingKHR`]
-//! - [`CmdControlVideoCodingKHR`]
-//! - [`CmdEndVideoCodingKHR`]
-//! - [`CreateVideoSessionKHR`]
-//! - [`CreateVideoSessionParametersKHR`]
-//! - [`DestroyVideoSessionKHR`]
-//! - [`DestroyVideoSessionParametersKHR`]
-//! - [`GetPhysicalDeviceVideoCapabilitiesKHR`]
-//! - [`GetPhysicalDeviceVideoFormatPropertiesKHR`]
-//! - [`GetVideoSessionMemoryRequirementsKHR`]
-//! - [`UpdateVideoSessionParametersKHR`]
+//! - [`bind_video_session_memory_khr`]
+//! - [`cmd_begin_video_coding_khr`]
+//! - [`cmd_control_video_coding_khr`]
+//! - [`cmd_end_video_coding_khr`]
+//! - [`create_video_session_khr`]
+//! - [`create_video_session_parameters_khr`]
+//! - [`destroy_video_session_khr`]
+//! - [`destroy_video_session_parameters_khr`]
+//! - [`get_physical_device_video_capabilities_khr`]
+//! - [`get_physical_device_video_format_properties_khr`]
+//! - [`get_video_session_memory_requirements_khr`]
+//! - [`update_video_session_parameters_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -164,8 +164,9 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{
-        BaseInStructure, BaseOutStructure, Bool32, DeviceMemory, DeviceSize, ExtensionProperties, Extent2D, Format,
-        ImageUsageFlags, ImageView, Offset2D, StructureType,
+        AllocationCallbacks, BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, DeviceMemory,
+        DeviceSize, ExtensionProperties, Extent2D, Format, ImageUsageFlags, ImageView, Instance, Offset2D,
+        PhysicalDevice, StructureType, VulkanResultCodes,
     },
     vulkan1_1::MemoryRequirements2,
 };
@@ -186,6 +187,657 @@ pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 3;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_VIDEO_QUEUE_EXTENSION_NAME")]
 pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_video_queue");
+///[vkGetPhysicalDeviceVideoCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoCapabilitiesKHR.html) - Query video decode or encode capabilities
+///# C Specifications
+///To query video decode or encode capabilities for a specific codec, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkGetPhysicalDeviceVideoCapabilitiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    const VkVideoProfileKHR*                    pVideoProfile,
+///    VkVideoCapabilitiesKHR*                     pCapabilities);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device whose video decode or encode capabilities will be
+///   queried.
+/// - [`p_video_profile`] is a pointer to a [`VideoProfileKHR`] structure with a chained
+///   codec-operation specific video profile structure.
+/// - [`p_capabilities`] is a pointer to a [`VideoCapabilitiesKHR`] structure in which the
+///   capabilities are returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_video_profile`] **must**  be a valid pointer to a valid [`VideoProfileKHR`] structure
+/// - [`p_capabilities`] **must**  be a valid pointer to a [`VideoCapabilitiesKHR`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
+///   `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`PhysicalDevice`]
+/// - [`VideoCapabilitiesKHR`]
+/// - [`VideoProfileKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceVideoCapabilitiesKHR")]
+pub type FNGetPhysicalDeviceVideoCapabilitiesKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_video_profile: *const VideoProfileKHR<'lt>,
+        p_capabilities: *mut VideoCapabilitiesKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceVideoFormatPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoFormatPropertiesKHR.html) - Query supported Video Decode and Encode image formats
+///# C Specifications
+///To enumerate the supported output, input and DPB image formats for a
+///specific codec operation and video profile, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkGetPhysicalDeviceVideoFormatPropertiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    const VkPhysicalDeviceVideoFormatInfoKHR*   pVideoFormatInfo,
+///    uint32_t*                                   pVideoFormatPropertyCount,
+///    VkVideoFormatPropertiesKHR*                 pVideoFormatProperties);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device being queried.
+/// - [`p_video_format_info`] is a pointer to a [`PhysicalDeviceVideoFormatInfoKHR`] structure
+///   specifying the codec and video profile for which information is returned.
+/// - [`p_video_format_property_count`] is a pointer to an integer related to the number of video
+///   format properties available or queried, as described below.
+/// - [`p_video_format_properties`] is a pointer to an array of [`VideoFormatPropertiesKHR`]
+///   structures in which supported formats are returned.
+/// # Description
+/// If [`p_video_format_properties`] is `NULL`, then the number of video format
+/// properties supported for the given [`physical_device`] is returned in
+/// [`p_video_format_property_count`].
+/// Otherwise, [`p_video_format_property_count`] **must**  point to a variable set by
+/// the user to the number of elements in the [`p_video_format_properties`]
+/// array, and on return the variable is overwritten with the number of values
+/// actually written to [`p_video_format_properties`].
+/// If the value of [`p_video_format_property_count`] is less than the number of
+/// video format properties supported, at most [`p_video_format_property_count`]
+/// values will be written to [`p_video_format_properties`], and
+/// `VK_INCOMPLETE` will be returned instead of `VK_SUCCESS`, to
+/// indicate that not all the available values were returned.If an implementation reports
+/// `VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR` is
+/// supported but
+/// `VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR` is not
+/// supported in [`VideoDecodeCapabilitiesKHR::flags`], then to query
+/// for video format properties for decode DPB or output, `imageUsage` **must**
+/// have both `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` and
+/// `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR` set.
+/// Otherwise, the call will fail with `VK_ERROR_FORMAT_NOT_SUPPORTED`.If an implementation reports
+/// `VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR` is
+/// supported but
+/// `VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR` is not
+/// supported in [`VideoDecodeCapabilitiesKHR::flags`], then to query
+/// for video format properties for decode DPB, `imageUsage` **must**  have
+/// `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` set and
+/// `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR` not set.
+/// Otherwise, the call will fail with `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+/// Similarly, to query for video format properties for decode output,
+/// `imageUsage` **must**  have `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`
+/// set and `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` not set.
+/// Otherwise, the call will fail with `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+/// ## Valid Usage
+/// - The `imageUsage` enum of [`PhysicalDeviceVideoFormatInfoKHR`] **must**  contain at least one
+///   of the following video image usage bit(s): `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`,
+///   `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR`, `VK_IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`, or
+///   `VK_IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR`
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_video_format_info`] **must**  be a valid pointer to a valid
+///   [`PhysicalDeviceVideoFormatInfoKHR`] structure
+/// - [`p_video_format_property_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_video_format_property_count`] is not `0`, and
+///   [`p_video_format_properties`] is not `NULL`, [`p_video_format_properties`] **must**  be a
+///   valid pointer to an array of [`p_video_format_property_count`][`VideoFormatPropertiesKHR`]
+///   structures
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
+///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`PhysicalDevice`]
+/// - [`PhysicalDeviceVideoFormatInfoKHR`]
+/// - [`VideoFormatPropertiesKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceVideoFormatPropertiesKHR")]
+pub type FNGetPhysicalDeviceVideoFormatPropertiesKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_video_format_info: *const PhysicalDeviceVideoFormatInfoKHR<'lt>,
+        p_video_format_property_count: *mut u32,
+        p_video_format_properties: *mut VideoFormatPropertiesKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkCreateVideoSessionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionKHR.html) - Creates a video session object
+///# C Specifications
+///To create a video session object, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkCreateVideoSessionKHR(
+///    VkDevice                                    device,
+///    const VkVideoSessionCreateInfoKHR*          pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkVideoSessionKHR*                          pVideoSession);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that creates the decode or encode session object.
+/// - [`p_create_info`] is a pointer to a [`VideoSessionCreateInfoKHR`] structure containing
+///   parameters specifying the creation of the decode or encode session.
+/// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+///   chapter.
+/// - [`p_video_session`] is a pointer to a [`VideoSessionKHR`] structure specifying the decode or
+///   encode video session object which will be created by this function when it returns
+///   `VK_SUCCESS`
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`VideoSessionCreateInfoKHR`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_video_session`] **must**  be a valid pointer to a [`VideoSessionKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_INCOMPATIBLE_DRIVER`  -
+///   `VK_ERROR_FEATURE_NOT_PRESENT`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`VideoSessionCreateInfoKHR`]
+/// - [`VideoSessionKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateVideoSessionKHR")]
+pub type FNCreateVideoSessionKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_create_info: *const VideoSessionCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_video_session: *mut VideoSessionKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkDestroyVideoSessionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyVideoSessionKHR.html) - Destroy decode session object
+///# C Specifications
+///To destroy a decode session object, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///void vkDestroyVideoSessionKHR(
+///    VkDevice                                    device,
+///    VkVideoSessionKHR                           videoSession,
+///    const VkAllocationCallbacks*                pAllocator);
+///```
+/// # Parameters
+/// - [`device`] is the device that was used for the creation of the video session.
+/// - [`video_session`] is the decode or encode video session to be destroyed.
+/// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+///   chapter.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`VideoSessionKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkDestroyVideoSessionKHR")]
+pub type FNDestroyVideoSessionKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        video_session: VideoSessionKHR,
+        p_allocator: *const AllocationCallbacks<'lt>,
+    ),
+>;
+///[vkCreateVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionParametersKHR.html) - Creates video session video session parameter object
+///# C Specifications
+///To create a video session parameters object, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkCreateVideoSessionParametersKHR(
+///    VkDevice                                    device,
+///    const VkVideoSessionParametersCreateInfoKHR* pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkVideoSessionParametersKHR*                pVideoSessionParameters);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that was used for the creation of the video session object.
+/// - [`p_create_info`] is a pointer to [`VideoSessionParametersCreateInfoKHR`] structure specifying
+///   the video session parameters.
+/// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+///   chapter.
+/// - [`p_video_session_parameters`] is a pointer to a [`VideoSessionParametersKHR`] handle in which
+///   the video session parameters object is returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid
+///   [`VideoSessionParametersCreateInfoKHR`] structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_video_session_parameters`] **must**  be a valid pointer to a [`VideoSessionParametersKHR`]
+///   handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
+///   `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_TOO_MANY_OBJECTS`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`VideoSessionParametersCreateInfoKHR`]
+/// - [`VideoSessionParametersKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateVideoSessionParametersKHR")]
+pub type FNCreateVideoSessionParametersKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_create_info: *const VideoSessionParametersCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_video_session_parameters: *mut VideoSessionParametersKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkUpdateVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkUpdateVideoSessionParametersKHR.html) - Update video session video session parameter object
+///# C Specifications
+///To update, add, or remove video session parameters state, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkUpdateVideoSessionParametersKHR(
+///    VkDevice                                    device,
+///    VkVideoSessionParametersKHR                 videoSessionParameters,
+///    const VkVideoSessionParametersUpdateInfoKHR* pUpdateInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that was used for the creation of the video session object.
+/// - [`video_session_parameters`] is the video session object that is going to be updated.
+/// - [`p_update_info`] is a pointer to a [`VideoSessionParametersUpdateInfoKHR`] structure
+///   containing the session parameters update information.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`video_session_parameters`] **must**  be a valid [`VideoSessionParametersKHR`] handle
+/// - [`p_update_info`] **must**  be a valid pointer to a valid
+///   [`VideoSessionParametersUpdateInfoKHR`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_TOO_MANY_OBJECTS`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`Device`]
+/// - [`VideoSessionParametersKHR`]
+/// - [`VideoSessionParametersUpdateInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkUpdateVideoSessionParametersKHR")]
+pub type FNUpdateVideoSessionParametersKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        video_session_parameters: VideoSessionParametersKHR,
+        p_update_info: *const VideoSessionParametersUpdateInfoKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkDestroyVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyVideoSessionParametersKHR.html) - Destroy video session parameters object
+///# C Specifications
+///To destroy a video session object, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///void vkDestroyVideoSessionParametersKHR(
+///    VkDevice                                    device,
+///    VkVideoSessionParametersKHR                 videoSessionParameters,
+///    const VkAllocationCallbacks*                pAllocator);
+///```
+/// # Parameters
+/// - [`device`] is the device the video session was created with.
+/// - [`video_session_parameters`] is the video session parameters object to be destroyed.
+/// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+///   chapter.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`video_session_parameters`] **must**  be a valid [`VideoSessionParametersKHR`] handle
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`VideoSessionParametersKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkDestroyVideoSessionParametersKHR")]
+pub type FNDestroyVideoSessionParametersKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        video_session_parameters: VideoSessionParametersKHR,
+        p_allocator: *const AllocationCallbacks<'lt>,
+    ),
+>;
+///[vkGetVideoSessionMemoryRequirementsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetVideoSessionMemoryRequirementsKHR.html) - Get Memory Requirements
+///# C Specifications
+///To get memory requirements for a video session, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkGetVideoSessionMemoryRequirementsKHR(
+///    VkDevice                                    device,
+///    VkVideoSessionKHR                           videoSession,
+///    uint32_t*                                   pVideoSessionMemoryRequirementsCount,
+///    VkVideoGetMemoryPropertiesKHR*              pVideoSessionMemoryRequirements);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the video session.
+/// - [`video_session`] is the video session to query.
+/// - [`p_video_session_memory_requirements_count`] is a pointer to an integer related to the number
+///   of memory heap requirements available or queried, as described below.
+/// - [`p_video_session_memory_requirements`] is `NULL` or a pointer to an array of
+///   [`VideoGetMemoryPropertiesKHR`] structures in which the memory heap requirements of the video
+///   session are returned.
+/// # Description
+/// If [`p_video_session_memory_requirements`] is `NULL`, then the number of
+/// memory heap types required for the video session is returned in
+/// [`p_video_session_memory_requirements_count`].
+/// Otherwise, [`p_video_session_memory_requirements_count`] **must**  point to a
+/// variable set by the user with the number of elements in the
+/// [`p_video_session_memory_requirements`] array, and on return the variable is
+/// overwritten with the number of formats actually written to
+/// [`p_video_session_memory_requirements`].
+/// If [`p_video_session_memory_requirements_count`] is less than the number of
+/// memory heap types required for the video session, then at most
+/// [`p_video_session_memory_requirements_count`] elements will be written to
+/// [`p_video_session_memory_requirements`], and `VK_INCOMPLETE` will be
+/// returned, instead of `VK_SUCCESS`, to indicate that not all required
+/// memory heap types were returned.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+/// - [`p_video_session_memory_requirements_count`] **must**  be a valid pointer to a `uint32_t`
+///   value
+/// - If the value referenced by [`p_video_session_memory_requirements_count`] is not `0`, and
+///   [`p_video_session_memory_requirements`] is not `NULL`, [`p_video_session_memory_requirements`]
+///   **must**  be a valid pointer to an array of
+///   [`p_video_session_memory_requirements_count`][`VideoGetMemoryPropertiesKHR`] structures
+/// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_INITIALIZATION_FAILED`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`Device`]
+/// - [`VideoGetMemoryPropertiesKHR`]
+/// - [`VideoSessionKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetVideoSessionMemoryRequirementsKHR")]
+pub type FNGetVideoSessionMemoryRequirementsKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        video_session: VideoSessionKHR,
+        p_video_session_memory_requirements_count: *mut u32,
+        p_video_session_memory_requirements: *mut VideoGetMemoryPropertiesKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkBindVideoSessionMemoryKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkBindVideoSessionMemoryKHR.html) - Bind Video Memory
+///# C Specifications
+///To attach memory to a video session object, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///VkResult vkBindVideoSessionMemoryKHR(
+///    VkDevice                                    device,
+///    VkVideoSessionKHR                           videoSession,
+///    uint32_t                                    videoSessionBindMemoryCount,
+///    const VkVideoBindMemoryKHR*                 pVideoSessionBindMemories);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the video session’s memory.
+/// - [`video_session`] is the video session to be bound with device memory.
+/// - [`video_session_bind_memory_count`] is the number of [`p_video_session_bind_memories`] to be
+///   bound.
+/// - [`p_video_session_bind_memories`] is a pointer to an array of [`VideoBindMemoryKHR`]
+///   structures specifying memory regions to be bound to a device memory heap.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+/// - [`p_video_session_bind_memories`] **must**  be a valid pointer to an array of
+///   [`video_session_bind_memory_count`] valid [`VideoBindMemoryKHR`] structures
+/// - [`video_session_bind_memory_count`] **must**  be greater than `0`
+/// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_INITIALIZATION_FAILED`
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`Device`]
+/// - [`VideoBindMemoryKHR`]
+/// - [`VideoSessionKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkBindVideoSessionMemoryKHR")]
+pub type FNBindVideoSessionMemoryKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        video_session: VideoSessionKHR,
+        video_session_bind_memory_count: u32,
+        p_video_session_bind_memories: *const VideoBindMemoryKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkCmdBeginVideoCodingKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBeginVideoCodingKHR.html) - Start decode jobs
+///# C Specifications
+///To start video decode or encode operations, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///void vkCmdBeginVideoCodingKHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkVideoBeginCodingInfoKHR*            pBeginInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer to be used when recording commands for the video
+///   decode or encode operations.
+/// - [`p_begin_info`] is a pointer to a [`VideoBeginCodingInfoKHR`] structure.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_begin_info`] **must**  be a valid pointer to a valid [`VideoBeginCodingInfoKHR`] structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode, or
+///   encode operations
+/// - This command  **must**  only be called outside of a render pass instance
+/// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+///
+/// ## Host Synchronization
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`CommandBuffer`]
+/// - [`VideoBeginCodingInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdBeginVideoCodingKHR")]
+pub type FNCmdBeginVideoCodingKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_begin_info: *const VideoBeginCodingInfoKHR<'lt>,
+    ),
+>;
+///[vkCmdControlVideoCodingKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdControlVideoCodingKHR.html) - Set encode rate control parameters
+///# C Specifications
+///To apply dynamic controls to video decode or video encode operations, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///void vkCmdControlVideoCodingKHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkVideoCodingControlInfoKHR*          pCodingControlInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer to be filled by this function.
+/// - [`p_coding_control_info`] is a pointer to a [`VideoCodingControlInfoKHR`] structure.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_coding_control_info`] **must**  be a valid pointer to a valid
+///   [`VideoCodingControlInfoKHR`] structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode, or
+///   encode operations
+/// - This command  **must**  only be called outside of a render pass instance
+/// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+///
+/// ## Host Synchronization
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`CommandBuffer`]
+/// - [`VideoCodingControlInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdControlVideoCodingKHR")]
+pub type FNCmdControlVideoCodingKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_coding_control_info: *const VideoCodingControlInfoKHR<'lt>,
+    ),
+>;
+///[vkCmdEndVideoCodingKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEndVideoCodingKHR.html) - End decode jobs
+///# C Specifications
+///To end video decode or encode operations, call:
+///```c
+///// Provided by VK_KHR_video_queue
+///void vkCmdEndVideoCodingKHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkVideoEndCodingInfoKHR*              pEndCodingInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer to be filled by this function.
+/// - [`p_end_coding_info`] is a pointer to a [`VideoEndCodingInfoKHR`] structure.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_end_coding_info`] **must**  be a valid pointer to a valid [`VideoEndCodingInfoKHR`]
+///   structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode, or
+///   encode operations
+/// - This command  **must**  only be called outside of a render pass instance
+/// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+///
+/// ## Host Synchronization
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_video_queue`]
+/// - [`CommandBuffer`]
+/// - [`VideoEndCodingInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdEndVideoCodingKHR")]
+pub type FNCmdEndVideoCodingKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_end_coding_info: *const VideoEndCodingInfoKHR<'lt>,
+    ),
+>;
 ///[VkQueryResultStatusKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryResultStatusKHR.html) - Specific status codes for operations
 ///# C Specifications
 ///Specific status codes that  **can**  be returned from a query are:
@@ -197,21 +849,21 @@ pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_v
 ///    VK_QUERY_RESULT_STATUS_COMPLETE_KHR = 1,
 ///} VkQueryResultStatusKHR;
 ///```
-///# Description
+/// # Description
 /// - [`QueryResultStatusNotReadyKhr`] specifies that the query result is not yet available.
 /// - [`QueryResultStatusErrorKhr`] specifies that operations did not complete successfully.
 /// - [`QueryResultStatusCompleteKhr`] specifies that operations completed successfully and the
 ///   query result is available.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryResultStatusKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -277,9 +929,9 @@ impl QueryResultStatusKHR {
 ///#endif
 ///} VkVideoCodecOperationFlagBitsKHR;
 ///```
-///# Description
-///Each decode or encode codec-specific extension extends this enumeration with
-///the appropriate bit corresponding to the extension’s codec operation:
+/// # Description
+/// Each decode or encode codec-specific extension extends this enumeration with
+/// the appropriate bit corresponding to the extension’s codec operation:
 /// - [`VideoCodecOperationInvalidKhr`] - No video operations are supported for this queue family.
 /// - [`VideoCodecOperationEncodeH264Ext`] - H.264 video encode operations are supported by this
 ///   queue family.
@@ -287,18 +939,18 @@ impl QueryResultStatusKHR {
 ///   queue family.
 /// - [`VideoCodecOperationDecodeH265Ext`] - H.265 video decode operations are supported by this
 ///   queue family.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodecOperationFlagsKHR`]
 /// - [`VideoProfileKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodecOperationFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -368,7 +1020,7 @@ impl VideoCodecOperationFlagBitsKHR {
 ///    VK_VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR = 0x00000008,
 ///} VkVideoChromaSubsamplingFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoChromaSubsamplingMonochromeKhr`] - the format is monochrome.
 /// - [`VideoChromaSubsampling420Khr`] - the format is 4:2:0 chroma subsampled. The two chroma
 ///   components are each subsampled at a factor of 2 both horizontally and vertically.
@@ -377,17 +1029,17 @@ impl VideoCodecOperationFlagBitsKHR {
 ///   halved.
 /// - [`VideoChromaSubsampling444Khr`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr
 ///   components have the same sample rate, thus there is no chroma subsampling.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoChromaSubsamplingFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -450,21 +1102,21 @@ impl VideoChromaSubsamplingFlagBitsKHR {
 ///    VK_VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR = 0x00000010,
 ///} VkVideoComponentBitDepthFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoComponentDepth8Khr`] - the format component bit depth is 8 bits.
 /// - [`VideoComponentDepth10Khr`] - the format component bit depth is 10 bits.
 /// - [`VideoComponentDepth12Khr`] - the format component bit depth is 12 bits.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoComponentBitDepthFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoComponentBitDepthFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -517,24 +1169,24 @@ impl VideoComponentBitDepthFlagBitsKHR {
 ///    VK_VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_BIT_KHR = 0x00000002,
 ///} VkVideoCapabilityFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoCapabilityProtectedContentKhr`] - the decode or encode session supports protected
 ///   content.
 /// - [`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or Reconstructed Video Picture
 ///   Resources for the video session  **may**  be created as a separate [`Image`] for each DPB
 ///   picture. If not supported, the DPB  **must**  be created as single multi-layered image where
 ///   each layer represents one of the DPB Video Picture Resources.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCapabilityFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilityFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -587,20 +1239,20 @@ impl VideoCapabilityFlagBitsKHR {
 ///    VK_VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR = 0x00000001,
 ///} VkVideoSessionCreateFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoSessionCreateProtectedContentKhr`] - create the video session for use with protected
 ///   video content
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoSessionCreateFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -647,21 +1299,21 @@ impl VideoSessionCreateFlagBitsKHR {
 ///    VK_VIDEO_CODING_QUALITY_PRESET_QUALITY_BIT_KHR = 0x00000004,
 ///} VkVideoCodingQualityPresetFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoCodingQualityPresetNormalKhr`] defines normal decode case.
 /// - [`VideoCodingQualityPresetPowerKhr`] defines power efficient case.
 /// - [`VideoCodingQualityPresetQualityKhr`] defines quality focus case.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingQualityPresetFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -705,7 +1357,7 @@ impl VideoCodingQualityPresetFlagBitsKHR {
 }
 ///[VkVideoCodingControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html) - Video Coding Control Command Flags
 ///# C Specifications
-///The [`CmdControlVideoCodingKHR`] flags are defined with the following
+///The [`cmd_control_video_coding_khr`] flags are defined with the following
 ///enumeration:
 ///```c
 ///// Provided by VK_KHR_video_queue
@@ -714,33 +1366,33 @@ impl VideoCodingQualityPresetFlagBitsKHR {
 ///    VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR = 0x00000001,
 ///} VkVideoCodingControlFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoCodingControlDefaultKhr`] indicates a request for the coding control paramaters to be
 ///   applied to the current state of the bound video session.
 /// - [`VideoCodingControlResetKhr`] indicates a request for the bound video session device context
 ///   to be reset before the coding control parameters are applied.
-///A newly created video session  **must**  be reset before use for video decode or
-///encode operations.
-///The reset operation returns all session DPB slots to the unused state (see
-///[DPB Slot States](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-session-dpb-slot-states)).
-///For encode sessions, the reset operation returns rate control configuration
-///to implementation default settings.
-///After decode or encode operations are performed on a session, the reset
-///operation  **may**  be used to return the video session device context to the
-///same initial state as after the reset of a newly created video session.
-///This  **may**  be used when different video sequences are processed with the same
-///session.
-///# Related
+/// A newly created video session  **must**  be reset before use for video decode or
+/// encode operations.
+/// The reset operation returns all session DPB slots to the unused state (see
+/// [DPB Slot States](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-session-dpb-slot-states)).
+/// For encode sessions, the reset operation returns rate control configuration
+/// to implementation default settings.
+/// After decode or encode operations are performed on a session, the reset
+/// operation  **may**  be used to return the video session device context to the
+/// same initial state as after the reset of a newly created video session.
+/// This  **may**  be used when different video sequences are processed with the same
+/// session.
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodingControlFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -805,9 +1457,9 @@ impl VideoCodingControlFlagBitsKHR {
 ///#endif
 ///} VkVideoCodecOperationFlagBitsKHR;
 ///```
-///# Description
-///Each decode or encode codec-specific extension extends this enumeration with
-///the appropriate bit corresponding to the extension’s codec operation:
+/// # Description
+/// Each decode or encode codec-specific extension extends this enumeration with
+/// the appropriate bit corresponding to the extension’s codec operation:
 /// - [`VideoCodecOperationInvalidKhr`] - No video operations are supported for this queue family.
 /// - [`VideoCodecOperationEncodeH264Ext`] - H.264 video encode operations are supported by this
 ///   queue family.
@@ -815,18 +1467,18 @@ impl VideoCodingControlFlagBitsKHR {
 ///   queue family.
 /// - [`VideoCodecOperationDecodeH265Ext`] - H.265 video decode operations are supported by this
 ///   queue family.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodecOperationFlagsKHR`]
 /// - [`VideoProfileKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodecOperationFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1173,24 +1825,24 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
 ///    VK_VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_BIT_KHR = 0x00000002,
 ///} VkVideoCapabilityFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoCapabilityProtectedContentKhr`] - the decode or encode session supports protected
 ///   content.
 /// - [`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or Reconstructed Video Picture
 ///   Resources for the video session  **may**  be created as a separate [`Image`] for each DPB
 ///   picture. If not supported, the DPB  **must**  be created as single multi-layered image where
 ///   each layer represents one of the DPB Video Picture Resources.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCapabilityFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilityFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1473,20 +2125,20 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
 ///    VK_VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR = 0x00000001,
 ///} VkVideoSessionCreateFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoSessionCreateProtectedContentKhr`] - create the video session for use with protected
 ///   video content
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoSessionCreateFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1760,17 +2412,17 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
 ///// Provided by VK_KHR_video_queue
 ///typedef VkFlags VkVideoBeginCodingFlagsKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoBeginCodingInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1794,17 +2446,17 @@ impl std::fmt::Debug for VideoBeginCodingFlagsKHR {
 ///// Provided by VK_KHR_video_queue
 ///typedef VkFlags VkVideoEndCodingFlagsKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoEndCodingInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1833,21 +2485,21 @@ impl std::fmt::Debug for VideoEndCodingFlagsKHR {
 ///    VK_VIDEO_CODING_QUALITY_PRESET_QUALITY_BIT_KHR = 0x00000004,
 ///} VkVideoCodingQualityPresetFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoCodingQualityPresetNormalKhr`] defines normal decode case.
 /// - [`VideoCodingQualityPresetPowerKhr`] defines power efficient case.
 /// - [`VideoCodingQualityPresetQualityKhr`] defines quality focus case.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingQualityPresetFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2138,7 +2790,7 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
 }
 ///[VkVideoCodingControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html) - Video Coding Control Command Flags
 ///# C Specifications
-///The [`CmdControlVideoCodingKHR`] flags are defined with the following
+///The [`cmd_control_video_coding_khr`] flags are defined with the following
 ///enumeration:
 ///```c
 ///// Provided by VK_KHR_video_queue
@@ -2147,33 +2799,33 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
 ///    VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR = 0x00000001,
 ///} VkVideoCodingControlFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoCodingControlDefaultKhr`] indicates a request for the coding control paramaters to be
 ///   applied to the current state of the bound video session.
 /// - [`VideoCodingControlResetKhr`] indicates a request for the bound video session device context
 ///   to be reset before the coding control parameters are applied.
-///A newly created video session  **must**  be reset before use for video decode or
-///encode operations.
-///The reset operation returns all session DPB slots to the unused state (see
-///[DPB Slot States](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-session-dpb-slot-states)).
-///For encode sessions, the reset operation returns rate control configuration
-///to implementation default settings.
-///After decode or encode operations are performed on a session, the reset
-///operation  **may**  be used to return the video session device context to the
-///same initial state as after the reset of a newly created video session.
-///This  **may**  be used when different video sequences are processed with the same
-///session.
-///# Related
+/// A newly created video session  **must**  be reset before use for video decode or
+/// encode operations.
+/// The reset operation returns all session DPB slots to the unused state (see
+/// [DPB Slot States](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-session-dpb-slot-states)).
+/// For encode sessions, the reset operation returns rate control configuration
+/// to implementation default settings.
+/// After decode or encode operations are performed on a session, the reset
+/// operation  **may**  be used to return the video session device context to the
+/// same initial state as after the reset of a newly created video session.
+/// This  **may**  be used when different video sequences are processed with the same
+/// session.
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodingControlFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2457,7 +3109,7 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
 ///    VK_VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR = 0x00000008,
 ///} VkVideoChromaSubsamplingFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoChromaSubsamplingMonochromeKhr`] - the format is monochrome.
 /// - [`VideoChromaSubsampling420Khr`] - the format is 4:2:0 chroma subsampled. The two chroma
 ///   components are each subsampled at a factor of 2 both horizontally and vertically.
@@ -2466,17 +3118,17 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
 ///   halved.
 /// - [`VideoChromaSubsampling444Khr`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr
 ///   components have the same sample rate, thus there is no chroma subsampling.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoChromaSubsamplingFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2814,21 +3466,21 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
 ///    VK_VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR = 0x00000010,
 ///} VkVideoComponentBitDepthFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`VideoComponentDepth8Khr`] - the format component bit depth is 8 bits.
 /// - [`VideoComponentDepth10Khr`] - the format component bit depth is 10 bits.
 /// - [`VideoComponentDepth12Khr`] - the format component bit depth is 12 bits.
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoComponentBitDepthFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoComponentBitDepthFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3143,29 +3795,29 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 ///    VkVideoCodecOperationFlagsKHR    videoCodecOperations;
 ///} VkVideoQueueFamilyProperties2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`video_codec_operations`] is a bitmask of [`VideoCodecOperationFlagBitsKHR`] specifying
 ///   supported video codec operation(s).
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_QUEUE_FAMILY_PROPERTIES_2_KHR`
 /// - [`video_codec_operations`] **must**  be a valid combination of
 ///   [`VideoCodecOperationFlagBitsKHR`] values
 /// - [`video_codec_operations`] **must**  not be `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoCodecOperationFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3264,26 +3916,26 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 ///    VkBool32           supported;
 ///} VkQueueFamilyQueryResultStatusProperties2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`supported`] reports [`TRUE`] if query type `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR` and use of
 ///   `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR` are supported.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3402,7 +4054,7 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 ///    const VkVideoProfileKHR*    pProfiles;
 ///} VkVideoProfilesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`profile_count`] is an integer which holds the number of video profiles included in
@@ -3410,25 +4062,25 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 /// - [`profiles`] is a pointer to an array of [`VideoProfileKHR`] structures. Each
 ///   [`VideoProfileKHR`] structure  **must**  chain the corresponding codec-operation specific
 ///   extension video profile structure.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_PROFILES_KHR`
 /// - [`profiles`] **must**  be a valid pointer to an array of [`profile_count`] valid
 ///   [`VideoProfileKHR`] structures
 /// - [`profile_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`PhysicalDeviceVideoFormatInfoKHR`]
 /// - [`StructureType`]
 /// - [`VideoProfileKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfilesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3556,7 +4208,7 @@ impl<'lt> VideoProfilesKHR<'lt> {
 ///    const VkVideoProfilesKHR*    pVideoProfiles;
 ///} VkPhysicalDeviceVideoFormatInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_usage`] is a bitmask of [`ImageUsageFlagBits`] specifying intended video image usages.
@@ -3566,24 +4218,24 @@ impl<'lt> VideoProfilesKHR<'lt> {
 ///   transcode, where a decode session output image  **may**  be used as encode input for one or
 ///   more encode sessions, multiple video profiles representing the video sessions that will share
 ///   the image  **may**  be provided.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 /// - [`VideoProfilesKHR`]
-/// - [`GetPhysicalDeviceVideoFormatPropertiesKHR`]
+/// - [`get_physical_device_video_format_properties_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3704,7 +4356,7 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 ///[VkVideoFormatPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoFormatPropertiesKHR.html) - Structure enumerating the video image formats
 ///# C Specifications
 ///The [`VideoFormatPropertiesKHR`] output structure for
-///[`GetPhysicalDeviceVideoFormatPropertiesKHR`] is defined as:
+///[`get_physical_device_video_format_properties_khr`] is defined as:
 ///```c
 ///// Provided by VK_KHR_video_queue
 ///typedef struct VkVideoFormatPropertiesKHR {
@@ -3713,30 +4365,30 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 ///    VkFormat           format;
 ///} VkVideoFormatPropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is one of the supported formats reported by the implementation.
-///# Description
-///If the `pVideoProfiles` or `imageUsage` provided in input structure
-///`pVideoFormatInfo` are not supported,
-///`VK_ERROR_FORMAT_NOT_SUPPORTED` is returned.
-///## Valid Usage (Implicit)
+/// # Description
+/// If the `pVideoProfiles` or `imageUsage` provided in input structure
+/// `pVideoFormatInfo` are not supported,
+/// `VK_ERROR_FORMAT_NOT_SUPPORTED` is returned.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Format`]
 /// - [`StructureType`]
-/// - [`GetPhysicalDeviceVideoFormatPropertiesKHR`]
+/// - [`get_physical_device_video_format_properties_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoFormatPropertiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3833,7 +4485,7 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 ///    VkVideoComponentBitDepthFlagsKHR    chromaBitDepth;
 ///} VkVideoProfileKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`video_codec_operation`] is a [`VideoCodecOperationFlagBitsKHR`] value specifying a video
@@ -3844,8 +4496,8 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 ///   bit depth information.
 /// - [`chroma_bit_depth`] is a bitmask of [`VideoComponentBitDepthFlagBitsKHR`] specifying video
 ///   chroma bit depth information.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_PROFILE_KHR`
 /// - [`video_codec_operation`] **must**  be a valid [`VideoCodecOperationFlagBitsKHR`] value
 /// - [`chroma_subsampling`] **must**  be a valid combination of
@@ -3857,7 +4509,7 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// - [`chroma_bit_depth`] **must**  be a valid combination of [`VideoComponentBitDepthFlagBitsKHR`]
 ///   values
 /// - [`chroma_bit_depth`] **must**  not be `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
@@ -3865,15 +4517,15 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// - [`VideoComponentBitDepthFlagsKHR`]
 /// - [`VideoProfilesKHR`]
 /// - [`VideoSessionCreateInfoKHR`]
-/// - [`GetPhysicalDeviceVideoCapabilitiesKHR`]
+/// - [`get_physical_device_video_capabilities_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfileKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -4041,7 +4693,7 @@ impl<'lt> VideoProfileKHR<'lt> {
 ///    VkExtensionProperties        stdHeaderVersion;
 ///} VkVideoCapabilitiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`capability_flags`] is a bitmask of [`VideoCapabilityFlagBitsKHR`] specifying capability
@@ -4060,30 +4712,30 @@ impl<'lt> VideoProfileKHR<'lt> {
 ///   with a single decode or encode operation.
 /// - [`std_header_version`] is a [`ExtensionProperties`] structure reporting the Video Std header
 ///   version supported for the `codecOperation` requested in
-///   [`GetPhysicalDeviceVideoCapabilitiesKHR`]`::pVideoProfile`.
-///# Description
-///## Valid Usage (Implicit)
+///   [`get_physical_device_video_capabilities_khr`]`::pVideoProfile`.
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_CAPABILITIES_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeCapabilitiesKHR`] or
 ///   [`VideoEncodeCapabilitiesKHR`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`DeviceSize`]
 /// - [`ExtensionProperties`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 /// - [`VideoCapabilityFlagsKHR`]
-/// - [`GetPhysicalDeviceVideoCapabilitiesKHR`]
+/// - [`get_physical_device_video_capabilities_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilitiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -4125,7 +4777,7 @@ pub struct VideoCapabilitiesKHR<'lt> {
     ///[`std_header_version`] is a [`ExtensionProperties`] structure
     ///reporting the Video Std header version supported for the
     ///`codecOperation` requested in
-    ///[`GetPhysicalDeviceVideoCapabilitiesKHR`]::`pVideoProfile`.
+    ///[`get_physical_device_video_capabilities_khr`]::`pVideoProfile`.
     pub std_header_version: ExtensionProperties,
 }
 impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
@@ -4321,31 +4973,31 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
 ///    VkMemoryRequirements2*    pMemoryRequirements;
 ///} VkVideoGetMemoryPropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_bind_index`] is the memory bind index of the memory heap type described by the
 ///   information returned in [`memory_requirements`].
 /// - [`memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   requested memory heap requirements for the heap with index [`memory_bind_index`] are returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_GET_MEMORY_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`MemoryRequirements2`]
 /// - [`StructureType`]
-/// - [`GetVideoSessionMemoryRequirementsKHR`]
+/// - [`get_video_session_memory_requirements_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -4468,36 +5120,36 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 ///    VkDeviceSize       memorySize;
 ///} VkVideoBindMemoryKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_bind_index`] is the index of the device memory heap returned in
 ///   [`VideoGetMemoryPropertiesKHR`]::[`memory_bind_index`] from
-///   [`GetVideoSessionMemoryRequirementsKHR`].
+///   [`get_video_session_memory_requirements_khr`].
 /// - [`memory`] is the allocated device memory to be bound to the video session’s heap with index
 ///   [`memory_bind_index`].
 /// - [`memory_offset`] is the start offset of the region of [`memory`] which is to be bound.
 /// - [`memory_size`] is the size in bytes of the region of [`memory`], starting from
 ///   [`memory_offset`] bytes, to be bound.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_BIND_MEMORY_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`DeviceMemory`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
-/// - [`BindVideoSessionMemoryKHR`]
+/// - [`bind_video_session_memory_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoBindMemoryKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -4512,7 +5164,7 @@ pub struct VideoBindMemoryKHR<'lt> {
     pub p_next: *const BaseInStructure<'lt>,
     ///[`memory_bind_index`] is the index of the device memory heap returned in
     ///[`VideoGetMemoryPropertiesKHR`]::[`memory_bind_index`] from
-    ///[`GetVideoSessionMemoryRequirementsKHR`].
+    ///[`get_video_session_memory_requirements_khr`].
     pub memory_bind_index: u32,
     ///[`memory`] is the allocated device memory to be bound to the video
     ///session’s heap with index [`memory_bind_index`].
@@ -4639,7 +5291,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 ///    VkImageView        imageViewBinding;
 ///} VkVideoPictureResourceKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`coded_offset`] is the offset to be used for the picture resource.
@@ -4647,12 +5299,12 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 /// - [`base_array_layer`] is the first array layer to be accessed for the Decode or Encode
 ///   Operations.
 /// - [`image_view_binding`] is a [`ImageView`] image view representing this picture resource.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_PICTURE_RESOURCE_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`image_view_binding`] **must**  be a valid [`ImageView`] handle
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`Extent2D`]
 /// - [`ImageView`]
@@ -4662,13 +5314,13 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 /// - [`VideoEncodeInfoKHR`]
 /// - [`VideoReferenceSlotKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoPictureResourceKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -4805,14 +5457,14 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 ///    const VkVideoPictureResourceKHR*    pPictureResource;
 ///} VkVideoReferenceSlotKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`slot_index`] is the unique reference slot index used for the encode or decode operation.
 /// - [`picture_resource`] is a pointer to a [`VideoPictureResourceKHR`] structure describing the
 ///   picture resource bound to this slot index.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_REFERENCE_SLOT_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeH264DpbSlotInfoEXT`] or
@@ -4820,7 +5472,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`picture_resource`] **must**  be a valid pointer to a valid [`VideoPictureResourceKHR`]
 ///   structure
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoBeginCodingInfoKHR`]
@@ -4828,13 +5480,13 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 /// - [`VideoEncodeInfoKHR`]
 /// - [`VideoPictureResourceKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoReferenceSlotKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -4957,7 +5609,7 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///    const VkExtensionProperties*    pStdHeaderVersion;
 ///} VkVideoSessionCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`queue_family_index`] is the queue family of the created video session.
@@ -4979,8 +5631,8 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///   within a single decode or encode operation for the created video session.
 /// - [`std_header_version`] is a pointer to a [`ExtensionProperties`] structure requesting the
 ///   Video Std header version to use for `codecOperation` in [`video_profile`].
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`video_profile`] **must**  be a pointer to a valid [`VideoProfileKHR`] structure whose
 ///   [`p_next`] chain  **must**  include a valid codec-specific profile structure
 /// - If [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture)
@@ -4999,22 +5651,22 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 ///   bigger than [`VideoCapabilitiesKHR::max_extent`]
 /// - [`reference_pictures_format`] **must**  be one of the supported formats in
 ///   [`VideoFormatPropertiesKHR`]`format` returned by the
-///   [`GetPhysicalDeviceVideoFormatPropertiesKHR`] when the
+///   [`get_physical_device_video_format_properties_khr`] when the
 ///   [`PhysicalDeviceVideoFormatInfoKHR`]`imageUsage` contains
 ///   `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` or `VK_IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR`
 ///   depending on the session codec operation
 /// - [`picture_format`] for decode output  **must**  be one of the supported formats in
 ///   [`VideoFormatPropertiesKHR`]`format` returned by the
-///   [`GetPhysicalDeviceVideoFormatPropertiesKHR`] when the
+///   [`get_physical_device_video_format_properties_khr`] when the
 ///   [`PhysicalDeviceVideoFormatInfoKHR`]`imageUsage` contains
 ///   `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`
 /// - [`picture_format`] targeting encode operations  **must**  be one of the supported formats in
 ///   [`VideoFormatPropertiesKHR`]`format` returned by the
-///   [`GetPhysicalDeviceVideoFormatPropertiesKHR`] when the
+///   [`get_physical_device_video_format_properties_khr`] when the
 ///   [`PhysicalDeviceVideoFormatInfoKHR`]`imageUsage` contains
 ///   `VK_IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`VideoSessionCreateFlagBitsKHR`] values
@@ -5023,7 +5675,7 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 /// - [`reference_pictures_format`] **must**  be a valid [`Format`] value
 /// - [`std_header_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
 ///   structure
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`ExtensionProperties`]
 /// - [`Extent2D`]
@@ -5031,15 +5683,15 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
 /// - [`StructureType`]
 /// - [`VideoProfileKHR`]
 /// - [`VideoSessionCreateFlagsKHR`]
-/// - [`CreateVideoSessionKHR`]
+/// - [`create_video_session_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5286,7 +5938,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 ///    VkVideoSessionKHR              videoSession;
 ///} VkVideoSessionParametersCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`video_session_parameters_template`] is [`crate::utils::Handle::null`] or a valid handle to a
@@ -5298,12 +5950,12 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 ///   parameters.
 /// - [`video_session`] is the video session object against which the video session parameters
 ///   object is going to be created.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - If [`video_session_parameters_template`] represents a valid handle, it  **must**  have been
 ///   created against [`video_session`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
@@ -5321,20 +5973,20 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 /// - Both of [`video_session`], and [`video_session_parameters_template`] that are valid handles of
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoSessionKHR`]
 /// - [`VideoSessionParametersKHR`]
-/// - [`CreateVideoSessionParametersKHR`]
+/// - [`create_video_session_parameters_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5449,13 +6101,13 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
 ///    uint32_t           updateSequenceCount;
 ///} VkVideoSessionParametersUpdateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`update_sequence_count`] is the sequence number of the object update with parameters,
 ///   starting from `1` and incrementing the value by one with each subsequent update.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
@@ -5464,18 +6116,18 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
 ///   [`VideoEncodeH264SessionParametersAddInfoEXT`], or
 ///   [`VideoEncodeH265SessionParametersAddInfoEXT`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
-/// - [`UpdateVideoSessionParametersKHR`]
+/// - [`update_video_session_parameters_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersUpdateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5568,7 +6220,7 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 ///    const VkVideoReferenceSlotKHR*        pReferenceSlots;
 ///} VkVideoBeginCodingInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
@@ -5584,19 +6236,19 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 ///   [`reference_slots`].
 /// - [`reference_slots`] is a pointer to an array of [`VideoReferenceSlotKHR`] structures
 ///   specifying reference slots, used within the video command context between this
-///   [`CmdBeginVideoCodingKHR`] command and the [`CmdEndVideoCodingKHR`] commmand that follows.
-///   Each reference slot provides a slot index and the [`VideoPictureResourceKHR`] specifying the
-///   reference picture resource bound to this slot index. A slot index  **must**  not appear more
-///   than once in [`reference_slots`] in a given command.
-///# Description
-///## Valid Usage
+///   [`cmd_begin_video_coding_khr`] command and the [`cmd_end_video_coding_khr`] commmand that
+///   follows. Each reference slot provides a slot index and the [`VideoPictureResourceKHR`]
+///   specifying the reference picture resource bound to this slot index. A slot index  **must**
+///   not appear more than once in [`reference_slots`] in a given command.
+/// # Description
+/// ## Valid Usage
 /// - [`VideoBeginCodingInfoKHR`]::[`reference_slot_count`] **must**  not exceed the value specified
 ///   in [`VideoSessionCreateInfoKHR::max_reference_pictures_slots_count`] when creating the video
 ///   session object that is being provided in [`video_session`]
 /// - If [`video_session_parameters`] is not [`crate::utils::Handle::null`], it  **must**  have been
 ///   created using [`video_session`] as a parent object
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_BEGIN_CODING_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
@@ -5613,7 +6265,7 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 /// - Both of [`video_session`], and [`video_session_parameters`] that are valid handles of
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoBeginCodingFlagsKHR`]
@@ -5621,15 +6273,15 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 /// - [`VideoReferenceSlotKHR`]
 /// - [`VideoSessionKHR`]
 /// - [`VideoSessionParametersKHR`]
-/// - [`CmdBeginVideoCodingKHR`]
+/// - [`cmd_begin_video_coding_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoBeginCodingInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5663,8 +6315,8 @@ pub struct VideoBeginCodingInfoKHR<'lt> {
     ///[`reference_slots`] is a pointer to an array of
     ///[`VideoReferenceSlotKHR`] structures specifying reference slots,
     ///used within the video command context between this
-    ///[`CmdBeginVideoCodingKHR`] command and the
-    ///[`CmdEndVideoCodingKHR`] commmand that follows.
+    ///[`cmd_begin_video_coding_khr`] command and the
+    ///[`cmd_end_video_coding_khr`] commmand that follows.
     ///Each reference slot provides a slot index and the
     ///[`VideoPictureResourceKHR`] specifying the reference picture
     ///resource bound to this slot index.
@@ -5832,28 +6484,28 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 ///    VkVideoEndCodingFlagsKHR    flags;
 ///} VkVideoEndCodingInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_END_CODING_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoEndCodingFlagsKHR`]
-/// - [`CmdEndVideoCodingKHR`]
+/// - [`cmd_end_video_coding_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEndCodingInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5939,37 +6591,37 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 ///    VkVideoCodingControlFlagsKHR    flags;
 ///} VkVideoCodingControlInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`VideoCodingControlFlagsKHR`] specifying control flags.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - The first command buffer submitted for a newly created video session  **must**  set the
 ///   `VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR` bit in [`VideoCodingControlInfoKHR`]::[`flags`] to
 ///   reset the session device context before any video decode or encode operations are performed on
 ///   the session.
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_CODING_CONTROL_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoEncodeRateControlInfoKHR`] or
 ///   [`VideoEncodeRateControlLayerInfoKHR`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`flags`] **must**  be a valid combination of [`VideoCodingControlFlagBitsKHR`] values
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoCodingControlFlagsKHR`]
-/// - [`CmdControlVideoCodingKHR`]
+/// - [`cmd_control_video_coding_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6053,22 +6705,22 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
 ///// Provided by VK_KHR_video_queue
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionKHR)
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoBeginCodingInfoKHR`]
 /// - [`VideoSessionParametersCreateInfoKHR`]
-/// - [`BindVideoSessionMemoryKHR`]
-/// - [`CreateVideoSessionKHR`]
-/// - [`DestroyVideoSessionKHR`]
-/// - [`GetVideoSessionMemoryRequirementsKHR`]
+/// - [`bind_video_session_memory_khr`]
+/// - [`create_video_session_khr`]
+/// - [`destroy_video_session_khr`]
+/// - [`get_video_session_memory_requirements_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6105,21 +6757,21 @@ impl Default for VideoSessionKHR {
 ///// Provided by VK_KHR_video_queue
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionParametersKHR)
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoBeginCodingInfoKHR`]
 /// - [`VideoSessionParametersCreateInfoKHR`]
-/// - [`CreateVideoSessionParametersKHR`]
-/// - [`DestroyVideoSessionParametersKHR`]
-/// - [`UpdateVideoSessionParametersKHR`]
+/// - [`create_video_session_parameters_khr`]
+/// - [`destroy_video_session_parameters_khr`]
+/// - [`update_video_session_parameters_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6146,5 +6798,160 @@ unsafe impl Send for VideoSessionParametersKHR {}
 impl Default for VideoSessionParametersKHR {
     fn default() -> Self {
         Self::null()
+    }
+}
+///The V-table of [`Instance`] for functions from VK_KHR_video_queue
+pub struct InstanceKhrVideoQueueVTable {
+    ///See [`FNGetPhysicalDeviceVideoCapabilitiesKhr`] for more information.
+    pub get_physical_device_video_capabilities_khr: FNGetPhysicalDeviceVideoCapabilitiesKhr,
+    ///See [`FNGetPhysicalDeviceVideoFormatPropertiesKhr`] for more information.
+    pub get_physical_device_video_format_properties_khr: FNGetPhysicalDeviceVideoFormatPropertiesKhr,
+}
+impl InstanceKhrVideoQueueVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_video_capabilities_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceVideoCapabilitiesKHR"),
+                ))
+            },
+            get_physical_device_video_format_properties_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceVideoFormatPropertiesKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_video_capabilities_khr`]. See
+    /// [`FNGetPhysicalDeviceVideoCapabilitiesKhr`] for more information.
+    pub fn get_physical_device_video_capabilities_khr(&self) -> FNGetPhysicalDeviceVideoCapabilitiesKhr {
+        self.get_physical_device_video_capabilities_khr
+    }
+    ///Gets [`Self::get_physical_device_video_format_properties_khr`]. See
+    /// [`FNGetPhysicalDeviceVideoFormatPropertiesKhr`] for more information.
+    pub fn get_physical_device_video_format_properties_khr(&self) -> FNGetPhysicalDeviceVideoFormatPropertiesKhr {
+        self.get_physical_device_video_format_properties_khr
+    }
+}
+///The V-table of [`Device`] for functions from VK_KHR_video_queue
+pub struct DeviceKhrVideoQueueVTable {
+    ///See [`FNCreateVideoSessionKhr`] for more information.
+    pub create_video_session_khr: FNCreateVideoSessionKhr,
+    ///See [`FNDestroyVideoSessionKhr`] for more information.
+    pub destroy_video_session_khr: FNDestroyVideoSessionKhr,
+    ///See [`FNCreateVideoSessionParametersKhr`] for more information.
+    pub create_video_session_parameters_khr: FNCreateVideoSessionParametersKhr,
+    ///See [`FNUpdateVideoSessionParametersKhr`] for more information.
+    pub update_video_session_parameters_khr: FNUpdateVideoSessionParametersKhr,
+    ///See [`FNDestroyVideoSessionParametersKhr`] for more information.
+    pub destroy_video_session_parameters_khr: FNDestroyVideoSessionParametersKhr,
+    ///See [`FNGetVideoSessionMemoryRequirementsKhr`] for more information.
+    pub get_video_session_memory_requirements_khr: FNGetVideoSessionMemoryRequirementsKhr,
+    ///See [`FNBindVideoSessionMemoryKhr`] for more information.
+    pub bind_video_session_memory_khr: FNBindVideoSessionMemoryKhr,
+    ///See [`FNCmdBeginVideoCodingKhr`] for more information.
+    pub cmd_begin_video_coding_khr: FNCmdBeginVideoCodingKhr,
+    ///See [`FNCmdControlVideoCodingKhr`] for more information.
+    pub cmd_control_video_coding_khr: FNCmdControlVideoCodingKhr,
+    ///See [`FNCmdEndVideoCodingKhr`] for more information.
+    pub cmd_end_video_coding_khr: FNCmdEndVideoCodingKhr,
+}
+impl DeviceKhrVideoQueueVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_video_session_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateVideoSessionKHR")))
+            },
+            destroy_video_session_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyVideoSessionKHR")))
+            },
+            create_video_session_parameters_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateVideoSessionParametersKHR")))
+            },
+            update_video_session_parameters_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkUpdateVideoSessionParametersKHR")))
+            },
+            destroy_video_session_parameters_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyVideoSessionParametersKHR")))
+            },
+            get_video_session_memory_requirements_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetVideoSessionMemoryRequirementsKHR"),
+                ))
+            },
+            bind_video_session_memory_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindVideoSessionMemoryKHR")))
+            },
+            cmd_begin_video_coding_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginVideoCodingKHR")))
+            },
+            cmd_control_video_coding_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdControlVideoCodingKHR")))
+            },
+            cmd_end_video_coding_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndVideoCodingKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::create_video_session_khr`]. See [`FNCreateVideoSessionKhr`] for more
+    /// information.
+    pub fn create_video_session_khr(&self) -> FNCreateVideoSessionKhr {
+        self.create_video_session_khr
+    }
+    ///Gets [`Self::destroy_video_session_khr`]. See [`FNDestroyVideoSessionKhr`] for more
+    /// information.
+    pub fn destroy_video_session_khr(&self) -> FNDestroyVideoSessionKhr {
+        self.destroy_video_session_khr
+    }
+    ///Gets [`Self::create_video_session_parameters_khr`]. See
+    /// [`FNCreateVideoSessionParametersKhr`] for more information.
+    pub fn create_video_session_parameters_khr(&self) -> FNCreateVideoSessionParametersKhr {
+        self.create_video_session_parameters_khr
+    }
+    ///Gets [`Self::update_video_session_parameters_khr`]. See
+    /// [`FNUpdateVideoSessionParametersKhr`] for more information.
+    pub fn update_video_session_parameters_khr(&self) -> FNUpdateVideoSessionParametersKhr {
+        self.update_video_session_parameters_khr
+    }
+    ///Gets [`Self::destroy_video_session_parameters_khr`]. See
+    /// [`FNDestroyVideoSessionParametersKhr`] for more information.
+    pub fn destroy_video_session_parameters_khr(&self) -> FNDestroyVideoSessionParametersKhr {
+        self.destroy_video_session_parameters_khr
+    }
+    ///Gets [`Self::get_video_session_memory_requirements_khr`]. See
+    /// [`FNGetVideoSessionMemoryRequirementsKhr`] for more information.
+    pub fn get_video_session_memory_requirements_khr(&self) -> FNGetVideoSessionMemoryRequirementsKhr {
+        self.get_video_session_memory_requirements_khr
+    }
+    ///Gets [`Self::bind_video_session_memory_khr`]. See [`FNBindVideoSessionMemoryKhr`] for more
+    /// information.
+    pub fn bind_video_session_memory_khr(&self) -> FNBindVideoSessionMemoryKhr {
+        self.bind_video_session_memory_khr
+    }
+    ///Gets [`Self::cmd_begin_video_coding_khr`]. See [`FNCmdBeginVideoCodingKhr`] for more
+    /// information.
+    pub fn cmd_begin_video_coding_khr(&self) -> FNCmdBeginVideoCodingKhr {
+        self.cmd_begin_video_coding_khr
+    }
+    ///Gets [`Self::cmd_control_video_coding_khr`]. See [`FNCmdControlVideoCodingKhr`] for more
+    /// information.
+    pub fn cmd_control_video_coding_khr(&self) -> FNCmdControlVideoCodingKhr {
+        self.cmd_control_video_coding_khr
+    }
+    ///Gets [`Self::cmd_end_video_coding_khr`]. See [`FNCmdEndVideoCodingKhr`] for more
+    /// information.
+    pub fn cmd_end_video_coding_khr(&self) -> FNCmdEndVideoCodingKhr {
+        self.cmd_end_video_coding_khr
     }
 }

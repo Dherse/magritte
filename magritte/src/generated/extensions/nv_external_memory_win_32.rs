@@ -20,7 +20,7 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_NV_external_memory_win32 extension>>)
 //!# New functions & commands
-//! - [`GetMemoryWin32HandleNV`]
+//! - [`get_memory_win32_handle_nv`]
 //!# New structures
 //! - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryWin32HandleInfoNV`]  -
 //!   [`ImportMemoryWin32HandleInfoNV`]
@@ -53,7 +53,7 @@
 //!Vulkan API.
 //!Both of these are beyond the scope of this extension.3) Do applications need to call
 //! `CloseHandle`() on the values returned
-//!from [`GetMemoryWin32HandleNV`] when `handleType` is
+//!from [`get_memory_win32_handle_nv`] when `handleType` is
 //!`VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV`? **RESOLVED** : Yes, unless it is passed
 //! back in to another driver instance to
 //!import the object.
@@ -70,7 +70,7 @@
 //!# Related
 //! - [`ExportMemoryWin32HandleInfoNV`]
 //! - [`ImportMemoryWin32HandleInfoNV`]
-//! - [`GetMemoryWin32HandleNV`]
+//! - [`get_memory_win32_handle_nv`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -82,7 +82,7 @@
 use crate::{
     extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
     native::{DWORD, HANDLE, SECURITY_ATTRIBUTES},
-    vulkan1_0::{BaseInStructure, StructureType},
+    vulkan1_0::{BaseInStructure, Device, DeviceMemory, StructureType, VulkanResultCodes},
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -93,6 +93,65 @@ pub const NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME")]
 pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_external_memory_win32");
+///[vkGetMemoryWin32HandleNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryWin32HandleNV.html) - Retrieve Win32 handle to a device memory object
+///# C Specifications
+///To retrieve the handle corresponding to a device memory object created with
+///[`ExportMemoryAllocateInfoNV::handle_types`] set to include
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV` or
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV`, call:
+///```c
+///// Provided by VK_NV_external_memory_win32
+///VkResult vkGetMemoryWin32HandleNV(
+///    VkDevice                                    device,
+///    VkDeviceMemory                              memory,
+///    VkExternalMemoryHandleTypeFlagsNV           handleType,
+///    HANDLE*                                     pHandle);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the memory.
+/// - [`memory`] is the [`DeviceMemory`] object.
+/// - [`handle_type`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] containing a single bit
+///   specifying the type of handle requested.
+/// - `handle` is a pointer to a Windows [`HANDLE`] in which the handle is returned.
+/// # Description
+/// ## Valid Usage
+/// - [`handle_type`] **must**  be a flag specified in [`ExportMemoryAllocateInfoNV::handle_types`]
+///   when allocating [`memory`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+/// - [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
+///   values
+/// - [`handle_type`] **must**  not be `0`
+/// - [`p_handle`] **must**  be a valid pointer to a [`HANDLE`] value
+/// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_NV_external_memory_win32`]
+/// - [`Device`]
+/// - [`DeviceMemory`]
+/// - [`ExternalMemoryHandleTypeFlagsNV`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetMemoryWin32HandleNV")]
+pub type FNGetMemoryWin32HandleNv = Option<
+    unsafe extern "system" fn(
+        device: Device,
+        memory: DeviceMemory,
+        handle_type: ExternalMemoryHandleTypeFlagsNV,
+        p_handle: *mut HANDLE,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImportMemoryWin32HandleInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryWin32HandleInfoNV.html) - Import Win32 memory created on the same physical device
 ///# C Specifications
 ///To import memory created on the same physical device but outside of the
@@ -109,35 +168,35 @@ pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    HANDLE                               handle;
 ///} VkImportMemoryWin32HandleInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is `0` or a [`ExternalMemoryHandleTypeFlagBitsNV`] value specifying the type
 ///   of memory handle in [`handle`].
 /// - [`handle`] is a Windows [`HANDLE`] referring to the memory.
-///# Description
-///If [`handle_type`] is `0`, this structure is ignored by consumers of the
-///[`MemoryAllocateInfo`] structure it is chained from.
-///## Valid Usage
+/// # Description
+/// If [`handle_type`] is `0`, this structure is ignored by consumers of the
+/// [`MemoryAllocateInfo`] structure it is chained from.
+/// ## Valid Usage
 /// - [`handle_type`] **must**  not have more than one bit set
 /// - [`handle`] **must**  be a valid handle to memory, obtained as specified by [`handle_type`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV`
 /// - [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
-///# Related
+/// # Related
 /// - [`VK_NV_external_memory_win32`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryWin32HandleInfoNV")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -257,36 +316,36 @@ impl<'lt> ImportMemoryWin32HandleInfoNV<'lt> {
 ///    DWORD                         dwAccess;
 ///} VkExportMemoryWin32HandleInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security
 ///   attributes of the handle.
 /// - [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
-///# Description
-///If this structure is not present, or if [`attributes`] is set to `NULL`,
-///default security descriptor values will be used, and child processes created
-///by the application will not inherit the handle, as described in the MSDN
-///documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
-///Further, if the structure is not present, the access rights will be`DXGI_SHARED_RESOURCE_READ` |
+/// # Description
+/// If this structure is not present, or if [`attributes`] is set to `NULL`,
+/// default security descriptor values will be used, and child processes created
+/// by the application will not inherit the handle, as described in the MSDN
+/// documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
+/// Further, if the structure is not present, the access rights will be`DXGI_SHARED_RESOURCE_READ` |
 /// `DXGI_SHARED_RESOURCE_WRITE`
 /// * [https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights](https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV`
 /// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
-///# Related
+/// # Related
 /// - [`VK_NV_external_memory_win32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportMemoryWin32HandleInfoNV")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -383,5 +442,28 @@ impl<'lt> ExportMemoryWin32HandleInfoNV<'lt> {
     pub fn set_dw_access(&mut self, value: crate::native::DWORD) -> &mut Self {
         self.dw_access = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_NV_external_memory_win32
+pub struct DeviceNvExternalMemoryWin32VTable {
+    ///See [`FNGetMemoryWin32HandleNv`] for more information.
+    pub get_memory_win32_handle_nv: FNGetMemoryWin32HandleNv,
+}
+impl DeviceNvExternalMemoryWin32VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_memory_win32_handle_nv: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryWin32HandleNV")))
+            },
+        }
+    }
+    ///Gets [`Self::get_memory_win32_handle_nv`]. See [`FNGetMemoryWin32HandleNv`] for more
+    /// information.
+    pub fn get_memory_win32_handle_nv(&self) -> FNGetMemoryWin32HandleNv {
+        self.get_memory_win32_handle_nv
     }
 }

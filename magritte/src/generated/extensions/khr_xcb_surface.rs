@@ -18,8 +18,8 @@
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_xcb_surface
 //!   extension>>)
 //!# New functions & commands
-//! - [`CreateXcbSurfaceKHR`]
-//! - [`GetPhysicalDeviceXcbPresentationSupportKHR`]
+//! - [`create_xcb_surface_khr`]
+//! - [`get_physical_device_xcb_presentation_support_khr`]
 //!# New structures
 //! - [`XcbSurfaceCreateInfoKHR`]
 //!# New bitmasks
@@ -31,7 +31,7 @@
 //!# Known issues & F.A.Q
 //!1) Does XCB need a way to query for compatibility between a particular
 //!physical device and a specific screen? This would be a more general query
-//!than [`GetPhysicalDeviceSurfaceSupportKHR`]: If it returned
+//!than [`get_physical_device_surface_support_khr`]: If it returned
 //![`TRUE`], then the physical device could be assumed to support
 //!presentation to any window on that screen. **RESOLVED** : Yes, this is needed for toolkits that
 //! want to create a
@@ -63,8 +63,8 @@
 //!# Related
 //! - [`XcbSurfaceCreateFlagsKHR`]
 //! - [`XcbSurfaceCreateInfoKHR`]
-//! - [`CreateXcbSurfaceKHR`]
-//! - [`GetPhysicalDeviceXcbPresentationSupportKHR`]
+//! - [`create_xcb_surface_khr`]
+//! - [`get_physical_device_xcb_presentation_support_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -74,8 +74,11 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
-    native::{xcb_connection_t, xcb_window_t},
-    vulkan1_0::{BaseInStructure, StructureType},
+    extensions::khr_surface::SurfaceKHR,
+    native::{xcb_connection_t, xcb_visualid_t, xcb_window_t},
+    vulkan1_0::{
+        AllocationCallbacks, BaseInStructure, Bool32, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
+    },
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -86,23 +89,123 @@ pub const KHR_XCB_SURFACE_SPEC_VERSION: u32 = 6;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_XCB_SURFACE_EXTENSION_NAME")]
 pub const KHR_XCB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_xcb_surface");
+///[vkCreateXcbSurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateXcbSurfaceKHR.html) - Create a slink:VkSurfaceKHR object for a X11 window, using the XCB client-side library
+///# C Specifications
+///To create a [`SurfaceKHR`] object for an X11 window, using the XCB
+///client-side library, call:
+///```c
+///// Provided by VK_KHR_xcb_surface
+///VkResult vkCreateXcbSurfaceKHR(
+///    VkInstance                                  instance,
+///    const VkXcbSurfaceCreateInfoKHR*            pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance to associate the surface with.
+/// - [`p_create_info`] is a pointer to a [`XcbSurfaceCreateInfoKHR`] structure containing
+///   parameters affecting the creation of the surface object.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`XcbSurfaceCreateInfoKHR`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_xcb_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`Instance`]
+/// - [`SurfaceKHR`]
+/// - [`XcbSurfaceCreateInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateXcbSurfaceKHR")]
+pub type FNCreateXcbSurfaceKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const XcbSurfaceCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceXcbPresentationSupportKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceXcbPresentationSupportKHR.html) - Query physical device for presentation to X11 server using XCB
+///# C Specifications
+///To determine whether a queue family of a physical device supports
+///presentation to an X11 server, using the XCB client-side library, call:
+///```c
+///// Provided by VK_KHR_xcb_surface
+///VkBool32 vkGetPhysicalDeviceXcbPresentationSupportKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t                                    queueFamilyIndex,
+///    xcb_connection_t*                           connection,
+///    xcb_visualid_t                              visual_id);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device.
+/// - [`queue_family_index`] is the queue family index.
+/// - [`connection`] is a pointer to an [`xcb_connection_t`] to the X server.
+/// - [`visual_id`] is an X11 visual ([`xcb_visualid_t`]).
+/// # Description
+/// This platform-specific function  **can**  be called prior to creating a surface.
+/// ## Valid Usage
+/// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
+///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`connection`] **must**  be a valid pointer to an [`xcb_connection_t`] value
+/// # Related
+/// - [`VK_KHR_xcb_surface`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceXcbPresentationSupportKHR")]
+pub type FNGetPhysicalDeviceXcbPresentationSupportKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        queue_family_index: u32,
+        connection: *mut xcb_connection_t,
+        visual_id: xcb_visualid_t,
+    ) -> Bool32,
+>;
 ///[VkXcbSurfaceCreateFlagsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkXcbSurfaceCreateFlagsKHR.html) - Reserved for future use
 ///# C Specifications
 ///```c
 ///// Provided by VK_KHR_xcb_surface
 ///typedef VkFlags VkXcbSurfaceCreateFlagsKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_xcb_surface`]
 /// - [`XcbSurfaceCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -133,34 +236,34 @@ impl std::fmt::Debug for XcbSurfaceCreateFlagsKHR {
 ///    xcb_window_t                  window;
 ///} VkXcbSurfaceCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`connection`] is a pointer to an [`xcb_connection_t`] to the X server.
 /// - [`window`] is the [`xcb_window_t`] for the X11 window to associate the surface with.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`connection`] **must**  point to a valid X11 [`xcb_connection_t`]
 /// - [`window`] **must**  be a valid X11 [`xcb_window_t`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_xcb_surface`]
 /// - [`StructureType`]
 /// - [`XcbSurfaceCreateFlagsKHR`]
-/// - [`CreateXcbSurfaceKHR`]
+/// - [`create_xcb_surface_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkXcbSurfaceCreateInfoKHR")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -281,5 +384,40 @@ impl<'lt> XcbSurfaceCreateInfoKHR<'lt> {
     pub fn set_window(&mut self, value: crate::native::xcb_window_t) -> &mut Self {
         self.window = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_KHR_xcb_surface
+pub struct InstanceKhrXcbSurfaceVTable {
+    ///See [`FNCreateXcbSurfaceKhr`] for more information.
+    pub create_xcb_surface_khr: FNCreateXcbSurfaceKhr,
+    ///See [`FNGetPhysicalDeviceXcbPresentationSupportKhr`] for more information.
+    pub get_physical_device_xcb_presentation_support_khr: FNGetPhysicalDeviceXcbPresentationSupportKhr,
+}
+impl InstanceKhrXcbSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_xcb_surface_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateXcbSurfaceKHR")))
+            },
+            get_physical_device_xcb_presentation_support_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceXcbPresentationSupportKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::create_xcb_surface_khr`]. See [`FNCreateXcbSurfaceKhr`] for more information.
+    pub fn create_xcb_surface_khr(&self) -> FNCreateXcbSurfaceKhr {
+        self.create_xcb_surface_khr
+    }
+    ///Gets [`Self::get_physical_device_xcb_presentation_support_khr`]. See
+    /// [`FNGetPhysicalDeviceXcbPresentationSupportKhr`] for more information.
+    pub fn get_physical_device_xcb_presentation_support_khr(&self) -> FNGetPhysicalDeviceXcbPresentationSupportKhr {
+        self.get_physical_device_xcb_presentation_support_khr
     }
 }

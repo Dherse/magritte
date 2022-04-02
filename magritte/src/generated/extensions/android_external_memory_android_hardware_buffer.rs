@@ -26,8 +26,8 @@
 //!   @critsec%0A<<Here describe the issue or question you have about the
 //!   VK_ANDROID_external_memory_android_hardware_buffer extension>>)
 //!# New functions & commands
-//! - [`GetAndroidHardwareBufferPropertiesANDROID`]
-//! - [`GetMemoryAndroidHardwareBufferANDROID`]
+//! - [`get_android_hardware_buffer_properties_android`]
+//! - [`get_memory_android_hardware_buffer_android`]
 //!# New structures
 //! - [`AndroidHardwareBufferPropertiesANDROID`]
 //! - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
@@ -71,15 +71,15 @@
 //! [`AHardwareBuffer`]
 //!image may depend on native usage flags that do not have corresponding Vulkan
 //!counterparts.
-//!Do we provide this information to [`CreateImage`] somehow, or allow the
-//!allocation size reported by [`GetImageMemoryRequirements`] to be
+//!Do we provide this information to [`create_image`] somehow, or allow the
+//!allocation size reported by [`get_image_memory_requirements`] to be
 //!approximate? **RESOLVED** : Allow the allocation size to be unspecified when allocating the
 //!memory.
 //!It has to work this way for exported image memory anyway, since
-//![`AHardwareBuffer`] allocation happens in [`AllocateMemory`], and
+//![`AHardwareBuffer`] allocation happens in [`allocate_memory`], and
 //!internally is performed by a separate HAL, not the Vulkan implementation
 //!itself.
-//!There is a similar issue with [`GetImageSubresourceLayout`]: the layout
+//!There is a similar issue with [`get_image_subresource_layout`]: the layout
 //!is determined by the allocator HAL, so it is not known until the image is
 //!bound to memory.3) Should the result of sampling an external-format image with the suggested
 //!Y′C<sub>B</sub>C<sub>R</sub> conversion parameters yield the same results as using a
@@ -111,7 +111,7 @@
 //!mapped in Vulkan, but doing so follows Vulkan semantics: it is just a raw
 //!view of the data and does not imply ownership (this means implementations
 //!must not internally call `AHardwareBuffer_lock` to implement
-//![`MapMemory`], or assume the application has done so).
+//![`map_memory`], or assume the application has done so).
 //!Implementations are not required to support linear-tiled images backed by
 //!Android hardware buffers, even if the [`AHardwareBuffer`] has CPU
 //!usage.
@@ -127,7 +127,7 @@
 //!documentation is added, but the version number does not indicate that an
 //!implementation supports Vulkan memory or resources that map to the new
 //![`AHardwareBuffer`] features: support for that must be queried with
-//![`GetPhysicalDeviceImageFormatProperties2`] or is implied by
+//![`get_physical_device_image_format_properties2`] or is implied by
 //!successfully allocating a [`AHardwareBuffer`] outside of Vulkan that
 //!uses the new feature and has a GPU usage flag.In essence, these are new features added to a new
 //! Android API level, rather
@@ -156,8 +156,8 @@
 //! - [`ExternalFormatANDROID`]
 //! - [`ImportAndroidHardwareBufferInfoANDROID`]
 //! - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
-//! - [`GetAndroidHardwareBufferPropertiesANDROID`]
-//! - [`GetMemoryAndroidHardwareBufferANDROID`]
+//! - [`get_android_hardware_buffer_properties_android`]
+//! - [`get_memory_android_hardware_buffer_android`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -168,8 +168,8 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{
-        BaseInStructure, BaseOutStructure, ComponentMapping, DeviceMemory, DeviceSize, Format, FormatFeatureFlags,
-        StructureType,
+        BaseInStructure, BaseOutStructure, ComponentMapping, Device, DeviceMemory, DeviceSize, Format,
+        FormatFeatureFlags, StructureType, VulkanResultCodes,
     },
     vulkan1_1::{ChromaLocation, SamplerYcbcrModelConversion, SamplerYcbcrRange},
     vulkan1_3::FormatFeatureFlags2,
@@ -195,17 +195,126 @@ pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &'stat
 ///// Provided by VK_ANDROID_external_memory_android_hardware_buffer
 ///struct AHardwareBuffer;
 ///```
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 pub type AHardwareBuffer = c_void;
+///[vkGetAndroidHardwareBufferPropertiesANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetAndroidHardwareBufferPropertiesANDROID.html) - Get Properties of External Memory Android Hardware Buffers
+///# C Specifications
+///To determine the memory parameters to use when importing an Android hardware
+///buffer, call:
+///```c
+///// Provided by VK_ANDROID_external_memory_android_hardware_buffer
+///VkResult vkGetAndroidHardwareBufferPropertiesANDROID(
+///    VkDevice                                    device,
+///    const struct AHardwareBuffer*               buffer,
+///    VkAndroidHardwareBufferPropertiesANDROID*   pProperties);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that will be importing [`buffer`].
+/// - [`buffer`] is the Android hardware buffer which will be imported.
+/// - [`p_properties`] is a pointer to a [`AndroidHardwareBufferPropertiesANDROID`] structure in
+///   which the properties of [`buffer`] are returned.
+/// # Description
+/// ## Valid Usage
+/// - [`buffer`] **must**  be a valid Android hardware buffer object with at least one of the
+///   `AHARDWAREBUFFER_USAGE_GPU_*` flags in its `AHardwareBuffer_Desc`::`usage`
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`buffer`] **must**  be a valid pointer to a valid [`AHardwareBuffer`] value
+/// - [`p_properties`] **must**  be a valid pointer to a [`AndroidHardwareBufferPropertiesANDROID`]
+///   structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
+/// # Related
+/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`AndroidHardwareBufferPropertiesANDROID`]
+/// - [`Device`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetAndroidHardwareBufferPropertiesANDROID")]
+pub type FNGetAndroidHardwareBufferPropertiesAndroid = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        buffer: *const AHardwareBuffer,
+        p_properties: *mut AndroidHardwareBufferPropertiesANDROID<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetMemoryAndroidHardwareBufferANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryAndroidHardwareBufferANDROID.html) - Get an Android hardware buffer for a memory object
+///# C Specifications
+///To export an Android hardware buffer referencing the payload of a Vulkan
+///device memory object, call:
+///```c
+///// Provided by VK_ANDROID_external_memory_android_hardware_buffer
+///VkResult vkGetMemoryAndroidHardwareBufferANDROID(
+///    VkDevice                                    device,
+///    const VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo,
+///    struct AHardwareBuffer**                    pBuffer);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that created the device memory being exported.
+/// - [`p_info`] is a pointer to a [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure
+///   containing parameters of the export operation.
+/// - [`p_buffer`] will return an Android hardware buffer referencing the payload of the device
+///   memory object.
+/// # Description
+/// Each call to [`get_memory_android_hardware_buffer_android`] **must**  return an
+/// Android hardware buffer with a new reference acquired in addition to the
+/// reference held by the [`DeviceMemory`].
+/// To avoid leaking resources, the application  **must**  release the reference by
+/// calling `AHardwareBuffer_release` when it is no longer needed.
+/// When called with the same handle in
+/// [`MemoryGetAndroidHardwareBufferInfoANDROID::memory`],
+/// [`get_memory_android_hardware_buffer_android`] **must**  return the same Android
+/// hardware buffer object.
+/// If the device memory was created by importing an Android hardware buffer,
+/// [`get_memory_android_hardware_buffer_android`] **must**  return that same Android
+/// hardware buffer object.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_info`] **must**  be a valid pointer to a valid
+///   [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure
+/// - [`p_buffer`] **must**  be a valid pointer to a valid pointer to an [`AHardwareBuffer`] value
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`Device`]
+/// - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetMemoryAndroidHardwareBufferANDROID")]
+pub type FNGetMemoryAndroidHardwareBufferAndroid = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_info: *const MemoryGetAndroidHardwareBufferInfoANDROID<'lt>,
+        p_buffer: *mut *mut AHardwareBuffer,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImportAndroidHardwareBufferInfoANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportAndroidHardwareBufferInfoANDROID.html) - Import memory from an Android hardware buffer
 ///# C Specifications
 ///To import memory created outside of the current Vulkan instance from an
@@ -221,34 +330,34 @@ pub type AHardwareBuffer = c_void;
 ///    struct AHardwareBuffer*    buffer;
 ///} VkImportAndroidHardwareBufferInfoANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] is the Android hardware buffer to import.
-///# Description
-///If the [`AllocateMemory`] command succeeds, the implementation  **must**
-///acquire a reference to the imported hardware buffer, which it  **must**  release
-///when the device memory object is freed.
-///If the command fails, the implementation  **must**  not retain a reference.
-///## Valid Usage
+/// # Description
+/// If the [`allocate_memory`] command succeeds, the implementation  **must**
+/// acquire a reference to the imported hardware buffer, which it  **must**  release
+/// when the device memory object is freed.
+/// If the command fails, the implementation  **must**  not retain a reference.
+/// ## Valid Usage
 /// - If [`buffer`] is not `NULL`, Android hardware buffers  **must**  be supported for import, as
 ///   reported by [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
 /// -    If [`buffer`] is not `NULL`, it  **must**  be a valid Android hardware buffer object with `AHardwareBuffer_Desc`::`usage` compatible with Vulkan as described in [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
 /// - [`buffer`] **must**  be a valid pointer to an [`AHardwareBuffer`] value
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportAndroidHardwareBufferInfoANDROID")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -346,7 +455,7 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 ///To obtain optimal Android hardware buffer usage flags for specific image
 ///creation parameters, add a [`AndroidHardwareBufferUsageANDROID`]
 ///structure to the [`p_next`] chain of a [`ImageFormatProperties2`]
-///structure passed to [`GetPhysicalDeviceImageFormatProperties2`].
+///structure passed to [`get_physical_device_image_format_properties2`].
 ///This structure is defined as:
 ///```c
 ///// Provided by VK_ANDROID_external_memory_android_hardware_buffer
@@ -356,33 +465,33 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 ///    uint64_t           androidHardwareBufferUsage;
 ///} VkAndroidHardwareBufferUsageANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`android_hardware_buffer_usage`] returns the Android hardware buffer usage flags.
-///# Description
-///The [`android_hardware_buffer_usage`] field  **must**  include Android hardware
-///buffer usage flags listed in the
-///[AHardwareBuffer Usage
-///Equivalence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-usage) table when the corresponding Vulkan image usage or image
-///creation flags are included in the `usage` or `flags` fields of
-///[`PhysicalDeviceImageFormatInfo2`].
-///It  **must**  include at least one GPU usage flag
-///(`AHARDWAREBUFFER_USAGE_GPU_*`), even if none of the corresponding Vulkan
-///usages or flags are requested.
-///## Valid Usage (Implicit)
+/// # Description
+/// The [`android_hardware_buffer_usage`] field  **must**  include Android hardware
+/// buffer usage flags listed in the
+/// [AHardwareBuffer Usage
+/// Equivalence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-usage) table when the corresponding Vulkan image usage or image
+/// creation flags are included in the `usage` or `flags` fields of
+/// [`PhysicalDeviceImageFormatInfo2`].
+/// It  **must**  include at least one GPU usage flag
+/// (`AHARDWAREBUFFER_USAGE_GPU_*`), even if none of the corresponding Vulkan
+/// usages or flags are requested.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferUsageANDROID")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -478,33 +587,33 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 ///    uint32_t           memoryTypeBits;
 ///} VkAndroidHardwareBufferPropertiesANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`allocation_size`] is the size of the external memory
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
 ///   specified Android hardware buffer  **can**  be imported as.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
 ///   [`AndroidHardwareBufferFormatProperties2ANDROID`] or
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
-/// - [`GetAndroidHardwareBufferPropertiesANDROID`]
+/// - [`get_android_hardware_buffer_properties_android`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferPropertiesANDROID")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -616,35 +725,35 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
 ///    VkDeviceMemory     memory;
 ///} VkMemoryGetAndroidHardwareBufferInfoANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] is the memory object from which the Android hardware buffer will be exported.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` **must**  have been
 ///   included in [`ExportMemoryAllocateInfo::handle_types`] when [`memory`] was created
 /// - If the [`p_next`] chain of the [`MemoryAllocateInfo`] used to allocate [`memory`] included a
 ///   [`MemoryDedicatedAllocateInfo`] with non-`NULL``image` member, then that `image` **must**
 ///   already be bound to [`memory`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
-/// - [`GetMemoryAndroidHardwareBufferANDROID`]
+/// - [`get_memory_android_hardware_buffer_android`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetAndroidHardwareBufferInfoANDROID")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -725,7 +834,7 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///To obtain format properties of an Android hardware buffer, include a
 ///[`AndroidHardwareBufferFormatPropertiesANDROID`] structure in the
 ///[`p_next`] chain of the [`AndroidHardwareBufferPropertiesANDROID`]
-///structure passed to [`GetAndroidHardwareBufferPropertiesANDROID`].
+///structure passed to [`get_android_hardware_buffer_properties_android`].
 ///This structure is defined as:
 ///```c
 ///// Provided by VK_ANDROID_external_memory_android_hardware_buffer
@@ -742,7 +851,7 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///    VkChromaLocation                 suggestedYChromaOffset;
 ///} VkAndroidHardwareBufferFormatPropertiesANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is the Vulkan format corresponding to the Android hardware buffer’s format, or
@@ -761,53 +870,53 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///   [`SamplerYcbcrConversionCreateInfo`].
 /// - [`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
 ///   [`SamplerYcbcrConversionCreateInfo`].
-///# Description
-///If the Android hardware buffer has one of the formats listed in the
-///[Format Equivalence
-///table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-formats), then [`format`] **must**  have the equivalent Vulkan format listed in
-///the table.
-///Otherwise, [`format`] **may**  be `VK_FORMAT_UNDEFINED`, indicating the
-///Android hardware buffer  **can**  only be used with an external format.The [`format_features`]
+/// # Description
+/// If the Android hardware buffer has one of the formats listed in the
+/// [Format Equivalence
+/// table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-formats), then [`format`] **must**  have the equivalent Vulkan format listed in
+/// the table.
+/// Otherwise, [`format`] **may**  be `VK_FORMAT_UNDEFINED`, indicating the
+/// Android hardware buffer  **can**  only be used with an external format.The [`format_features`]
 /// member  **must**  include
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT` and at least one of
-///`VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT` or
-///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`, and  **should**  include
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` and
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`.Android hardware buffers
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT` and at least one of
+/// `VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT` or
+/// `VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`, and  **should**  include
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` and
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`.Android hardware buffers
 /// with the same external format  **must**  have the same
-///support for `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`,
-///`VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT`,
-///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`,
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`,
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT`,
-///and
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT`.
-///in [`format_features`].
-///Other format features  **may**  differ between Android hardware buffers that have
-///the same external format.
-///This allows applications to use the same [`SamplerYcbcrConversion`]
-///object (and samplers and pipelines created from them) for any Android
-///hardware buffers that have the same external format.If [`format`] is not `VK_FORMAT_UNDEFINED`,
+/// support for `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`,
+/// `VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT`,
+/// `VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`,
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`,
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT`,
+/// and
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT`.
+/// in [`format_features`].
+/// Other format features  **may**  differ between Android hardware buffers that have
+/// the same external format.
+/// This allows applications to use the same [`SamplerYcbcrConversion`]
+/// object (and samplers and pipelines created from them) for any Android
+/// hardware buffers that have the same external format.If [`format`] is not `VK_FORMAT_UNDEFINED`,
 /// then the value of
-///[`sampler_ycbcr_conversion_components`] **must**  be valid when used as the
-///`components` member of [`SamplerYcbcrConversionCreateInfo`] with
-///that format.
-///If [`format`] is `VK_FORMAT_UNDEFINED`, all members of
-///[`sampler_ycbcr_conversion_components`] **must**  be the
-///[identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).Implementations  **may**  not always be able to determine the color model,
-///numerical range, or chroma offsets of the image contents, so the values in
-///[`AndroidHardwareBufferFormatPropertiesANDROID`] are only suggestions.
-///Applications  **should**  treat these values as sensible defaults to use in the
-///absence of more reliable information obtained through some other means.
-///If the underlying physical device is also usable via OpenGL ES with the
-///[`GL_OES_EGL_image_external`](https://www.khronos.org/registry/OpenGL/extensions/OES/OES_EGL_image_external.txt)
-///extension, the implementation  **should**  suggest values that will produce
-///similar sampled values as would be obtained by sampling the same external
-///image via `samplerExternalOES` in OpenGL ES using equivalent sampler
-///parameters.
-///## Valid Usage (Implicit)
+/// [`sampler_ycbcr_conversion_components`] **must**  be valid when used as the
+/// `components` member of [`SamplerYcbcrConversionCreateInfo`] with
+/// that format.
+/// If [`format`] is `VK_FORMAT_UNDEFINED`, all members of
+/// [`sampler_ycbcr_conversion_components`] **must**  be the
+/// [identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).Implementations  **may**  not always be able to determine the color model,
+/// numerical range, or chroma offsets of the image contents, so the values in
+/// [`AndroidHardwareBufferFormatPropertiesANDROID`] are only suggestions.
+/// Applications  **should**  treat these values as sensible defaults to use in the
+/// absence of more reliable information obtained through some other means.
+/// If the underlying physical device is also usable via OpenGL ES with the
+/// [`GL_OES_EGL_image_external`](https://www.khronos.org/registry/OpenGL/extensions/OES/OES_EGL_image_external.txt)
+/// extension, the implementation  **should**  suggest values that will produce
+/// similar sampled values as would be obtained by sampling the same external
+/// image via `samplerExternalOES` in OpenGL ES using equivalent sampler
+/// parameters.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`ChromaLocation`]
 /// - [`ComponentMapping`]
@@ -817,13 +926,13 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 /// - [`SamplerYcbcrRange`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatPropertiesANDROID")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1042,32 +1151,32 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 ///    uint64_t           externalFormat;
 ///} VkExternalFormatANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`external_format`] is an implementation-defined identifier for the external format
-///# Description
-///If [`external_format`] is zero, the effect is as if the
-///[`ExternalFormatANDROID`] structure was not present.
-///Otherwise, the `image` will have the specified external format.
-///## Valid Usage
+/// # Description
+/// If [`external_format`] is zero, the effect is as if the
+/// [`ExternalFormatANDROID`] structure was not present.
+/// Otherwise, the `image` will have the specified external format.
+/// ## Valid Usage
 /// - [`external_format`] **must**  be `0` or a value returned in the [`external_format`] member of
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`] by an earlier call to
-///   [`GetAndroidHardwareBufferPropertiesANDROID`]
+///   [`get_android_hardware_buffer_properties_android`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFormatANDROID")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1156,7 +1265,7 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 ///including a [`AndroidHardwareBufferFormatProperties2ANDROID`] structure
 ///in the [`p_next`] chain of the
 ///[`AndroidHardwareBufferPropertiesANDROID`] structure passed to
-///[`GetAndroidHardwareBufferPropertiesANDROID`].
+///[`get_android_hardware_buffer_properties_android`].
 ///This structure is defined as:
 ///```c
 ///// Provided by VK_KHR_format_feature_flags2 with
@@ -1174,7 +1283,7 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 ///    VkChromaLocation                 suggestedYChromaOffset;
 ///} VkAndroidHardwareBufferFormatProperties2ANDROID;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is the Vulkan format corresponding to the Android hardware buffer’s format, or
@@ -1193,14 +1302,14 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 ///   [`SamplerYcbcrConversionCreateInfo`].
 /// - [`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
 ///   [`SamplerYcbcrConversionCreateInfo`].
-///# Description
-///The bits reported in [`format_features`] **must**  include the bits reported in
-///the corresponding fields of
-///[`AndroidHardwareBufferFormatPropertiesANDROID`]::[`format_features`].
-///## Valid Usage (Implicit)
+/// # Description
+/// The bits reported in [`format_features`] **must**  include the bits reported in
+/// the corresponding fields of
+/// [`AndroidHardwareBufferFormatPropertiesANDROID`]::[`format_features`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
-///# Related
+/// # Related
 /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`ChromaLocation`]
@@ -1211,13 +1320,13 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// - [`SamplerYcbcrRange`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatProperties2ANDROID")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1419,5 +1528,44 @@ impl<'lt> AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     pub fn set_suggested_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
         self.suggested_y_chroma_offset = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_ANDROID_external_memory_android_hardware_buffer
+pub struct DeviceAndroidExternalMemoryAndroidHardwareBufferVTable {
+    ///See [`FNGetAndroidHardwareBufferPropertiesAndroid`] for more information.
+    pub get_android_hardware_buffer_properties_android: FNGetAndroidHardwareBufferPropertiesAndroid,
+    ///See [`FNGetMemoryAndroidHardwareBufferAndroid`] for more information.
+    pub get_memory_android_hardware_buffer_android: FNGetMemoryAndroidHardwareBufferAndroid,
+}
+impl DeviceAndroidExternalMemoryAndroidHardwareBufferVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_android_hardware_buffer_properties_android: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetAndroidHardwareBufferPropertiesANDROID"),
+                ))
+            },
+            get_memory_android_hardware_buffer_android: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetMemoryAndroidHardwareBufferANDROID"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_android_hardware_buffer_properties_android`]. See
+    /// [`FNGetAndroidHardwareBufferPropertiesAndroid`] for more information.
+    pub fn get_android_hardware_buffer_properties_android(&self) -> FNGetAndroidHardwareBufferPropertiesAndroid {
+        self.get_android_hardware_buffer_properties_android
+    }
+    ///Gets [`Self::get_memory_android_hardware_buffer_android`]. See
+    /// [`FNGetMemoryAndroidHardwareBufferAndroid`] for more information.
+    pub fn get_memory_android_hardware_buffer_android(&self) -> FNGetMemoryAndroidHardwareBufferAndroid {
+        self.get_memory_android_hardware_buffer_android
     }
 }

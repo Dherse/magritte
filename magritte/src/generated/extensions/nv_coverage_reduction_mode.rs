@@ -14,7 +14,7 @@
 //!   ignored.
 //!When the number of raster samples is equal to the color samples, there is a
 //!one to one mapping between them in either of the above modes.The new command
-//![`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`] can
+//![`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`] can
 //!be used to query the various raster, color, depth/stencil sample count and
 //!reduction mode combinations that are supported by the implementation.
 //!This extension would allow an implementation to support the behavior of both
@@ -30,7 +30,7 @@
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
 //!   VK_NV_coverage_reduction_mode extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`]
+//! - [`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]
 //!# New structures
 //! - [`FramebufferMixedSamplesCombinationNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
@@ -58,7 +58,7 @@
 //! - [`PhysicalDeviceCoverageReductionModeFeaturesNV`]
 //! - [`PipelineCoverageReductionStateCreateFlagsNV`]
 //! - [`PipelineCoverageReductionStateCreateInfoNV`]
-//! - [`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`]
+//! - [`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -68,7 +68,8 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{
-    BaseInStructure, BaseOutStructure, Bool32, SampleCountFlagBits, SampleCountFlags, StructureType,
+    BaseInStructure, BaseOutStructure, Bool32, Instance, PhysicalDevice, SampleCountFlagBits, SampleCountFlags,
+    StructureType, VulkanResultCodes,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -83,6 +84,68 @@ pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME")]
 pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_coverage_reduction_mode");
+///[vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html) - Query supported sample count combinations
+///# C Specifications
+///To query the set of mixed sample combinations of coverage reduction mode,
+///rasterization samples and color, depth, stencil attachment sample counts
+///that are supported by a physical device, call:
+///```c
+///// Provided by VK_NV_coverage_reduction_mode
+///VkResult vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t*                                   pCombinationCount,
+///    VkFramebufferMixedSamplesCombinationNV*     pCombinations);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device from which to query the set of combinations.
+/// - [`p_combination_count`] is a pointer to an integer related to the number of combinations
+///   available or queried, as described below.
+/// - [`p_combinations`] is either `NULL` or a pointer to an array of
+///   [`FramebufferMixedSamplesCombinationNV`] values, indicating the supported combinations of
+///   coverage reduction mode, rasterization samples, and color, depth, stencil attachment sample
+///   counts.
+/// # Description
+/// If [`p_combinations`] is `NULL`, then the number of supported combinations
+/// for the given [`physical_device`] is returned in [`p_combination_count`].
+/// Otherwise, [`p_combination_count`] **must**  point to a variable set by the user
+/// to the number of elements in the [`p_combinations`] array, and on return
+/// the variable is overwritten with the number of values actually written to
+/// [`p_combinations`].
+/// If the value of [`p_combination_count`] is less than the number of
+/// combinations supported for the given [`physical_device`], at most
+/// [`p_combination_count`] values will be written to [`p_combinations`], and
+/// `VK_INCOMPLETE` will be returned instead of `VK_SUCCESS`, to
+/// indicate that not all the supported values were returned.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_combination_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_combination_count`] is not `0`, and [`p_combinations`] is not
+///   `NULL`, [`p_combinations`] **must**  be a valid pointer to an array of
+///   [`p_combination_count`][`FramebufferMixedSamplesCombinationNV`] structures
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`FramebufferMixedSamplesCombinationNV`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV")]
+pub type FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_combination_count: *mut u32,
+        p_combinations: *mut FramebufferMixedSamplesCombinationNV<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkCoverageReductionModeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCoverageReductionModeNV.html) - Specify the coverage reduction mode
 ///# C Specifications
 ///Possible values of
@@ -95,23 +158,23 @@ pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV = 1,
 ///} VkCoverageReductionModeNV;
 ///```
-///# Description
+/// # Description
 /// - [`CoverageReductionModeMergeNv`] specifies that each color sample will be associated with an
 ///   implementation-dependent subset of samples in the pixel coverage. If any of those associated
 ///   samples are covered, the color sample is covered.
 /// - [`CoverageReductionModeTruncateNv`] specifies that for color samples present in the color attachments, a color sample is covered if the pixel coverage sample with the same [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)i is covered; other pixel coverage samples are discarded.
-///# Related
+/// # Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`FramebufferMixedSamplesCombinationNV`]
 /// - [`PipelineCoverageReductionStateCreateInfoNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoverageReductionModeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -160,17 +223,17 @@ impl CoverageReductionModeNV {
 ///// Provided by VK_NV_coverage_reduction_mode
 ///typedef VkFlags VkPipelineCoverageReductionStateCreateFlagsNV;
 ///```
-///# Related
+/// # Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`PipelineCoverageReductionStateCreateInfoNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -200,35 +263,35 @@ impl std::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
 ///    VkBool32           coverageReductionMode;
 ///} VkPhysicalDeviceCoverageReductionModeFeaturesNV;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`coverage_reduction_mode`] indicates whether the implementation supports coverage reduction modes. See [Coverage Reduction](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-coverage-reduction).
-///If the [`PhysicalDeviceCoverageReductionModeFeaturesNV`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceCoverageReductionModeFeaturesNV`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceCoverageReductionModeFeaturesNV`] **can**  also be used in the [`p_next`] chain
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceCoverageReductionModeFeaturesNV`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`
-///# Related
+/// # Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCoverageReductionModeFeaturesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -348,16 +411,16 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 ///    VkCoverageReductionModeNV                        coverageReductionMode;
 ///} VkPipelineCoverageReductionStateCreateInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`coverage_reduction_mode`] is a [`CoverageReductionModeNV`] value controlling how color
 ///   sample coverage is generated from pixel coverage.
-///# Description
-///If this structure is not included in the [`p_next`] chain, or if the
-///extension is not enabled, the default coverage reduction mode is inferred as
-///follows:
+/// # Description
+/// If this structure is not included in the [`p_next`] chain, or if the
+/// extension is not enabled, the default coverage reduction mode is inferred as
+/// follows:
 /// - If the `[`VK_NV_framebuffer_mixed_samples`]` extension is enabled, then it is as if the
 ///   [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_MERGE_NV`.
 /// - If the `[`VK_AMD_mixed_attachment_samples`]` extension is enabled, then it is as if the
@@ -365,23 +428,23 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 /// - If both `[`VK_NV_framebuffer_mixed_samples`]` and `[`VK_AMD_mixed_attachment_samples`]` are
 ///   enabled, then the default coverage reduction mode is implementation-dependent.
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
 /// - [`flags`] **must**  be `0`
 /// - [`coverage_reduction_mode`] **must**  be a valid [`CoverageReductionModeNV`] value
-///# Related
+/// # Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`CoverageReductionModeNV`]
 /// - [`PipelineCoverageReductionStateCreateFlagsNV`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCoverageReductionStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -493,7 +556,7 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 ///    VkSampleCountFlags           colorSamples;
 ///} VkFramebufferMixedSamplesCombinationNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`coverage_reduction_mode`] is a [`CoverageReductionModeNV`] value specifying the coverage
@@ -505,25 +568,25 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 ///   stencil attachment.
 /// - [`color_samples`] specifies the number of color samples in a color attachment in the supported
 ///   combination. A value of 0 indicates the combination does not have a color attachment.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`CoverageReductionModeNV`]
 /// - [`SampleCountFlagBits`]
 /// - [`SampleCountFlags`]
 /// - [`StructureType`]
-/// - [`GetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV`]
+/// - [`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFramebufferMixedSamplesCombinationNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -661,5 +724,35 @@ impl<'lt> FramebufferMixedSamplesCombinationNV<'lt> {
     pub fn set_color_samples(&mut self, value: crate::vulkan1_0::SampleCountFlags) -> &mut Self {
         self.color_samples = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_NV_coverage_reduction_mode
+pub struct InstanceNvCoverageReductionModeVTable {
+    ///See [`FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv`] for more
+    /// information.
+    pub get_physical_device_supported_framebuffer_mixed_samples_combinations_nv:
+        FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv,
+}
+impl InstanceNvCoverageReductionModeVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_supported_framebuffer_mixed_samples_combinations_nv: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]. See
+    /// [`FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv`] for more information.
+    pub fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
+        &self,
+    ) -> FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv {
+        self.get_physical_device_supported_framebuffer_mixed_samples_combinations_nv
     }
 }

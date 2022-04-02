@@ -85,7 +85,7 @@
 //! the new synchronization
 //!primitive type? **RESOLVED** : Yes.
 //!Timeline semaphore specific external sharing capabilities can be queried
-//!using [`GetPhysicalDeviceExternalSemaphoreProperties`] by chaining the
+//!using [`get_physical_device_external_semaphore_properties`] by chaining the
 //!new [`SemaphoreTypeCreateInfoKHR`] structure to its
 //!`pExternalSemaphoreInfo` structure.
 //!This allows having a different set of external semaphore handle types
@@ -106,7 +106,7 @@
 //!import/export.
 //!For import/export, the client is already required to query available
 //!external handle types via
-//![`GetPhysicalDeviceExternalSemaphoreProperties`] and provide the
+//![`get_physical_device_external_semaphore_properties`] and provide the
 //!semaphore type by adding a [`SemaphoreTypeCreateInfoKHR`] structure to
 //!the `pNext` chain of [`PhysicalDeviceExternalSemaphoreInfo`] so no
 //!new feature bit is required.
@@ -143,6 +143,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_2::{FNGetSemaphoreCounterValue, FNSignalSemaphore, FNWaitSemaphores},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -152,3 +156,40 @@ pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME")]
 pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_timeline_semaphore");
+///The V-table of [`Device`] for functions from VK_KHR_timeline_semaphore
+pub struct DeviceKhrTimelineSemaphoreVTable {
+    ///See [`FNGetSemaphoreCounterValue`] for more information.
+    pub get_semaphore_counter_value: FNGetSemaphoreCounterValue,
+    ///See [`FNWaitSemaphores`] for more information.
+    pub wait_semaphores: FNWaitSemaphores,
+    ///See [`FNSignalSemaphore`] for more information.
+    pub signal_semaphore: FNSignalSemaphore,
+}
+impl DeviceKhrTimelineSemaphoreVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_semaphore_counter_value: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreCounterValueKHR")))
+            },
+            wait_semaphores: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitSemaphoresKHR"))) },
+            signal_semaphore: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkSignalSemaphoreKHR"))) },
+        }
+    }
+    ///Gets [`Self::get_semaphore_counter_value`]. See [`FNGetSemaphoreCounterValue`] for more
+    /// information.
+    pub fn get_semaphore_counter_value(&self) -> FNGetSemaphoreCounterValue {
+        self.get_semaphore_counter_value
+    }
+    ///Gets [`Self::wait_semaphores`]. See [`FNWaitSemaphores`] for more information.
+    pub fn wait_semaphores(&self) -> FNWaitSemaphores {
+        self.wait_semaphores
+    }
+    ///Gets [`Self::signal_semaphore`]. See [`FNSignalSemaphore`] for more information.
+    pub fn signal_semaphore(&self) -> FNSignalSemaphore {
+        self.signal_semaphore
+    }
+}

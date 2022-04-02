@@ -17,7 +17,7 @@
 //!   @alonorbach%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shared_presentable_image extension>>)
 //!# New functions & commands
-//! - [`GetSwapchainStatusKHR`]
+//! - [`get_swapchain_status_khr`]
 //!# New structures
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`SharedPresentSurfaceCapabilitiesKHR`]
 //!# New constants
@@ -56,22 +56,22 @@
 //!After this initial transition, any image usage that was requested during
 //!swapchain creation  **can**  be performed on the image without layout transitions
 //!being performed.7) Do we need a new API for the trigger to refresh new content? **RESOLVED** :
-//! [`QueuePresentKHR`] to act as API to trigger a refresh, as
+//! [`queue_present_khr`] to act as API to trigger a refresh, as
 //!will allow combination with other compatible extensions to
-//![`QueuePresentKHR`].8) How should an application detect a `VK_ERROR_OUT_OF_DATE_KHR` error
+//![`queue_present_khr`].8) How should an application detect a `VK_ERROR_OUT_OF_DATE_KHR` error
 //!on a swapchain using the `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR`
-//!present mode? **RESOLVED** : Introduce [`GetSwapchainStatusKHR`] to allow applications to
+//!present mode? **RESOLVED** : Introduce [`get_swapchain_status_khr`] to allow applications to
 //!query the status of a swapchain using a shared presentation mode.9) What should subsequent calls
-//! to [`QueuePresentKHR`] for
+//! to [`queue_present_khr`] for
 //!`VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR` swapchains be defined to
 //!do? **RESOLVED** : State that implementations may use it as a hint for updated
 //!content.10) Can the ownership of a shared presentable image be transferred to a
 //!different queue? **RESOLVED** : No.
 //!It is not possible to transfer ownership of a shared presentable image
 //!obtained from a swapchain created using `VK_SHARING_MODE_EXCLUSIVE`
-//!after it has been presented.11) How should [`QueueSubmit`] behave if a command buffer uses an
+//!after it has been presented.11) How should [`queue_submit`] behave if a command buffer uses an
 //! image
-//!from a `VK_ERROR_OUT_OF_DATE_KHR` swapchain? **RESOLVED** : [`QueueSubmit`] is expected to
+//!from a `VK_ERROR_OUT_OF_DATE_KHR` swapchain? **RESOLVED** : [`queue_submit`] is expected to
 //! return the
 //!`VK_ERROR_DEVICE_LOST` error.12) Can Vulkan provide any guarantee on the order of rendering, to
 //! enable
@@ -89,7 +89,7 @@
 //!   Johannes Van Waveren, Oculus
 //!# Related
 //! - [`SharedPresentSurfaceCapabilitiesKHR`]
-//! - [`GetSwapchainStatusKHR`]
+//! - [`get_swapchain_status_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -98,7 +98,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, ImageUsageFlags, StructureType};
+use crate::{
+    extensions::khr_swapchain::SwapchainKHR,
+    vulkan1_0::{BaseOutStructure, Device, ImageUsageFlags, StructureType, VulkanResultCodes},
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -108,6 +111,49 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME")]
 pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_shared_presentable_image");
+///[vkGetSwapchainStatusKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainStatusKHR.html) - Get a swapchain's status
+///# C Specifications
+///In order to query a swapchain’s status when rendering to a shared
+///presentable image, call:
+///```c
+///// Provided by VK_KHR_shared_presentable_image
+///VkResult vkGetSwapchainStatusKHR(
+///    VkDevice                                    device,
+///    VkSwapchainKHR                              swapchain);
+///```
+/// # Parameters
+/// - [`device`] is the device associated with [`swapchain`].
+/// - [`swapchain`] is the swapchain to query.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+/// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+///   from the same [`Instance`]
+///
+/// ## Host Synchronization
+/// - Host access to [`swapchain`] **must**  be externally synchronized
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_SUBOPTIMAL_KHR`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
+///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
+///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+/// # Related
+/// - [`VK_KHR_shared_presentable_image`]
+/// - [`Device`]
+/// - [`SwapchainKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetSwapchainStatusKHR")]
+pub type FNGetSwapchainStatusKhr =
+    Option<unsafe extern "system" fn(device: Device, swapchain: SwapchainKHR) -> VulkanResultCodes>;
 ///[VkSharedPresentSurfaceCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSharedPresentSurfaceCapabilitiesKHR.html) - Structure describing capabilities of a surface for shared presentation
 ///# C Specifications
 ///The [`SharedPresentSurfaceCapabilitiesKHR`] structure is defined as:
@@ -119,7 +165,7 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VkImageUsageFlags    sharedPresentSupportedUsageFlags;
 ///} VkSharedPresentSurfaceCapabilitiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shared_present_supported_usage_flags`] is a bitmask of [`ImageUsageFlagBits`] representing
@@ -128,21 +174,21 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cs
 ///   `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR` for the surface on the specified device.
 ///   `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set but implementations
 ///   **may**  support additional usages.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_shared_presentable_image`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSharedPresentSurfaceCapabilitiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -230,5 +276,28 @@ impl<'lt> SharedPresentSurfaceCapabilitiesKHR<'lt> {
     pub fn set_shared_present_supported_usage_flags(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
         self.shared_present_supported_usage_flags = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_KHR_shared_presentable_image
+pub struct DeviceKhrSharedPresentableImageVTable {
+    ///See [`FNGetSwapchainStatusKhr`] for more information.
+    pub get_swapchain_status_khr: FNGetSwapchainStatusKhr,
+}
+impl DeviceKhrSharedPresentableImageVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_swapchain_status_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSwapchainStatusKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::get_swapchain_status_khr`]. See [`FNGetSwapchainStatusKhr`] for more
+    /// information.
+    pub fn get_swapchain_status_khr(&self) -> FNGetSwapchainStatusKhr {
+        self.get_swapchain_status_khr
     }
 }

@@ -18,8 +18,8 @@
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_wayland_surface extension>>)
 //!# New functions & commands
-//! - [`CreateWaylandSurfaceKHR`]
-//! - [`GetPhysicalDeviceWaylandPresentationSupportKHR`]
+//! - [`create_wayland_surface_khr`]
+//! - [`get_physical_device_wayland_presentation_support_khr`]
 //!# New structures
 //! - [`WaylandSurfaceCreateInfoKHR`]
 //!# New bitmasks
@@ -31,12 +31,12 @@
 //!# Known issues & F.A.Q
 //!1) Does Wayland need a way to query for compatibility between a particular
 //!physical device and a specific Wayland display? This would be a more general
-//!query than [`GetPhysicalDeviceSurfaceSupportKHR`]: if the
+//!query than [`get_physical_device_surface_support_khr`]: if the
 //!Wayland-specific query returned [`TRUE`] for a ([`PhysicalDevice`],
 //!`struct wl_display*`) pair, then the physical device could be assumed to
 //!support presentation to any [`SurfaceKHR`] for surfaces on the display. **RESOLVED** : Yes.
-//![`GetPhysicalDeviceWaylandPresentationSupportKHR`] was added to address
-//!this issue.2) Should we require surfaces created with [`CreateWaylandSurfaceKHR`]
+//![`get_physical_device_wayland_presentation_support_khr`] was added to address
+//!this issue.2) Should we require surfaces created with [`create_wayland_surface_khr`]
 //!to support the `VK_PRESENT_MODE_MAILBOX_KHR` present mode? **RESOLVED** : Yes.
 //!Wayland is an inherently mailbox window system and mailbox support is
 //!required for some Wayland compositor interactions to work as expected.
@@ -59,8 +59,8 @@
 //! - Revision 5, 2015-11-28 (Daniel Rakos)  - Updated the surface create function to take a
 //!   pCreateInfo structure.
 //! - Revision 6, 2017-02-08 (Jason Ekstrand)  - Added the requirement that implementations support
-//!   `VK_PRESENT_MODE_MAILBOX_KHR`.  - Added wording about interactions between [`QueuePresentKHR`]
-//!   and the Wayland requests sent to the compositor.
+//!   `VK_PRESENT_MODE_MAILBOX_KHR`.  - Added wording about interactions between
+//!   [`queue_present_khr`] and the Wayland requests sent to the compositor.
 //!# Other info
 //! * 2015-11-28
 //! * No known IP claims.
@@ -72,8 +72,8 @@
 //!# Related
 //! - [`WaylandSurfaceCreateFlagsKHR`]
 //! - [`WaylandSurfaceCreateInfoKHR`]
-//! - [`CreateWaylandSurfaceKHR`]
-//! - [`GetPhysicalDeviceWaylandPresentationSupportKHR`]
+//! - [`create_wayland_surface_khr`]
+//! - [`get_physical_device_wayland_presentation_support_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -83,8 +83,11 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    extensions::khr_surface::SurfaceKHR,
     native::{wl_display, wl_surface},
-    vulkan1_0::{BaseInStructure, StructureType},
+    vulkan1_0::{
+        AllocationCallbacks, BaseInStructure, Bool32, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
+    },
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -95,23 +98,119 @@ pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME")]
 pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_wayland_surface");
+///[vkCreateWaylandSurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateWaylandSurfaceKHR.html) - Create a slink:VkSurfaceKHR object for a Wayland window
+///# C Specifications
+///To create a [`SurfaceKHR`] object for a Wayland surface, call:
+///```c
+///// Provided by VK_KHR_wayland_surface
+///VkResult vkCreateWaylandSurfaceKHR(
+///    VkInstance                                  instance,
+///    const VkWaylandSurfaceCreateInfoKHR*        pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance to associate the surface with.
+/// - [`p_create_info`] is a pointer to a [`WaylandSurfaceCreateInfoKHR`] structure containing
+///   parameters affecting the creation of the surface object.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`WaylandSurfaceCreateInfoKHR`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_wayland_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`Instance`]
+/// - [`SurfaceKHR`]
+/// - [`WaylandSurfaceCreateInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateWaylandSurfaceKHR")]
+pub type FNCreateWaylandSurfaceKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const WaylandSurfaceCreateInfoKHR<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceWaylandPresentationSupportKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceWaylandPresentationSupportKHR.html) - Query physical device for presentation to Wayland
+///# C Specifications
+///To determine whether a queue family of a physical device supports
+///presentation to a Wayland compositor, call:
+///```c
+///// Provided by VK_KHR_wayland_surface
+///VkBool32 vkGetPhysicalDeviceWaylandPresentationSupportKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t                                    queueFamilyIndex,
+///    struct wl_display*                          display);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device.
+/// - [`queue_family_index`] is the queue family index.
+/// - [`display`] is a pointer to the [`wl_display`] associated with a Wayland compositor.
+/// # Description
+/// This platform-specific function  **can**  be called prior to creating a surface.
+/// ## Valid Usage
+/// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
+///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`display`] **must**  be a valid pointer to a [`wl_display`] value
+/// # Related
+/// - [`VK_KHR_wayland_surface`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceWaylandPresentationSupportKHR")]
+pub type FNGetPhysicalDeviceWaylandPresentationSupportKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        queue_family_index: u32,
+        display: *mut wl_display,
+    ) -> Bool32,
+>;
 ///[VkWaylandSurfaceCreateFlagsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkWaylandSurfaceCreateFlagsKHR.html) - Reserved for future use
 ///# C Specifications
 ///```c
 ///// Provided by VK_KHR_wayland_surface
 ///typedef VkFlags VkWaylandSurfaceCreateFlagsKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_wayland_surface`]
 /// - [`WaylandSurfaceCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -142,34 +241,34 @@ impl std::fmt::Debug for WaylandSurfaceCreateFlagsKHR {
 ///    struct wl_surface*                surface;
 ///} VkWaylandSurfaceCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`display`] and [`surface`] are pointers to the Wayland [`wl_display`] and [`wl_surface`] to
 ///   associate the surface with.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`display`] **must**  point to a valid Wayland [`wl_display`]
 /// - [`surface`] **must**  point to a valid Wayland [`wl_surface`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_wayland_surface`]
 /// - [`StructureType`]
 /// - [`WaylandSurfaceCreateFlagsKHR`]
-/// - [`CreateWaylandSurfaceKHR`]
+/// - [`create_wayland_surface_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWaylandSurfaceCreateInfoKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -290,5 +389,43 @@ impl<'lt> WaylandSurfaceCreateInfoKHR<'lt> {
     pub fn set_surface(&mut self, value: &'lt mut crate::native::wl_surface) -> &mut Self {
         self.surface = value as *mut _;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_KHR_wayland_surface
+pub struct InstanceKhrWaylandSurfaceVTable {
+    ///See [`FNCreateWaylandSurfaceKhr`] for more information.
+    pub create_wayland_surface_khr: FNCreateWaylandSurfaceKhr,
+    ///See [`FNGetPhysicalDeviceWaylandPresentationSupportKhr`] for more information.
+    pub get_physical_device_wayland_presentation_support_khr: FNGetPhysicalDeviceWaylandPresentationSupportKhr,
+}
+impl InstanceKhrWaylandSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_wayland_surface_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateWaylandSurfaceKHR")))
+            },
+            get_physical_device_wayland_presentation_support_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceWaylandPresentationSupportKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::create_wayland_surface_khr`]. See [`FNCreateWaylandSurfaceKhr`] for more
+    /// information.
+    pub fn create_wayland_surface_khr(&self) -> FNCreateWaylandSurfaceKhr {
+        self.create_wayland_surface_khr
+    }
+    ///Gets [`Self::get_physical_device_wayland_presentation_support_khr`]. See
+    /// [`FNGetPhysicalDeviceWaylandPresentationSupportKhr`] for more information.
+    pub fn get_physical_device_wayland_presentation_support_khr(
+        &self,
+    ) -> FNGetPhysicalDeviceWaylandPresentationSupportKhr {
+        self.get_physical_device_wayland_presentation_support_khr
     }
 }

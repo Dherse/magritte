@@ -14,8 +14,8 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore_fd extension>>)
 //!# New functions & commands
-//! - [`GetSemaphoreFdKHR`]
-//! - [`ImportSemaphoreFdKHR`]
+//! - [`get_semaphore_fd_khr`]
+//! - [`import_semaphore_fd_khr`]
 //!# New structures
 //! - [`ImportSemaphoreFdInfoKHR`]
 //! - [`SemaphoreGetFdInfoKHR`]
@@ -26,8 +26,8 @@
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR`
 //!# Known issues & F.A.Q
 //!1) Does the application need to close the file descriptor returned by
-//![`GetSemaphoreFdKHR`]? **RESOLVED** : Yes, unless it is passed back in to a driver instance to
-//! import
+//![`get_semaphore_fd_khr`]? **RESOLVED** : Yes, unless it is passed back in to a driver instance
+//! to import
 //!the semaphore.
 //!A successful get call transfers ownership of the file descriptor to the
 //!application, and a successful import transfers it back to the driver.
@@ -43,8 +43,8 @@
 //!# Related
 //! - [`ImportSemaphoreFdInfoKHR`]
 //! - [`SemaphoreGetFdInfoKHR`]
-//! - [`GetSemaphoreFdKHR`]
-//! - [`ImportSemaphoreFdKHR`]
+//! - [`get_semaphore_fd_khr`]
+//! - [`import_semaphore_fd_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -54,7 +54,7 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
-    vulkan1_0::{BaseInStructure, Semaphore, StructureType},
+    vulkan1_0::{BaseInStructure, Device, Semaphore, StructureType, VulkanResultCodes},
     vulkan1_1::{ExternalSemaphoreHandleTypeFlagBits, SemaphoreImportFlags},
 };
 use std::{ffi::CStr, marker::PhantomData};
@@ -66,6 +66,112 @@ pub const KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME")]
 pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_external_semaphore_fd");
+///[vkGetSemaphoreFdKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSemaphoreFdKHR.html) - Get a POSIX file descriptor handle for a semaphore
+///# C Specifications
+///To export a POSIX file descriptor representing the payload of a semaphore,
+///call:
+///```c
+///// Provided by VK_KHR_external_semaphore_fd
+///VkResult vkGetSemaphoreFdKHR(
+///    VkDevice                                    device,
+///    const VkSemaphoreGetFdInfoKHR*              pGetFdInfo,
+///    int*                                        pFd);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that created the semaphore being exported.
+/// - [`p_get_fd_info`] is a pointer to a [`SemaphoreGetFdInfoKHR`] structure containing parameters
+///   of the export operation.
+/// - [`p_fd`] will return the file descriptor representing the semaphore payload.
+/// # Description
+/// Each call to [`get_semaphore_fd_khr`] **must**  create a new file descriptor
+/// and transfer ownership of it to the application.
+/// To avoid leaking resources, the application  **must**  release ownership of the
+/// file descriptor when it is no longer needed.Where supported by the operating system, the
+/// implementation  **must**  set the
+/// file descriptor to be closed automatically when an `execve` system call
+/// is made.Exporting a file descriptor from a semaphore  **may**  have side effects
+/// depending on the transference of the specified handle type, as described in
+/// [Importing Semaphore State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_get_fd_info`] **must**  be a valid pointer to a valid [`SemaphoreGetFdInfoKHR`] structure
+/// - [`p_fd`] **must**  be a valid pointer to an `int` value
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_KHR_external_semaphore_fd`]
+/// - [`Device`]
+/// - [`SemaphoreGetFdInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetSemaphoreFdKHR")]
+pub type FNGetSemaphoreFdKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_get_fd_info: *const SemaphoreGetFdInfoKHR<'lt>,
+        p_fd: *mut i32,
+    ) -> VulkanResultCodes,
+>;
+///[vkImportSemaphoreFdKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkImportSemaphoreFdKHR.html) - Import a semaphore from a POSIX file descriptor
+///# C Specifications
+///To import a semaphore payload from a POSIX file descriptor, call:
+///```c
+///// Provided by VK_KHR_external_semaphore_fd
+///VkResult vkImportSemaphoreFdKHR(
+///    VkDevice                                    device,
+///    const VkImportSemaphoreFdInfoKHR*           pImportSemaphoreFdInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that created the semaphore.
+/// - [`p_import_semaphore_fd_info`] is a pointer to a [`ImportSemaphoreFdInfoKHR`] structure
+///   specifying the semaphore and import parameters.
+/// # Description
+/// Importing a semaphore payload from a file descriptor transfers ownership of
+/// the file descriptor from the application to the Vulkan implementation.
+/// The application  **must**  not perform any operations on the file descriptor
+/// after a successful import.Applications  **can**  import the same semaphore payload into multiple
+/// instances
+/// of Vulkan, into the same instance from which it was exported, and multiple
+/// times into a given Vulkan instance.
+/// ## Valid Usage
+/// - `semaphore` **must**  not be associated with any queue command that has not yet completed
+///   execution on that queue
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_import_semaphore_fd_info`] **must**  be a valid pointer to a valid
+///   [`ImportSemaphoreFdInfoKHR`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+/// # Related
+/// - [`VK_KHR_external_semaphore_fd`]
+/// - [`Device`]
+/// - [`ImportSemaphoreFdInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkImportSemaphoreFdKHR")]
+pub type FNImportSemaphoreFdKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_import_semaphore_fd_info: *const ImportSemaphoreFdInfoKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImportSemaphoreFdInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreFdInfoKHR.html) - Structure specifying POSIX file descriptor to import to a semaphore
 ///# C Specifications
 ///The [`ImportSemaphoreFdInfoKHR`] structure is defined as:
@@ -80,7 +186,7 @@ pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    int                                      fd;
 ///} VkImportSemaphoreFdInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the semaphore into which the payload will be imported.
@@ -89,9 +195,9 @@ pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// - [`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value specifying the type of
 ///   [`fd`].
 /// - [`fd`] is the external handle to import.
-///# Description
-///The handle types supported by [`handle_type`] are:
-///## Valid Usage
+/// # Description
+/// The handle types supported by [`handle_type`] are:
+/// ## Valid Usage
 /// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportSemaphoreFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-fd)
 ///   table
 /// -  [`fd`] **must**  obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
@@ -104,36 +210,36 @@ pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// - If [`flags`] contains `VK_SEMAPHORE_IMPORT_TEMPORARY_BIT`, the
 ///   [`SemaphoreTypeCreateInfo::semaphore_type`] field of the semaphore from which [`fd`] was
 ///   exported  **must**  not be `VK_SEMAPHORE_TYPE_TIMELINE`
-///If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT`,
-///the special value `-1` for [`fd`] is treated like a valid sync file
-///descriptor referring to an object that has already signaled.
-///The import operation will succeed and the [`Semaphore`] will have a
-///temporarily imported payload as if a valid file descriptor had been
-///provided.
-///## Valid Usage (Implicit)
+/// If [`handle_type`] is `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT`,
+/// the special value `-1` for [`fd`] is treated like a valid sync file
+/// descriptor referring to an object that has already signaled.
+/// The import operation will succeed and the [`Semaphore`] will have a
+/// temporarily imported payload as if a valid file descriptor had been
+/// provided.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`flags`] **must**  be a valid combination of [`SemaphoreImportFlagBits`] values
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`semaphore`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`VK_KHR_external_semaphore_fd`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`SemaphoreImportFlags`]
 /// - [`StructureType`]
-/// - [`ImportSemaphoreFdKHR`]
+/// - [`import_semaphore_fd_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportSemaphoreFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -271,18 +377,18 @@ impl<'lt> ImportSemaphoreFdInfoKHR<'lt> {
 ///    VkExternalSemaphoreHandleTypeFlagBits    handleType;
 ///} VkSemaphoreGetFdInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the semaphore from which state will be exported.
 /// - [`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value specifying the type of
 ///   handle requested.
-///# Description
-///The properties of the file descriptor returned depend on the value of
-///[`handle_type`].
-///See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
-///properties of the defined external semaphore handle types.
-///## Valid Usage
+/// # Description
+/// The properties of the file descriptor returned depend on the value of
+/// [`handle_type`].
+/// See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
+/// properties of the defined external semaphore handle types.
+/// ## Valid Usage
 /// - [`handle_type`] **must**  have been included in [`ExportSemaphoreCreateInfo::handle_types`]
 ///   when [`semaphore`]’s current payload was created
 /// -  [`semaphore`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
@@ -297,25 +403,25 @@ impl<'lt> ImportSemaphoreFdInfoKHR<'lt> {
 ///   for execution and any semaphore signal operations on which it depends (if any)  **must**  have
 ///   also been submitted for execution
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_external_semaphore_fd`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
-/// - [`GetSemaphoreFdKHR`]
+/// - [`get_semaphore_fd_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreGetFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -405,5 +511,36 @@ impl<'lt> SemaphoreGetFdInfoKHR<'lt> {
     pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
         self.handle_type = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_KHR_external_semaphore_fd
+pub struct DeviceKhrExternalSemaphoreFdVTable {
+    ///See [`FNGetSemaphoreFdKhr`] for more information.
+    pub get_semaphore_fd_khr: FNGetSemaphoreFdKhr,
+    ///See [`FNImportSemaphoreFdKhr`] for more information.
+    pub import_semaphore_fd_khr: FNImportSemaphoreFdKhr,
+}
+impl DeviceKhrExternalSemaphoreFdVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_semaphore_fd_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreFdKHR")))
+            },
+            import_semaphore_fd_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkImportSemaphoreFdKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::get_semaphore_fd_khr`]. See [`FNGetSemaphoreFdKhr`] for more information.
+    pub fn get_semaphore_fd_khr(&self) -> FNGetSemaphoreFdKhr {
+        self.get_semaphore_fd_khr
+    }
+    ///Gets [`Self::import_semaphore_fd_khr`]. See [`FNImportSemaphoreFdKhr`] for more information.
+    pub fn import_semaphore_fd_khr(&self) -> FNImportSemaphoreFdKhr {
+        self.import_semaphore_fd_khr
     }
 }

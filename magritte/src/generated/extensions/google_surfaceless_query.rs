@@ -1,12 +1,12 @@
 //![VK_GOOGLE_surfaceless_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_GOOGLE_surfaceless_query.html) - instance extension
 //!# Description
-//!This extension allows the [`GetPhysicalDeviceSurfaceFormatsKHR`] and
-//![`GetPhysicalDeviceSurfacePresentModesKHR`] functions to accept
+//!This extension allows the [`get_physical_device_surface_formats_khr`] and
+//![`get_physical_device_surface_present_modes_khr`] functions to accept
 //![`crate::utils::Handle::null`] as their `surface` parameter, allowing potential
 //!surface formats, colorspaces and present modes to be queried without
 //!providing a surface.
-//!Identically, [`GetPhysicalDeviceSurfaceFormats2KHR`] and
-//![`GetPhysicalDeviceSurfacePresentModes2EXT`] would accept
+//!Identically, [`get_physical_device_surface_formats2_khr`] and
+//![`get_physical_device_surface_present_modes2_ext`] would accept
 //![`crate::utils::Handle::null`] in
 //![`PhysicalDeviceSurfaceInfo2KHR::surface`].
 //! **This can only be supported on platforms where the results of these queries

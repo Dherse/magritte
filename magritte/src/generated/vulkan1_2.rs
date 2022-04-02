@@ -1,11 +1,12 @@
 use crate::{
     core::UUID_SIZE,
     vulkan1_0::{
-        AccessFlags, AttachmentDescriptionFlags, AttachmentLoadOp, AttachmentStoreOp, BaseInStructure,
-        BaseOutStructure, Bool32, Buffer, DependencyFlags, DeviceMemory, DeviceSize, Format, ImageAspectFlags,
-        ImageCreateFlags, ImageLayout, ImageUsageFlags, ImageView, PipelineBindPoint, PipelineStageFlags,
-        RenderPassCreateFlags, SampleCountFlagBits, SampleCountFlags, Semaphore, ShaderStageFlags, StructureType,
-        SubpassContents, SubpassDescriptionFlags,
+        AccessFlags, AllocationCallbacks, AttachmentDescriptionFlags, AttachmentLoadOp, AttachmentStoreOp,
+        BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, DependencyFlags, Device, DeviceAddress,
+        DeviceMemory, DeviceSize, Format, ImageAspectFlags, ImageCreateFlags, ImageLayout, ImageUsageFlags, ImageView,
+        PipelineBindPoint, PipelineStageFlags, QueryPool, RenderPass, RenderPassBeginInfo, RenderPassCreateFlags,
+        SampleCountFlagBits, SampleCountFlags, Semaphore, ShaderStageFlags, StructureType, SubpassContents,
+        SubpassDescriptionFlags, VulkanResultCodes,
     },
     vulkan1_1::{PointClippingBehavior, SubgroupFeatureFlags, LUID_SIZE},
 };
@@ -14,6 +15,7 @@ use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
+    ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
     os::raw::c_char,
@@ -24,12 +26,12 @@ use std::{
 ///containing a driver name string, as returned in
 ///[`PhysicalDeviceDriverProperties`]::driverName.
 ///```c
-///#define VK_MAX_DRIVER_NAME_SIZE           256U
-///```
+/// #define VK_MAX_DRIVER_NAME_SIZE           256U
+/// ```
 ///or the equivalent
 ///```c
-///#define VK_MAX_DRIVER_NAME_SIZE_KHR       VK_MAX_DRIVER_NAME_SIZE
-///```
+/// #define VK_MAX_DRIVER_NAME_SIZE_KHR       VK_MAX_DRIVER_NAME_SIZE
+/// ```
 ///# Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
@@ -49,12 +51,12 @@ pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 ///containing a driver information string, as returned in
 ///[`PhysicalDeviceDriverProperties`]::driverInfo.
 ///```c
-///#define VK_MAX_DRIVER_INFO_SIZE           256U
-///```
+/// #define VK_MAX_DRIVER_INFO_SIZE           256U
+/// ```
 ///or the equivalent
 ///```c
-///#define VK_MAX_DRIVER_INFO_SIZE_KHR       VK_MAX_DRIVER_INFO_SIZE
-///```
+/// #define VK_MAX_DRIVER_INFO_SIZE_KHR       VK_MAX_DRIVER_INFO_SIZE
+/// ```
 ///# Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
@@ -68,6 +70,1766 @@ pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VK_MAX_DRIVER_INFO_SIZE")]
 pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
+///[vkResetQueryPool](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkResetQueryPool.html) - Reset queries in a query pool
+///# C Specifications
+///To reset a range of queries in a query pool on the host, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///void vkResetQueryPool(
+///    VkDevice                                    device,
+///    VkQueryPool                                 queryPool,
+///    uint32_t                                    firstQuery,
+///    uint32_t                                    queryCount);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_EXT_host_query_reset
+///void vkResetQueryPoolEXT(
+///    VkDevice                                    device,
+///    VkQueryPool                                 queryPool,
+///    uint32_t                                    firstQuery,
+///    uint32_t                                    queryCount);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the query pool.
+/// - [`query_pool`] is the handle of the query pool managing the queries being reset.
+/// - [`first_query`] is the initial query index to reset.
+/// - [`query_count`] is the number of queries to reset.
+/// # Description
+/// This command sets the status of query indices [[`first_query`],
+/// [`first_query`] +  [`query_count`] - 1] to unavailable.If [`query_pool`] is
+/// `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR` this command
+/// sets the status of query indices [[`first_query`], [`first_query`]
+/// +  [`query_count`] - 1] to unavailable for each pass.
+/// ## Valid Usage
+/// - The [hostQueryReset](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-hostQueryReset)
+///   feature  **must**  be enabled
+/// - [`first_query`] **must**  be less than the number of queries in [`query_pool`]
+/// - The sum of [`first_query`] and [`query_count`] **must**  be less than or equal to the number
+///   of queries in [`query_pool`]
+/// - Submitted commands that refer to the range specified by [`first_query`] and [`query_count`] in
+///   [`query_pool`] **must**  have completed execution
+/// - The range of queries specified by [`first_query`] and [`query_count`] in [`query_pool`]
+///   **must**  not be in use by calls to [`get_query_pool_results`] or [`reset_query_pool`] in
+///   other threads
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
+/// - [`query_pool`] **must**  have been created, allocated, or retrieved from [`device`]
+/// # Related
+/// - [`VK_EXT_host_query_reset`]
+/// - [`crate::vulkan1_2`]
+/// - [`Device`]
+/// - [`QueryPool`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkResetQueryPool")]
+pub type FNResetQueryPool =
+    Option<unsafe extern "system" fn(device: Device, query_pool: QueryPool, first_query: u32, query_count: u32)>;
+///[vkCreateRenderPass2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateRenderPass2.html) - Create a new render pass object
+///# C Specifications
+///To create a render pass, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///VkResult vkCreateRenderPass2(
+///    VkDevice                                    device,
+///    const VkRenderPassCreateInfo2*              pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkRenderPass*                               pRenderPass);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_create_renderpass2
+///VkResult vkCreateRenderPass2KHR(
+///    VkDevice                                    device,
+///    const VkRenderPassCreateInfo2*              pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkRenderPass*                               pRenderPass);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that creates the render pass.
+/// - [`p_create_info`] is a pointer to a [`RenderPassCreateInfo2`] structure describing the
+///   parameters of the render pass.
+/// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+///   chapter.
+/// - [`p_render_pass`] is a pointer to a [`RenderPass`] handle in which the resulting render pass
+///   object is returned.
+/// # Description
+/// This command is functionally identical to [`create_render_pass`], but
+/// includes extensible sub-structures that include `sType` and `pNext`
+/// parameters, allowing them to be more easily extended.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`RenderPassCreateInfo2`] structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_render_pass`] **must**  be a valid pointer to a [`RenderPass`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_create_renderpass2`]
+/// - [`crate::vulkan1_2`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`RenderPass`]
+/// - [`RenderPassCreateInfo2`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateRenderPass2")]
+pub type FNCreateRenderPass2 = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_create_info: *const RenderPassCreateInfo2<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_render_pass: *mut RenderPass,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetSemaphoreCounterValue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSemaphoreCounterValue.html) - Query the current state of a timeline semaphore
+///# C Specifications
+///To query the current counter value of a semaphore created with a
+///[`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE` from the host,
+///call:
+///```c
+///// Provided by VK_VERSION_1_2
+///VkResult vkGetSemaphoreCounterValue(
+///    VkDevice                                    device,
+///    VkSemaphore                                 semaphore,
+///    uint64_t*                                   pValue);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_timeline_semaphore
+///VkResult vkGetSemaphoreCounterValueKHR(
+///    VkDevice                                    device,
+///    VkSemaphore                                 semaphore,
+///    uint64_t*                                   pValue);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the semaphore.
+/// - [`semaphore`] is the handle of the semaphore to query.
+/// - [`p_value`] is a pointer to a 64-bit integer value in which the current counter value of the
+///   semaphore is returned.
+/// # Description
+/// ## Valid Usage
+/// - [`semaphore`] **must**  have been created with a [`SemaphoreType`] of
+///   `VK_SEMAPHORE_TYPE_TIMELINE`
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
+/// - [`p_value`] **must**  be a valid pointer to a `uint64_t` value
+/// - [`semaphore`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
+/// # Related
+/// - [`VK_KHR_timeline_semaphore`]
+/// - [`crate::vulkan1_2`]
+/// - [`Device`]
+/// - [`Semaphore`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetSemaphoreCounterValue")]
+pub type FNGetSemaphoreCounterValue =
+    Option<unsafe extern "system" fn(device: Device, semaphore: Semaphore, p_value: *mut u64) -> VulkanResultCodes>;
+///[vkWaitSemaphores](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkWaitSemaphores.html) - Wait for timeline semaphores on the host
+///# C Specifications
+///To wait for a set of semaphores created with a [`SemaphoreType`] of
+///`VK_SEMAPHORE_TYPE_TIMELINE` to reach particular counter values on the
+///host, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///VkResult vkWaitSemaphores(
+///    VkDevice                                    device,
+///    const VkSemaphoreWaitInfo*                  pWaitInfo,
+///    uint64_t                                    timeout);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_timeline_semaphore
+///VkResult vkWaitSemaphoresKHR(
+///    VkDevice                                    device,
+///    const VkSemaphoreWaitInfo*                  pWaitInfo,
+///    uint64_t                                    timeout);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the semaphores.
+/// - [`p_wait_info`] is a pointer to a [`SemaphoreWaitInfo`] structure containing information about
+///   the wait condition.
+/// - [`timeout`] is the timeout period in units of nanoseconds. [`timeout`] is adjusted to the
+///   closest value allowed by the implementation-dependent timeout accuracy, which  **may**  be
+///   substantially longer than one nanosecond, and  **may**  be longer than the requested period.
+/// # Description
+/// If the condition is satisfied when [`wait_semaphores`] is called, then
+/// [`wait_semaphores`] returns immediately.
+/// If the condition is not satisfied at the time [`wait_semaphores`] is
+/// called, then [`wait_semaphores`] will block and wait until the condition
+/// is satisfied or the [`timeout`] has expired, whichever is sooner.If [`timeout`] is zero, then
+/// [`wait_semaphores`] does not wait, but
+/// simply returns information about the current state of the semaphores.
+/// `VK_TIMEOUT` will be returned in this case if the condition is not
+/// satisfied, even though no actual wait was performed.If the condition is satisfied before the
+/// [`timeout`] has expired,
+/// [`wait_semaphores`] returns `VK_SUCCESS`.
+/// Otherwise, [`wait_semaphores`] returns `VK_TIMEOUT` after the
+/// [`timeout`] has expired.If device loss occurs (see [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device)) before
+/// the timeout has expired, [`wait_semaphores`] **must**  return in finite time
+/// with either `VK_SUCCESS` or `VK_ERROR_DEVICE_LOST`.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_wait_info`] **must**  be a valid pointer to a valid [`SemaphoreWaitInfo`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_TIMEOUT`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
+/// # Related
+/// - [`VK_KHR_timeline_semaphore`]
+/// - [`crate::vulkan1_2`]
+/// - [`Device`]
+/// - [`SemaphoreWaitInfo`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkWaitSemaphores")]
+pub type FNWaitSemaphores = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_wait_info: *const SemaphoreWaitInfo<'lt>,
+        timeout: u64,
+    ) -> VulkanResultCodes,
+>;
+///[vkSignalSemaphore](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSignalSemaphore.html) - Signal a timeline semaphore on the host
+///# C Specifications
+///To signal a semaphore created with a [`SemaphoreType`] of
+///`VK_SEMAPHORE_TYPE_TIMELINE` with a particular counter value, on the
+///host, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///VkResult vkSignalSemaphore(
+///    VkDevice                                    device,
+///    const VkSemaphoreSignalInfo*                pSignalInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_timeline_semaphore
+///VkResult vkSignalSemaphoreKHR(
+///    VkDevice                                    device,
+///    const VkSemaphoreSignalInfo*                pSignalInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the semaphore.
+/// - [`p_signal_info`] is a pointer to a [`SemaphoreSignalInfo`] structure containing information
+///   about the signal operation.
+/// # Description
+/// When [`signal_semaphore`] is executed on the host, it defines and
+/// immediately executes a [*semaphore
+/// signal operation*](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) which sets the timeline semaphore to the given value.The first synchronization scope is defined by the host execution model, but
+/// includes execution of [`signal_semaphore`] on the host and anything that
+/// happened-before it.The second synchronization scope is empty.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_signal_info`] **must**  be a valid pointer to a valid [`SemaphoreSignalInfo`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_KHR_timeline_semaphore`]
+/// - [`crate::vulkan1_2`]
+/// - [`Device`]
+/// - [`SemaphoreSignalInfo`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkSignalSemaphore")]
+pub type FNSignalSemaphore = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_signal_info: *const SemaphoreSignalInfo<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetBufferOpaqueCaptureAddress](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetBufferOpaqueCaptureAddress.html) - Query an opaque capture address of a buffer
+///# C Specifications
+///To query a 64-bit buffer opaque capture address, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///uint64_t vkGetBufferOpaqueCaptureAddress(
+///    VkDevice                                    device,
+///    const VkBufferDeviceAddressInfo*            pInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_buffer_device_address
+///uint64_t vkGetBufferOpaqueCaptureAddressKHR(
+///    VkDevice                                    device,
+///    const VkBufferDeviceAddressInfo*            pInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that the buffer was created on.
+/// - [`p_info`] is a pointer to a [`BufferDeviceAddressInfo`] structure specifying the buffer to
+///   retrieve an address for.
+/// # Description
+/// The 64-bit return value is an opaque capture address of the start of
+/// `pInfo->buffer`.If the buffer was created with a non-zero value of
+/// [`BufferOpaqueCaptureAddressCreateInfo::opaque_capture_address`] the
+/// return value  **must**  be the same address.
+/// ## Valid Usage
+/// - The [bufferDeviceAddress](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddress)
+///   feature  **must**  be enabled
+/// - If [`device`] was created with multiple physical devices, then the [bufferDeviceAddressMultiDevice](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressMultiDevice)
+///   feature  **must**  be enabled
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
+/// # Related
+/// - [`VK_KHR_buffer_device_address`]
+/// - [`crate::vulkan1_2`]
+/// - [`BufferDeviceAddressInfo`]
+/// - [`Device`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetBufferOpaqueCaptureAddress")]
+pub type FNGetBufferOpaqueCaptureAddress =
+    Option<for<'lt> unsafe extern "system" fn(device: Device, p_info: *const BufferDeviceAddressInfo<'lt>) -> u64>;
+///[vkGetBufferDeviceAddress](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetBufferDeviceAddress.html) - Query an address of a buffer
+///# C Specifications
+///To query a 64-bit buffer device address value through which buffer memory
+/// **can**  be accessed in a shader, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///VkDeviceAddress vkGetBufferDeviceAddress(
+///    VkDevice                                    device,
+///    const VkBufferDeviceAddressInfo*            pInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_buffer_device_address
+///VkDeviceAddress vkGetBufferDeviceAddressKHR(
+///    VkDevice                                    device,
+///    const VkBufferDeviceAddressInfo*            pInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_EXT_buffer_device_address
+///VkDeviceAddress vkGetBufferDeviceAddressEXT(
+///    VkDevice                                    device,
+///    const VkBufferDeviceAddressInfo*            pInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that the buffer was created on.
+/// - [`p_info`] is a pointer to a [`BufferDeviceAddressInfo`] structure specifying the buffer to
+///   retrieve an address for.
+/// # Description
+/// The 64-bit return value is an address of the start of `pInfo->buffer`.
+/// The address range starting at this value and whose size is the size of the
+/// buffer  **can**  be used in a shader to access the memory bound to that buffer,
+/// using the
+/// `SPV_KHR_physical_storage_buffer` extension
+/// or the equivalent
+/// `SPV_EXT_physical_storage_buffer` extension
+/// and the `PhysicalStorageBuffer` storage class.
+/// For example, this value  **can**  be stored in a uniform buffer, and the shader
+/// **can**  read the value from the uniform buffer and use it to do a dependent
+/// read/write to this buffer.
+/// A value of zero is reserved as a “null” pointer and  **must**  not be returned
+/// as a valid buffer device address.
+/// All loads, stores, and atomics in a shader through
+/// `PhysicalStorageBuffer` pointers  **must**  access addresses in the address
+/// range of some buffer.If the buffer was created with a non-zero value of
+/// [`BufferOpaqueCaptureAddressCreateInfo::opaque_capture_address`] or
+/// [`BufferDeviceAddressCreateInfoEXT::device_address`],
+/// the return value will be the same address that was returned at capture time.
+/// ## Valid Usage
+/// - The [bufferDeviceAddress](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddress)
+///   or [[`PhysicalDeviceBufferDeviceAddressFeaturesEXT::buffer_device_address`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressEXT)
+///   feature  **must**  be enabled
+/// - If [`device`] was created with multiple physical devices, then the [bufferDeviceAddressMultiDevice](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressMultiDevice)
+///   or [[`PhysicalDeviceBufferDeviceAddressFeaturesEXT::buffer_device_address_multi_device`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressMultiDeviceEXT)
+///   feature  **must**  be enabled
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
+/// # Related
+/// - [`VK_KHR_buffer_device_address`]
+/// - [`crate::vulkan1_2`]
+/// - [`BufferDeviceAddressInfo`]
+/// - [`Device`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetBufferDeviceAddress")]
+pub type FNGetBufferDeviceAddress = Option<
+    for<'lt> unsafe extern "system" fn(device: Device, p_info: *const BufferDeviceAddressInfo<'lt>) -> DeviceAddress,
+>;
+///[vkGetDeviceMemoryOpaqueCaptureAddress](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceMemoryOpaqueCaptureAddress.html) - Query an opaque capture address of a memory object
+///# C Specifications
+///To query a 64-bit opaque capture address value from a memory object, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///uint64_t vkGetDeviceMemoryOpaqueCaptureAddress(
+///    VkDevice                                    device,
+///    const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_buffer_device_address
+///uint64_t vkGetDeviceMemoryOpaqueCaptureAddressKHR(
+///    VkDevice                                    device,
+///    const VkDeviceMemoryOpaqueCaptureAddressInfo* pInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that the memory object was allocated on.
+/// - [`p_info`] is a pointer to a [`DeviceMemoryOpaqueCaptureAddressInfo`] structure specifying the
+///   memory object to retrieve an address for.
+/// # Description
+/// The 64-bit return value is an opaque address representing the start of
+/// `pInfo->memory`.If the memory object was allocated with a non-zero value of
+/// [`MemoryOpaqueCaptureAddressAllocateInfo::opaque_capture_address`],
+/// the return value  **must**  be the same address.
+/// ## Valid Usage
+/// - The [bufferDeviceAddress](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddress)
+///   feature  **must**  be enabled
+/// - If [`device`] was created with multiple physical devices, then the [bufferDeviceAddressMultiDevice](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressMultiDevice)
+///   feature  **must**  be enabled
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceMemoryOpaqueCaptureAddressInfo`]
+///   structure
+/// # Related
+/// - [`VK_KHR_buffer_device_address`]
+/// - [`crate::vulkan1_2`]
+/// - [`Device`]
+/// - [`DeviceMemoryOpaqueCaptureAddressInfo`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDeviceMemoryOpaqueCaptureAddress")]
+pub type FNGetDeviceMemoryOpaqueCaptureAddress = Option<
+    for<'lt> unsafe extern "system" fn(device: Device, p_info: *const DeviceMemoryOpaqueCaptureAddressInfo<'lt>) -> u64,
+>;
+///[vkCmdBeginRenderPass2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBeginRenderPass2.html) - Begin a new render pass
+///# C Specifications
+///Alternatively to begin a render pass, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///void vkCmdBeginRenderPass2(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkRenderPassBeginInfo*                pRenderPassBegin,
+///    const VkSubpassBeginInfo*                   pSubpassBeginInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_create_renderpass2
+///void vkCmdBeginRenderPass2KHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkRenderPassBeginInfo*                pRenderPassBegin,
+///    const VkSubpassBeginInfo*                   pSubpassBeginInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer in which to record the command.
+/// - [`p_render_pass_begin`] is a pointer to a [`RenderPassBeginInfo`] structure specifying the
+///   render pass to begin an instance of, and the framebuffer the instance uses.
+/// - [`p_subpass_begin_info`] is a pointer to a [`SubpassBeginInfo`] structure containing
+///   information about the subpass which is about to begin rendering.
+/// # Description
+/// After beginning a render pass instance, the command buffer is ready to
+/// record the commands for the first subpass of that render pass.
+/// ## Valid Usage
+/// - Both the `framebuffer` and `renderPass` members of [`p_render_pass_begin`] **must**  have been
+///   created on the same [`Device`] that [`command_buffer`] was allocated on
+/// - If any of the `initialLayout` or `finalLayout` member of the [`AttachmentDescription`]
+///   structures or the `layout` member of the [`AttachmentReference`] structures specified when
+///   creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL` then the corresponding attachment image view of the
+///   framebuffer specified in the `framebuffer` member of [`p_render_pass_begin`] **must**  have
+///   been created with a `usage` value including `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
+/// - If any of the `initialLayout` or `finalLayout` member of the [`AttachmentDescription`]
+///   structures or the `layout` member of the [`AttachmentReference`] structures specified when
+///   creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`,
+///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`,
+///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`, or
+///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL` then the corresponding attachment image view
+///   of the framebuffer specified in the `framebuffer` member of [`p_render_pass_begin`] **must**
+///   have been created with a `usage` value including `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// - If any of the `initialLayout` or `finalLayout` member of the [`AttachmentDescription`]
+///   structures or the `layout` member of the [`AttachmentReference`] structures specified when
+///   creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, or `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
+///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
+///   then the corresponding attachment image view of the framebuffer specified in the `framebuffer`
+///   member of [`p_render_pass_begin`] **must**  have been created with a `usage` value including
+///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// - If any of the `stencilInitialLayout` or `stencilFinalLayout` member of the
+///   [`AttachmentDescriptionStencilLayout`] structures or the `stencilLayout` member of the
+///   [`AttachmentReferenceStencilLayout`] structures specified when creating the render pass
+///   specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
+///   then the corresponding attachment image view of the framebuffer specified in the `framebuffer`
+///   member of [`p_render_pass_begin`] **must**  have been created with a `usage` value including
+///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+/// - If any of the `initialLayout` or `finalLayout` member of the [`AttachmentDescription`]
+///   structures or the `layout` member of the [`AttachmentReference`] structures specified when
+///   creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL` then the corresponding attachment image view of the
+///   framebuffer specified in the `framebuffer` member of [`p_render_pass_begin`] **must**  have
+///   been created with a `usage` value including `VK_IMAGE_USAGE_SAMPLED_BIT` or
+///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
+/// - If any of the `initialLayout` or `finalLayout` member of the [`AttachmentDescription`]
+///   structures or the `layout` member of the [`AttachmentReference`] structures specified when
+///   creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL` then the corresponding attachment image view of the
+///   framebuffer specified in the `framebuffer` member of [`p_render_pass_begin`] **must**  have
+///   been created with a `usage` value including `VK_IMAGE_USAGE_TRANSFER_SRC_BIT`
+/// - If any of the `initialLayout` or `finalLayout` member of the [`AttachmentDescription`]
+///   structures or the `layout` member of the [`AttachmentReference`] structures specified when
+///   creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`] is
+///   `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL` then the corresponding attachment image view of the
+///   framebuffer specified in the `framebuffer` member of [`p_render_pass_begin`] **must**  have
+///   been created with a `usage` value including `VK_IMAGE_USAGE_TRANSFER_DST_BIT`
+/// - If the `initialLayout` member of any of the [`AttachmentDescription`] structures specified
+///   when creating the render pass specified in the `renderPass` member of [`p_render_pass_begin`]
+///   is not `VK_IMAGE_LAYOUT_UNDEFINED`, then each such `initialLayout` **must**  be equal to the
+///   current layout of the corresponding attachment image subresource of the framebuffer specified
+///   in the `framebuffer` member of [`p_render_pass_begin`]
+/// - The `srcStageMask` members of any element of the `pDependencies` member of
+///   [`RenderPassCreateInfo`] used to create `renderPass` **must**  be supported by the
+///   capabilities of the queue family identified by the `queueFamilyIndex` member of the
+///   [`CommandPoolCreateInfo`] used to create the command pool which [`command_buffer`] was
+///   allocated from
+/// - The `dstStageMask` members of any element of the `pDependencies` member of
+///   [`RenderPassCreateInfo`] used to create `renderPass` **must**  be supported by the
+///   capabilities of the queue family identified by the `queueFamilyIndex` member of the
+///   [`CommandPoolCreateInfo`] used to create the command pool which [`command_buffer`] was
+///   allocated from
+/// - For any attachment in `framebuffer` that is used by `renderPass` and is bound to memory
+///   locations that are also bound to another attachment used by `renderPass`, and if at least one
+///   of those uses causes either attachment to be written to, both attachments  **must**  have had
+///   the `VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT` set
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_render_pass_begin`] **must**  be a valid pointer to a valid [`RenderPassBeginInfo`]
+///   structure
+/// - [`p_subpass_begin_info`] **must**  be a valid pointer to a valid [`SubpassBeginInfo`]
+///   structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - This command  **must**  only be called outside of a render pass instance
+/// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_create_renderpass2`]
+/// - [`crate::vulkan1_2`]
+/// - [`CommandBuffer`]
+/// - [`RenderPassBeginInfo`]
+/// - [`SubpassBeginInfo`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdBeginRenderPass2")]
+pub type FNCmdBeginRenderPass2 = Option<
+    for<'lt> unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_render_pass_begin: *const RenderPassBeginInfo<'lt>,
+        p_subpass_begin_info: *const SubpassBeginInfo<'lt>,
+    ),
+>;
+///[vkCmdNextSubpass2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdNextSubpass2.html) - Transition to the next subpass of a render pass
+///# C Specifications
+///To transition to the next subpass in the render pass instance after
+///recording the commands for a subpass, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///void vkCmdNextSubpass2(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkSubpassBeginInfo*                   pSubpassBeginInfo,
+///    const VkSubpassEndInfo*                     pSubpassEndInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_create_renderpass2
+///void vkCmdNextSubpass2KHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkSubpassBeginInfo*                   pSubpassBeginInfo,
+///    const VkSubpassEndInfo*                     pSubpassEndInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer in which to record the command.
+/// - [`p_subpass_begin_info`] is a pointer to a [`SubpassBeginInfo`] structure containing
+///   information about the subpass which is about to begin rendering.
+/// - [`p_subpass_end_info`] is a pointer to a [`SubpassEndInfo`] structure containing information
+///   about how the previous subpass will be ended.
+/// # Description
+/// [`cmd_next_subpass2`] is semantically identical to [`cmd_next_subpass`],
+/// except that it is extensible, and that `contents` is provided as part of
+/// an extensible structure instead of as a flat parameter.
+/// ## Valid Usage
+/// - The current subpass index  **must**  be less than the number of subpasses in the render pass
+///   minus one
+/// - This command  **must**  not be recorded when transform feedback is active
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_subpass_begin_info`] **must**  be a valid pointer to a valid [`SubpassBeginInfo`]
+///   structure
+/// - [`p_subpass_end_info`] **must**  be a valid pointer to a valid [`SubpassEndInfo`] structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - This command  **must**  only be called inside of a render pass instance
+/// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_create_renderpass2`]
+/// - [`crate::vulkan1_2`]
+/// - [`CommandBuffer`]
+/// - [`SubpassBeginInfo`]
+/// - [`SubpassEndInfo`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdNextSubpass2")]
+pub type FNCmdNextSubpass2 = Option<
+    for<'lt> unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_subpass_begin_info: *const SubpassBeginInfo<'lt>,
+        p_subpass_end_info: *const SubpassEndInfo<'lt>,
+    ),
+>;
+///[vkCmdEndRenderPass2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEndRenderPass2.html) - End the current render pass
+///# C Specifications
+///To record a command to end a render pass instance after recording the
+///commands for the last subpass, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///void vkCmdEndRenderPass2(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkSubpassEndInfo*                     pSubpassEndInfo);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_create_renderpass2
+///void vkCmdEndRenderPass2KHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkSubpassEndInfo*                     pSubpassEndInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer in which to end the current render pass instance.
+/// - [`p_subpass_end_info`] is a pointer to a [`SubpassEndInfo`] structure containing information
+///   about how the previous subpass will be ended.
+/// # Description
+/// [`cmd_end_render_pass2`] is semantically identical to
+/// [`cmd_end_render_pass`], except that it is extensible.
+/// ## Valid Usage
+/// - The current subpass index  **must**  be equal to the number of subpasses in the render pass
+///   minus one
+/// - This command  **must**  not be recorded when transform feedback is active
+/// - The current render pass instance  **must**  not have been begun with [`cmd_begin_rendering`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_subpass_end_info`] **must**  be a valid pointer to a valid [`SubpassEndInfo`] structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - This command  **must**  only be called inside of a render pass instance
+/// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_create_renderpass2`]
+/// - [`crate::vulkan1_2`]
+/// - [`CommandBuffer`]
+/// - [`SubpassEndInfo`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdEndRenderPass2")]
+pub type FNCmdEndRenderPass2 = Option<
+    for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_subpass_end_info: *const SubpassEndInfo<'lt>),
+>;
+///[vkCmdDrawIndirectCount](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDrawIndirectCount.html) - Draw primitives with indirect parameters and draw count
+///# C Specifications
+///To record a non-indexed draw call with a draw call count sourced from a
+///buffer, call:
+///```c
+///// Provided by VK_VERSION_1_2
+///void vkCmdDrawIndirectCount(
+///    VkCommandBuffer                             commandBuffer,
+///    VkBuffer                                    buffer,
+///    VkDeviceSize                                offset,
+///    VkBuffer                                    countBuffer,
+///    VkDeviceSize                                countBufferOffset,
+///    uint32_t                                    maxDrawCount,
+///    uint32_t                                    stride);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_draw_indirect_count
+///void vkCmdDrawIndirectCountKHR(
+///    VkCommandBuffer                             commandBuffer,
+///    VkBuffer                                    buffer,
+///    VkDeviceSize                                offset,
+///    VkBuffer                                    countBuffer,
+///    VkDeviceSize                                countBufferOffset,
+///    uint32_t                                    maxDrawCount,
+///    uint32_t                                    stride);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_AMD_draw_indirect_count
+///void vkCmdDrawIndirectCountAMD(
+///    VkCommandBuffer                             commandBuffer,
+///    VkBuffer                                    buffer,
+///    VkDeviceSize                                offset,
+///    VkBuffer                                    countBuffer,
+///    VkDeviceSize                                countBufferOffset,
+///    uint32_t                                    maxDrawCount,
+///    uint32_t                                    stride);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer into which the command is recorded.
+/// - [`buffer`] is the buffer containing draw parameters.
+/// - [`offset`] is the byte offset into [`buffer`] where parameters begin.
+/// - [`count_buffer`] is the buffer containing the draw count.
+/// - [`count_buffer_offset`] is the byte offset into [`count_buffer`] where the draw count begins.
+/// - [`max_draw_count`] specifies the maximum number of draws that will be executed. The actual
+///   number of executed draw calls is the minimum of the count specified in [`count_buffer`] and
+///   [`max_draw_count`].
+/// - [`stride`] is the byte stride between successive sets of draw parameters.
+/// # Description
+/// [`cmd_draw_indirect_count`] behaves similarly to [`cmd_draw_indirect`]
+/// except that the draw count is read by the device from a buffer during
+/// execution.
+/// The command will read an unsigned 32-bit integer from [`count_buffer`]
+/// located at [`count_buffer_offset`] and use this as the draw count.
+/// ## Valid Usage
+/// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
+///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+///   command, then the image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and
+///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+///   command, then the image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format features]()
+///   **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
+/// - If a [`ImageView`] is accessed using atomic operations as a result of this command, then the
+///   image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
+/// - If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then the
+///   image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+/// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` as a result of this command
+///   **must**  have a [`ImageViewType`] and format that supports cubic filtering, as specified by
+///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic`] returned by
+///   [`get_physical_device_image_format_properties2`]
+/// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` with a reduction mode of either
+///   `VK_SAMPLER_REDUCTION_MODE_MIN` or `VK_SAMPLER_REDUCTION_MODE_MAX` as a result of this command
+///   **must**  have a [`ImageViewType`] and format that supports cubic filtering together with
+///   minmax filtering, as specified by
+///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic_minmax`] returned by
+///   [`get_physical_device_image_format_properties2`]
+/// - Any [`Image`] created with a [`ImageCreateInfo::flags`] containing
+///   `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` sampled as a result of this command  **must**  only be
+///   sampled using a [`SamplerAddressMode`] of `VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE`
+/// - Any [`ImageView`] or [`BufferView`] being written as a storage image or storage texel buffer
+///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format feature
+///   **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT`
+/// - Any [`ImageView`] or [`BufferView`] being read as a storage image or storage texel buffer
+///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format feature
+///   **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT`
+/// - For each set *n* that is statically used by the [`Pipeline`] bound to the pipeline bind point
+///   used by this command, a descriptor set  **must**  have been bound to *n* at the same pipeline
+///   bind point, with a [`PipelineLayout`] that is compatible for set *n*, with the
+///   [`PipelineLayout`] used to create the current [`Pipeline`], as described in
+///   [[descriptorsets-compatibility]]()
+/// - If the [`maintenance4`]() feature is not enabled, then for each push constant that is
+///   statically used by the [`Pipeline`] bound to the pipeline bind point used by this command, a
+///   push constant value  **must**  have been set for the same pipeline bind point, with a
+///   [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used to
+///   create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
+/// - Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],
+///   **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline bind
+///   point used by this command
+/// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
+///   dynamic state, that state  **must**  have been set or inherited (if the
+///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+/// - There  **must**  not have been any calls to dynamic state setting commands for any state not
+///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
+///   command, since that pipeline was bound
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used to
+///   sample from any [`Image`] with a [`ImageView`] of the type `VK_IMAGE_VIEW_TYPE_3D`,
+///   `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`, `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or
+///   `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used
+///   with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with
+///   `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used
+///   with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions that includes a
+///   LOD bias or any offset values, in any shader stage
+/// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object bound
+///   to the pipeline bind point used by this command accesses a uniform buffer, it  **must**  not
+///   access values outside of the range of the buffer as specified in the descriptor set bound to
+///   the same pipeline bind point
+/// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object bound
+///   to the pipeline bind point used by this command accesses a storage buffer, it  **must**  not
+///   access values outside of the range of the buffer as specified in the descriptor set bound to
+///   the same pipeline bind point
+/// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+///   supported, any resource accessed by the [`Pipeline`] object bound to the pipeline bind point
+///   used by this command  **must**  not be a protected resource
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](), that object  **must**  only be used with `OpImageSample*` or
+///   `OpImageSparseSample*` instructions
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](), that object  **must**  not use the `ConstOffset` and `Offset` operands
+/// - If a [`ImageView`] is accessed using `OpImageWrite` as a result of this command, then the
+///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many components
+///   as the image view’s format
+/// - If a [`BufferView`] is accessed using `OpImageWrite` as a result of this command, then the
+///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many components
+///   as the buffer view’s format
+/// - If a [`ImageView`] with a [`Format`] that has a 64-bit component width is accessed as a result
+///   of this command, the `SampledType` of the `OpTypeImage` operand of that instruction  **must**
+///   have a `Width` of 64
+/// - If a [`ImageView`] with a [`Format`] that has a component width less than 64-bit is accessed
+///   as a result of this command, the `SampledType` of the `OpTypeImage` operand of that
+///   instruction  **must**  have a `Width` of 32
+/// - If a [`BufferView`] with a [`Format`] that has a 64-bit component width is accessed as a
+///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+///   **must**  have a `Width` of 64
+/// - If a [`BufferView`] with a [`Format`] that has a component width less than 64-bit is accessed
+///   as a result of this command, the `SampledType` of the `OpTypeImage` operand of that
+///   instruction  **must**  have a `Width` of 32
+/// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Image`] objects created with
+///   the `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+///   command
+/// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Buffer`] objects created with
+///   the `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+///   command
+/// - The current render pass  **must**  be [compatible]() with the `renderPass` member of the
+///   [`GraphicsPipelineCreateInfo`] structure specified when creating the [`Pipeline`] bound to
+///   `VK_PIPELINE_BIND_POINT_GRAPHICS`
+/// - The subpass index of the current render pass  **must**  be equal to the `subpass` member of
+///   the [`GraphicsPipelineCreateInfo`] structure specified when creating the [`Pipeline`] bound to
+///   `VK_PIPELINE_BIND_POINT_GRAPHICS`
+/// - Every input attachment used by the current subpass  **must**  be bound to the pipeline via a
+///   descriptor set
+/// - Memory backing image subresources used as attachments in the current render pass  **must**
+///   not be written in any way other than as an attachment by this command
+/// - If any recorded command in the current subpass will write to an image subresource as an
+///   attachment, this command  **must**  not read from the memory backing that image subresource in
+///   any other way than as an attachment
+/// - If any recorded command in the current subpass will read from an image subresource used as an
+///   attachment in any way other than as an attachment, this command  **must**  not write to that
+///   image subresource as an attachment
+/// - If the draw is recorded in a render pass instance with multiview enabled, the maximum instance
+///   index  **must**  be less than or equal to
+///   [`PhysicalDeviceMultiviewProperties::max_multiview_instance_index`]
+/// - If the bound graphics pipeline was created with
+///   [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_enable`] set to [`TRUE`] and the
+///   current subpass has a depth/stencil attachment, then that attachment  **must**  have been
+///   created with the `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` bit set
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT` dynamic state enabled then
+///   [`cmd_set_sample_locations_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` dynamic state enabled, then
+///   [`cmd_set_viewport_with_count`] **must**  have been called in the current command buffer prior
+///   to this drawing command, and the `viewportCount` parameter of [`cmd_set_viewport_with_count`]
+///   **must**  match the [`PipelineViewportStateCreateInfo::scissor_count`] of the pipeline
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, then
+///   [`cmd_set_scissor_with_count`] **must**  have been called in the current command buffer prior
+///   to this drawing command, and the `scissorCount` parameter of [`cmd_set_scissor_with_count`]
+///   **must**  match the [`PipelineViewportStateCreateInfo::viewport_count`] of the pipeline
+/// - If the bound graphics pipeline state was created with both the
+///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic
+///   states enabled then both [`cmd_set_viewport_with_count`] and [`cmd_set_scissor_with_count`]
+///   **must**  have been called in the current command buffer prior to this drawing command, and
+///   the `viewportCount` parameter of [`cmd_set_viewport_with_count`] **must**  match the
+///   `scissorCount` parameter of [`cmd_set_scissor_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` dynamic state enabled, then the bound graphics
+///   pipeline  **must**  have been created with
+///   [`PipelineViewportWScalingStateCreateInfoNV::viewport_count`] greater or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` dynamic
+///   states enabled then the `viewportCount` parameter in the last call to
+///   [`cmd_set_viewport_w_scaling_nv`] **must**  be greater than or equal to the `viewportCount`
+///   parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` dynamic state enabled, then the bound
+///   graphics pipeline  **must**  have been created with
+///   [`PipelineViewportShadingRateImageStateCreateInfoNV::viewport_count`] greater or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV`
+///   dynamic states enabled then the `viewportCount` parameter in the last call to
+///   [`cmd_set_viewport_shading_rate_palette_nv`] **must**  be greater than or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled and a
+///   [`PipelineViewportSwizzleStateCreateInfoNV`] structure chained from
+///   `VkPipelineVieportCreateInfo`, then the bound graphics pipeline  **must**  have been created
+///   with [`PipelineViewportSwizzleStateCreateInfoNV::viewport_count`] greater or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled and a
+///   [`PipelineViewportExclusiveScissorStateCreateInfoNV`] structure chained from
+///   `VkPipelineVieportCreateInfo`, then the bound graphics pipeline  **must**  have been created
+///   with [`PipelineViewportExclusiveScissorStateCreateInfoNV::exclusive_scissor_count`] greater or
+///   equal to the `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` dynamic state enabled then
+///   [`cmd_set_rasterizer_discard_enable`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE`
+///   dynamic state enabled then [`cmd_set_depth_bias_enable`] **must**  have been called in the
+///   current command buffer prior to this drawing command
+/// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_LOGIC_OP_EXT`
+///   dynamic state enabled then [`cmd_set_logic_op_ext`] **must**  have been called in the current
+///   command buffer prior to this drawing command and the `logicOp` **must**  be a valid
+///   [`LogicOp`] value
+/// - If the [`primitiveFragmentShadingRateWithMultipleViewports`]() limit is not supported, the
+///   bound graphics pipeline was created with the `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic
+///   state enabled, and any of the shader stages of the bound graphics pipeline write to the
+///   `PrimitiveShadingRateKHR` built-in, then [`cmd_set_viewport_with_count`] **must**  have been
+///   called in the current command buffer prior to this drawing command, and the `viewportCount`
+///   parameter of [`cmd_set_viewport_with_count`] **must**  be `1`
+/// - If rasterization is not disabled in the bound graphics pipeline, then for each color
+///   attachment in the subpass, if the corresponding image view’s [format features]() do not
+///   contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT`, then the `blendEnable` member of the
+///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
+///   [`FALSE`]
+/// - If rasterization is not disabled in the bound graphics pipeline, and neither the
+///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
+///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
+///   the same as the current subpass color and/or depth/stencil attachments
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
+///   **must**  not write any values to the depth attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
+///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
+///   **must**  not write any values to the stencil attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`, this
+///   command  **must**  not write any values to the depth attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
+///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, this
+///   command  **must**  not write any values to the stencil attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, this command  **must**  not
+///   write any values to the depth attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
+///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`, this command  **must**
+///   not write any values to the stencil attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound graphics pipeline  **must**  have been created with a
+///   [`PipelineRenderingCreateInfo::view_mask`] equal to [`RenderingInfo::view_mask`]
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound graphics pipeline  **must**  have been created with a
+///   [`PipelineRenderingCreateInfo::color_attachment_count`] equal to
+///   [`RenderingInfo::color_attachment_count`]
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingInfo::color_attachment_count`] greater than `0`, then each element of the
+///   [`RenderingInfo::color_attachments`] array with a `imageView` not equal to
+///   [`crate::utils::Handle::null`] **must**  have been created with a [`Format`] equal to the
+///   corresponding element of [`PipelineRenderingCreateInfo::color_attachment_formats`] used to
+///   create the currently bound graphics pipeline
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT` dynamic state enabled then
+///   [`cmd_set_color_write_enable_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `attachmentCount` parameter of
+///   [`cmd_set_color_write_enable_ext`] **must**  be equal to the
+///   [`PipelineColorBlendStateCreateInfo::attachment_count`] of the currently bound graphics
+///   pipeline
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
+///   the value of [`PipelineRenderingCreateInfo::depth_attachment_format`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the [`Format`] used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
+///   [`crate::utils::Handle::null`], the value of
+///   [`PipelineRenderingCreateInfo::stencil_attachment_format`] used to create the currently bound
+///   graphics pipeline  **must**  be equal to the [`Format`] used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR::image_view`] was not
+///   [`crate::utils::Handle::null`], the currently bound graphics pipeline  **must**  have been
+///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT::image_view`] was not
+///   [`crate::utils::Handle::null`], the currently bound graphics pipeline  **must**  have been
+///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
+/// - If the currently bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun with
+///   [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter greater
+///   than `0`, then each element of the [`RenderingInfo::color_attachments`] array with a
+///   `imageView` not equal to [`crate::utils::Handle::null`] **must**  have been created with a
+///   sample count equal to the corresponding element of the `pColorAttachmentSamples` member of
+///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+///   currently bound graphics pipeline
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
+///   the value of the `depthStencilAttachmentSamples` member of [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] used to create the currently bound graphics pipeline  **must**
+///   be equal to the sample count used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
+///   [`crate::utils::Handle::null`], the value of the `depthStencilAttachmentSamples` member of
+///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+/// - If the currently bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun with
+///   [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter greater
+///   than `0`, then each element of the [`RenderingInfo::color_attachments`] array with a
+///   `imageView` not equal to [`crate::utils::Handle::null`] **must**  have been created with a
+///   sample count equal to the value of
+///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
+///   bound graphics pipeline
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
+///   the value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
+///   [`crate::utils::Handle::null`], the value of
+///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
+///   bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline  **must**  have been created with a [`GraphicsPipelineCreateInfo::render_pass`]
+///   equal to [`crate::utils::Handle::null`]
+///
+/// - All vertex input bindings accessed via vertex input variables declared in the vertex shader
+///   entry point’s interface  **must**  have either valid or [`crate::utils::Handle::null`] buffers
+///   bound
+/// - If the [nullDescriptor]() feature is not enabled, all vertex input bindings accessed via
+///   vertex input variables declared in the vertex shader entry point’s interface  **must**  not be
+///   [`crate::utils::Handle::null`]
+/// - For a given vertex buffer binding, any attribute data fetched  **must**  be entirely contained
+///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
+///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
+///   to this drawing command, and the `primitiveTopology` parameter of
+///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+/// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
+///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
+///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer prior to
+///   this draw command
+/// - If the bound graphics pipeline was created with the
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
+///   **must**  have been called in the current command buffer prior to this draw command, and the
+///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+/// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
+///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
+///   current command buffer prior to this draw command
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT` dynamic state enabled then
+///   [`cmd_set_patch_control_points_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
+///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - The bound graphics pipeline  **must**  not have been created with the
+///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
+///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
+///   `VK_SHADER_STAGE_MESH_BIT_NV`
+///
+/// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+/// - [`buffer`] **must**  have been created with the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
+/// - [`offset`] **must**  be a multiple of `4`
+/// - [`command_buffer`] **must**  not be a protected command buffer
+///
+/// - If [`count_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+/// - [`count_buffer`] **must**  have been created with the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT`
+///   bit set
+/// - [`count_buffer_offset`] **must**  be a multiple of `4`
+/// - The count stored in [`count_buffer`] **must**  be less than or equal to
+///   [`PhysicalDeviceLimits::max_draw_indirect_count`]
+/// - ([`count_buffer_offset`] +  `sizeof`(uint32_t)) **must**  be less than or equal to the size of
+///   [`count_buffer`]
+/// - If [drawIndirectCount]() is not enabled this function  **must**  not be used
+/// - [`stride`] **must**  be a multiple of `4` and  **must**  be greater than or equal to
+///   sizeof([`DrawIndirectCommand`])
+/// - If [`max_draw_count`] is greater than or equal to `1`, ([`stride`] × ([`max_draw_count`] - 1)
+///   +  [`offset`] +  sizeof([`DrawIndirectCommand`])) **must**  be less than or equal to the size
+///   of [`buffer`]
+/// - If the count stored in [`count_buffer`] is equal to `1`, ([`offset`] +
+///   sizeof([`DrawIndirectCommand`])) **must**  be less than or equal to the size of [`buffer`]
+/// - If the count stored in [`count_buffer`] is greater than `1`, ([`stride`] × (`drawCount` - 1) +
+///   [`offset`] +  sizeof([`DrawIndirectCommand`])) **must**  be less than or equal to the size of
+///   [`buffer`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`count_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - This command  **must**  only be called inside of a render pass instance
+/// - Each of [`buffer`], [`command_buffer`], and [`count_buffer`] **must**  have been created,
+///   allocated, or retrieved from the same [`Device`]
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_AMD_draw_indirect_count`]
+/// - [`VK_KHR_draw_indirect_count`]
+/// - [`crate::vulkan1_2`]
+/// - [`Buffer`]
+/// - [`CommandBuffer`]
+/// - [`DeviceSize`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdDrawIndirectCount")]
+pub type FNCmdDrawIndirectCount = Option<
+    unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        buffer: Buffer,
+        offset: DeviceSize,
+        count_buffer: Buffer,
+        count_buffer_offset: DeviceSize,
+        max_draw_count: u32,
+        stride: u32,
+    ),
+>;
+///[vkCmdDrawIndexedIndirectCount](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDrawIndexedIndirectCount.html) - Draw parameters with indirect parameters, indexed vertices, and draw count
+///# C Specifications
+///To record an indexed draw call with a draw call count sourced from a buffer,
+///call:
+///```c
+///// Provided by VK_VERSION_1_2
+///void vkCmdDrawIndexedIndirectCount(
+///    VkCommandBuffer                             commandBuffer,
+///    VkBuffer                                    buffer,
+///    VkDeviceSize                                offset,
+///    VkBuffer                                    countBuffer,
+///    VkDeviceSize                                countBufferOffset,
+///    uint32_t                                    maxDrawCount,
+///    uint32_t                                    stride);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_KHR_draw_indirect_count
+///void vkCmdDrawIndexedIndirectCountKHR(
+///    VkCommandBuffer                             commandBuffer,
+///    VkBuffer                                    buffer,
+///    VkDeviceSize                                offset,
+///    VkBuffer                                    countBuffer,
+///    VkDeviceSize                                countBufferOffset,
+///    uint32_t                                    maxDrawCount,
+///    uint32_t                                    stride);
+///```
+/// or the equivalent command
+/// ```c
+///// Provided by VK_AMD_draw_indirect_count
+///void vkCmdDrawIndexedIndirectCountAMD(
+///    VkCommandBuffer                             commandBuffer,
+///    VkBuffer                                    buffer,
+///    VkDeviceSize                                offset,
+///    VkBuffer                                    countBuffer,
+///    VkDeviceSize                                countBufferOffset,
+///    uint32_t                                    maxDrawCount,
+///    uint32_t                                    stride);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer into which the command is recorded.
+/// - [`buffer`] is the buffer containing draw parameters.
+/// - [`offset`] is the byte offset into [`buffer`] where parameters begin.
+/// - [`count_buffer`] is the buffer containing the draw count.
+/// - [`count_buffer_offset`] is the byte offset into [`count_buffer`] where the draw count begins.
+/// - [`max_draw_count`] specifies the maximum number of draws that will be executed. The actual
+///   number of executed draw calls is the minimum of the count specified in [`count_buffer`] and
+///   [`max_draw_count`].
+/// - [`stride`] is the byte stride between successive sets of draw parameters.
+/// # Description
+/// [`cmd_draw_indexed_indirect_count`] behaves similarly to
+/// [`cmd_draw_indexed_indirect`] except that the draw count is read by the
+/// device from a buffer during execution.
+/// The command will read an unsigned 32-bit integer from [`count_buffer`]
+/// located at [`count_buffer_offset`] and use this as the draw count.
+/// ## Valid Usage
+/// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
+///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+///   command, then the image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and
+///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+///   command, then the image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format features]()
+///   **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
+/// - If a [`ImageView`] is accessed using atomic operations as a result of this command, then the
+///   image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
+/// - If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then the
+///   image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+/// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` as a result of this command
+///   **must**  have a [`ImageViewType`] and format that supports cubic filtering, as specified by
+///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic`] returned by
+///   [`get_physical_device_image_format_properties2`]
+/// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` with a reduction mode of either
+///   `VK_SAMPLER_REDUCTION_MODE_MIN` or `VK_SAMPLER_REDUCTION_MODE_MAX` as a result of this command
+///   **must**  have a [`ImageViewType`] and format that supports cubic filtering together with
+///   minmax filtering, as specified by
+///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic_minmax`] returned by
+///   [`get_physical_device_image_format_properties2`]
+/// - Any [`Image`] created with a [`ImageCreateInfo::flags`] containing
+///   `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` sampled as a result of this command  **must**  only be
+///   sampled using a [`SamplerAddressMode`] of `VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE`
+/// - Any [`ImageView`] or [`BufferView`] being written as a storage image or storage texel buffer
+///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format feature
+///   **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT`
+/// - Any [`ImageView`] or [`BufferView`] being read as a storage image or storage texel buffer
+///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format feature
+///   **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT`
+/// - For each set *n* that is statically used by the [`Pipeline`] bound to the pipeline bind point
+///   used by this command, a descriptor set  **must**  have been bound to *n* at the same pipeline
+///   bind point, with a [`PipelineLayout`] that is compatible for set *n*, with the
+///   [`PipelineLayout`] used to create the current [`Pipeline`], as described in
+///   [[descriptorsets-compatibility]]()
+/// - If the [`maintenance4`]() feature is not enabled, then for each push constant that is
+///   statically used by the [`Pipeline`] bound to the pipeline bind point used by this command, a
+///   push constant value  **must**  have been set for the same pipeline bind point, with a
+///   [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used to
+///   create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
+/// - Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],
+///   **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline bind
+///   point used by this command
+/// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
+///   dynamic state, that state  **must**  have been set or inherited (if the
+///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+/// - There  **must**  not have been any calls to dynamic state setting commands for any state not
+///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
+///   command, since that pipeline was bound
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used to
+///   sample from any [`Image`] with a [`ImageView`] of the type `VK_IMAGE_VIEW_TYPE_3D`,
+///   `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`, `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or
+///   `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used
+///   with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with
+///   `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used
+///   with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions that includes a
+///   LOD bias or any offset values, in any shader stage
+/// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object bound
+///   to the pipeline bind point used by this command accesses a uniform buffer, it  **must**  not
+///   access values outside of the range of the buffer as specified in the descriptor set bound to
+///   the same pipeline bind point
+/// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object bound
+///   to the pipeline bind point used by this command accesses a storage buffer, it  **must**  not
+///   access values outside of the range of the buffer as specified in the descriptor set bound to
+///   the same pipeline bind point
+/// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+///   supported, any resource accessed by the [`Pipeline`] object bound to the pipeline bind point
+///   used by this command  **must**  not be a protected resource
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](), that object  **must**  only be used with `OpImageSample*` or
+///   `OpImageSparseSample*` instructions
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](), that object  **must**  not use the `ConstOffset` and `Offset` operands
+/// - If a [`ImageView`] is accessed using `OpImageWrite` as a result of this command, then the
+///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many components
+///   as the image view’s format
+/// - If a [`BufferView`] is accessed using `OpImageWrite` as a result of this command, then the
+///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many components
+///   as the buffer view’s format
+/// - If a [`ImageView`] with a [`Format`] that has a 64-bit component width is accessed as a result
+///   of this command, the `SampledType` of the `OpTypeImage` operand of that instruction  **must**
+///   have a `Width` of 64
+/// - If a [`ImageView`] with a [`Format`] that has a component width less than 64-bit is accessed
+///   as a result of this command, the `SampledType` of the `OpTypeImage` operand of that
+///   instruction  **must**  have a `Width` of 32
+/// - If a [`BufferView`] with a [`Format`] that has a 64-bit component width is accessed as a
+///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+///   **must**  have a `Width` of 64
+/// - If a [`BufferView`] with a [`Format`] that has a component width less than 64-bit is accessed
+///   as a result of this command, the `SampledType` of the `OpTypeImage` operand of that
+///   instruction  **must**  have a `Width` of 32
+/// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Image`] objects created with
+///   the `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+///   command
+/// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Buffer`] objects created with
+///   the `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+///   command
+/// - The current render pass  **must**  be [compatible]() with the `renderPass` member of the
+///   [`GraphicsPipelineCreateInfo`] structure specified when creating the [`Pipeline`] bound to
+///   `VK_PIPELINE_BIND_POINT_GRAPHICS`
+/// - The subpass index of the current render pass  **must**  be equal to the `subpass` member of
+///   the [`GraphicsPipelineCreateInfo`] structure specified when creating the [`Pipeline`] bound to
+///   `VK_PIPELINE_BIND_POINT_GRAPHICS`
+/// - Every input attachment used by the current subpass  **must**  be bound to the pipeline via a
+///   descriptor set
+/// - Memory backing image subresources used as attachments in the current render pass  **must**
+///   not be written in any way other than as an attachment by this command
+/// - If any recorded command in the current subpass will write to an image subresource as an
+///   attachment, this command  **must**  not read from the memory backing that image subresource in
+///   any other way than as an attachment
+/// - If any recorded command in the current subpass will read from an image subresource used as an
+///   attachment in any way other than as an attachment, this command  **must**  not write to that
+///   image subresource as an attachment
+/// - If the draw is recorded in a render pass instance with multiview enabled, the maximum instance
+///   index  **must**  be less than or equal to
+///   [`PhysicalDeviceMultiviewProperties::max_multiview_instance_index`]
+/// - If the bound graphics pipeline was created with
+///   [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_enable`] set to [`TRUE`] and the
+///   current subpass has a depth/stencil attachment, then that attachment  **must**  have been
+///   created with the `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` bit set
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT` dynamic state enabled then
+///   [`cmd_set_sample_locations_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` dynamic state enabled, then
+///   [`cmd_set_viewport_with_count`] **must**  have been called in the current command buffer prior
+///   to this drawing command, and the `viewportCount` parameter of [`cmd_set_viewport_with_count`]
+///   **must**  match the [`PipelineViewportStateCreateInfo::scissor_count`] of the pipeline
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, then
+///   [`cmd_set_scissor_with_count`] **must**  have been called in the current command buffer prior
+///   to this drawing command, and the `scissorCount` parameter of [`cmd_set_scissor_with_count`]
+///   **must**  match the [`PipelineViewportStateCreateInfo::viewport_count`] of the pipeline
+/// - If the bound graphics pipeline state was created with both the
+///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic
+///   states enabled then both [`cmd_set_viewport_with_count`] and [`cmd_set_scissor_with_count`]
+///   **must**  have been called in the current command buffer prior to this drawing command, and
+///   the `viewportCount` parameter of [`cmd_set_viewport_with_count`] **must**  match the
+///   `scissorCount` parameter of [`cmd_set_scissor_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` dynamic state enabled, then the bound graphics
+///   pipeline  **must**  have been created with
+///   [`PipelineViewportWScalingStateCreateInfoNV::viewport_count`] greater or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` dynamic
+///   states enabled then the `viewportCount` parameter in the last call to
+///   [`cmd_set_viewport_w_scaling_nv`] **must**  be greater than or equal to the `viewportCount`
+///   parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` dynamic state enabled, then the bound
+///   graphics pipeline  **must**  have been created with
+///   [`PipelineViewportShadingRateImageStateCreateInfoNV::viewport_count`] greater or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV`
+///   dynamic states enabled then the `viewportCount` parameter in the last call to
+///   [`cmd_set_viewport_shading_rate_palette_nv`] **must**  be greater than or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled and a
+///   [`PipelineViewportSwizzleStateCreateInfoNV`] structure chained from
+///   `VkPipelineVieportCreateInfo`, then the bound graphics pipeline  **must**  have been created
+///   with [`PipelineViewportSwizzleStateCreateInfoNV::viewport_count`] greater or equal to the
+///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled and a
+///   [`PipelineViewportExclusiveScissorStateCreateInfoNV`] structure chained from
+///   `VkPipelineVieportCreateInfo`, then the bound graphics pipeline  **must**  have been created
+///   with [`PipelineViewportExclusiveScissorStateCreateInfoNV::exclusive_scissor_count`] greater or
+///   equal to the `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` dynamic state enabled then
+///   [`cmd_set_rasterizer_discard_enable`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE`
+///   dynamic state enabled then [`cmd_set_depth_bias_enable`] **must**  have been called in the
+///   current command buffer prior to this drawing command
+/// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_LOGIC_OP_EXT`
+///   dynamic state enabled then [`cmd_set_logic_op_ext`] **must**  have been called in the current
+///   command buffer prior to this drawing command and the `logicOp` **must**  be a valid
+///   [`LogicOp`] value
+/// - If the [`primitiveFragmentShadingRateWithMultipleViewports`]() limit is not supported, the
+///   bound graphics pipeline was created with the `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic
+///   state enabled, and any of the shader stages of the bound graphics pipeline write to the
+///   `PrimitiveShadingRateKHR` built-in, then [`cmd_set_viewport_with_count`] **must**  have been
+///   called in the current command buffer prior to this drawing command, and the `viewportCount`
+///   parameter of [`cmd_set_viewport_with_count`] **must**  be `1`
+/// - If rasterization is not disabled in the bound graphics pipeline, then for each color
+///   attachment in the subpass, if the corresponding image view’s [format features]() do not
+///   contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT`, then the `blendEnable` member of the
+///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
+///   [`FALSE`]
+/// - If rasterization is not disabled in the bound graphics pipeline, and neither the
+///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
+///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
+///   the same as the current subpass color and/or depth/stencil attachments
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
+///   **must**  not write any values to the depth attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
+///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
+///   **must**  not write any values to the stencil attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`, this
+///   command  **must**  not write any values to the depth attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
+///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, this
+///   command  **must**  not write any values to the stencil attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, this command  **must**  not
+///   write any values to the depth attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
+///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
+///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`, this command  **must**
+///   not write any values to the stencil attachment
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound graphics pipeline  **must**  have been created with a
+///   [`PipelineRenderingCreateInfo::view_mask`] equal to [`RenderingInfo::view_mask`]
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound graphics pipeline  **must**  have been created with a
+///   [`PipelineRenderingCreateInfo::color_attachment_count`] equal to
+///   [`RenderingInfo::color_attachment_count`]
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingInfo::color_attachment_count`] greater than `0`, then each element of the
+///   [`RenderingInfo::color_attachments`] array with a `imageView` not equal to
+///   [`crate::utils::Handle::null`] **must**  have been created with a [`Format`] equal to the
+///   corresponding element of [`PipelineRenderingCreateInfo::color_attachment_formats`] used to
+///   create the currently bound graphics pipeline
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT` dynamic state enabled then
+///   [`cmd_set_color_write_enable_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `attachmentCount` parameter of
+///   [`cmd_set_color_write_enable_ext`] **must**  be equal to the
+///   [`PipelineColorBlendStateCreateInfo::attachment_count`] of the currently bound graphics
+///   pipeline
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
+///   the value of [`PipelineRenderingCreateInfo::depth_attachment_format`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the [`Format`] used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
+///   [`crate::utils::Handle::null`], the value of
+///   [`PipelineRenderingCreateInfo::stencil_attachment_format`] used to create the currently bound
+///   graphics pipeline  **must**  be equal to the [`Format`] used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR::image_view`] was not
+///   [`crate::utils::Handle::null`], the currently bound graphics pipeline  **must**  have been
+///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT::image_view`] was not
+///   [`crate::utils::Handle::null`], the currently bound graphics pipeline  **must**  have been
+///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
+/// - If the currently bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun with
+///   [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter greater
+///   than `0`, then each element of the [`RenderingInfo::color_attachments`] array with a
+///   `imageView` not equal to [`crate::utils::Handle::null`] **must**  have been created with a
+///   sample count equal to the corresponding element of the `pColorAttachmentSamples` member of
+///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+///   currently bound graphics pipeline
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
+///   the value of the `depthStencilAttachmentSamples` member of [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] used to create the currently bound graphics pipeline  **must**
+///   be equal to the sample count used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
+///   [`crate::utils::Handle::null`], the value of the `depthStencilAttachmentSamples` member of
+///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+/// - If the currently bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun with
+///   [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter greater
+///   than `0`, then each element of the [`RenderingInfo::color_attachments`] array with a
+///   `imageView` not equal to [`crate::utils::Handle::null`] **must**  have been created with a
+///   sample count equal to the value of
+///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
+///   bound graphics pipeline
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
+///   the value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] structure, and
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
+///   [`crate::utils::Handle::null`], the value of
+///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
+///   bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+/// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+///   bound pipeline  **must**  have been created with a [`GraphicsPipelineCreateInfo::render_pass`]
+///   equal to [`crate::utils::Handle::null`]
+///
+/// - All vertex input bindings accessed via vertex input variables declared in the vertex shader
+///   entry point’s interface  **must**  have either valid or [`crate::utils::Handle::null`] buffers
+///   bound
+/// - If the [nullDescriptor]() feature is not enabled, all vertex input bindings accessed via
+///   vertex input variables declared in the vertex shader entry point’s interface  **must**  not be
+///   [`crate::utils::Handle::null`]
+/// - For a given vertex buffer binding, any attribute data fetched  **must**  be entirely contained
+///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
+///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
+///   to this drawing command, and the `primitiveTopology` parameter of
+///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+/// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
+///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
+///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer prior to
+///   this draw command
+/// - If the bound graphics pipeline was created with the
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
+///   **must**  have been called in the current command buffer prior to this draw command, and the
+///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+/// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
+///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
+///   current command buffer prior to this draw command
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT` dynamic state enabled then
+///   [`cmd_set_patch_control_points_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - If the bound graphics pipeline state was created with the
+///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
+///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
+///   prior to this drawing command
+/// - The bound graphics pipeline  **must**  not have been created with the
+///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
+///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
+///   `VK_SHADER_STAGE_MESH_BIT_NV`
+///
+/// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+/// - [`buffer`] **must**  have been created with the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
+/// - [`offset`] **must**  be a multiple of `4`
+/// - [`command_buffer`] **must**  not be a protected command buffer
+///
+/// - If [`count_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
+///   single [`DeviceMemory`] object
+/// - [`count_buffer`] **must**  have been created with the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT`
+///   bit set
+/// - [`count_buffer_offset`] **must**  be a multiple of `4`
+/// - The count stored in [`count_buffer`] **must**  be less than or equal to
+///   [`PhysicalDeviceLimits::max_draw_indirect_count`]
+/// - ([`count_buffer_offset`] +  `sizeof`(uint32_t)) **must**  be less than or equal to the size of
+///   [`count_buffer`]
+/// - If [drawIndirectCount]() is not enabled this function  **must**  not be used
+/// - [`stride`] **must**  be a multiple of `4` and  **must**  be greater than or equal to
+///   sizeof([`DrawIndexedIndirectCommand`])
+/// - If [`max_draw_count`] is greater than or equal to `1`, ([`stride`] × ([`max_draw_count`] - 1)
+///   +  [`offset`] +  sizeof([`DrawIndexedIndirectCommand`])) **must**  be less than or equal to
+///   the size of [`buffer`]
+/// - If count stored in [`count_buffer`] is equal to `1`, ([`offset`] +
+///   sizeof([`DrawIndexedIndirectCommand`])) **must**  be less than or equal to the size of
+///   [`buffer`]
+/// - If count stored in [`count_buffer`] is greater than `1`, ([`stride`] × (`drawCount` - 1) +
+///   [`offset`] +  sizeof([`DrawIndexedIndirectCommand`])) **must**  be less than or equal to the
+///   size of [`buffer`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`count_buffer`] **must**  be a valid [`Buffer`] handle
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - This command  **must**  only be called inside of a render pass instance
+/// - Each of [`buffer`], [`command_buffer`], and [`count_buffer`] **must**  have been created,
+///   allocated, or retrieved from the same [`Device`]
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_AMD_draw_indirect_count`]
+/// - [`VK_KHR_draw_indirect_count`]
+/// - [`crate::vulkan1_2`]
+/// - [`Buffer`]
+/// - [`CommandBuffer`]
+/// - [`DeviceSize`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdDrawIndexedIndirectCount")]
+pub type FNCmdDrawIndexedIndirectCount = Option<
+    unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        buffer: Buffer,
+        offset: DeviceSize,
+        count_buffer: Buffer,
+        count_buffer_offset: DeviceSize,
+        max_draw_count: u32,
+        stride: u32,
+    ),
+>;
 ///[VkSemaphoreType](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreType.html) - Sepcifies the type of a semaphore object
 ///# C Specifications
 ///Possible values of [`SemaphoreTypeCreateInfo::semaphore_type`],
@@ -83,12 +1845,12 @@ pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 ///    VK_SEMAPHORE_TYPE_TIMELINE_KHR = VK_SEMAPHORE_TYPE_TIMELINE,
 ///} VkSemaphoreType;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkSemaphoreType VkSemaphoreTypeKHR;
 ///```
-///# Description
+/// # Description
 /// - [`Binary`] specifies a *binary semaphore* type that has a boolean payload indicating whether
 ///   the semaphore is currently signaled or unsignaled. When created, the semaphore is in the
 ///   unsignaled state.
@@ -96,18 +1858,18 @@ pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 ///   unsigned integer payload indicating whether the semaphore is signaled with respect to a
 ///   particular reference value. When created, the semaphore payload has the value given by the
 ///   `initialValue` field of [`SemaphoreTypeCreateInfo`].
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreTypeCreateInfo`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreType")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -168,29 +1930,29 @@ impl SemaphoreType {
 ///    VK_SAMPLER_REDUCTION_MODE_MAX_EXT = VK_SAMPLER_REDUCTION_MODE_MAX,
 ///} VkSamplerReductionMode;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_sampler_filter_minmax
 ///typedef VkSamplerReductionMode VkSamplerReductionModeEXT;
 ///```
-///# Description
+/// # Description
 /// - [`WeightedAverage`] specifies that texel values are combined by computing a weighted average of values in the footprint, using weights as specified in [the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
 /// - [`Min`] specifies that texel values are combined by taking the component-wise minimum of
 ///   values in the footprint with non-zero weights.
 /// - [`Max`] specifies that texel values are combined by taking the component-wise maximum of
 ///   values in the footprint with non-zero weights.
-///# Related
+/// # Related
 /// - [`VK_EXT_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
 /// - [`SamplerReductionModeCreateInfo`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerReductionMode")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -289,24 +2051,24 @@ impl SamplerReductionMode {
 ///    VK_DRIVER_ID_BROADCOM_PROPRIETARY_KHR = VK_DRIVER_ID_BROADCOM_PROPRIETARY,
 ///} VkDriverId;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_driver_properties
 ///typedef VkDriverId VkDriverIdKHR;
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
 /// - [`PhysicalDeviceDriverProperties`]
 /// - [`PhysicalDeviceVulkan12Properties`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDriverId")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -403,31 +2165,31 @@ impl DriverId {
 ///    VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR = VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE,
 ///} VkShaderFloatControlsIndependence;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_shader_float_controls
 ///typedef VkShaderFloatControlsIndependence VkShaderFloatControlsIndependenceKHR;
 ///```
-///# Description
+/// # Description
 /// - [`32BitOnly`] specifies that shader float controls for 32-bit floating point  **can**  be set
 ///   independently; other bit widths  **must**  be set identically to each other.
 /// - [`All`] specifies that shader float controls for all bit widths  **can**  be set
 ///   independently.
 /// - [`None`] specifies that shader float controls for all bit widths  **must**  be set
 ///   identically.
-///# Related
+/// # Related
 /// - [`VK_KHR_shader_float_controls`]
 /// - [`crate::vulkan1_2`]
 /// - [`PhysicalDeviceFloatControlsProperties`]
 /// - [`PhysicalDeviceVulkan12Properties`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderFloatControlsIndependence")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -480,30 +2242,30 @@ impl ShaderFloatControlsIndependence {
 ///    VK_SEMAPHORE_WAIT_ANY_BIT_KHR = VK_SEMAPHORE_WAIT_ANY_BIT,
 ///} VkSemaphoreWaitFlagBits;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`SemaphoreWaitAny`] specifies that the semaphore wait condition is that at least one of the
 ///   semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the
 ///   corresponding element of [`SemaphoreWaitInfo::values`]. If [`SemaphoreWaitAny`] is not set,
 ///   the semaphore wait condition is that all of the semaphores in
 ///   [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding
 ///   element of [`SemaphoreWaitInfo::values`].
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreWaitFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreWaitFlagBits")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -572,19 +2334,19 @@ impl SemaphoreWaitFlagBits {
 /// VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT,
 ///} VkDescriptorBindingFlagBits;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkDescriptorBindingFlagBits VkDescriptorBindingFlagBitsEXT;
 ///```
-///# Description
+/// # Description
 /// - [`DescriptorBindingUpdateAfterBind`] indicates that if descriptors in this binding are updated
 ///   between when the descriptor set is bound in a command buffer and when that command buffer is
 ///   submitted to a queue, then the submission will use the most recently set descriptors for this
 ///   binding and the updates do not invalidate the command buffer. Descriptor bindings created with
 ///   this flag are also partially exempt from the external synchronization requirement in
-///   [`UpdateDescriptorSetWithTemplateKHR`] and [`UpdateDescriptorSets`]. Multiple descriptors with
-///   this flag set  **can**  be updated concurrently in different threads, though the same
+///   [`UpdateDescriptorSetWithTemplateKHR`] and [`update_descriptor_sets`]. Multiple descriptors
+///   with this flag set  **can**  be updated concurrently in different threads, though the same
 ///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
 ///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
 ///   thread, but not concurrently with the set being reset or freed.
@@ -600,18 +2362,18 @@ impl SemaphoreWaitFlagBits {
 ///   shader invocations. If [`DescriptorBindingPartiallyBound`] is not set, then descriptors
 ///   **can**  be updated as long as they are not statically used by any shader invocations.
 /// - [`DescriptorBindingVariableDescriptorCount`] indicates that     this is a *variable-sized descriptor binding* whose size will be     specified when a descriptor set is allocated using this layout.     The value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This  **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding with the largest value of `binding`).     For the purposes of counting against limits such as     `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is     counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.     In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding; thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits instead.
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`DescriptorBindingFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorBindingFlagBits")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -630,7 +2392,7 @@ pub enum DescriptorBindingFlagBits {
     ///Descriptor bindings created with this flag are also partially exempt
     ///from the external synchronization requirement in
     ///[`UpdateDescriptorSetWithTemplateKHR`] and
-    ///[`UpdateDescriptorSets`].
+    ///[`update_descriptor_sets`].
     ///Multiple descriptors with this flag set  **can**  be updated concurrently in
     ///different threads, though the same descriptor  **must**  not be updated
     ///concurrently by two threads.
@@ -722,12 +2484,12 @@ impl DescriptorBindingFlagBits {
 ///    VK_RESOLVE_MODE_MAX_BIT_KHR = VK_RESOLVE_MODE_MAX_BIT,
 ///} VkResolveModeFlagBits;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_depth_stencil_resolve
 ///typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`ResolveModeNone`] indicates that no resolve operation is done.
 /// - [`ResolveModeSampleZero`] indicates that result of the resolve operation is equal to the value
 ///   of sample 0.
@@ -737,20 +2499,20 @@ impl DescriptorBindingFlagBits {
 ///   values.
 /// - [`ResolveModeMax`] indicates that result of the resolve operation is the maximum of the sample
 ///   values.
-///# Related
+/// # Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`RenderingAttachmentInfo`]
 /// - [`ResolveModeFlags`]
 /// - [`SubpassDescriptionDepthStencilResolve`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkResolveModeFlagBits")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -807,30 +2569,30 @@ impl ResolveModeFlagBits {
 ///    VK_SEMAPHORE_WAIT_ANY_BIT_KHR = VK_SEMAPHORE_WAIT_ANY_BIT,
 ///} VkSemaphoreWaitFlagBits;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`SemaphoreWaitAny`] specifies that the semaphore wait condition is that at least one of the
 ///   semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the
 ///   corresponding element of [`SemaphoreWaitInfo::values`]. If [`SemaphoreWaitAny`] is not set,
 ///   the semaphore wait condition is that all of the semaphores in
 ///   [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding
 ///   element of [`SemaphoreWaitInfo::values`].
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreWaitFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreWaitFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1113,19 +2875,19 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 /// VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT,
 ///} VkDescriptorBindingFlagBits;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkDescriptorBindingFlagBits VkDescriptorBindingFlagBitsEXT;
 ///```
-///# Description
+/// # Description
 /// - [`DescriptorBindingUpdateAfterBind`] indicates that if descriptors in this binding are updated
 ///   between when the descriptor set is bound in a command buffer and when that command buffer is
 ///   submitted to a queue, then the submission will use the most recently set descriptors for this
 ///   binding and the updates do not invalidate the command buffer. Descriptor bindings created with
 ///   this flag are also partially exempt from the external synchronization requirement in
-///   [`UpdateDescriptorSetWithTemplateKHR`] and [`UpdateDescriptorSets`]. Multiple descriptors with
-///   this flag set  **can**  be updated concurrently in different threads, though the same
+///   [`UpdateDescriptorSetWithTemplateKHR`] and [`update_descriptor_sets`]. Multiple descriptors
+///   with this flag set  **can**  be updated concurrently in different threads, though the same
 ///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
 ///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
 ///   thread, but not concurrently with the set being reset or freed.
@@ -1141,18 +2903,18 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 ///   shader invocations. If [`DescriptorBindingPartiallyBound`] is not set, then descriptors
 ///   **can**  be updated as long as they are not statically used by any shader invocations.
 /// - [`DescriptorBindingVariableDescriptorCount`] indicates that     this is a *variable-sized descriptor binding* whose size will be     specified when a descriptor set is allocated using this layout.     The value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This  **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding with the largest value of `binding`).     For the purposes of counting against limits such as     `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is     counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.     In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding; thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits instead.
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`DescriptorBindingFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorBindingFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1179,7 +2941,7 @@ impl DescriptorBindingFlags {
     ///Descriptor bindings created with this flag are also partially exempt
     ///from the external synchronization requirement in
     ///[`UpdateDescriptorSetWithTemplateKHR`] and
-    ///[`UpdateDescriptorSets`].
+    ///[`update_descriptor_sets`].
     ///Multiple descriptors with this flag set  **can**  be updated concurrently in
     ///different threads, though the same descriptor  **must**  not be updated
     ///concurrently by two threads.
@@ -1519,12 +3281,12 @@ impl std::fmt::Debug for DescriptorBindingFlags {
 ///    VK_RESOLVE_MODE_MAX_BIT_KHR = VK_RESOLVE_MODE_MAX_BIT,
 ///} VkResolveModeFlagBits;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_depth_stencil_resolve
 ///typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`ResolveModeNone`] indicates that no resolve operation is done.
 /// - [`ResolveModeSampleZero`] indicates that result of the resolve operation is equal to the value
 ///   of sample 0.
@@ -1534,20 +3296,20 @@ impl std::fmt::Debug for DescriptorBindingFlags {
 ///   values.
 /// - [`ResolveModeMax`] indicates that result of the resolve operation is the maximum of the sample
 ///   values.
-///# Related
+/// # Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`RenderingAttachmentInfo`]
 /// - [`ResolveModeFlags`]
 /// - [`SubpassDescriptionDepthStencilResolve`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkResolveModeFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1861,29 +3623,29 @@ impl std::fmt::Debug for ResolveModeFlags {
 ///    uint8_t    patch;
 ///} VkConformanceVersion;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_driver_properties
 ///typedef VkConformanceVersion VkConformanceVersionKHR;
 ///```
-///# Members
+/// # Members
 /// - [`major`] is the major version number of the conformance test suite.
 /// - [`minor`] is the minor version number of the conformance test suite.
 /// - [`subminor`] is the subminor version number of the conformance test suite.
 /// - [`patch`] is the patch version number of the conformance test suite.
-///# Related
+/// # Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
 /// - [`PhysicalDeviceDriverProperties`]
 /// - [`PhysicalDeviceVulkan12Properties`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConformanceVersion")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1978,15 +3740,15 @@ impl ConformanceVersion {
 ///    VkConformanceVersion    conformanceVersion;
 ///} VkPhysicalDeviceDriverProperties;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_driver_properties
 ///typedef VkPhysicalDeviceDriverProperties VkPhysicalDeviceDriverPropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`driver_id`] is a unique identifier for the driver of the physical device.
 /// - [`driver_name`] is an array of [`MAX_DRIVER_NAME_SIZE`]`char` containing a null-terminated
 ///   UTF-8 string which is the name of the driver.
@@ -1994,28 +3756,28 @@ impl ConformanceVersion {
 ///   UTF-8 string with additional information about the driver.
 /// - [`conformance_version`] is the version of the Vulkan conformance test this driver is
 ///   conformant against (see [`ConformanceVersion`]).
-///If the [`PhysicalDeviceDriverProperties`] structure is included in the [`p_next`] chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.These are properties of the driver corresponding
+/// If the [`PhysicalDeviceDriverProperties`] structure is included in the [`p_next`] chain of the
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.These are properties of the driver corresponding
 /// to a physical device.[`driver_id`] **must**  be immutable for a given driver across instances,
-///processes, driver versions, and system reboots.
-///## Valid Usage (Implicit)
+/// processes, driver versions, and system reboots.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES`
-///# Related
+/// # Related
 /// - [`VK_KHR_driver_properties`]
 /// - [`crate::vulkan1_2`]
 /// - [`ConformanceVersion`]
 /// - [`DriverId`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDriverProperties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2163,15 +3925,15 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
 ///    VkBool32           shaderSubgroupExtendedTypes;
 ///} VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_shader_subgroup_extended_types
 ///typedef VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures
 /// VkPhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -2180,30 +3942,30 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
 ///   in [group operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-group-operations)
 ///   with [subgroup scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-subgroup),
 ///   if the implementation supports the types.
-///If the [`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`] structure is included in the
+/// If the [`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`] **can**  also be used in the [`p_next`]
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_shader_subgroup_extended_types`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2326,31 +4088,31 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 ///    VkBool32           filterMinmaxImageComponentMapping;
 ///} VkPhysicalDeviceSamplerFilterMinmaxProperties;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_sampler_filter_minmax
 ///typedef VkPhysicalDeviceSamplerFilterMinmaxProperties
 /// VkPhysicalDeviceSamplerFilterMinmaxPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`filter_minmax_single_component_formats`] is a boolean value indicating whether a minimum set
 ///   of required formats support min/max filtering.
 /// - [`filter_minmax_image_component_mapping`] is a boolean value indicating whether the
 ///   implementation supports non-identity component mapping of the image when doing min/max
 ///   filtering.
-///If the [`PhysicalDeviceSamplerFilterMinmaxProperties`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceSamplerFilterMinmaxProperties`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.If [`filter_minmax_single_component_formats`] is
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.If [`filter_minmax_single_component_formats`] is
 /// [`TRUE`], the following
-///formats  **must**  support the
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT` feature with
-///`VK_IMAGE_TILING_OPTIMAL`, if they support
-///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`:
+/// formats  **must**  support the
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT` feature with
+/// `VK_IMAGE_TILING_OPTIMAL`, if they support
+/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`:
 /// - `VK_FORMAT_R8_UNORM`
 /// - `VK_FORMAT_R8_SNORM`
 /// - `VK_FORMAT_R16_UNORM`
@@ -2363,33 +4125,33 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 /// - `VK_FORMAT_D16_UNORM_S8_UINT`
 /// - `VK_FORMAT_D24_UNORM_S8_UINT`
 /// - `VK_FORMAT_D32_SFLOAT_S8_UINT`
-///If the format is a depth/stencil format, this bit only specifies that the
-///depth aspect (not the stencil aspect) of an image of this format supports
-///min/max filtering, and that min/max filtering of the depth aspect is
-///supported when depth compare is disabled in the sampler.If
+/// If the format is a depth/stencil format, this bit only specifies that the
+/// depth aspect (not the stencil aspect) of an image of this format supports
+/// min/max filtering, and that min/max filtering of the depth aspect is
+/// supported when depth compare is disabled in the sampler.If
 /// [`filter_minmax_image_component_mapping`] is [`FALSE`] the component
-///mapping of the image view used with min/max filtering  **must**  have been
-///created with the `r` component set to the
-///[identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).
-///Only the `r` component of the sampled image value is defined and the
-///other component values are undefined.
-///If [`filter_minmax_image_component_mapping`] is [`TRUE`] this restriction
-///does not apply and image component mapping works as normal.
-///## Valid Usage (Implicit)
+/// mapping of the image view used with min/max filtering  **must**  have been
+/// created with the `r` component set to the
+/// [identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).
+/// Only the `r` component of the sampled image value is defined and the
+/// other component values are undefined.
+/// If [`filter_minmax_image_component_mapping`] is [`TRUE`] this restriction
+/// does not apply and image component mapping works as normal.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES`
-///# Related
+/// # Related
 /// - [`VK_EXT_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSamplerFilterMinmaxProperties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2544,38 +4306,38 @@ impl<'lt> PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
 ///    VkSamplerReductionMode    reductionMode;
 ///} VkSamplerReductionModeCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_sampler_filter_minmax
 ///typedef VkSamplerReductionModeCreateInfo VkSamplerReductionModeCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`reduction_mode`] is a [`SamplerReductionMode`] value controlling how texture filtering
 ///   combines texel values.
-///# Description
-///If the [`p_next`] chain of [`SamplerCreateInfo`] includes a
-///[`SamplerReductionModeCreateInfo`] structure, then that structure
-///includes a mode controlling how texture filtering combines texel values.If this structure is not
+/// # Description
+/// If the [`p_next`] chain of [`SamplerCreateInfo`] includes a
+/// [`SamplerReductionModeCreateInfo`] structure, then that structure
+/// includes a mode controlling how texture filtering combines texel values.If this structure is not
 /// present, [`reduction_mode`] is considered to be
-///`VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE`.
-///## Valid Usage (Implicit)
+/// `VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE`.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO`
 /// - [`reduction_mode`] **must**  be a valid [`SamplerReductionMode`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
 /// - [`SamplerReductionMode`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerReductionModeCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2666,38 +4428,38 @@ impl<'lt> SamplerReductionModeCreateInfo<'lt> {
 ///    const VkFormat*    pViewFormats;
 ///} VkImageFormatListCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_image_format_list
 ///typedef VkImageFormatListCreateInfo VkImageFormatListCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`view_format_count`] is the number of entries in the [`view_formats`] array.
 /// - [`view_formats`] is a pointer to an array of [`Format`] values specifying all formats which
 ///   **can**  be used when creating views of this image.
-///# Description
-///If [`view_format_count`] is zero, [`view_formats`] is ignored and the
-///image is created as if the [`ImageFormatListCreateInfo`] structure were
-///not included in the [`p_next`] chain of [`ImageCreateInfo`].
-///## Valid Usage (Implicit)
+/// # Description
+/// If [`view_format_count`] is zero, [`view_formats`] is ignored and the
+/// image is created as if the [`ImageFormatListCreateInfo`] structure were
+/// not included in the [`p_next`] chain of [`ImageCreateInfo`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO`
 /// - If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array
 ///   of [`view_format_count`] valid [`Format`] values
-///# Related
+/// # Related
 /// - [`VK_KHR_image_format_list`]
 /// - [`crate::vulkan1_2`]
 /// - [`Format`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageFormatListCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2814,19 +4576,18 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
 ///    VkBool32           shaderInt8;
 ///} VkPhysicalDeviceShaderFloat16Int8Features;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_shader_float16_int8
 ///typedef VkPhysicalDeviceShaderFloat16Int8Features VkPhysicalDeviceShaderFloat16Int8FeaturesKHR;
 ///```
-///
-///```c
+/// ```c
 ///// Provided by VK_KHR_shader_float16_int8
 ///typedef VkPhysicalDeviceShaderFloat16Int8Features VkPhysicalDeviceFloat16Int8FeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -2844,28 +4605,28 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
 ///   (for non-Block variables), and `Function` storage classes is enabled, while declaring them in
 ///   the interface storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`,
 ///   `Output`, and `PushConstant`) is not enabled.
-///If the [`PhysicalDeviceShaderFloat16Int8Features`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceShaderFloat16Int8Features`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceShaderFloat16Int8Features`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceShaderFloat16Int8Features`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_shader_float16_int8`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderFloat16Int8Features")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3059,21 +4820,21 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///    VkBool32                             shaderRoundingModeRTZFloat64;
 ///} VkPhysicalDeviceFloatControlsProperties;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_shader_float_controls
 ///typedef VkPhysicalDeviceFloatControlsProperties VkPhysicalDeviceFloatControlsPropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`denorm_behavior_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, denorm behavior can be set independently for different bit widths.
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
@@ -3081,13 +4842,13 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
@@ -3135,27 +4896,27 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   supports the round-towards-zero rounding mode for 64-bit floating-point arithmetic and
 ///   conversion instructions. It also indicates whether the `RoundingModeRTZ` execution mode
 ///   **can**  be used for 64-bit floating-point types.
-///If the [`PhysicalDeviceFloatControlsProperties`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceFloatControlsProperties`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES`
-///# Related
+/// # Related
 /// - [`VK_KHR_shader_float_controls`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`ShaderFloatControlsIndependence`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFloatControlsProperties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3858,41 +5619,41 @@ impl<'lt> PhysicalDeviceFloatControlsProperties<'lt> {
 ///    VkBool32           hostQueryReset;
 ///} VkPhysicalDeviceHostQueryResetFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_host_query_reset
 ///typedef VkPhysicalDeviceHostQueryResetFeatures VkPhysicalDeviceHostQueryResetFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`host_query_reset`] indicates that the implementation supports resetting queries from the
-///   host with [`ResetQueryPool`].
-///If the [`PhysicalDeviceHostQueryResetFeatures`] structure is included in the [`p_next`] chain of
+///   host with [`reset_query_pool`].
+/// If the [`PhysicalDeviceHostQueryResetFeatures`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceHostQueryResetFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceHostQueryResetFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_EXT_host_query_reset`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceHostQueryResetFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3907,7 +5668,7 @@ pub struct PhysicalDeviceHostQueryResetFeatures<'lt> {
     pub p_next: *mut BaseOutStructure<'lt>,
     ///[`host_query_reset`]
     ///indicates that the implementation supports resetting queries from the
-    ///host with [`ResetQueryPool`].
+    ///host with [`reset_query_pool`].
     pub host_query_reset: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceHostQueryResetFeatures<'lt> {
@@ -4030,15 +5791,15 @@ impl<'lt> PhysicalDeviceHostQueryResetFeatures<'lt> {
 ///    VkBool32           runtimeDescriptorArray;
 ///} VkPhysicalDeviceDescriptorIndexingFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkPhysicalDeviceDescriptorIndexingFeatures
 /// VkPhysicalDeviceDescriptorIndexingFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -4142,28 +5903,28 @@ impl<'lt> PhysicalDeviceHostQueryResetFeatures<'lt> {
 /// - [`runtime_descriptor_array`] indicates whether the implementation supports the SPIR-V
 ///   `RuntimeDescriptorArray` capability. If this feature is not enabled, descriptors  **must**
 ///   not be declared in runtime arrays.
-///If the [`PhysicalDeviceDescriptorIndexingFeatures`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceDescriptorIndexingFeatures`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceDescriptorIndexingFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceDescriptorIndexingFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorIndexingFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5193,16 +6954,16 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 ///    uint32_t           maxDescriptorSetUpdateAfterBindInputAttachments;
 ///} VkPhysicalDeviceDescriptorIndexingProperties;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkPhysicalDeviceDescriptorIndexingProperties
 /// VkPhysicalDeviceDescriptorIndexingPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`max_update_after_bind_descriptors_in_all_pools`] is the maximum number of descriptors
 ///   (summed over all descriptor types) that  **can**  be created across all pools that are created
 ///   with the `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT` bit set. Pool creation  **may**
@@ -5292,26 +7053,26 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 /// - [`max_descriptor_set_update_after_bind_input_attachments`] is similar to
 ///   `maxDescriptorSetInputAttachments` but counts descriptors from descriptor sets created with or
 ///   without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT` bit set.
-///If the [`PhysicalDeviceDescriptorIndexingProperties`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceDescriptorIndexingProperties`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES`
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorIndexingProperties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -5943,26 +7704,26 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 ///    const VkDescriptorBindingFlags*    pBindingFlags;
 ///} VkDescriptorSetLayoutBindingFlagsCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkDescriptorSetLayoutBindingFlagsCreateInfo
 /// VkDescriptorSetLayoutBindingFlagsCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`binding_count`] is zero or the number of elements in [`binding_flags`].
 /// - [`binding_flags`] is a pointer to an array of [`DescriptorBindingFlags`] bitfields, one for
 ///   each descriptor set layout binding.
-///# Description
-///If [`binding_count`] is zero or if this structure is not included in the
-///[`p_next`] chain, the [`DescriptorBindingFlags`] for each descriptor
-///set layout binding is considered to be zero.
-///Otherwise, the descriptor set layout binding at
-///[`DescriptorSetLayoutCreateInfo::bindings`][i] uses the flags in
-///[`binding_flags`][i].
-///## Valid Usage
+/// # Description
+/// If [`binding_count`] is zero or if this structure is not included in the
+/// [`p_next`] chain, the [`DescriptorBindingFlags`] for each descriptor
+/// set layout binding is considered to be zero.
+/// Otherwise, the descriptor set layout binding at
+/// [`DescriptorSetLayoutCreateInfo::bindings`][i] uses the flags in
+/// [`binding_flags`][i].
+/// ## Valid Usage
 /// - If [`binding_count`] is not zero, [`binding_count`] **must**  equal
 ///   [`DescriptorSetLayoutCreateInfo`]::[`binding_count`]
 /// - If [`DescriptorSetLayoutCreateInfo::flags`] includes
@@ -6025,23 +7786,23 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 ///   **must**  not be `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC` or
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO`
 /// - If [`binding_count`] is not `0`, [`binding_flags`] **must**  be a valid pointer to an array of
 ///   [`binding_count`] valid combinations of [`DescriptorBindingFlagBits`] values
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`DescriptorBindingFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutBindingFlagsCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6163,56 +7924,56 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
 ///    const uint32_t*    pDescriptorCounts;
 ///} VkDescriptorSetVariableDescriptorCountAllocateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkDescriptorSetVariableDescriptorCountAllocateInfo
 /// VkDescriptorSetVariableDescriptorCountAllocateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`descriptor_set_count`] is zero or the number of elements in [`descriptor_counts`].
 /// - [`descriptor_counts`] is a pointer to an array of descriptor counts, with each member
 ///   specifying the number of descriptors in a variable-sized descriptor binding in the
 ///   corresponding descriptor set being allocated.
-///# Description
-///If [`descriptor_set_count`] is zero or this structure is not included in the
-///[`p_next`] chain, then the variable lengths are considered to be zero.
-///Otherwise, [`descriptor_counts`][i] is the number of descriptors in the
-///variable-sized descriptor binding in the corresponding descriptor set
-///layout.
-///If the variable-sized descriptor binding in the corresponding descriptor set
-///layout has a descriptor type of
-///`VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then
-///[`descriptor_counts`][i] specifies the binding’s capacity in bytes.
-///If [`DescriptorSetAllocateInfo::set_layouts`][i] does not include
-///a variable-sized descriptor binding, then [`descriptor_counts`][i] is
-///ignored.
-///## Valid Usage
+/// # Description
+/// If [`descriptor_set_count`] is zero or this structure is not included in the
+/// [`p_next`] chain, then the variable lengths are considered to be zero.
+/// Otherwise, [`descriptor_counts`][i] is the number of descriptors in the
+/// variable-sized descriptor binding in the corresponding descriptor set
+/// layout.
+/// If the variable-sized descriptor binding in the corresponding descriptor set
+/// layout has a descriptor type of
+/// `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then
+/// [`descriptor_counts`][i] specifies the binding’s capacity in bytes.
+/// If [`DescriptorSetAllocateInfo::set_layouts`][i] does not include
+/// a variable-sized descriptor binding, then [`descriptor_counts`][i] is
+/// ignored.
+/// ## Valid Usage
 /// - If [`descriptor_set_count`] is not zero, [`descriptor_set_count`] **must**  equal
 ///   [`DescriptorSetAllocateInfo`]::[`descriptor_set_count`]
 /// - If [`DescriptorSetAllocateInfo::set_layouts`][i] has a variable-sized descriptor binding, then
 ///   [`descriptor_counts`][i]  **must**  be less than or equal to the descriptor count specified
 ///   for that binding when the descriptor set layout was created
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO`
 /// - If [`descriptor_set_count`] is not `0`, [`descriptor_counts`] **must**  be a valid pointer to
 ///   an array of [`descriptor_set_count`]`uint32_t` values
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetVariableDescriptorCountAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6332,13 +8093,13 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 ///    uint32_t           maxVariableDescriptorCount;
 ///} VkDescriptorSetVariableDescriptorCountLayoutSupport;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_descriptor_indexing
 ///typedef VkDescriptorSetVariableDescriptorCountLayoutSupport
 /// VkDescriptorSetVariableDescriptorCountLayoutSupportEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_variable_descriptor_count`] indicates the maximum number of descriptors supported in the
@@ -6346,40 +8107,40 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 ///   numbered binding of the layout has a descriptor type of
 ///   `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then [`max_variable_descriptor_count`] indicates the
 ///   maximum byte size supported for the binding, if that binding is variable-sized.
-///# Description
-///If the [`DescriptorSetLayoutCreateInfo`] structure specified in
-///[`GetDescriptorSetLayoutSupport`]`::pCreateInfo` includes a
-///variable-sized descriptor, then `supported` is determined assuming the
-///requested size of the variable-sized descriptor, and
-///[`max_variable_descriptor_count`] is set to the maximum size of that
-///descriptor that  **can**  be successfully created (which is greater than or equal
-///to the requested size passed in).
-///If the [`DescriptorSetLayoutCreateInfo`] structure does not include a
-///variable-sized descriptor, or if the
-///[`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_variable_descriptor_count`]
-///feature is not enabled, then [`max_variable_descriptor_count`] is set to
-///zero.
-///For the purposes of this command, a variable-sized descriptor binding with a
-///`descriptorCount` of zero is treated as if the `descriptorCount` is
-///one, and thus the binding is not ignored and the maximum descriptor count
-///will be returned.
-///If the layout is not supported, then the value written to
-///[`max_variable_descriptor_count`] is undefined.
-///## Valid Usage (Implicit)
+/// # Description
+/// If the [`DescriptorSetLayoutCreateInfo`] structure specified in
+/// [`get_descriptor_set_layout_support`]`::pCreateInfo` includes a
+/// variable-sized descriptor, then `supported` is determined assuming the
+/// requested size of the variable-sized descriptor, and
+/// [`max_variable_descriptor_count`] is set to the maximum size of that
+/// descriptor that  **can**  be successfully created (which is greater than or equal
+/// to the requested size passed in).
+/// If the [`DescriptorSetLayoutCreateInfo`] structure does not include a
+/// variable-sized descriptor, or if the
+/// [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_variable_descriptor_count`]
+/// feature is not enabled, then [`max_variable_descriptor_count`] is set to
+/// zero.
+/// For the purposes of this command, a variable-sized descriptor binding with a
+/// `descriptorCount` of zero is treated as if the `descriptorCount` is
+/// one, and thus the binding is not ignored and the maximum descriptor count
+/// will be returned.
+/// If the layout is not supported, then the value written to
+/// [`max_variable_descriptor_count`] is undefined.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT`
-///# Related
+/// # Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetVariableDescriptorCountLayoutSupport")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6486,12 +8247,12 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 ///    VkImageLayout                   finalLayout;
 ///} VkAttachmentDescription2;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkAttachmentDescription2 VkAttachmentDescription2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`AttachmentDescriptionFlagBits`] specifying additional properties
@@ -6513,28 +8274,28 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 ///   pass instance begins.
 /// - [`final_layout`] is the layout the attachment image subresource will be transitioned to when a
 ///   render pass instance ends.
-///# Description
-///Parameters defined by this structure with the same name as those in
-///[`AttachmentDescription`] have the identical effect to those parameters.If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, and [`format`] is
-///a depth/stencil format, [`initial_layout`] and [`final_layout`] **can**  be
-///set to a layout that only specifies the layout of the depth aspect.If the [`p_next`] chain
+/// # Description
+/// Parameters defined by this structure with the same name as those in
+/// [`AttachmentDescription`] have the identical effect to those parameters.If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, and [`format`] is
+/// a depth/stencil format, [`initial_layout`] and [`final_layout`] **can**  be
+/// set to a layout that only specifies the layout of the depth aspect.If the [`p_next`] chain
 /// includes a
-///[`AttachmentDescriptionStencilLayout`] structure, then the
-///`stencilInitialLayout` and `stencilFinalLayout` members specify the
-///initial and final layouts of the stencil aspect of a depth/stencil format,
-///and [`initial_layout`] and [`final_layout`] only apply to the depth
-///aspect.
-///For depth-only formats, the [`AttachmentDescriptionStencilLayout`]
-///structure is ignored.
-///For stencil-only formats, the initial and final layouts of the stencil
-///aspect are taken from the [`AttachmentDescriptionStencilLayout`]
-///structure if present, or [`initial_layout`] and [`final_layout`] if not
-///present.If [`format`] is a depth/stencil format, and either [`initial_layout`] or
-///[`final_layout`] does not specify a layout for the stencil aspect, then the
-///application  **must**  specify the initial and final layouts of the stencil
-///aspect by including a [`AttachmentDescriptionStencilLayout`] structure
-///in the [`p_next`] chain.
-///## Valid Usage
+/// [`AttachmentDescriptionStencilLayout`] structure, then the
+/// `stencilInitialLayout` and `stencilFinalLayout` members specify the
+/// initial and final layouts of the stencil aspect of a depth/stencil format,
+/// and [`initial_layout`] and [`final_layout`] only apply to the depth
+/// aspect.
+/// For depth-only formats, the [`AttachmentDescriptionStencilLayout`]
+/// structure is ignored.
+/// For stencil-only formats, the initial and final layouts of the stencil
+/// aspect are taken from the [`AttachmentDescriptionStencilLayout`]
+/// structure if present, or [`initial_layout`] and [`final_layout`] if not
+/// present.If [`format`] is a depth/stencil format, and either [`initial_layout`] or
+/// [`final_layout`] does not specify a layout for the stencil aspect, then the
+/// application  **must**  specify the initial and final layouts of the stencil
+/// aspect by including a [`AttachmentDescriptionStencilLayout`] structure
+/// in the [`p_next`] chain.
+/// ## Valid Usage
 /// - [`final_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED` or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
 /// - If [`format`] is a color format, [`initial_layout`] **must**  not be
@@ -6596,7 +8357,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 ///   [`final_layout`] **must**  not be `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`AttachmentDescriptionStencilLayout`]
@@ -6610,7 +8371,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 /// - [`stencil_store_op`] **must**  be a valid [`AttachmentStoreOp`] value
 /// - [`initial_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`final_layout`] **must**  be a valid [`ImageLayout`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentDescriptionFlags`]
@@ -6622,13 +8383,13 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentDescription2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -6857,12 +8618,12 @@ impl<'lt> AttachmentDescription2<'lt> {
 ///    VkImageAspectFlags    aspectMask;
 ///} VkAttachmentReference2;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkAttachmentReference2 VkAttachmentReference2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attachment`] is either an integer value identifying an attachment at the corresponding index
@@ -6872,19 +8633,19 @@ impl<'lt> AttachmentDescription2<'lt> {
 ///   subpass.
 /// - [`aspect_mask`] is a mask of which aspect(s)  **can**  be accessed within the specified
 ///   subpass as an input attachment.
-///# Description
-///Parameters defined by this structure with the same name as those in
-///[`AttachmentReference`] have the identical effect to those parameters.[`aspect_mask`] is ignored
+/// # Description
+/// Parameters defined by this structure with the same name as those in
+/// [`AttachmentReference`] have the identical effect to those parameters.[`aspect_mask`] is ignored
 /// when this structure is used to describe anything
-///other than an input attachment reference.If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, and [`attachment`]
-///has a depth/stencil format, [`layout`] **can**  be set to a layout that only
-///specifies the layout of the depth aspect.If [`layout`] only specifies the layout of the depth
+/// other than an input attachment reference.If the [`separateDepthStencilLayouts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, and [`attachment`]
+/// has a depth/stencil format, [`layout`] **can**  be set to a layout that only
+/// specifies the layout of the depth aspect.If [`layout`] only specifies the layout of the depth
 /// aspect of the
-///attachment, the layout of the stencil aspect is specified by the
-///`stencilLayout` member of a [`AttachmentReferenceStencilLayout`]
-///structure included in the [`p_next`] chain.
-///Otherwise, [`layout`] describes the layout for all relevant image aspects.
-///## Valid Usage
+/// attachment, the layout of the stencil aspect is specified by the
+/// `stencilLayout` member of a [`AttachmentReferenceStencilLayout`]
+/// structure included in the [`p_next`] chain.
+/// Otherwise, [`layout`] describes the layout for all relevant image aspects.
+/// ## Valid Usage
 /// - If [`attachment`] is not [`ATTACHMENT_UNUSED`], [`layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_UNDEFINED`, `VK_IMAGE_LAYOUT_PREINITIALIZED`, or
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
@@ -6907,13 +8668,13 @@ impl<'lt> AttachmentDescription2<'lt> {
 ///   a depth/stencil format which includes only the stencil aspect, [`layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL` or `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`AttachmentReferenceStencilLayout`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`layout`] **must**  be a valid [`ImageLayout`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`FragmentShadingRateAttachmentInfoKHR`]
@@ -6923,13 +8684,13 @@ impl<'lt> AttachmentDescription2<'lt> {
 /// - [`SubpassDescription2`]
 /// - [`SubpassDescriptionDepthStencilResolve`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentReference2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -7062,12 +8823,12 @@ impl<'lt> AttachmentReference2<'lt> {
 ///    const uint32_t*                  pPreserveAttachments;
 ///} VkSubpassDescription2;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkSubpassDescription2 VkSubpassDescription2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`SubpassDescriptionFlagBits`] specifying usage of the subpass.
@@ -7091,17 +8852,17 @@ impl<'lt> AttachmentReference2<'lt> {
 /// - [`preserve_attachments`] is a pointer to an array of [`preserve_attachment_count`] render pass
 ///   attachment indices identifying attachments that are not used by this subpass, but whose
 ///   contents  **must**  be preserved throughout the subpass.
-///# Description
-///Parameters defined by this structure with the same name as those in
-///[`SubpassDescription`] have the identical effect to those parameters.[`view_mask`] has the same
+/// # Description
+/// Parameters defined by this structure with the same name as those in
+/// [`SubpassDescription`] have the identical effect to those parameters.[`view_mask`] has the same
 /// effect for the described subpass as
-///[`RenderPassMultiviewCreateInfo::view_masks`] has on each
-///corresponding subpass.If a [`FragmentShadingRateAttachmentInfoKHR`] structure is included in
-///the [`p_next`] chain, `pFragmentShadingRateAttachment` is not `NULL`,
-///and its `attachment` member is not [`ATTACHMENT_UNUSED`], the
-///identified attachment defines a fragment shading rate attachment for that
-///subpass.
-///## Valid Usage
+/// [`RenderPassMultiviewCreateInfo::view_masks`] has on each
+/// corresponding subpass.If a [`FragmentShadingRateAttachmentInfoKHR`] structure is included in
+/// the [`p_next`] chain, `pFragmentShadingRateAttachment` is not `NULL`,
+/// and its `attachment` member is not [`ATTACHMENT_UNUSED`], the
+/// identified attachment defines a fragment shading rate attachment for that
+/// subpass.
+/// ## Valid Usage
 /// - [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS` or
 ///   `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`
 /// - [`color_attachment_count`] **must**  be less than or equal to
@@ -7162,7 +8923,7 @@ impl<'lt> AttachmentReference2<'lt> {
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
 ///   feature is not enabled, [`view_mask`] **must**  be `0`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`FragmentShadingRateAttachmentInfoKHR`]
@@ -7181,7 +8942,7 @@ impl<'lt> AttachmentReference2<'lt> {
 ///   valid pointer to a valid [`AttachmentReference2`] structure
 /// - If [`preserve_attachment_count`] is not `0`, [`preserve_attachments`] **must**  be a valid
 ///   pointer to an array of [`preserve_attachment_count`]`uint32_t` values
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentReference2`]
@@ -7190,13 +8951,13 @@ impl<'lt> AttachmentReference2<'lt> {
 /// - [`StructureType`]
 /// - [`SubpassDescriptionFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassDescription2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -7518,12 +9279,12 @@ impl<'lt> SubpassDescription2<'lt> {
 ///    int32_t                 viewOffset;
 ///} VkSubpassDependency2;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkSubpassDependency2 VkSubpassDependency2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_subpass`] is the subpass index of the first subpass in the dependency, or
@@ -7538,17 +9299,17 @@ impl<'lt> SubpassDescription2<'lt> {
 /// - [`dependency_flags`] is a bitmask of [`DependencyFlagBits`].
 /// - [`view_offset`] controls which views in the source subpass the views in the destination
 ///   subpass depend on.
-///# Description
-///Parameters defined by this structure with the same name as those in
-///[`SubpassDependency`] have the identical effect to those parameters.[`view_offset`] has the same
+/// # Description
+/// Parameters defined by this structure with the same name as those in
+/// [`SubpassDependency`] have the identical effect to those parameters.[`view_offset`] has the same
 /// effect for the described subpass dependency as
-///[`RenderPassMultiviewCreateInfo::view_offsets`] has on each
-///corresponding subpass dependency.If a [`MemoryBarrier2`] is included in the [`p_next`] chain,
-///[`src_stage_mask`], [`dst_stage_mask`], [`src_access_mask`], and
-///[`dst_access_mask`] parameters are ignored.
-///The synchronization and access scopes instead are defined by the parameters
-///of [`MemoryBarrier2`].
-///## Valid Usage
+/// [`RenderPassMultiviewCreateInfo::view_offsets`] has on each
+/// corresponding subpass dependency.If a [`MemoryBarrier2`] is included in the [`p_next`] chain,
+/// [`src_stage_mask`], [`dst_stage_mask`], [`src_access_mask`], and
+/// [`dst_access_mask`] parameters are ignored.
+/// The synchronization and access scopes instead are defined by the parameters
+/// of [`MemoryBarrier2`].
+/// ## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT`
@@ -7625,7 +9386,7 @@ impl<'lt> SubpassDescription2<'lt> {
 /// - If [`dependency_flags`] does not include `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`view_offset`]
 ///   **must**  be `0`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`MemoryBarrier2`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
@@ -7634,7 +9395,7 @@ impl<'lt> SubpassDescription2<'lt> {
 /// - [`src_access_mask`] **must**  be a valid combination of [`AccessFlagBits`] values
 /// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits`] values
 /// - [`dependency_flags`] **must**  be a valid combination of [`DependencyFlagBits`] values
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AccessFlags`]
@@ -7643,13 +9404,13 @@ impl<'lt> SubpassDescription2<'lt> {
 /// - [`RenderPassCreateInfo2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassDependency2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -7864,12 +9625,12 @@ impl<'lt> SubpassDependency2<'lt> {
 ///    const uint32_t*                    pCorrelatedViewMasks;
 ///} VkRenderPassCreateInfo2;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkRenderPassCreateInfo2 VkRenderPassCreateInfo2KHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
@@ -7885,20 +9646,20 @@ impl<'lt> SubpassDependency2<'lt> {
 /// - [`correlated_view_mask_count`] is the number of correlation masks.
 /// - [`correlated_view_masks`] is a pointer to an array of view masks indicating sets of views that
 ///   **may**  be more efficient to render concurrently.
-///# Description
-///Parameters defined by this structure with the same name as those in
-///[`RenderPassCreateInfo`] have the identical effect to those parameters;
-///the child structures are variants of those used in
-///[`RenderPassCreateInfo`] which add [`s_type`] and [`p_next`]
-///parameters, allowing them to be extended.If the [`SubpassDescription2::view_mask`] member of any
+/// # Description
+/// Parameters defined by this structure with the same name as those in
+/// [`RenderPassCreateInfo`] have the identical effect to those parameters;
+/// the child structures are variants of those used in
+/// [`RenderPassCreateInfo`] which add [`s_type`] and [`p_next`]
+/// parameters, allowing them to be extended.If the [`SubpassDescription2::view_mask`] member of any
 /// element of
-///[`subpasses`] is not zero, *multiview* functionality is considered to be
-///enabled for this render pass.[`correlated_view_mask_count`] and [`correlated_view_masks`] have
+/// [`subpasses`] is not zero, *multiview* functionality is considered to be
+/// enabled for this render pass.[`correlated_view_mask_count`] and [`correlated_view_masks`] have
 /// the same
-///effect as [`RenderPassMultiviewCreateInfo::correlation_mask_count`]
-///and [`RenderPassMultiviewCreateInfo::correlation_masks`],
-///respectively.
-///## Valid Usage
+/// effect as [`RenderPassMultiviewCreateInfo::correlation_mask_count`]
+/// and [`RenderPassMultiviewCreateInfo::correlation_masks`],
+/// respectively.
+/// ## Valid Usage
 /// - If any two subpasses operate on attachments with overlapping ranges of the same
 ///   [`DeviceMemory`] object, and at least one subpass writes to that area of [`DeviceMemory`], a
 ///   subpass dependency  **must**  be included (either directly or via some intermediate subpasses)
@@ -7975,7 +9736,7 @@ impl<'lt> SubpassDependency2<'lt> {
 /// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, then the subpass
 ///   **must**  be the last subpass in a subpass dependency chain
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`RenderPassFragmentDensityMapCreateInfoEXT`]
@@ -7990,7 +9751,7 @@ impl<'lt> SubpassDependency2<'lt> {
 /// - If [`correlated_view_mask_count`] is not `0`, [`correlated_view_masks`] **must**  be a valid
 ///   pointer to an array of [`correlated_view_mask_count`]`uint32_t` values
 /// - [`subpass_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentDescription2`]
@@ -7998,16 +9759,16 @@ impl<'lt> SubpassDependency2<'lt> {
 /// - [`StructureType`]
 /// - [`SubpassDependency2`]
 /// - [`SubpassDescription2`]
-/// - [`CreateRenderPass2`]
+/// - [`create_render_pass2`]
 /// - [`CreateRenderPass2KHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassCreateInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -8272,38 +10033,38 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
 ///    VkSubpassContents    contents;
 ///} VkSubpassBeginInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkSubpassBeginInfo VkSubpassBeginInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`contents`] is a [`SubpassContents`] value specifying how the commands in the next subpass
 ///   will be provided.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`contents`] **must**  be a valid [`SubpassContents`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 /// - [`SubpassContents`]
-/// - [`CmdBeginRenderPass2`]
+/// - [`cmd_begin_render_pass2`]
 /// - [`CmdBeginRenderPass2KHR`]
-/// - [`CmdNextSubpass2`]
+/// - [`cmd_next_subpass2`]
 /// - [`CmdNextSubpass2KHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -8389,36 +10150,36 @@ impl<'lt> SubpassBeginInfo<'lt> {
 ///    const void*        pNext;
 ///} VkSubpassEndInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_create_renderpass2
 ///typedef VkSubpassEndInfo VkSubpassEndInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_END_INFO`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`SubpassFragmentDensityMapOffsetEndInfoQCOM`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-///# Related
+/// # Related
 /// - [`VK_KHR_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
-/// - [`CmdEndRenderPass2`]
+/// - [`cmd_end_render_pass2`]
 /// - [`CmdEndRenderPass2KHR`]
-/// - [`CmdNextSubpass2`]
+/// - [`cmd_next_subpass2`]
 /// - [`CmdNextSubpass2KHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassEndInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -8488,41 +10249,41 @@ impl<'lt> SubpassEndInfo<'lt> {
 ///    VkBool32           timelineSemaphore;
 ///} VkPhysicalDeviceTimelineSemaphoreFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkPhysicalDeviceTimelineSemaphoreFeatures VkPhysicalDeviceTimelineSemaphoreFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`timeline_semaphore`] indicates whether semaphores created with a [`SemaphoreType`] of
 ///   `VK_SEMAPHORE_TYPE_TIMELINE` are supported.
-///If the [`PhysicalDeviceTimelineSemaphoreFeatures`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceTimelineSemaphoreFeatures`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceTimelineSemaphoreFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceTimelineSemaphoreFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTimelineSemaphoreFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -8641,38 +10402,38 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
 ///    uint64_t           maxTimelineSemaphoreValueDifference;
 ///} VkPhysicalDeviceTimelineSemaphoreProperties;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkPhysicalDeviceTimelineSemaphoreProperties
 /// VkPhysicalDeviceTimelineSemaphorePropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`max_timeline_semaphore_value_difference`] indicates the maximum difference allowed by the
 ///   implementation between the current value of a timeline semaphore and any pending signal or
 ///   wait operations.
-///If the [`PhysicalDeviceTimelineSemaphoreProperties`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceTimelineSemaphoreProperties`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES`
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTimelineSemaphoreProperties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -8766,44 +10527,44 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
 ///    uint64_t           initialValue;
 ///} VkSemaphoreTypeCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkSemaphoreTypeCreateInfo VkSemaphoreTypeCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore_type`] is a [`SemaphoreType`] value specifying the type of the semaphore.
 /// - [`initial_value`] is the initial payload value if [`semaphore_type`] is
 ///   `VK_SEMAPHORE_TYPE_TIMELINE`.
-///# Description
-///To create a semaphore of a specific type, add a
-///[`SemaphoreTypeCreateInfo`] structure to the
-///[`SemaphoreCreateInfo`]::[`p_next`] chain.If no [`SemaphoreTypeCreateInfo`] structure is included in the
-///[`p_next`] chain of [`SemaphoreCreateInfo`], then the created semaphore
-///will have a default [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`.
-///## Valid Usage
+/// # Description
+/// To create a semaphore of a specific type, add a
+/// [`SemaphoreTypeCreateInfo`] structure to the
+/// [`SemaphoreCreateInfo`]::[`p_next`] chain.If no [`SemaphoreTypeCreateInfo`] structure is included in the
+/// [`p_next`] chain of [`SemaphoreCreateInfo`], then the created semaphore
+/// will have a default [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`.
+/// ## Valid Usage
 /// - If the [`timelineSemaphore`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-timelineSemaphore)
 ///   feature is not enabled, [`semaphore_type`] **must**  not equal `VK_SEMAPHORE_TYPE_TIMELINE`
 /// - If [`semaphore_type`] is `VK_SEMAPHORE_TYPE_BINARY`, [`initial_value`] **must**  be zero
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO`
 /// - [`semaphore_type`] **must**  be a valid [`SemaphoreType`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreType`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreTypeCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -8901,8 +10662,8 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 ///To specify the values to use when waiting for and signaling semaphores
 ///created with a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE`,
 ///add a [`TimelineSemaphoreSubmitInfo`] structure to the [`p_next`] chain
-///of the [`SubmitInfo`] structure when using [`QueueSubmit`] or the
-///[`BindSparseInfo`] structure when using [`QueueBindSparse`].
+///of the [`SubmitInfo`] structure when using [`queue_submit`] or the
+///[`BindSparseInfo`] structure when using [`queue_bind_sparse`].
 ///The [`TimelineSemaphoreSubmitInfo`] structure is defined as:
 ///```c
 ///// Provided by VK_VERSION_1_2
@@ -8915,12 +10676,12 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 ///    const uint64_t*    pSignalSemaphoreValues;
 ///} VkTimelineSemaphoreSubmitInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkTimelineSemaphoreSubmitInfo VkTimelineSemaphoreSubmitInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`wait_semaphore_value_count`] is the number of semaphore wait values specified in
@@ -8931,14 +10692,14 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 ///   [`signal_semaphore_values`].
 /// - [`signal_semaphore_values`] is a pointer to an array [`signal_semaphore_value_count`] values
 ///   for the corresponding semaphores in [`SubmitInfo::signal_semaphores`] to set when signaled.
-///# Description
-///If the semaphore in [`SubmitInfo::wait_semaphores`] or
-///[`SubmitInfo::signal_semaphores`] corresponding to an entry in
-///[`wait_semaphore_values`] or [`signal_semaphore_values`] respectively was
-///not created with a [`SemaphoreType`] of
-///`VK_SEMAPHORE_TYPE_TIMELINE`, the implementation  **must**  ignore the value
-///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
-///## Valid Usage (Implicit)
+/// # Description
+/// If the semaphore in [`SubmitInfo::wait_semaphores`] or
+/// [`SubmitInfo::signal_semaphores`] corresponding to an entry in
+/// [`wait_semaphore_values`] or [`signal_semaphore_values`] respectively was
+/// not created with a [`SemaphoreType`] of
+/// `VK_SEMAPHORE_TYPE_TIMELINE`, the implementation  **must**  ignore the value
+/// in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO`
 /// - If [`wait_semaphore_value_count`] is not `0`, and [`wait_semaphore_values`] is not `NULL`,
 ///   [`wait_semaphore_values`] **must**  be a valid pointer to an array of
@@ -8946,18 +10707,18 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 /// - If [`signal_semaphore_value_count`] is not `0`, and [`signal_semaphore_values`] is not `NULL`,
 ///   [`signal_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`signal_semaphore_value_count`]`uint64_t` values
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTimelineSemaphoreSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -9122,12 +10883,12 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 ///    const uint64_t*         pValues;
 ///} VkSemaphoreWaitInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkSemaphoreWaitInfo VkSemaphoreWaitInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`SemaphoreWaitFlagBits`] specifying additional parameters for the
@@ -9135,12 +10896,12 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 /// - [`semaphore_count`] is the number of semaphores to wait on.
 /// - [`semaphores`] is a pointer to an array of [`semaphore_count`] semaphore handles to wait on.
 /// - [`values`] is a pointer to an array of [`semaphore_count`] timeline semaphore values.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - All of the elements of [`semaphores`] **must**  reference a semaphore that was created with a
 ///   [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`SemaphoreWaitFlagBits`] values
@@ -9148,22 +10909,22 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 ///   [`Semaphore`] handles
 /// - [`values`] **must**  be a valid pointer to an array of [`semaphore_count`]`uint64_t` values
 /// - [`semaphore_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Semaphore`]
 /// - [`SemaphoreWaitFlags`]
 /// - [`StructureType`]
-/// - [`WaitSemaphores`]
+/// - [`wait_semaphores`]
 /// - [`WaitSemaphoresKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreWaitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -9323,18 +11084,18 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 ///    uint64_t           value;
 ///} VkSemaphoreSignalInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_timeline_semaphore
 ///typedef VkSemaphoreSignalInfo VkSemaphoreSignalInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the handle of the semaphore to signal.
 /// - [`value`] is the value to signal.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`semaphore`] **must**  have been created with a [`SemaphoreType`] of
 ///   `VK_SEMAPHORE_TYPE_TIMELINE`
 /// - [`value`] **must**  have a value greater than the current value of the semaphore
@@ -9343,25 +11104,25 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 ///   or the value of any outstanding semaphore wait or signal operation on [`semaphore`] by more than
 ///   [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
-///# Related
+/// # Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
-/// - [`SignalSemaphore`]
+/// - [`signal_semaphore`]
 /// - [`SignalSemaphoreKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreSignalInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -9465,14 +11226,14 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
 ///    VkBool32           storagePushConstant8;
 ///} VkPhysicalDevice8BitStorageFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_8bit_storage
 ///typedef VkPhysicalDevice8BitStorageFeatures VkPhysicalDevice8BitStorageFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -9489,28 +11250,28 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
 ///   **can**  have 8-bit integer members. If this feature is not enabled, 8-bit integer members
 ///   **must**  not be used in such objects. This also indicates whether shader modules  **can**
 ///   declare the `StoragePushConstant8` capability.
-///If the [`PhysicalDevice8BitStorageFeatures`] structure is included in the [`p_next`] chain of
+/// If the [`PhysicalDevice8BitStorageFeatures`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDevice8BitStorageFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDevice8BitStorageFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_8bit_storage`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevice8BitStorageFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -9726,14 +11487,14 @@ impl<'lt> PhysicalDevice8BitStorageFeatures<'lt> {
 ///    VkBool32           vulkanMemoryModelAvailabilityVisibilityChains;
 ///} VkPhysicalDeviceVulkanMemoryModelFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_vulkan_memory_model
 ///typedef VkPhysicalDeviceVulkanMemoryModelFeatures VkPhysicalDeviceVulkanMemoryModelFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -9742,27 +11503,27 @@ impl<'lt> PhysicalDevice8BitStorageFeatures<'lt> {
 ///   [`Device`] scope synchronization. This also indicates whether shader modules  **can**  declare
 ///   the `VulkanMemoryModelDeviceScope` capability.
 /// - [`vulkan_memory_model_availability_visibility_chains`] indicates whether the Vulkan Memory Model can use [availability and visibility chains](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model-availability-visibility) with more than one element.
-///If the [`PhysicalDeviceVulkanMemoryModelFeaturesKHR`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceVulkanMemoryModelFeaturesKHR`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceVulkanMemoryModelFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceVulkanMemoryModelFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES`
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkanMemoryModelFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -9966,14 +11727,14 @@ impl<'lt> PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
 ///    VkBool32           shaderSharedInt64Atomics;
 ///} VkPhysicalDeviceShaderAtomicInt64Features;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_shader_atomic_int64
 ///typedef VkPhysicalDeviceShaderAtomicInt64Features VkPhysicalDeviceShaderAtomicInt64FeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -9981,28 +11742,28 @@ impl<'lt> PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
 ///   and signed integer atomic operations on buffers.
 /// - [`shader_shared_int_64_atomics`] indicates whether shaders  **can**  perform 64-bit unsigned
 ///   and signed integer atomic operations on shared memory.
-///If the [`PhysicalDeviceShaderAtomicInt64Features`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceShaderAtomicInt64Features`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceShaderAtomicInt64Features`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceShaderAtomicInt64Features`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_shader_atomic_int64`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderAtomicInt64Features")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -10163,16 +11924,16 @@ impl<'lt> PhysicalDeviceShaderAtomicInt64Features<'lt> {
 ///    VkBool32              independentResolve;
 ///} VkPhysicalDeviceDepthStencilResolveProperties;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_depth_stencil_resolve
 ///typedef VkPhysicalDeviceDepthStencilResolveProperties
 /// VkPhysicalDeviceDepthStencilResolvePropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`supported_depth_resolve_modes`] is a bitmask of [`ResolveModeFlagBits`] indicating the set
 ///   of supported depth resolve modes. `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT` **must**  be included in
 ///   the set but implementations  **may**  support additional modes.
@@ -10187,27 +11948,27 @@ impl<'lt> PhysicalDeviceShaderAtomicInt64Features<'lt> {
 ///   supported depth and stencil resolve modes, including setting either depth or stencil resolve
 ///   mode to `VK_RESOLVE_MODE_NONE`. An implementation that supports [`independent_resolve`]
 ///   **must**  also support [`independent_resolve_none`].
-///If the [`PhysicalDeviceDepthStencilResolveProperties`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceDepthStencilResolveProperties`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES`
-///# Related
+/// # Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`ResolveModeFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDepthStencilResolveProperties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -10399,12 +12160,12 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 ///    const VkAttachmentReference2*    pDepthStencilResolveAttachment;
 ///} VkSubpassDescriptionDepthStencilResolve;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_depth_stencil_resolve
 ///typedef VkSubpassDescriptionDepthStencilResolve VkSubpassDescriptionDepthStencilResolveKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`depth_resolve_mode`] is a [`ResolveModeFlagBits`] value describing the depth resolve mode.
@@ -10412,11 +12173,11 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 ///   mode.
 /// - [`depth_stencil_resolve_attachment`] is `NULL` or a pointer to a [`AttachmentReference2`]
 ///   structure defining the depth/stencil resolve attachment for this subpass and its layout.
-///# Description
-///If [`depth_stencil_resolve_attachment`] is `NULL`, or if its attachment
-///index is [`ATTACHMENT_UNUSED`], it indicates that no depth/stencil
-///resolve attachment will be used in the subpass.
-///## Valid Usage
+/// # Description
+/// If [`depth_stencil_resolve_attachment`] is `NULL`, or if its attachment
+/// index is [`ATTACHMENT_UNUSED`], it indicates that no depth/stencil
+/// resolve attachment will be used in the subpass.
+/// ## Valid Usage
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL` and does not have the value
 ///   [`ATTACHMENT_UNUSED`], `pDepthStencilAttachment` **must**  not be `NULL` or have the value
 ///   [`ATTACHMENT_UNUSED`]
@@ -10461,24 +12222,24 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 ///   [`TRUE`], then the values of [`depth_resolve_mode`] and [`stencil_resolve_mode`] **must**  be
 ///   identical or one of them  **must**  be `VK_RESOLVE_MODE_NONE`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE`
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL`, [`depth_stencil_resolve_attachment`]
 ///   **must**  be a valid pointer to a valid [`AttachmentReference2`] structure
-///# Related
+/// # Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentReference2`]
 /// - [`ResolveModeFlagBits`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassDescriptionDepthStencilResolve")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -10611,61 +12372,61 @@ impl<'lt> SubpassDescriptionDepthStencilResolve<'lt> {
 ///    VkImageUsageFlags    stencilUsage;
 ///} VkImageStencilUsageCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_separate_stencil_usage
 ///typedef VkImageStencilUsageCreateInfo VkImageStencilUsageCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stencil_usage`] is a bitmask of [`ImageUsageFlagBits`] describing the intended usage of the
 ///   stencil aspect of the image.
-///# Description
-///If the [`p_next`] chain of [`ImageCreateInfo`] includes a
-///[`ImageStencilUsageCreateInfo`] structure, then that structure includes
-///the usage flags specific to the stencil aspect of the image for an image
-///with a depth-stencil format.This structure specifies image usages which only apply to the
+/// # Description
+/// If the [`p_next`] chain of [`ImageCreateInfo`] includes a
+/// [`ImageStencilUsageCreateInfo`] structure, then that structure includes
+/// the usage flags specific to the stencil aspect of the image for an image
+/// with a depth-stencil format.This structure specifies image usages which only apply to the
 /// stencil aspect
-///of a depth/stencil format image.
-///When this structure is included in the [`p_next`] chain of
-///[`ImageCreateInfo`], the stencil aspect of the image  **must**  only be used
-///as specified by [`stencil_usage`].
-///When this structure is not included in the [`p_next`] chain of
-///[`ImageCreateInfo`], the stencil aspect of an image  **must**  only be used
-///as specified by [`ImageCreateInfo::usage`].
-///Use of other aspects of an image are unaffected by this structure.This structure  **can**  also
+/// of a depth/stencil format image.
+/// When this structure is included in the [`p_next`] chain of
+/// [`ImageCreateInfo`], the stencil aspect of the image  **must**  only be used
+/// as specified by [`stencil_usage`].
+/// When this structure is not included in the [`p_next`] chain of
+/// [`ImageCreateInfo`], the stencil aspect of an image  **must**  only be used
+/// as specified by [`ImageCreateInfo::usage`].
+/// Use of other aspects of an image are unaffected by this structure.This structure  **can**  also
 /// be included in the [`p_next`] chain of
-///[`PhysicalDeviceImageFormatInfo2`] to query additional capabilities
-///specific to image creation parameter combinations including a separate set
-///of usage flags for the stencil aspect of the image using
-///[`GetPhysicalDeviceImageFormatProperties2`].
-///When this structure is not included in the [`p_next`] chain of
-///[`PhysicalDeviceImageFormatInfo2`] then the implicit value of
-///[`stencil_usage`] matches that of
-///[`PhysicalDeviceImageFormatInfo2::usage`].
-///## Valid Usage
+/// [`PhysicalDeviceImageFormatInfo2`] to query additional capabilities
+/// specific to image creation parameter combinations including a separate set
+/// of usage flags for the stencil aspect of the image using
+/// [`get_physical_device_image_format_properties2`].
+/// When this structure is not included in the [`p_next`] chain of
+/// [`PhysicalDeviceImageFormatInfo2`] then the implicit value of
+/// [`stencil_usage`] matches that of
+/// [`PhysicalDeviceImageFormatInfo2::usage`].
+/// ## Valid Usage
 /// - If [`stencil_usage`] includes `VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT`, it  **must**  not
 ///   include bits other than `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT` or
 ///   `VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO`
 /// - [`stencil_usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
 /// - [`stencil_usage`] **must**  not be `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_separate_stencil_usage`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageStencilUsageCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -10752,40 +12513,40 @@ impl<'lt> ImageStencilUsageCreateInfo<'lt> {
 ///    VkBool32           scalarBlockLayout;
 ///} VkPhysicalDeviceScalarBlockLayoutFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_scalar_block_layout
 ///typedef VkPhysicalDeviceScalarBlockLayoutFeatures VkPhysicalDeviceScalarBlockLayoutFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`scalar_block_layout`] indicates that the implementation supports the layout of resource blocks in shaders using [scalar alignment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-alignment-requirements).
-///If the [`PhysicalDeviceScalarBlockLayoutFeatures`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceScalarBlockLayoutFeatures`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceScalarBlockLayoutFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceScalarBlockLayoutFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_EXT_scalar_block_layout`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceScalarBlockLayoutFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -10905,44 +12666,44 @@ impl<'lt> PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
 ///    VkBool32           uniformBufferStandardLayout;
 ///} VkPhysicalDeviceUniformBufferStandardLayoutFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_uniform_buffer_standard_layout
 ///typedef VkPhysicalDeviceUniformBufferStandardLayoutFeatures
 /// VkPhysicalDeviceUniformBufferStandardLayoutFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`uniform_buffer_standard_layout`] indicates that the implementation supports the same layouts
 ///   for uniform buffers as for storage and other kinds of buffers. See [Standard Buffer Layout](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-standard-layout).
-///If the [`PhysicalDeviceUniformBufferStandardLayoutFeatures`] structure is included in the
+/// If the [`PhysicalDeviceUniformBufferStandardLayoutFeatures`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceUniformBufferStandardLayoutFeatures`] **can**  also be used in the [`p_next`]
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceUniformBufferStandardLayoutFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_uniform_buffer_standard_layout`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceUniformBufferStandardLayoutFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -11064,20 +12825,20 @@ impl<'lt> PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
 ///    VkBool32           bufferDeviceAddressMultiDevice;
 ///} VkPhysicalDeviceBufferDeviceAddressFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_buffer_device_address
 ///typedef VkPhysicalDeviceBufferDeviceAddressFeatures
 /// VkPhysicalDeviceBufferDeviceAddressFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`buffer_device_address`] indicates that the implementation supports accessing buffer memory
-///   in shaders as storage buffers via an address queried from [`GetBufferDeviceAddress`].
+///   in shaders as storage buffers via an address queried from [`get_buffer_device_address`].
 /// - [`buffer_device_address_capture_replay`] indicates that the implementation supports saving and
 ///   reusing buffer and device addresses, e.g. for trace capture and replay.
 /// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
@@ -11085,29 +12846,29 @@ impl<'lt> PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
 ///   created with multiple physical devices. If this feature is not supported, buffer and
 ///   acceleration structure addresses  **must**  not be queried on a logical device created with
 ///   more than one physical device.
-///See [`GetBufferDeviceAddress`] for more information.If the
+/// See [`get_buffer_device_address`] for more information.If the
 /// [`PhysicalDeviceBufferDeviceAddressFeatures`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceBufferDeviceAddressFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceBufferDeviceAddressFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -11122,7 +12883,7 @@ pub struct PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
     pub p_next: *mut BaseOutStructure<'lt>,
     ///[`buffer_device_address`] indicates that the implementation supports
     ///accessing buffer memory in shaders as storage buffers via an address
-    ///queried from [`GetBufferDeviceAddress`].
+    ///queried from [`get_buffer_device_address`].
     pub buffer_device_address: Bool32,
     ///[`buffer_device_address_capture_replay`] indicates that the implementation
     ///supports saving and reusing buffer and device addresses, e.g. for trace
@@ -11312,48 +13073,48 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
 ///    VkBuffer           buffer;
 ///} VkBufferDeviceAddressInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_buffer_device_address
 ///typedef VkBufferDeviceAddressInfo VkBufferDeviceAddressInfoKHR;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_EXT_buffer_device_address
 ///typedef VkBufferDeviceAddressInfo VkBufferDeviceAddressInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] specifies the buffer whose address is being queried.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - If [`buffer`] is non-sparse and was not created with the
 ///   `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT` flag, then it  **must**  be bound
 ///   completely and contiguously to a single [`DeviceMemory`] object
 /// - [`buffer`] **must**  have been created with `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`Buffer`]
 /// - [`StructureType`]
-/// - [`GetBufferDeviceAddress`]
+/// - [`get_buffer_device_address`]
 /// - [`GetBufferDeviceAddressEXT`]
 /// - [`GetBufferDeviceAddressKHR`]
-/// - [`GetBufferOpaqueCaptureAddress`]
+/// - [`get_buffer_opaque_capture_address`]
 /// - [`GetBufferOpaqueCaptureAddressKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferDeviceAddressInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -11442,38 +13203,38 @@ impl<'lt> BufferDeviceAddressInfo<'lt> {
 ///    uint64_t           opaqueCaptureAddress;
 ///} VkBufferOpaqueCaptureAddressCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_buffer_device_address
 ///typedef VkBufferOpaqueCaptureAddressCreateInfo VkBufferOpaqueCaptureAddressCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`opaque_capture_address`] is the opaque capture address requested for the buffer.
-///# Description
-///If [`opaque_capture_address`] is zero, no specific address is requested.If
+/// # Description
+/// If [`opaque_capture_address`] is zero, no specific address is requested.If
 /// [`opaque_capture_address`] is not zero, then it  **should**  be an address
-///retrieved from [`GetBufferOpaqueCaptureAddress`] for an identically
-///created buffer on the same implementation.If this structure is not present, it is as if
+/// retrieved from [`get_buffer_opaque_capture_address`] for an identically
+/// created buffer on the same implementation.If this structure is not present, it is as if
 /// [`opaque_capture_address`] is
-///zero.Apps  **should**  avoid creating buffers with app-provided addresses and
-///implementation-provided addresses in the same process, to reduce the
-///likelihood of `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` errors.
-///## Valid Usage (Implicit)
+/// zero.Apps  **should**  avoid creating buffers with app-provided addresses and
+/// implementation-provided addresses in the same process, to reduce the
+/// likelihood of `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` errors.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO`
-///# Related
+/// # Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferOpaqueCaptureAddressCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -11561,42 +13322,42 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
 ///    VkBool32           imagelessFramebuffer;
 ///} VkPhysicalDeviceImagelessFramebufferFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_imageless_framebuffer
 ///typedef VkPhysicalDeviceImagelessFramebufferFeatures
 /// VkPhysicalDeviceImagelessFramebufferFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`imageless_framebuffer`] indicates that the implementation supports specifying the image view
 ///   for attachments at render pass begin time via [`RenderPassAttachmentBeginInfo`].
-///If the [`PhysicalDeviceImagelessFramebufferFeatures`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceImagelessFramebufferFeatures`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceImagelessFramebufferFeatures`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceImagelessFramebufferFeatures`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImagelessFramebufferFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -11715,36 +13476,36 @@ impl<'lt> PhysicalDeviceImagelessFramebufferFeatures<'lt> {
 ///    const VkFramebufferAttachmentImageInfo*    pAttachmentImageInfos;
 ///} VkFramebufferAttachmentsCreateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_imageless_framebuffer
 ///typedef VkFramebufferAttachmentsCreateInfo VkFramebufferAttachmentsCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attachment_image_info_count`] is the number of attachments being described.
 /// - [`attachment_image_infos`] is a pointer to an array of [`FramebufferAttachmentImageInfo`]
 ///   structures, each structure describing a number of parameters of the corresponding attachment
 ///   in a render pass instance.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO`
 /// - If [`attachment_image_info_count`] is not `0`, [`attachment_image_infos`] **must**  be a valid
 ///   pointer to an array of [`attachment_image_info_count`] valid
 ///   [`FramebufferAttachmentImageInfo`] structures
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`FramebufferAttachmentImageInfo`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFramebufferAttachmentsCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -11870,12 +13631,12 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 ///    const VkFormat*       pViewFormats;
 ///} VkFramebufferAttachmentImageInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_imageless_framebuffer
 ///typedef VkFramebufferAttachmentImageInfo VkFramebufferAttachmentImageInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`ImageCreateFlagBits`], matching the value of
@@ -11893,11 +13654,11 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 ///   which  **can**  be used when creating views of the image, matching the value of
 ///   [`ImageFormatListCreateInfo`]::[`view_formats`] used to create an image used with this
 ///   framebuffer.
-///# Description
-///Images that  **can**  be used with the framebuffer when beginning a render pass,
-///as specified by [`RenderPassAttachmentBeginInfo`],  **must**  be created with
-///parameters that are identical to those specified here.
-///## Valid Usage (Implicit)
+/// # Description
+/// Images that  **can**  be used with the framebuffer when beginning a render pass,
+/// as specified by [`RenderPassAttachmentBeginInfo`],  **must**  be created with
+/// parameters that are identical to those specified here.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`ImageCreateFlagBits`] values
@@ -11905,7 +13666,7 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 /// - [`usage`] **must**  not be `0`
 /// - If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array
 ///   of [`view_format_count`] valid [`Format`] values
-///# Related
+/// # Related
 /// - [`VK_KHR_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
 /// - [`Format`]
@@ -11914,13 +13675,13 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFramebufferAttachmentImageInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12126,41 +13887,41 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
 ///    const VkImageView*    pAttachments;
 ///} VkRenderPassAttachmentBeginInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_imageless_framebuffer
 ///typedef VkRenderPassAttachmentBeginInfo VkRenderPassAttachmentBeginInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attachment_count`] is the number of attachments.
 /// - [`attachments`] is a pointer to an array of [`ImageView`] handles, each of which will be used
 ///   as the corresponding attachment in the render pass instance.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - Each element of [`attachments`] **must**  only specify a single mip level
 /// - Each element of [`attachments`] **must**  have been created with the identity swizzle
 /// - Each element of [`attachments`] **must**  have been created with
 ///   [`ImageViewCreateInfo::view_type`] not equal to `VK_IMAGE_VIEW_TYPE_3D`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO`
 /// - If [`attachment_count`] is not `0`, [`attachments`] **must**  be a valid pointer to an array
 ///   of [`attachment_count`] valid [`ImageView`] handles
-///# Related
+/// # Related
 /// - [`VK_KHR_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageView`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassAttachmentBeginInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12276,15 +14037,15 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
 ///    VkBool32           separateDepthStencilLayouts;
 ///} VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_separate_depth_stencil_layouts
 ///typedef VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures
 /// VkPhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -12293,30 +14054,30 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
 ///   or `VK_IMAGE_ASPECT_STENCIL_BIT` set, and whether `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL` can be used.
-///If the [`PhysicalDeviceSeparateDepthStencilLayoutsFeatures`] structure is included in the
+/// If the [`PhysicalDeviceSeparateDepthStencilLayoutsFeatures`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceSeparateDepthStencilLayoutsFeatures`] **can**  also be used in the [`p_next`]
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceSeparateDepthStencilLayoutsFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES`
-///# Related
+/// # Related
 /// - [`VK_KHR_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12439,18 +14200,18 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 ///    VkImageLayout      stencilLayout;
 ///} VkAttachmentReferenceStencilLayout;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_separate_depth_stencil_layouts
 ///typedef VkAttachmentReferenceStencilLayout VkAttachmentReferenceStencilLayoutKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stencil_layout`] is a [`ImageLayout`] value specifying the layout the stencil aspect of the
 ///   attachment uses during the subpass.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`stencil_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED`,
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
@@ -12460,22 +14221,22 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT`
 /// - [`stencil_layout`] **must**  be a valid [`ImageLayout`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageLayout`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentReferenceStencilLayout")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12570,20 +14331,20 @@ impl<'lt> AttachmentReferenceStencilLayout<'lt> {
 ///    VkImageLayout      stencilFinalLayout;
 ///} VkAttachmentDescriptionStencilLayout;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_separate_depth_stencil_layouts
 ///typedef VkAttachmentDescriptionStencilLayout VkAttachmentDescriptionStencilLayoutKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stencil_initial_layout`] is the layout the stencil aspect of the attachment image
 ///   subresource will be in when a render pass instance begins.
 /// - [`stencil_final_layout`] is the layout the stencil aspect of the attachment image subresource
 ///   will be transitioned to when a render pass instance ends.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`stencil_initial_layout`] **must**  not be `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL`,
@@ -12599,23 +14360,23 @@ impl<'lt> AttachmentReferenceStencilLayout<'lt> {
 /// - [`stencil_final_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED` or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT`
 /// - [`stencil_initial_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`stencil_final_layout`] **must**  be a valid [`ImageLayout`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageLayout`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentDescriptionStencilLayout")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12731,36 +14492,36 @@ impl<'lt> AttachmentDescriptionStencilLayout<'lt> {
 ///    uint64_t           opaqueCaptureAddress;
 ///} VkMemoryOpaqueCaptureAddressAllocateInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_buffer_device_address
 ///typedef VkMemoryOpaqueCaptureAddressAllocateInfo VkMemoryOpaqueCaptureAddressAllocateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`opaque_capture_address`] is the opaque capture address requested for the memory allocation.
-///# Description
-///If [`opaque_capture_address`] is zero, no specific address is requested.If
+/// # Description
+/// If [`opaque_capture_address`] is zero, no specific address is requested.If
 /// [`opaque_capture_address`] is not zero, it  **should**  be an address
-///retrieved from [`GetDeviceMemoryOpaqueCaptureAddress`] on an identically
-///created memory allocation on the same implementation.If this structure is not present, it is as
+/// retrieved from [`get_device_memory_opaque_capture_address`] on an identically
+/// created memory allocation on the same implementation.If this structure is not present, it is as
 /// if [`opaque_capture_address`] is
-///zero.
-///## Valid Usage (Implicit)
+/// zero.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO`
-///# Related
+/// # Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryOpaqueCaptureAddressAllocateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12847,38 +14608,38 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
 ///    VkDeviceMemory     memory;
 ///} VkDeviceMemoryOpaqueCaptureAddressInfo;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_KHR_buffer_device_address
 ///typedef VkDeviceMemoryOpaqueCaptureAddressInfo VkDeviceMemoryOpaqueCaptureAddressInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] specifies the memory whose address is being queried.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`memory`] **must**  have been allocated with `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
-///# Related
+/// # Related
 /// - [`VK_KHR_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
-/// - [`GetDeviceMemoryOpaqueCaptureAddress`]
+/// - [`get_device_memory_opaque_capture_address`]
 /// - [`GetDeviceMemoryOpaqueCaptureAddressKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryOpaqueCaptureAddressInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -12975,9 +14736,9 @@ impl<'lt> DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
 ///    VkBool32           shaderDrawParameters;
 ///} VkPhysicalDeviceVulkan11Features;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -13028,26 +14789,26 @@ impl<'lt> DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
 /// - [`shader_draw_parameters`] specifies whether the implementation supports the SPIR-V
 ///   `DrawParameters` capability. When this feature is not enabled, shader modules  **must**  not
 ///   declare the `SPV_KHR_shader_draw_parameters` extension or the `DrawParameters` capability.
-///If the [`PhysicalDeviceVulkan11Features`] structure is included in the [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceVulkan11Features`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// If the [`PhysicalDeviceVulkan11Features`] structure is included in the [`p_next`] chain of the
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceVulkan11Features`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES`
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan11Features")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -13662,10 +15423,10 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 ///    VkDeviceSize               maxMemoryAllocationSize;
 ///} VkPhysicalDeviceVulkan11Properties;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`device_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique
 ///   identifier for the device.
 /// - [`driver_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique
@@ -13699,23 +15460,23 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 ///   types) in a single descriptor set that is guaranteed to satisfy any implementation-dependent
 ///   constraints on the size of a descriptor set itself. Applications  **can**  query whether a
 ///   descriptor set that goes beyond this limit is supported using
-///   [`GetDescriptorSetLayoutSupport`].
+///   [`get_descriptor_set_layout_support`].
 /// - [`max_memory_allocation_size`] is the maximum size of a memory allocation that  **can**  be
 ///   created, even if there is more space available in the heap.
-///If the [`PhysicalDeviceVulkan11Properties`] structure is included in the [`p_next`] chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.These properties correspond to Vulkan 1.1
+/// If the [`PhysicalDeviceVulkan11Properties`] structure is included in the [`p_next`] chain of the
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.These properties correspond to Vulkan 1.1
 /// functionality.The members of [`PhysicalDeviceVulkan11Properties`] have the same values
-///as the corresponding members of [`PhysicalDeviceIdProperties`],
-///[`PhysicalDeviceSubgroupProperties`],
-///[`PhysicalDevicePointClippingProperties`],
-///[`PhysicalDeviceMultiviewProperties`],
-///[`PhysicalDeviceProtectedMemoryProperties`], and
-///[`PhysicalDeviceMaintenance3Properties`].
-///## Valid Usage (Implicit)
+/// as the corresponding members of [`PhysicalDeviceIdProperties`],
+/// [`PhysicalDeviceSubgroupProperties`],
+/// [`PhysicalDevicePointClippingProperties`],
+/// [`PhysicalDeviceMultiviewProperties`],
+/// [`PhysicalDeviceProtectedMemoryProperties`], and
+/// [`PhysicalDeviceMaintenance3Properties`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES`
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`DeviceSize`]
@@ -13724,13 +15485,13 @@ impl<'lt> PhysicalDeviceVulkan11Features<'lt> {
 /// - [`StructureType`]
 /// - [`SubgroupFeatureFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan11Properties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -14162,9 +15923,9 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///    VkBool32           subgroupBroadcastDynamicId;
 ///} VkPhysicalDeviceVulkan12Features;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -14173,8 +15934,8 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///   enabled, the `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` sampler address mode  **must**
 ///   not be used.
 /// - [`draw_indirect_count`] indicates whether the implementation supports the
-///   [`CmdDrawIndirectCount`] and [`CmdDrawIndexedIndirectCount`] functions. If this feature is not
-///   enabled, these functions  **must**  not be used.
+///   [`cmd_draw_indirect_count`] and [`cmd_draw_indexed_indirect_count`] functions. If this feature
+///   is not enabled, these functions  **must**  not be used.
 /// - [`storage_buffer_8_bit_access`] indicates whether objects in the     `StorageBuffer`,
 ///   `ShaderRecordBufferKHR`,     or `PhysicalStorageBuffer`     storage class with the `Block`
 ///   decoration  **can**  have 8-bit integer     members.     If this feature is not enabled, 8-bit
@@ -14206,7 +15967,7 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///   (for non-Block variables), and `Function` storage classes is enabled, while declaring them in
 ///   the interface storage classes (e.g., `UniformConstant`, `Uniform`, `StorageBuffer`, `Input`,
 ///   `Output`, and `PushConstant`) is not enabled.
-/// - [`descriptor_indexing`] indicates whether the implementation supports the minimum set of descriptor indexing features as described in the [Feature Requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-requirements) section. Enabling the [`descriptor_indexing`] member when [`CreateDevice`] is called does not imply the other minimum descriptor indexing features are also enabled. Those other descriptor indexing features  **must**  be enabled individually as needed by the application.
+/// - [`descriptor_indexing`] indicates whether the implementation supports the minimum set of descriptor indexing features as described in the [Feature Requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-requirements) section. Enabling the [`descriptor_indexing`] member when [`create_device`] is called does not imply the other minimum descriptor indexing features are also enabled. Those other descriptor indexing features  **must**  be enabled individually as needed by the application.
 /// - [`shader_input_attachment_array_dynamic_indexing`] indicates whether arrays of input
 ///   attachments  **can**  be indexed by dynamically uniform integer expressions in shader code. If
 ///   this feature is not enabled, resources with a descriptor type of
@@ -14324,11 +16085,11 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL` can be used.
 /// - [`host_query_reset`] indicates that the implementation supports resetting queries from the
-///   host with [`ResetQueryPool`].
+///   host with [`reset_query_pool`].
 /// - [`timeline_semaphore`] indicates whether semaphores created with a [`SemaphoreType`] of
 ///   `VK_SEMAPHORE_TYPE_TIMELINE` are supported.
 /// - [`buffer_device_address`] indicates that the implementation supports accessing buffer memory
-///   in shaders as storage buffers via an address queried from [`GetBufferDeviceAddress`].
+///   in shaders as storage buffers via an address queried from [`get_buffer_device_address`].
 /// - [`buffer_device_address_capture_replay`] indicates that the implementation supports saving and
 ///   reusing buffer and device addresses, e.g. for trace capture and replay.
 /// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
@@ -14357,26 +16118,26 @@ impl<'lt> PhysicalDeviceVulkan11Properties<'lt> {
 ///   `OpGroupNonUniformBroadcast` **can**  be dynamically uniform within a subgroup, and the
 ///   “Index” operand of `OpGroupNonUniformQuadBroadcast` **can**  be dynamically uniform within the
 ///   derivative group. If it is [`FALSE`], these operands  **must**  be constants.
-///If the [`PhysicalDeviceVulkan12Features`] structure is included in the [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceVulkan12Features`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// If the [`PhysicalDeviceVulkan12Features`] structure is included in the [`p_next`] chain of the
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceVulkan12Features`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES`
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan12Features")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -14397,8 +16158,8 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     /// **must**  not be used.
     pub sampler_mirror_clamp_to_edge: Bool32,
     ///[`draw_indirect_count`] indicates whether
-    ///the implementation supports the [`CmdDrawIndirectCount`] and
-    ///[`CmdDrawIndexedIndirectCount`] functions.
+    ///the implementation supports the [`cmd_draw_indirect_count`] and
+    ///[`cmd_draw_indexed_indirect_count`] functions.
     ///If this feature is not enabled, these functions  **must**  not be used.
     pub draw_indirect_count: Bool32,
     ///[`storage_buffer_8_bit_access`] indicates whether objects in the
@@ -14464,7 +16225,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     ///whether the implementation supports the minimum set of descriptor
     ///indexing features as described in the [Feature
     ///Requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-requirements) section.
-    ///Enabling the [`descriptor_indexing`] member when [`CreateDevice`]
+    ///Enabling the [`descriptor_indexing`] member when [`create_device`]
     ///is called does not imply the other minimum descriptor indexing features
     ///are also enabled.
     ///Those other descriptor indexing features  **must**  be enabled individually
@@ -14682,7 +16443,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     pub separate_depth_stencil_layouts: Bool32,
     ///[`host_query_reset`]
     ///indicates that the implementation supports resetting queries from the
-    ///host with [`ResetQueryPool`].
+    ///host with [`reset_query_pool`].
     pub host_query_reset: Bool32,
     ///[`timeline_semaphore`]
     ///indicates whether semaphores created with a [`SemaphoreType`] of
@@ -14690,7 +16451,7 @@ pub struct PhysicalDeviceVulkan12Features<'lt> {
     pub timeline_semaphore: Bool32,
     ///[`buffer_device_address`] indicates that the implementation supports
     ///accessing buffer memory in shaders as storage buffers via an address
-    ///queried from [`GetBufferDeviceAddress`].
+    ///queried from [`get_buffer_device_address`].
     pub buffer_device_address: Bool32,
     ///[`buffer_device_address_capture_replay`] indicates that the implementation
     ///supports saving and reusing buffer and device addresses, e.g. for trace
@@ -16617,10 +18378,10 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///    VkSampleCountFlags                   framebufferIntegerColorSampleCounts;
 ///} VkPhysicalDeviceVulkan12Properties;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-///# Description
+/// # Description
 /// - [`driver_id`] is a unique identifier for the driver of the physical device.
 /// - [`driver_name`] is an array of [`MAX_DRIVER_NAME_SIZE`]`char` containing a null-terminated
 ///   UTF-8 string which is the name of the driver.
@@ -16633,7 +18394,7 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
@@ -16641,13 +18402,13 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
@@ -16810,21 +18571,21 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`framebuffer_integer_color_sample_counts`] is a bitmask of [`SampleCountFlagBits`] indicating
 ///   the color sample counts that are supported for all framebuffer color attachments with integer
 ///   formats.
-///If the [`PhysicalDeviceVulkan12Properties`] structure is included in the [`p_next`] chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.These properties correspond to Vulkan 1.2
+/// If the [`PhysicalDeviceVulkan12Properties`] structure is included in the [`p_next`] chain of the
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.These properties correspond to Vulkan 1.2
 /// functionality.The members of [`PhysicalDeviceVulkan12Properties`] **must**  have the same
-///values as the corresponding members of
-///[`PhysicalDeviceDriverProperties`],
-///[`PhysicalDeviceFloatControlsProperties`],
-///[`PhysicalDeviceDescriptorIndexingProperties`],
-///[`PhysicalDeviceDepthStencilResolveProperties`],
-///[`PhysicalDeviceSamplerFilterMinmaxProperties`], and
-///[`PhysicalDeviceTimelineSemaphoreProperties`].
-///## Valid Usage (Implicit)
+/// values as the corresponding members of
+/// [`PhysicalDeviceDriverProperties`],
+/// [`PhysicalDeviceFloatControlsProperties`],
+/// [`PhysicalDeviceDescriptorIndexingProperties`],
+/// [`PhysicalDeviceDepthStencilResolveProperties`],
+/// [`PhysicalDeviceSamplerFilterMinmaxProperties`], and
+/// [`PhysicalDeviceTimelineSemaphoreProperties`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES`
-///# Related
+/// # Related
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`ConformanceVersion`]
@@ -16834,13 +18595,13 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`ShaderFloatControlsIndependence`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan12Properties")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -18372,5 +20133,130 @@ impl<'lt> PhysicalDeviceVulkan12Properties<'lt> {
     ) -> &mut Self {
         self.framebuffer_integer_color_sample_counts = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VULKAN_1_2
+pub struct DeviceV12VTable {
+    ///See [`FNResetQueryPool`] for more information.
+    pub reset_query_pool: FNResetQueryPool,
+    ///See [`FNCreateRenderPass2`] for more information.
+    pub create_render_pass2: FNCreateRenderPass2,
+    ///See [`FNGetSemaphoreCounterValue`] for more information.
+    pub get_semaphore_counter_value: FNGetSemaphoreCounterValue,
+    ///See [`FNWaitSemaphores`] for more information.
+    pub wait_semaphores: FNWaitSemaphores,
+    ///See [`FNSignalSemaphore`] for more information.
+    pub signal_semaphore: FNSignalSemaphore,
+    ///See [`FNGetBufferOpaqueCaptureAddress`] for more information.
+    pub get_buffer_opaque_capture_address: FNGetBufferOpaqueCaptureAddress,
+    ///See [`FNGetBufferDeviceAddress`] for more information.
+    pub get_buffer_device_address: FNGetBufferDeviceAddress,
+    ///See [`FNGetDeviceMemoryOpaqueCaptureAddress`] for more information.
+    pub get_device_memory_opaque_capture_address: FNGetDeviceMemoryOpaqueCaptureAddress,
+    ///See [`FNCmdBeginRenderPass2`] for more information.
+    pub cmd_begin_render_pass2: FNCmdBeginRenderPass2,
+    ///See [`FNCmdNextSubpass2`] for more information.
+    pub cmd_next_subpass2: FNCmdNextSubpass2,
+    ///See [`FNCmdEndRenderPass2`] for more information.
+    pub cmd_end_render_pass2: FNCmdEndRenderPass2,
+    ///See [`FNCmdDrawIndirectCount`] for more information.
+    pub cmd_draw_indirect_count: FNCmdDrawIndirectCount,
+    ///See [`FNCmdDrawIndexedIndirectCount`] for more information.
+    pub cmd_draw_indexed_indirect_count: FNCmdDrawIndexedIndirectCount,
+}
+impl DeviceV12VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            reset_query_pool: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkResetQueryPool"))) },
+            create_render_pass2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateRenderPass2"))) },
+            get_semaphore_counter_value: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreCounterValue")))
+            },
+            wait_semaphores: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitSemaphores"))) },
+            signal_semaphore: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkSignalSemaphore"))) },
+            get_buffer_opaque_capture_address: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferOpaqueCaptureAddress")))
+            },
+            get_buffer_device_address: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferDeviceAddress")))
+            },
+            get_device_memory_opaque_capture_address: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDeviceMemoryOpaqueCaptureAddress")))
+            },
+            cmd_begin_render_pass2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderPass2")))
+            },
+            cmd_next_subpass2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdNextSubpass2"))) },
+            cmd_end_render_pass2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderPass2")))
+            },
+            cmd_draw_indirect_count: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndirectCount")))
+            },
+            cmd_draw_indexed_indirect_count: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndexedIndirectCount")))
+            },
+        }
+    }
+    ///Gets [`Self::reset_query_pool`]. See [`FNResetQueryPool`] for more information.
+    pub fn reset_query_pool(&self) -> FNResetQueryPool {
+        self.reset_query_pool
+    }
+    ///Gets [`Self::create_render_pass2`]. See [`FNCreateRenderPass2`] for more information.
+    pub fn create_render_pass2(&self) -> FNCreateRenderPass2 {
+        self.create_render_pass2
+    }
+    ///Gets [`Self::get_semaphore_counter_value`]. See [`FNGetSemaphoreCounterValue`] for more
+    /// information.
+    pub fn get_semaphore_counter_value(&self) -> FNGetSemaphoreCounterValue {
+        self.get_semaphore_counter_value
+    }
+    ///Gets [`Self::wait_semaphores`]. See [`FNWaitSemaphores`] for more information.
+    pub fn wait_semaphores(&self) -> FNWaitSemaphores {
+        self.wait_semaphores
+    }
+    ///Gets [`Self::signal_semaphore`]. See [`FNSignalSemaphore`] for more information.
+    pub fn signal_semaphore(&self) -> FNSignalSemaphore {
+        self.signal_semaphore
+    }
+    ///Gets [`Self::get_buffer_opaque_capture_address`]. See [`FNGetBufferOpaqueCaptureAddress`]
+    /// for more information.
+    pub fn get_buffer_opaque_capture_address(&self) -> FNGetBufferOpaqueCaptureAddress {
+        self.get_buffer_opaque_capture_address
+    }
+    ///Gets [`Self::get_buffer_device_address`]. See [`FNGetBufferDeviceAddress`] for more
+    /// information.
+    pub fn get_buffer_device_address(&self) -> FNGetBufferDeviceAddress {
+        self.get_buffer_device_address
+    }
+    ///Gets [`Self::get_device_memory_opaque_capture_address`]. See
+    /// [`FNGetDeviceMemoryOpaqueCaptureAddress`] for more information.
+    pub fn get_device_memory_opaque_capture_address(&self) -> FNGetDeviceMemoryOpaqueCaptureAddress {
+        self.get_device_memory_opaque_capture_address
+    }
+    ///Gets [`Self::cmd_begin_render_pass2`]. See [`FNCmdBeginRenderPass2`] for more information.
+    pub fn cmd_begin_render_pass2(&self) -> FNCmdBeginRenderPass2 {
+        self.cmd_begin_render_pass2
+    }
+    ///Gets [`Self::cmd_next_subpass2`]. See [`FNCmdNextSubpass2`] for more information.
+    pub fn cmd_next_subpass2(&self) -> FNCmdNextSubpass2 {
+        self.cmd_next_subpass2
+    }
+    ///Gets [`Self::cmd_end_render_pass2`]. See [`FNCmdEndRenderPass2`] for more information.
+    pub fn cmd_end_render_pass2(&self) -> FNCmdEndRenderPass2 {
+        self.cmd_end_render_pass2
+    }
+    ///Gets [`Self::cmd_draw_indirect_count`]. See [`FNCmdDrawIndirectCount`] for more information.
+    pub fn cmd_draw_indirect_count(&self) -> FNCmdDrawIndirectCount {
+        self.cmd_draw_indirect_count
+    }
+    ///Gets [`Self::cmd_draw_indexed_indirect_count`]. See [`FNCmdDrawIndexedIndirectCount`] for
+    /// more information.
+    pub fn cmd_draw_indexed_indirect_count(&self) -> FNCmdDrawIndexedIndirectCount {
+        self.cmd_draw_indexed_indirect_count
     }
 }

@@ -16,7 +16,7 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_direct_mode_display extension>>)
 //!# New functions & commands
-//! - [`ReleaseDisplayEXT`]
+//! - [`release_display_ext`]
 //!# New constants
 //! - [`EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME`]
 //! - [`EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION`]
@@ -42,7 +42,7 @@
 //! * - Pierre Boudier, NVIDIA  - James Jones, NVIDIA  - Damien Leone, NVIDIA  - Pierre-Loup
 //!   Griffais, Valve  - Liam Middlebrook, NVIDIA
 //!# Related
-//! - [`ReleaseDisplayEXT`]
+//! - [`release_display_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -51,6 +51,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    extensions::khr_display::DisplayKHR,
+    vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -60,3 +64,58 @@ pub const EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME")]
 pub const EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_direct_mode_display");
+///[vkReleaseDisplayEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkReleaseDisplayEXT.html) - Release access to an acquired VkDisplayKHR
+///# C Specifications
+///To release a previously acquired display, call:
+///```c
+///// Provided by VK_EXT_direct_mode_display
+///VkResult vkReleaseDisplayEXT(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkDisplayKHR                                display);
+///```
+/// # Parameters
+/// - [`physical_device`] The physical device the display is on.
+/// - [`display`] The display to release control of.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+/// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// # Related
+/// - [`VK_EXT_direct_mode_display`]
+/// - [`DisplayKHR`]
+/// - [`PhysicalDevice`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkReleaseDisplayEXT")]
+pub type FNReleaseDisplayExt =
+    Option<unsafe extern "system" fn(physical_device: PhysicalDevice, display: DisplayKHR) -> VulkanResultCodes>;
+///The V-table of [`Instance`] for functions from VK_EXT_direct_mode_display
+pub struct InstanceExtDirectModeDisplayVTable {
+    ///See [`FNReleaseDisplayExt`] for more information.
+    pub release_display_ext: FNReleaseDisplayExt,
+}
+impl InstanceExtDirectModeDisplayVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            release_display_ext: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkReleaseDisplayEXT"))) },
+        }
+    }
+    ///Gets [`Self::release_display_ext`]. See [`FNReleaseDisplayExt`] for more information.
+    pub fn release_display_ext(&self) -> FNReleaseDisplayExt {
+        self.release_display_ext
+    }
+}

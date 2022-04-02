@@ -33,8 +33,8 @@
 //!   @tobski%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_fragment_shading_rate extension>>)
 //!# New functions & commands
-//! - [`CmdSetFragmentShadingRateKHR`]
-//! - [`GetPhysicalDeviceFragmentShadingRatesKHR`]
+//! - [`cmd_set_fragment_shading_rate_khr`]
+//! - [`get_physical_device_fragment_shading_rates_khr`]
 //!# New structures
 //! - [`PhysicalDeviceFragmentShadingRateKHR`]
 //! - Extending [`GraphicsPipelineCreateInfo`]:  - [`PipelineFragmentShadingRateStateCreateInfoKHR`]
@@ -82,8 +82,8 @@
 //! - [`PhysicalDeviceFragmentShadingRateKHR`]
 //! - [`PhysicalDeviceFragmentShadingRatePropertiesKHR`]
 //! - [`PipelineFragmentShadingRateStateCreateInfoKHR`]
-//! - [`CmdSetFragmentShadingRateKHR`]
-//! - [`GetPhysicalDeviceFragmentShadingRatesKHR`]
+//! - [`cmd_set_fragment_shading_rate_khr`]
+//! - [`get_physical_device_fragment_shading_rates_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -94,7 +94,8 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{
-        BaseInStructure, BaseOutStructure, Bool32, Extent2D, SampleCountFlagBits, SampleCountFlags, StructureType,
+        BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Extent2D, Instance, PhysicalDevice,
+        SampleCountFlagBits, SampleCountFlags, StructureType, VulkanResultCodes,
     },
     vulkan1_2::AttachmentReference2,
 };
@@ -111,6 +112,177 @@ pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME")]
 pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_fragment_shading_rate");
+///[vkGetPhysicalDeviceFragmentShadingRatesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html) - Get available shading rates for a physical device
+///# C Specifications
+///To query available shading rates, call:
+///```c
+///// Provided by VK_KHR_fragment_shading_rate
+///VkResult vkGetPhysicalDeviceFragmentShadingRatesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t*                                   pFragmentShadingRateCount,
+///    VkPhysicalDeviceFragmentShadingRateKHR*     pFragmentShadingRates);
+///```
+/// # Parameters
+/// - [`physical_device`] is the handle to the physical device whose properties will be queried.
+/// - [`p_fragment_shading_rate_count`] is a pointer to an integer related to the number of fragment
+///   shading rates available or queried, as described below.
+/// - [`p_fragment_shading_rates`] is either `NULL` or a pointer to an array of
+///   [`PhysicalDeviceFragmentShadingRateKHR`] structures.
+/// # Description
+/// If [`p_fragment_shading_rates`] is `NULL`, then the number of fragment
+/// shading rates available is returned in [`p_fragment_shading_rate_count`].
+/// Otherwise, [`p_fragment_shading_rate_count`] **must**  point to a variable set by
+/// the user to the number of elements in the [`p_fragment_shading_rates`] array,
+/// and on return the variable is overwritten with the number of structures
+/// actually written to [`p_fragment_shading_rates`].
+/// If [`p_fragment_shading_rate_count`] is less than the number of fragment
+/// shading rates available, at most [`p_fragment_shading_rate_count`] structures
+/// will be written, and `VK_INCOMPLETE` will be returned instead of
+/// `VK_SUCCESS`, to indicate that not all the available fragment shading
+/// rates were returned.The returned array of fragment shading rates  **must**  be ordered from
+/// largest
+/// `fragmentSize.width` value to smallest, and each set of fragment shading
+/// rates with the same `fragmentSize.width` value  **must**  be ordered from
+/// largest `fragmentSize.height` to smallest.
+/// Any two entries in the array  **must**  not have the same `fragmentSize`
+/// values.For any entry in the array, the following rules also apply:
+/// - The value of `fragmentSize.width` **must**  be less than or equal to [`maxFragmentSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentSize).
+/// - The value of `fragmentSize.width` **must**  be greater than or equal to `1`.
+/// - The value of `fragmentSize.width` **must**  be a power-of-two.
+/// - The value of `fragmentSize.height` **must**  be less than or equal to [`maxFragmentSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentSize).
+/// - The value of `fragmentSize.height` **must**  be greater than or equal to `1`.
+/// - The value of `fragmentSize.height` **must**  be a power-of-two.
+/// - The highest sample count in `sampleCounts` **must**  be less than or equal to [`maxFragmentShadingRateRasterizationSamples`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateRasterizationSamples).
+/// - The product of `fragmentSize.width`, `fragmentSize.height`, and the highest sample count in `sampleCounts` **must**  be less than or equal to [`maxFragmentShadingRateCoverageSamples`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateCoverageSamples).
+/// Implementations  **must**  support at least the following shading rates:If [`framebufferColorSampleCounts`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-framebufferColorSampleCounts), includes `VK_SAMPLE_COUNT_2_BIT`,
+/// the required rates  **must**  also include `VK_SAMPLE_COUNT_2_BIT`.The returned set of fragment
+/// shading rates  **must**  be returned in the native
+/// (rotated) coordinate system.
+/// For rasterization using render pass `transform` not equal to
+/// `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`, the application  **must**  transform
+/// the returned fragment shading rates into the current (unrotated) coordinate
+/// system to get the supported rates for that transform.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_fragment_shading_rate_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_fragment_shading_rate_count`] is not `0`, and
+///   [`p_fragment_shading_rates`] is not `NULL`, [`p_fragment_shading_rates`] **must**  be a valid
+///   pointer to an array of
+///   [`p_fragment_shading_rate_count`][`PhysicalDeviceFragmentShadingRateKHR`] structures
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_KHR_fragment_shading_rate`]
+/// - [`PhysicalDevice`]
+/// - [`PhysicalDeviceFragmentShadingRateKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceFragmentShadingRatesKHR")]
+pub type FNGetPhysicalDeviceFragmentShadingRatesKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_fragment_shading_rate_count: *mut u32,
+        p_fragment_shading_rates: *mut PhysicalDeviceFragmentShadingRateKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
+///[vkCmdSetFragmentShadingRateKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html) - Set pipeline fragment shading rate and combiner operation dynamically for a command buffer
+///# C Specifications
+///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the pipeline fragment
+///shading rate and combiner operation, call:
+///```c
+///// Provided by VK_KHR_fragment_shading_rate
+///void vkCmdSetFragmentShadingRateKHR(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkExtent2D*                           pFragmentSize,
+///    const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer into which the command will be recorded.
+/// - [`p_fragment_size`] specifies the pipeline fragment shading rate for subsequent drawing
+///   commands.
+/// - [`combiner_ops`] specifies a [`FragmentShadingRateCombinerOpKHR`] determining how the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-pipeline),
+///   [primitive](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive),
+///   and [attachment shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment)
+///   are [combined](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-combining)
+///   for fragments generated by subsequent drawing commands.
+/// # Description
+/// This command sets the pipeline fragment shading rate and combiner operation
+/// for subsequent drawing commands when the graphics pipeline is created with
+/// `VK_DYNAMIC_STATE_FRAGMENT_SHADING_RATE_KHR` set in
+/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
+/// Otherwise, this state is specified by the
+/// [`PipelineFragmentShadingRateStateCreateInfoKHR`] values used to create
+/// the currently active pipeline.
+/// ## Valid Usage
+/// - If [`pipelineFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineFragmentShadingRate)
+///   is not enabled, `pFragmentSize->width` **must**  be `1`
+/// - If [`pipelineFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineFragmentShadingRate)
+///   is not enabled, `pFragmentSize->height` **must**  be `1`
+/// - One of [`pipelineFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineFragmentShadingRate),
+///   [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate),
+///   or [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate)
+///   **must**  be enabled
+/// - If the [`primitiveFragmentShadingRate` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate)
+///   is not enabled, [`combiner_ops`][0]  **must**  be
+///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`
+/// - If the [`attachmentFragmentShadingRate` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate)
+///   is not enabled, [`combiner_ops`][1]  **must**  be
+///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`
+/// - If the [`fragmentSizeNonTrivialCombinerOps`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateNonTrivialCombinerOps)
+///   limit is not supported, elements of [`combiner_ops`] **must**  be either
+///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR` or
+///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR`
+/// - `pFragmentSize->width` **must**  be greater than or equal to `1`
+/// - `pFragmentSize->height` **must**  be greater than or equal to `1`
+/// - `pFragmentSize->width` **must**  be a power-of-two value
+/// - `pFragmentSize->height` **must**  be a power-of-two value
+/// - `pFragmentSize->width` **must**  be less than or equal to `4`
+/// - `pFragmentSize->height` **must**  be less than or equal to `4`
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_fragment_size`] **must**  be a valid pointer to a valid [`Extent2D`] structure
+/// - Any given element of [`combiner_ops`] **must**  be a valid
+///   [`FragmentShadingRateCombinerOpKHR`] value
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_KHR_fragment_shading_rate`]
+/// - [`CommandBuffer`]
+/// - [`Extent2D`]
+/// - [`FragmentShadingRateCombinerOpKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdSetFragmentShadingRateKHR")]
+pub type FNCmdSetFragmentShadingRateKhr = Option<
+    unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_fragment_size: *const Extent2D,
+        combiner_ops: [FragmentShadingRateCombinerOpKHR; 2 as usize],
+    ),
+>;
 ///[VkFragmentShadingRateCombinerOpKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateCombinerOpKHR.html) - Control how fragment shading rates are combined
 ///# C Specifications
 ///The equation used for each combiner operation is defined by
@@ -125,7 +297,7 @@ pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR = 4,
 ///} VkFragmentShadingRateCombinerOpKHR;
 ///```
-///# Description
+/// # Description
 /// - [`FragmentShadingRateCombinerOpKeepKhr`] specifies a combiner operation of
 ///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>.
 /// - [`FragmentShadingRateCombinerOpReplaceKhr`] specifies a combiner operation of
@@ -136,26 +308,26 @@ pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = max(A<sub>xy</sub>,B<sub>xy</sub>).
 /// - [`FragmentShadingRateCombinerOpMulKhr`] specifies a combiner operation of
 ///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>*B<sub>xy</sub>.
-///where combine(A<sub>xy</sub>,B<sub>xy</sub>) is the combine operation, and A<sub>xy</sub>
-///and B<sub>xy</sub> are the inputs to the operation.If [`fragmentShadingRateStrictMultiplyCombiner`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateStrictMultiplyCombiner) is [`FALSE`], using
-///[`FragmentShadingRateCombinerOpMulKhr`] with values of 1 for both
-///A and B in the same dimension results in the value 2 being produced for that
-///dimension.
-///See the definition of [`fragmentShadingRateStrictMultiplyCombiner`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateStrictMultiplyCombiner) for more information.These operations are performed in a component-wise fashion.
-///# Related
+/// where combine(A<sub>xy</sub>,B<sub>xy</sub>) is the combine operation, and A<sub>xy</sub>
+/// and B<sub>xy</sub> are the inputs to the operation.If [`fragmentShadingRateStrictMultiplyCombiner`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateStrictMultiplyCombiner) is [`FALSE`], using
+/// [`FragmentShadingRateCombinerOpMulKhr`] with values of 1 for both
+/// A and B in the same dimension results in the value 2 being produced for that
+/// dimension.
+/// See the definition of [`fragmentShadingRateStrictMultiplyCombiner`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateStrictMultiplyCombiner) for more information.These operations are performed in a component-wise fashion.
+/// # Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
 /// - [`PipelineFragmentShadingRateStateCreateInfoKHR`]
-/// - [`CmdSetFragmentShadingRateEnumNV`]
-/// - [`CmdSetFragmentShadingRateKHR`]
+/// - [`cmd_set_fragment_shading_rate_enum_nv`]
+/// - [`cmd_set_fragment_shading_rate_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateCombinerOpKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -213,18 +385,18 @@ impl FragmentShadingRateCombinerOpKHR {
 ///    VkExtent2D                       shadingRateAttachmentTexelSize;
 ///} VkFragmentShadingRateAttachmentInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_shading_rate_attachment`] is `NULL` or a pointer to a [`AttachmentReference2`]
 ///   structure defining the fragment shading rate attachment for this subpass.
 /// - [`shading_rate_attachment_texel_size`] specifies the size of the portion of the framebuffer
 ///   corresponding to each texel in [`fragment_shading_rate_attachment`].
-///# Description
-///If no shading rate attachment is specified, or if this structure is not
-///specified, the implementation behaves as if a valid shading rate attachment
-///was specified with all texels specifying a single pixel per fragment.
-///## Valid Usage
+/// # Description
+/// If no shading rate attachment is specified, or if this structure is not
+/// specified, the implementation behaves as if a valid shading rate attachment
+/// was specified with all texels specifying a single pixel per fragment.
+/// ## Valid Usage
 /// - If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not
 ///   [`ATTACHMENT_UNUSED`], its `layout` member  **must**  be equal to `VK_IMAGE_LAYOUT_GENERAL` or
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
@@ -241,23 +413,23 @@ impl FragmentShadingRateCombinerOpKHR {
 /// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
 /// -    If [`fragment_shading_rate_attachment`] is not `NULL` and its `attachment` member is not [`ATTACHMENT_UNUSED`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
 /// - If [`fragment_shading_rate_attachment`] is not `NULL`, [`fragment_shading_rate_attachment`]
 ///   **must**  be a valid pointer to a valid [`AttachmentReference2`] structure
-///# Related
+/// # Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`AttachmentReference2`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateAttachmentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -376,7 +548,7 @@ impl<'lt> FragmentShadingRateAttachmentInfoKHR<'lt> {
 ///    VkFragmentShadingRateCombinerOpKHR    combinerOps[2];
 ///} VkPipelineFragmentShadingRateStateCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_size`] specifies a [`Extent2D`] structure containing the fragment size used to
@@ -386,31 +558,31 @@ impl<'lt> FragmentShadingRateAttachmentInfoKHR<'lt> {
 ///   and [attachment shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment)
 ///   are [combined](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-combining)
 ///   for fragments generated by drawing commands using the created pipeline.
-///# Description
-///If the [`p_next`] chain of [`GraphicsPipelineCreateInfo`] includes a
-///[`PipelineFragmentShadingRateStateCreateInfoKHR`] structure, then that
-///structure includes parameters controlling the pipeline fragment shading
-///rate.If this structure is not present, [`fragment_size`] is considered to be
-///equal to (1,1), and both elements of [`combiner_ops`] are considered
-///to be equal to `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.
-///## Valid Usage (Implicit)
+/// # Description
+/// If the [`p_next`] chain of [`GraphicsPipelineCreateInfo`] includes a
+/// [`PipelineFragmentShadingRateStateCreateInfoKHR`] structure, then that
+/// structure includes parameters controlling the pipeline fragment shading
+/// rate.If this structure is not present, [`fragment_size`] is considered to be
+/// equal to (1,1), and both elements of [`combiner_ops`] are considered
+/// to be equal to `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR`
 /// - Any given element of [`combiner_ops`] **must**  be a valid
 ///   [`FragmentShadingRateCombinerOpKHR`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Extent2D`]
 /// - [`FragmentShadingRateCombinerOpKHR`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineFragmentShadingRateStateCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -526,36 +698,36 @@ impl<'lt> PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
 ///    VkBool32           attachmentFragmentShadingRate;
 ///} VkPhysicalDeviceFragmentShadingRateFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pipeline_fragment_shading_rate`] indicates that the implementation supports the [pipeline fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-pipeline).
 /// - [`primitive_fragment_shading_rate`] indicates that the implementation supports the [primitive fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive).
 /// - [`attachment_fragment_shading_rate`] indicates that the implementation supports the [attachment fragment shading rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment).
-///If the [`PhysicalDeviceFragmentShadingRateFeaturesKHR`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceFragmentShadingRateFeaturesKHR`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceFragmentShadingRateFeaturesKHR`] **can**  also be used in the [`p_next`] chain
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceFragmentShadingRateFeaturesKHR`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateFeaturesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -772,7 +944,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 ///    VkBool32                 fragmentShadingRateStrictMultiplyCombiner;
 ///} VkPhysicalDeviceFragmentShadingRatePropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_fragment_shading_rate_attachment_texel_size`] indicates minimum supported width and height of the portion of the framebuffer corresponding to each texel in a fragment shading rate attachment. Each value  **must**  be less than or equal to the values in [`max_fragment_shading_rate_attachment_texel_size`]. Each value  **must**  be a power-of-two. It  **must**  be (0,0) if the [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate) feature is not supported.
@@ -819,30 +991,30 @@ impl<'lt> PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 ///   [`fragment_shading_rate_non_trivial_combiner_ops`] is [`FALSE`], implementations  **must**
 ///   report this as [`FALSE`]. If [`fragment_shading_rate_non_trivial_combiner_ops`] is [`TRUE`],
 ///   implementations  **should**  report this as [`TRUE`].
-///# Description
-///If the [`PhysicalDeviceFragmentShadingRatePropertiesKHR`] structure is included in the
+/// # Description
+/// If the [`PhysicalDeviceFragmentShadingRatePropertiesKHR`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.These properties are related to [fragment
-///shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate).
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.These properties are related to [fragment
+/// shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate).
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Bool32`]
 /// - [`Extent2D`]
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRatePropertiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1557,31 +1729,31 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
 ///    VkExtent2D            fragmentSize;
 ///} VkPhysicalDeviceFragmentShadingRateKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sample_counts`] is a bitmask of sample counts for which the shading rate described by
 ///   [`fragment_size`] is supported.
 /// - [`fragment_size`] is a [`Extent2D`] describing the width and height of a supported shading
 ///   rate.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Extent2D`]
 /// - [`SampleCountFlags`]
 /// - [`StructureType`]
-/// - [`GetPhysicalDeviceFragmentShadingRatesKHR`]
+/// - [`get_physical_device_fragment_shading_rates_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1679,5 +1851,54 @@ impl<'lt> PhysicalDeviceFragmentShadingRateKHR<'lt> {
     pub fn set_fragment_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
         self.fragment_size = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_KHR_fragment_shading_rate
+pub struct InstanceKhrFragmentShadingRateVTable {
+    ///See [`FNGetPhysicalDeviceFragmentShadingRatesKhr`] for more information.
+    pub get_physical_device_fragment_shading_rates_khr: FNGetPhysicalDeviceFragmentShadingRatesKhr,
+}
+impl InstanceKhrFragmentShadingRateVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_fragment_shading_rates_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceFragmentShadingRatesKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_fragment_shading_rates_khr`]. See
+    /// [`FNGetPhysicalDeviceFragmentShadingRatesKhr`] for more information.
+    pub fn get_physical_device_fragment_shading_rates_khr(&self) -> FNGetPhysicalDeviceFragmentShadingRatesKhr {
+        self.get_physical_device_fragment_shading_rates_khr
+    }
+}
+///The V-table of [`Device`] for functions from VK_KHR_fragment_shading_rate
+pub struct DeviceKhrFragmentShadingRateVTable {
+    ///See [`FNCmdSetFragmentShadingRateKhr`] for more information.
+    pub cmd_set_fragment_shading_rate_khr: FNCmdSetFragmentShadingRateKhr,
+}
+impl DeviceKhrFragmentShadingRateVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            cmd_set_fragment_shading_rate_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFragmentShadingRateKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::cmd_set_fragment_shading_rate_khr`]. See [`FNCmdSetFragmentShadingRateKhr`] for
+    /// more information.
+    pub fn cmd_set_fragment_shading_rate_khr(&self) -> FNCmdSetFragmentShadingRateKhr {
+        self.cmd_set_fragment_shading_rate_khr
     }
 }

@@ -2,7 +2,11 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{doc::Queryable, origin::Origin, symbols::{SymbolName, SymbolTable}};
+use crate::{
+    doc::Queryable,
+    origin::Origin,
+    symbols::{SymbolName, SymbolTable},
+};
 
 use super::Source;
 
@@ -85,8 +89,8 @@ impl<'a> Handle<'a> {
     }
 
     /// Get a reference to the handle's fields.
-    pub fn parent(&self) -> Option<&Cow<'a, str>> {
-        self.parent.as_ref()
+    pub fn parent(&self) -> Option<&str> {
+        self.parent.as_ref().map(|s| &**s)
     }
 
     /// Is the handle dispatchable (an opaque pointer) or non-dispatchable (a 64 bit integer)
@@ -125,6 +129,32 @@ impl<'a> Handle<'a> {
     /// Sets the destroyer of this handle
     pub fn set_destroyer(&mut self, function: Cow<'a, str>) {
         self.destroyer = Some(function)
+    }
+
+    /// Is this handle a loader
+    pub fn is_loader(&self) -> bool {
+        ["VkInstance", "VkDevice"].contains(&self.original_name())
+    }
+
+    /// Finds the ancestor of this handle that loads it
+    pub fn ancestor_loader(&self, source: &Source<'a>) -> Option<Cow<'a, str>> {
+        if self.original_name() == "VkDevice" {
+            return None;
+        }
+
+        if self.original_name() == "VkInstance" {
+            return None;
+        }
+
+        let mut parent = source.handles.get_by_either(self.parent()?).expect("unknown handle");
+        while !parent.is_loader() {
+            parent = source
+                .handles
+                .get_by_either(parent.parent().expect("no parent"))
+                .expect("unknown handle");
+        }
+
+        Some(parent.original_name.clone())
     }
 }
 

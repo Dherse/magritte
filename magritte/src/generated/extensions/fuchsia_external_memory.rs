@@ -17,8 +17,8 @@
 //!   @rosasco%0A<<Here describe the issue or question you have about the VK_FUCHSIA_external_memory
 //!   extension>>)
 //!# New functions & commands
-//! - [`GetMemoryZirconHandleFUCHSIA`]
-//! - [`GetMemoryZirconHandlePropertiesFUCHSIA`]
+//! - [`get_memory_zircon_handle_fuchsia`]
+//! - [`get_memory_zircon_handle_properties_fuchsia`]
 //!# New structures
 //! - [`MemoryGetZirconHandleInfoFUCHSIA`]
 //! - [`MemoryZirconHandlePropertiesFUCHSIA`]
@@ -43,8 +43,8 @@
 //! - [`ImportMemoryZirconHandleInfoFUCHSIA`]
 //! - [`MemoryGetZirconHandleInfoFUCHSIA`]
 //! - [`MemoryZirconHandlePropertiesFUCHSIA`]
-//! - [`GetMemoryZirconHandleFUCHSIA`]
-//! - [`GetMemoryZirconHandlePropertiesFUCHSIA`]
+//! - [`get_memory_zircon_handle_fuchsia`]
+//! - [`get_memory_zircon_handle_properties_fuchsia`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -55,7 +55,7 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     native::zx_handle_t,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, DeviceMemory, StructureType},
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Device, DeviceMemory, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
 };
 use std::{ffi::CStr, marker::PhantomData};
@@ -67,6 +67,107 @@ pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME")]
 pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_FUCHSIA_external_memory");
+///[vkGetMemoryZirconHandleFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryZirconHandleFUCHSIA.html) - Get a Zircon handle for an external memory object
+///# C Specifications
+///To export device memory as a Zircon handle that can be used by another
+///instance, device, or process, the handle to the [`DeviceMemory`] must be
+///retrieved using [`get_memory_zircon_handle_fuchsia`]:
+///```c
+///// Provided by VK_FUCHSIA_external_memory
+///VkResult vkGetMemoryZirconHandleFUCHSIA(
+///    VkDevice                                    device,
+///    const VkMemoryGetZirconHandleInfoFUCHSIA*   pGetZirconHandleInfo,
+///    zx_handle_t*                                pZirconHandle);
+///```
+/// # Parameters
+/// - [`device`] is the [`Device`].
+/// - [`p_get_zircon_handle_info`] is a pointer to a [`MemoryGetZirconHandleInfoFUCHSIA`] structure.
+/// - [`p_zircon_handle`] is a pointer to a [`zx_handle_t`] which holds the resulting Zircon handle.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_get_zircon_handle_info`] **must**  be a valid pointer to a valid
+///   [`MemoryGetZirconHandleInfoFUCHSIA`] structure
+/// - [`p_zircon_handle`] **must**  be a valid pointer to a [`zx_handle_t`] value
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_FUCHSIA_external_memory`]
+/// - [`Device`]
+/// - [`MemoryGetZirconHandleInfoFUCHSIA`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetMemoryZirconHandleFUCHSIA")]
+pub type FNGetMemoryZirconHandleFuchsia = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_get_zircon_handle_info: *const MemoryGetZirconHandleInfoFUCHSIA<'lt>,
+        p_zircon_handle: *mut zx_handle_t,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetMemoryZirconHandlePropertiesFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryZirconHandlePropertiesFUCHSIA.html) - Get a Zircon handle properties for an external memory object
+///# C Specifications
+///To obtain the memoryTypeIndex for the [`MemoryAllocateInfo`] structure,
+///call [`get_memory_zircon_handle_properties_fuchsia`]:
+///```c
+///// Provided by VK_FUCHSIA_external_memory
+///VkResult vkGetMemoryZirconHandlePropertiesFUCHSIA(
+///    VkDevice                                    device,
+///    VkExternalMemoryHandleTypeFlagBits          handleType,
+///    zx_handle_t                                 zirconHandle,
+///    VkMemoryZirconHandlePropertiesFUCHSIA*      pMemoryZirconHandleProperties);
+///```
+/// # Parameters
+/// - [`device`] is the [`Device`].
+/// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of
+///   [`zircon_handle`]
+/// - [`zircon_handle`] is a [`zx_handle_t`] (Zircon) handle to the external resource.
+/// - [`p_memory_zircon_handle_properties`] is a pointer to a
+///   [`MemoryZirconHandlePropertiesFUCHSIA`] structure in which the result will be stored.
+/// # Description
+/// ## Valid Usage
+/// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
+/// - [`zircon_handle`] must reference a valid VMO
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+/// - [`p_memory_zircon_handle_properties`] **must**  be a valid pointer to a
+///   [`MemoryZirconHandlePropertiesFUCHSIA`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+/// # Related
+/// - [`VK_FUCHSIA_external_memory`]
+/// - [`Device`]
+/// - [`ExternalMemoryHandleTypeFlagBits`]
+/// - [`MemoryZirconHandlePropertiesFUCHSIA`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetMemoryZirconHandlePropertiesFUCHSIA")]
+pub type FNGetMemoryZirconHandlePropertiesFuchsia = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        handle_type: ExternalMemoryHandleTypeFlagBits,
+        zircon_handle: zx_handle_t,
+        p_memory_zircon_handle_properties: *mut MemoryZirconHandlePropertiesFUCHSIA<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImportMemoryZirconHandleInfoFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryZirconHandleInfoFUCHSIA.html) - Structure specifying import parameters for Zircon handle to external memory
 ///# C Specifications
 ///The [`ImportMemoryZirconHandleInfoFUCHSIA`] structure is defined as:
@@ -79,33 +180,33 @@ pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    zx_handle_t                           handle;
 ///} VkImportMemoryZirconHandleInfoFUCHSIA;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of
 ///   [`handle`].
 /// - [`handle`] is a [`zx_handle_t`] (Zircon) handle to the external memory.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
 /// - [`handle`] must be a valid VMO handle
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA`
 /// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`VK_FUCHSIA_external_memory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryZirconHandleInfoFUCHSIA")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -217,27 +318,27 @@ impl<'lt> ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
 ///    uint32_t           memoryTypeBits;
 ///} VkMemoryZirconHandlePropertiesFUCHSIA;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_type_bits`] a bitmask containing one bit set for every memory type which the
 ///   specified handle can be imported as.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_FUCHSIA_external_memory`]
 /// - [`StructureType`]
-/// - [`GetMemoryZirconHandlePropertiesFUCHSIA`]
+/// - [`get_memory_zircon_handle_properties_fuchsia`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryZirconHandlePropertiesFUCHSIA")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -332,37 +433,37 @@ impl<'lt> MemoryZirconHandlePropertiesFUCHSIA<'lt> {
 ///    VkExternalMemoryHandleTypeFlagBits    handleType;
 ///} VkMemoryGetZirconHandleInfoFUCHSIA;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] the [`DeviceMemory`] being exported.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
-///   handle pointed to by [`GetMemoryZirconHandleFUCHSIA`]`::pZirconHandle`.
-///# Description
-///## Valid Usage
+///   handle pointed to by [`get_memory_zircon_handle_fuchsia`]`::pZirconHandle`.
+/// # Description
+/// ## Valid Usage
 /// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA`
 /// - [`handle_type`] **must**  have been included in the `handleTypes` field of the
 ///   [`ExportMemoryAllocateInfo`] structure when the external memory was allocated
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`VK_FUCHSIA_external_memory`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
-/// - [`GetMemoryZirconHandleFUCHSIA`]
+/// - [`get_memory_zircon_handle_fuchsia`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetZirconHandleInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -379,7 +480,7 @@ pub struct MemoryGetZirconHandleInfoFUCHSIA<'lt> {
     pub memory: DeviceMemory,
     ///[`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value
     ///specifying the type of the handle pointed to by
-    ///[`GetMemoryZirconHandleFUCHSIA`]::`pZirconHandle`.
+    ///[`get_memory_zircon_handle_fuchsia`]::`pZirconHandle`.
     pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 impl<'lt> Default for MemoryGetZirconHandleInfoFUCHSIA<'lt> {
@@ -453,5 +554,41 @@ impl<'lt> MemoryGetZirconHandleInfoFUCHSIA<'lt> {
     pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
         self.handle_type = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_FUCHSIA_external_memory
+pub struct DeviceFuchsiaExternalMemoryVTable {
+    ///See [`FNGetMemoryZirconHandleFuchsia`] for more information.
+    pub get_memory_zircon_handle_fuchsia: FNGetMemoryZirconHandleFuchsia,
+    ///See [`FNGetMemoryZirconHandlePropertiesFuchsia`] for more information.
+    pub get_memory_zircon_handle_properties_fuchsia: FNGetMemoryZirconHandlePropertiesFuchsia,
+}
+impl DeviceFuchsiaExternalMemoryVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_memory_zircon_handle_fuchsia: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryZirconHandleFUCHSIA")))
+            },
+            get_memory_zircon_handle_properties_fuchsia: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetMemoryZirconHandlePropertiesFUCHSIA"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_memory_zircon_handle_fuchsia`]. See [`FNGetMemoryZirconHandleFuchsia`] for
+    /// more information.
+    pub fn get_memory_zircon_handle_fuchsia(&self) -> FNGetMemoryZirconHandleFuchsia {
+        self.get_memory_zircon_handle_fuchsia
+    }
+    ///Gets [`Self::get_memory_zircon_handle_properties_fuchsia`]. See
+    /// [`FNGetMemoryZirconHandlePropertiesFuchsia`] for more information.
+    pub fn get_memory_zircon_handle_properties_fuchsia(&self) -> FNGetMemoryZirconHandlePropertiesFuchsia {
+        self.get_memory_zircon_handle_properties_fuchsia
     }
 }

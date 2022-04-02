@@ -17,7 +17,7 @@
 //!   @anteru%0A<<Here describe the issue or question you have about the VK_AMD_display_native_hdr
 //!   extension>>)
 //!# New functions & commands
-//! - [`SetLocalDimmingAMD`]
+//! - [`set_local_dimming_amd`]
 //!# New structures
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`DisplayNativeHdrSurfaceCapabilitiesAMD`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`SwapchainDisplayNativeHdrCreateInfoAMD`]
@@ -40,7 +40,7 @@
 //!# Related
 //! - [`DisplayNativeHdrSurfaceCapabilitiesAMD`]
 //! - [`SwapchainDisplayNativeHdrCreateInfoAMD`]
-//! - [`SetLocalDimmingAMD`]
+//! - [`set_local_dimming_amd`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -49,7 +49,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
+use crate::{
+    extensions::khr_swapchain::SwapchainKHR,
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Device, StructureType},
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -59,6 +62,46 @@ pub const AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME")]
 pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD_display_native_hdr");
+///[vkSetLocalDimmingAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetLocalDimmingAMD.html) - Set Local Dimming
+///# C Specifications
+///The local dimming HDR setting may also be changed over the life of a
+///swapchain by calling:
+///```c
+///// Provided by VK_AMD_display_native_hdr
+///void vkSetLocalDimmingAMD(
+///    VkDevice                                    device,
+///    VkSwapchainKHR                              swapChain,
+///    VkBool32                                    localDimmingEnable);
+///```
+/// # Parameters
+/// - [`device`] is the device associated with [`swap_chain`].
+/// - [`swap_chain`] handle to enable local dimming.
+/// - [`local_dimming_enable`] specifies whether local dimming is enabled for the swapchain.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`swap_chain`] **must**  be a valid [`SwapchainKHR`] handle
+/// - Both of [`device`], and [`swap_chain`] **must**  have been created, allocated, or retrieved
+///   from the same [`Instance`]
+///
+/// ## Valid Usage
+/// - [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
+/// # Related
+/// - [`VK_AMD_display_native_hdr`]
+/// - [`Bool32`]
+/// - [`Device`]
+/// - [`SwapchainKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkSetLocalDimmingAMD")]
+pub type FNSetLocalDimmingAmd =
+    Option<unsafe extern "system" fn(device: Device, swap_chain: SwapchainKHR, local_dimming_enable: Bool32)>;
 ///[VkDisplayNativeHdrSurfaceCapabilitiesAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayNativeHdrSurfaceCapabilitiesAMD.html) - Structure describing display native HDR specific capabilities of a surface
 ///# C Specifications
 ///The [`DisplayNativeHdrSurfaceCapabilitiesAMD`] structure is defined as:
@@ -70,28 +113,28 @@ pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkBool32           localDimmingSupport;
 ///} VkDisplayNativeHdrSurfaceCapabilitiesAMD;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`local_dimming_support`] specifies whether the surface supports local dimming. If this is
 ///   [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to explicitly enable or
 ///   disable local dimming for the surface. Local dimming may also be overriden by
-///   [`SetLocalDimmingAMD`] during the lifetime of the swapchain.
-///# Description
-///## Valid Usage (Implicit)
+///   [`set_local_dimming_amd`] during the lifetime of the swapchain.
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
-///# Related
+/// # Related
 /// - [`VK_AMD_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayNativeHdrSurfaceCapabilitiesAMD")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -108,7 +151,7 @@ pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
     ///dimming.
     ///If this is [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to
     /// explicitly enable or disable local dimming for the surface.
-    ///Local dimming may also be overriden by [`SetLocalDimmingAMD`] during
+    ///Local dimming may also be overriden by [`set_local_dimming_amd`] during
     ///the lifetime of the swapchain.
     pub local_dimming_support: Bool32,
 }
@@ -216,32 +259,32 @@ impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
 ///    VkBool32           localDimmingEnable;
 ///} VkSwapchainDisplayNativeHdrCreateInfoAMD;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`local_dimming_enable`] specifies whether local dimming is enabled for the swapchain.
-///# Description
-///If the [`p_next`] chain of [`SwapchainCreateInfoKHR`] does not include
-///this structure, the default value for [`local_dimming_enable`] is
-///[`TRUE`], meaning local dimming is initially enabled for the swapchain.
-///## Valid Usage (Implicit)
+/// # Description
+/// If the [`p_next`] chain of [`SwapchainCreateInfoKHR`] does not include
+/// this structure, the default value for [`local_dimming_enable`] is
+/// [`TRUE`], meaning local dimming is initially enabled for the swapchain.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`
 ///
-///## Valid Usage
+/// ## Valid Usage
 /// - It is only valid to set [`local_dimming_enable`] to [`TRUE`] if
 ///   [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] is supported
-///# Related
+/// # Related
 /// - [`VK_AMD_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainDisplayNativeHdrCreateInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -338,5 +381,27 @@ impl<'lt> SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
     pub fn set_local_dimming_enable(&mut self, value: bool) -> &mut Self {
         self.local_dimming_enable = value as u8 as u32;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_AMD_display_native_hdr
+pub struct DeviceAmdDisplayNativeHdrVTable {
+    ///See [`FNSetLocalDimmingAmd`] for more information.
+    pub set_local_dimming_amd: FNSetLocalDimmingAmd,
+}
+impl DeviceAmdDisplayNativeHdrVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            set_local_dimming_amd: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetLocalDimmingAMD")))
+            },
+        }
+    }
+    ///Gets [`Self::set_local_dimming_amd`]. See [`FNSetLocalDimmingAmd`] for more information.
+    pub fn set_local_dimming_amd(&self) -> FNSetLocalDimmingAmd {
+        self.set_local_dimming_amd
     }
 }

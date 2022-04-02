@@ -69,6 +69,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{vulkan1_0::Instance, vulkan1_3::FNGetPhysicalDeviceToolProperties};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -78,3 +79,26 @@ pub const EXT_TOOLING_INFO_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_TOOLING_INFO_EXTENSION_NAME")]
 pub const EXT_TOOLING_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_tooling_info");
+///The V-table of [`Instance`] for functions from VK_EXT_tooling_info
+pub struct InstanceExtToolingInfoVTable {
+    ///See [`FNGetPhysicalDeviceToolProperties`] for more information.
+    pub get_physical_device_tool_properties: FNGetPhysicalDeviceToolProperties,
+}
+impl InstanceExtToolingInfoVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_tool_properties: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceToolPropertiesEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_tool_properties`]. See
+    /// [`FNGetPhysicalDeviceToolProperties`] for more information.
+    pub fn get_physical_device_tool_properties(&self) -> FNGetPhysicalDeviceToolProperties {
+        self.get_physical_device_tool_properties
+    }
+}

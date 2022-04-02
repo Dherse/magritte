@@ -5,8 +5,8 @@
 //! as follows:
 //! - Allow 2D and 2D array image views to be created from 3D images, which can then be used as
 //!   color framebuffer attachments. This allows applications to render to slices of a 3D image.
-//! - Support [`CmdCopyImage`] between 2D array layers and 3D slices. This extension allows copying
-//!   from layers of a 2D array image to slices of a 3D image and vice versa.
+//! - Support [`cmd_copy_image`] between 2D array layers and 3D slices. This extension allows
+//!   copying from layers of a 2D array image to slices of a 3D image and vice versa.
 //! - Allow negative height to be specified in the [`Viewport::height`] field to perform y-inversion
 //!   of the clip-space to framebuffer-space transform. This allows apps to avoid having to use
 //!   `gl_Position.y = -gl_Position.y` in shaders also targeting other APIs.
@@ -14,14 +14,14 @@
 //!   that they otherwise support no other format features for. This is done by adding new format
 //!   feature flags `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR` and
 //!   `VK_FORMAT_FEATURE_TRANSFER_DST_BIT_KHR`.
-//! - Support [`CmdFillBuffer`] on transfer-only queues. Previously [`CmdFillBuffer`] was defined to
-//!   only work on command buffers allocated from command pools which support graphics or compute
-//!   queues. It is now allowed on queues that just support transfer operations.
+//! - Support [`cmd_fill_buffer`] on transfer-only queues. Previously [`cmd_fill_buffer`] was
+//!   defined to only work on command buffers allocated from command pools which support graphics or
+//!   compute queues. It is now allowed on queues that just support transfer operations.
 //! - Fix the inconsistency of how error conditions are returned between the
-//!   [`CreateGraphicsPipelines`] and [`CreateComputePipelines`] functions and the
-//!   [`AllocateDescriptorSets`] and [`AllocateCommandBuffers`] functions.
+//!   [`create_graphics_pipelines`] and [`create_compute_pipelines`] functions and the
+//!   [`allocate_descriptor_sets`] and [`allocate_command_buffers`] functions.
 //! - Add new `VK_ERROR_OUT_OF_POOL_MEMORY_KHR` error so implementations can give a more precise
-//!   reason for [`AllocateDescriptorSets`] failures.
+//!   reason for [`allocate_descriptor_sets`] failures.
 //! - Add a new command [`TrimCommandPoolKHR`] which gives the implementation an opportunity to
 //!   release any unused command pool memory back to the system.
 //!# Revision
@@ -71,6 +71,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{vulkan1_0::Device, vulkan1_1::FNTrimCommandPool};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -80,3 +81,23 @@ pub const KHR_MAINTENANCE_1_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_MAINTENANCE_1_EXTENSION_NAME")]
 pub const KHR_MAINTENANCE_1_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_maintenance1");
+///The V-table of [`Device`] for functions from VK_KHR_maintenance1
+pub struct DeviceKhrMaintenance1VTable {
+    ///See [`FNTrimCommandPool`] for more information.
+    pub trim_command_pool: FNTrimCommandPool,
+}
+impl DeviceKhrMaintenance1VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            trim_command_pool: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkTrimCommandPoolKHR"))) },
+        }
+    }
+    ///Gets [`Self::trim_command_pool`]. See [`FNTrimCommandPool`] for more information.
+    pub fn trim_command_pool(&self) -> FNTrimCommandPool {
+        self.trim_command_pool
+    }
+}

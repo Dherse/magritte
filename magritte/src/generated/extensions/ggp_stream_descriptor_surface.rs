@@ -14,7 +14,7 @@
 //!   @jfroy%0A<<Here describe the issue or question you have about the
 //!   VK_GGP_stream_descriptor_surface extension>>)
 //!# New functions & commands
-//! - [`CreateStreamDescriptorSurfaceGGP`]
+//! - [`create_stream_descriptor_surface_ggp`]
 //!# New structures
 //! - [`StreamDescriptorSurfaceCreateInfoGGP`]
 //!# New bitmasks
@@ -35,7 +35,7 @@
 //!# Related
 //! - [`StreamDescriptorSurfaceCreateFlagsGGP`]
 //! - [`StreamDescriptorSurfaceCreateInfoGGP`]
-//! - [`CreateStreamDescriptorSurfaceGGP`]
+//! - [`create_stream_descriptor_surface_ggp`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -45,8 +45,9 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    extensions::khr_surface::SurfaceKHR,
     native::GgpStreamDescriptor,
-    vulkan1_0::{BaseInStructure, StructureType},
+    vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -58,23 +59,78 @@ pub const GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME")]
 pub const GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_GGP_stream_descriptor_surface");
+///[vkCreateStreamDescriptorSurfaceGGP](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateStreamDescriptorSurfaceGGP.html) - Create a slink:VkSurfaceKHR object for a Google Games Platform stream
+///# C Specifications
+///To create a [`SurfaceKHR`] object for a Google Games Platform stream
+///descriptor, call:
+///```c
+///// Provided by VK_GGP_stream_descriptor_surface
+///VkResult vkCreateStreamDescriptorSurfaceGGP(
+///    VkInstance                                  instance,
+///    const VkStreamDescriptorSurfaceCreateInfoGGP* pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance to associate with the surface.
+/// - [`p_create_info`] is a pointer to a [`StreamDescriptorSurfaceCreateInfoGGP`] structure
+///   containing parameters that affect the creation of the surface object.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid
+///   [`StreamDescriptorSurfaceCreateInfoGGP`] structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+/// # Related
+/// - [`VK_GGP_stream_descriptor_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`Instance`]
+/// - [`StreamDescriptorSurfaceCreateInfoGGP`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateStreamDescriptorSurfaceGGP")]
+pub type FNCreateStreamDescriptorSurfaceGgp = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const StreamDescriptorSurfaceCreateInfoGGP<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkStreamDescriptorSurfaceCreateFlagsGGP](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkStreamDescriptorSurfaceCreateFlagsGGP.html) - Reserved for future use
 ///# C Specifications
 ///```c
 ///// Provided by VK_GGP_stream_descriptor_surface
 ///typedef VkFlags VkStreamDescriptorSurfaceCreateFlagsGGP;
 ///```
-///# Related
+/// # Related
 /// - [`VK_GGP_stream_descriptor_surface`]
 /// - [`StreamDescriptorSurfaceCreateInfoGGP`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -104,33 +160,33 @@ impl std::fmt::Debug for StreamDescriptorSurfaceCreateFlagsGGP {
 ///    GgpStreamDescriptor                        streamDescriptor;
 ///} VkStreamDescriptorSurfaceCreateInfoGGP;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`stream_descriptor`] is a [`GgpStreamDescriptor`] referring to the GGP stream descriptor to
 ///   associate with the surface.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`stream_descriptor`] **must**  be a valid [`GgpStreamDescriptor`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_GGP_stream_descriptor_surface`]
 /// - [`StreamDescriptorSurfaceCreateFlagsGGP`]
 /// - [`StructureType`]
-/// - [`CreateStreamDescriptorSurfaceGGP`]
+/// - [`create_stream_descriptor_surface_ggp`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkStreamDescriptorSurfaceCreateInfoGGP")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -231,5 +287,28 @@ impl<'lt> StreamDescriptorSurfaceCreateInfoGGP<'lt> {
     pub fn set_stream_descriptor(&mut self, value: crate::native::GgpStreamDescriptor) -> &mut Self {
         self.stream_descriptor = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_GGP_stream_descriptor_surface
+pub struct InstanceGgpStreamDescriptorSurfaceVTable {
+    ///See [`FNCreateStreamDescriptorSurfaceGgp`] for more information.
+    pub create_stream_descriptor_surface_ggp: FNCreateStreamDescriptorSurfaceGgp,
+}
+impl InstanceGgpStreamDescriptorSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_stream_descriptor_surface_ggp: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateStreamDescriptorSurfaceGGP")))
+            },
+        }
+    }
+    ///Gets [`Self::create_stream_descriptor_surface_ggp`]. See
+    /// [`FNCreateStreamDescriptorSurfaceGgp`] for more information.
+    pub fn create_stream_descriptor_surface_ggp(&self) -> FNCreateStreamDescriptorSurfaceGgp {
+        self.create_stream_descriptor_surface_ggp
     }
 }

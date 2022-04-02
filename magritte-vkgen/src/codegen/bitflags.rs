@@ -14,7 +14,12 @@ use super::alias_of;
 
 impl<'a> Bit<'a> {
     /// Generate the code for a Bitflag variant
-    fn generate_bitflag_variant(&self, source: &Source<'a>, parent: &Origin<'a>, doc: &AHashMap<String, String>) -> TokenStream {
+    fn generate_bitflag_variant(
+        &self,
+        source: &Source<'a>,
+        parent: &Origin<'a>,
+        doc: &AHashMap<String, String>,
+    ) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
             || quote! { #[doc = "No documentation found"]},

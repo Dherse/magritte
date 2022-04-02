@@ -12,8 +12,8 @@
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_calibrated_timestamps extension>>)
 //!# New functions & commands
-//! - [`GetCalibratedTimestampsEXT`]
-//! - [`GetPhysicalDeviceCalibrateableTimeDomainsEXT`]
+//! - [`get_calibrated_timestamps_ext`]
+//! - [`get_physical_device_calibrateable_time_domains_ext`]
 //!# New structures
 //! - [`CalibratedTimestampInfoEXT`]
 //!# New enums
@@ -24,9 +24,9 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
 //!# Known issues & F.A.Q
 //!1) Is the device timestamp value returned in the same time domain as the
-//!timestamp values written by [`CmdWriteTimestamp`]? **RESOLVED** : Yes.2) What time domain is the
-//! host timestamp returned in? **RESOLVED** : A query is provided to determine the calibrateable
-//! time domains.
+//!timestamp values written by [`cmd_write_timestamp`]? **RESOLVED** : Yes.2) What time domain is
+//! the host timestamp returned in? **RESOLVED** : A query is provided to determine the
+//! calibrateable time domains.
 //!The expected host time domain used on Windows is that of
 //!QueryPerformanceCounter, and on Linux that of CLOCK_MONOTONIC.3) Should we support other time
 //! domain combinations than just one host and
@@ -46,12 +46,12 @@
 //!possible to calculate future device timestamps as follows:6) In what queue are timestamp values
 //! in time domain
 //!`VK_TIME_DOMAIN_DEVICE_EXT` captured by
-//![`GetCalibratedTimestampsEXT`]? **RESOLVED** : An implementation supporting this extension will
-//! have all its
+//![`get_calibrated_timestamps_ext`]? **RESOLVED** : An implementation supporting this extension
+//! will have all its
 //!VkQueue share the same time domain.
 //!```c
-//!futureTimestamp = calibratedTimestamp + deltaNanoseconds / timestampPeriod
-//!```
+//! futureTimestamp = calibratedTimestamp + deltaNanoseconds / timestampPeriod
+//! ```
 //!6) Can the host and device timestamp values drift apart over longer periods
 //!of time? **RESOLVED** : Yes, especially as some time domains by definition allow for
 //!that to happen (e.g. CLOCK_MONOTONIC is subject to NTP adjustments).
@@ -63,12 +63,12 @@
 //!calibrated timestamp query can have by sampling one of the time domains
 //!twice as follows:
 //!```c
-//!timestampX = timestampX_before = SampleTimeDomain(X)
-//!for each time domain Y != X
+//! timestampX = timestampX_before = SampleTimeDomain(X)
+//! for each time domain Y != X
 //!    timestampY = SampleTimeDomain(Y)
-//!timestampX_after = SampleTimeDomain(X)
-//!maxDeviation = timestampX_after - timestampX_before
-//!```
+//! timestampX_after = SampleTimeDomain(X)
+//! maxDeviation = timestampX_after - timestampX_before
+//! ```
 //!8) Can the maximum deviation reported ever be zero? **RESOLVED** : Unless the tick of each clock
 //! corresponding to the set of time
 //!domains coincides and all clocks can literally be sampled simutaneously,
@@ -87,8 +87,8 @@
 //!# Related
 //! - [`CalibratedTimestampInfoEXT`]
 //! - [`TimeDomainEXT`]
-//! - [`GetCalibratedTimestampsEXT`]
-//! - [`GetPhysicalDeviceCalibrateableTimeDomainsEXT`]
+//! - [`get_calibrated_timestamps_ext`]
+//! - [`get_physical_device_calibrateable_time_domains_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -97,7 +97,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, StructureType};
+use crate::vulkan1_0::{BaseInStructure, Device, Instance, PhysicalDevice, StructureType, VulkanResultCodes};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
@@ -111,6 +111,133 @@ pub const EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME")]
 pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_calibrated_timestamps");
+///[vkGetPhysicalDeviceCalibrateableTimeDomainsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html) - Query calibrateable time domains
+///# C Specifications
+///To query the set of time domains for which a physical device supports
+///timestamp calibration, call:
+///```c
+///// Provided by VK_EXT_calibrated_timestamps
+///VkResult vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t*                                   pTimeDomainCount,
+///    VkTimeDomainEXT*                            pTimeDomains);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device from which to query the set of calibrateable time
+///   domains.
+/// - [`p_time_domain_count`] is a pointer to an integer related to the number of calibrateable time
+///   domains available or queried, as described below.
+/// - [`p_time_domains`] is either `NULL` or a pointer to an array of [`TimeDomainEXT`] values,
+///   indicating the supported calibrateable time domains.
+/// # Description
+/// If [`p_time_domains`] is `NULL`, then the number of calibrateable time
+/// domains supported for the given [`physical_device`] is returned in
+/// [`p_time_domain_count`].
+/// Otherwise, [`p_time_domain_count`] **must**  point to a variable set by the user
+/// to the number of elements in the [`p_time_domains`] array, and on return the
+/// variable is overwritten with the number of values actually written to
+/// [`p_time_domains`].
+/// If the value of [`p_time_domain_count`] is less than the number of
+/// calibrateable time domains supported, at most [`p_time_domain_count`] values
+/// will be written to [`p_time_domains`], and `VK_INCOMPLETE` will be
+/// returned instead of `VK_SUCCESS`, to indicate that not all the available
+/// time domains were returned.
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`p_time_domain_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_time_domain_count`] is not `0`, and [`p_time_domains`] is not
+///   `NULL`, [`p_time_domains`] **must**  be a valid pointer to an array of
+///   [`p_time_domain_count`][`TimeDomainEXT`] values
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_EXT_calibrated_timestamps`]
+/// - [`PhysicalDevice`]
+/// - [`TimeDomainEXT`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceCalibrateableTimeDomainsEXT")]
+pub type FNGetPhysicalDeviceCalibrateableTimeDomainsExt = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        p_time_domain_count: *mut u32,
+        p_time_domains: *mut TimeDomainEXT,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetCalibratedTimestampsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetCalibratedTimestampsEXT.html) - Query calibrated timestamps
+///# C Specifications
+///In order to be able to correlate the time a particular operation took place
+///at on timelines of different time domains (e.g. a device operation vs a host
+///operation), Vulkan allows querying calibrated timestamps from multiple time
+///domains.To query calibrated timestamps from a set of time domains, call:
+///```c
+///// Provided by VK_EXT_calibrated_timestamps
+///VkResult vkGetCalibratedTimestampsEXT(
+///    VkDevice                                    device,
+///    uint32_t                                    timestampCount,
+///    const VkCalibratedTimestampInfoEXT*         pTimestampInfos,
+///    uint64_t*                                   pTimestamps,
+///    uint64_t*                                   pMaxDeviation);
+///```
+/// # Parameters
+/// - [`device`] is the logical device used to perform the query.
+/// - [`timestamp_count`] is the number of timestamps to query.
+/// - [`p_timestamp_infos`] is a pointer to an array of
+///   [`timestamp_count`][`CalibratedTimestampInfoEXT`] structures, describing the time domains the
+///   calibrated timestamps should be captured from.
+/// - [`p_timestamps`] is a pointer to an array of [`timestamp_count`] 64-bit unsigned integer
+///   values in which the requested calibrated timestamp values are returned.
+/// - [`p_max_deviation`] is a pointer to a 64-bit unsigned integer value in which the strictly
+///   positive maximum deviation, in nanoseconds, of the calibrated timestamp values is returned.
+/// # Description
+/// Calibrated timestamp values  **can**  be extrapolated to estimate future
+/// coinciding timestamp values, however, depending on the nature of the time
+/// domains and other properties of the platform extrapolating values over a
+/// sufficiently long period of time  **may**  no longer be accurate enough to fit
+/// any particular purpose, so applications are expected to re-calibrate the
+/// timestamps on a regular basis.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_timestamp_infos`] **must**  be a valid pointer to an array of [`timestamp_count`] valid
+///   [`CalibratedTimestampInfoEXT`] structures
+/// - [`p_timestamps`] **must**  be a valid pointer to an array of [`timestamp_count`]`uint64_t`
+///   values
+/// - [`p_max_deviation`] **must**  be a valid pointer to a `uint64_t` value
+/// - [`timestamp_count`] **must**  be greater than `0`
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_EXT_calibrated_timestamps`]
+/// - [`CalibratedTimestampInfoEXT`]
+/// - [`Device`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetCalibratedTimestampsEXT")]
+pub type FNGetCalibratedTimestampsExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        timestamp_count: u32,
+        p_timestamp_infos: *const CalibratedTimestampInfoEXT<'lt>,
+        p_timestamps: *mut u64,
+        p_max_deviation: *mut u64,
+    ) -> VulkanResultCodes,
+>;
 ///[VkTimeDomainEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkTimeDomainEXT.html) - Supported time domains
 ///# C Specifications
 ///The set of supported time domains consists of:
@@ -123,55 +250,52 @@ pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT = 3,
 ///} VkTimeDomainEXT;
 ///```
-///# Description
+/// # Description
 /// - [`TimeDomainDeviceExt`] specifies the device time domain. Timestamp values in this time domain
-///   use the same units and are comparable with device timestamp values captured using [`CmdWriteTimestamp`]
-///   or [`CmdWriteTimestamp2`] and are defined to be incrementing according to the [timestampPeriod](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-timestampPeriod)
+///   use the same units and are comparable with device timestamp values captured using [`cmd_write_timestamp`]
+///   or [`cmd_write_timestamp2`] and are defined to be incrementing according to the [timestampPeriod](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-timestampPeriod)
 ///   of the device.
 /// - [`TimeDomainClockMonotonicExt`] specifies the CLOCK_MONOTONIC time domain available on POSIX
 ///   platforms. Timestamp values in this time domain are in units of nanoseconds and are comparable
 ///   with platform timestamp values captured using the POSIX clock_gettime API as computed by this
 ///   example:
-///
-///```c
+/// ```c
 ///struct timespec tv;
 ///clock_gettime(CLOCK_MONOTONIC, &tv);
 ///return tv.tv_nsec + tv.tv_sec*1000000000ull;
 ///```
-///
+/// 
 /// - [`TimeDomainClockMonotonicRawExt`] specifies the CLOCK_MONOTONIC_RAW time domain available on
 ///   POSIX platforms. Timestamp values in this time domain are in units of nanoseconds and are
 ///   comparable with platform timestamp values captured using the POSIX clock_gettime API as
 ///   computed by this example:
-///
-///```c
+/// ```c
 ///struct timespec tv;
 ///clock_gettime(CLOCK_MONOTONIC_RAW, &tv);
 ///return tv.tv_nsec + tv.tv_sec*1000000000ull;
 ///```
-///
+/// 
 /// - [`TimeDomainQueryPerformanceCounterExt`] specifies the performance counter (QPC) time domain
 ///   available on Windows. Timestamp values in this time domain are in the same units as those
 ///   provided by the Windows QueryPerformanceCounter API and are comparable with platform timestamp
 ///   values captured using that API as computed by this example:
-///
-///```c
+/// ```c
 ///LARGE_INTEGER counter;
 ///QueryPerformanceCounter(&counter);
 ///return counter.QuadPart;
 ///```
-///# Related
+/// # Related
 /// - [`VK_EXT_calibrated_timestamps`]
 /// - [`CalibratedTimestampInfoEXT`]
-/// - [`GetPhysicalDeviceCalibrateableTimeDomainsEXT`]
+/// - [`get_physical_device_calibrateable_time_domains_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTimeDomainEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -182,8 +306,8 @@ pub enum TimeDomainEXT {
     ///[`TimeDomainDeviceExt`] specifies the device time domain.
     ///Timestamp values in this time domain use the same units and are
     ///comparable with device timestamp values captured using
-    ///[`CmdWriteTimestamp`]
-    ///or [`CmdWriteTimestamp2`]
+    ///[`cmd_write_timestamp`]
+    ///or [`cmd_write_timestamp2`]
     ///and are defined to be incrementing according to the
     ///[timestampPeriod](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-timestampPeriod) of the device.
     TimeDomainDeviceExt = 0,
@@ -240,33 +364,33 @@ impl TimeDomainEXT {
 ///    VkTimeDomainEXT    timeDomain;
 ///} VkCalibratedTimestampInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`time_domain`] is a [`TimeDomainEXT`] value specifying the time domain from which the
 ///   calibrated timestamp value should be returned.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`time_domain`] **must**  be one of the [`TimeDomainEXT`] values returned by
-///   [`GetPhysicalDeviceCalibrateableTimeDomainsEXT`]
+///   [`get_physical_device_calibrateable_time_domains_ext`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`time_domain`] **must**  be a valid [`TimeDomainEXT`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_calibrated_timestamps`]
 /// - [`StructureType`]
 /// - [`TimeDomainEXT`]
-/// - [`GetCalibratedTimestampsEXT`]
+/// - [`get_calibrated_timestamps_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCalibratedTimestampInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -340,5 +464,54 @@ impl<'lt> CalibratedTimestampInfoEXT<'lt> {
     pub fn set_time_domain(&mut self, value: crate::extensions::ext_calibrated_timestamps::TimeDomainEXT) -> &mut Self {
         self.time_domain = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_EXT_calibrated_timestamps
+pub struct InstanceExtCalibratedTimestampsVTable {
+    ///See [`FNGetPhysicalDeviceCalibrateableTimeDomainsExt`] for more information.
+    pub get_physical_device_calibrateable_time_domains_ext: FNGetPhysicalDeviceCalibrateableTimeDomainsExt,
+}
+impl InstanceExtCalibratedTimestampsVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_calibrateable_time_domains_ext: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_calibrateable_time_domains_ext`]. See
+    /// [`FNGetPhysicalDeviceCalibrateableTimeDomainsExt`] for more information.
+    pub fn get_physical_device_calibrateable_time_domains_ext(&self) -> FNGetPhysicalDeviceCalibrateableTimeDomainsExt {
+        self.get_physical_device_calibrateable_time_domains_ext
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_calibrated_timestamps
+pub struct DeviceExtCalibratedTimestampsVTable {
+    ///See [`FNGetCalibratedTimestampsExt`] for more information.
+    pub get_calibrated_timestamps_ext: FNGetCalibratedTimestampsExt,
+}
+impl DeviceExtCalibratedTimestampsVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_calibrated_timestamps_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetCalibratedTimestampsEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::get_calibrated_timestamps_ext`]. See [`FNGetCalibratedTimestampsExt`] for more
+    /// information.
+    pub fn get_calibrated_timestamps_ext(&self) -> FNGetCalibratedTimestampsExt {
+        self.get_calibrated_timestamps_ext
     }
 }

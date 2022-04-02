@@ -1,4 +1,3 @@
-
 //!# Generated code
 //!This module contains all of the generated code for Vulkan gated by relevant feature gates.
 

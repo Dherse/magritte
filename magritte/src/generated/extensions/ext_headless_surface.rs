@@ -27,7 +27,7 @@
 //!   @chengtianww%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_headless_surface extension>>)
 //!# New functions & commands
-//! - [`CreateHeadlessSurfaceEXT`]
+//! - [`create_headless_surface_ext`]
 //!# New structures
 //! - [`HeadlessSurfaceCreateInfoEXT`]
 //!# New bitmasks
@@ -45,7 +45,7 @@
 //!# Related
 //! - [`HeadlessSurfaceCreateFlagsEXT`]
 //! - [`HeadlessSurfaceCreateInfoEXT`]
-//! - [`CreateHeadlessSurfaceEXT`]
+//! - [`create_headless_surface_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -54,7 +54,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, StructureType};
+use crate::{
+    extensions::khr_surface::SurfaceKHR,
+    vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -64,23 +67,76 @@ pub const EXT_HEADLESS_SURFACE_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME")]
 pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_headless_surface");
+///[vkCreateHeadlessSurfaceEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateHeadlessSurfaceEXT.html) - Create a headless slink:VkSurfaceKHR object
+///# C Specifications
+///To create a headless [`SurfaceKHR`] object, call:
+///```c
+///// Provided by VK_EXT_headless_surface
+///VkResult vkCreateHeadlessSurfaceEXT(
+///    VkInstance                                  instance,
+///    const VkHeadlessSurfaceCreateInfoEXT*       pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkSurfaceKHR*                               pSurface);
+///```
+/// # Parameters
+/// - [`instance`] is the instance to associate the surface with.
+/// - [`p_create_info`] is a pointer to a [`HeadlessSurfaceCreateInfoEXT`] structure containing
+///   parameters affecting the creation of the surface object.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`HeadlessSurfaceCreateInfoEXT`]
+///   structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+/// # Related
+/// - [`VK_EXT_headless_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`HeadlessSurfaceCreateInfoEXT`]
+/// - [`Instance`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateHeadlessSurfaceEXT")]
+pub type FNCreateHeadlessSurfaceExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        p_create_info: *const HeadlessSurfaceCreateInfoEXT<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_surface: *mut SurfaceKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkHeadlessSurfaceCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkHeadlessSurfaceCreateFlagsEXT.html) - Reserved for future use
 ///# C Specifications
 ///```c
 ///// Provided by VK_EXT_headless_surface
 ///typedef VkFlags VkHeadlessSurfaceCreateFlagsEXT;
 ///```
-///# Related
+/// # Related
 /// - [`VK_EXT_headless_surface`]
 /// - [`HeadlessSurfaceCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -109,28 +165,28 @@ impl std::fmt::Debug for HeadlessSurfaceCreateFlagsEXT {
 ///    VkHeadlessSurfaceCreateFlagsEXT    flags;
 ///} VkHeadlessSurfaceCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_headless_surface`]
 /// - [`HeadlessSurfaceCreateFlagsEXT`]
 /// - [`StructureType`]
-/// - [`CreateHeadlessSurfaceEXT`]
+/// - [`create_headless_surface_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkHeadlessSurfaceCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -206,5 +262,28 @@ impl<'lt> HeadlessSurfaceCreateInfoEXT<'lt> {
     ) -> &mut Self {
         self.flags = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_EXT_headless_surface
+pub struct InstanceExtHeadlessSurfaceVTable {
+    ///See [`FNCreateHeadlessSurfaceExt`] for more information.
+    pub create_headless_surface_ext: FNCreateHeadlessSurfaceExt,
+}
+impl InstanceExtHeadlessSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            create_headless_surface_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateHeadlessSurfaceEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::create_headless_surface_ext`]. See [`FNCreateHeadlessSurfaceExt`] for more
+    /// information.
+    pub fn create_headless_surface_ext(&self) -> FNCreateHeadlessSurfaceExt {
+        self.create_headless_surface_ext
     }
 }

@@ -13,6 +13,10 @@ macro_rules! cstr {
     ($s:literal) => {{
         #[allow(clippy::string_lit_as_bytes)]
         $crate::cstr::validate_cstr_contents($s.as_bytes());
-        unsafe { &*(concat!($s, "\0") as *const str as *const std::ffi::CStr) }
+
+        #[allow(unused_unsafe)]
+        unsafe {
+            &*(concat!($s, "\0") as *const str as *const std::ffi::CStr)
+        }
     }};
 }

@@ -12,7 +12,7 @@
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_external_memory_host extension>>)
 //!# New functions & commands
-//! - [`GetMemoryHostPointerPropertiesEXT`]
+//! - [`get_memory_host_pointer_properties_ext`]
 //!# New structures
 //! - [`MemoryHostPointerPropertiesEXT`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryHostPointerInfoEXT`]
@@ -29,7 +29,7 @@
 //!# Known issues & F.A.Q
 //!1) What memory type has to be used to import host pointers? **RESOLVED** : Depends on the
 //! implementation.
-//!Applications have to use the new [`GetMemoryHostPointerPropertiesEXT`]
+//!Applications have to use the new [`get_memory_host_pointer_properties_ext`]
 //!command to query the supported memory types for a particular host pointer.
 //!The reported memory types may include memory types that come from a memory
 //!heap that is otherwise not usable for regular memory object allocation and
@@ -39,7 +39,7 @@
 //!However, usual synchronization requirements apply.3) Can the application free the host
 //! allocation? **RESOLVED** : No, it violates valid usage conditions.
 //!Using the memory object imported from a host allocation that is already
-//!freed thus results in undefined behavior.4) Is [`MapMemory`] expected to return the same host
+//!freed thus results in undefined behavior.4) Is [`map_memory`] expected to return the same host
 //! address which was
 //!specified when importing it to the memory object? **RESOLVED** : No.
 //!Implementations are allowed to return the same address but it is not
@@ -71,7 +71,7 @@
 //! - [`ImportMemoryHostPointerInfoEXT`]
 //! - [`MemoryHostPointerPropertiesEXT`]
 //! - [`PhysicalDeviceExternalMemoryHostPropertiesEXT`]
-//! - [`GetMemoryHostPointerPropertiesEXT`]
+//! - [`get_memory_host_pointer_properties_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -81,7 +81,7 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
-    vulkan1_0::{BaseInStructure, BaseOutStructure, DeviceSize, StructureType},
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Device, DeviceSize, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
 };
 use std::{
@@ -96,6 +96,67 @@ pub const EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME")]
 pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_external_memory_host");
+///[vkGetMemoryHostPointerPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html) - Get properties of external memory host pointer
+///# C Specifications
+///To determine the correct parameters to use when importing host pointers,
+///call:
+///```c
+///// Provided by VK_EXT_external_memory_host
+///VkResult vkGetMemoryHostPointerPropertiesEXT(
+///    VkDevice                                    device,
+///    VkExternalMemoryHandleTypeFlagBits          handleType,
+///    const void*                                 pHostPointer,
+///    VkMemoryHostPointerPropertiesEXT*           pMemoryHostPointerProperties);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that will be importing [`p_host_pointer`].
+/// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
+///   handle [`p_host_pointer`].
+/// - [`p_host_pointer`] is the host pointer to import from.
+/// - [`p_memory_host_pointer_properties`] is a pointer to a [`MemoryHostPointerPropertiesEXT`]
+///   structure in which the host pointer properties are returned.
+/// # Description
+/// ## Valid Usage
+/// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT` or
+///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`
+/// - [`p_host_pointer`] **must**  be a pointer aligned to an integer multiple of
+///   [`PhysicalDeviceExternalMemoryHostPropertiesEXT::min_imported_host_pointer_alignment`]
+/// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`,
+///   [`p_host_pointer`] **must**  be a pointer to host memory
+/// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`,
+///   [`p_host_pointer`] **must**  be a pointer to host mapped foreign memory
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+/// - [`p_memory_host_pointer_properties`] **must**  be a valid pointer to a
+///   [`MemoryHostPointerPropertiesEXT`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+/// # Related
+/// - [`VK_EXT_external_memory_host`]
+/// - [`Device`]
+/// - [`ExternalMemoryHandleTypeFlagBits`]
+/// - [`MemoryHostPointerPropertiesEXT`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetMemoryHostPointerPropertiesEXT")]
+pub type FNGetMemoryHostPointerPropertiesExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        handle_type: ExternalMemoryHandleTypeFlagBits,
+        p_host_pointer: *const c_void,
+        p_memory_host_pointer_properties: *mut MemoryHostPointerPropertiesEXT<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImportMemoryHostPointerInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportMemoryHostPointerInfoEXT.html) - Import memory from a host pointer
 ///# C Specifications
 ///To import memory from a host pointer, add a
@@ -111,30 +172,30 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    void*                                 pHostPointer;
 ///} VkImportMemoryHostPointerInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the handle type.
 /// - [`host_pointer`] is the host pointer to import from.
-///# Description
-///Importing memory from a host pointer shares ownership of the memory between
-///the host and the Vulkan implementation.
-///The application  **can**  continue to access the memory through the host pointer
-///but it is the application’s responsibility to synchronize device and
-///non-device access to the payload as defined in
-///[Host Access to Device Memory Objects](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess).Applications  **can**  import the same payload into multiple instances of Vulkan
-///and multiple times into a given Vulkan instance.
-///However, implementations  **may**  fail to import the same payload multiple times
-///into a given physical device due to platform constraints.Importing memory from a particular host
+/// # Description
+/// Importing memory from a host pointer shares ownership of the memory between
+/// the host and the Vulkan implementation.
+/// The application  **can**  continue to access the memory through the host pointer
+/// but it is the application’s responsibility to synchronize device and
+/// non-device access to the payload as defined in
+/// [Host Access to Device Memory Objects](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-device-hostaccess).Applications  **can**  import the same payload into multiple instances of Vulkan
+/// and multiple times into a given Vulkan instance.
+/// However, implementations  **may**  fail to import the same payload multiple times
+/// into a given physical device due to platform constraints.Importing memory from a particular host
 /// pointer  **may**  not be possible due to
-///additional platform-specific restrictions beyond the scope of this
-///specification in which case the implementation  **must**  fail the memory import
-///operation with the error code `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`.Whether device memory
+/// additional platform-specific restrictions beyond the scope of this
+/// specification in which case the implementation  **must**  fail the memory import
+/// operation with the error code `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`.Whether device memory
 /// objects imported from a host pointer hold a reference
-///to their payload is undefined.
-///As such, the application  **must**  ensure that the imported memory range remains
-///valid and accessible for the lifetime of the imported memory object.
-///## Valid Usage
+/// to their payload is undefined.
+/// As such, the application  **must**  ensure that the imported memory range remains
+/// valid and accessible for the lifetime of the imported memory object.
+/// ## Valid Usage
 /// - If [`handle_type`] is not `0`, it  **must**  be supported for import, as reported in
 ///   [`ExternalMemoryProperties`]
 /// - If [`handle_type`] is not `0`, it  **must**  be
@@ -151,21 +212,21 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///   foreign memory, where `allocationSize` is the member of the [`MemoryAllocateInfo`] structure
 ///   this structure is chained to
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT`
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_external_memory_host`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryHostPointerInfoEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -283,29 +344,29 @@ impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
 ///    uint32_t           memoryTypeBits;
 ///} VkMemoryHostPointerPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
 ///   specified host pointer  **can**  be imported as.
-///# Description
-///The value returned by [`memory_type_bits`] **must**  only include bits that
-///identify memory types which are host visible.
-///## Valid Usage (Implicit)
+/// # Description
+/// The value returned by [`memory_type_bits`] **must**  only include bits that
+/// identify memory types which are host visible.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_EXT_external_memory_host`]
 /// - [`StructureType`]
-/// - [`GetMemoryHostPointerPropertiesEXT`]
+/// - [`get_memory_host_pointer_properties_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryHostPointerPropertiesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -400,33 +461,33 @@ impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
 ///    VkDeviceSize       minImportedHostPointerAlignment;
 ///} VkPhysicalDeviceExternalMemoryHostPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_imported_host_pointer_alignment`] is the minimum  **required**  alignment, in bytes, for
 ///   the base address and size of host pointers that  **can**  be imported to a Vulkan memory
 ///   object. The value  **must**  be a power of two.
-///# Description
-///If the [`PhysicalDeviceExternalMemoryHostPropertiesEXT`] structure is included in the [`p_next`]
+/// # Description
+/// If the [`PhysicalDeviceExternalMemoryHostPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_external_memory_host`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalMemoryHostPropertiesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -509,5 +570,28 @@ impl<'lt> PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     pub fn set_min_imported_host_pointer_alignment(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
         self.min_imported_host_pointer_alignment = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_external_memory_host
+pub struct DeviceExtExternalMemoryHostVTable {
+    ///See [`FNGetMemoryHostPointerPropertiesExt`] for more information.
+    pub get_memory_host_pointer_properties_ext: FNGetMemoryHostPointerPropertiesExt,
+}
+impl DeviceExtExternalMemoryHostVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_memory_host_pointer_properties_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryHostPointerPropertiesEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::get_memory_host_pointer_properties_ext`]. See
+    /// [`FNGetMemoryHostPointerPropertiesExt`] for more information.
+    pub fn get_memory_host_pointer_properties_ext(&self) -> FNGetMemoryHostPointerPropertiesExt {
+        self.get_memory_host_pointer_properties_ext
     }
 }

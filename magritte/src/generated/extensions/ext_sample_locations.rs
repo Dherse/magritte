@@ -24,8 +24,8 @@
 //!automatic layout transition has to take place.
 //![`SampleLocationsInfoEXT`] **can**  be chained from
 //![`ImageMemoryBarrier`] structures to provide sample locations for layout
-//!transitions performed by [`CmdWaitEvents`] and
-//![`CmdPipelineBarrier`] calls, and
+//!transitions performed by [`cmd_wait_events`] and
+//![`cmd_pipeline_barrier`] calls, and
 //![`RenderPassSampleLocationsBeginInfoEXT`] **can**  be chained from
 //![`RenderPassBeginInfo`] to provide sample locations for layout
 //!transitions performed implicitly by a render pass instance.
@@ -39,8 +39,8 @@
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_sample_locations
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdSetSampleLocationsEXT`]
-//! - [`GetPhysicalDeviceMultisamplePropertiesEXT`]
+//! - [`cmd_set_sample_locations_ext`]
+//! - [`get_physical_device_multisample_properties_ext`]
 //!# New structures
 //! - [`AttachmentSampleLocationsEXT`]
 //! - [`MultisamplePropertiesEXT`]
@@ -77,8 +77,8 @@
 //! - [`SampleLocationEXT`]
 //! - [`SampleLocationsInfoEXT`]
 //! - [`SubpassSampleLocationsEXT`]
-//! - [`CmdSetSampleLocationsEXT`]
-//! - [`GetPhysicalDeviceMultisamplePropertiesEXT`]
+//! - [`cmd_set_sample_locations_ext`]
+//! - [`get_physical_device_multisample_properties_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -88,7 +88,8 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{
-    BaseInStructure, BaseOutStructure, Bool32, Extent2D, SampleCountFlagBits, SampleCountFlags, StructureType,
+    BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Extent2D, Instance, PhysicalDevice,
+    SampleCountFlagBits, SampleCountFlags, StructureType,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -99,6 +100,120 @@ pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_SAMPLE_LOCATIONS_EXTENSION_NAME")]
 pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_sample_locations");
+///[vkGetPhysicalDeviceMultisamplePropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html) - Report sample count specific multisampling capabilities of a physical device
+///# C Specifications
+///To query additional multisampling capabilities which  **may**  be supported for a
+///specific sample count, beyond the minimum capabilities described for
+///[Limits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits) above, call:
+///```c
+///// Provided by VK_EXT_sample_locations
+///void vkGetPhysicalDeviceMultisamplePropertiesEXT(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkSampleCountFlagBits                       samples,
+///    VkMultisamplePropertiesEXT*                 pMultisampleProperties);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device from which to query the additional multisampling
+///   capabilities.
+/// - [`samples`] is a [`SampleCountFlagBits`] value specifying the sample count to query
+///   capabilities for.
+/// - [`p_multisample_properties`] is a pointer to a [`MultisamplePropertiesEXT`] structure in which
+///   information about additional multisampling capabilities specific to the sample count is
+///   returned.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`samples`] **must**  be a valid [`SampleCountFlagBits`] value
+/// - [`p_multisample_properties`] **must**  be a valid pointer to a [`MultisamplePropertiesEXT`]
+///   structure
+/// # Related
+/// - [`VK_EXT_sample_locations`]
+/// - [`MultisamplePropertiesEXT`]
+/// - [`PhysicalDevice`]
+/// - [`SampleCountFlagBits`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceMultisamplePropertiesEXT")]
+pub type FNGetPhysicalDeviceMultisamplePropertiesExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        samples: SampleCountFlagBits,
+        p_multisample_properties: *mut MultisamplePropertiesEXT<'lt>,
+    ),
+>;
+///[vkCmdSetSampleLocationsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetSampleLocationsEXT.html) - Set sample locations dynamically for a command buffer
+///# C Specifications
+///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the sample locations used
+///for rasterization, call:
+///```c
+///// Provided by VK_EXT_sample_locations
+///void vkCmdSetSampleLocationsEXT(
+///    VkCommandBuffer                             commandBuffer,
+///    const VkSampleLocationsInfoEXT*             pSampleLocationsInfo);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer into which the command will be recorded.
+/// - [`p_sample_locations_info`] is the sample locations state to set.
+/// # Description
+/// This command sets the custom sample locations for subsequent drawing
+/// commands when the graphics pipeline is created with
+/// `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT` set in
+/// [`PipelineDynamicStateCreateInfo::dynamic_states`], and when the
+/// [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_enable`]
+/// property of the bound graphics pipeline is [`TRUE`].
+/// Otherwise, this state is specified by the
+/// [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_info`]
+/// values used to create the currently active pipeline.
+/// ## Valid Usage
+/// - The `sampleLocationsPerPixel` member of [`p_sample_locations_info`] **must**  equal the
+///   `rasterizationSamples` member of the [`PipelineMultisampleStateCreateInfo`] structure the
+///   bound graphics pipeline has been created with
+/// - If [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is [`FALSE`] then
+///   the current render pass  **must**  have been begun by specifying a
+///   [`RenderPassSampleLocationsBeginInfoEXT`] structure whose `pPostSubpassSampleLocations` member
+///   contains an element with a `subpassIndex` matching the current subpass index and the
+///   `sampleLocationsInfo` member of that element  **must**  match the sample locations state
+///   pointed to by [`p_sample_locations_info`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`p_sample_locations_info`] **must**  be a valid pointer to a valid [`SampleLocationsInfoEXT`]
+///   structure
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_EXT_sample_locations`]
+/// - [`CommandBuffer`]
+/// - [`SampleLocationsInfoEXT`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdSetSampleLocationsEXT")]
+pub type FNCmdSetSampleLocationsExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        command_buffer: CommandBuffer,
+        p_sample_locations_info: *const SampleLocationsInfoEXT<'lt>,
+    ),
+>;
 ///[VkSampleLocationEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSampleLocationEXT.html) - Structure specifying the coordinates of a sample location
 ///# C Specifications
 ///The [`SampleLocationEXT`] structure is defined as:
@@ -109,28 +224,28 @@ pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    float    y;
 ///} VkSampleLocationEXT;
 ///```
-///# Members
+/// # Members
 /// - [`x`] is the horizontal coordinate of the sample’s location.
 /// - [`y`] is the vertical coordinate of the sample’s location.
-///# Description
-///The domain space of the sample location coordinates has an upper-left origin
-///within the pixel in framebuffer space.The values specified in a [`SampleLocationEXT`] structure
+/// # Description
+/// The domain space of the sample location coordinates has an upper-left origin
+/// within the pixel in framebuffer space.The values specified in a [`SampleLocationEXT`] structure
 /// are always
-///clamped to the implementation-dependent sample location coordinate range
-///[`sampleLocationCoordinateRange`[0],`sampleLocationCoordinateRange`[1]]
-///that  **can**  be queried using
-///[`PhysicalDeviceSampleLocationsPropertiesEXT`].
-///# Related
+/// clamped to the implementation-dependent sample location coordinate range
+/// [`sampleLocationCoordinateRange`[0],`sampleLocationCoordinateRange`[1]]
+/// that  **can**  be queried using
+/// [`PhysicalDeviceSampleLocationsPropertiesEXT`].
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`SampleLocationsInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSampleLocationEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -189,7 +304,7 @@ impl SampleLocationEXT {
 ///    const VkSampleLocationEXT*    pSampleLocations;
 ///} VkSampleLocationsInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sample_locations_per_pixel`] is a [`SampleCountFlagBits`] value specifying the number of
@@ -199,32 +314,32 @@ impl SampleLocationEXT {
 /// - [`sample_locations_count`] is the number of sample locations in [`sample_locations`].
 /// - [`sample_locations`] is a pointer to an array of
 ///   [`sample_locations_count`][`SampleLocationEXT`] structures.
-///# Description
-///This structure  **can**  be used either to specify the sample locations to be
-///used for rendering or to specify the set of sample locations an image
-///subresource has been last rendered with for the purposes of layout
-///transitions of depth/stencil images created with
-///`VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT`.The sample locations in
+/// # Description
+/// This structure  **can**  be used either to specify the sample locations to be
+/// used for rendering or to specify the set of sample locations an image
+/// subresource has been last rendered with for the purposes of layout
+/// transitions of depth/stencil images created with
+/// `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT`.The sample locations in
 /// [`sample_locations`] specify
-///[`sample_locations_per_pixel`] number of sample locations for each pixel in
-///the grid of the size specified in [`sample_location_grid_size`].
-///The sample location for sample i at the pixel grid location
-///(x,y) is taken from [`sample_locations`][(x +  y ×
-///`sampleLocationGridSize.width`) × [`sample_locations_per_pixel`]
-///+  i].If the render pass has a fragment density map, the implementation will
-///choose the sample locations for the fragment and the contents of
-///[`sample_locations`] **may**  be ignored.
-///## Valid Usage
+/// [`sample_locations_per_pixel`] number of sample locations for each pixel in
+/// the grid of the size specified in [`sample_location_grid_size`].
+/// The sample location for sample i at the pixel grid location
+/// (x,y) is taken from [`sample_locations`][(x +  y ×
+/// `sampleLocationGridSize.width`) × [`sample_locations_per_pixel`]
+/// +  i].If the render pass has a fragment density map, the implementation will
+/// choose the sample locations for the fragment and the contents of
+/// [`sample_locations`] **may**  be ignored.
+/// ## Valid Usage
 /// - [`sample_locations_per_pixel`] **must**  be a bit value that is set in
 ///   [`PhysicalDeviceSampleLocationsPropertiesEXT::sample_location_sample_counts`]
 /// - [`sample_locations_count`] **must**  equal [`sample_locations_per_pixel`] ×
 ///   `sampleLocationGridSize.width` × `sampleLocationGridSize.height`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`
 /// - If [`sample_locations_count`] is not `0`, [`sample_locations`] **must**  be a valid pointer to
 ///   an array of [`sample_locations_count`][`SampleLocationEXT`] structures
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`AttachmentSampleLocationsEXT`]
 /// - [`Extent2D`]
@@ -233,15 +348,15 @@ impl SampleLocationEXT {
 /// - [`SampleLocationEXT`]
 /// - [`StructureType`]
 /// - [`SubpassSampleLocationsEXT`]
-/// - [`CmdSetSampleLocationsEXT`]
+/// - [`cmd_set_sample_locations_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSampleLocationsInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -392,36 +507,36 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
 ///    VkSampleLocationsInfoEXT    sampleLocationsInfo;
 ///} VkAttachmentSampleLocationsEXT;
 ///```
-///# Members
+/// # Members
 /// - [`attachment_index`] is the index of the attachment for which the sample locations state is
 ///   provided.
 /// - [`sample_locations_info`] is the sample locations state to use for the layout transition of
 ///   the given attachment from the initial layout of the attachment to the image layout specified
 ///   for the attachment in the first subpass using it.
-///# Description
-///If the image referenced by the framebuffer attachment at index
-///[`attachment_index`] was not created with
-///`VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` then the
-///values specified in [`sample_locations_info`] are ignored.
-///## Valid Usage
+/// # Description
+/// If the image referenced by the framebuffer attachment at index
+/// [`attachment_index`] was not created with
+/// `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` then the
+/// values specified in [`sample_locations_info`] are ignored.
+/// ## Valid Usage
 /// - [`attachment_index`] **must**  be less than the `attachmentCount` specified in
 ///   [`RenderPassCreateInfo`] the render pass specified by [`RenderPassBeginInfo::render_pass`] was
 ///   created with
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`RenderPassSampleLocationsBeginInfoEXT`]
 /// - [`SampleLocationsInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentSampleLocationsEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -488,39 +603,39 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
 ///    VkSampleLocationsInfoEXT    sampleLocationsInfo;
 ///} VkSubpassSampleLocationsEXT;
 ///```
-///# Members
+/// # Members
 /// - [`subpass_index`] is the index of the subpass for which the sample locations state is
 ///   provided.
 /// - [`sample_locations_info`] is the sample locations state to use for the layout transition of
 ///   the depth/stencil attachment away from the image layout the attachment is used with in the
 ///   subpass specified in [`subpass_index`].
-///# Description
-///If the image referenced by the depth/stencil attachment used in the subpass
-///identified by [`subpass_index`] was not created with
-///`VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` or if the
-///subpass does not use a depth/stencil attachment, and
-///[`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`]
-///is [`TRUE`] then the values specified in [`sample_locations_info`] are
-///ignored.
-///## Valid Usage
+/// # Description
+/// If the image referenced by the depth/stencil attachment used in the subpass
+/// identified by [`subpass_index`] was not created with
+/// `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` or if the
+/// subpass does not use a depth/stencil attachment, and
+/// [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`]
+/// is [`TRUE`] then the values specified in [`sample_locations_info`] are
+/// ignored.
+/// ## Valid Usage
 /// - [`subpass_index`] **must**  be less than the `subpassCount` specified in
 ///   [`RenderPassCreateInfo`] the render pass specified by [`RenderPassBeginInfo::render_pass`] was
 ///   created with
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`RenderPassSampleLocationsBeginInfoEXT`]
 /// - [`SampleLocationsInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassSampleLocationsEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -601,7 +716,7 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 ///    const VkSubpassSampleLocationsEXT*       pPostSubpassSampleLocations;
 ///} VkRenderPassSampleLocationsBeginInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attachment_initial_sample_locations_count`] is the number of elements in the
@@ -627,8 +742,8 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 ///   location state that matches the sample locations used by all pipelines that will be bound to a
 ///   command buffer during the specified subpass. If `variableSampleLocations` is [`TRUE`], the
 ///   sample locations used for rasterization do not depend on [`post_subpass_sample_locations`].
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`
 /// - If [`attachment_initial_sample_locations_count`] is not `0`,
 ///   [`attachment_initial_sample_locations`] **must**  be a valid pointer to an array of
@@ -637,19 +752,19 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 /// - If [`post_subpass_sample_locations_count`] is not `0`, [`post_subpass_sample_locations`]
 ///   **must**  be a valid pointer to an array of [`post_subpass_sample_locations_count`] valid
 ///   [`SubpassSampleLocationsEXT`] structures
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`AttachmentSampleLocationsEXT`]
 /// - [`StructureType`]
 /// - [`SubpassSampleLocationsEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassSampleLocationsBeginInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -853,7 +968,7 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 ///    VkSampleLocationsInfoEXT    sampleLocationsInfo;
 ///} VkPipelineSampleLocationsStateCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sample_locations_enable`] controls whether custom sample locations are used. If
@@ -862,23 +977,23 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 /// - [`sample_locations_info`] is the sample locations to use during rasterization if
 ///   [`sample_locations_enable`] is [`TRUE`] and the graphics pipeline is not created with
 ///   `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`
 /// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`Bool32`]
 /// - [`SampleLocationsInfoEXT`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineSampleLocationsStateCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1018,7 +1133,7 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 ///    VkBool32              variableSampleLocations;
 ///} VkPhysicalDeviceSampleLocationsPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sample_location_sample_counts`] is a bitmask of [`SampleCountFlagBits`] indicating the
@@ -1033,28 +1148,28 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 ///   that will be bound to a command buffer during a subpass  **must**  match. If set to [`TRUE`],
 ///   the implementation supports variable sample locations in a subpass. If set to [`FALSE`], then
 ///   the sample locations  **must**  stay constant in each subpass.
-///# Description
-///If the [`PhysicalDeviceSampleLocationsPropertiesEXT`] structure is included in the [`p_next`]
+/// # Description
+/// If the [`PhysicalDeviceSampleLocationsPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`Bool32`]
 /// - [`Extent2D`]
 /// - [`SampleCountFlags`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSampleLocationsPropertiesEXT")]
 #[derive(Debug, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1247,28 +1362,28 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 ///    VkExtent2D         maxSampleLocationGridSize;
 ///} VkMultisamplePropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_sample_location_grid_size`] is the maximum size of the pixel grid in which sample
 ///   locations  **can**  vary.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_EXT_sample_locations`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
-/// - [`GetPhysicalDeviceMultisamplePropertiesEXT`]
+/// - [`get_physical_device_multisample_properties_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultisamplePropertiesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1349,5 +1464,54 @@ impl<'lt> MultisamplePropertiesEXT<'lt> {
     pub fn set_max_sample_location_grid_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
         self.max_sample_location_grid_size = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_EXT_sample_locations
+pub struct InstanceExtSampleLocationsVTable {
+    ///See [`FNGetPhysicalDeviceMultisamplePropertiesExt`] for more information.
+    pub get_physical_device_multisample_properties_ext: FNGetPhysicalDeviceMultisamplePropertiesExt,
+}
+impl InstanceExtSampleLocationsVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_multisample_properties_ext: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceMultisamplePropertiesEXT"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_multisample_properties_ext`]. See
+    /// [`FNGetPhysicalDeviceMultisamplePropertiesExt`] for more information.
+    pub fn get_physical_device_multisample_properties_ext(&self) -> FNGetPhysicalDeviceMultisamplePropertiesExt {
+        self.get_physical_device_multisample_properties_ext
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_sample_locations
+pub struct DeviceExtSampleLocationsVTable {
+    ///See [`FNCmdSetSampleLocationsExt`] for more information.
+    pub cmd_set_sample_locations_ext: FNCmdSetSampleLocationsExt,
+}
+impl DeviceExtSampleLocationsVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            cmd_set_sample_locations_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetSampleLocationsEXT")))
+            },
+        }
+    }
+    ///Gets [`Self::cmd_set_sample_locations_ext`]. See [`FNCmdSetSampleLocationsExt`] for more
+    /// information.
+    pub fn cmd_set_sample_locations_ext(&self) -> FNCmdSetSampleLocationsExt {
+        self.cmd_set_sample_locations_ext
     }
 }

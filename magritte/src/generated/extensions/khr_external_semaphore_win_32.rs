@@ -14,8 +14,8 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore_win32 extension>>)
 //!# New functions & commands
-//! - [`GetSemaphoreWin32HandleKHR`]
-//! - [`ImportSemaphoreWin32HandleKHR`]
+//! - [`get_semaphore_win32_handle_khr`]
+//! - [`import_semaphore_win32_handle_khr`]
 //!# New structures
 //! - [`ImportSemaphoreWin32HandleInfoKHR`]
 //! - [`SemaphoreGetWin32HandleInfoKHR`]
@@ -30,7 +30,7 @@
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR`
 //!# Known issues & F.A.Q
 //!1) Do applications need to call `CloseHandle`() on the values returned
-//!from [`GetSemaphoreWin32HandleKHR`] when `handleType` is
+//!from [`get_semaphore_win32_handle_khr`] when `handleType` is
 //!`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR`? **RESOLVED** : Yes, unless it is
 //! passed back in to another driver instance to
 //!import the object.
@@ -56,7 +56,7 @@
 //!the former is a much simpler API.Since Vulkan tends to favor flexibility and consistency over
 //! simplicity, a
 //!new structure specifying D3D12 fence acquire and release values is added to
-//!the [`QueueSubmit`] function.
+//!the [`queue_submit`] function.
 //!# Version History
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
 //!# Other info
@@ -68,8 +68,8 @@
 //! - [`ExportSemaphoreWin32HandleInfoKHR`]
 //! - [`ImportSemaphoreWin32HandleInfoKHR`]
 //! - [`SemaphoreGetWin32HandleInfoKHR`]
-//! - [`GetSemaphoreWin32HandleKHR`]
-//! - [`ImportSemaphoreWin32HandleKHR`]
+//! - [`get_semaphore_win32_handle_khr`]
+//! - [`import_semaphore_win32_handle_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -80,7 +80,7 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     native::{DWORD, HANDLE, LPCWSTR, SECURITY_ATTRIBUTES},
-    vulkan1_0::{BaseInStructure, Semaphore, StructureType},
+    vulkan1_0::{BaseInStructure, Device, Semaphore, StructureType, VulkanResultCodes},
     vulkan1_1::{ExternalSemaphoreHandleTypeFlagBits, SemaphoreImportFlags},
 };
 use std::{ffi::CStr, marker::PhantomData};
@@ -92,6 +92,107 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME")]
 pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_external_semaphore_win32");
+///[vkGetSemaphoreWin32HandleKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSemaphoreWin32HandleKHR.html) - Get a Windows HANDLE for a semaphore
+///# C Specifications
+///To export a Windows handle representing the payload of a semaphore, call:
+///```c
+///// Provided by VK_KHR_external_semaphore_win32
+///VkResult vkGetSemaphoreWin32HandleKHR(
+///    VkDevice                                    device,
+///    const VkSemaphoreGetWin32HandleInfoKHR*     pGetWin32HandleInfo,
+///    HANDLE*                                     pHandle);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that created the semaphore being exported.
+/// - [`p_get_win_32_handle_info`] is a pointer to a [`SemaphoreGetWin32HandleInfoKHR`] structure
+///   containing parameters of the export operation.
+/// - [`p_handle`] will return the Windows handle representing the semaphore state.
+/// # Description
+/// For handle types defined as NT handles, the handles returned by
+/// [`get_semaphore_win32_handle_khr`] are owned by the application.
+/// To avoid leaking resources, the application  **must**  release ownership of them
+/// using the `CloseHandle` system call when they are no longer needed.Exporting a Windows handle
+/// from a semaphore  **may**  have side effects depending
+/// on the transference of the specified handle type, as described in
+/// [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_get_win_32_handle_info`] **must**  be a valid pointer to a valid
+///   [`SemaphoreGetWin32HandleInfoKHR`] structure
+/// - [`p_handle`] **must**  be a valid pointer to a [`HANDLE`] value
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`Device`]
+/// - [`SemaphoreGetWin32HandleInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetSemaphoreWin32HandleKHR")]
+pub type FNGetSemaphoreWin32HandleKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_get_win_32_handle_info: *const SemaphoreGetWin32HandleInfoKHR<'lt>,
+        p_handle: *mut HANDLE,
+    ) -> VulkanResultCodes,
+>;
+///[vkImportSemaphoreWin32HandleKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkImportSemaphoreWin32HandleKHR.html) - Import a semaphore from a Windows HANDLE
+///# C Specifications
+///To import a semaphore payload from a Windows handle, call:
+///```c
+///// Provided by VK_KHR_external_semaphore_win32
+///VkResult vkImportSemaphoreWin32HandleKHR(
+///    VkDevice                                    device,
+///    const VkImportSemaphoreWin32HandleInfoKHR*  pImportSemaphoreWin32HandleInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that created the semaphore.
+/// - [`p_import_semaphore_win_32_handle_info`] is a pointer to a
+///   [`ImportSemaphoreWin32HandleInfoKHR`] structure specifying the semaphore and import
+///   parameters.
+/// # Description
+/// Importing a semaphore payload from Windows handles does not transfer
+/// ownership of the handle to the Vulkan implementation.
+/// For handle types defined as NT handles, the application  **must**  release
+/// ownership using the `CloseHandle` system call when the handle is no
+/// longer needed.Applications  **can**  import the same semaphore payload into multiple instances
+/// of Vulkan, into the same instance from which it was exported, and multiple
+/// times into a given Vulkan instance.
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_import_semaphore_win_32_handle_info`] **must**  be a valid pointer to a valid
+///   [`ImportSemaphoreWin32HandleInfoKHR`] structure
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+/// # Related
+/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`Device`]
+/// - [`ImportSemaphoreWin32HandleInfoKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkImportSemaphoreWin32HandleKHR")]
+pub type FNImportSemaphoreWin32HandleKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_import_semaphore_win_32_handle_info: *const ImportSemaphoreWin32HandleInfoKHR<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImportSemaphoreWin32HandleInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImportSemaphoreWin32HandleInfoKHR.html) - Structure specifying Windows handle to import to a semaphore
 ///# C Specifications
 ///The [`ImportSemaphoreWin32HandleInfoKHR`] structure is defined as:
@@ -107,7 +208,7 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 ///    LPCWSTR                                  name;
 ///} VkImportSemaphoreWin32HandleInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the semaphore into which the payload will be imported.
@@ -118,9 +219,9 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`handle`] is `NULL` or the external handle to import.
 /// - [`name`] is `NULL` or a null-terminated UTF-16 string naming the underlying synchronization
 ///   primitive to import.
-///# Description
-///The handle types supported by [`handle_type`] are:
-///## Valid Usage
+/// # Description
+/// The handle types supported by [`handle_type`] are:
+/// ## Valid Usage
 /// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportSemaphoreWin32HandleInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-win32)
 ///   table
 /// - If [`handle_type`] is not `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT` or
@@ -145,29 +246,29 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 ///   [`SemaphoreTypeCreateInfo::semaphore_type`] field of the semaphore from which [`handle`] or
 ///   [`name`] was exported  **must**  not be `VK_SEMAPHORE_TYPE_TIMELINE`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`flags`] **must**  be a valid combination of [`SemaphoreImportFlagBits`] values
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`semaphore`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`VK_KHR_external_semaphore_win32`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`SemaphoreImportFlags`]
 /// - [`StructureType`]
-/// - [`ImportSemaphoreWin32HandleKHR`]
+/// - [`import_semaphore_win32_handle_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportSemaphoreWin32HandleInfoKHR")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -343,7 +444,7 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
 ///    LPCWSTR                       name;
 ///} VkExportSemaphoreWin32HandleInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security
@@ -351,46 +452,46 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
 /// - [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
 /// - [`name`] is a null-terminated UTF-16 string to associate with the underlying synchronization
 ///   primitive referenced by NT handles exported from the created semaphore.
-///# Description
-///If [`ExportSemaphoreCreateInfo`] is not included in the same [`p_next`]
-///chain, this structure is ignored.If [`ExportSemaphoreCreateInfo`] is included in the [`p_next`]
+/// # Description
+/// If [`ExportSemaphoreCreateInfo`] is not included in the same [`p_next`]
+/// chain, this structure is ignored.If [`ExportSemaphoreCreateInfo`] is included in the [`p_next`]
 /// chain of
-///[`SemaphoreCreateInfo`] with a Windows `handleType`, but either
-///[`ExportSemaphoreWin32HandleInfoKHR`] is not included in the [`p_next`]
-///chain, or if it is but [`attributes`] is set to `NULL`, default security
-///descriptor values will be used, and child processes created by the
-///application will not inherit the handle, as described in the MSDN
-///documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
-///Further, if the structure is not present, the access rights used depend on
-///the handle type.For handles of the following
+/// [`SemaphoreCreateInfo`] with a Windows `handleType`, but either
+/// [`ExportSemaphoreWin32HandleInfoKHR`] is not included in the [`p_next`]
+/// chain, or if it is but [`attributes`] is set to `NULL`, default security
+/// descriptor values will be used, and child processes created by the
+/// application will not inherit the handle, as described in the MSDN
+/// documentation for “Synchronization Object Security and Access Rights”<sup>1</sup>.
+/// Further, if the structure is not present, the access rights used depend on
+/// the handle type.For handles of the following
 /// types:`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT`The implementation  **must**  ensure
 /// the access rights allow both signal and wait
-///operations on the semaphore.For handles of the following
+/// operations on the semaphore.For handles of the following
 /// types:`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`The access rights  **must**
 /// be:`GENERIC_ALL`
 /// * [https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights](https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights)
 ///
-///## Valid Usage
+/// ## Valid Usage
 /// - If [`ExportSemaphoreCreateInfo::handle_types`] does not include
 ///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT` or
 ///   `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT`, [`ExportSemaphoreWin32HandleInfoKHR`]
 ///   **must**  not be included in the [`p_next`] chain of [`SemaphoreCreateInfo`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
 /// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_external_semaphore_win32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportSemaphoreWin32HandleInfoKHR")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -534,7 +635,7 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///    const uint64_t*    pSignalSemaphoreValues;
 ///} VkD3D12FenceSubmitInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`wait_semaphore_values_count`] is the number of semaphore wait values specified in
@@ -546,14 +647,14 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 /// - [`signal_semaphore_values`] is a pointer to an array of [`signal_semaphore_values_count`]
 ///   values for the corresponding semaphores in [`SubmitInfo::signal_semaphores`] to set when
 ///   signaled.
-///# Description
-///If the semaphore in [`SubmitInfo::wait_semaphores`] or
-///[`SubmitInfo::signal_semaphores`] corresponding to an entry in
-///[`wait_semaphore_values`] or [`signal_semaphore_values`] respectively does
-///not currently have a [payload](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-payloads)
-///referring to a Direct3D 12 fence, the implementation  **must**  ignore the value
-///in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
-///## Valid Usage
+/// # Description
+/// If the semaphore in [`SubmitInfo::wait_semaphores`] or
+/// [`SubmitInfo::signal_semaphores`] corresponding to an entry in
+/// [`wait_semaphore_values`] or [`signal_semaphore_values`] respectively does
+/// not currently have a [payload](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-payloads)
+/// referring to a Direct3D 12 fence, the implementation  **must**  ignore the value
+/// in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
+/// ## Valid Usage
 /// - [`wait_semaphore_values_count`] **must**  be the same value as
 ///   [`SubmitInfo::wait_semaphore_count`], where [`SubmitInfo`] is in the [`p_next`] chain of this
 ///   [`D3D12FenceSubmitInfoKHR`] structure
@@ -561,7 +662,7 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///   [`SubmitInfo::signal_semaphore_count`], where [`SubmitInfo`] is in the [`p_next`] chain of
 ///   this [`D3D12FenceSubmitInfoKHR`] structure
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR`
 /// - If [`wait_semaphore_values_count`] is not `0`, and [`wait_semaphore_values`] is not `NULL`,
 ///   [`wait_semaphore_values`] **must**  be a valid pointer to an array of
@@ -569,17 +670,17 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 /// - If [`signal_semaphore_values_count`] is not `0`, and [`signal_semaphore_values`] is not
 ///   `NULL`, [`signal_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`signal_semaphore_values_count`]`uint64_t` values
-///# Related
+/// # Related
 /// - [`VK_KHR_external_semaphore_win32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkD3D12FenceSubmitInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -745,21 +846,21 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
 ///    VkExternalSemaphoreHandleTypeFlagBits    handleType;
 ///} VkSemaphoreGetWin32HandleInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the semaphore from which state will be exported.
 /// - [`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value specifying the type of
 ///   handle requested.
-///# Description
-///The properties of the handle returned depend on the value of
-///[`handle_type`].
-///See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
-///properties of the defined external semaphore handle types.
-///## Valid Usage
+/// # Description
+/// The properties of the handle returned depend on the value of
+/// [`handle_type`].
+/// See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
+/// properties of the defined external semaphore handle types.
+/// ## Valid Usage
 /// - [`handle_type`] **must**  have been included in [`ExportSemaphoreCreateInfo::handle_types`]
 ///   when the [`semaphore`]’s current payload was created
-/// - If [`handle_type`] is defined as an NT handle, [`GetSemaphoreWin32HandleKHR`] **must**  be
+/// - If [`handle_type`] is defined as an NT handle, [`get_semaphore_win32_handle_khr`] **must**  be
 ///   called no more than once for each valid unique combination of [`semaphore`] and
 ///   [`handle_type`]
 /// -  [`semaphore`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
@@ -767,25 +868,25 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
 /// -    If [`handle_type`] refers to a handle type with copy payload transference semantics, [`semaphore`] **must**  be signaled, or have an associated [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) pending execution
 /// - [`handle_type`] **must**  be defined as an NT handle or a global share handle
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_external_semaphore_win32`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
-/// - [`GetSemaphoreWin32HandleKHR`]
+/// - [`get_semaphore_win32_handle_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreGetWin32HandleInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -875,5 +976,38 @@ impl<'lt> SemaphoreGetWin32HandleInfoKHR<'lt> {
     pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
         self.handle_type = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_KHR_external_semaphore_win32
+pub struct DeviceKhrExternalSemaphoreWin32VTable {
+    ///See [`FNGetSemaphoreWin32HandleKhr`] for more information.
+    pub get_semaphore_win32_handle_khr: FNGetSemaphoreWin32HandleKhr,
+    ///See [`FNImportSemaphoreWin32HandleKhr`] for more information.
+    pub import_semaphore_win32_handle_khr: FNImportSemaphoreWin32HandleKhr,
+}
+impl DeviceKhrExternalSemaphoreWin32VTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_semaphore_win32_handle_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreWin32HandleKHR")))
+            },
+            import_semaphore_win32_handle_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkImportSemaphoreWin32HandleKHR")))
+            },
+        }
+    }
+    ///Gets [`Self::get_semaphore_win32_handle_khr`]. See [`FNGetSemaphoreWin32HandleKhr`] for more
+    /// information.
+    pub fn get_semaphore_win32_handle_khr(&self) -> FNGetSemaphoreWin32HandleKhr {
+        self.get_semaphore_win32_handle_khr
+    }
+    ///Gets [`Self::import_semaphore_win32_handle_khr`]. See [`FNImportSemaphoreWin32HandleKhr`]
+    /// for more information.
+    pub fn import_semaphore_win32_handle_khr(&self) -> FNImportSemaphoreWin32HandleKhr {
+        self.import_semaphore_win32_handle_khr
     }
 }

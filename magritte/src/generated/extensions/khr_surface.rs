@@ -23,11 +23,11 @@
 //!# New handles
 //! - [`SurfaceKHR`]
 //!# New functions & commands
-//! - [`DestroySurfaceKHR`]
-//! - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]
-//! - [`GetPhysicalDeviceSurfaceFormatsKHR`]
-//! - [`GetPhysicalDeviceSurfacePresentModesKHR`]
-//! - [`GetPhysicalDeviceSurfaceSupportKHR`]
+//! - [`destroy_surface_khr`]
+//! - [`get_physical_device_surface_capabilities_khr`]
+//! - [`get_physical_device_surface_formats_khr`]
+//! - [`get_physical_device_surface_present_modes_khr`]
+//! - [`get_physical_device_surface_support_khr`]
 //!# New structures
 //! - [`SurfaceCapabilitiesKHR`]
 //! - [`SurfaceFormatKHR`]
@@ -55,9 +55,10 @@
 //!of the platform that each use different underlying physical devices.
 //!Additionally, on some platforms, such as the X Window System, different
 //!drivers and devices might be used for different windows depending on which
-//!section of the desktop they exist on.2) Should the [`GetPhysicalDeviceSurfaceCapabilitiesKHR`],
-//![`GetPhysicalDeviceSurfaceFormatsKHR`], and
-//![`GetPhysicalDeviceSurfacePresentModesKHR`] functions be in this
+//!section of the desktop they exist on.2) Should the
+//! [`get_physical_device_surface_capabilities_khr`],
+//![`get_physical_device_surface_formats_khr`], and
+//![`get_physical_device_surface_present_modes_khr`] functions be in this
 //!extension and operate on physical devices, rather than being in
 //!`[`VK_KHR_swapchain`]` (i.e. device extension) and being dependent on
 //![`Device`]? **RESOLVED** : Yes.
@@ -67,9 +68,9 @@
 //!Many cases can be resolved by a Valid Usage statement, and/or by a separate
 //!`pNext` chain version of the query struct specific to a given extension
 //!or parameters, via extensible versions of the queries:
-//![`GetPhysicalDeviceSurfacePresentModes2EXT`],
-//![`GetPhysicalDeviceSurfaceCapabilities2KHR`], and
-//![`GetPhysicalDeviceSurfaceFormats2KHR`].3) Should Vulkan support Xlib or XCB as the API for
+//![`get_physical_device_surface_present_modes2_ext`],
+//![`get_physical_device_surface_capabilities2_khr`], and
+//![`get_physical_device_surface_formats2_khr`].3) Should Vulkan support Xlib or XCB as the API for
 //! accessing the X Window
 //!System platform? **RESOLVED** : Both.
 //!XCB is a more modern and efficient API, but Xlib usage is deeply ingrained
@@ -155,11 +156,11 @@
 //! - [`SurfaceFormatKHR`]
 //! - [`SurfaceKHR`]
 //! - [`SurfaceTransformFlagBitsKHR`]
-//! - [`DestroySurfaceKHR`]
-//! - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]
-//! - [`GetPhysicalDeviceSurfaceFormatsKHR`]
-//! - [`GetPhysicalDeviceSurfacePresentModesKHR`]
-//! - [`GetPhysicalDeviceSurfaceSupportKHR`]
+//! - [`destroy_surface_khr`]
+//! - [`get_physical_device_surface_capabilities_khr`]
+//! - [`get_physical_device_surface_formats_khr`]
+//! - [`get_physical_device_surface_present_modes_khr`]
+//! - [`get_physical_device_surface_support_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -170,7 +171,9 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     extensions::khr_display::SurfaceTransformFlagsKHR,
-    vulkan1_0::{Extent2D, Format, ImageUsageFlags},
+    vulkan1_0::{
+        AllocationCallbacks, Bool32, Extent2D, Format, ImageUsageFlags, Instance, PhysicalDevice, VulkanResultCodes,
+    },
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -188,10 +191,348 @@ pub const KHR_SURFACE_SPEC_VERSION: u32 = 25;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_SURFACE_EXTENSION_NAME")]
 pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surface");
+///[vkDestroySurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroySurfaceKHR.html) - Destroy a VkSurfaceKHR object
+///# C Specifications
+///To destroy a [`SurfaceKHR`] object, call:
+///```c
+///// Provided by VK_KHR_surface
+///void vkDestroySurfaceKHR(
+///    VkInstance                                  instance,
+///    VkSurfaceKHR                                surface,
+///    const VkAllocationCallbacks*                pAllocator);
+///```
+/// # Parameters
+/// - [`instance`] is the instance used to create the surface.
+/// - [`surface`] is the surface to destroy.
+/// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+/// # Description
+/// Destroying a [`SurfaceKHR`] merely severs the connection between Vulkan
+/// and the native surface, and does not imply destroying the native surface,
+/// closing a window, or similar behavior.
+/// ## Valid Usage
+/// - All [`SwapchainKHR`] objects created for [`surface`] **must**  have been destroyed prior to
+///   destroying [`surface`]
+/// - If [`AllocationCallbacks`] were provided when [`surface`] was created, a compatible set of
+///   callbacks  **must**  be provided here
+/// - If no [`AllocationCallbacks`] were provided when [`surface`] was created, [`p_allocator`]
+///   **must**  be `NULL`
+///
+/// ## Valid Usage (Implicit)
+/// - [`instance`] **must**  be a valid [`Instance`] handle
+/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
+///   [`SurfaceKHR`] handle
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - If [`surface`] is a valid handle, it  **must**  have been created, allocated, or retrieved
+///   from [`instance`]
+///
+/// ## Host Synchronization
+/// - Host access to [`surface`] **must**  be externally synchronized
+/// # Related
+/// - [`VK_KHR_surface`]
+/// - [`AllocationCallbacks`]
+/// - [`Instance`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkDestroySurfaceKHR")]
+pub type FNDestroySurfaceKhr = Option<
+    for<'lt> unsafe extern "system" fn(
+        instance: Instance,
+        surface: SurfaceKHR,
+        p_allocator: *const AllocationCallbacks<'lt>,
+    ),
+>;
+///[vkGetPhysicalDeviceSurfaceSupportKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html) - Query if presentation is supported
+///# C Specifications
+///To determine whether a queue family of a physical device supports
+///presentation to a given surface, call:
+///```c
+///// Provided by VK_KHR_surface
+///VkResult vkGetPhysicalDeviceSurfaceSupportKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    uint32_t                                    queueFamilyIndex,
+///    VkSurfaceKHR                                surface,
+///    VkBool32*                                   pSupported);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device.
+/// - [`queue_family_index`] is the queue family.
+/// - [`surface`] is the surface.
+/// - [`p_supported`] is a pointer to a [`Bool32`], which is set to [`TRUE`] to indicate support,
+///   and [`FALSE`] otherwise.
+/// # Description
+/// ## Valid Usage
+/// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
+///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+/// - [`p_supported`] **must**  be a valid pointer to a [`Bool32`] value
+/// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+///   retrieved from the same [`Instance`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_KHR_surface`]
+/// - [`Bool32`]
+/// - [`PhysicalDevice`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceSurfaceSupportKHR")]
+pub type FNGetPhysicalDeviceSurfaceSupportKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        queue_family_index: u32,
+        surface: SurfaceKHR,
+        p_supported: *mut Bool32,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceSurfaceCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html) - Query surface capabilities
+///# C Specifications
+///To query the basic capabilities of a surface, needed in order to create a
+///swapchain, call:
+///```c
+///// Provided by VK_KHR_surface
+///VkResult vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkSurfaceKHR                                surface,
+///    VkSurfaceCapabilitiesKHR*                   pSurfaceCapabilities);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device that will be associated with the swapchain to be
+///   created, as described for [`create_swapchain_khr`].
+/// - [`surface`] is the surface that will be associated with the swapchain.
+/// - [`p_surface_capabilities`] is a pointer to a [`SurfaceCapabilitiesKHR`] structure in which the
+///   capabilities are returned.
+/// # Description
+/// ## Valid Usage
+/// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+/// - [`surface`] **must**  be supported by [`physical_device`], as reported by
+///   [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+/// - [`p_surface_capabilities`] **must**  be a valid pointer to a [`SurfaceCapabilitiesKHR`]
+///   structure
+/// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+///   retrieved from the same [`Instance`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_KHR_surface`]
+/// - [`PhysicalDevice`]
+/// - [`SurfaceCapabilitiesKHR`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilitiesKHR")]
+pub type FNGetPhysicalDeviceSurfaceCapabilitiesKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        surface: SurfaceKHR,
+        p_surface_capabilities: *mut SurfaceCapabilitiesKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceSurfaceFormatsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html) - Query color formats supported by surface
+///# C Specifications
+///To query the supported swapchain format-color space pairs for a surface,
+///call:
+///```c
+///// Provided by VK_KHR_surface
+///VkResult vkGetPhysicalDeviceSurfaceFormatsKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkSurfaceKHR                                surface,
+///    uint32_t*                                   pSurfaceFormatCount,
+///    VkSurfaceFormatKHR*                         pSurfaceFormats);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device that will be associated with the swapchain to be
+///   created, as described for [`create_swapchain_khr`].
+/// - [`surface`] is the surface that will be associated with the swapchain.
+/// - [`p_surface_format_count`] is a pointer to an integer related to the number of format pairs
+///   available or queried, as described below.
+/// - [`p_surface_formats`] is either `NULL` or a pointer to an array of [`SurfaceFormatKHR`]
+///   structures.
+/// # Description
+/// If [`p_surface_formats`] is `NULL`, then the number of format pairs
+/// supported for the given [`surface`] is returned in
+/// [`p_surface_format_count`].
+/// Otherwise, [`p_surface_format_count`] **must**  point to a variable set by the
+/// user to the number of elements in the [`p_surface_formats`] array, and on
+/// return the variable is overwritten with the number of structures actually
+/// written to [`p_surface_formats`].
+/// If the value of [`p_surface_format_count`] is less than the number of format
+/// pairs supported, at most [`p_surface_format_count`] structures will be
+/// written, and `VK_INCOMPLETE` will be returned instead of
+/// `VK_SUCCESS`, to indicate that not all the available format pairs were
+/// returned.The number of format pairs supported  **must**  be greater than or equal to 1.
+/// [`p_surface_formats`] **must**  not contain an entry whose value for
+/// `format` is `VK_FORMAT_UNDEFINED`.If [`p_surface_formats`] includes an entry whose value for
+/// `colorSpace`
+/// is `VK_COLOR_SPACE_SRGB_NONLINEAR_KHR` and whose value for `format`
+/// is a UNORM (or SRGB) format and the corresponding SRGB (or UNORM) format is
+/// a color renderable format for `VK_IMAGE_TILING_OPTIMAL`, then
+/// [`p_surface_formats`] **must**  also contain an entry with the same value for
+/// `colorSpace` and `format` equal to the corresponding SRGB (or UNORM)
+/// format.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+/// returned in [`p_surface_formats`] will be identical for every valid surface
+/// created on this physical device, and so [`surface`] **can**  be
+/// [`crate::utils::Handle::null`].
+/// ## Valid Usage
+/// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
+///   valid [`SurfaceKHR`] handle
+/// - If [`surface`] is not [`crate::utils::Handle::null`], it  **must**  be supported by
+///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+///   equivalent platform-specific mechanism
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
+///   [`SurfaceKHR`] handle
+/// - [`p_surface_format_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_surface_format_count`] is not `0`, and [`p_surface_formats`] is
+///   not `NULL`, [`p_surface_formats`] **must**  be a valid pointer to an array of
+///   [`p_surface_format_count`][`SurfaceFormatKHR`] structures
+/// - Both of [`physical_device`], and [`surface`] that are valid handles of non-ignored parameters
+///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_KHR_surface`]
+/// - [`PhysicalDevice`]
+/// - [`SurfaceFormatKHR`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceSurfaceFormatsKHR")]
+pub type FNGetPhysicalDeviceSurfaceFormatsKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        surface: SurfaceKHR,
+        p_surface_format_count: *mut u32,
+        p_surface_formats: *mut SurfaceFormatKHR,
+    ) -> VulkanResultCodes,
+>;
+///[vkGetPhysicalDeviceSurfacePresentModesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html) - Query supported presentation modes
+///# C Specifications
+///To query the supported presentation modes for a surface, call:
+///```c
+///// Provided by VK_KHR_surface
+///VkResult vkGetPhysicalDeviceSurfacePresentModesKHR(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkSurfaceKHR                                surface,
+///    uint32_t*                                   pPresentModeCount,
+///    VkPresentModeKHR*                           pPresentModes);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device that will be associated with the swapchain to be
+///   created, as described for [`create_swapchain_khr`].
+/// - [`surface`] is the surface that will be associated with the swapchain.
+/// - [`p_present_mode_count`] is a pointer to an integer related to the number of presentation
+///   modes available or queried, as described below.
+/// - [`p_present_modes`] is either `NULL` or a pointer to an array of [`PresentModeKHR`] values,
+///   indicating the supported presentation modes.
+/// # Description
+/// If [`p_present_modes`] is `NULL`, then the number of presentation modes
+/// supported for the given [`surface`] is returned in
+/// [`p_present_mode_count`].
+/// Otherwise, [`p_present_mode_count`] **must**  point to a variable set by the user
+/// to the number of elements in the [`p_present_modes`] array, and on return
+/// the variable is overwritten with the number of values actually written to
+/// [`p_present_modes`].
+/// If the value of [`p_present_mode_count`] is less than the number of
+/// presentation modes supported, at most [`p_present_mode_count`] values will be
+/// written, and `VK_INCOMPLETE` will be returned instead of
+/// `VK_SUCCESS`, to indicate that not all the available modes were
+/// returned.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+/// returned in [`p_present_modes`] will be identical for every valid surface
+/// created on this physical device, and so [`surface`] **can**  be
+/// [`crate::utils::Handle::null`].
+/// ## Valid Usage
+/// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
+///   valid [`SurfaceKHR`] handle
+/// - If [`surface`] is not [`crate::utils::Handle::null`], it  **must**  be supported by
+///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+///   equivalent platform-specific mechanism
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
+///   [`SurfaceKHR`] handle
+/// - [`p_present_mode_count`] **must**  be a valid pointer to a `uint32_t` value
+/// - If the value referenced by [`p_present_mode_count`] is not `0`, and [`p_present_modes`] is not
+///   `NULL`, [`p_present_modes`] **must**  be a valid pointer to an array of
+///   [`p_present_mode_count`][`PresentModeKHR`] values
+/// - Both of [`physical_device`], and [`surface`] that are valid handles of non-ignored parameters
+///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_KHR_surface`]
+/// - [`PhysicalDevice`]
+/// - [`PresentModeKHR`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceSurfacePresentModesKHR")]
+pub type FNGetPhysicalDeviceSurfacePresentModesKhr = Option<
+    unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        surface: SurfaceKHR,
+        p_present_mode_count: *mut u32,
+        p_present_modes: *mut PresentModeKHR,
+    ) -> VulkanResultCodes,
+>;
 ///[VkPresentModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentModeKHR.html) - Presentation mode supported for a surface
 ///# C Specifications
 ///Possible values of elements of the
-///[`GetPhysicalDeviceSurfacePresentModesKHR`]`::pPresentModes` array,
+///[`get_physical_device_surface_present_modes_khr`]`::pPresentModes` array,
 ///indicating the supported presentation modes for a surface, are:
 ///```c
 ///// Provided by VK_KHR_surface
@@ -206,7 +547,7 @@ pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surfa
 ///    VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR = 1000111001,
 ///} VkPresentModeKHR;
 ///```
-///# Description
+/// # Description
 /// - [`PresentModeImmediateKhr`] specifies that the presentation engine does not wait for a
 ///   vertical blanking period to update the current image, meaning this mode  **may**  result in
 ///   visible tearing. No internal queuing of presentation requests is needed, as the requests are
@@ -249,22 +590,22 @@ pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surfa
 ///   have been updated by making a presentation request, but this does not guarantee the timing of
 ///   when it will be updated. This mode  **may**  result in visible tearing if rendering to the
 ///   image is not timed correctly.
-///The supported [`ImageUsageFlagBits`] of the presentable images of a
-///swapchain created for a surface  **may**  differ depending on the presentation
-///mode, and can be determined as per the table below:
-///# Related
+/// The supported [`ImageUsageFlagBits`] of the presentable images of a
+/// swapchain created for a surface  **may**  differ depending on the presentation
+/// mode, and can be determined as per the table below:
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`SwapchainCreateInfoKHR`]
-/// - [`GetPhysicalDeviceSurfacePresentModes2EXT`]
-/// - [`GetPhysicalDeviceSurfacePresentModesKHR`]
+/// - [`get_physical_device_surface_present_modes2_ext`]
+/// - [`get_physical_device_surface_present_modes_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentModeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -411,7 +752,7 @@ impl PresentModeKHR {
 ///    VK_COLOR_SPACE_DCI_P3_LINEAR_EXT = VK_COLOR_SPACE_DISPLAY_P3_LINEAR_EXT,
 ///} VkColorSpaceKHR;
 ///```
-///# Description
+/// # Description
 /// - [`ColorSpaceSrgbNonlinearKhr`] specifies support for the sRGB color space.
 /// - [`ColorSpaceDisplayP3NonlinearExt`] specifies support for the Display-P3 color space to be
 ///   displayed using an sRGB-like EOTF (defined below).
@@ -444,31 +785,31 @@ impl PresentModeKHR {
 ///   intended to allow applications to supply data for color spaces not described here.
 /// - [`ColorSpaceDisplayNativeAmd`] specifies support for the display’s native color space. This
 ///   matches the color space expectations of AMD’s FreeSync2 standard, for displays supporting it.
-///The color components of non-linear color space swap chain images  **must**  have
-///had the appropriate transfer function applied.
-///The color space selected for the swap chain image will not affect the
-///processing of data written into the image by the implementation.
-///Vulkan requires that all implementations support the sRGB transfer function
-///by use of an SRGB pixel format.
-///Other transfer functions, such as SMPTE 170M or SMPTE2084,  **can**  be performed
-///by the application shader.
-///This extension defines enums for [`ColorSpaceKHR`] that correspond to
-///the following color spaces:The transfer functions are described in the “Transfer Functions”
+/// The color components of non-linear color space swap chain images  **must**  have
+/// had the appropriate transfer function applied.
+/// The color space selected for the swap chain image will not affect the
+/// processing of data written into the image by the implementation.
+/// Vulkan requires that all implementations support the sRGB transfer function
+/// by use of an SRGB pixel format.
+/// Other transfer functions, such as SMPTE 170M or SMPTE2084,  **can**  be performed
+/// by the application shader.
+/// This extension defines enums for [`ColorSpaceKHR`] that correspond to
+/// the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.8443142857142858em;" class="vlist"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
-///encoded value (as stored in the image in memory).
-///# Related
+/// of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span style="width:1em;" class="arraycolsep"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+/// encoded value (as stored in the image in memory).
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`SurfaceFormatKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkColorSpaceKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -615,8 +956,8 @@ impl ColorSpaceKHR {
 ///    VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR = 0x00000008,
 ///} VkCompositeAlphaFlagBitsKHR;
 ///```
-///# Description
-///These values are described as follows:
+/// # Description
+/// These values are described as follows:
 /// - [`CompositeAlphaOpaqueKhr`]: The alpha component, if it exists, of the images is ignored in
 ///   the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
 /// - [`CompositeAlphaPreMultipliedKhr`]: The alpha component, if it exists, of the images is
@@ -631,18 +972,18 @@ impl ColorSpaceKHR {
 ///   for setting the composite alpha blending mode using native window system commands. If the
 ///   application does not set the blending mode using native window system commands, then a
 ///   platform-specific default will be used.
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCompositeAlphaFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -722,7 +1063,7 @@ impl CompositeAlphaFlagBitsKHR {
 ///    VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR = 0x00000100,
 ///} VkSurfaceTransformFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`SurfaceTransformIdentityKhr`] specifies that image content is presented without being
 ///   transformed.
 /// - [`SurfaceTransformRotate90Khr`] specifies that image content is rotated 90 degrees clockwise.
@@ -739,7 +1080,7 @@ impl CompositeAlphaFlagBitsKHR {
 ///   horizontally, then rotated 270 degrees clockwise.
 /// - [`SurfaceTransformInheritKhr`] specifies that the presentation transform is not specified, and
 ///   is instead determined by platform-specific considerations and mechanisms outside Vulkan.
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
 /// - [`CopyCommandTransformInfoQCOM`]
@@ -750,13 +1091,13 @@ impl CompositeAlphaFlagBitsKHR {
 /// - [`SurfaceTransformFlagsKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceTransformFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -833,8 +1174,8 @@ impl SurfaceTransformFlagBitsKHR {
 ///    VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR = 0x00000008,
 ///} VkCompositeAlphaFlagBitsKHR;
 ///```
-///# Description
-///These values are described as follows:
+/// # Description
+/// These values are described as follows:
 /// - [`CompositeAlphaOpaqueKhr`]: The alpha component, if it exists, of the images is ignored in
 ///   the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
 /// - [`CompositeAlphaPreMultipliedKhr`]: The alpha component, if it exists, of the images is
@@ -849,18 +1190,18 @@ impl SurfaceTransformFlagBitsKHR {
 ///   for setting the composite alpha blending mode using native window system commands. If the
 ///   application does not set the blending mode using native window system commands, then a
 ///   platform-specific default will be used.
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCompositeAlphaFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1185,7 +1526,7 @@ impl std::fmt::Debug for CompositeAlphaFlagsKHR {
 ///    VkImageUsageFlags                supportedUsageFlags;
 ///} VkSurfaceCapabilitiesKHR;
 ///```
-///# Description
+/// # Description
 /// - [`min_image_count`] is the minimum number of images the specified device supports for a
 ///   swapchain created for the surface, and will be at least one.
 /// - [`max_image_count`] is the maximum number of images the specified device supports for a
@@ -1222,7 +1563,7 @@ impl std::fmt::Debug for CompositeAlphaFlagsKHR {
 ///   `VK_PRESENT_MODE_FIFO_KHR` or `VK_PRESENT_MODE_FIFO_RELAXED_KHR` for the surface on the
 ///   specified device. `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set.
 ///   Implementations  **may**  support additional usages.
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`Extent2D`]
@@ -1230,15 +1571,15 @@ impl std::fmt::Debug for CompositeAlphaFlagsKHR {
 /// - [`SurfaceCapabilities2KHR`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 /// - [`SurfaceTransformFlagsKHR`]
-/// - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]
+/// - [`get_physical_device_surface_capabilities_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1477,23 +1818,23 @@ impl SurfaceCapabilitiesKHR {
 ///    VkColorSpaceKHR    colorSpace;
 ///} VkSurfaceFormatKHR;
 ///```
-///# Members
+/// # Members
 /// - [`format`] is a [`Format`] that is compatible with the specified surface.
 /// - [`color_space`] is a presentation [`ColorSpaceKHR`] that is compatible with the surface.
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`ColorSpaceKHR`]
 /// - [`Format`]
 /// - [`SurfaceFormat2KHR`]
-/// - [`GetPhysicalDeviceSurfaceFormatsKHR`]
+/// - [`get_physical_device_surface_formats_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceFormatKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1551,41 +1892,41 @@ impl SurfaceFormatKHR {
 ///// Provided by VK_KHR_surface
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSurfaceKHR)
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_surface`]
 /// - [`PhysicalDeviceSurfaceInfo2KHR`]
 /// - [`SwapchainCreateInfoKHR`]
-/// - [`CreateAndroidSurfaceKHR`]
-/// - [`CreateDirectFBSurfaceEXT`]
-/// - [`CreateDisplayPlaneSurfaceKHR`]
-/// - [`CreateHeadlessSurfaceEXT`]
-/// - [`CreateIosSurfaceMVK`]
-/// - [`CreateImagePipeSurfaceFUCHSIA`]
-/// - [`CreateMacOsSurfaceMVK`]
-/// - [`CreateMetalSurfaceEXT`]
-/// - [`CreateScreenSurfaceQNX`]
-/// - [`CreateStreamDescriptorSurfaceGGP`]
-/// - [`CreateViSurfaceNN`]
-/// - [`CreateWaylandSurfaceKHR`]
-/// - [`CreateWin32SurfaceKHR`]
-/// - [`CreateXcbSurfaceKHR`]
-/// - [`CreateXlibSurfaceKHR`]
-/// - [`DestroySurfaceKHR`]
-/// - [`GetDeviceGroupSurfacePresentModesKHR`]
-/// - [`GetPhysicalDevicePresentRectanglesKHR`]
-/// - [`GetPhysicalDeviceSurfaceCapabilities2EXT`]
-/// - [`GetPhysicalDeviceSurfaceCapabilitiesKHR`]
-/// - [`GetPhysicalDeviceSurfaceFormatsKHR`]
-/// - [`GetPhysicalDeviceSurfacePresentModesKHR`]
-/// - [`GetPhysicalDeviceSurfaceSupportKHR`]
+/// - [`create_android_surface_khr`]
+/// - [`create_direct_fb_surface_ext`]
+/// - [`create_display_plane_surface_khr`]
+/// - [`create_headless_surface_ext`]
+/// - [`create_ios_surface_mvk`]
+/// - [`create_image_pipe_surface_fuchsia`]
+/// - [`create_mac_os_surface_mvk`]
+/// - [`create_metal_surface_ext`]
+/// - [`create_screen_surface_qnx`]
+/// - [`create_stream_descriptor_surface_ggp`]
+/// - [`create_vi_surface_nn`]
+/// - [`create_wayland_surface_khr`]
+/// - [`create_win32_surface_khr`]
+/// - [`create_xcb_surface_khr`]
+/// - [`create_xlib_surface_khr`]
+/// - [`destroy_surface_khr`]
+/// - [`get_device_group_surface_present_modes_khr`]
+/// - [`get_physical_device_present_rectangles_khr`]
+/// - [`get_physical_device_surface_capabilities2_ext`]
+/// - [`get_physical_device_surface_capabilities_khr`]
+/// - [`get_physical_device_surface_formats_khr`]
+/// - [`get_physical_device_surface_present_modes_khr`]
+/// - [`get_physical_device_surface_support_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1612,5 +1953,71 @@ unsafe impl Send for SurfaceKHR {}
 impl Default for SurfaceKHR {
     fn default() -> Self {
         Self::null()
+    }
+}
+///The V-table of [`Instance`] for functions from VK_KHR_surface
+pub struct InstanceKhrSurfaceVTable {
+    ///See [`FNDestroySurfaceKhr`] for more information.
+    pub destroy_surface_khr: FNDestroySurfaceKhr,
+    ///See [`FNGetPhysicalDeviceSurfaceSupportKhr`] for more information.
+    pub get_physical_device_surface_support_khr: FNGetPhysicalDeviceSurfaceSupportKhr,
+    ///See [`FNGetPhysicalDeviceSurfaceCapabilitiesKhr`] for more information.
+    pub get_physical_device_surface_capabilities_khr: FNGetPhysicalDeviceSurfaceCapabilitiesKhr,
+    ///See [`FNGetPhysicalDeviceSurfaceFormatsKhr`] for more information.
+    pub get_physical_device_surface_formats_khr: FNGetPhysicalDeviceSurfaceFormatsKhr,
+    ///See [`FNGetPhysicalDeviceSurfacePresentModesKhr`] for more information.
+    pub get_physical_device_surface_present_modes_khr: FNGetPhysicalDeviceSurfacePresentModesKhr,
+}
+impl InstanceKhrSurfaceVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            destroy_surface_khr: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroySurfaceKHR"))) },
+            get_physical_device_surface_support_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceSurfaceSupportKHR")))
+            },
+            get_physical_device_surface_capabilities_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilitiesKHR"),
+                ))
+            },
+            get_physical_device_surface_formats_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceSurfaceFormatsKHR")))
+            },
+            get_physical_device_surface_present_modes_khr: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSurfacePresentModesKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::destroy_surface_khr`]. See [`FNDestroySurfaceKhr`] for more information.
+    pub fn destroy_surface_khr(&self) -> FNDestroySurfaceKhr {
+        self.destroy_surface_khr
+    }
+    ///Gets [`Self::get_physical_device_surface_support_khr`]. See
+    /// [`FNGetPhysicalDeviceSurfaceSupportKhr`] for more information.
+    pub fn get_physical_device_surface_support_khr(&self) -> FNGetPhysicalDeviceSurfaceSupportKhr {
+        self.get_physical_device_surface_support_khr
+    }
+    ///Gets [`Self::get_physical_device_surface_capabilities_khr`]. See
+    /// [`FNGetPhysicalDeviceSurfaceCapabilitiesKhr`] for more information.
+    pub fn get_physical_device_surface_capabilities_khr(&self) -> FNGetPhysicalDeviceSurfaceCapabilitiesKhr {
+        self.get_physical_device_surface_capabilities_khr
+    }
+    ///Gets [`Self::get_physical_device_surface_formats_khr`]. See
+    /// [`FNGetPhysicalDeviceSurfaceFormatsKhr`] for more information.
+    pub fn get_physical_device_surface_formats_khr(&self) -> FNGetPhysicalDeviceSurfaceFormatsKhr {
+        self.get_physical_device_surface_formats_khr
+    }
+    ///Gets [`Self::get_physical_device_surface_present_modes_khr`]. See
+    /// [`FNGetPhysicalDeviceSurfacePresentModesKhr`] for more information.
+    pub fn get_physical_device_surface_present_modes_khr(&self) -> FNGetPhysicalDeviceSurfacePresentModesKhr {
+        self.get_physical_device_surface_present_modes_khr
     }
 }

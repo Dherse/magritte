@@ -157,6 +157,17 @@ pub fn funcpointer_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
     trimmed
 }
 
+/// Converts a Vulkan function name into a rustified function pointer name
+pub fn function_name<'a>(name: &'a str) -> String {
+    let trimmed = name.trim_start_matches("vk");
+
+    let mut trimmed = trimmed.to_case(Case::Snake);
+
+    deal_with_numbers(&mut trimmed);
+
+    trimmed
+}
+
 fn deal_with_numbers(value: &mut String) {
     match NUMBER_REGEX.replace(value, TrailingNumberReplacer) {
         Cow::Borrowed(_) => (),

@@ -12,7 +12,7 @@
 //! **may**  be beneficial by adding a [`MemoryDedicatedRequirementsKHR`]
 //!structure to the `pNext` chain of the [`MemoryRequirements2`]
 //!structure passed as the `pMemoryRequirements` parameter of a call to
-//![`GetBufferMemoryRequirements2`] or [`GetImageMemoryRequirements2`].
+//![`get_buffer_memory_requirements2`] or [`get_image_memory_requirements2`].
 //!Certain external handle types and external images or buffers  **may**  also
 //!depend on dedicated allocations on implementations that associate image or
 //!buffer metadata with OS-level memory objects.This extension adds a two small structures to

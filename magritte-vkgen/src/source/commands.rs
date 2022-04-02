@@ -33,30 +33,37 @@ pub struct Function<'a> {
     /// The origin (extension, core, vulkan version)
     pub origin: Origin<'a>,
 
-    /// The return type of this command
+    /// The return type of this function
     pub return_type: Ty<'a>,
 
-    /// The list of success codes of this command
+    /// The list of success codes of this function
     pub success_codes: SmallVec<[Cow<'a, str>; 1]>,
 
-    /// The list of error codes of this command
+    /// The list of error codes of this function
     pub error_codes: SmallVec<[Cow<'a, str>; 1]>,
 
-    /// The arguments of this command
+    /// The arguments of this function
     pub arguments: SymbolTable<'a, FunctionArgument<'a>>,
+
+    /// The aliases of this function
+    pub aliases: SymbolTable<'a, Cow<'a, str>>,
 }
 
 impl<'a> Function<'a> {
     /// Creates a new function from its fields
     pub fn new(
         original_name: &'a str,
-        name: String,
+        mut name: String,
         origin: Origin<'a>,
         return_type: Ty<'a>,
         success_codes: SmallVec<[Cow<'a, str>; 1]>,
         error_codes: SmallVec<[Cow<'a, str>; 1]>,
         arguments: SymbolTable<'a, FunctionArgument<'a>>,
     ) -> Self {
+        if name == "type" {
+            name = "type_".to_string();
+        }
+
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
@@ -65,6 +72,7 @@ impl<'a> Function<'a> {
             success_codes,
             error_codes,
             arguments,
+            aliases: SymbolTable::default(),
         }
     }
 
@@ -115,8 +123,12 @@ impl<'a> Function<'a> {
     }
 
     /// Get a reference to the function's return type.
-    pub fn return_type(&self) -> &Ty<'a> {
-        &self.return_type
+    pub fn return_type(&self) -> Option<&Ty<'a>> {
+        if self.return_type.is_void() {
+            None
+        } else {
+            Some(&self.return_type)
+        }
     }
 
     /// Get a reference to the function's success codes.
@@ -132,6 +144,16 @@ impl<'a> Function<'a> {
     /// Get a reference to the function's arguments.
     pub fn arguments(&self) -> &SymbolTable<'a, FunctionArgument<'a>> {
         &self.arguments
+    }
+
+    /// Get a reference to the function's aliases.
+    pub fn aliases(&self) -> &SymbolTable<'a, Cow<'a, str>> {
+        &self.aliases
+    }
+
+    /// Get a mutable reference to the function's aliases.
+    pub fn aliases_mut(&mut self) -> &mut SymbolTable<'a, Cow<'a, str>> {
+        &mut self.aliases
     }
 }
 
@@ -186,7 +208,11 @@ impl<'a> FunctionArgument<'a> {
         let span = span!(Level::INFO, "argument", ?original_name, ?ty);
         let _guard = span.enter();
 
-        let name = original_name.to_case(Case::Snake);
+        let mut name = original_name.to_case(Case::Snake);
+        if name == "type" {
+            name = "type_".to_string();
+        }
+
         info!(?name, "generated rustified name");
 
         let len = param

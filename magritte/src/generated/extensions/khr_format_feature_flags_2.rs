@@ -5,7 +5,7 @@
 //!is limited to 31 flags.
 //!At the time of this writing 29 bits of [`FormatFeatureFlagBits`] are
 //!already used.Because [`FormatProperties2`] is already defined to extend the Vulkan
-//!1.0 [`GetPhysicalDeviceFormatProperties`] entry point, this extension
+//!1.0 [`get_physical_device_format_properties`] entry point, this extension
 //!defines a new [`FormatProperties3KHR`] to extend the
 //![`FormatProperties`].On top of replicating all the bits from [`FormatFeatureFlagBits`],
 //![`FormatFeatureFlagBits2KHR`] adds the following bits :

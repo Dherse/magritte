@@ -22,7 +22,7 @@
 //!   @chadversary%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_image_drm_format_modifier extension>>)
 //!# New functions & commands
-//! - [`GetImageDrmFormatModifierPropertiesEXT`]
+//! - [`get_image_drm_format_modifier_properties_ext`]
 //!# New structures
 //! - [`DrmFormatModifierPropertiesEXT`]
 //! - [`ImageDrmFormatModifierPropertiesEXT`]
@@ -118,7 +118,7 @@
 //! is smaller than the
 //!implementation-calculated size.
 //!If the application provided the external image’s size to
-//![`CreateImage`], the implementation would observe the mismatched size
+//![`create_image`], the implementation would observe the mismatched size
 //!and recognize its inability to comprehend the external image’s layout
 //!(unless the implementation used the application-provided size to select a
 //!refinement of the tiling layout indicated by the *modifier*, which is
@@ -126,8 +126,8 @@
 //!The implementation would observe the conflict, and reject image creation
 //!with `VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`.
 //!On the other hand, if the application did not provide the external image’s
-//!size to [`CreateImage`], then the application would observe after
-//!calling [`GetImageMemoryRequirements`] that the external image’s size is
+//!size to [`create_image`], then the application would observe after
+//!calling [`get_image_memory_requirements`] that the external image’s size is
 //!less than the size required by the implementation.
 //!The application would observe the conflict and refuse to bind the
 //![`Image`] to the external memory.
@@ -135,7 +135,7 @@
 //! than the
 //!implementation-calculated size.
 //!If the application provided the external image’s size to
-//![`CreateImage`], for reasons similar to above the implementation would
+//![`create_image`], for reasons similar to above the implementation would
 //!observe the mismatched size and recognize its inability to comprehend the
 //!image data residing in the extra size.
 //!The implementation, however, must assume that image data resides in the
@@ -143,8 +143,8 @@
 //!The implementation would observe the conflict and reject image creation with
 //!`VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`.
 //!On the other hand, if the application did not provide the external image’s
-//!size to [`CreateImage`], then the application would observe after
-//!calling [`GetImageMemoryRequirements`] that the external image’s size is
+//!size to [`create_image`], then the application would observe after
+//!calling [`get_image_memory_requirements`] that the external image’s size is
 //!larger than the implementation-usable size.
 //!The application would observe the conflict and refuse to bind the
 //![`Image`] to the external memory.
@@ -183,7 +183,7 @@
 //! - [`ImageDrmFormatModifierListCreateInfoEXT`]
 //! - [`ImageDrmFormatModifierPropertiesEXT`]
 //! - [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
-//! - [`GetImageDrmFormatModifierPropertiesEXT`]
+//! - [`get_image_drm_format_modifier_properties_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -193,7 +193,10 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
-    vulkan1_0::{BaseInStructure, BaseOutStructure, FormatFeatureFlags, SharingMode, StructureType, SubresourceLayout},
+    vulkan1_0::{
+        BaseInStructure, BaseOutStructure, Device, FormatFeatureFlags, Image, SharingMode, StructureType,
+        SubresourceLayout, VulkanResultCodes,
+    },
     vulkan1_3::FormatFeatureFlags2,
 };
 use std::{ffi::CStr, marker::PhantomData};
@@ -206,6 +209,60 @@ pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME")]
 pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_EXT_image_drm_format_modifier");
+///[vkGetImageDrmFormatModifierPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html) - Returns an image's DRM format modifier
+///# C Specifications
+///If an image was created with `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`,
+///then the image has a [Linux DRM format
+///modifier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-drm-format-modifier).
+///To query the *modifier*, call:
+///```c
+///// Provided by VK_EXT_image_drm_format_modifier
+///VkResult vkGetImageDrmFormatModifierPropertiesEXT(
+///    VkDevice                                    device,
+///    VkImage                                     image,
+///    VkImageDrmFormatModifierPropertiesEXT*      pProperties);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the image.
+/// - [`image`] is the queried image.
+/// - [`p_properties`] is a pointer to a [`ImageDrmFormatModifierPropertiesEXT`] structure in which
+///   properties of the image’s *DRM format modifier* are returned.
+/// # Description
+/// ## Valid Usage
+/// - [`image`] **must**  have been created with [`ImageCreateInfo`] equal to
+///   `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`
+///
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`image`] **must**  be a valid [`Image`] handle
+/// - [`p_properties`] **must**  be a valid pointer to a [`ImageDrmFormatModifierPropertiesEXT`]
+///   structure
+/// - [`image`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+/// # Related
+/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`Device`]
+/// - [`Image`]
+/// - [`ImageDrmFormatModifierPropertiesEXT`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetImageDrmFormatModifierPropertiesEXT")]
+pub type FNGetImageDrmFormatModifierPropertiesExt = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        image: Image,
+        p_properties: *mut ImageDrmFormatModifierPropertiesEXT<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkDrmFormatModifierPropertiesListEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDrmFormatModifierPropertiesListEXT.html) - Structure specifying the list of DRM format modifiers supported for a format
 ///# C Specifications
 ///To obtain the list of [Linux DRM format
@@ -222,37 +279,37 @@ pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &'static CStr =
 ///    VkDrmFormatModifierPropertiesEXT*    pDrmFormatModifierProperties;
 ///} VkDrmFormatModifierPropertiesListEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`drm_format_modifier_count`] is an inout parameter related to the number of modifiers
 ///   compatible with the `format`, as described below.
 /// - [`drm_format_modifier_properties`] is either `NULL` or a pointer to an array of
 ///   [`DrmFormatModifierPropertiesEXT`] structures.
-///# Description
-///If [`drm_format_modifier_properties`] is `NULL`, then the function returns
-///in [`drm_format_modifier_count`] the number of modifiers compatible with the
-///queried `format`.
-///Otherwise, the application  **must**  set [`drm_format_modifier_count`] to the
-///length of the array [`drm_format_modifier_properties`]; the function will
-///write at most [`drm_format_modifier_count`] elements to the array, and will
-///return in [`drm_format_modifier_count`] the number of elements written.Among the elements in
+/// # Description
+/// If [`drm_format_modifier_properties`] is `NULL`, then the function returns
+/// in [`drm_format_modifier_count`] the number of modifiers compatible with the
+/// queried `format`.
+/// Otherwise, the application  **must**  set [`drm_format_modifier_count`] to the
+/// length of the array [`drm_format_modifier_properties`]; the function will
+/// write at most [`drm_format_modifier_count`] elements to the array, and will
+/// return in [`drm_format_modifier_count`] the number of elements written.Among the elements in
 /// array [`drm_format_modifier_properties`], each
-///returned `drmFormatModifier` **must**  be unique.
-///## Valid Usage (Implicit)
+/// returned `drmFormatModifier` **must**  be unique.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`DrmFormatModifierPropertiesEXT`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesListEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -394,83 +451,83 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 ///    VkFormatFeatureFlags    drmFormatModifierTilingFeatures;
 ///} VkDrmFormatModifierPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`drm_format_modifier`] is a *Linux DRM format modifier*.
 /// - [`drm_format_modifier_plane_count`] is the number of *memory planes* in any image created with
 ///   `format` and [`drm_format_modifier`]. An image’s *memory planecount* is distinct from its
 ///   *format planecount*, as explained below.
 /// - [`drm_format_modifier_tiling_features`] is a bitmask of [`FormatFeatureFlagBits`] that are
 ///   supported by any image created with `format` and [`drm_format_modifier`].
-///# Description
-///The returned [`drm_format_modifier_tiling_features`] **must**  contain at least
-///one bit.The implementation  **must**  not return `DRM_FORMAT_MOD_INVALID` in
-///[`drm_format_modifier`].An image’s *memory planecount* (as returned by
-///[`drm_format_modifier_plane_count`]) is distinct from its *format planecount*
-///(in the sense of [multi-planar](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
-///Y′C<sub>B</sub>C<sub>R</sub> formats).
-///In [`ImageAspectFlags`], each
-///`VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` represents a *memory plane*
-///and each `VK_IMAGE_ASPECT_PLANE*_i_*BIT` a *format plane*.An image’s set of *format planes* is
+/// # Description
+/// The returned [`drm_format_modifier_tiling_features`] **must**  contain at least
+/// one bit.The implementation  **must**  not return `DRM_FORMAT_MOD_INVALID` in
+/// [`drm_format_modifier`].An image’s *memory planecount* (as returned by
+/// [`drm_format_modifier_plane_count`]) is distinct from its *format planecount*
+/// (in the sense of [multi-planar](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
+/// Y′C<sub>B</sub>C<sub>R</sub> formats).
+/// In [`ImageAspectFlags`], each
+/// `VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` represents a *memory plane*
+/// and each `VK_IMAGE_ASPECT_PLANE*_i_*BIT` a *format plane*.An image’s set of *format planes* is
 /// an ordered partition of the image’s
 /// **content**  into separable groups of format components.
-///The ordered partition is encoded in the name of each [`Format`].
-///For example, `VK_FORMAT_G8_B8R8_2PLANE_420_UNORM` contains two *format
-///planes*; the first plane contains the green component and the second plane
-///contains the blue component and red component.
-///If the format name does not contain `PLANE`, then the format contains a
-///single plane; for example, `VK_FORMAT_R8G8B8A8_UNORM`.
-///Some commands, such as [`CmdCopyBufferToImage`], do not operate on all
-///format components in the image, but instead operate only on the *format
-///planes* explicitly chosen by the application and operate on each *format
-///plane* independently.An image’s set of *memory planes* is an ordered partition of the image’s
+/// The ordered partition is encoded in the name of each [`Format`].
+/// For example, `VK_FORMAT_G8_B8R8_2PLANE_420_UNORM` contains two *format
+/// planes*; the first plane contains the green component and the second plane
+/// contains the blue component and red component.
+/// If the format name does not contain `PLANE`, then the format contains a
+/// single plane; for example, `VK_FORMAT_R8G8B8A8_UNORM`.
+/// Some commands, such as [`cmd_copy_buffer_to_image`], do not operate on all
+/// format components in the image, but instead operate only on the *format
+/// planes* explicitly chosen by the application and operate on each *format
+/// plane* independently.An image’s set of *memory planes* is an ordered partition of the image’s
 /// **memory**  rather than the image’s  **content** .
-///Each *memory plane* is a contiguous range of memory.
-///The union of an image’s *memory planes* is not necessarily contiguous.If an image is [linear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-linear-resource), then the partition is
-///the same for *memory planes* and for *format planes*.
-///Therefore, if the returned [`drm_format_modifier`] is
-///`DRM_FORMAT_MOD_LINEAR`, then [`drm_format_modifier_plane_count`] **must**
-///equal the *format planecount*, and [`drm_format_modifier_tiling_features`] **must**  be
+/// Each *memory plane* is a contiguous range of memory.
+/// The union of an image’s *memory planes* is not necessarily contiguous.If an image is [linear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-linear-resource), then the partition is
+/// the same for *memory planes* and for *format planes*.
+/// Therefore, if the returned [`drm_format_modifier`] is
+/// `DRM_FORMAT_MOD_LINEAR`, then [`drm_format_modifier_plane_count`] **must**
+/// equal the *format planecount*, and [`drm_format_modifier_tiling_features`] **must**  be
 /// identical to the
-///[`FormatProperties2`]`::linearTilingFeatures` returned in the same
-///`pNext` chain.If an image is [non-linear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-linear-resource), then the partition
-///of the image’s  **memory**  into *memory planes* is implementation-specific and
+/// [`FormatProperties2`]`::linearTilingFeatures` returned in the same
+/// `pNext` chain.If an image is [non-linear](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-linear-resource), then the partition
+/// of the image’s  **memory**  into *memory planes* is implementation-specific and
 /// **may**  be unrelated to the partition of the image’s  **content**  into *format
-///planes*.
-///For example, consider an image whose `format` is
-///`VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM`, `tiling` is
-///`VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`, whose [`drm_format_modifier`]
-///is not `DRM_FORMAT_MOD_LINEAR`, and `flags` lacks
-///`VK_IMAGE_CREATE_DISJOINT_BIT`.
-///The image has 3 *format planes*, and commands such
-///[`CmdCopyBufferToImage`] act on each *format plane* independently as if
-///the data of each *format plane* were separable from the data of the other
-///planes.
-///In a straightforward implementation, the implementation  **may**  store the
-///image’s content in 3 adjacent *memory planes* where each *memory plane*
-///corresponds exactly to a *format plane*.
-///However, the implementation  **may**  also store the image’s content in a single
-///*memory plane* where all format components are combined using an
-///implementation-private block-compressed format; or the implementation  **may**
-///store the image’s content in a collection of 7 adjacent *memory planes*
-///using an implementation-private sharding technique.
-///Because the image is non-linear and non-disjoint, the implementation has
-///much freedom when choosing the image’s placement in memory.The *memory planecount* applies to
+/// planes*.
+/// For example, consider an image whose `format` is
+/// `VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM`, `tiling` is
+/// `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`, whose [`drm_format_modifier`]
+/// is not `DRM_FORMAT_MOD_LINEAR`, and `flags` lacks
+/// `VK_IMAGE_CREATE_DISJOINT_BIT`.
+/// The image has 3 *format planes*, and commands such
+/// [`cmd_copy_buffer_to_image`] act on each *format plane* independently as if
+/// the data of each *format plane* were separable from the data of the other
+/// planes.
+/// In a straightforward implementation, the implementation  **may**  store the
+/// image’s content in 3 adjacent *memory planes* where each *memory plane*
+/// corresponds exactly to a *format plane*.
+/// However, the implementation  **may**  also store the image’s content in a single
+/// *memory plane* where all format components are combined using an
+/// implementation-private block-compressed format; or the implementation  **may**
+/// store the image’s content in a collection of 7 adjacent *memory planes*
+/// using an implementation-private sharding technique.
+/// Because the image is non-linear and non-disjoint, the implementation has
+/// much freedom when choosing the image’s placement in memory.The *memory planecount* applies to
 /// function parameters and structures only
-///when the API specifies an explicit requirement on
-///[`drm_format_modifier_plane_count`].
-///In all other cases, the *memory planecount* is ignored.
-///# Related
+/// when the API specifies an explicit requirement on
+/// [`drm_format_modifier_plane_count`].
+/// In all other cases, the *memory planecount* is ignored.
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`DrmFormatModifierPropertiesListEXT`]
 /// - [`FormatFeatureFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -563,7 +620,7 @@ impl DrmFormatModifierPropertiesEXT {
 ///    const uint32_t*    pQueueFamilyIndices;
 ///} VkPhysicalDeviceImageDrmFormatModifierInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`drm_format_modifier`] is the image’s *Linux DRM format modifier*, corresponding to
@@ -573,38 +630,38 @@ impl DrmFormatModifierPropertiesEXT {
 /// - [`queue_family_index_count`] is the number of entries in the [`queue_family_indices`] array.
 /// - [`queue_family_indices`] is a pointer to an array of queue families that will access the
 ///   image. It is ignored if [`sharing_mode`] is not `VK_SHARING_MODE_CONCURRENT`.
-///# Description
-///If the [`drm_format_modifier`] is incompatible with the parameters specified
-///in [`PhysicalDeviceImageFormatInfo2`] and its [`p_next`] chain, then
-///[`GetPhysicalDeviceImageFormatProperties2`] returns
-///`VK_ERROR_FORMAT_NOT_SUPPORTED`.
-///The implementation  **must**  support the query of any [`drm_format_modifier`],
-///including unknown and invalid modifier values.
-///## Valid Usage
+/// # Description
+/// If the [`drm_format_modifier`] is incompatible with the parameters specified
+/// in [`PhysicalDeviceImageFormatInfo2`] and its [`p_next`] chain, then
+/// [`get_physical_device_image_format_properties2`] returns
+/// `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+/// The implementation  **must**  support the query of any [`drm_format_modifier`],
+/// including unknown and invalid modifier values.
+/// ## Valid Usage
 /// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, then [`queue_family_indices`] **must**
 ///   be a valid pointer to an array of [`queue_family_index_count`]`uint32_t` values
 /// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, then [`queue_family_index_count`]
 ///   **must**  be greater than `1`
 /// - If [`sharing_mode`] is `VK_SHARING_MODE_CONCURRENT`, each element of [`queue_family_indices`]
 ///   **must**  be unique and  **must**  be less than the `pQueueFamilyPropertyCount` returned by
-///   [`GetPhysicalDeviceQueueFamilyProperties2`] for the `physicalDevice` that was used to create
-///   `device`
+///   [`get_physical_device_queue_family_properties2`] for the `physicalDevice` that was used to
+///   create `device`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
 /// - [`sharing_mode`] **must**  be a valid [`SharingMode`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`SharingMode`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageDrmFormatModifierInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -763,34 +820,34 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
 ///    const uint64_t*    pDrmFormatModifiers;
 ///} VkImageDrmFormatModifierListCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`drm_format_modifier_count`] is the length of the [`drm_format_modifiers`] array.
 /// - [`drm_format_modifiers`] is a pointer to an array of *Linux DRM format modifiers*.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - Each *modifier* in [`drm_format_modifiers`] **must**  be compatible with the parameters in
 ///   [`ImageCreateInfo`] and its [`p_next`] chain, as determined by querying
 ///   [`PhysicalDeviceImageFormatInfo2`] extended with
 ///   [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT`
 /// - [`drm_format_modifiers`] **must**  be a valid pointer to an array of
 ///   [`drm_format_modifier_count`]`uint64_t` values
 /// - [`drm_format_modifier_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierListCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -911,7 +968,7 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 ///    const VkSubresourceLayout*    pPlaneLayouts;
 ///} VkImageDrmFormatModifierExplicitCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`drm_format_modifier`] is the *Linux DRM format modifier* with which the image will be
@@ -920,25 +977,25 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 ///   by [`DrmFormatModifierPropertiesEXT`]) as well as the length of the [`plane_layouts`] array.
 /// - [`plane_layouts`] is a pointer to an array of [`SubresourceLayout`] structures describing the
 ///   image’s *memory planes*.
-///# Description
-///The `i`<sup>th</sup> member of [`plane_layouts`] describes the layout of the
-///image’s `i`<sup>th</sup>*memory plane* (that is,
-///`VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT`).
-///In each element of [`plane_layouts`], the implementation  **must**  ignore
-///`size`.
-///The implementation calculates the size of each plane, which the application
-/// **can**  query with [`GetImageSubresourceLayout`].When creating an image with
-///[`ImageDrmFormatModifierExplicitCreateInfoEXT`], it is the application’s
-///responsibility to satisfy all valid usage requirements.
-///However, the implementation  **must**  validate that the provided
-///[`plane_layouts`], when combined with the provided [`drm_format_modifier`]
-///and other creation parameters in [`ImageCreateInfo`] and its [`p_next`]
-///chain, produce a valid image.
-///(This validation is necessarily implementation-dependent and outside the
-///scope of Vulkan, and therefore not described by valid usage requirements).
-///If this validation fails, then [`CreateImage`] returns
-///`VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`.
-///## Valid Usage
+/// # Description
+/// The `i`<sup>th</sup> member of [`plane_layouts`] describes the layout of the
+/// image’s `i`<sup>th</sup>*memory plane* (that is,
+/// `VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT`).
+/// In each element of [`plane_layouts`], the implementation  **must**  ignore
+/// `size`.
+/// The implementation calculates the size of each plane, which the application
+/// **can**  query with [`get_image_subresource_layout`].When creating an image with
+/// [`ImageDrmFormatModifierExplicitCreateInfoEXT`], it is the application’s
+/// responsibility to satisfy all valid usage requirements.
+/// However, the implementation  **must**  validate that the provided
+/// [`plane_layouts`], when combined with the provided [`drm_format_modifier`]
+/// and other creation parameters in [`ImageCreateInfo`] and its [`p_next`]
+/// chain, produce a valid image.
+/// (This validation is necessarily implementation-dependent and outside the
+/// scope of Vulkan, and therefore not described by valid usage requirements).
+/// If this validation fails, then [`create_image`] returns
+/// `VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT`.
+/// ## Valid Usage
 /// - [`drm_format_modifier`] **must**  be compatible with the parameters in [`ImageCreateInfo`] and
 ///   its [`p_next`] chain, as determined by querying [`PhysicalDeviceImageFormatInfo2`] extended
 ///   with [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
@@ -952,22 +1009,22 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 /// - For each element of [`plane_layouts`], `depthPitch` **must**  be 0 if
 ///   [`ImageCreateInfo`]::`extent.depth` is 1
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT`
 /// - If [`drm_format_modifier_plane_count`] is not `0`, [`plane_layouts`] **must**  be a valid
 ///   pointer to an array of [`drm_format_modifier_plane_count`][`SubresourceLayout`] structures
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`StructureType`]
 /// - [`SubresourceLayout`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierExplicitCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1101,36 +1158,36 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 ///    uint64_t           drmFormatModifier;
 ///} VkImageDrmFormatModifierPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`drm_format_modifier`] returns the image’s [Linux DRM format modifier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-drm-format-modifier).
-///# Description
-///If the `image` was created with
-///[`ImageDrmFormatModifierListCreateInfoEXT`], then the returned
-///[`drm_format_modifier`] **must**  belong to the list of modifiers provided at
-///time of image creation in
-///[`ImageDrmFormatModifierListCreateInfoEXT::drm_format_modifiers`].
-///If the `image` was created with
-///[`ImageDrmFormatModifierExplicitCreateInfoEXT`], then the returned
-///[`drm_format_modifier`] **must**  be the modifier provided at time of image
-///creation in
-///[`ImageDrmFormatModifierExplicitCreateInfoEXT`]::[`drm_format_modifier`].
-///## Valid Usage (Implicit)
+/// # Description
+/// If the `image` was created with
+/// [`ImageDrmFormatModifierListCreateInfoEXT`], then the returned
+/// [`drm_format_modifier`] **must**  belong to the list of modifiers provided at
+/// time of image creation in
+/// [`ImageDrmFormatModifierListCreateInfoEXT::drm_format_modifiers`].
+/// If the `image` was created with
+/// [`ImageDrmFormatModifierExplicitCreateInfoEXT`], then the returned
+/// [`drm_format_modifier`] **must**  be the modifier provided at time of image
+/// creation in
+/// [`ImageDrmFormatModifierExplicitCreateInfoEXT`]::[`drm_format_modifier`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`StructureType`]
-/// - [`GetImageDrmFormatModifierPropertiesEXT`]
+/// - [`get_image_drm_format_modifier_properties_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierPropertiesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1229,42 +1286,42 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 ///    VkDrmFormatModifierProperties2EXT*    pDrmFormatModifierProperties;
 ///} VkDrmFormatModifierPropertiesList2EXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`drm_format_modifier_count`] is an inout parameter related to the number of modifiers
 ///   compatible with the `format`, as described below.
 /// - [`drm_format_modifier_properties`] is either `NULL` or a pointer to an array of
 ///   [`DrmFormatModifierProperties2EXT`] structures.
-///# Description
-///If [`drm_format_modifier_properties`] is `NULL`, the number of modifiers
-///compatible with the queried `format` is returned in
-///[`drm_format_modifier_count`].
-///Otherwise, the application  **must**  set [`drm_format_modifier_count`] to the
-///length of the array [`drm_format_modifier_properties`]; the function will
-///write at most [`drm_format_modifier_count`] elements to the array, and will
-///return in [`drm_format_modifier_count`] the number of elements written.Among the elements in
+/// # Description
+/// If [`drm_format_modifier_properties`] is `NULL`, the number of modifiers
+/// compatible with the queried `format` is returned in
+/// [`drm_format_modifier_count`].
+/// Otherwise, the application  **must**  set [`drm_format_modifier_count`] to the
+/// length of the array [`drm_format_modifier_properties`]; the function will
+/// write at most [`drm_format_modifier_count`] elements to the array, and will
+/// return in [`drm_format_modifier_count`] the number of elements written.Among the elements in
 /// array [`drm_format_modifier_properties`], each
-///returned `drmFormatModifier` **must**  be unique.Among the elements in array
+/// returned `drmFormatModifier` **must**  be unique.Among the elements in array
 /// [`drm_format_modifier_properties`], the bits
-///reported in `drmFormatModifierTilingFeatures` **must**  include the bits
-///reported in the corresponding element of
-///[`DrmFormatModifierPropertiesListEXT`]::[`drm_format_modifier_properties`].
-///## Valid Usage (Implicit)
+/// reported in `drmFormatModifierTilingFeatures` **must**  include the bits
+/// reported in the corresponding element of
+/// [`DrmFormatModifierPropertiesListEXT`]::[`drm_format_modifier_properties`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`DrmFormatModifierProperties2EXT`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesList2EXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1406,26 +1463,26 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
 ///    VkFormatFeatureFlags2    drmFormatModifierTilingFeatures;
 ///} VkDrmFormatModifierProperties2EXT;
 ///```
-///# Members
+/// # Members
 /// - [`drm_format_modifier`] is a *Linux DRM format modifier*.
 /// - [`drm_format_modifier_plane_count`] is the number of *memory planes* in any image created with
 ///   `format` and [`drm_format_modifier`]. An image’s *memory planecount* is distinct from its
 ///   *format planecount*, as explained below.
 /// - [`drm_format_modifier_tiling_features`] is a bitmask of [`FormatFeatureFlagBits2`] that are
 ///   supported by any image created with `format` and [`drm_format_modifier`].
-///# Related
+/// # Related
 /// - [`VK_EXT_image_drm_format_modifier`]
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`DrmFormatModifierPropertiesList2EXT`]
 /// - [`FormatFeatureFlags2`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierProperties2EXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1495,5 +1552,31 @@ impl DrmFormatModifierProperties2EXT {
     ) -> &mut Self {
         self.drm_format_modifier_tiling_features = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_image_drm_format_modifier
+pub struct DeviceExtImageDrmFormatModifierVTable {
+    ///See [`FNGetImageDrmFormatModifierPropertiesExt`] for more information.
+    pub get_image_drm_format_modifier_properties_ext: FNGetImageDrmFormatModifierPropertiesExt,
+}
+impl DeviceExtImageDrmFormatModifierVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_image_drm_format_modifier_properties_ext: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetImageDrmFormatModifierPropertiesEXT"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_image_drm_format_modifier_properties_ext`]. See
+    /// [`FNGetImageDrmFormatModifierPropertiesExt`] for more information.
+    pub fn get_image_drm_format_modifier_properties_ext(&self) -> FNGetImageDrmFormatModifierPropertiesExt {
+        self.get_image_drm_format_modifier_properties_ext
     }
 }

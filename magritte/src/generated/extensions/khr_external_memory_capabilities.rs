@@ -67,8 +67,8 @@
 //![`ExternalBufferPropertiesKHR`] structs need to include a list of memory
 //!type bits that support the given handle type? **PROPOSED RESOLUTION** : No.
 //!The memory types that do not support the handle types will simply be
-//!filtered out of the results returned by [`GetImageMemoryRequirements`]
-//!and [`GetBufferMemoryRequirements`] when a set of handle types was
+//!filtered out of the results returned by [`get_image_memory_requirements`]
+//!and [`get_buffer_memory_requirements`] when a set of handle types was
 //!specified at image or buffer creation time.3) Should the non-opaque handle types be moved to
 //! their own extension? **PROPOSED RESOLUTION** : Perhaps.
 //!However, defining the handle type bits does very little and does not require
@@ -128,6 +128,7 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{vulkan1_0::Instance, vulkan1_1::FNGetPhysicalDeviceExternalBufferProperties};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -138,3 +139,29 @@ pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME")]
 pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_KHR_external_memory_capabilities");
+///The V-table of [`Instance`] for functions from VK_KHR_external_memory_capabilities
+pub struct InstanceKhrExternalMemoryCapabilitiesVTable {
+    ///See [`FNGetPhysicalDeviceExternalBufferProperties`] for more information.
+    pub get_physical_device_external_buffer_properties: FNGetPhysicalDeviceExternalBufferProperties,
+}
+impl InstanceKhrExternalMemoryCapabilitiesVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_external_buffer_properties: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceExternalBufferPropertiesKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_external_buffer_properties`]. See
+    /// [`FNGetPhysicalDeviceExternalBufferProperties`] for more information.
+    pub fn get_physical_device_external_buffer_properties(&self) -> FNGetPhysicalDeviceExternalBufferProperties {
+        self.get_physical_device_external_buffer_properties
+    }
+}

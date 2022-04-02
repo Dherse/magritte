@@ -8,10 +8,10 @@
 //![`SPV_KHR_physical_storage_buffer`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_physical_storage_buffer.html)
 //!SPIR-V extension.Another way to describe this extension is that it adds “pointers to buffer
 //!memory in shaders”.
-//!By calling [`GetBufferDeviceAddress`] with a [`Buffer`], it will
+//!By calling [`get_buffer_device_address`] with a [`Buffer`], it will
 //!return a [`DeviceAddress`] value which represents the address of the
-//!start of the buffer.[`GetBufferOpaqueCaptureAddress`] and
-//![`GetDeviceMemoryOpaqueCaptureAddress`] allow opaque addresses for
+//!start of the buffer.[`get_buffer_opaque_capture_address`] and
+//![`get_device_memory_opaque_capture_address`] allow opaque addresses for
 //!buffers and memory objects to be queried for the current process.
 //!A trace capture and replay tool can then supply these addresses to be used
 //!at replay time to match the addresses used when the trace was captured.
@@ -100,6 +100,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+use crate::{
+    vulkan1_0::Device,
+    vulkan1_2::{FNGetBufferDeviceAddress, FNGetBufferOpaqueCaptureAddress, FNGetDeviceMemoryOpaqueCaptureAddress},
+};
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -109,3 +113,49 @@ pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME")]
 pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_buffer_device_address");
+///The V-table of [`Device`] for functions from VK_KHR_buffer_device_address
+pub struct DeviceKhrBufferDeviceAddressVTable {
+    ///See [`FNGetBufferOpaqueCaptureAddress`] for more information.
+    pub get_buffer_opaque_capture_address: FNGetBufferOpaqueCaptureAddress,
+    ///See [`FNGetBufferDeviceAddress`] for more information.
+    pub get_buffer_device_address: FNGetBufferDeviceAddress,
+    ///See [`FNGetDeviceMemoryOpaqueCaptureAddress`] for more information.
+    pub get_device_memory_opaque_capture_address: FNGetDeviceMemoryOpaqueCaptureAddress,
+}
+impl DeviceKhrBufferDeviceAddressVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_buffer_opaque_capture_address: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferOpaqueCaptureAddressKHR")))
+            },
+            get_buffer_device_address: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferDeviceAddressKHR")))
+            },
+            get_device_memory_opaque_capture_address: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceMemoryOpaqueCaptureAddressKHR"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_buffer_opaque_capture_address`]. See [`FNGetBufferOpaqueCaptureAddress`]
+    /// for more information.
+    pub fn get_buffer_opaque_capture_address(&self) -> FNGetBufferOpaqueCaptureAddress {
+        self.get_buffer_opaque_capture_address
+    }
+    ///Gets [`Self::get_buffer_device_address`]. See [`FNGetBufferDeviceAddress`] for more
+    /// information.
+    pub fn get_buffer_device_address(&self) -> FNGetBufferDeviceAddress {
+        self.get_buffer_device_address
+    }
+    ///Gets [`Self::get_device_memory_opaque_capture_address`]. See
+    /// [`FNGetDeviceMemoryOpaqueCaptureAddress`] for more information.
+    pub fn get_device_memory_opaque_capture_address(&self) -> FNGetDeviceMemoryOpaqueCaptureAddress {
+        self.get_device_memory_opaque_capture_address
+    }
+}

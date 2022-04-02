@@ -12,8 +12,8 @@
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the
 //!   VK_NVX_image_view_handle extension>>)
 //!# New functions & commands
-//! - [`GetImageViewAddressNVX`]
-//! - [`GetImageViewHandleNVX`]
+//! - [`get_image_view_address_nvx`]
+//! - [`get_image_view_handle_nvx`]
 //!# New structures
 //! - [`ImageViewAddressPropertiesNVX`]
 //! - [`ImageViewHandleInfoNVX`]
@@ -23,7 +23,7 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX`  -
 //!   `VK_STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX`
 //!# Version History
-//! - Revision 2, 2020-04-03 (Piers Daniell)  - Add [`GetImageViewAddressNVX`]
+//! - Revision 2, 2020-04-03 (Piers Daniell)  - Add [`get_image_view_address_nvx`]
 //! - Revision 1, 2018-12-07 (Eric Werness)  - Internal revisions
 //!# Other info
 //! * 2020-04-03
@@ -31,8 +31,8 @@
 //!# Related
 //! - [`ImageViewAddressPropertiesNVX`]
 //! - [`ImageViewHandleInfoNVX`]
-//! - [`GetImageViewAddressNVX`]
-//! - [`GetImageViewHandleNVX`]
+//! - [`get_image_view_address_nvx`]
+//! - [`get_image_view_handle_nvx`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -42,7 +42,8 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{
-    BaseInStructure, BaseOutStructure, DescriptorType, DeviceAddress, DeviceSize, ImageView, Sampler, StructureType,
+    BaseInStructure, BaseOutStructure, DescriptorType, Device, DeviceAddress, DeviceSize, ImageView, Sampler,
+    StructureType, VulkanResultCodes,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -53,6 +54,82 @@ pub const NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME")]
 pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX_image_view_handle");
+///[vkGetImageViewHandleNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageViewHandleNVX.html) - Get the handle for an image view for a specific descriptor type
+///# C Specifications
+///To get the handle for an image view, call:
+///```c
+///// Provided by VK_NVX_image_view_handle
+///uint32_t vkGetImageViewHandleNVX(
+///    VkDevice                                    device,
+///    const VkImageViewHandleInfoNVX*             pInfo);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the image view.
+/// - [`p_info`] describes the image view to query and type of handle.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_info`] **must**  be a valid pointer to a valid [`ImageViewHandleInfoNVX`] structure
+/// # Related
+/// - [`VK_NVX_image_view_handle`]
+/// - [`Device`]
+/// - [`ImageViewHandleInfoNVX`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetImageViewHandleNVX")]
+pub type FNGetImageViewHandleNvx =
+    Option<for<'lt> unsafe extern "system" fn(device: Device, p_info: *const ImageViewHandleInfoNVX<'lt>) -> u32>;
+///[vkGetImageViewAddressNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageViewAddressNVX.html) - Get the device address of an image view
+///# C Specifications
+///To get the device address for an image view, call:
+///```c
+///// Provided by VK_NVX_image_view_handle
+///VkResult vkGetImageViewAddressNVX(
+///    VkDevice                                    device,
+///    VkImageView                                 imageView,
+///    VkImageViewAddressPropertiesNVX*            pProperties);
+///```
+/// # Parameters
+/// - [`device`] is the logical device that owns the image view.
+/// - [`image_view`] is a handle to the image view.
+/// - [`p_properties`] contains the device address and size when the call returns.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`image_view`] **must**  be a valid [`ImageView`] handle
+/// - [`p_properties`] **must**  be a valid pointer to a [`ImageViewAddressPropertiesNVX`] structure
+/// - [`image_view`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_UNKNOWN`
+/// # Related
+/// - [`VK_NVX_image_view_handle`]
+/// - [`Device`]
+/// - [`ImageView`]
+/// - [`ImageViewAddressPropertiesNVX`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetImageViewAddressNVX")]
+pub type FNGetImageViewAddressNvx = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        image_view: ImageView,
+        p_properties: *mut ImageViewAddressPropertiesNVX<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkImageViewHandleInfoNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageViewHandleInfoNVX.html) - Structure specifying the image view for handle queries
 ///# C Specifications
 ///The [`ImageViewHandleInfoNVX`] structure is defined as:
@@ -66,14 +143,14 @@ pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VkSampler           sampler;
 ///} VkImageViewHandleInfoNVX;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_view`] is the image view to query.
 /// - [`descriptor_type`] is the type of descriptor for which to query a handle.
 /// - [`sampler`] is the sampler to combine with the image view when generating the handle.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`descriptor_type`] **must**  be `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`,
 ///   `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`, or `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`
 /// - [`sampler`] **must**  be a valid [`Sampler`] if [`descriptor_type`] is
@@ -84,7 +161,7 @@ pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - If descriptorType is `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`, the image that [`image_view`] was
 ///   created from  **must**  have been created with the `VK_IMAGE_USAGE_STORAGE_BIT` usage bit set
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`image_view`] **must**  be a valid [`ImageView`] handle
@@ -93,21 +170,21 @@ pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   [`Sampler`] handle
 /// - Both of [`image_view`], and [`sampler`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
-///# Related
+/// # Related
 /// - [`VK_NVX_image_view_handle`]
 /// - [`DescriptorType`]
 /// - [`ImageView`]
 /// - [`Sampler`]
 /// - [`StructureType`]
-/// - [`GetImageViewHandleNVX`]
+/// - [`get_image_view_handle_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewHandleInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -228,29 +305,29 @@ impl<'lt> ImageViewHandleInfoNVX<'lt> {
 ///    VkDeviceSize       size;
 ///} VkImageViewAddressPropertiesNVX;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_address`] is the device address of the image view.
 /// - [`size`] is the size in bytes of the image view device memory.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_NVX_image_view_handle`]
 /// - [`DeviceAddress`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
-/// - [`GetImageViewAddressNVX`]
+/// - [`get_image_view_address_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewAddressPropertiesNVX")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -346,5 +423,38 @@ impl<'lt> ImageViewAddressPropertiesNVX<'lt> {
     pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
         self.size = value;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_NVX_image_view_handle
+pub struct DeviceNvxImageViewHandleVTable {
+    ///See [`FNGetImageViewHandleNvx`] for more information.
+    pub get_image_view_handle_nvx: FNGetImageViewHandleNvx,
+    ///See [`FNGetImageViewAddressNvx`] for more information.
+    pub get_image_view_address_nvx: FNGetImageViewAddressNvx,
+}
+impl DeviceNvxImageViewHandleVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_image_view_handle_nvx: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageViewHandleNVX")))
+            },
+            get_image_view_address_nvx: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageViewAddressNVX")))
+            },
+        }
+    }
+    ///Gets [`Self::get_image_view_handle_nvx`]. See [`FNGetImageViewHandleNvx`] for more
+    /// information.
+    pub fn get_image_view_handle_nvx(&self) -> FNGetImageViewHandleNvx {
+        self.get_image_view_handle_nvx
+    }
+    ///Gets [`Self::get_image_view_address_nvx`]. See [`FNGetImageViewAddressNvx`] for more
+    /// information.
+    pub fn get_image_view_address_nvx(&self) -> FNGetImageViewAddressNvx {
+        self.get_image_view_address_nvx
     }
 }

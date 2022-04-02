@@ -14,7 +14,7 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_display_surface_counter extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceSurfaceCapabilities2EXT`]
+//! - [`get_physical_device_surface_capabilities2_ext`]
 //!# New structures
 //! - [`SurfaceCapabilities2EXT`]
 //!# New enums
@@ -37,7 +37,7 @@
 //! - [`SurfaceCapabilities2EXT`]
 //! - [`SurfaceCounterFlagBitsEXT`]
 //! - [`SurfaceCounterFlagsEXT`]
-//! - [`GetPhysicalDeviceSurfaceCapabilities2EXT`]
+//! - [`get_physical_device_surface_capabilities2_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -49,9 +49,11 @@
 use crate::{
     extensions::{
         khr_display::SurfaceTransformFlagsKHR,
-        khr_surface::{CompositeAlphaFlagsKHR, SurfaceTransformFlagBitsKHR},
+        khr_surface::{CompositeAlphaFlagsKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR},
     },
-    vulkan1_0::{BaseOutStructure, Extent2D, ImageUsageFlags, StructureType},
+    vulkan1_0::{
+        BaseOutStructure, Extent2D, ImageUsageFlags, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
+    },
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -70,6 +72,67 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME")]
 pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_display_surface_counter");
+///[vkGetPhysicalDeviceSurfaceCapabilities2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html) - Query surface capabilities
+///# C Specifications
+///To query the basic capabilities of a surface, needed in order to create a
+///swapchain, call:
+///```c
+///// Provided by VK_EXT_display_surface_counter
+///VkResult vkGetPhysicalDeviceSurfaceCapabilities2EXT(
+///    VkPhysicalDevice                            physicalDevice,
+///    VkSurfaceKHR                                surface,
+///    VkSurfaceCapabilities2EXT*                  pSurfaceCapabilities);
+///```
+/// # Parameters
+/// - [`physical_device`] is the physical device that will be associated with the swapchain to be
+///   created, as described for [`create_swapchain_khr`].
+/// - [`surface`] is the surface that will be associated with the swapchain.
+/// - [`p_surface_capabilities`] is a pointer to a [`SurfaceCapabilities2EXT`] structure in which
+///   the capabilities are returned.
+/// # Description
+/// [`get_physical_device_surface_capabilities2_ext`] behaves similarly to
+/// [`get_physical_device_surface_capabilities_khr`], with the ability to return
+/// extended information by adding extending structures to the `pNext` chain
+/// of its [`p_surface_capabilities`] parameter.
+/// ## Valid Usage
+/// - [[VUID-{refpage}-surface-06523]]  [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+/// - [[VUID-{refpage}-surface-06211]]  [`surface`] **must**  be supported by [`physical_device`],
+///   as reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific
+///   mechanism
+///
+/// ## Valid Usage (Implicit)
+/// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+/// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+/// - [`p_surface_capabilities`] **must**  be a valid pointer to a [`SurfaceCapabilities2EXT`]
+///   structure
+/// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+///   retrieved from the same [`Instance`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_EXT_display_surface_counter`]
+/// - [`PhysicalDevice`]
+/// - [`SurfaceCapabilities2EXT`]
+/// - [`SurfaceKHR`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilities2EXT")]
+pub type FNGetPhysicalDeviceSurfaceCapabilities2Ext = Option<
+    for<'lt> unsafe extern "system" fn(
+        physical_device: PhysicalDevice,
+        surface: SurfaceKHR,
+        p_surface_capabilities: *mut SurfaceCapabilities2EXT<'lt>,
+    ) -> VulkanResultCodes,
+>;
 ///[VkSurfaceCounterFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCounterFlagBitsEXT.html) - Surface-relative counter types
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -82,21 +145,21 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cst
 ///    VK_SURFACE_COUNTER_VBLANK_EXT = VK_SURFACE_COUNTER_VBLANK_BIT_EXT,
 ///} VkSurfaceCounterFlagBitsEXT;
 ///```
-///# Description
+/// # Description
 /// - [`SurfaceCounterVblankExt`] specifies a counter incrementing once every time a vertical
 ///   blanking period occurs on the display associated with the surface.
-///# Related
+/// # Related
 /// - [`VK_EXT_display_surface_counter`]
 /// - [`SurfaceCounterFlagsEXT`]
-/// - [`GetSwapchainCounterEXT`]
+/// - [`get_swapchain_counter_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCounterFlagBitsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -145,21 +208,21 @@ impl SurfaceCounterFlagBitsEXT {
 ///    VK_SURFACE_COUNTER_VBLANK_EXT = VK_SURFACE_COUNTER_VBLANK_BIT_EXT,
 ///} VkSurfaceCounterFlagBitsEXT;
 ///```
-///# Description
+/// # Description
 /// - [`SurfaceCounterVblankExt`] specifies a counter incrementing once every time a vertical
 ///   blanking period occurs on the display associated with the surface.
-///# Related
+/// # Related
 /// - [`VK_EXT_display_surface_counter`]
 /// - [`SurfaceCounterFlagsEXT`]
-/// - [`GetSwapchainCounterEXT`]
+/// - [`get_swapchain_counter_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCounterFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -431,7 +494,7 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 ///    VkSurfaceCounterFlagsEXT         supportedSurfaceCounters;
 ///} VkSurfaceCapabilities2EXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_image_count`] is the minimum number of images the specified device supports for a
@@ -472,14 +535,14 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 ///   Implementations  **may**  support additional usages.
 /// - [`supported_surface_counters`] is a bitmask of [`SurfaceCounterFlagBitsEXT`] indicating the
 ///   supported surface counter types.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// -  [`supported_surface_counters`] **must**  not include `VK_SURFACE_COUNTER_VBLANK_BIT_EXT` unless the surface queried is a [display surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#wsi-display-surfaces)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_EXT_display_surface_counter`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`Extent2D`]
@@ -488,15 +551,15 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 /// - [`SurfaceCounterFlagsEXT`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 /// - [`SurfaceTransformFlagsKHR`]
-/// - [`GetPhysicalDeviceSurfaceCapabilities2EXT`]
+/// - [`get_physical_device_surface_capabilities2_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilities2EXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -794,5 +857,31 @@ impl<'lt> SurfaceCapabilities2EXT<'lt> {
     ) -> &mut Self {
         self.supported_surface_counters = value;
         self
+    }
+}
+///The V-table of [`Instance`] for functions from VK_EXT_display_surface_counter
+pub struct InstanceExtDisplaySurfaceCounterVTable {
+    ///See [`FNGetPhysicalDeviceSurfaceCapabilities2Ext`] for more information.
+    pub get_physical_device_surface_capabilities2_ext: FNGetPhysicalDeviceSurfaceCapabilities2Ext,
+}
+impl InstanceExtDisplaySurfaceCounterVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
+    where
+        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_physical_device_surface_capabilities2_ext: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilities2EXT"),
+                ))
+            },
+        }
+    }
+    ///Gets [`Self::get_physical_device_surface_capabilities2_ext`]. See
+    /// [`FNGetPhysicalDeviceSurfaceCapabilities2Ext`] for more information.
+    pub fn get_physical_device_surface_capabilities2_ext(&self) -> FNGetPhysicalDeviceSurfaceCapabilities2Ext {
+        self.get_physical_device_surface_capabilities2_ext
     }
 }

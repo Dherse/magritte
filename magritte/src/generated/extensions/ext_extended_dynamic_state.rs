@@ -74,7 +74,14 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, Bool32, StructureType};
+use crate::{
+    vulkan1_0::{BaseOutStructure, Bool32, Device, StructureType},
+    vulkan1_3::{
+        FNCmdBindVertexBuffers2, FNCmdSetCullMode, FNCmdSetDepthBoundsTestEnable, FNCmdSetDepthCompareOp,
+        FNCmdSetDepthTestEnable, FNCmdSetDepthWriteEnable, FNCmdSetFrontFace, FNCmdSetPrimitiveTopology,
+        FNCmdSetScissorWithCount, FNCmdSetStencilOp, FNCmdSetStencilTestEnable, FNCmdSetViewportWithCount,
+    },
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -96,9 +103,9 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VkBool32           extendedDynamicState;
 ///} VkPhysicalDeviceExtendedDynamicStateFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`extended_dynamic_state`] indicates that the implementation supports the following dynamic
@@ -108,29 +115,29 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///   `VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE`  - `VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE`  -
 ///   `VK_DYNAMIC_STATE_DEPTH_COMPARE_OP`  - `VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE`  -
 ///   `VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE`  - `VK_DYNAMIC_STATE_STENCIL_OP`
-///If the [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceExtendedDynamicStateFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicStateFeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -246,5 +253,129 @@ impl<'lt> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
     pub fn set_extended_dynamic_state(&mut self, value: bool) -> &mut Self {
         self.extended_dynamic_state = value as u8 as u32;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_EXT_extended_dynamic_state
+pub struct DeviceExtExtendedDynamicStateVTable {
+    ///See [`FNCmdSetCullMode`] for more information.
+    pub cmd_set_cull_mode: FNCmdSetCullMode,
+    ///See [`FNCmdSetFrontFace`] for more information.
+    pub cmd_set_front_face: FNCmdSetFrontFace,
+    ///See [`FNCmdSetPrimitiveTopology`] for more information.
+    pub cmd_set_primitive_topology: FNCmdSetPrimitiveTopology,
+    ///See [`FNCmdSetViewportWithCount`] for more information.
+    pub cmd_set_viewport_with_count: FNCmdSetViewportWithCount,
+    ///See [`FNCmdSetScissorWithCount`] for more information.
+    pub cmd_set_scissor_with_count: FNCmdSetScissorWithCount,
+    ///See [`FNCmdBindVertexBuffers2`] for more information.
+    pub cmd_bind_vertex_buffers2: FNCmdBindVertexBuffers2,
+    ///See [`FNCmdSetDepthTestEnable`] for more information.
+    pub cmd_set_depth_test_enable: FNCmdSetDepthTestEnable,
+    ///See [`FNCmdSetDepthWriteEnable`] for more information.
+    pub cmd_set_depth_write_enable: FNCmdSetDepthWriteEnable,
+    ///See [`FNCmdSetDepthCompareOp`] for more information.
+    pub cmd_set_depth_compare_op: FNCmdSetDepthCompareOp,
+    ///See [`FNCmdSetDepthBoundsTestEnable`] for more information.
+    pub cmd_set_depth_bounds_test_enable: FNCmdSetDepthBoundsTestEnable,
+    ///See [`FNCmdSetStencilTestEnable`] for more information.
+    pub cmd_set_stencil_test_enable: FNCmdSetStencilTestEnable,
+    ///See [`FNCmdSetStencilOp`] for more information.
+    pub cmd_set_stencil_op: FNCmdSetStencilOp,
+}
+impl DeviceExtExtendedDynamicStateVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            cmd_set_cull_mode: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCullModeEXT"))) },
+            cmd_set_front_face: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFrontFaceEXT"))) },
+            cmd_set_primitive_topology: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveTopologyEXT")))
+            },
+            cmd_set_viewport_with_count: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWithCountEXT")))
+            },
+            cmd_set_scissor_with_count: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetScissorWithCountEXT")))
+            },
+            cmd_bind_vertex_buffers2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindVertexBuffers2EXT")))
+            },
+            cmd_set_depth_test_enable: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthTestEnableEXT")))
+            },
+            cmd_set_depth_write_enable: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthWriteEnableEXT")))
+            },
+            cmd_set_depth_compare_op: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthCompareOpEXT")))
+            },
+            cmd_set_depth_bounds_test_enable: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthBoundsTestEnableEXT")))
+            },
+            cmd_set_stencil_test_enable: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilTestEnableEXT")))
+            },
+            cmd_set_stencil_op: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilOpEXT"))) },
+        }
+    }
+    ///Gets [`Self::cmd_set_cull_mode`]. See [`FNCmdSetCullMode`] for more information.
+    pub fn cmd_set_cull_mode(&self) -> FNCmdSetCullMode {
+        self.cmd_set_cull_mode
+    }
+    ///Gets [`Self::cmd_set_front_face`]. See [`FNCmdSetFrontFace`] for more information.
+    pub fn cmd_set_front_face(&self) -> FNCmdSetFrontFace {
+        self.cmd_set_front_face
+    }
+    ///Gets [`Self::cmd_set_primitive_topology`]. See [`FNCmdSetPrimitiveTopology`] for more
+    /// information.
+    pub fn cmd_set_primitive_topology(&self) -> FNCmdSetPrimitiveTopology {
+        self.cmd_set_primitive_topology
+    }
+    ///Gets [`Self::cmd_set_viewport_with_count`]. See [`FNCmdSetViewportWithCount`] for more
+    /// information.
+    pub fn cmd_set_viewport_with_count(&self) -> FNCmdSetViewportWithCount {
+        self.cmd_set_viewport_with_count
+    }
+    ///Gets [`Self::cmd_set_scissor_with_count`]. See [`FNCmdSetScissorWithCount`] for more
+    /// information.
+    pub fn cmd_set_scissor_with_count(&self) -> FNCmdSetScissorWithCount {
+        self.cmd_set_scissor_with_count
+    }
+    ///Gets [`Self::cmd_bind_vertex_buffers2`]. See [`FNCmdBindVertexBuffers2`] for more
+    /// information.
+    pub fn cmd_bind_vertex_buffers2(&self) -> FNCmdBindVertexBuffers2 {
+        self.cmd_bind_vertex_buffers2
+    }
+    ///Gets [`Self::cmd_set_depth_test_enable`]. See [`FNCmdSetDepthTestEnable`] for more
+    /// information.
+    pub fn cmd_set_depth_test_enable(&self) -> FNCmdSetDepthTestEnable {
+        self.cmd_set_depth_test_enable
+    }
+    ///Gets [`Self::cmd_set_depth_write_enable`]. See [`FNCmdSetDepthWriteEnable`] for more
+    /// information.
+    pub fn cmd_set_depth_write_enable(&self) -> FNCmdSetDepthWriteEnable {
+        self.cmd_set_depth_write_enable
+    }
+    ///Gets [`Self::cmd_set_depth_compare_op`]. See [`FNCmdSetDepthCompareOp`] for more
+    /// information.
+    pub fn cmd_set_depth_compare_op(&self) -> FNCmdSetDepthCompareOp {
+        self.cmd_set_depth_compare_op
+    }
+    ///Gets [`Self::cmd_set_depth_bounds_test_enable`]. See [`FNCmdSetDepthBoundsTestEnable`] for
+    /// more information.
+    pub fn cmd_set_depth_bounds_test_enable(&self) -> FNCmdSetDepthBoundsTestEnable {
+        self.cmd_set_depth_bounds_test_enable
+    }
+    ///Gets [`Self::cmd_set_stencil_test_enable`]. See [`FNCmdSetStencilTestEnable`] for more
+    /// information.
+    pub fn cmd_set_stencil_test_enable(&self) -> FNCmdSetStencilTestEnable {
+        self.cmd_set_stencil_test_enable
+    }
+    ///Gets [`Self::cmd_set_stencil_op`]. See [`FNCmdSetStencilOp`] for more information.
+    pub fn cmd_set_stencil_op(&self) -> FNCmdSetStencilOp {
+        self.cmd_set_stencil_op
     }
 }

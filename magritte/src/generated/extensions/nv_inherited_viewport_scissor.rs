@@ -3,7 +3,7 @@
 //!This extension adds the ability for a secondary command buffer to inherit
 //!the dynamic viewport and scissor state from a primary command buffer, or a
 //!previous secondary command buffer executed within the same
-//![`CmdExecuteCommands`] call.
+//![`cmd_execute_commands`] call.
 //!It addresses a frequent scenario in applications that deal with window
 //!resizing and want to improve utilization of re-usable secondary command
 //!buffers.
@@ -35,7 +35,7 @@
 //![`CommandBufferInheritanceViewportScissorInfoNV`] struct, rather than by
 //!a `vkCmd…​` function? **DISCUSSION** :We considered both adding a new `vkCmdSetViewportDepthNV`
 //! function, and
-//!modifying [`CmdSetViewport`] to ignore the `x`, `y`,
+//!modifying [`cmd_set_viewport`] to ignore the `x`, `y`,
 //!`width`, and `height` values when called with a secondary command
 //!buffer that activates this extension.The primary design considerations for this extension are
 //! debuggability and
@@ -44,8 +44,8 @@
 //!reducing ease-of-integration.
 //!A new function pointer will have to be loaded, but more importantly, a new
 //!function would require changes to be supported in graphics debuggers; this
-//!would delay widespread adoption of the extension.The proposal to modify [`CmdSetViewport`] would
-//! avoid these issues.
+//!would delay widespread adoption of the extension.The proposal to modify [`cmd_set_viewport`]
+//! would avoid these issues.
 //!However, we expect that the intent of applications using this extension is
 //!to have the viewport values used for drawing exactly match the inherited
 //!values; thus, it would be better for debuggability if no function for
@@ -109,38 +109,38 @@ pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           inheritedViewportScissor2D;
 ///} VkPhysicalDeviceInheritedViewportScissorFeaturesNV;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`inherited_viewport_scissor_2_d`] indicates whether secondary command buffers can inherit
 ///   most of the dynamic state affected by `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`,
 ///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT`, `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`,
 ///   `VK_DYNAMIC_STATE_VIEWPORT` or `VK_DYNAMIC_STATE_SCISSOR`, from a primary command buffer.
-///If the [`PhysicalDeviceInheritedViewportScissorFeaturesNV`] structure is included in the
+/// If the [`PhysicalDeviceInheritedViewportScissorFeaturesNV`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceInheritedViewportScissorFeaturesNV`] **can**  also be used in the [`p_next`]
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceInheritedViewportScissorFeaturesNV`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
-///# Related
+/// # Related
 /// - [`VK_NV_inherited_viewport_scissor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInheritedViewportScissorFeaturesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -265,7 +265,7 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///    const VkViewport*    pViewportDepths;
 ///} VkCommandBufferInheritanceViewportScissorInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`viewport_scissor_2_d`] specifies whether the listed dynamic state is inherited.
@@ -273,38 +273,38 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///   [`viewport_scissor_2_d`] is [`FALSE`], the behavior is as if this value is zero.
 /// - [`viewport_depths`] is a pointer to a [`Viewport`] structure specifying the expected depth
 ///   range for each inherited viewport.
-///# Description
-///If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
-///[`CommandBufferInheritanceViewportScissorInfoNV`] structure, then that
-///structure controls whether a command buffer  **can**  inherit the following state
-///from other command buffers:
+/// # Description
+/// If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
+/// [`CommandBufferInheritanceViewportScissorInfoNV`] structure, then that
+/// structure controls whether a command buffer  **can**  inherit the following state
+/// from other command buffers:
 /// - `VK_DYNAMIC_STATE_SCISSOR`
 /// - `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT`
 /// - `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`
-///as well as the following state, with restrictions on inherited depth values
-///and viewport count:
+/// as well as the following state, with restrictions on inherited depth values
+/// and viewport count:
 /// - `VK_DYNAMIC_STATE_VIEWPORT`
 /// - `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`
-///If [`viewport_scissor_2_d`] is [`FALSE`], then the command buffer does
-///not inherit the listed dynamic state, and  **should**  set this state itself.
-///If this structure is not present, the behavior is as if
-///[`viewport_scissor_2_d`] is [`FALSE`].If [`viewport_scissor_2_d`] is [`TRUE`], then the listed
+/// If [`viewport_scissor_2_d`] is [`FALSE`], then the command buffer does
+/// not inherit the listed dynamic state, and  **should**  set this state itself.
+/// If this structure is not present, the behavior is as if
+/// [`viewport_scissor_2_d`] is [`FALSE`].If [`viewport_scissor_2_d`] is [`TRUE`], then the listed
 /// dynamic state
-///is inherited, and the command buffer  **must**  not set this
-///state, except that the viewport and scissor count  **may**  be set by binding a
-///graphics pipeline that does not specify this state as dynamic.When the command buffer is
+/// is inherited, and the command buffer  **must**  not set this
+/// state, except that the viewport and scissor count  **may**  be set by binding a
+/// graphics pipeline that does not specify this state as dynamic.When the command buffer is
 /// executed as part of a the execution of a
-///[`CmdExecuteCommands`] command, the inherited state (if enabled) is
-///determined by the following procedure, performed separately for each dynamic
-///state, and separately for each value for dynamic state that consists of
-///multiple values (e.g. multiple viewports).
+/// [`cmd_execute_commands`] command, the inherited state (if enabled) is
+/// determined by the following procedure, performed separately for each dynamic
+/// state, and separately for each value for dynamic state that consists of
+/// multiple values (e.g. multiple viewports).
 /// - With i being the index of the executed command buffer in the `pCommandBuffers` array of
-///   [`CmdExecuteCommands`], if i > 0 and any secondary command buffer from index 0 to i-1 modifies
-///   the state, the inherited state is provisionally set to the final value set by the last such
-///   secondary command buffer. Binding a graphics pipeline defining the state statically is
-///   equivalent to setting the state to an undefined value.
+///   [`cmd_execute_commands`], if i > 0 and any secondary command buffer from index 0 to i-1
+///   modifies the state, the inherited state is provisionally set to the final value set by the
+///   last such secondary command buffer. Binding a graphics pipeline defining the state statically
+///   is equivalent to setting the state to an undefined value.
 /// - Otherwise, the tentatative inherited state is that of the primary command buffer at the point
-///   the [`CmdExecuteCommands`] command was recorded; if the state is undefined, then so is the
+///   the [`cmd_execute_commands`] command was recorded; if the state is undefined, then so is the
 ///   provisional inherited state.
 /// - If the provisional inherited state is an undefined value, then the state is not inherited.
 /// - If the provisional inherited state is a viewport, with n being its viewport index, then if n ≥
@@ -314,7 +314,7 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 /// - If the provisional inherited state passes both checks, then it becomes the actual inherited
 ///   state.
 ///
-///## Valid Usage
+/// ## Valid Usage
 /// - If the [inherited viewport scissor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedViewportScissor2D)
 ///   feature is not enabled, [`viewport_scissor_2_d`] **must**  be [`FALSE`]
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
@@ -328,22 +328,22 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 /// - If [`viewport_scissor_2_d`] is [`TRUE`], then the command buffer  **must**  be recorded with
 ///   the `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`
-///# Related
+/// # Related
 /// - [`VK_NV_inherited_viewport_scissor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`Viewport`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceViewportScissorInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

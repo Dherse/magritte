@@ -32,8 +32,8 @@
 //!   @wyvernathuawei%0A<<Here describe the issue or question you have about the
 //!   VK_HUAWEI_subpass_shading extension>>)
 //!# New functions & commands
-//! - [`CmdSubpassShadingHUAWEI`]
-//! - [`GetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI`]
+//! - [`cmd_subpass_shading_huawei`]
+//! - [`get_device_subpass_shading_max_workgroup_size_huawei`]
 //!# New structures
 //! - Extending [`ComputePipelineCreateInfo`]:  - [`SubpassShadingPipelineCreateInfoHUAWEI`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
@@ -61,8 +61,8 @@
 //! - [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`]
 //! - [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`]
 //! - [`SubpassShadingPipelineCreateInfoHUAWEI`]
-//! - [`CmdSubpassShadingHUAWEI`]
-//! - [`GetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI`]
+//! - [`cmd_subpass_shading_huawei`]
+//! - [`get_device_subpass_shading_max_workgroup_size_huawei`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -71,7 +71,9 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, Bool32, RenderPass, StructureType};
+use crate::vulkan1_0::{
+    BaseOutStructure, Bool32, CommandBuffer, Device, Extent2D, RenderPass, StructureType, VulkanResultCodes,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -81,6 +83,217 @@ pub const HUAWEI_SUBPASS_SHADING_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_HUAWEI_SUBPASS_SHADING_EXTENSION_NAME")]
 pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_HUAWEI_subpass_shading");
+///[vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI.html) - Query maximum supported subpass shading workgroup size for a give render pass
+///# C Specifications
+///A subpass shading pipeline’s workgroup size is a 2D vector with number of
+///power-of-two in width and height.
+///The maximum number of width and height is implementation dependent, and  **may**
+///vary for different formats and sample counts of attachments in a render
+///pass.To query the maximum workgroup size, call:
+///```c
+///// Provided by VK_HUAWEI_subpass_shading
+///VkResult vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI(
+///    VkDevice                                    device,
+///    VkRenderPass                                renderpass,
+///    VkExtent2D*                                 pMaxWorkgroupSize);
+///```
+/// # Parameters
+/// - [`device`] is a handle to a local device object that was used to create the given render pass.
+/// - `renderPass` is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline  **must**  only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
+/// - [`p_max_workgroup_size`] is a pointer to a [`Extent2D`] structure.
+/// # Description
+/// ## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`renderpass`] **must**  be a valid [`RenderPass`] handle
+/// - [`p_max_workgroup_size`] **must**  be a valid pointer to a [`Extent2D`] structure
+/// - [`renderpass`] **must**  have been created, allocated, or retrieved from [`device`]
+///
+/// ## Return Codes
+/// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+///   `VK_ERROR_SURFACE_LOST_KHR`
+/// # Related
+/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`Device`]
+/// - [`Extent2D`]
+/// - [`RenderPass`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI")]
+pub type FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei = Option<
+    unsafe extern "system" fn(
+        device: Device,
+        renderpass: RenderPass,
+        p_max_workgroup_size: *mut Extent2D,
+    ) -> VulkanResultCodes,
+>;
+///[vkCmdSubpassShadingHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSubpassShadingHUAWEI.html) - Dispatch compute work items
+///# C Specifications
+///A subpass shading dispatches a compute pipeline work with the work dimension
+///of render area of the calling subpass and work groups are partitioned by
+///specified work group size.
+///Subpass operations like subpassLoad and subpassLoadMS are allowed to be
+///used.To record a subpass shading, call:
+///```c
+///// Provided by VK_HUAWEI_subpass_shading
+///void vkCmdSubpassShadingHUAWEI(
+///    VkCommandBuffer                             commandBuffer);
+///```
+/// # Parameters
+/// - [`command_buffer`] is the command buffer into which the command will be recorded.
+/// # Description
+/// When the command is executed, a global workgroup consisting of ceil (render
+/// area size / local workgroup size) local workgroups is assembled.
+/// ## Valid Usage
+/// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
+///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+///   command, then the image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and
+///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+///   command, then the image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format features]()
+///   **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
+/// - If a [`ImageView`] is accessed using atomic operations as a result of this command, then the
+///   image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
+/// - If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then the
+///   image view’s [format features]() **must**  contain
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+/// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` as a result of this command
+///   **must**  have a [`ImageViewType`] and format that supports cubic filtering, as specified by
+///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic`] returned by
+///   [`get_physical_device_image_format_properties2`]
+/// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` with a reduction mode of either
+///   `VK_SAMPLER_REDUCTION_MODE_MIN` or `VK_SAMPLER_REDUCTION_MODE_MAX` as a result of this command
+///   **must**  have a [`ImageViewType`] and format that supports cubic filtering together with
+///   minmax filtering, as specified by
+///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic_minmax`] returned by
+///   [`get_physical_device_image_format_properties2`]
+/// - Any [`Image`] created with a [`ImageCreateInfo::flags`] containing
+///   `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` sampled as a result of this command  **must**  only be
+///   sampled using a [`SamplerAddressMode`] of `VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE`
+/// - Any [`ImageView`] or [`BufferView`] being written as a storage image or storage texel buffer
+///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format feature
+///   **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT`
+/// - Any [`ImageView`] or [`BufferView`] being read as a storage image or storage texel buffer
+///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format feature
+///   **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT`
+/// - For each set *n* that is statically used by the [`Pipeline`] bound to the pipeline bind point
+///   used by this command, a descriptor set  **must**  have been bound to *n* at the same pipeline
+///   bind point, with a [`PipelineLayout`] that is compatible for set *n*, with the
+///   [`PipelineLayout`] used to create the current [`Pipeline`], as described in
+///   [[descriptorsets-compatibility]]()
+/// - If the [`maintenance4`]() feature is not enabled, then for each push constant that is
+///   statically used by the [`Pipeline`] bound to the pipeline bind point used by this command, a
+///   push constant value  **must**  have been set for the same pipeline bind point, with a
+///   [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used to
+///   create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
+/// - Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],
+///   **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline bind
+///   point used by this command
+/// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
+///   dynamic state, that state  **must**  have been set or inherited (if the
+///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+/// - There  **must**  not have been any calls to dynamic state setting commands for any state not
+///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
+///   command, since that pipeline was bound
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used to
+///   sample from any [`Image`] with a [`ImageView`] of the type `VK_IMAGE_VIEW_TYPE_3D`,
+///   `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`, `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or
+///   `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used
+///   with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with
+///   `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used
+///   with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions that includes a
+///   LOD bias or any offset values, in any shader stage
+/// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object bound
+///   to the pipeline bind point used by this command accesses a uniform buffer, it  **must**  not
+///   access values outside of the range of the buffer as specified in the descriptor set bound to
+///   the same pipeline bind point
+/// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object bound
+///   to the pipeline bind point used by this command accesses a storage buffer, it  **must**  not
+///   access values outside of the range of the buffer as specified in the descriptor set bound to
+///   the same pipeline bind point
+/// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+///   supported, any resource accessed by the [`Pipeline`] object bound to the pipeline bind point
+///   used by this command  **must**  not be a protected resource
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](), that object  **must**  only be used with `OpImageSample*` or
+///   `OpImageSparseSample*` instructions
+/// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a
+///   [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+///   conversion](), that object  **must**  not use the `ConstOffset` and `Offset` operands
+/// - If a [`ImageView`] is accessed using `OpImageWrite` as a result of this command, then the
+///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many components
+///   as the image view’s format
+/// - If a [`BufferView`] is accessed using `OpImageWrite` as a result of this command, then the
+///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many components
+///   as the buffer view’s format
+/// - If a [`ImageView`] with a [`Format`] that has a 64-bit component width is accessed as a result
+///   of this command, the `SampledType` of the `OpTypeImage` operand of that instruction  **must**
+///   have a `Width` of 64
+/// - If a [`ImageView`] with a [`Format`] that has a component width less than 64-bit is accessed
+///   as a result of this command, the `SampledType` of the `OpTypeImage` operand of that
+///   instruction  **must**  have a `Width` of 32
+/// - If a [`BufferView`] with a [`Format`] that has a 64-bit component width is accessed as a
+///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+///   **must**  have a `Width` of 64
+/// - If a [`BufferView`] with a [`Format`] that has a component width less than 64-bit is accessed
+///   as a result of this command, the `SampledType` of the `OpTypeImage` operand of that
+///   instruction  **must**  have a `Width` of 32
+/// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Image`] objects created with
+///   the `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+///   command
+/// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Buffer`] objects created with
+///   the `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+///   command
+/// - This command must be called in a subpass with bind point
+///   `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`. No draw commands can be called in the same
+///   subpass. Only one [`cmd_subpass_shading_huawei`] command can be called in a subpass
+///
+/// ## Valid Usage (Implicit)
+/// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+/// - [`command_buffer`] **must**  be in the [recording state]()
+/// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+///   operations
+/// - This command  **must**  only be called inside of a render pass instance
+///
+/// ## Host Synchronization
+/// - Host access to [`command_buffer`] **must**  be externally synchronized
+/// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
+///   externally synchronized
+///
+/// ## Command Properties
+/// # Related
+/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`CommandBuffer`]
+///
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCmdSubpassShadingHUAWEI")]
+pub type FNCmdSubpassShadingHuawei = Option<unsafe extern "system" fn(command_buffer: CommandBuffer)>;
 ///[VkSubpassShadingPipelineCreateInfoHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html) - Structure specifying parameters of a newly created subpass shading pipeline
 ///# C Specifications
 ///A subpass shading pipeline is a compute pipeline which  **must**  be called only
@@ -88,7 +301,7 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///size.
 ///The subpass shading pipeline shader is a compute shader allowed to access
 ///input attachments specified in the calling subpass.
-///To create a subpass shading pipeline, call [`CreateComputePipelines`]
+///To create a subpass shading pipeline, call [`create_compute_pipelines`]
 ///with [`SubpassShadingPipelineCreateInfoHUAWEI`] in the [`p_next`] chain
 ///of [`ComputePipelineCreateInfo`].The [`SubpassShadingPipelineCreateInfoHUAWEI`] structure is
 /// defined as:
@@ -101,30 +314,30 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    uint32_t           subpass;
 ///} VkSubpassShadingPipelineCreateInfoHUAWEI;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`render_pass`] is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline  **must**  only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
 /// - [`subpass`] is the index of the subpass in the render pass where this pipeline will be used.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`subpass`] **must**  be created with `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI` bind
 ///   point
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
-///# Related
+/// # Related
 /// - [`VK_HUAWEI_subpass_shading`]
 /// - [`RenderPass`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassShadingPipelineCreateInfoHUAWEI")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -240,7 +453,7 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///    uint32_t           maxSubpassShadingWorkgroupSizeAspectRatio;
 ///} VkPhysicalDeviceSubpassShadingPropertiesHUAWEI;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_subpass_shading_workgroup_size_aspect_ratio`] indicates the maximum ratio between the
@@ -248,25 +461,25 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///   [`max_subpass_shading_workgroup_size_aspect_ratio`] **must**  be a power-of-two value, and
 ///   **must**  be less than or equal to max(`WorkgroupSize.x` / `WorkgroupSize.y`,
 ///   `WorkgroupSize.y` / `WorkgroupSize.x`).
-///# Description
-///If the [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`] structure is included in the [`p_next`]
+/// # Description
+/// If the [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`GetPhysicalDeviceProperties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`
-///# Related
+/// # Related
 /// - [`VK_HUAWEI_subpass_shading`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubpassShadingPropertiesHUAWEI")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -366,33 +579,33 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 ///    VkBool32           subpassShading;
 ///} VkPhysicalDeviceSubpassShadingFeaturesHUAWEI;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`subpass_shading`] specifies whether subpass shading is supported.
-///If the [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`GetPhysicalDeviceFeatures2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`
-///# Related
+/// # Related
 /// - [`VK_HUAWEI_subpass_shading`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubpassShadingFeaturesHUAWEI")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -496,5 +709,43 @@ impl<'lt> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     pub fn set_subpass_shading(&mut self, value: bool) -> &mut Self {
         self.subpass_shading = value as u8 as u32;
         self
+    }
+}
+///The V-table of [`Device`] for functions from VK_HUAWEI_subpass_shading
+pub struct DeviceHuaweiSubpassShadingVTable {
+    ///See [`FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei`] for more information.
+    pub get_device_subpass_shading_max_workgroup_size_huawei: FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei,
+    ///See [`FNCmdSubpassShadingHuawei`] for more information.
+    pub cmd_subpass_shading_huawei: FNCmdSubpassShadingHuawei,
+}
+impl DeviceHuaweiSubpassShadingVTable {
+    ///Loads the VTable from the owner and the names
+    pub fn load<F>(loader_fn: F, loader: Device) -> Self
+    where
+        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
+    {
+        Self {
+            get_device_subpass_shading_max_workgroup_size_huawei: unsafe {
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI"),
+                ))
+            },
+            cmd_subpass_shading_huawei: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSubpassShadingHUAWEI")))
+            },
+        }
+    }
+    ///Gets [`Self::get_device_subpass_shading_max_workgroup_size_huawei`]. See
+    /// [`FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei`] for more information.
+    pub fn get_device_subpass_shading_max_workgroup_size_huawei(
+        &self,
+    ) -> FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei {
+        self.get_device_subpass_shading_max_workgroup_size_huawei
+    }
+    ///Gets [`Self::cmd_subpass_shading_huawei`]. See [`FNCmdSubpassShadingHuawei`] for more
+    /// information.
+    pub fn cmd_subpass_shading_huawei(&self) -> FNCmdSubpassShadingHuawei {
+        self.cmd_subpass_shading_huawei
     }
 }
