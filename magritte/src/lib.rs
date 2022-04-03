@@ -9,6 +9,9 @@
 
 pub mod cstr;
 pub mod generated;
+pub mod version;
 pub mod video;
 
 pub use generated::*;
+pub use version::*;
+pub use generated::extensions::Extensions;

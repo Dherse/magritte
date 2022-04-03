@@ -85,9 +85,9 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     {
         let mut path = path.clone();
-        path.push("mod.rs");
+        path.push("extensions.rs");
 
-        let code = run_rustfmt(source.generate_mod()).unwrap();
+        let code = run_rustfmt(source.generate_extension_mod()).unwrap();
         std::fs::write(&path, &code).unwrap();
     }
 

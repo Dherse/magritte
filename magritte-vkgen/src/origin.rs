@@ -155,31 +155,31 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_1 => Some(if let Some(imports) = imports {
                 imports.push("crate::Version");
                 quote! {
-                    #var.version() >= Version::new(1, 1, 0)
+                    #var.version().ge(&Version::new(1, 1, 0))
                 }
             } else {
                 quote! {
-                    #var.version() >= crate::Version::new(1, 1, 0)
+                    #var.version().ge(&crate::Version::new(1, 1, 0))
                 }
             }),
             Origin::Vulkan1_2 => Some(if let Some(imports) = imports {
                 imports.push("crate::Version");
                 quote! {
-                    #var.version() >= Version::new(1, 2, 0)
+                    #var.version().ge(&Version::new(1, 2, 0))
                 }
             } else {
                 quote! {
-                    #var.version() >= crate::Version::new(1, 2, 0)
+                    #var.version().ge(&crate::Version::new(1, 2, 0))
                 }
             }),
             Origin::Vulkan1_3 => Some(if let Some(imports) = imports {
                 imports.push("crate::Version");
                 quote! {
-                    #var.version() >= Version::new(1, 3, 0)
+                    #var.version().ge(&Version::new(1, 3, 0))
                 }
             } else {
                 quote! {
-                    #var.version() >= crate::Version::new(1, 3, 0)
+                    #var.version().ge(&crate::Version::new(1, 3, 0))
                 }
             }),
         }

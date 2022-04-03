@@ -142,7 +142,7 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    const VkDeviceSize*                         pOffsets,
 ///    const VkDeviceSize*                         pSizes);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`first_binding`] is the index of the first transform feedback binding whose state is updated
 ///   by the command.
@@ -155,14 +155,14 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///   [`p_sizes`] is `NULL`, or the value of the [`p_sizes`] array element is [`WHOLE_SIZE`], then
 ///   the maximum number of bytes captured will be the size of the corresponding buffer minus the
 ///   buffer offset.
-/// # Description
-/// The values taken from elements i of [`p_buffers`], [`p_offsets`] and
-/// [`p_sizes`] replace the current state for the transform feedback binding
-/// [`first_binding`] +  i, for i in [0,
-/// [`binding_count`]).
-/// The transform feedback binding is updated to start at the offset indicated
-/// by [`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
-/// ## Valid Usage
+///# Description
+///The values taken from elements i of [`p_buffers`], [`p_offsets`] and
+///[`p_sizes`] replace the current state for the transform feedback binding
+///[`first_binding`] +  i, for i in [0,
+///[`binding_count`]).
+///The transform feedback binding is updated to start at the offset indicated
+///by [`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
+///## Valid Usage
 /// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::transform_feedback`] **must**  be enabled
 /// - [`first_binding`] **must**  be less than
 ///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_buffers`]
@@ -186,7 +186,7 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - Transform feedback  **must**  not be active when the
 ///   [`cmd_bind_transform_feedback_buffers_ext`] command is recorded
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_buffers`] **must**  be a valid pointer to an array of [`binding_count`] valid [`Buffer`]
 ///   handles
@@ -199,25 +199,25 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - Both of [`command_buffer`], and the elements of [`p_buffers`] **must**  have been created,
 ///   allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBindTransformFeedbackBuffersEXT")]
 pub type FNCmdBindTransformFeedbackBuffersExt = Option<
     unsafe extern "system" fn(
@@ -242,7 +242,7 @@ pub type FNCmdBindTransformFeedbackBuffersExt = Option<
 ///    const VkBuffer*                             pCounterBuffers,
 ///    const VkDeviceSize*                         pCounterBufferOffsets);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`first_counter_buffer`] is the index of the first transform feedback buffer corresponding to
 ///   [`p_counter_buffers`][0] and [`p_counter_buffer_offsets`][0].
@@ -264,12 +264,12 @@ pub type FNCmdBindTransformFeedbackBuffersExt = Option<
 ///   enough to contain 4 bytes of data. This data is the number of bytes captured by the previous
 ///   transform feedback to this buffer. If [`p_counter_buffer_offsets`] is `NULL`, then it is
 ///   assumed the offsets are zero.
-/// # Description
-/// The active transform feedback buffers will capture primitives emitted from
-/// the corresponding `XfbBuffer` in the bound graphics pipeline.
-/// Any `XfbBuffer` emitted that does not output to an active transform
-/// feedback buffer will not be captured.
-/// ## Valid Usage
+///# Description
+///The active transform feedback buffers will capture primitives emitted from
+///the corresponding `XfbBuffer` in the bound graphics pipeline.
+///Any `XfbBuffer` emitted that does not output to an active transform
+///feedback buffer will not be captured.
+///## Valid Usage
 /// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::transform_feedback`] **must**  be enabled
 /// - Transform feedback  **must**  not be active
 /// - [`first_counter_buffer`] **must**  be less than
@@ -293,7 +293,7 @@ pub type FNCmdBindTransformFeedbackBuffersExt = Option<
 /// - Transform feedback  **must**  not be made active in a render pass instance with multiview
 ///   enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - If [`counter_buffer_count`] is not `0`, and [`p_counter_buffer_offsets`] is not `NULL`,
 ///   [`p_counter_buffer_offsets`] **must**  be a valid pointer to an array of
@@ -306,25 +306,25 @@ pub type FNCmdBindTransformFeedbackBuffersExt = Option<
 ///   of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBeginTransformFeedbackEXT")]
 pub type FNCmdBeginTransformFeedbackExt = Option<
     unsafe extern "system" fn(
@@ -348,7 +348,7 @@ pub type FNCmdBeginTransformFeedbackExt = Option<
 ///    const VkBuffer*                             pCounterBuffers,
 ///    const VkDeviceSize*                         pCounterBufferOffsets);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`first_counter_buffer`] is the index of the first transform feedback buffer corresponding to
 ///   [`p_counter_buffers`][0] and [`p_counter_buffer_offsets`][0].
@@ -366,8 +366,8 @@ pub type FNCmdBeginTransformFeedbackExt = Option<
 ///   contain 4 bytes of data. The data stored at this location is the byte offset from the start of
 ///   the transform feedback buffer binding where the next vertex data would be written. If
 ///   [`p_counter_buffer_offsets`] is `NULL`, then it is assumed the offsets are zero.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::transform_feedback`] **must**  be enabled
 /// - Transform feedback  **must**  be active
 /// - [`first_counter_buffer`] **must**  be less than
@@ -386,7 +386,7 @@ pub type FNCmdBeginTransformFeedbackExt = Option<
 ///   [`crate::utils::Handle::null`] it  **must**  have been created with a `usage` value containing
 ///   `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - If [`counter_buffer_count`] is not `0`, and [`p_counter_buffer_offsets`] is not `NULL`,
 ///   [`p_counter_buffer_offsets`] **must**  be a valid pointer to an array of
@@ -399,25 +399,25 @@ pub type FNCmdBeginTransformFeedbackExt = Option<
 ///   of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdEndTransformFeedbackEXT")]
 pub type FNCmdEndTransformFeedbackExt = Option<
     unsafe extern "system" fn(
@@ -440,7 +440,7 @@ pub type FNCmdEndTransformFeedbackExt = Option<
 ///    VkQueryControlFlags                         flags,
 ///    uint32_t                                    index);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which this command will be recorded.
 /// - [`query_pool`] is the query pool that will manage the results of the query.
 /// - [`query`] is the query index within the query pool that will contain the results.
@@ -448,11 +448,11 @@ pub type FNCmdEndTransformFeedbackExt = Option<
 ///   queries that  **can**  be performed.
 /// - [`index`] is the query type specific index. When the query type is
 ///   `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` the index represents the vertex stream.
-/// # Description
-/// The [`cmd_begin_query_indexed_ext`] command operates the same as the
-/// [`cmd_begin_query`] command, except that it also accepts a query type
-/// specific [`index`] parameter.
-/// ## Valid Usage
+///# Description
+///The [`cmd_begin_query_indexed_ext`] command operates the same as the
+///[`cmd_begin_query`] command, except that it also accepts a query type
+///specific [`index`] parameter.
+///## Valid Usage
 /// - All queries used by the command  **must**  be unavailable
 /// - The `queryType` used to create [`query_pool`] **must**  not be `VK_QUERY_TYPE_TIMESTAMP`
 /// - The `queryType` used to create [`query_pool`] **must**  not be
@@ -517,7 +517,7 @@ pub type FNCmdEndTransformFeedbackExt = Option<
 ///   secondary command buffers, also contains a [`cmd_reset_query_pool`] command affecting the same
 ///   query
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
 /// - [`flags`] **must**  be a valid combination of [`QueryControlFlagBits`] values
@@ -527,25 +527,25 @@ pub type FNCmdEndTransformFeedbackExt = Option<
 /// - Both of [`command_buffer`], and [`query_pool`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`CommandBuffer`]
 /// - [`QueryControlFlags`]
 /// - [`QueryPool`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBeginQueryIndexedEXT")]
 pub type FNCmdBeginQueryIndexedExt = Option<
     unsafe extern "system" fn(
@@ -568,16 +568,16 @@ pub type FNCmdBeginQueryIndexedExt = Option<
 ///    uint32_t                                    query,
 ///    uint32_t                                    index);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which this command will be recorded.
 /// - [`query_pool`] is the query pool that is managing the results of the query.
 /// - [`query`] is the query index within the query pool where the result is stored.
 /// - [`index`] is the query type specific index.
-/// # Description
-/// The [`cmd_end_query_indexed_ext`] command operates the same as the
-/// [`cmd_end_query`] command, except that it also accepts a query type
-/// specific [`index`] parameter.
-/// ## Valid Usage
+///# Description
+///The [`cmd_end_query_indexed_ext`] command operates the same as the
+///[`cmd_end_query`] command, except that it also accepts a query type
+///specific [`index`] parameter.
+///## Valid Usage
 /// - All queries used by the command  **must**  be [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-operation-active)
 /// - [`query`] **must**  be less than the number of queries in [`query_pool`]
 /// - [`command_buffer`] **must**  not be a protected command buffer
@@ -593,7 +593,7 @@ pub type FNCmdBeginQueryIndexedExt = Option<
 ///   `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT`[`index`] **must**  equal the [`index`] used to
 ///   begin the query
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -602,24 +602,24 @@ pub type FNCmdBeginQueryIndexedExt = Option<
 /// - Both of [`command_buffer`], and [`query_pool`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`CommandBuffer`]
 /// - [`QueryPool`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdEndQueryIndexedEXT")]
 pub type FNCmdEndQueryIndexedExt =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, query_pool: QueryPool, query: u32, index: u32)>;
@@ -638,7 +638,7 @@ pub type FNCmdEndQueryIndexedExt =
 ///    uint32_t                                    counterOffset,
 ///    uint32_t                                    vertexStride);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`instance_count`] is the number of instances to draw.
 /// - [`first_instance`] is the instance ID of the first instance to draw.
@@ -651,20 +651,20 @@ pub type FNCmdEndQueryIndexedExt =
 ///   to calculate the vertex count from the counter value. This value is typically the same value
 ///   that was used in the graphics pipeline state when the transform feedback was captured as the
 ///   `XfbStride`.
-/// # Description
-/// When the command is executed, primitives are assembled in the same way as
-/// done with [`cmd_draw`] except the `vertexCount` is calculated based
-/// on the byte count read from [`counter_buffer`] at offset
-/// [`counter_buffer_offset`].
-/// The assembled primitives execute the bound graphics pipeline.The effective `vertexCount` is
+///# Description
+///When the command is executed, primitives are assembled in the same way as
+///done with [`cmd_draw`] except the `vertexCount` is calculated based
+///on the byte count read from [`counter_buffer`] at offset
+///[`counter_buffer_offset`].
+///The assembled primitives execute the bound graphics pipeline.The effective `vertexCount` is
 /// calculated as follows:
-/// ```c
+///```c
 ///const uint32_t * counterBufferPtr = (const uint8_t *)counterBuffer.address +
 /// counterBufferOffset;
 ///vertexCount = floor(max(0, (*counterBufferPtr - counterOffset)) / vertexStride);
 ///```
-/// The effective `firstVertex` is zero.
-/// ## Valid Usage
+///The effective `firstVertex` is zero.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -1047,7 +1047,7 @@ pub type FNCmdEndQueryIndexedExt =
 /// - [`counter_buffer_offset`] **must**  be a multiple of `4`
 /// - [`command_buffer`] **must**  not be a protected command buffer
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`counter_buffer`] **must**  be a valid [`Buffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -1057,25 +1057,25 @@ pub type FNCmdEndQueryIndexedExt =
 /// - Both of [`command_buffer`], and [`counter_buffer`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDrawIndirectByteCountEXT")]
 pub type FNCmdDrawIndirectByteCountExt = Option<
     unsafe extern "system" fn(
@@ -1094,17 +1094,17 @@ pub type FNCmdDrawIndirectByteCountExt = Option<
 ///// Provided by VK_EXT_transform_feedback
 ///typedef VkFlags VkPipelineRasterizationStateStreamCreateFlagsEXT;
 ///```
-/// # Related
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`PipelineRasterizationStateStreamCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1135,36 +1135,36 @@ impl std::fmt::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
 ///    VkBool32           geometryStreams;
 ///} VkPhysicalDeviceTransformFeedbackFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`transform_feedback`] indicates whether the implementation supports transform feedback and
 ///   shader modules  **can**  declare the `TransformFeedback` capability.
 /// - [`geometry_streams`] indicates whether the implementation supports the `GeometryStreams`
 ///   SPIR-V capability.
-/// If the [`PhysicalDeviceTransformFeedbackFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceTransformFeedbackFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceTransformFeedbackFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceTransformFeedbackFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTransformFeedbackFeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1332,7 +1332,7 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 ///    VkBool32           transformFeedbackDraw;
 ///} VkPhysicalDeviceTransformFeedbackPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_transform_feedback_streams`] is the maximum number of vertex streams that can be output
@@ -1364,27 +1364,27 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 ///   for rasterization. Otherwise vertex stream `0` **must**  always be used for rasterization.
 /// - [`transform_feedback_draw`] is [`TRUE`] if the implementation supports the
 ///   [`cmd_draw_indirect_byte_count_ext`] function otherwise the function  **must**  not be called.
-/// # Description
-/// If the [`PhysicalDeviceTransformFeedbackPropertiesEXT`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceTransformFeedbackPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`Bool32`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTransformFeedbackPropertiesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1755,15 +1755,15 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 ///    uint32_t                                            rasterizationStream;
 ///} VkPipelineRasterizationStateStreamCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`rasterization_stream`] is the vertex stream selected for rasterization.
-/// # Description
-/// If this structure is not present, [`rasterization_stream`] is assumed to be
-/// zero.
-/// ## Valid Usage
+///# Description
+///If this structure is not present, [`rasterization_stream`] is assumed to be
+///zero.
+///## Valid Usage
 /// - [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`] **must**  be enabled
 /// - [`rasterization_stream`] **must**  be less than
 ///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_streams`]
@@ -1771,22 +1771,22 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 ///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::
 ///   transform_feedback_rasterization_stream_select`] is [`FALSE`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`VK_EXT_transform_feedback`]
 /// - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationStateStreamCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

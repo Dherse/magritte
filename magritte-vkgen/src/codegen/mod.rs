@@ -19,10 +19,15 @@ mod unions;
 use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 
 use ahash::AHashMap;
-use proc_macro2::TokenStream;
-use quote::quote_each_token;
+use proc_macro2::{Ident, Span, TokenStream};
+use quote::{quote_each_token, quote};
 
-use crate::{doc::Documentation, imports::Imports, origin::Origin, source::Source};
+use crate::{
+    doc::Documentation,
+    imports::Imports,
+    origin::Origin,
+    source::{Extension, Source},
+};
 
 #[doc(hidden)]
 pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream, pub TokenStream);
@@ -244,7 +249,8 @@ impl<'a> Source<'a> {
         "##
         );
 
-        self.origins
+        let mut out = self
+            .origins
             .iter()
             .filter(|origin| origin.is_extension() && !origin.is_disabled())
             .fold(out, |mut out, origin| {
@@ -257,7 +263,27 @@ impl<'a> Source<'a> {
                 .unwrap();
 
                 out
-            })
+            });
+
+        let instance_extensions = self
+            .extensions
+            .iter()
+            .filter(|ext| !ext.disabled());
+
+        let mut out_ts = quote! {
+            use crate::Version;
+        };
+
+        Extension::generate_extension_set(
+            self,
+            instance_extensions,
+            Ident::new("Extensions", Span::call_site()),
+            &mut out_ts,
+        );
+
+        out.push_str(&out_ts.to_string());
+
+        out
     }
 
     /// Generate the feature set for a `Cargo.toml` file

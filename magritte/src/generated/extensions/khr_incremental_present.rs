@@ -118,7 +118,7 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    const VkPresentRegionKHR*    pRegions;
 ///} VkPresentRegionsKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is the number of swapchains being presented to by this command.
@@ -126,29 +126,29 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   [`swapchain_count`] entries. If not `NULL`, each element of [`regions`] contains the region
 ///   that has changed since the last present to the swapchain in the corresponding entry in the
 ///   [`PresentInfoKHR::swapchains`] array.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where [`PresentInfoKHR`] is included in the [`p_next`] chain of this [`PresentRegionsKHR`]
 ///   structure
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
 /// - If [`regions`] is not `NULL`, [`regions`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`] valid [`PresentRegionKHR`] structures
 /// - [`swapchain_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`PresentRegionKHR`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentRegionsKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -269,7 +269,7 @@ impl<'lt> PresentRegionsKHR<'lt> {
 ///    const VkRectLayerKHR*    pRectangles;
 ///} VkPresentRegionKHR;
 ///```
-/// # Members
+///# Members
 /// - [`rectangle_count`] is the number of rectangles in [`rectangles`], or zero if the entire image
 ///   has changed and should be presented.
 /// - [`rectangles`] is either `NULL` or a pointer to an array of [`RectLayerKHR`] structures. The
@@ -280,22 +280,22 @@ impl<'lt> PresentRegionsKHR<'lt> {
 ///   [`SurfaceCapabilitiesKHR::current_transform`], regardless of the swapchain’s `preTransform`.
 ///   The presentation engine will apply the `preTransform` transformation to the rectangles, along
 ///   with any further transformation it applies to the image content.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`] **must**
 ///   be a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
-/// # Related
+///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`PresentRegionsKHR`]
 /// - [`RectLayerKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentRegionKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -384,36 +384,36 @@ impl<'lt> PresentRegionKHR<'lt> {
 ///    uint32_t      layer;
 ///} VkRectLayerKHR;
 ///```
-/// # Members
+///# Members
 /// - [`offset`] is the origin of the rectangle, in pixels.
 /// - [`extent`] is the size of the rectangle, in pixels.
 /// - [`layer`] is the layer of the image. For images with only one layer, the value of [`layer`]
 ///   **must**  be 0.
-/// # Description
-/// Some platforms allow the size of a surface to change, and then scale the
-/// pixels of the image to fit the surface.
-/// [`RectLayerKHR`] specifies pixels of the swapchain’s image(s), which
-/// will be constant for the life of the swapchain.
-/// ## Valid Usage
+///# Description
+///Some platforms allow the size of a surface to change, and then scale the
+///pixels of the image to fit the surface.
+///[`RectLayerKHR`] specifies pixels of the swapchain’s image(s), which
+///will be constant for the life of the swapchain.
+///## Valid Usage
 /// - The sum of [`offset`] and [`extent`], after being transformed according to the `preTransform`
 ///   member of the [`SwapchainCreateInfoKHR`] structure,  **must**  be no greater than the
 ///   `imageExtent` member of the [`SwapchainCreateInfoKHR`] structure passed to
 ///   [`create_swapchain_khr`]
 /// - [`layer`] **must**  be less than the `imageArrayLayers` member of the
 ///   [`SwapchainCreateInfoKHR`] structure passed to [`create_swapchain_khr`]
-/// # Related
+///# Related
 /// - [`VK_KHR_incremental_present`]
 /// - [`Extent2D`]
 /// - [`Offset2D`]
 /// - [`PresentRegionKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRectLayerKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

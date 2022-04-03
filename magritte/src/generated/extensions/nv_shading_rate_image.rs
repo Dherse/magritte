@@ -194,15 +194,15 @@ pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VkImageView                                 imageView,
 ///    VkImageLayout                               imageLayout);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`image_view`] is an image view handle specifying the shading rate image. [`image_view`]
 ///   **may**  be set to [`crate::utils::Handle::null`], which is equivalent to specifying a view of
 ///   an image filled with zero values.
 /// - [`image_layout`] is the layout that the image subresources accessible from [`image_view`] will
 ///   be in when the shading rate image is accessed.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shadingRateImage)
 ///   feature  **must**  be enabled
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  be a valid
@@ -217,7 +217,7 @@ pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_layout`] **must**  be
 ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV` or `VK_IMAGE_LAYOUT_GENERAL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
@@ -228,25 +228,25 @@ pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - Both of [`command_buffer`], and [`image_view`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CommandBuffer`]
 /// - [`ImageLayout`]
 /// - [`ImageView`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBindShadingRateImageNV")]
 pub type FNCmdBindShadingRateImageNv =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, image_view: ImageView, image_layout: ImageLayout)>;
@@ -262,7 +262,7 @@ pub type FNCmdBindShadingRateImageNv =
 ///    uint32_t                                    viewportCount,
 ///    const VkShadingRatePaletteNV*               pShadingRatePalettes);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`first_viewport`] is the index of the first viewport whose shading rate palette is updated by
 ///   the command.
@@ -270,15 +270,15 @@ pub type FNCmdBindShadingRateImageNv =
 ///   command.
 /// - [`p_shading_rate_palettes`] is a pointer to an array of [`ShadingRatePaletteNV`] structures
 ///   defining the palette for each viewport.
-/// # Description
-/// This command sets the per-viewport shading rate image palettes for
-/// subsequent drawing commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineViewportShadingRateImageStateCreateInfoNV`]::[`p_shading_rate_palettes`]
-/// values used to create the currently active pipeline.
-/// ## Valid Usage
+///# Description
+///This command sets the per-viewport shading rate image palettes for
+///subsequent drawing commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineViewportShadingRateImageStateCreateInfoNV`]::[`p_shading_rate_palettes`]
+///values used to create the currently active pipeline.
+///## Valid Usage
 /// - The [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shadingRateImage)
 ///   feature  **must**  be enabled
 /// - The sum of [`first_viewport`] and [`viewport_count`] **must**  be between `1` and
@@ -288,7 +288,7 @@ pub type FNCmdBindShadingRateImageNv =
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
 ///   feature is not enabled, [`viewport_count`] **must**  be `1`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_shading_rate_palettes`] **must**  be a valid pointer to an array of [`viewport_count`]
 ///   valid [`ShadingRatePaletteNV`] structures
@@ -297,24 +297,24 @@ pub type FNCmdBindShadingRateImageNv =
 ///   operations
 /// - [`viewport_count`] **must**  be greater than `0`
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CommandBuffer`]
 /// - [`ShadingRatePaletteNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetViewportShadingRatePaletteNV")]
 pub type FNCmdSetViewportShadingRatePaletteNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -336,7 +336,7 @@ pub type FNCmdSetViewportShadingRatePaletteNv = Option<
 ///    uint32_t                                    customSampleOrderCount,
 ///    const VkCoarseSampleOrderCustomNV*          pCustomSampleOrders);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`sample_order_type`] specifies the mechanism used to order coverage samples in fragments
 ///   larger than one pixel.
@@ -345,25 +345,25 @@ pub type FNCmdSetViewportShadingRatePaletteNv = Option<
 /// - [`p_custom_sample_orders`] is a pointer to an array of [`CoarseSampleOrderCustomNV`]
 ///   structures, each structure specifying the coverage sample order for a single combination of
 ///   fragment area and coverage sample count.
-/// # Description
-/// If [`sample_order_type`] is `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`, the
-/// coverage sample order used for any combination of fragment area and coverage
-/// sample count not enumerated in [`p_custom_sample_orders`] will be identical
-/// to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.This command sets the order of
+///# Description
+///If [`sample_order_type`] is `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`, the
+///coverage sample order used for any combination of fragment area and coverage
+///sample count not enumerated in [`p_custom_sample_orders`] will be identical
+///to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.This command sets the order of
 /// coverage samples for subsequent drawing
-/// commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`] values used to
-/// create the currently active pipeline.
-/// ## Valid Usage
+///commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineViewportCoarseSampleOrderStateCreateInfoNV`] values used to
+///create the currently active pipeline.
+///## Valid Usage
 /// - If [`sample_order_type`] is not `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`,
 ///   `customSamplerOrderCount` **must**  be `0`
 /// - The array [`p_custom_sample_orders`] **must**  not contain two structures with matching values
 ///   for both the `shadingRate` and `sampleCount` members
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`sample_order_type`] **must**  be a valid [`CoarseSampleOrderTypeNV`] value
 /// - If [`custom_sample_order_count`] is not `0`, [`p_custom_sample_orders`] **must**  be a valid
@@ -373,25 +373,25 @@ pub type FNCmdSetViewportShadingRatePaletteNv = Option<
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 /// - [`CoarseSampleOrderTypeNV`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetCoarseSampleOrderNV")]
 pub type FNCmdSetCoarseSampleOrderNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -422,25 +422,25 @@ pub type FNCmdSetCoarseSampleOrderNv = Option<
 ///    VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV = 11,
 ///} VkShadingRatePaletteEntryNV;
 ///```
-/// # Description
-/// The following table indicates the width and height (in pixels) of each
-/// fragment generated using the indicated shading rate, as well as the maximum
-/// number of fragment shader invocations launched for each fragment.
-/// When processing regions of a primitive that have a shading rate of
-/// [`ShadingRatePaletteEntryNoInvocationsNv`], no fragments will be
-/// generated in that region.
-/// # Related
+///# Description
+///The following table indicates the width and height (in pixels) of each
+///fragment generated using the indicated shading rate, as well as the maximum
+///number of fragment shader invocations launched for each fragment.
+///When processing regions of a primitive that have a shading rate of
+///[`ShadingRatePaletteEntryNoInvocationsNv`], no fragments will be
+///generated in that region.
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 /// - [`ShadingRatePaletteNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShadingRatePaletteEntryNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -509,7 +509,7 @@ impl ShadingRatePaletteEntryNV {
 ///    VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV = 3,
 ///} VkCoarseSampleOrderTypeNV;
 ///```
-/// # Description
+///# Description
 /// - [`CoarseSampleOrderTypeDefaultNv`] specifies that coverage samples will be ordered in an
 ///   implementation-dependent manner.
 /// - [`CoarseSampleOrderTypeCustomNv`] specifies that coverage samples will be ordered according to
@@ -518,18 +518,18 @@ impl ShadingRatePaletteEntryNV {
 ///   [`cmd_set_coarse_sample_order_nv`].
 /// - [`CoarseSampleOrderTypePixelMajorNv`] specifies that coverage samples will be ordered sequentially, sorted first by pixel coordinate (in row-major order) and then by [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask).
 /// - [`CoarseSampleOrderTypeSampleMajorNv`] specifies that coverage samples will be ordered sequentially, sorted first by [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) and then by pixel coordinate (in row-major order).
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
 /// - [`cmd_set_coarse_sample_order_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoarseSampleOrderTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -590,33 +590,33 @@ impl CoarseSampleOrderTypeNV {
 ///    const VkShadingRatePaletteEntryNV*    pShadingRatePaletteEntries;
 ///} VkShadingRatePaletteNV;
 ///```
-/// # Members
+///# Members
 /// - [`shading_rate_palette_entry_count`] specifies the number of entries in the shading rate image
 ///   palette.
 /// - [`shading_rate_palette_entries`] is a pointer to an array of [`ShadingRatePaletteEntryNV`]
 ///   enums defining the shading rate for each palette entry.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`shading_rate_palette_entry_count`] **must**  be between `1` and
 ///   [`PhysicalDeviceShadingRateImagePropertiesNV::shading_rate_palette_size`], inclusive
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`shading_rate_palette_entries`] **must**  be a valid pointer to an array of
 ///   [`shading_rate_palette_entry_count`] valid [`ShadingRatePaletteEntryNV`] values
 /// - [`shading_rate_palette_entry_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`PipelineViewportShadingRateImageStateCreateInfoNV`]
 /// - [`ShadingRatePaletteEntryNV`]
 /// - [`cmd_set_viewport_shading_rate_palette_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShadingRatePaletteNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -703,7 +703,7 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
 ///    const VkShadingRatePaletteNV*    pShadingRatePalettes;
 ///} VkPipelineViewportShadingRateImageStateCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shading_rate_image_enable`] specifies whether shading rate image and palettes are used
@@ -713,32 +713,32 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
 /// - [`shading_rate_palettes`] is a pointer to an array of [`ShadingRatePaletteNV`] structures
 ///   defining the palette for each viewport. If the shading rate palette state is dynamic, this
 ///   member is ignored.
-/// # Description
-/// If this structure is not present, [`shading_rate_image_enable`] is considered
-/// to be [`FALSE`], and the shading rate image and palettes are not used.
-/// ## Valid Usage
+///# Description
+///If this structure is not present, [`shading_rate_image_enable`] is considered
+///to be [`FALSE`], and the shading rate image and palettes are not used.
+///## Valid Usage
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
 ///   feature is not enabled, [`viewport_count`] **must**  be `0` or `1`
 /// - [`viewport_count`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_viewports`]
 /// - If [`shading_rate_image_enable`] is [`TRUE`], [`viewport_count`] **must**  be greater or equal
 ///   to the [`viewport_count`] member of [`PipelineViewportStateCreateInfo`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`Bool32`]
 /// - [`ShadingRatePaletteNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportShadingRateImageStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -900,9 +900,9 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 ///    VkBool32           shadingRateCoarseSampleOrder;
 ///} VkPhysicalDeviceShadingRateImageFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shading_rate_image`] indicates that the implementation supports the use of a shading rate
@@ -910,28 +910,28 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 ///   implementation supports the `ShadingRateNV` SPIR-V execution mode.
 /// - [`shading_rate_coarse_sample_order`] indicates that the implementation supports a
 ///   user-configurable ordering of coverage samples in fragments larger than one pixel.
-/// See [Shading Rate Image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image) for more
-/// information.If the [`PhysicalDeviceShadingRateImageFeaturesNV`] structure is included in the
+///See [Shading Rate Image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image) for more
+///information.If the [`PhysicalDeviceShadingRateImageFeaturesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShadingRateImageFeaturesNV`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShadingRateImageFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShadingRateImageFeaturesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1095,7 +1095,7 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 ///    uint32_t           shadingRateMaxCoarseSamples;
 ///} VkPhysicalDeviceShadingRateImagePropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shading_rate_texel_size`] indicates the width and height of the portion of the framebuffer
@@ -1106,27 +1106,27 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 ///   in a single fragment. If the product of the fragment size derived from the base shading rate
 ///   and the number of coverage samples per pixel exceeds this limit, the final shading rate will
 ///   be adjusted so that its product does not exceed the limit.
-/// # Description
-/// If the [`PhysicalDeviceShadingRateImagePropertiesNV`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceShadingRateImagePropertiesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.These properties are related to the [shading
-/// rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image) feature.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.These properties are related to the [shading
+///rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image) feature.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShadingRateImagePropertiesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1264,30 +1264,30 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 ///    uint32_t    sample;
 ///} VkCoarseSampleLocationNV;
 ///```
-/// # Members
+///# Members
 /// - [`pixel_x`] is added to the x coordinate of the upper-leftmost pixel of each fragment to
 ///   identify the pixel containing the coverage sample.
 /// - [`pixel_y`] is added to the y coordinate of the upper-leftmost pixel of each fragment to
 ///   identify the pixel containing the coverage sample.
 /// - [`sample`] is the number of the coverage sample in the pixel identified by [`pixel_x`] and
 ///   [`pixel_y`].
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`pixel_x`] **must**  be less than the width (in pixels) of the fragment
 /// - [`pixel_y`] **must**  be less than the height (in pixels) of the fragment
 /// - [`sample`] **must**  be less than the number of coverage samples in each pixel belonging to
 ///   the fragment
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoarseSampleLocationNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1366,7 +1366,7 @@ impl CoarseSampleLocationNV {
 ///    const VkCoarseSampleLocationNV*    pSampleLocations;
 ///} VkCoarseSampleOrderCustomNV;
 ///```
-/// # Members
+///# Members
 /// - [`shading_rate`] is a shading rate palette entry that identifies the fragment width and height
 ///   for the combination of fragment area and per-pixel coverage sample count to control.
 /// - [`sample_count`] identifies the per-pixel coverage sample count for the combination of
@@ -1374,17 +1374,17 @@ impl CoarseSampleLocationNV {
 /// - [`sample_location_count`] specifies the number of sample locations in the custom ordering.
 /// - [`sample_locations`] is a pointer to an array of [`CoarseSampleLocationNV`] structures
 ///   specifying the location of each sample in the custom ordering.
-/// # Description
-/// The [`CoarseSampleOrderCustomNV`] structure is used with a coverage
-/// sample ordering type of `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV` to
-/// specify the order of coverage samples for one combination of fragment width,
-/// fragment height, and coverage sample count.When using a custom sample ordering, element *j* in
+///# Description
+///The [`CoarseSampleOrderCustomNV`] structure is used with a coverage
+///sample ordering type of `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV` to
+///specify the order of coverage samples for one combination of fragment width,
+///fragment height, and coverage sample count.When using a custom sample ordering, element *j* in
 /// [`sample_locations`]
-/// specifies a specific pixel location and
-/// [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) that corresponds to
-/// [coverage index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)*j* in the
-/// multi-pixel fragment.
-/// ## Valid Usage
+///specifies a specific pixel location and
+///[sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) that corresponds to
+///[coverage index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)*j* in the
+///multi-pixel fragment.
+///## Valid Usage
 /// - [`shading_rate`] **must**  be a shading rate that generates fragments with more than one pixel
 /// - [`sample_count`] **must**  correspond to a sample count enumerated in [`SampleCountFlags`]
 ///   whose corresponding bit is set in
@@ -1397,25 +1397,25 @@ impl CoarseSampleLocationNV {
 ///   valid values for `pixelX`, `pixelY`, and `sample` in the structure
 ///   [`CoarseSampleOrderCustomNV`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`shading_rate`] **must**  be a valid [`ShadingRatePaletteEntryNV`] value
 /// - [`sample_locations`] **must**  be a valid pointer to an array of
 ///   [`sample_location_count`][`CoarseSampleLocationNV`] structures
 /// - [`sample_location_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleLocationNV`]
 /// - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
 /// - [`ShadingRatePaletteEntryNV`]
 /// - [`cmd_set_coarse_sample_order_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoarseSampleOrderCustomNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1538,7 +1538,7 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
 ///    const VkCoarseSampleOrderCustomNV*    pCustomSampleOrders;
 ///} VkPipelineViewportCoarseSampleOrderStateCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sample_order_type`] specifies the mechanism used to order coverage samples in fragments
@@ -1549,42 +1549,42 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
 ///   [`custom_sample_order_count`][`CoarseSampleOrderCustomNV`] structures, each structure
 ///   specifying the coverage sample order for a single combination of fragment area and coverage
 ///   sample count.
-/// # Description
-/// If this structure is not present, [`sample_order_type`] is considered to be
-/// `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If [`sample_order_type`] is
+///# Description
+///If this structure is not present, [`sample_order_type`] is considered to be
+///`VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If [`sample_order_type`] is
 /// `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`, the
-/// coverage sample order used for any combination of fragment area and coverage
-/// sample count not enumerated in [`custom_sample_orders`] will be identical
-/// to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If the pipeline was created with
-/// `VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV`, the contents of this
-/// structure (if present) are ignored, and the coverage sample order is instead
-/// specified by [`cmd_set_coarse_sample_order_nv`].
-/// ## Valid Usage
+///coverage sample order used for any combination of fragment area and coverage
+///sample count not enumerated in [`custom_sample_orders`] will be identical
+///to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.If the pipeline was created with
+///`VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV`, the contents of this
+///structure (if present) are ignored, and the coverage sample order is instead
+///specified by [`cmd_set_coarse_sample_order_nv`].
+///## Valid Usage
 /// - If [`sample_order_type`] is not `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`,
 ///   `customSamplerOrderCount` **must**  be `0`
 /// - The array [`custom_sample_orders`] **must**  not contain two structures with matching values
 ///   for both the `shadingRate` and `sampleCount` members
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV`
 /// - [`sample_order_type`] **must**  be a valid [`CoarseSampleOrderTypeNV`] value
 /// - If [`custom_sample_order_count`] is not `0`, [`custom_sample_orders`] **must**  be a valid
 ///   pointer to an array of [`custom_sample_order_count`] valid [`CoarseSampleOrderCustomNV`]
 ///   structures
-/// # Related
+///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 /// - [`CoarseSampleOrderTypeNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportCoarseSampleOrderStateCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

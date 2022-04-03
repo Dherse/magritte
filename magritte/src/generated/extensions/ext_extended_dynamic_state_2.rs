@@ -76,46 +76,46 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VkCommandBuffer                             commandBuffer,
 ///    uint32_t                                    patchControlPoints);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`patch_control_points`] specifies the number of control points per patch.
-/// # Description
-/// This command sets the number of control points per patch for subsequent
-/// drawing commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineTessellationStateCreateInfo`]::[`patch_control_points`] value
-/// used to create the currently active pipeline.
-/// ## Valid Usage
+///# Description
+///This command sets the number of control points per patch for subsequent
+///drawing commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineTessellationStateCreateInfo`]::[`patch_control_points`] value
+///used to create the currently active pipeline.
+///## Valid Usage
 /// - The [extendedDynamicState2PatchControlPoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-extendedDynamicState2PatchControlPoints)
 ///   feature  **must**  be enabled
 /// - [`patch_control_points`] **must**  be greater than zero and less than or equal to
 ///   [`PhysicalDeviceLimits::max_tessellation_patch_size`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetPatchControlPointsEXT")]
 pub type FNCmdSetPatchControlPointsExt =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, patch_control_points: u32)>;
@@ -129,46 +129,46 @@ pub type FNCmdSetPatchControlPointsExt =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkLogicOp                                   logicOp);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`logic_op`] specifies the logical operation to apply for blend state.
-/// # Description
-/// This command sets the logical operation for blend state for subsequent
-/// drawing commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_LOGIC_OP_EXT` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineColorBlendStateCreateInfo`]::[`logic_op`] value used to
-/// create the currently active pipeline.
-/// ## Valid Usage
+///# Description
+///This command sets the logical operation for blend state for subsequent
+///drawing commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_LOGIC_OP_EXT` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineColorBlendStateCreateInfo`]::[`logic_op`] value used to
+///create the currently active pipeline.
+///## Valid Usage
 /// - The [extendedDynamicState2LogicOp](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-extendedDynamicState2LogicOp)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`logic_op`] **must**  be a valid [`LogicOp`] value
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]
 /// - [`CommandBuffer`]
 /// - [`LogicOp`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetLogicOpEXT")]
 pub type FNCmdSetLogicOpExt = Option<unsafe extern "system" fn(command_buffer: CommandBuffer, logic_op: LogicOp)>;
 ///[VkPhysicalDeviceExtendedDynamicState2FeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html) - Structure describing what extended dynamic state can be used
@@ -185,9 +185,9 @@ pub type FNCmdSetLogicOpExt = Option<unsafe extern "system" fn(command_buffer: C
 ///    VkBool32           extendedDynamicState2PatchControlPoints;
 ///} VkPhysicalDeviceExtendedDynamicState2FeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`extended_dynamic_state_2`] indicates that the implementation supports the following dynamic
@@ -197,29 +197,29 @@ pub type FNCmdSetLogicOpExt = Option<unsafe extern "system" fn(command_buffer: C
 ///   dynamic state:  - `VK_DYNAMIC_STATE_LOGIC_OP_EXT`
 /// - [`extended_dynamic_state_2_patch_control_points`] indicates that the implementation supports
 ///   the following dynamic state:  - `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT`
-/// If the [`PhysicalDeviceExtendedDynamicState2FeaturesEXT`] structure is included in the
+///If the [`PhysicalDeviceExtendedDynamicState2FeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceExtendedDynamicState2FeaturesEXT`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceExtendedDynamicState2FeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicState2FeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

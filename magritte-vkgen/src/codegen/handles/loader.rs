@@ -130,6 +130,8 @@ impl<'a> Handle<'a> {
     ) where
         'a: 'b,
     {
+        imports.push("crate::extensions::Extensions");
+
         // the name of the vtable
         let name = self.this_vtable_ident();
 
@@ -163,8 +165,10 @@ impl<'a> Handle<'a> {
 
         let conditional_compilations = origins.iter().map(|o| o.condition()).collect::<Vec<_>>();
 
-        let idents = origins.iter().map(|o| Ident::new(&o.as_name(), Span::call_site()));
-        let types = origins.iter().map(|o| self.vtable_ident(*o));
+        let idents = origins
+            .iter()
+            .map(|o| Ident::new(&o.as_name(), Span::call_site()))
+            .collect::<Vec<_>>();
 
         let docs = origins
             .iter()
@@ -174,8 +178,60 @@ impl<'a> Handle<'a> {
             let ident = Ident::new(&o.as_name(), Span::call_site());
             let ty = self.vtable_ident(*o);
 
-            quote! {
-                pub #ident: #ty
+            if o.always() {
+                quote! {
+                    pub #ident: #ty
+                }
+            } else {
+                quote! {
+                    pub #ident: Option<#ty>
+                }
+            }
+        });
+
+        let values = origins.iter().map(|o| {
+            let ty = self.vtable_ident(*o);
+            if let Some(tokens) = o.as_bool_tokens(Some(imports), &quote! { variant }) {
+                quote! {
+                    #tokens.then(|| #ty :: load(loader_fn, loader))
+                }
+            } else {
+                quote! {
+                    #ty :: load(loader_fn, loader)
+                }
+            }
+        });
+
+        let opt_types = origins.iter().map(|o| {
+            let ty = self.vtable_ident(*o);
+            if o.as_bool_tokens(Some(imports), &quote! { variant }).is_some() {
+                quote! {
+                    Option<&#ty>
+                }
+            } else {
+                quote! {
+                    &#ty
+                }
+            }
+        });
+
+        let as_refs = origins.iter().map(|o| {
+            if o.as_bool_tokens(Some(imports), &quote! { variant }).is_some() {
+                Some(quote! {
+                    .as_ref()
+                })
+            } else {
+                None
+            }
+        });
+
+        let refs = origins.iter().map(|o| {
+            if o.as_bool_tokens(Some(imports), &quote! { variant }).is_some() {
+                None
+            } else {
+                Some(quote! {
+                    &
+                })
             }
         });
 
@@ -196,6 +252,7 @@ impl<'a> Handle<'a> {
                 pub fn load<F>(
                     loader_fn: F,
                     loader: #loader,
+                    variant: Extensions,
                 ) -> Self
                     where
                         F: Fn(#loader, &'static CStr) -> Option<extern "system" fn()> + Copy,
@@ -203,11 +260,18 @@ impl<'a> Handle<'a> {
                     Self {
                         #(
                             #conditional_compilations
-                            #idents: #types :: load(loader_fn, loader)
-
+                            #idents: #values
                         ),*
                     }
                 }
+
+                #(
+                    #[inline(always)]
+                    #conditional_compilations
+                    pub const fn #idents(&self) -> #opt_types {
+                        #refs self.#idents #as_refs
+                    }
+                )*
             }
         }
     }
