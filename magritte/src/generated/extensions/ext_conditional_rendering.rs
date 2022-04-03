@@ -101,15 +101,15 @@ pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkConditionalRenderingBeginInfoEXT*   pConditionalRenderingBegin);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which this command will be recorded.
 /// - [`p_conditional_rendering_begin`] is a pointer to a [`ConditionalRenderingBeginInfoEXT`]
 ///   structure specifying parameters of conditional rendering.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - Conditional rendering  **must**  not already be [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_conditional_rendering_begin`] **must**  be a valid pointer to a valid
 ///   [`ConditionalRenderingBeginInfoEXT`] structure
@@ -117,24 +117,24 @@ pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or
 ///   compute operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`CommandBuffer`]
 /// - [`ConditionalRenderingBeginInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBeginConditionalRenderingEXT")]
 pub type FNCmdBeginConditionalRenderingExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -150,40 +150,40 @@ pub type FNCmdBeginConditionalRenderingExt = Option<
 ///void vkCmdEndConditionalRenderingEXT(
 ///    VkCommandBuffer                             commandBuffer);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which this command will be recorded.
-///# Description
-///Once ended, conditional rendering becomes inactive.
-///## Valid Usage
+/// # Description
+/// Once ended, conditional rendering becomes inactive.
+/// ## Valid Usage
 /// - Conditional rendering  **must**  be [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
 /// - If conditional rendering was made [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
 ///   outside of a render pass instance, it  **must**  not be ended inside a render pass instance
 /// - If conditional rendering was made [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
 ///   within a subpass it  **must**  be ended in the same subpass
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or
 ///   compute operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`CommandBuffer`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdEndConditionalRenderingEXT")]
 pub type FNCmdEndConditionalRenderingExt = Option<unsafe extern "system" fn(command_buffer: CommandBuffer)>;
 ///[VkConditionalRenderingFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingFlagBitsEXT.html) - Specify the behavior of conditional rendering
@@ -197,22 +197,22 @@ pub type FNCmdEndConditionalRenderingExt = Option<unsafe extern "system" fn(comm
 ///    VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 0x00000001,
 ///} VkConditionalRenderingFlagBitsEXT;
 ///```
-///# Description
+/// # Description
 /// - [`ConditionalRenderingInvertedExt`] specifies the condition used to determine whether to
 ///   discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory
 ///   at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are
 ///   discarded.
-///# Related
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`ConditionalRenderingFlagsEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConditionalRenderingFlagBitsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -262,22 +262,22 @@ impl ConditionalRenderingFlagBitsEXT {
 ///    VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 0x00000001,
 ///} VkConditionalRenderingFlagBitsEXT;
 ///```
-///# Description
+/// # Description
 /// - [`ConditionalRenderingInvertedExt`] specifies the condition used to determine whether to
 ///   discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory
 ///   at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are
 ///   discarded.
-///# Related
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`ConditionalRenderingFlagsEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConditionalRenderingFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -546,23 +546,23 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 ///    VkConditionalRenderingFlagsEXT    flags;
 ///} VkConditionalRenderingBeginInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] is a buffer containing the predicate for conditional rendering.
 /// - [`offset`] is the byte offset into [`buffer`] where the predicate is located.
 /// - [`flags`] is a bitmask of [`ConditionalRenderingFlagsEXT`] specifying the behavior of
 ///   conditional rendering.
-///# Description
-///If the 32-bit value at [`offset`] in [`buffer`] memory is zero, then the
-///rendering commands are discarded, otherwise they are executed as normal.
-///If the value of the predicate in buffer memory changes while conditional
-///rendering is active, the rendering commands  **may**  be discarded in an
-///implementation-dependent way.
-///Some implementations may latch the value of the predicate upon beginning
-///conditional rendering while others may read it before every rendering
-///command.
-///## Valid Usage
+/// # Description
+/// If the 32-bit value at [`offset`] in [`buffer`] memory is zero, then the
+/// rendering commands are discarded, otherwise they are executed as normal.
+/// If the value of the predicate in buffer memory changes while conditional
+/// rendering is active, the rendering commands  **may**  be discarded in an
+/// implementation-dependent way.
+/// Some implementations may latch the value of the predicate upon beginning
+/// conditional rendering while others may read it before every rendering
+/// command.
+/// ## Valid Usage
 /// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
 /// - [`buffer`] **must**  have been created with the
@@ -570,12 +570,12 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 /// - [`offset`] **must**  be less than the size of [`buffer`] by at least 32 bits
 /// - [`offset`] **must**  be a multiple of 4
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 /// - [`flags`] **must**  be a valid combination of [`ConditionalRenderingFlagBitsEXT`] values
-///# Related
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`Buffer`]
 /// - [`ConditionalRenderingFlagsEXT`]
@@ -583,13 +583,13 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 /// - [`StructureType`]
 /// - [`cmd_begin_conditional_rendering_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConditionalRenderingBeginInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -718,7 +718,7 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 ///    VkBool32           conditionalRenderingEnable;
 ///} VkCommandBufferInheritanceConditionalRenderingInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`conditional_rendering_enable`] specifies whether the command buffer  **can**  be executed
@@ -726,28 +726,28 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 ///   this command buffer  **can**  be executed whether the primary command buffer has active
 ///   conditional rendering or not. If this is [`FALSE`], then the primary command buffer  **must**
 ///   not have conditional rendering active.
-///# Description
-///If this structure is not present, the behavior is as if
-///[`conditional_rendering_enable`] is [`FALSE`].
-///## Valid Usage
+/// # Description
+/// If this structure is not present, the behavior is as if
+/// [`conditional_rendering_enable`] is [`FALSE`].
+/// ## Valid Usage
 /// - If the [inherited conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedConditionalRendering)
 ///   feature is not enabled, [`conditional_rendering_enable`] **must**  be [`FALSE`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceConditionalRenderingInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -865,36 +865,36 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 ///    VkBool32           inheritedConditionalRendering;
 ///} VkPhysicalDeviceConditionalRenderingFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`conditional_rendering`] specifies whether conditional rendering is supported.
 /// - [`inherited_conditional_rendering`] specifies whether a secondary command buffer  **can**  be
 ///   executed while conditional rendering is active in the primary command buffer.
-///If the [`PhysicalDeviceConditionalRenderingFeaturesEXT`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceConditionalRenderingFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceConditionalRenderingFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceConditionalRenderingFeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConditionalRenderingFeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

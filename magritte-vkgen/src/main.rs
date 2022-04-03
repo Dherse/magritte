@@ -105,7 +105,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
         let mut features: BTreeMap<String, Vec<String>> = BTreeMap::default();
 
-        features.insert("default".to_string(), vec!["all".to_string()]);
+        features.insert("default".to_string(), vec!["libloading".to_string(), "all".to_string()]);
 
         source.generate_feature_set(&mut features);
 

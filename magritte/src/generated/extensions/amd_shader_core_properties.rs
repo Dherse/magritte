@@ -69,7 +69,7 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    uint32_t           vgprAllocationGranularity;
 ///} VkPhysicalDeviceShaderCorePropertiesAMD;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_engine_count`] is an unsigned integer value indicating the number of shader engines
@@ -102,25 +102,25 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///   allocated for a wave.
 /// - [`vgpr_allocation_granularity`] is an unsigned integer value indicating the granularity of
 ///   VGPR allocation for a wave.
-///# Description
-///If the [`PhysicalDeviceShaderCorePropertiesAMD`] structure is included in the [`p_next`] chain
+/// # Description
+/// If the [`PhysicalDeviceShaderCorePropertiesAMD`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`get_physical_device_properties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
-///# Related
+/// # Related
 /// - [`VK_AMD_shader_core_properties`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderCorePropertiesAMD")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

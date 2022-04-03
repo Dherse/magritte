@@ -102,7 +102,7 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 ///    uint32_t                                    set,
 ///    const void*                                 pData);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer that the descriptors will be recorded in.
 /// - [`descriptor_update_template`] is a descriptor update template defining how to interpret the
 ///   descriptor information in [`p_data`].
@@ -111,15 +111,15 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 /// - [`set`] is the set number of the descriptor set in the pipeline layout that will be updated.
 ///   This  **must**  be the same number used to create the [`descriptor_update_template`] handle.
 /// - [`p_data`] is a pointer to memory containing descriptors for the templated update.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - The `pipelineBindPoint` specified during the creation of the descriptor update template
 ///   **must**  be supported by the [`command_buffer`]’s parent [`CommandPool`]’s queue family
 /// - [`p_data`] **must**  be a valid pointer to a memory containing one or more valid instances of
 ///   [`DescriptorImageInfo`], [`DescriptorBufferInfo`], or [`BufferView`] in a layout defined by
 ///   [`descriptor_update_template`] when it was created with [`create_descriptor_update_template`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`descriptor_update_template`] **must**  be a valid [`DescriptorUpdateTemplate`] handle
 /// - [`layout`] **must**  be a valid [`PipelineLayout`] handle
@@ -129,14 +129,14 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 /// - Each of [`command_buffer`], [`descriptor_update_template`], and [`layout`] **must**  have been
 ///   created, allocated, or retrieved from the same [`Device`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///## API example
-///```c
+/// ## Command Properties
+/// ## API example
+/// ```c
 ///struct AppDataStructure
 ///{
 ///    VkDescriptorImageInfo  imageInfo;          // a single image info
@@ -156,7 +156,6 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 /// is 1
 ///    }
 ///};
-///
 ///// create a descriptor update template for push descriptor set updates
 ///const VkDescriptorUpdateTemplateCreateInfo createInfo =
 ///{
@@ -185,7 +184,7 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 ///vkCmdPushDescriptorSetWithTemplateKHR(myCmdBuffer, myDescriptorUpdateTemplate, myPipelineLayout,
 /// 0,&appData);
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_descriptor_update_template`]
 /// - [`VK_KHR_push_descriptor`]
 /// - [`crate::vulkan1_1`]
@@ -193,13 +192,13 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 /// - [`DescriptorUpdateTemplate`]
 /// - [`PipelineLayout`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdPushDescriptorSetWithTemplateKHR")]
 pub type FNCmdPushDescriptorSetWithTemplateKhr = Option<
     unsafe extern "system" fn(

@@ -20,6 +20,10 @@ categories = [
 ]
 license-file = '../LICENSE'
 repository = 'https://github.com/Dherse/magritte'
+[dependencies.libloading]
+version = '0.7.3'
+features = []
+optional = true
 [build-dependencies.bindgen]
 version = '0.59.2'
 features = []
@@ -696,4 +700,7 @@ all = [
     'VK_NV_linear_color_attachment',
     'VK_GOOGLE_surfaceless_query',
 ]
-default = ['all']
+default = [
+    'libloading',
+    'all',
+]

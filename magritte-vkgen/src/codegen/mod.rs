@@ -20,7 +20,8 @@ use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 
 use ahash::AHashMap;
 use proc_macro2::{Ident, Span, TokenStream};
-use quote::{quote_each_token, quote};
+use quote::{quote, quote_each_token};
+use tracing::warn;
 
 use crate::{
     doc::Documentation,
@@ -28,6 +29,8 @@ use crate::{
     origin::Origin,
     source::{Extension, Source},
 };
+
+use self::handles::loader::HandleFunction;
 
 #[doc(hidden)]
 pub struct CodeOut(pub Origin<'static>, pub Imports, pub TokenStream, pub TokenStream);
@@ -166,6 +169,8 @@ impl<'a> Source<'a> {
 
             handle.generate_code(self, doc, out);
         }
+
+        let mut all_functions = Vec::new();
         for handle in &self.handles {
             if handle.origin().is_disabled() {
                 continue;
@@ -186,6 +191,8 @@ impl<'a> Source<'a> {
                     continue;
                 }
 
+                all_functions.extend(functions.iter().cloned());
+
                 // first we generate the sub vtable in each origin.
                 // the main reason for doing this is the following: this avoids having
                 // conditional compilation for each field, instead the conditional compilation
@@ -195,6 +202,25 @@ impl<'a> Source<'a> {
                 handle.generate_sub_vtable_code(self, imports, origin, &functions, out);
             }
         }
+
+        let complete_function_set = self
+            .functions
+            .iter()
+            .chain(self.commands.iter().map(Deref::deref))
+            .map(HandleFunction::Function)
+            .chain(self.command_aliases.iter().map(HandleFunction::Alias))
+            .filter(|f| !f.origin().is_disabled())
+            .collect::<Vec<_>>();
+
+        for func in complete_function_set.iter().filter(|f| !all_functions.contains(f)) {
+            warn!("Function loaded by `Entry`: {:#?}", func);
+        }
+
+        assert_eq!(
+            complete_function_set.len(),
+            all_functions.len() + 5,
+            "New entry functions added"
+        );
 
         for opaque in &self.opaque_types {
             if opaque.origin().is_disabled() {
@@ -265,10 +291,7 @@ impl<'a> Source<'a> {
                 out
             });
 
-        let instance_extensions = self
-            .extensions
-            .iter()
-            .filter(|ext| !ext.disabled());
+        let instance_extensions = self.extensions.iter().filter(|ext| !ext.disabled());
 
         let mut out_ts = quote! {
             use crate::Version;

@@ -126,40 +126,40 @@ pub const NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkDisplayKHR                                display);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] The physical device the display is on.
 /// - [`display`] The display the caller wishes to control in Vulkan.
-///# Description
-///All permissions necessary to control the display are granted to the Vulkan
-///instance associated with [`physical_device`] until the display is released
-///or the application is terminated.
-///Permission to access the display  **may**  be revoked by events that cause
-///Windows 10 itself to lose access to [`display`].
-///If this has happened, operations which require access to the display  **must**
-///fail with an appropriate error code.
-///If permission to access [`display`] has already been acquired by another
-///entity, the call  **must**  return the error code
-///`VK_ERROR_INITIALIZATION_FAILED`.
-///## Valid Usage (Implicit)
+/// # Description
+/// All permissions necessary to control the display are granted to the Vulkan
+/// instance associated with [`physical_device`] until the display is released
+/// or the application is terminated.
+/// Permission to access the display  **may**  be revoked by events that cause
+/// Windows 10 itself to lose access to [`display`].
+/// If this has happened, operations which require access to the display  **must**
+/// fail with an appropriate error code.
+/// If permission to access [`display`] has already been acquired by another
+/// entity, the call  **must**  return the error code
+/// `VK_ERROR_INITIALIZATION_FAILED`.
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
 /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`VK_NV_acquire_winrt_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquireWinrtDisplayNV")]
 pub type FNAcquireWinrtDisplayNv =
     Option<unsafe extern "system" fn(physical_device: PhysicalDevice, display: DisplayKHR) -> VulkanResultCodes>;
@@ -177,7 +177,7 @@ pub type FNAcquireWinrtDisplayNv =
 ///    uint32_t                                    deviceRelativeId,
 ///    VkDisplayKHR*                               pDisplay);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] The physical device on which to query the display handle.
 /// - [`device_relative_id`] The value of the [“AdapterRelativeId”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget.adapterrelativeid)
 ///   property of a [“DisplayTarget”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget)
@@ -186,29 +186,29 @@ pub type FNAcquireWinrtDisplayNv =
 ///   property matching the `deviceLUID` property of a [`PhysicalDeviceIdProperties`] for
 ///   [`physical_device`].
 /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
-///# Description
-///If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
-///[`physical_device`], [`crate::utils::Handle::null`] **must**  be returned in
-///[`p_display`].
-///## Valid Usage (Implicit)
+/// # Description
+/// If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
+/// [`physical_device`], [`crate::utils::Handle::null`] **must**  be returned in
+/// [`p_display`].
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`VK_NV_acquire_winrt_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetWinrtDisplayNV")]
 pub type FNGetWinrtDisplayNv = Option<
     unsafe extern "system" fn(

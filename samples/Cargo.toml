@@ -1,0 +1,15 @@
+[package]
+name = "magritte-samples"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "simple"
+path = "src/simple.rs"
+
+[dependencies]
+
+[dependencies.magritte]
+path = "../magritte"
+features = [ "libloading" ]
+default-features = false

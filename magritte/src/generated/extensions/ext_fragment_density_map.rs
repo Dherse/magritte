@@ -89,9 +89,9 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    VkBool32           fragmentDensityMapNonSubsampledImages;
 ///} VkPhysicalDeviceFragmentDensityMapFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_map`] specifies whether the implementation supports render passes with a
@@ -103,27 +103,27 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///   `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` **must**  not be included in
 ///   [`ImageViewCreateInfo::flags`].
 /// - [`fragment_density_map_non_subsampled_images`] specifies whether the implementation supports regular non-subsampled image attachments with fragment density map render passes. If this feature is not enabled, render passes with a [fragment density map attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment) **must**  only have [subsampled attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
-///If the [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceFragmentDensityMapFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapFeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -338,35 +338,35 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 ///    VkBool32           fragmentDensityInvocations;
 ///} VkPhysicalDeviceFragmentDensityMapPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_fragment_density_texel_size`] is the minimum [fragment density texel size](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-fragment-density-texel-size).
 /// - [`max_fragment_density_texel_size`] is the maximum fragment density texel size.
 /// - [`fragment_density_invocations`] specifies whether the implementation  **may**  invoke
 ///   additional fragment shader invocations for each covered sample.
-///# Description
-///If the [`PhysicalDeviceFragmentDensityMapPropertiesEXT`] structure is included in the [`p_next`]
+/// # Description
+/// If the [`PhysicalDeviceFragmentDensityMapPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`get_physical_device_properties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`Bool32`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapPropertiesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -523,14 +523,14 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///    VkAttachmentReference    fragmentDensityMapAttachment;
 ///} VkRenderPassFragmentDensityMapCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_map_attachment`] is the fragment density map to use for the render pass.
-///# Description
-///The fragment density map is read at an implementation-dependent time with
-///the following constraints determined by the attachment’s image view
-///`flags`:
+/// # Description
+/// The fragment density map is read at an implementation-dependent time with
+/// the following constraints determined by the attachment’s image view
+/// `flags`:
 /// - `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` specifies that the fragment
 ///   density map will be read by the device during
 ///   `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
@@ -538,11 +538,11 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///   density map will be read by the host during [`end_command_buffer`] of the primary command
 ///   buffer that the render pass is recorded into
 /// - Otherwise the fragment density map will be read by the host during [`cmd_begin_render_pass`]
-///The fragment density map  **may**  additionally be read by the device during
-///`VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` for any mode.If this structure is not
+/// The fragment density map  **may**  additionally be read by the device during
+/// `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` for any mode.If this structure is not
 /// present, it is as if
-///[`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].
-///## Valid Usage
+/// [`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].
+/// ## Valid Usage
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
 ///   [`fragment_density_map_attachment`] **must**  not be an element of
 ///   [`SubpassDescription::input_attachments`], [`SubpassDescription::color_attachments`],
@@ -557,21 +557,21 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///   [`fragment_density_map_attachment`] **must**  reference an attachment with a `storeOp` equal
 ///   to `VK_ATTACHMENT_STORE_OP_DONT_CARE`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
 /// - [`fragment_density_map_attachment`] **must**  be a valid [`AttachmentReference`] structure
-///# Related
+/// # Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`AttachmentReference`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassFragmentDensityMapCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

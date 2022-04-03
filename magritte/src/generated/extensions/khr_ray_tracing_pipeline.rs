@@ -279,12 +279,12 @@ use std::{
 ///[`SHADER_UNUSED_KHR`] is a special shader index used to indicate that a
 ///ray generation, miss, or callable shader member is not used.
 ///```c
-///#define VK_SHADER_UNUSED_KHR              (~0U)
-///```
+/// #define VK_SHADER_UNUSED_KHR              (~0U)
+/// ```
 ///or the equivalent
 ///```c
-///#define VK_SHADER_UNUSED_NV               VK_SHADER_UNUSED_KHR
-///```
+/// #define VK_SHADER_UNUSED_NV               VK_SHADER_UNUSED_KHR
+/// ```
 ///# Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`VK_NV_ray_tracing`]
@@ -319,8 +319,8 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    size_t                                      dataSize,
 ///    void*                                       pData);
 ///```
-///or the equivalent command
-///```c
+/// or the equivalent command
+/// ```c
 ///// Provided by VK_NV_ray_tracing
 ///VkResult vkGetRayTracingShaderGroupHandlesNV(
 ///    VkDevice                                    device,
@@ -330,7 +330,7 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    size_t                                      dataSize,
 ///    void*                                       pData);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device containing the ray tracing pipeline.
 /// - [`pipeline`] is the ray tracing pipeline object containing the shaders.
 /// - [`first_group`] is the index of the first group to retrieve a handle     for from the
@@ -339,8 +339,8 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// - [`group_count`] is the number of shader handles to retrieve.
 /// - [`data_size`] is the size in bytes of the buffer pointed to by [`p_data`].
 /// - [`p_data`] is a pointer to a user-allocated buffer where the results will be written.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`pipeline`] **must**  be a ray tracing pipeline
 /// - [`first_group`] **must**  be less than the number of shader groups in [`pipeline`]
 /// - The sum of [`first_group`] and [`group_count`] **must**  be less than or equal to the number
@@ -349,29 +349,29 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_size`] × [`group_count`]
 /// - [`pipeline`] **must**  have not been created with `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 /// - [`p_data`] **must**  be a valid pointer to an array of [`data_size`] bytes
 /// - [`data_size`] **must**  be greater than `0`
 /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`VK_NV_ray_tracing`]
 /// - [`Device`]
 /// - [`Pipeline`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetRayTracingShaderGroupHandlesKHR")]
 pub type FNGetRayTracingShaderGroupHandlesKhr = Option<
     unsafe extern "system" fn(
@@ -397,7 +397,7 @@ pub type FNGetRayTracingShaderGroupHandlesKhr = Option<
 ///    size_t                                      dataSize,
 ///    void*                                       pData);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device containing the ray tracing pipeline.
 /// - [`pipeline`] is the ray tracing pipeline object containing the shaders.
 /// - [`first_group`] is the index of the first group to retrieve a handle for from the
@@ -405,8 +405,8 @@ pub type FNGetRayTracingShaderGroupHandlesKhr = Option<
 /// - [`group_count`] is the number of shader handles to retrieve.
 /// - [`data_size`] is the size in bytes of the buffer pointed to by [`p_data`].
 /// - [`p_data`] is a pointer to a user-allocated buffer where the results will be written.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`pipeline`] **must**  be a ray tracing pipeline
 /// - [`first_group`] **must**  be less than the number of shader groups in [`pipeline`]
 /// - The sum of [`first_group`] and [`group_count`] **must**  be less than or equal to the number
@@ -420,28 +420,28 @@ pub type FNGetRayTracingShaderGroupHandlesKhr = Option<
 /// - [`pipeline`] **must**  have been created with a `flags` that included
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 /// - [`p_data`] **must**  be a valid pointer to an array of [`data_size`] bytes
 /// - [`data_size`] **must**  be greater than `0`
 /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`Device`]
 /// - [`Pipeline`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetRayTracingCaptureReplayShaderGroupHandlesKHR")]
 pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
     unsafe extern "system" fn(
@@ -467,7 +467,7 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkPipeline*                                 pPipelines);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that creates the ray tracing pipelines.
 /// - [`deferred_operation`] is [`crate::utils::Handle::null`] or the handle of a valid [`DeferredOperationKHR`][request deferral](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#deferred-host-operations-requesting) object for this command.
 /// - [`pipeline_cache`] is either [`crate::utils::Handle::null`], indicating that pipeline caching is disabled, or the handle of a valid [pipeline cache](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-cache) object, in which case use of that cache is enabled for the duration of the command.
@@ -477,15 +477,15 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 ///   chapter.
 /// - [`p_pipelines`] is a pointer to an array in which the resulting ray tracing pipeline objects
 ///   are returned.
-///# Description
-///The `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` error is returned if the
-///implementation is unable to re-use the shader group handles provided in
-///[`RayTracingShaderGroupCreateInfoKHR::shader_group_capture_replay_handle`]
-///when
-///[`PhysicalDeviceRayTracingPipelineFeaturesKHR::
+/// # Description
+/// The `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` error is returned if the
+/// implementation is unable to re-use the shader group handles provided in
+/// [`RayTracingShaderGroupCreateInfoKHR::shader_group_capture_replay_handle`]
+/// when
+/// [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
 /// ray_tracing_pipeline_shader_group_handle_capture_replay`]
-///is enabled.
-///## Valid Usage
+/// is enabled.
+/// ## Valid Usage
 /// - If the `flags` member of any element of [`p_create_infos`] contains the
 ///   `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and the `basePipelineIndex` member of that same
 ///   element is not `-1`, `basePipelineIndex` **must**  be less than the index into
@@ -507,7 +507,7 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 ///   elements of [`p_create_infos`] **must**  not include
 ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`deferred_operation`] is not [`crate::utils::Handle::null`], [`deferred_operation`]
 ///   **must**  be a valid [`DeferredOperationKHR`] handle
@@ -525,12 +525,12 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 /// - If [`pipeline_cache`] is a valid handle, it  **must**  have been created, allocated, or
 ///   retrieved from [`device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`  -
 ///   `VK_PIPELINE_COMPILE_REQUIRED_EXT`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`AllocationCallbacks`]
 /// - [`DeferredOperationKHR`]
@@ -539,13 +539,13 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 /// - [`PipelineCache`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateRayTracingPipelinesKHR")]
 pub type FNCreateRayTracingPipelinesKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -570,37 +570,37 @@ pub type FNCreateRayTracingPipelinesKhr = Option<
 ///    uint32_t                                    group,
 ///    VkShaderGroupShaderKHR                      groupShader);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device containing the ray tracing pipeline.
 /// - [`pipeline`] is the ray tracing pipeline object containing the shaders groups.
 /// - [`group`] is the index of the shader group to query.
 /// - [`group_shader`] is the type of shader from the group to query.
-///# Description
-///The return value is the ray tracing pipeline stack size in bytes for the
-///specified shader as called from the specified shader group.
-///## Valid Usage
+/// # Description
+/// The return value is the ray tracing pipeline stack size in bytes for the
+/// specified shader as called from the specified shader group.
+/// ## Valid Usage
 /// - [`pipeline`] **must**  be a ray tracing pipeline
 /// - The value of [`group`] must be less than the number of shader groups in [`pipeline`]
 /// - The shader identified by [`group_shader`] in [`group`] **must**  not be [`SHADER_UNUSED_KHR`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 /// - [`group_shader`] **must**  be a valid [`ShaderGroupShaderKHR`] value
 /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`Device`]
 /// - [`Pipeline`]
 /// - [`ShaderGroupShaderKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetRayTracingShaderGroupStackSizeKHR")]
 pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
     unsafe extern "system" fn(
@@ -625,7 +625,7 @@ pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
 ///    uint32_t                                    height,
 ///    uint32_t                                    depth);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_raygen_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the shader
 ///   binding table data for the ray generation shader stage.
@@ -638,10 +638,10 @@ pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
 /// - [`width`] is the width of the ray trace query dimensions.
 /// - [`height`] is height of the ray trace query dimensions.
 /// - [`depth`] is depth of the ray trace query dimensions.
-///# Description
-///When the command is executed, a ray generation group of [`width`]
-///× [`height`] × [`depth`] rays is assembled.
-///## Valid Usage
+/// # Description
+/// When the command is executed, a ray generation group of [`width`]
+/// × [`height`] × [`depth`] rays is assembled.
+/// ## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -840,7 +840,7 @@ pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
 /// - [`width`] × [`height`] × [`depth`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_dispatch_invocation_count`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_raygen_shader_binding_table`] **must**  be a valid pointer to a valid
 ///   [`StridedDeviceAddressRegionKHR`] structure
@@ -855,24 +855,24 @@ pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`CommandBuffer`]
 /// - [`StridedDeviceAddressRegionKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdTraceRaysKHR")]
 pub type FNCmdTraceRaysKhr = Option<
     unsafe extern "system" fn(
@@ -899,7 +899,7 @@ pub type FNCmdTraceRaysKhr = Option<
 ///    const VkStridedDeviceAddressRegionKHR*      pCallableShaderBindingTable,
 ///    VkDeviceAddress                             indirectDeviceAddress);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_raygen_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the shader
 ///   binding table data for the ray generation shader stage.
@@ -911,11 +911,11 @@ pub type FNCmdTraceRaysKhr = Option<
 ///   shader binding table data for the callable shader stage.
 /// - [`indirect_device_address`] is a buffer device address which is a pointer to a
 ///   [`TraceRaysIndirectCommandKHR`] structure containing the trace ray parameters.
-///# Description
-///[`cmd_trace_rays_indirect_khr`] behaves similarly to [`cmd_trace_rays_khr`]
-///except that the ray trace query dimensions are read by the device from
-///[`indirect_device_address`] during execution.
-///## Valid Usage
+/// # Description
+/// [`cmd_trace_rays_indirect_khr`] behaves similarly to [`cmd_trace_rays_khr`]
+/// except that the ray trace query dimensions are read by the device from
+/// [`indirect_device_address`] during execution.
+/// ## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -1116,7 +1116,7 @@ pub type FNCmdTraceRaysKhr = Option<
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`[`PhysicalDeviceRayTracingMotionBlurFeaturesNV:
 ///   :ray_tracing_motion_blur_pipeline_trace_rays_indirect`] feature  **must**  be enabled
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_raygen_shader_binding_table`] **must**  be a valid pointer to a valid
 ///   [`StridedDeviceAddressRegionKHR`] structure
@@ -1131,25 +1131,25 @@ pub type FNCmdTraceRaysKhr = Option<
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`CommandBuffer`]
 /// - [`DeviceAddress`]
 /// - [`StridedDeviceAddressRegionKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdTraceRaysIndirectKHR")]
 pub type FNCmdTraceRaysIndirectKhr = Option<
     unsafe extern "system" fn(
@@ -1171,44 +1171,44 @@ pub type FNCmdTraceRaysIndirectKhr = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    uint32_t                                    pipelineStackSize);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`pipeline_stack_size`] is the stack size to use for subsequent ray tracing trace commands.
-///# Description
-///This command sets the stack size for subsequent ray tracing commands when
-///the ray tracing pipeline is created with
-///`VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` set in
-///[`PipelineDynamicStateCreateInfo::dynamic_states`].
-///Otherwise, the stack size is computed as described in
-///[Ray Tracing Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-pipeline-stack).
-///## Valid Usage
+/// # Description
+/// This command sets the stack size for subsequent ray tracing commands when
+/// the ray tracing pipeline is created with
+/// `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` set in
+/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
+/// Otherwise, the stack size is computed as described in
+/// [Ray Tracing Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-pipeline-stack).
+/// ## Valid Usage
 /// - [`pipeline_stack_size`] **must**  be large enough for any dynamic execution through the
 ///   shaders in the ray tracing pipeline used by a subsequent trace call
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`CommandBuffer`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetRayTracingPipelineStackSizeKHR")]
 pub type FNCmdSetRayTracingPipelineStackSizeKhr =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, pipeline_stack_size: u32)>;
@@ -1232,12 +1232,12 @@ pub type FNCmdSetRayTracingPipelineStackSizeKhr =
 /// VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR,
 ///} VkRayTracingShaderGroupTypeKHR;
 ///```
-///or the equivalent
-///```c
+/// or the equivalent
+/// ```c
 ///// Provided by VK_NV_ray_tracing
 ///typedef VkRayTracingShaderGroupTypeKHR VkRayTracingShaderGroupTypeNV;
 ///```
-///# Description
+/// # Description
 /// - [`RayTracingShaderGroupTypeGeneralKhr`] indicates a shader group with a single
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_KHR`, `VK_SHADER_STAGE_MISS_BIT_KHR`, or
 ///   `VK_SHADER_STAGE_CALLABLE_BIT_KHR` shader in it.
@@ -1247,19 +1247,19 @@ pub type FNCmdSetRayTracingPipelineStackSizeKhr =
 /// - [`RayTracingShaderGroupTypeProceduralHitGroupKhr`] specifies a shader group that only
 ///   intersects with custom geometry and  **must**  contain an intersection shader and  **may**
 ///   contain closest hit and any-hit shaders.
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`VK_NV_ray_tracing`]
 /// - [`RayTracingShaderGroupCreateInfoKHR`]
 /// - [`RayTracingShaderGroupCreateInfoNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupTypeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1317,7 +1317,7 @@ impl RayTracingShaderGroupTypeKHR {
 ///    VK_SHADER_GROUP_SHADER_INTERSECTION_KHR = 3,
 ///} VkShaderGroupShaderKHR;
 ///```
-///# Description
+/// # Description
 /// - [`ShaderGroupShaderGeneralKhr`] uses the shader specified in the group with
 ///   [`RayTracingShaderGroupCreateInfoKHR::general_shader`]
 /// - [`ShaderGroupShaderClosestHitKhr`] uses the shader specified in the group with
@@ -1326,17 +1326,17 @@ impl RayTracingShaderGroupTypeKHR {
 ///   [`RayTracingShaderGroupCreateInfoKHR::any_hit_shader`]
 /// - [`ShaderGroupShaderIntersectionKhr`] uses the shader specified in the group with
 ///   [`RayTracingShaderGroupCreateInfoKHR::intersection_shader`]
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`get_ray_tracing_shader_group_stack_size_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderGroupShaderKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1399,7 +1399,7 @@ impl ShaderGroupShaderKHR {
 ///    const void*                       pShaderGroupCaptureReplayHandle;
 ///} VkRayTracingShaderGroupCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] is the type of hit group specified in this structure.
@@ -1424,8 +1424,8 @@ impl ShaderGroupShaderKHR {
 ///   shader group. Ignored if
 ///   [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
 ///   ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`FALSE`].
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR` then [`general_shader`]
 ///   **must**  be a valid index into [`RayTracingPipelineCreateInfoKHR::stages`] referring to a
 ///   shader of `VK_SHADER_STAGE_RAYGEN_BIT_KHR`, `VK_SHADER_STAGE_MISS_BIT_KHR`, or
@@ -1454,23 +1454,23 @@ impl ShaderGroupShaderKHR {
 ///   [`shader_group_capture_replay_handle`] provided execute simultaneously with ray tracing
 ///   pipeline creation commands without [`shader_group_capture_replay_handle`] provided
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`RayTracingShaderGroupTypeKHR`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 /// - [`RayTracingShaderGroupTypeKHR`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1681,7 +1681,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///    int32_t                                              basePipelineIndex;
 ///} VkRayTracingPipelineCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying how the pipeline will be
@@ -1708,30 +1708,30 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - [`base_pipeline_handle`] is a pipeline to derive from.
 /// - [`base_pipeline_index`] is an index into the `pCreateInfos` parameter to use as a pipeline to
 ///   derive from.
-///# Description
-///The parameters [`base_pipeline_handle`] and [`base_pipeline_index`] are
-///described in more detail in [Pipeline
-///Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives).When `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR` is specified, this pipeline
-///defines a *pipeline library* which  **cannot**  be bound as a ray tracing
-///pipeline directly.
-///Instead, pipeline libraries define common shaders and shader groups which
+/// # Description
+/// The parameters [`base_pipeline_handle`] and [`base_pipeline_index`] are
+/// described in more detail in [Pipeline
+/// Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives).When `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR` is specified, this pipeline
+/// defines a *pipeline library* which  **cannot**  be bound as a ray tracing
+/// pipeline directly.
+/// Instead, pipeline libraries define common shaders and shader groups which
 /// **can**  be included in future pipeline creation.If pipeline libraries are included in
 /// [`library_info`], shaders defined in
-///those libraries are treated as if they were defined as additional entries in
-///[`stages`], appended in the order they appear in the `pLibraries`
-///array and in the [`stages`] array when those libraries were defined.When referencing shader
+/// those libraries are treated as if they were defined as additional entries in
+/// [`stages`], appended in the order they appear in the `pLibraries`
+/// array and in the [`stages`] array when those libraries were defined.When referencing shader
 /// groups in order to obtain a shader group handle,
-///groups defined in those libraries are treated as if they were defined as
-///additional entries in [`groups`], appended in the order they appear in
-///the `pLibraries` array and in the [`groups`] array when those
-///libraries were defined.
-///The shaders these groups reference are set when the pipeline library is
-///created, referencing those specified in the pipeline library, not in the
-///pipeline that includes it.The default stack size for a pipeline if
-///`VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` is not provided
-///is computed as described in [Ray Tracing
-///Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-pipeline-stack).
-///## Valid Usage
+/// groups defined in those libraries are treated as if they were defined as
+/// additional entries in [`groups`], appended in the order they appear in
+/// the `pLibraries` array and in the [`groups`] array when those
+/// libraries were defined.
+/// The shaders these groups reference are set when the pipeline library is
+/// created, referencing those specified in the pipeline library, not in the
+/// pipeline that includes it.The default stack size for a pipeline if
+/// `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` is not provided
+/// is computed as described in [Ray Tracing
+/// Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-pipeline-stack).
+/// ## Valid Usage
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
 ///   [`base_pipeline_index`] is `-1`, [`base_pipeline_handle`] **must**  be a valid handle to a ray
 ///   tracing [`Pipeline`]
@@ -1825,7 +1825,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - Any element of the `pDynamicStates` member of [`dynamic_state`] **must**  be
 ///   `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`PipelineCreationFeedbackCreateInfo`]
@@ -1844,7 +1844,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - [`layout`] **must**  be a valid [`PipelineLayout`] handle
 /// - Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`Pipeline`]
 /// - [`PipelineCreateFlags`]
@@ -1857,13 +1857,13 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - [`StructureType`]
 /// - [`create_ray_tracing_pipelines_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2207,9 +2207,9 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
 ///    VkBool32           rayTraversalPrimitiveCulling;
 ///} VkPhysicalDeviceRayTracingPipelineFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`ray_tracing_pipeline`] indicates whether the implementation supports the ray tracing pipeline functionality. See [Ray Tracing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing).
@@ -2223,31 +2223,31 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
 /// - [`ray_tracing_pipeline_trace_rays_indirect`] indicates whether the implementation supports
 ///   indirect ray tracing commands, e.g. [`cmd_trace_rays_indirect_khr`].
 /// - [`ray_traversal_primitive_culling`] indicates whether the implementation supports [primitive culling during ray traversal](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-primitive).
-///If the [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceRayTracingPipelineFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage
 /// - If [`ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`TRUE`],
 ///   [`ray_tracing_pipeline_shader_group_handle_capture_replay`] **must**  also be [`TRUE`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelineFeaturesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2548,7 +2548,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 ///    uint32_t           maxRayHitAttributeSize;
 ///} VkPhysicalDeviceRayTracingPipelinePropertiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_group_handle_size`] is the size in bytes of the shader header.
@@ -2566,28 +2566,28 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 /// - [`shader_group_handle_alignment`] is the  **required**  alignment in bytes for each shader
 ///   binding table entry. The value  **must**  be a power of two.
 /// - [`max_ray_hit_attribute_size`] is the maximum size in bytes for a ray attribute structure
-///# Description
-///If the [`PhysicalDeviceRayTracingPipelinePropertiesKHR`] structure is included in the [`p_next`]
+/// # Description
+/// If the [`PhysicalDeviceRayTracingPipelinePropertiesKHR`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`get_physical_device_properties2`], it is filled in with each
-///corresponding implementation-dependent property.Limits specified by this structure  **must**
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.Limits specified by this structure  **must**
 /// match those specified with the same
-///name in [`PhysicalDeviceRayTracingPropertiesNV`].
-///## Valid Usage (Implicit)
+/// name in [`PhysicalDeviceRayTracingPropertiesNV`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelinePropertiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2801,31 +2801,31 @@ impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
 ///    VkDeviceSize       size;
 ///} VkStridedDeviceAddressRegionKHR;
 ///```
-///# Members
+/// # Members
 /// - [`device_address`] is the device address (as returned by the [`get_buffer_device_address`]
 ///   command) at which the region starts, or zero if the region is unused.
 /// - [`stride`] is the byte stride between consecutive elements.
 /// - [`size`] is the size in bytes of the region starting at [`device_address`].
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - If [`size`] is not zero, all addresses between [`device_address`] and [`device_address`] +
 ///   [`size`] - 1 **must**  be in the buffer device address range of the same buffer
 /// - If [`size`] is not zero, [`stride`] **must**  be less than or equal to the size of the buffer
 ///   from which [`device_address`] was queried
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`DeviceAddress`]
 /// - [`DeviceSize`]
 /// - [`cmd_trace_rays_indirect_khr`]
 /// - [`cmd_trace_rays_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkStridedDeviceAddressRegionKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2903,14 +2903,14 @@ impl StridedDeviceAddressRegionKHR {
 ///    uint32_t    depth;
 ///} VkTraceRaysIndirectCommandKHR;
 ///```
-///# Members
+/// # Members
 /// - [`width`] is the width of the ray trace query dimensions.
 /// - [`height`] is height of the ray trace query dimensions.
 /// - [`depth`] is depth of the ray trace query dimensions.
-///# Description
-///The members of [`TraceRaysIndirectCommandKHR`] have the same meaning as
-///the similarly named parameters of [`cmd_trace_rays_khr`].
-///## Valid Usage
+/// # Description
+/// The members of [`TraceRaysIndirectCommandKHR`] have the same meaning as
+/// the similarly named parameters of [`cmd_trace_rays_khr`].
+/// ## Valid Usage
 /// - [`width`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_compute_work_group_count`][0] ×
 ///   [`PhysicalDeviceLimits::max_compute_work_group_size`][0]
@@ -2922,16 +2922,16 @@ impl StridedDeviceAddressRegionKHR {
 ///   [`PhysicalDeviceLimits::max_compute_work_group_size`][2]
 /// - [`width`] × [`height`] × [`depth`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_dispatch_invocation_count`]
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTraceRaysIndirectCommandKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -3008,42 +3008,42 @@ impl TraceRaysIndirectCommandKHR {
 ///    uint32_t           maxPipelineRayHitAttributeSize;
 ///} VkRayTracingPipelineInterfaceCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_pipeline_ray_payload_size`] is the maximum payload size in bytes used by any shader in
 ///   the pipeline.
 /// - [`max_pipeline_ray_hit_attribute_size`] is the maximum attribute structure size in bytes used
 ///   by any shader in the pipeline.
-///# Description
-///[`max_pipeline_ray_payload_size`] is calculated as the maximum number of bytes
-///used by any block declared in the `RayPayloadKHR` or
-///`IncomingRayPayloadKHR` storage classes.
-///[`max_pipeline_ray_hit_attribute_size`] is calculated as the maximum number of
-///bytes used by any block declared in the `HitAttributeKHR` storage class.
-///As variables in these storage classes do not have explicit offsets, the size
-///should be calculated as if each variable has a
-///[scalar alignment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-alignment-requirements) equal to the largest
-///scalar alignment of any of the block’s members.
-///## Valid Usage
+/// # Description
+/// [`max_pipeline_ray_payload_size`] is calculated as the maximum number of bytes
+/// used by any block declared in the `RayPayloadKHR` or
+/// `IncomingRayPayloadKHR` storage classes.
+/// [`max_pipeline_ray_hit_attribute_size`] is calculated as the maximum number of
+/// bytes used by any block declared in the `HitAttributeKHR` storage class.
+/// As variables in these storage classes do not have explicit offsets, the size
+/// should be calculated as if each variable has a
+/// [scalar alignment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-alignment-requirements) equal to the largest
+/// scalar alignment of any of the block’s members.
+/// ## Valid Usage
 /// - [`max_pipeline_ray_hit_attribute_size`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_hit_attribute_size`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_KHR_ray_tracing_pipeline`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineInterfaceCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
