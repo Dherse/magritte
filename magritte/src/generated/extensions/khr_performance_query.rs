@@ -157,7 +157,7 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VkPerformanceCounterKHR*                    pCounters,
 ///    VkPerformanceCounterDescriptionKHR*         pCounterDescriptions);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the handle to the physical device whose queue family performance query
 ///   counter properties will be queried.
 /// - [`queue_family_index`] is the index into the queue family of the physical device we want to
@@ -168,18 +168,18 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   structures.
 /// - [`p_counter_descriptions`] is either `NULL` or a pointer to an array of
 ///   [`PerformanceCounterDescriptionKHR`] structures.
-/// # Description
-/// If [`p_counters`] is `NULL` and [`p_counter_descriptions`] is `NULL`, then
-/// the number of counters available is returned in [`p_counter_count`].
-/// Otherwise, [`p_counter_count`] **must**  point to a variable set by the user to
-/// the number of elements in the [`p_counters`], [`p_counter_descriptions`],
-/// or both arrays and on return the variable is overwritten with the number of
-/// structures actually written out.
-/// If [`p_counter_count`] is less than the number of counters available, at
-/// most [`p_counter_count`] structures will be written, and `VK_INCOMPLETE`
-/// will be returned instead of `VK_SUCCESS`, to indicate that not all the
-/// available counters were returned.
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`p_counters`] is `NULL` and [`p_counter_descriptions`] is `NULL`, then
+///the number of counters available is returned in [`p_counter_count`].
+///Otherwise, [`p_counter_count`] **must**  point to a variable set by the user to
+///the number of elements in the [`p_counters`], [`p_counter_descriptions`],
+///or both arrays and on return the variable is overwritten with the number of
+///structures actually written out.
+///If [`p_counter_count`] is less than the number of counters available, at
+///most [`p_counter_count`] structures will be written, and `VK_INCOMPLETE`
+///will be returned instead of `VK_SUCCESS`, to indicate that not all the
+///available counters were returned.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_counter_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_counter_count`] is not `0`, and [`p_counters`] is not `NULL`,
@@ -189,23 +189,23 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   not `NULL`, [`p_counter_descriptions`] **must**  be a valid pointer to an array of
 ///   [`p_counter_count`][`PerformanceCounterDescriptionKHR`] structures
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionKHR`]
 /// - [`PerformanceCounterKHR`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR")]
 pub type FNEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -227,38 +227,38 @@ pub type FNEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKhr = Optio
 ///    const VkQueryPoolPerformanceCreateInfoKHR*  pPerformanceQueryCreateInfo,
 ///    uint32_t*                                   pNumPasses);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the handle to the physical device whose queue family performance query
 ///   counter properties will be queried.
 /// - [`p_performance_query_create_info`] is a pointer to a [`QueryPoolPerformanceCreateInfoKHR`] of
 ///   the performance query that is to be created.
 /// - [`p_num_passes`] is a pointer to an integer related to the number of passes required to query
 ///   the performance query pool, as described below.
-/// # Description
-/// The [`p_performance_query_create_info`] member
-/// [`QueryPoolPerformanceCreateInfoKHR::queue_family_index`] **must**  be a
-/// queue family of [`physical_device`].
-/// The number of passes required to capture the counters specified in the
-/// [`p_performance_query_create_info`] member
-/// [`QueryPoolPerformanceCreateInfoKHR`]`::pCounters` is returned in
-/// [`p_num_passes`].
-/// ## Valid Usage (Implicit)
+///# Description
+///The [`p_performance_query_create_info`] member
+///[`QueryPoolPerformanceCreateInfoKHR::queue_family_index`] **must**  be a
+///queue family of [`physical_device`].
+///The number of passes required to capture the counters specified in the
+///[`p_performance_query_create_info`] member
+///[`QueryPoolPerformanceCreateInfoKHR`]`::pCounters` is returned in
+///[`p_num_passes`].
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_performance_query_create_info`] **must**  be a valid pointer to a valid
 ///   [`QueryPoolPerformanceCreateInfoKHR`] structure
 /// - [`p_num_passes`] **must**  be a valid pointer to a `uint32_t` value
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PhysicalDevice`]
 /// - [`QueryPoolPerformanceCreateInfoKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR")]
 pub type FNGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -283,32 +283,32 @@ pub type FNGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKhr = Option<
 ///    VkDevice                                    device,
 ///    const VkAcquireProfilingLockInfoKHR*        pInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device to profile.
 /// - [`p_info`] is a pointer to a [`AcquireProfilingLockInfoKHR`] structure containing information
 ///   about how the profiling is to be acquired.
-/// # Description
-/// Implementations **may**  allow multiple actors to hold the profiling lock
-/// concurrently.
-/// ## Valid Usage (Implicit)
+///# Description
+///Implementations **may**  allow multiple actors to hold the profiling lock
+///concurrently.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`AcquireProfilingLockInfoKHR`] structure
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_TIMEOUT`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`AcquireProfilingLockInfoKHR`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquireProfilingLockKHR")]
 pub type FNAcquireProfilingLockKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -324,26 +324,26 @@ pub type FNAcquireProfilingLockKhr = Option<
 ///void vkReleaseProfilingLockKHR(
 ///    VkDevice                                    device);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device to cease profiling on.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The profiling lock of [`device`] **must**  have been held via a previous successful call to
 ///   [`acquire_profiling_lock_khr`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkReleaseProfilingLockKHR")]
 pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: Device)>;
 ///[VkPerformanceCounterScopeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterScopeKHR.html) - Supported counter scope types
@@ -363,7 +363,7 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 ///    VK_QUERY_SCOPE_COMMAND_KHR = VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR,
 ///} VkPerformanceCounterScopeKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PerformanceCounterScopeCommandBufferKhr`] - the performance counter scope is a single
 ///   complete command buffer.
 /// - [`PerformanceCounterScopeRenderPassKhr`] - the performance counter scope is zero or more
@@ -371,17 +371,17 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 ///   begin and end outside a render pass instance.
 /// - [`PerformanceCounterScopeCommandKhr`] - the performance counter scope is zero or more
 ///   commands.
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterScopeKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -445,7 +445,7 @@ impl PerformanceCounterScopeKHR {
 ///    VK_PERFORMANCE_COUNTER_UNIT_CYCLES_KHR = 10,
 ///} VkPerformanceCounterUnitKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PerformanceCounterUnitGenericKhr`] - the performance counter unit is a generic data point.
 /// - [`PerformanceCounterUnitPercentageKhr`] - the performance counter unit is a percentage (%).
 /// - [`PerformanceCounterUnitNanosecondsKhr`] - the performance counter unit is a value of
@@ -460,17 +460,17 @@ impl PerformanceCounterScopeKHR {
 /// - [`PerformanceCounterUnitAmpsKhr`] - the performance counter unit is a value of amps (A).
 /// - [`PerformanceCounterUnitHertzKhr`] - the performance counter unit is a value of hertz (Hz).
 /// - [`PerformanceCounterUnitCyclesKhr`] - the performance counter unit is a value of cycles.
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterUnitKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -551,7 +551,7 @@ impl PerformanceCounterUnitKHR {
 ///    VK_PERFORMANCE_COUNTER_STORAGE_FLOAT64_KHR = 5,
 ///} VkPerformanceCounterStorageKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PerformanceCounterStorageInt32Khr`] - the performance counter storage is a 32-bit signed
 ///   integer.
 /// - [`PerformanceCounterStorageInt64Khr`] - the performance counter storage is a 64-bit signed
@@ -564,17 +564,17 @@ impl PerformanceCounterUnitKHR {
 ///   floating-point.
 /// - [`PerformanceCounterStorageFloat64Khr`] - the performance counter storage is a 64-bit
 ///   floating-point.
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterStorageKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -639,23 +639,23 @@ impl PerformanceCounterStorageKHR {
 /// VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR,
 ///} VkPerformanceCounterDescriptionFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PerformanceCounterDescriptionPerformanceImpactingKhr`] specifies that recording the counter
 ///   **may**  have a noticeable performance impact.
 /// - [`PerformanceCounterDescriptionConcurrentlyImpactedKhr`] specifies that concurrently recording
 ///   the counter while other submitted command buffers are running  **may**  impact the accuracy of
 ///   the recording.
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -703,17 +703,17 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
 ///typedef enum VkAcquireProfilingLockFlagBitsKHR {
 ///} VkAcquireProfilingLockFlagBitsKHR;
 ///```
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`AcquireProfilingLockFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -762,23 +762,23 @@ impl AcquireProfilingLockFlagBitsKHR {
 /// VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR,
 ///} VkPerformanceCounterDescriptionFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PerformanceCounterDescriptionPerformanceImpactingKhr`] specifies that recording the counter
 ///   **may**  have a noticeable performance impact.
 /// - [`PerformanceCounterDescriptionConcurrentlyImpactedKhr`] specifies that concurrently recording
 ///   the counter while other submitted command buffers are running  **may**  impact the accuracy of
 ///   the recording.
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1042,17 +1042,17 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
 ///typedef enum VkAcquireProfilingLockFlagBitsKHR {
 ///} VkAcquireProfilingLockFlagBitsKHR;
 ///```
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`AcquireProfilingLockFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1301,9 +1301,9 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 ///    VkBool32           performanceCounterMultipleQueryPools;
 ///} VkPhysicalDevicePerformanceQueryFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`performance_counter_query_pools`] indicates whether the implementation supports performance
@@ -1311,27 +1311,27 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 /// - [`performance_counter_multiple_query_pools`] indicates whether the implementation supports
 ///   using multiple performance query pools in a primary command buffer and secondary command
 ///   buffers executed within it.
-/// If the [`PhysicalDevicePerformanceQueryFeaturesKHR`] structure is included in the [`p_next`]
+///If the [`PhysicalDevicePerformanceQueryFeaturesKHR`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePerformanceQueryFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePerformanceQueryFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1490,31 +1490,31 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 ///    VkBool32           allowCommandBufferQueryCopies;
 ///} VkPhysicalDevicePerformanceQueryPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`allow_command_buffer_query_copies`] is [`TRUE`] if the performance query pools are allowed
 ///   to be used with [`cmd_copy_query_pool_results`].
-/// # Description
-/// If the [`PhysicalDevicePerformanceQueryPropertiesKHR`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDevicePerformanceQueryPropertiesKHR`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1634,7 +1634,7 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 ///    uint8_t                           uuid[VK_UUID_SIZE];
 ///} VkPerformanceCounterKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`unit`] is a [`PerformanceCounterUnitKHR`] specifying the unit that the counter data will
@@ -1645,11 +1645,11 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 ///   counter’s data uses.
 /// - [`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit values that represent a
 ///   universally unique identifier for the counter of the physical device.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterScopeKHR`]
 /// - [`PerformanceCounterStorageKHR`]
@@ -1657,13 +1657,13 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// - [`StructureType`]
 /// - [`enumerate_physical_device_queue_family_performance_query_counters_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1821,7 +1821,7 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 ///    char                                       description[VK_MAX_DESCRIPTION_SIZE];
 ///} VkPerformanceCounterDescriptionKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`PerformanceCounterDescriptionFlagBitsKHR`] indicating the usage
@@ -1832,23 +1832,23 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 ///   string specifying the category of the counter.
 /// - [`description`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated
 ///   UTF-8 string specifying the description of the counter.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
 /// - [`StructureType`]
 /// - [`enumerate_physical_device_queue_family_performance_query_counters_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2007,7 +2007,7 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 ///    const uint32_t*    pCounterIndices;
 ///} VkQueryPoolPerformanceCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`queue_family_index`] is the queue family index to create this performance query pool for.
@@ -2015,8 +2015,8 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 /// - [`counter_indices`] is a pointer to an array of indices into the
 ///   [`enumerate_physical_device_queue_family_performance_query_counters_khr`]`::pCounters` to
 ///   enable in this performance query pool.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`queue_family_index`] **must**  be a valid queue family index of the device
 /// - The [`performanceCounterQueryPools`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-performanceCounterQueryPools)
 ///   feature  **must**  be enabled
@@ -2024,23 +2024,23 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 ///   [`enumerate_physical_device_queue_family_performance_query_counters_khr`] for the queue family
 ///   specified in [`queue_family_index`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
 /// - [`counter_indices`] **must**  be a valid pointer to an array of
 ///   [`counter_index_count`]`uint32_t` values
 /// - [`counter_index_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`StructureType`]
 /// - [`get_physical_device_queue_family_performance_query_passes_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolPerformanceCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2174,34 +2174,34 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 ///    uint64_t                          timeout;
 ///} VkAcquireProfilingLockInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`timeout`] indicates how long the function waits, in nanoseconds, if the profiling lock is
 ///   not available.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-/// If [`timeout`] is 0, [`acquire_profiling_lock_khr`] will not block while
-/// attempting to acquire the profling lock.
-/// If [`timeout`] is `UINT64_MAX`, the function will not return until the
-/// profiling lock was acquired.
-/// # Related
+///If [`timeout`] is 0, [`acquire_profiling_lock_khr`] will not block while
+///attempting to acquire the profling lock.
+///If [`timeout`] is `UINT64_MAX`, the function will not return until the
+///profiling lock was acquired.
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`AcquireProfilingLockFlagsKHR`]
 /// - [`StructureType`]
 /// - [`acquire_profiling_lock_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2307,31 +2307,31 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 ///    uint32_t           counterPassIndex;
 ///} VkPerformanceQuerySubmitInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`counter_pass_index`] specifies which counter pass index is active.
-/// # Description
-/// If the [`SubmitInfo`]::[`p_next`] chain does not include this
-/// structure, the batch defaults to use counter pass index 0.
-/// ## Valid Usage
+///# Description
+///If the [`SubmitInfo`]::[`p_next`] chain does not include this
+///structure, the batch defaults to use counter pass index 0.
+///## Valid Usage
 /// - [`counter_pass_index`] **must**  be less than the number of counter passes required by any
 ///   queries within the batch. The required number of counter passes for a performance query is
 ///   obtained by calling [`get_physical_device_queue_family_performance_query_passes_khr`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceQuerySubmitInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2432,16 +2432,16 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
 ///    double      float64;
 ///} VkPerformanceCounterResultKHR;
 ///```
-/// # Related
+///# Related
 /// - [`VK_KHR_performance_query`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterResultKHR")]
 #[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

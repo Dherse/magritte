@@ -24,6 +24,15 @@ repository = 'https://github.com/Dherse/magritte'
 version = '0.7.3'
 features = []
 optional = true
+
+[dependencies.smallvec]
+version = '1.8.0'
+features = [
+    'const_new',
+    'const_generics',
+    'union',
+]
+optional = true
 [build-dependencies.bindgen]
 version = '0.59.2'
 features = []

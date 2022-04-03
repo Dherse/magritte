@@ -60,7 +60,7 @@ impl<'a> FunctionPointer<'a> {
     }
 
     /// Generates the documentation for a constant
-    fn generate_doc(&self, source: &Source<'a>, doc: &mut Documentation, out: &mut TokenStream) -> Option<()> {
+    pub fn generate_doc(&self, source: &Source<'a>, doc: &mut Documentation, out: &mut TokenStream) -> Option<()> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);

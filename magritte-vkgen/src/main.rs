@@ -7,8 +7,9 @@
 use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, path::PathBuf};
 
 use cargo_toml::Manifest;
-use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
+use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source, imports::Imports, origin::Origin};
 use mimalloc::MiMalloc;
+use proc_macro2::TokenStream;
 use quote::ToTokens;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use tracing::{info, span, Level};
@@ -65,6 +66,17 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Built the thread pool");
 
+    {
+        let imports = Imports::new(&Origin::Vulkan1_0);
+        let mut out = TokenStream::default();
+        let handle = source.handles.get_by_name("VkInstance").unwrap();
+        source.functions.get_by_name("vkEnumeratePhysicalDevices").unwrap().generate_code(&source, &imports, &mut doc, handle, &mut out);
+
+        println!("{}", run_rustfmt(out.to_string()).unwrap());
+
+        std::process::exit(0);
+    }
+
     let path = PathBuf::from(BINDING_OUT_PATH);
     source
         .generate_code(&mut doc)
@@ -105,7 +117,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
         let mut features: BTreeMap<String, Vec<String>> = BTreeMap::default();
 
-        features.insert("default".to_string(), vec!["libloading".to_string(), "all".to_string()]);
+        features.insert("default".to_string(), vec!["libloading".to_string(), "smallvec".to_string(), "all".to_string()]);
 
         source.generate_feature_set(&mut features);
 

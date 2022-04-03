@@ -111,7 +111,7 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///    VkExternalMemoryHandleTypeFlagsNV           externalHandleType,
 ///    VkExternalImageFormatPropertiesNV*          pExternalImageFormatProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the image capabilities
 /// - [`format`] is the image format, corresponding to [`ImageCreateInfo`]::[`format`].
 /// - [`type_`] is the image type, corresponding to [`ImageCreateInfo::image_type`].
@@ -123,14 +123,14 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///   [`ExternalMemoryHandleTypeFlagBitsNV`], or 0.
 /// - [`p_external_image_format_properties`] is a pointer to a [`ExternalImageFormatPropertiesNV`]
 ///   structure in which capabilities are returned.
-/// # Description
-/// If [`external_handle_type`] is 0,
-/// `pExternalImageFormatProperties->imageFormatProperties` will return the
-/// same values as a call to [`get_physical_device_image_format_properties`], and
-/// the other members of [`p_external_image_format_properties`] will all be 0.
-/// Otherwise, they are filled in as described for
-/// [`ExternalImageFormatPropertiesNV`].
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`external_handle_type`] is 0,
+///`pExternalImageFormatProperties->imageFormatProperties` will return the
+///same values as a call to [`get_physical_device_image_format_properties`], and
+///the other members of [`p_external_image_format_properties`] will all be 0.
+///Otherwise, they are filled in as described for
+///[`ExternalImageFormatPropertiesNV`].
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`format`] **must**  be a valid [`Format`] value
 /// - [`type_`] **must**  be a valid [`ImageType`] value
@@ -143,11 +143,11 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 /// - [`p_external_image_format_properties`] **must**  be a valid pointer to a
 ///   [`ExternalImageFormatPropertiesNV`] structure
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-/// # Related
+///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
@@ -158,13 +158,13 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 /// - [`ImageUsageFlags`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceExternalImageFormatPropertiesNV")]
 pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
     unsafe extern "system" fn(
@@ -191,7 +191,7 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 ///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV = 0x00000008,
 ///} VkExternalMemoryHandleTypeFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a handle to memory returned by
 ///   [`get_memory_win32_handle_nv`].
 /// - [`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a handle to memory returned by
@@ -202,17 +202,17 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 ///   `DuplicateHandle()`.
 /// - [`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a handle to memory returned by
 ///   `IDXGIResource::GetSharedHandle()`.
-/// # Related
+///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlagBitsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -273,26 +273,26 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
 ///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV = 0x00000004,
 ///} VkExternalMemoryFeatureFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that external memory of the specified type
 ///   **must**  be created as a dedicated allocation when used in the manner specified.
 /// - [`ExternalMemoryFeatureExportableNv`] specifies that the implementation supports exporting
 ///   handles of the specified type.
 /// - [`ExternalMemoryFeatureImportableNv`] specifies that the implementation supports importing
 ///   handles of the specified type.
-/// # Related
+///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
 /// - [`ExternalMemoryFeatureFlagsNV`]
 /// - [`get_physical_device_external_image_format_properties_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlagBitsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -348,7 +348,7 @@ impl ExternalMemoryFeatureFlagBitsNV {
 ///    VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV = 0x00000008,
 ///} VkExternalMemoryHandleTypeFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a handle to memory returned by
 ///   [`get_memory_win32_handle_nv`].
 /// - [`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a handle to memory returned by
@@ -359,17 +359,17 @@ impl ExternalMemoryFeatureFlagBitsNV {
 ///   `DuplicateHandle()`.
 /// - [`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a handle to memory returned by
 ///   `IDXGIResource::GetSharedHandle()`.
-/// # Related
+///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlagsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -690,26 +690,26 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
 ///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV = 0x00000004,
 ///} VkExternalMemoryFeatureFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that external memory of the specified type
 ///   **must**  be created as a dedicated allocation when used in the manner specified.
 /// - [`ExternalMemoryFeatureExportableNv`] specifies that the implementation supports exporting
 ///   handles of the specified type.
 /// - [`ExternalMemoryFeatureImportableNv`] specifies that the implementation supports importing
 ///   handles of the specified type.
-/// # Related
+///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
 /// - [`ExternalMemoryFeatureFlagsNV`]
 /// - [`get_physical_device_external_image_format_properties_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlagsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1007,7 +1007,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
 ///    VkExternalMemoryHandleTypeFlagsNV    compatibleHandleTypes;
 ///} VkExternalImageFormatPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`image_format_properties`] will be filled in as when calling
 ///   [`get_physical_device_image_format_properties`], but the values returned  **may**  vary
 ///   depending on the external handle type requested.
@@ -1027,20 +1027,20 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
 ///   [`allocate_memory`], or 0 if the external memory handle type is 0. [`compatible_handle_types`]
 ///   will always contain
 ///   [`get_physical_device_external_image_format_properties_nv`]`::externalHandleType`
-/// # Related
+///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalMemoryFeatureFlagsNV`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`ImageFormatProperties`]
 /// - [`get_physical_device_external_image_format_properties_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalImageFormatPropertiesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

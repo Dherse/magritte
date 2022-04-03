@@ -29,6 +29,11 @@ impl Imports {
     }
 
     /// Adds conditional imports to serde
+    pub fn smallvec(&self) {
+        self.0.borrow_mut().insert("use crate::SmallVec;".to_string());
+    }
+
+    /// Adds conditional imports to serde
     pub fn serde(&self) {
         self.0.borrow_mut().insert(
             r#"

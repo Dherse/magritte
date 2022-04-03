@@ -129,22 +129,22 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VkExtent2D         shadingRateAttachmentTexelSize;
 ///} VkRenderingFragmentShadingRateAttachmentInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_view`] is the image view that will be used as a fragment shading rate attachment.
 /// - [`image_layout`] is the layout that [`image_view`] will be in during rendering.
 /// - [`shading_rate_attachment_texel_size`] specifies the number of pixels corresponding to each
 ///   texel in [`image_view`].
-/// # Description
-/// This structure can be included in the [`p_next`] chain of
-/// [`RenderingInfo`] to define a
-/// [fragment shading rate
-/// attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment).
-/// If [`image_view`] is [`crate::utils::Handle::null`], or if this structure is not
-/// specified, the implementation behaves as if a valid shading rate attachment
-/// was specified with all texels specifying a single pixel per fragment.
-/// ## Valid Usage
+///# Description
+///This structure can be included in the [`p_next`] chain of
+///[`RenderingInfo`] to define a
+///[fragment shading rate
+///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment).
+///If [`image_view`] is [`crate::utils::Handle::null`], or if this structure is not
+///specified, the implementation behaves as if a valid shading rate attachment
+///was specified with all texels specifying a single pixel per fragment.
+///## Valid Usage
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL` or `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
@@ -160,13 +160,13 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
 /// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`VK_KHR_fragment_shading_rate`]
 /// - [`Extent2D`]
@@ -174,13 +174,13 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`ImageView`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFragmentShadingRateAttachmentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -303,17 +303,17 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 ///    VkImageLayout      imageLayout;
 ///} VkRenderingFragmentDensityMapAttachmentInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_view`] is the image view that will be used as a fragment shading rate attachment.
 /// - [`image_layout`] is the layout that [`image_view`] will be in during rendering.
-/// # Description
-/// This structure can be included in the [`p_next`] chain of
-/// [`RenderingInfo`] to define a fragment density map.
-/// If this structure is not included in the [`p_next`] chain, [`image_view`]
-/// is treated as [`crate::utils::Handle::null`].
-/// ## Valid Usage
+///# Description
+///This structure can be included in the [`p_next`] chain of
+///[`RenderingInfo`] to define a fragment density map.
+///If this structure is not included in the [`p_next`] chain, [`image_view`]
+///is treated as [`crate::utils::Handle::null`].
+///## Valid Usage
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL` or `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
@@ -321,24 +321,24 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 /// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  not have been created
 ///   with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`
 /// - [`image_view`] **must**  be a valid [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
-/// # Related
+///# Related
 /// - [`VK_EXT_fragment_density_map`]
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`ImageLayout`]
 /// - [`ImageView`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFragmentDensityMapAttachmentInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -448,12 +448,12 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///    VkSampleCountFlagBits           depthStencilAttachmentSamples;
 ///} VkAttachmentSampleCountInfoAMD;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering with VK_NV_framebuffer_mixed_samples
 ///typedef VkAttachmentSampleCountInfoAMD VkAttachmentSampleCountInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`color_attachment_count`] is the number of color attachments specified in a render pass
@@ -462,52 +462,52 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///   defining the sample count of color attachments.
 /// - [`depth_stencil_attachment_samples`] is a [`SampleCountFlagBits`] value defining the sample
 ///   count of a depth/stencil attachment.
-/// # Description
-/// If [`CommandBufferInheritanceInfo::render_pass`] is
-/// [`crate::utils::Handle::null`], `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
-/// is specified in [`CommandBufferBeginInfo::flags`], and the
-/// [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes
-/// [`AttachmentSampleCountInfoAMD`], then this structure defines the sample
-/// counts of each attachment within the render pass instance.
-/// If [`AttachmentSampleCountInfoAMD`] is not included, the value of
-/// [`CommandBufferInheritanceRenderingInfo::rasterization_samples`] is
-/// used as the sample count for each attachment.
-/// If [`CommandBufferInheritanceInfo::render_pass`] is not
-/// [`crate::utils::Handle::null`], or
-/// `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
-/// [`CommandBufferBeginInfo::flags`], parameters of this structure
-/// are ignored.[`AttachmentSampleCountInfoAMD`] **can**  also be included in the
-/// [`p_next`] chain of [`GraphicsPipelineCreateInfo`].
-/// When a graphics pipeline is created without a [`RenderPass`], if this
-/// structure is present in the [`p_next`] chain of
-/// [`GraphicsPipelineCreateInfo`], it specifies the sample count of
-/// attachments used for rendering.
-/// If this structure is not specified, and the pipeline does not include a
-/// [`RenderPass`], the value of
-/// [`PipelineMultisampleStateCreateInfo::rasterization_samples`] is
-/// used as the sample count for each attachment.
-/// If a graphics pipeline is created with a valid [`RenderPass`],
-/// parameters of this structure are ignored.
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`CommandBufferInheritanceInfo::render_pass`] is
+///[`crate::utils::Handle::null`], `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
+///is specified in [`CommandBufferBeginInfo::flags`], and the
+///[`p_next`] chain of [`CommandBufferInheritanceInfo`] includes
+///[`AttachmentSampleCountInfoAMD`], then this structure defines the sample
+///counts of each attachment within the render pass instance.
+///If [`AttachmentSampleCountInfoAMD`] is not included, the value of
+///[`CommandBufferInheritanceRenderingInfo::rasterization_samples`] is
+///used as the sample count for each attachment.
+///If [`CommandBufferInheritanceInfo::render_pass`] is not
+///[`crate::utils::Handle::null`], or
+///`VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
+///[`CommandBufferBeginInfo::flags`], parameters of this structure
+///are ignored.[`AttachmentSampleCountInfoAMD`] **can**  also be included in the
+///[`p_next`] chain of [`GraphicsPipelineCreateInfo`].
+///When a graphics pipeline is created without a [`RenderPass`], if this
+///structure is present in the [`p_next`] chain of
+///[`GraphicsPipelineCreateInfo`], it specifies the sample count of
+///attachments used for rendering.
+///If this structure is not specified, and the pipeline does not include a
+///[`RenderPass`], the value of
+///[`PipelineMultisampleStateCreateInfo::rasterization_samples`] is
+///used as the sample count for each attachment.
+///If a graphics pipeline is created with a valid [`RenderPass`],
+///parameters of this structure are ignored.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`
 /// - If [`color_attachment_count`] is not `0`, [`color_attachment_samples`] **must**  be a valid
 ///   pointer to an array of [`color_attachment_count`] valid [`SampleCountFlagBits`] values
 /// - If [`depth_stencil_attachment_samples`] is not `0`, [`depth_stencil_attachment_samples`]
 ///   **must**  be a valid [`SampleCountFlagBits`] value
-/// # Related
+///# Related
 /// - [`VK_AMD_mixed_attachment_samples`]
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`VK_NV_framebuffer_mixed_samples`]
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentSampleCountInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -641,7 +641,7 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 ///    VkBool32           perViewAttributesPositionXOnly;
 ///} VkMultiviewPerViewAttributesInfoNVX;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`per_view_attributes`] specifies that shaders compiled for this pipeline write the attributes
@@ -651,37 +651,37 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 /// - [`per_view_attributes_position_x_only`] specifies that shaders compiled for this pipeline use
 ///   per-view positions which only differ in value in the x component. Per-view viewport mask
 ///   **can**  also be used.
-/// # Description
-/// When dynamic render pass instances are being used, instead of specifying
-/// `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` or
-/// `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX` in the subpass
-/// description flags, the per-attibute properties of the render pass instance
+///# Description
+///When dynamic render pass instances are being used, instead of specifying
+///`VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` or
+///`VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX` in the subpass
+///description flags, the per-attibute properties of the render pass instance
 /// **must**  be specified by the [`MultiviewPerViewAttributesInfoNVX`]
-/// structure Include the [`MultiviewPerViewAttributesInfoNVX`] structure in
-/// the [`p_next`] chain of [`GraphicsPipelineCreateInfo`] when creating a
-/// graphics pipeline for dynamic rendering, [`RenderingInfo`] when starting
-/// a dynamic render pass instance, and [`CommandBufferInheritanceInfo`]
-/// when specifying the dynamic render pass instance parameters for secondary
-/// command buffers.
-/// ## Valid Usage
+///structure Include the [`MultiviewPerViewAttributesInfoNVX`] structure in
+///the [`p_next`] chain of [`GraphicsPipelineCreateInfo`] when creating a
+///graphics pipeline for dynamic rendering, [`RenderingInfo`] when starting
+///a dynamic render pass instance, and [`CommandBufferInheritanceInfo`]
+///when specifying the dynamic render pass instance parameters for secondary
+///command buffers.
+///## Valid Usage
 /// - If [`per_view_attributes_position_x_only`] is [`TRUE`] then [`per_view_attributes`] **must**
 ///   also be [`TRUE`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`VK_NVX_multiview_per_view_attributes`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultiviewPerViewAttributesInfoNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

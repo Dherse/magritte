@@ -186,6 +186,16 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
 
         path
     }
+
+    /// Tries to destructure `self` into a function
+    #[inline]
+    pub fn as_function(&self) -> Option<&'b Function<'a>> {
+        if let Self::Function(fn_) = *self {
+            Some(fn_)
+        } else {
+            None
+        }
+    }
 }
 
 /// A reference to a Vulkan type

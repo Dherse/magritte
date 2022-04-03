@@ -11,5 +11,5 @@ path = "src/simple.rs"
 
 [dependencies.magritte]
 path = "../magritte"
-features = [ "libloading" ]
+features = [ "libloading", "VK_KHR_swapchain", "VK_KHR_surface", "VK_KHR_xlib_surface" ]
 default-features = false

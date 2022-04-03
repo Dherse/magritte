@@ -97,13 +97,14 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VkBool32           bufferDeviceAddressMultiDevice;
 ///} VkPhysicalDeviceBufferDeviceAddressFeaturesEXT;
 ///```
-/// ```c
+///
+///```c
 ///// Provided by VK_EXT_buffer_device_address
 ///typedef VkPhysicalDeviceBufferDeviceAddressFeaturesEXT VkPhysicalDeviceBufferAddressFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer_device_address`] indicates that the implementation supports accessing buffer memory
@@ -114,28 +115,28 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   [`buffer_device_address`] feature for logical devices created with multiple physical devices.
 ///   If this feature is not supported, buffer addresses  **must**  not be queried on a logical
 ///   device created with more than one physical device.
-/// If the [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_buffer_device_address`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeaturesEXT")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -342,33 +343,33 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
 ///    VkDeviceAddress    deviceAddress;
 ///} VkBufferDeviceAddressCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_address`] is the device address requested for the buffer.
-/// # Description
-/// If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
+///# Description
+///If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
 /// zero, then it  **must**  be an address retrieved
-/// from an identically created buffer on the same implementation.
-/// The buffer  **must**  also be bound to an identically created
-/// [`DeviceMemory`] object.If this structure is not present, it is as if [`device_address`] is
+///from an identically created buffer on the same implementation.
+///The buffer  **must**  also be bound to an identically created
+///[`DeviceMemory`] object.If this structure is not present, it is as if [`device_address`] is
 /// zero.Apps  **should**  avoid creating buffers with app-provided addresses and
-/// implementation-provided addresses in the same process, to reduce the
-/// likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.
-/// ## Valid Usage (Implicit)
+///implementation-provided addresses in the same process, to reduce the
+///likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_buffer_device_address`]
 /// - [`DeviceAddress`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferDeviceAddressCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

@@ -5,7 +5,7 @@ use tracing::warn;
 
 use crate::{
     doc::Documentation,
-    source::{Extension, Source},
+    source::{Extension, ExtensionType, Source},
 };
 
 impl<'a> Extension<'a> {
@@ -74,6 +74,32 @@ impl<'a> Extension<'a> {
                 )*;
             }
         });
+
+        let device_extensions = exts
+            .values()
+            .filter(|e| matches!(e.ty(), ExtensionType::Device))
+            .map(|o| Ident::new(&o.origin().as_name(), Span::call_site()))
+            .collect::<Vec<_>>();
+
+        let device_ext_len = device_extensions.len();
+
+        let device_names = exts
+            .values()
+            .filter(|e| matches!(e.ty(), ExtensionType::Device))
+            .map(|ext| ext.name());
+
+        let instance_extensions = exts
+            .values()
+            .filter(|e| matches!(e.ty(), ExtensionType::Instance))
+            .map(|o| Ident::new(&o.origin().as_name(), Span::call_site()))
+            .collect::<Vec<_>>();
+
+        let instance_ext_len = device_extensions.len();
+
+        let instance_names = exts
+            .values()
+            .filter(|e| matches!(e.ty(), ExtensionType::Instance))
+            .map(|ext| ext.name());
 
         quote_each_token! {
             out
@@ -167,6 +193,32 @@ impl<'a> Extension<'a> {
                         self.#extensions
                     }
                 )*
+
+                #[doc = "Gets the list of extension names to use when creating the [`crate::vulkan1_0::Device`"]
+                pub fn device_extension_names(&self) -> Vec<&'static CStr> {
+                    let mut out = Vec::with_capacity(#device_ext_len);
+
+                    #(
+                        if self.#device_extensions() {
+                            out.push(cstr!(#device_names));
+                        }
+                    )*
+
+                    out
+                }
+
+                #[doc = "Gets the list of extension names to use when creating the [`crate::vulkan1_0::Instance`"]
+                pub fn instance_extension_names(&self) -> Vec<&'static CStr> {
+                    let mut out = Vec::with_capacity(#instance_ext_len);
+
+                    #(
+                        if self.#instance_extensions() {
+                            out.push(cstr!(#instance_names));
+                        }
+                    )*
+
+                    out
+                }
             }
         }
     }

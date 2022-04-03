@@ -83,12 +83,12 @@ pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VkSwapchainKHR                              swapchain,
 ///    VkRefreshCycleDurationGOOGLE*               pDisplayTimingProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device associated with [`swapchain`].
 /// - [`swapchain`] is the swapchain to obtain the refresh duration for.
 /// - [`p_display_timing_properties`] is a pointer to a [`RefreshCycleDurationGOOGLE`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - [`p_display_timing_properties`] **must**  be a valid pointer to a
@@ -96,25 +96,25 @@ pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
-/// # Related
+///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`Device`]
 /// - [`RefreshCycleDurationGOOGLE`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetRefreshCycleDurationGOOGLE")]
 pub type FNGetRefreshCycleDurationGoogle = Option<
     unsafe extern "system" fn(
@@ -144,27 +144,27 @@ pub type FNGetRefreshCycleDurationGoogle = Option<
 ///    uint32_t*                                   pPresentationTimingCount,
 ///    VkPastPresentationTimingGOOGLE*             pPresentationTimings);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device associated with [`swapchain`].
 /// - [`swapchain`] is the swapchain to obtain presentation timing information duration for.
 /// - [`p_presentation_timing_count`] is a pointer to an integer related to the number of
 ///   [`PastPresentationTimingGOOGLE`] structures to query, as described below.
 /// - [`p_presentation_timings`] is either `NULL` or a pointer to an array of
 ///   [`PastPresentationTimingGOOGLE`] structures.
-/// # Description
-/// If [`p_presentation_timings`] is `NULL`, then the number of newly-available
-/// timing records for the given [`swapchain`] is returned in
-/// [`p_presentation_timing_count`].
-/// Otherwise, [`p_presentation_timing_count`] **must**  point to a variable set by
-/// the user to the number of elements in the [`p_presentation_timings`] array,
-/// and on return the variable is overwritten with the number of structures
-/// actually written to [`p_presentation_timings`].
-/// If the value of [`p_presentation_timing_count`] is less than the number of
-/// newly-available timing records, at most [`p_presentation_timing_count`]
-/// structures will be written, and `VK_INCOMPLETE` will be returned instead
-/// of `VK_SUCCESS`, to indicate that not all the available timing records
-/// were returned.
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`p_presentation_timings`] is `NULL`, then the number of newly-available
+///timing records for the given [`swapchain`] is returned in
+///[`p_presentation_timing_count`].
+///Otherwise, [`p_presentation_timing_count`] **must**  point to a variable set by
+///the user to the number of elements in the [`p_presentation_timings`] array,
+///and on return the variable is overwritten with the number of structures
+///actually written to [`p_presentation_timings`].
+///If the value of [`p_presentation_timing_count`] is less than the number of
+///newly-available timing records, at most [`p_presentation_timing_count`]
+///structures will be written, and `VK_INCOMPLETE` will be returned instead
+///of `VK_SUCCESS`, to indicate that not all the available timing records
+///were returned.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - [`p_presentation_timing_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -175,26 +175,26 @@ pub type FNGetRefreshCycleDurationGoogle = Option<
 /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
-/// # Related
+///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`Device`]
 /// - [`PastPresentationTimingGOOGLE`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPastPresentationTimingGOOGLE")]
 pub type FNGetPastPresentationTimingGoogle = Option<
     unsafe extern "system" fn(
@@ -213,20 +213,20 @@ pub type FNGetPastPresentationTimingGoogle = Option<
 ///    uint64_t    refreshDuration;
 ///} VkRefreshCycleDurationGOOGLE;
 ///```
-/// # Members
+///# Members
 /// - [`refresh_duration`] is the number of nanoseconds from the start of one refresh cycle to the
 ///   next.
-/// # Related
+///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`get_refresh_cycle_duration_google`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRefreshCycleDurationGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -270,7 +270,7 @@ impl RefreshCycleDurationGOOGLE {
 ///    uint64_t    presentMargin;
 ///} VkPastPresentationTimingGOOGLE;
 ///```
-/// # Members
+///# Members
 /// - [`present_id`] is an application-provided value that was given to a previous
 ///   [`queue_present_khr`] command via [`PresentTimeGOOGLE`]::[`present_id`] (see below). It
 ///   **can**  be used to uniquely identify a previous present with the [`queue_present_khr`]
@@ -286,39 +286,39 @@ impl RefreshCycleDurationGOOGLE {
 /// - [`present_margin`] is an indication of how early the [`queue_present_khr`] command was
 ///   processed compared to how soon it needed to be processed, and still be presented at
 ///   [`earliest_present_time`].
-/// # Description
-/// The results for a given `swapchain` and [`present_id`] are only
-/// returned once from [`get_past_presentation_timing_google`].The application  **can**  use the
+///# Description
+///The results for a given `swapchain` and [`present_id`] are only
+///returned once from [`get_past_presentation_timing_google`].The application  **can**  use the
 /// [`PastPresentationTimingGOOGLE`] values to
-/// occasionally adjust its timing.
-/// For example, if [`actual_present_time`] is later than expected (e.g. one
-/// `refreshDuration` late), the application may increase its target IPD to
-/// a higher multiple of `refreshDuration` (e.g. decrease its frame rate
-/// from 60Hz to 30Hz).
-/// If [`actual_present_time`] and [`earliest_present_time`] are consistently
-/// different, and if [`present_margin`] is consistently large enough, the
-/// application may decrease its target IPD to a smaller multiple of
-/// `refreshDuration` (e.g. increase its frame rate from 30Hz to 60Hz).
-/// If [`actual_present_time`] and [`earliest_present_time`] are same, and if
-/// [`present_margin`] is consistently high, the application may delay the
-/// start of its input-render-present loop in order to decrease the latency
-/// between user input and the corresponding present (always leaving some margin
-/// in case a new image takes longer to render than the previous image).
-/// An application that desires its target IPD to always be the same as
-/// `refreshDuration`, can also adjust features until
-/// [`actual_present_time`] is never late and [`present_margin`] is
-/// satisfactory.
-/// # Related
+///occasionally adjust its timing.
+///For example, if [`actual_present_time`] is later than expected (e.g. one
+///`refreshDuration` late), the application may increase its target IPD to
+///a higher multiple of `refreshDuration` (e.g. decrease its frame rate
+///from 60Hz to 30Hz).
+///If [`actual_present_time`] and [`earliest_present_time`] are consistently
+///different, and if [`present_margin`] is consistently large enough, the
+///application may decrease its target IPD to a smaller multiple of
+///`refreshDuration` (e.g. increase its frame rate from 30Hz to 60Hz).
+///If [`actual_present_time`] and [`earliest_present_time`] are same, and if
+///[`present_margin`] is consistently high, the application may delay the
+///start of its input-render-present loop in order to decrease the latency
+///between user input and the corresponding present (always leaving some margin
+///in case a new image takes longer to render than the previous image).
+///An application that desires its target IPD to always be the same as
+///`refreshDuration`, can also adjust features until
+///[`actual_present_time`] is never late and [`present_margin`] is
+///satisfactory.
+///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`get_past_presentation_timing_google`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPastPresentationTimingGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -453,7 +453,7 @@ impl PastPresentationTimingGOOGLE {
 ///    const VkPresentTimeGOOGLE*    pTimes;
 ///} VkPresentTimesInfoGOOGLE;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is the number of swapchains being presented to by this command.
@@ -461,29 +461,29 @@ impl PastPresentationTimingGOOGLE {
 ///   [`swapchain_count`] entries. If not `NULL`, each element of [`times`] contains the earliest
 ///   time to present the image corresponding to the entry in the [`PresentInfoKHR::image_indices`]
 ///   array.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where [`PresentInfoKHR`] is included in the [`p_next`] chain of this
 ///   [`PresentTimesInfoGOOGLE`] structure
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE`
 /// - If [`times`] is not `NULL`, [`times`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`][`PresentTimeGOOGLE`] structures
 /// - [`swapchain_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`PresentTimeGOOGLE`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentTimesInfoGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -603,7 +603,7 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
 ///    uint64_t    desiredPresentTime;
 ///} VkPresentTimeGOOGLE;
 ///```
-/// # Members
+///# Members
 /// - [`present_id`] is an application-provided identification value, that  **can**  be used with
 ///   the results of [`get_past_presentation_timing_google`], in order to uniquely identify this
 ///   present. In order to be useful to the application, it  **should**  be unique within some
@@ -613,20 +613,20 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
 ///   to a monotonically-increasing clock (e.g. `CLOCK_MONOTONIC` (see clock_gettime(2)) on Android
 ///   and Linux). A value of zero specifies that the presentation engine  **may**  display the image
 ///   at any time. This is useful when the application desires to provide [`present_id`],
-/// # Description
-/// ```c but does not need a specific pname:desiredPresentTime.
+///# Description
+///```c but does not need a specific pname:desiredPresentTime.
 ///```
-/// # Related
+///# Related
 /// - [`VK_GOOGLE_display_timing`]
 /// - [`PresentTimesInfoGOOGLE`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentTimeGOOGLE")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

@@ -155,6 +155,11 @@ impl<'a> Function<'a> {
     pub fn aliases_mut(&mut self) -> &mut SymbolTable<'a, Cow<'a, str>> {
         &mut self.aliases
     }
+
+    /// Does the function have a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.arguments().iter().any(|arg| arg.has_lifetime(source))
+    }
 }
 
 impl<'a> SymbolName<'a> for Function<'a> {
@@ -202,10 +207,10 @@ pub struct FunctionArgument<'a> {
 impl<'a> FunctionArgument<'a> {
     /// Creates a new function argument from its name and type
     #[inline]
-    pub fn new(param: &'a vk_parse::CommandParam, ty: Ty<'a>) -> Self {
+    pub fn new(param: &'a vk_parse::CommandParam, code: &'a str) -> Self {
         let original_name = &param.definition.name as &str;
 
-        let span = span!(Level::INFO, "argument", ?original_name, ?ty);
+        let span = span!(Level::INFO, "argument", ?original_name);
         let _guard = span.enter();
 
         let mut name = original_name.to_case(Case::Snake);
@@ -219,8 +224,7 @@ impl<'a> FunctionArgument<'a> {
             .altlen
             .as_ref()
             .or(param.len.as_ref())
-            .map(|s| s as &str)
-            .map(Cow::Borrowed);
+            .map(|s| s as &str);
         info!(?len, "parsed len field");
 
         let optionality = match param
@@ -239,10 +243,13 @@ impl<'a> FunctionArgument<'a> {
 
         let externally_synced = ExternallySynced::new(param.externsync.as_ref().map(|s| s as &str));
 
+        let ty = Ty::new(code, len.as_ref().unwrap_or_else(|| &"")).1;
+        info!(?ty, "type parsed");
+
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
-            len,
+            len: len.map(Cow::Borrowed),
             optionality,
             no_auto_validity,
             externally_synced,
@@ -283,6 +290,11 @@ impl<'a> FunctionArgument<'a> {
     /// Get a reference to the function argument's externally synced.
     pub fn externally_synced(&self) -> &ExternallySynced<'a> {
         &self.externally_synced
+    }
+
+    /// Does the argument have a lifetime
+    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+        self.ty().has_lifetime(source, false)
     }
 }
 

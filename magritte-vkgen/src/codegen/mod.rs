@@ -165,9 +165,9 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (_, _, out) = per_origin.get_mut(handle.origin()).unwrap();
+            let (imports, _, out) = per_origin.get_mut(handle.origin()).unwrap();
 
-            handle.generate_code(self, doc, out);
+            handle.generate_code(self, imports, doc, out);
         }
 
         let mut all_functions = Vec::new();
@@ -271,7 +271,9 @@ impl<'a> Source<'a> {
             r##"
             #![doc = "# Extensions"]
             #![doc = "This module contains all of the registered extensions gated by relevant feature gates."]
-        
+            
+            use std::ffi::CStr;
+            use crate::cstr;
         "##
         );
 

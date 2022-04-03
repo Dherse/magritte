@@ -53,7 +53,7 @@ pub use self::{
     funcpointers::{FunctionPointer, FunctionPointerArgument},
     handles::Handle,
     opaque::OpaqueType,
-    structs::{Field, Struct},
+    structs::{Field, Optionality, Struct},
     tag::Tag,
     unions::Union,
     vendors::Vendor,
@@ -899,7 +899,7 @@ impl<'a> Source<'a> {
             .params
             .iter()
             .zip(code)
-            .map(|(param, code)| FunctionArgument::new(param, Ty::new(code, "").1))
+            .map(|(param, code)| FunctionArgument::new(param, code))
             .collect::<SymbolTable<_>>();
 
         info!(?arguments, "parsed arguments");

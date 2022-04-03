@@ -105,15 +105,15 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 ///    uint32_t                                    taskCount,
 ///    uint32_t                                    firstTask);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`task_count`] is the number of local workgroups to dispatch in the X dimension. Y and Z
 ///   dimension are implicitly set to one.
 /// - [`first_task`] is the X component of the first workgroup ID.
-/// # Description
-/// When the command is executed, a global workgroup consisting of
-/// [`task_count`] local workgroups is assembled.
-/// ## Valid Usage
+///# Description
+///When the command is executed, a global workgroup consisting of
+///[`task_count`] local workgroups is assembled.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -454,30 +454,30 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 /// - [`task_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceMeshShaderPropertiesNV::max_draw_mesh_tasks_count`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 /// - This command  **must**  only be called inside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDrawMeshTasksNV")]
 pub type FNCmdDrawMeshTasksNv =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, task_count: u32, first_task: u32)>;
@@ -493,23 +493,23 @@ pub type FNCmdDrawMeshTasksNv =
 ///    uint32_t                                    drawCount,
 ///    uint32_t                                    stride);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`buffer`] is the buffer containing draw parameters.
 /// - [`offset`] is the byte offset into [`buffer`] where parameters begin.
 /// - [`draw_count`] is the number of draws to execute, and  **can**  be zero.
 /// - [`stride`] is the byte stride between successive sets of draw parameters.
-/// # Description
-/// [`cmd_draw_mesh_tasks_indirect_nv`] behaves similarly to
-/// [`cmd_draw_mesh_tasks_nv`] except that the parameters are read by the device
-/// from a buffer during execution.
-/// [`draw_count`] draws are executed by the command, with parameters taken
-/// from [`buffer`] starting at [`offset`] and increasing by [`stride`]
-/// bytes for each successive draw.
-/// The parameters of each draw are encoded in an array of
-/// [`DrawMeshTasksIndirectCommandNV`] structures.
-/// If [`draw_count`] is less than or equal to one, [`stride`] is ignored.
-/// ## Valid Usage
+///# Description
+///[`cmd_draw_mesh_tasks_indirect_nv`] behaves similarly to
+///[`cmd_draw_mesh_tasks_nv`] except that the parameters are read by the device
+///from a buffer during execution.
+///[`draw_count`] draws are executed by the command, with parameters taken
+///from [`buffer`] starting at [`offset`] and increasing by [`stride`]
+///bytes for each successive draw.
+///The parameters of each draw are encoded in an array of
+///[`DrawMeshTasksIndirectCommandNV`] structures.
+///If [`draw_count`] is less than or equal to one, [`stride`] is ignored.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -866,7 +866,7 @@ pub type FNCmdDrawMeshTasksNv =
 ///   `sizeof`([`DrawMeshTasksIndirectCommandNV`])) **must**  be less than or equal to the size of
 ///   [`buffer`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -876,25 +876,25 @@ pub type FNCmdDrawMeshTasksNv =
 /// - Both of [`buffer`], and [`command_buffer`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDrawMeshTasksIndirectNV")]
 pub type FNCmdDrawMeshTasksIndirectNv = Option<
     unsafe extern "system" fn(
@@ -920,7 +920,7 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 ///    uint32_t                                    maxDrawCount,
 ///    uint32_t                                    stride);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`buffer`] is the buffer containing draw parameters.
 /// - [`offset`] is the byte offset into [`buffer`] where parameters begin.
@@ -930,13 +930,13 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 ///   number of executed draw calls is the minimum of the count specified in [`count_buffer`] and
 ///   [`max_draw_count`].
 /// - [`stride`] is the byte stride between successive sets of draw parameters.
-/// # Description
-/// [`cmd_draw_mesh_tasks_indirect_count_nv`] behaves similarly to
-/// [`cmd_draw_mesh_tasks_indirect_nv`] except that the draw count is read by the
-/// device from a buffer during execution.
-/// The command will read an unsigned 32-bit integer from [`count_buffer`]
-/// located at [`count_buffer_offset`] and use this as the draw count.
-/// ## Valid Usage
+///# Description
+///[`cmd_draw_mesh_tasks_indirect_count_nv`] behaves similarly to
+///[`cmd_draw_mesh_tasks_indirect_nv`] except that the draw count is read by the
+///device from a buffer during execution.
+///The command will read an unsigned 32-bit integer from [`count_buffer`]
+///located at [`count_buffer_offset`] and use this as the draw count.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -1303,7 +1303,7 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 ///   [`offset`] +  `sizeof`([`DrawMeshTasksIndirectCommandNV`])) **must**  be less than or equal to
 ///   the size of [`buffer`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 /// - [`count_buffer`] **must**  be a valid [`Buffer`] handle
@@ -1314,25 +1314,25 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 /// - Each of [`buffer`], [`command_buffer`], and [`count_buffer`] **must**  have been created,
 ///   allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDrawMeshTasksIndirectCountNV")]
 pub type FNCmdDrawMeshTasksIndirectCountNv = Option<
     unsafe extern "system" fn(
@@ -1357,34 +1357,34 @@ pub type FNCmdDrawMeshTasksIndirectCountNv = Option<
 ///    VkBool32           meshShader;
 ///} VkPhysicalDeviceMeshShaderFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`task_shader`] indicates whether the task shader stage is supported.
 /// - [`mesh_shader`] indicates whether the mesh shader stage is supported.
-/// If the [`PhysicalDeviceMeshShaderFeaturesNV`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDeviceMeshShaderFeaturesNV`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceMeshShaderFeaturesNV`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceMeshShaderFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMeshShaderFeaturesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1553,7 +1553,7 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 ///    uint32_t           meshOutputPerPrimitiveGranularity;
 ///} VkPhysicalDeviceMeshShaderPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_draw_mesh_tasks_count`] is the maximum number of local workgroups that  **can**  be launched by a single draw mesh tasks command. See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-mesh-shading).
@@ -1592,25 +1592,25 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 /// - [`mesh_output_per_primitive_granularity`] is the granularity with which mesh outputs qualified
 ///   as per-primitive are allocated. The value can be used to compute the memory size used by the
 ///   mesh shader, which must be less than or equal to [`max_mesh_total_memory_size`].
-/// # Description
-/// If the [`PhysicalDeviceMeshShaderPropertiesNV`] structure is included in the [`p_next`] chain of
+///# Description
+///If the [`PhysicalDeviceMeshShaderPropertiesNV`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMeshShaderPropertiesNV")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1940,27 +1940,27 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
 ///    uint32_t    firstTask;
 ///} VkDrawMeshTasksIndirectCommandNV;
 ///```
-/// # Members
+///# Members
 /// - [`task_count`] is the number of local workgroups to dispatch in the X dimension. Y and Z
 ///   dimension are implicitly set to one.
 /// - [`first_task`] is the X component of the first workgroup ID.
-/// # Description
-/// The members of [`DrawMeshTasksIndirectCommandNV`] have the same meaning
-/// as the similarly named parameters of [`cmd_draw_mesh_tasks_nv`].
-/// ## Valid Usage
+///# Description
+///The members of [`DrawMeshTasksIndirectCommandNV`] have the same meaning
+///as the similarly named parameters of [`cmd_draw_mesh_tasks_nv`].
+///## Valid Usage
 /// - [`task_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceMeshShaderPropertiesNV::max_draw_mesh_tasks_count`]
-/// # Related
+///# Related
 /// - [`VK_NV_mesh_shader`]
 /// - [`cmd_draw_mesh_tasks_indirect_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrawMeshTasksIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

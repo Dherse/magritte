@@ -232,7 +232,7 @@ impl<'a> Ty<'a> {
     ///
     /// # Panics
     /// If `self` is not a slice.
-    pub fn as_slice(&self) -> (Mutability, &Ty<'_>, &Expr<'_>) {
+    pub fn as_slice(&self) -> (Mutability, &Ty<'a>, &Expr<'a>) {
         match self {
             Ty::Slice(a, b, c) => (*a, &**b, c),
             _ => panic!("not a slice: {:?}", self),

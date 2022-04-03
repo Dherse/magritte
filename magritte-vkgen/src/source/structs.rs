@@ -10,7 +10,7 @@ use crate::{
     doc::Queryable,
     origin::Origin,
     symbols::{SymbolName, SymbolTable},
-    ty::{Native, Ty},
+    ty::{Mutability, Native, Ty},
 };
 
 use super::{commands::ExternallySynced, Source};
@@ -148,6 +148,23 @@ impl<'a> Struct<'a> {
     /// Gets a field by either its original name or its pretty name
     pub fn get_field(&self, name: &str) -> Option<&Field<'a>> {
         self.fields().get_by_either(name)
+    }
+
+    /// Does the structure have a pointer chain? If so, what is
+    /// its mutability.
+    pub fn has_p_next(&self) -> Option<Mutability> {
+        match self.fields().last().unwrap().ty() {
+            Ty::Pointer(mut_, box Ty::Native(Native::Void)) => Some(*mut_),
+            _ => None,
+        }
+    }
+
+    /// Does the structure contain a pointer
+    pub fn has_pointer(&self) -> bool {
+        self.fields().iter().any(|field| match field.ty() {
+            Ty::Pointer(_, _) | Ty::Slice(_, _, _) => true,
+            _ => false,
+        })
     }
 
     /*/// Checks if this structure needs one or more generic type arguments
@@ -378,6 +395,7 @@ impl<'a> SymbolName<'a> for Field<'a> {
     }
 }
 
+/// Is the argument optional?
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Optionality {
     /// The field is optional

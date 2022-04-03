@@ -83,31 +83,31 @@ pub const QCOM_ROTATED_COPY_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VkSurfaceTransformFlagBitsKHR    transform;
 ///} VkCopyCommandTransformInfoQCOM;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`transform`] is a [`SurfaceTransformFlagBitsKHR`] value describing the transform to be
 ///   applied.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`transform`] **must**  be `VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR`,
 ///   `VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR`, `VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR`, or
 ///   `VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM`
-/// # Related
+///# Related
 /// - [`VK_QCOM_rotated_copy_commands`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyCommandTransformInfoQCOM")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

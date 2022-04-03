@@ -65,15 +65,15 @@ impl<T> Entry<T> {
     }
 
     /// Gets the maximum supported Vulkan version.
-    /// If the function is not available in the current Vulkan entry, will default to returning [`Version::VULKAN1_0`].
-    /// See [`FNEnumerateInstanceVersion`] for more information.
+    /// If the function is not available in the current Vulkan entry, will default to returning
+    /// [`Version::VULKAN1_0`]. See [`FNEnumerateInstanceVersion`] for more information.
     #[inline]
     #[track_caller]
     #[doc(alias = "vkEnumerateInstanceVersion")]
     pub unsafe fn enumerate_instance_version<'lt>(&self) -> Result<Version, VulkanResultCodes> {
         if let Some(fn_) = self.vtable().enumerate_instance_version() {
             let mut out: u32 = 0;
-    
+
             match fn_(&mut out) {
                 VulkanResultCodes::Success => Ok(Version::from(out)),
                 other => Err(other),
