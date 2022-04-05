@@ -1603,6 +1603,7 @@ impl Device {
     pub unsafe fn get_image_drm_format_modifier_properties_ext<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         image: Image,
+        p_properties: Option<ImageDrmFormatModifierPropertiesEXT<'lt>>,
     ) -> VulkanResult<ImageDrmFormatModifierPropertiesEXT<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -1618,10 +1619,14 @@ impl Device {
             .unwrap_unchecked()
             .get_image_drm_format_modifier_properties_ext()
             .unwrap_unchecked();
-        let mut p_properties = MaybeUninit::<ImageDrmFormatModifierPropertiesEXT<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), image, p_properties.as_mut_ptr());
+        let mut p_properties = p_properties
+            .unwrap_or_else(|| MaybeUninit::<ImageDrmFormatModifierPropertiesEXT<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), image, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_properties.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_properties.p_next = std::ptr::null_mut();
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

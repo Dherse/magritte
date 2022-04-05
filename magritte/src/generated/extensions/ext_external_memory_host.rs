@@ -635,6 +635,7 @@ impl Device {
         self: &'this Unique<'a, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         p_host_pointer: *const c_void,
+        p_memory_host_pointer_properties: Option<MemoryHostPointerPropertiesEXT<'lt>>,
     ) -> VulkanResult<MemoryHostPointerPropertiesEXT<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -650,17 +651,19 @@ impl Device {
             .unwrap_unchecked()
             .get_memory_host_pointer_properties_ext()
             .unwrap_unchecked();
-        let mut p_memory_host_pointer_properties = MaybeUninit::<MemoryHostPointerPropertiesEXT<'lt>>::zeroed();
+        let mut p_memory_host_pointer_properties = p_memory_host_pointer_properties
+            .unwrap_or_else(|| MaybeUninit::<MemoryHostPointerPropertiesEXT<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             handle_type,
             p_host_pointer,
-            p_memory_host_pointer_properties.as_mut_ptr(),
+            &mut p_memory_host_pointer_properties,
         );
         match _return {
-            VulkanResultCodes::Success => {
-                VulkanResult::Success(_return, p_memory_host_pointer_properties.assume_init())
-            },
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_memory_host_pointer_properties.p_next = std::ptr::null_mut();
+                p_memory_host_pointer_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

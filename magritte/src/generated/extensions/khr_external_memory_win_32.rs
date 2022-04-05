@@ -967,6 +967,7 @@ impl Device {
         self: &'this Unique<'a, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         handle: HANDLE,
+        p_memory_win_32_handle_properties: Option<MemoryWin32HandlePropertiesKHR<'lt>>,
     ) -> VulkanResult<MemoryWin32HandlePropertiesKHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -982,17 +983,19 @@ impl Device {
             .unwrap_unchecked()
             .get_memory_win32_handle_properties_khr()
             .unwrap_unchecked();
-        let mut p_memory_win_32_handle_properties = MaybeUninit::<MemoryWin32HandlePropertiesKHR<'lt>>::zeroed();
+        let mut p_memory_win_32_handle_properties = p_memory_win_32_handle_properties
+            .unwrap_or_else(|| MaybeUninit::<MemoryWin32HandlePropertiesKHR<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             handle_type,
             handle,
-            p_memory_win_32_handle_properties.as_mut_ptr(),
+            &mut p_memory_win_32_handle_properties,
         );
         match _return {
-            VulkanResultCodes::Success => {
-                VulkanResult::Success(_return, p_memory_win_32_handle_properties.assume_init())
-            },
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_memory_win_32_handle_properties.p_next = std::ptr::null_mut();
+                p_memory_win_32_handle_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

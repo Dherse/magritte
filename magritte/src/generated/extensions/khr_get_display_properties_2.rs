@@ -1200,6 +1200,7 @@ impl PhysicalDevice {
     pub unsafe fn get_display_plane_capabilities2_khr<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         p_display_plane_info: &DisplayPlaneInfo2KHR<'lt>,
+        p_capabilities: Option<DisplayPlaneCapabilities2KHR<'lt>>,
     ) -> VulkanResult<DisplayPlaneCapabilities2KHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -1217,14 +1218,18 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_display_plane_capabilities2_khr()
             .unwrap_unchecked();
-        let mut p_capabilities = MaybeUninit::<DisplayPlaneCapabilities2KHR<'lt>>::zeroed();
+        let mut p_capabilities =
+            p_capabilities.unwrap_or_else(|| MaybeUninit::<DisplayPlaneCapabilities2KHR<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_display_plane_info as *const DisplayPlaneInfo2KHR<'lt>,
-            p_capabilities.as_mut_ptr(),
+            &mut p_capabilities,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_capabilities.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_capabilities.p_next = std::ptr::null_mut();
+                p_capabilities
+            }),
             e => VulkanResult::Err(e),
         }
     }

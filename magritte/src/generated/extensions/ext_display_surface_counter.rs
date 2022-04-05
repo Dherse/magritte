@@ -916,6 +916,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_surface_capabilities2_ext<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         surface: SurfaceKHR,
+        p_surface_capabilities: Option<SurfaceCapabilities2EXT<'lt>>,
     ) -> VulkanResult<SurfaceCapabilities2EXT<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -933,10 +934,14 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_surface_capabilities2_ext()
             .unwrap_unchecked();
-        let mut p_surface_capabilities = MaybeUninit::<SurfaceCapabilities2EXT<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), surface, p_surface_capabilities.as_mut_ptr());
+        let mut p_surface_capabilities = p_surface_capabilities
+            .unwrap_or_else(|| MaybeUninit::<SurfaceCapabilities2EXT<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), surface, &mut p_surface_capabilities);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_surface_capabilities.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_surface_capabilities.p_next = std::ptr::null_mut();
+                p_surface_capabilities
+            }),
             e => VulkanResult::Err(e),
         }
     }

@@ -1966,6 +1966,7 @@ impl Device {
     #[inline]
     pub unsafe fn get_device_group_present_capabilities_khr<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
+        p_device_group_present_capabilities: Option<DeviceGroupPresentCapabilitiesKHR<'lt>>,
     ) -> VulkanResult<DeviceGroupPresentCapabilitiesKHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -1981,12 +1982,14 @@ impl Device {
             .unwrap_unchecked()
             .get_device_group_present_capabilities_khr()
             .unwrap_unchecked();
-        let mut p_device_group_present_capabilities = MaybeUninit::<DeviceGroupPresentCapabilitiesKHR<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), p_device_group_present_capabilities.as_mut_ptr());
+        let mut p_device_group_present_capabilities = p_device_group_present_capabilities
+            .unwrap_or_else(|| MaybeUninit::<DeviceGroupPresentCapabilitiesKHR<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), &mut p_device_group_present_capabilities);
         match _return {
-            VulkanResultCodes::Success => {
-                VulkanResult::Success(_return, p_device_group_present_capabilities.assume_init())
-            },
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_device_group_present_capabilities.p_next = std::ptr::null_mut();
+                p_device_group_present_capabilities
+            }),
             e => VulkanResult::Err(e),
         }
     }

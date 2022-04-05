@@ -3114,6 +3114,7 @@ impl Device {
     pub unsafe fn get_buffer_collection_properties_fuchsia<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         collection: BufferCollectionFUCHSIA,
+        p_properties: Option<BufferCollectionPropertiesFUCHSIA<'lt>>,
     ) -> VulkanResult<BufferCollectionPropertiesFUCHSIA<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -3129,10 +3130,14 @@ impl Device {
             .unwrap_unchecked()
             .get_buffer_collection_properties_fuchsia()
             .unwrap_unchecked();
-        let mut p_properties = MaybeUninit::<BufferCollectionPropertiesFUCHSIA<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), collection, p_properties.as_mut_ptr());
+        let mut p_properties = p_properties
+            .unwrap_or_else(|| MaybeUninit::<BufferCollectionPropertiesFUCHSIA<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), collection, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_properties.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_properties.p_next = std::ptr::null_mut();
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

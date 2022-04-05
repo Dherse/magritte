@@ -1516,6 +1516,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_multisample_properties_ext<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         samples: SampleCountFlagBits,
+        p_multisample_properties: Option<MultisamplePropertiesEXT<'lt>>,
     ) -> MultisamplePropertiesEXT<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -1533,9 +1534,13 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_multisample_properties_ext()
             .unwrap_unchecked();
-        let mut p_multisample_properties = MaybeUninit::<MultisamplePropertiesEXT<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), samples, p_multisample_properties.as_mut_ptr());
-        p_multisample_properties.assume_init()
+        let mut p_multisample_properties = p_multisample_properties
+            .unwrap_or_else(|| MaybeUninit::<MultisamplePropertiesEXT<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), samples, &mut p_multisample_properties);
+        {
+            p_multisample_properties.p_next = std::ptr::null_mut();
+            p_multisample_properties
+        }
     }
 }
 impl CommandBuffer {

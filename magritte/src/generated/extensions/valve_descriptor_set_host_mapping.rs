@@ -557,6 +557,7 @@ impl Device {
     pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         p_binding_reference: &DescriptorSetBindingReferenceVALVE<'lt>,
+        p_host_mapping: Option<DescriptorSetLayoutHostMappingInfoVALVE<'lt>>,
     ) -> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -572,13 +573,17 @@ impl Device {
             .unwrap_unchecked()
             .get_descriptor_set_layout_host_mapping_info_valve()
             .unwrap_unchecked();
-        let mut p_host_mapping = MaybeUninit::<DescriptorSetLayoutHostMappingInfoVALVE<'lt>>::zeroed();
+        let mut p_host_mapping = p_host_mapping
+            .unwrap_or_else(|| MaybeUninit::<DescriptorSetLayoutHostMappingInfoVALVE<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_binding_reference as *const DescriptorSetBindingReferenceVALVE<'lt>,
-            p_host_mapping.as_mut_ptr(),
+            &mut p_host_mapping,
         );
-        p_host_mapping.assume_init()
+        {
+            p_host_mapping.p_next = std::ptr::null_mut();
+            p_host_mapping
+        }
     }
 }
 impl Device {

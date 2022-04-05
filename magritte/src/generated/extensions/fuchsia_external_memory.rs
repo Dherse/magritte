@@ -687,6 +687,7 @@ impl Device {
         self: &'this Unique<'a, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         zircon_handle: zx_handle_t,
+        p_memory_zircon_handle_properties: Option<MemoryZirconHandlePropertiesFUCHSIA<'lt>>,
     ) -> VulkanResult<MemoryZirconHandlePropertiesFUCHSIA<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -702,17 +703,19 @@ impl Device {
             .unwrap_unchecked()
             .get_memory_zircon_handle_properties_fuchsia()
             .unwrap_unchecked();
-        let mut p_memory_zircon_handle_properties = MaybeUninit::<MemoryZirconHandlePropertiesFUCHSIA<'lt>>::zeroed();
+        let mut p_memory_zircon_handle_properties = p_memory_zircon_handle_properties
+            .unwrap_or_else(|| MaybeUninit::<MemoryZirconHandlePropertiesFUCHSIA<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             handle_type,
             zircon_handle,
-            p_memory_zircon_handle_properties.as_mut_ptr(),
+            &mut p_memory_zircon_handle_properties,
         );
         match _return {
-            VulkanResultCodes::Success => {
-                VulkanResult::Success(_return, p_memory_zircon_handle_properties.assume_init())
-            },
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_memory_zircon_handle_properties.p_next = std::ptr::null_mut();
+                p_memory_zircon_handle_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

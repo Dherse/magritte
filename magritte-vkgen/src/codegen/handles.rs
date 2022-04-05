@@ -43,15 +43,6 @@ impl<'a> Handle<'a> {
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
-        let mut fns = TokenStream::default();
-
-        /*self.functions()
-        .iter()
-        .filter_map(|fn_| source.find(fn_))
-        .filter_map(|ref_| ref_.as_function())
-        .filter(|fn_| !fn_.origin().is_disabled())
-        .for_each(|fn_| fn_.generate_code(source, imports, doc, self, &mut fns));*/
-
         // TODO: fns_
 
         imports.push("crate::Handle");

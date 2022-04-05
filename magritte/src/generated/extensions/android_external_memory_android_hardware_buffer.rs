@@ -1582,6 +1582,7 @@ impl Device {
     pub unsafe fn get_android_hardware_buffer_properties_android<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         buffer: &AHardwareBuffer,
+        p_properties: Option<AndroidHardwareBufferPropertiesANDROID<'lt>>,
     ) -> VulkanResult<AndroidHardwareBufferPropertiesANDROID<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -1597,14 +1598,14 @@ impl Device {
             .unwrap_unchecked()
             .get_android_hardware_buffer_properties_android()
             .unwrap_unchecked();
-        let mut p_properties = MaybeUninit::<AndroidHardwareBufferPropertiesANDROID<'lt>>::zeroed();
-        let _return = _function(
-            self.as_raw(),
-            buffer as *const AHardwareBuffer,
-            p_properties.as_mut_ptr(),
-        );
+        let mut p_properties = p_properties
+            .unwrap_or_else(|| MaybeUninit::<AndroidHardwareBufferPropertiesANDROID<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), buffer as *const AHardwareBuffer, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_properties.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_properties.p_next = std::ptr::null_mut();
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

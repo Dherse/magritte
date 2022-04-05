@@ -374,8 +374,10 @@ impl StatefulFunctionGeneratorState {
                     });
 
                     self.return_values.push(quote! {
-                        #ret_ident.p_next = std::ptr::#null ();
-                        #ret_ident
+                        {
+                            #ret_ident.p_next = std::ptr::#null ();
+                            #ret_ident
+                        }
                     });
 
                     self.return_initializations.push(quote! {

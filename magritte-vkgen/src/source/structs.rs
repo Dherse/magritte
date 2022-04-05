@@ -153,10 +153,10 @@ impl<'a> Struct<'a> {
     /// Does the structure have a pointer chain? If so, what is
     /// its mutability.
     pub fn has_p_next(&self) -> Option<Mutability> {
-        match self.fields().last().unwrap().ty() {
-            Ty::Pointer(mut_, box Ty::Native(Native::Void)) => Some(*mut_),
+        self.fields().iter().find_map(|field| match field.ty() {
+            Ty::Pointer(mut_, _) if field.original_name() == "pNext" => Some(*mut_),
             _ => None,
-        }
+        })
     }
 
     /// Does the structure contain a pointer

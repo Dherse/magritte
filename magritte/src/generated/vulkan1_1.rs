@@ -19464,6 +19464,7 @@ impl PhysicalDevice {
     #[inline]
     pub unsafe fn get_physical_device_features2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
+        p_features: Option<PhysicalDeviceFeatures2<'lt>>,
     ) -> PhysicalDeviceFeatures2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -19481,9 +19482,13 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_features2()
             .unwrap_unchecked();
-        let mut p_features = MaybeUninit::<PhysicalDeviceFeatures2<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), p_features.as_mut_ptr());
-        p_features.assume_init()
+        let mut p_features =
+            p_features.unwrap_or_else(|| MaybeUninit::<PhysicalDeviceFeatures2<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), &mut p_features);
+        {
+            p_features.p_next = std::ptr::null_mut();
+            p_features
+        }
     }
 }
 impl PhysicalDevice {
@@ -19534,6 +19539,7 @@ impl PhysicalDevice {
     #[inline]
     pub unsafe fn get_physical_device_properties2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
+        p_properties: Option<PhysicalDeviceProperties2<'lt>>,
     ) -> PhysicalDeviceProperties2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -19551,9 +19557,13 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_properties2()
             .unwrap_unchecked();
-        let mut p_properties = MaybeUninit::<PhysicalDeviceProperties2<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), p_properties.as_mut_ptr());
-        p_properties.assume_init()
+        let mut p_properties =
+            p_properties.unwrap_or_else(|| MaybeUninit::<PhysicalDeviceProperties2<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), &mut p_properties);
+        {
+            p_properties.p_next = std::ptr::null_mut();
+            p_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -19609,6 +19619,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_format_properties2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         format: Format,
+        p_format_properties: Option<FormatProperties2<'lt>>,
     ) -> FormatProperties2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -19626,9 +19637,13 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_format_properties2()
             .unwrap_unchecked();
-        let mut p_format_properties = MaybeUninit::<FormatProperties2<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), format, p_format_properties.as_mut_ptr());
-        p_format_properties.assume_init()
+        let mut p_format_properties =
+            p_format_properties.unwrap_or_else(|| MaybeUninit::<FormatProperties2<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), format, &mut p_format_properties);
+        {
+            p_format_properties.p_next = std::ptr::null_mut();
+            p_format_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -19698,6 +19713,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_image_format_properties2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         p_image_format_info: &PhysicalDeviceImageFormatInfo2<'lt>,
+        p_image_format_properties: Option<ImageFormatProperties2<'lt>>,
     ) -> VulkanResult<ImageFormatProperties2<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -19715,14 +19731,18 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_image_format_properties2()
             .unwrap_unchecked();
-        let mut p_image_format_properties = MaybeUninit::<ImageFormatProperties2<'lt>>::zeroed();
+        let mut p_image_format_properties = p_image_format_properties
+            .unwrap_or_else(|| MaybeUninit::<ImageFormatProperties2<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_image_format_info as *const PhysicalDeviceImageFormatInfo2<'lt>,
-            p_image_format_properties.as_mut_ptr(),
+            &mut p_image_format_properties,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_image_format_properties.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_image_format_properties.p_next = std::ptr::null_mut();
+                p_image_format_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -19867,6 +19887,7 @@ impl PhysicalDevice {
     #[inline]
     pub unsafe fn get_physical_device_memory_properties2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
+        p_memory_properties: Option<PhysicalDeviceMemoryProperties2<'lt>>,
     ) -> PhysicalDeviceMemoryProperties2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -19884,9 +19905,13 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_memory_properties2()
             .unwrap_unchecked();
-        let mut p_memory_properties = MaybeUninit::<PhysicalDeviceMemoryProperties2<'lt>>::zeroed();
-        let _return = _function(self.as_raw(), p_memory_properties.as_mut_ptr());
-        p_memory_properties.assume_init()
+        let mut p_memory_properties = p_memory_properties
+            .unwrap_or_else(|| MaybeUninit::<PhysicalDeviceMemoryProperties2<'lt>>::zeroed().assume_init());
+        let _return = _function(self.as_raw(), &mut p_memory_properties);
+        {
+            p_memory_properties.p_next = std::ptr::null_mut();
+            p_memory_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -20052,6 +20077,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_external_buffer_properties<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         p_external_buffer_info: &PhysicalDeviceExternalBufferInfo<'lt>,
+        p_external_buffer_properties: Option<ExternalBufferProperties<'lt>>,
     ) -> ExternalBufferProperties<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -20069,13 +20095,17 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_external_buffer_properties()
             .unwrap_unchecked();
-        let mut p_external_buffer_properties = MaybeUninit::<ExternalBufferProperties<'lt>>::zeroed();
+        let mut p_external_buffer_properties = p_external_buffer_properties
+            .unwrap_or_else(|| MaybeUninit::<ExternalBufferProperties<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_external_buffer_info as *const PhysicalDeviceExternalBufferInfo<'lt>,
-            p_external_buffer_properties.as_mut_ptr(),
+            &mut p_external_buffer_properties,
         );
-        p_external_buffer_properties.assume_init()
+        {
+            p_external_buffer_properties.p_next = std::ptr::null_mut();
+            p_external_buffer_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -20132,6 +20162,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_external_semaphore_properties<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         p_external_semaphore_info: &PhysicalDeviceExternalSemaphoreInfo<'lt>,
+        p_external_semaphore_properties: Option<ExternalSemaphoreProperties<'lt>>,
     ) -> ExternalSemaphoreProperties<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -20149,13 +20180,17 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_external_semaphore_properties()
             .unwrap_unchecked();
-        let mut p_external_semaphore_properties = MaybeUninit::<ExternalSemaphoreProperties<'lt>>::zeroed();
+        let mut p_external_semaphore_properties = p_external_semaphore_properties
+            .unwrap_or_else(|| MaybeUninit::<ExternalSemaphoreProperties<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_external_semaphore_info as *const PhysicalDeviceExternalSemaphoreInfo<'lt>,
-            p_external_semaphore_properties.as_mut_ptr(),
+            &mut p_external_semaphore_properties,
         );
-        p_external_semaphore_properties.assume_init()
+        {
+            p_external_semaphore_properties.p_next = std::ptr::null_mut();
+            p_external_semaphore_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -20212,6 +20247,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_external_fence_properties<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         p_external_fence_info: &PhysicalDeviceExternalFenceInfo<'lt>,
+        p_external_fence_properties: Option<ExternalFenceProperties<'lt>>,
     ) -> ExternalFenceProperties<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -20229,13 +20265,17 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_external_fence_properties()
             .unwrap_unchecked();
-        let mut p_external_fence_properties = MaybeUninit::<ExternalFenceProperties<'lt>>::zeroed();
+        let mut p_external_fence_properties = p_external_fence_properties
+            .unwrap_or_else(|| MaybeUninit::<ExternalFenceProperties<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_external_fence_info as *const PhysicalDeviceExternalFenceInfo<'lt>,
-            p_external_fence_properties.as_mut_ptr(),
+            &mut p_external_fence_properties,
         );
-        p_external_fence_properties.assume_init()
+        {
+            p_external_fence_properties.p_next = std::ptr::null_mut();
+            p_external_fence_properties
+        }
     }
 }
 impl Device {
@@ -21006,6 +21046,7 @@ impl Device {
     pub unsafe fn get_buffer_memory_requirements2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         p_info: &BufferMemoryRequirementsInfo2<'lt>,
+        p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -21021,13 +21062,17 @@ impl Device {
             .unwrap_unchecked()
             .get_buffer_memory_requirements2()
             .unwrap_unchecked();
-        let mut p_memory_requirements = MaybeUninit::<MemoryRequirements2<'lt>>::zeroed();
+        let mut p_memory_requirements =
+            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_info as *const BufferMemoryRequirementsInfo2<'lt>,
-            p_memory_requirements.as_mut_ptr(),
+            &mut p_memory_requirements,
         );
-        p_memory_requirements.assume_init()
+        {
+            p_memory_requirements.p_next = std::ptr::null_mut();
+            p_memory_requirements
+        }
     }
 }
 impl Device {
@@ -21082,6 +21127,7 @@ impl Device {
     pub unsafe fn get_image_memory_requirements2<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         p_info: &ImageMemoryRequirementsInfo2<'lt>,
+        p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -21097,13 +21143,17 @@ impl Device {
             .unwrap_unchecked()
             .get_image_memory_requirements2()
             .unwrap_unchecked();
-        let mut p_memory_requirements = MaybeUninit::<MemoryRequirements2<'lt>>::zeroed();
+        let mut p_memory_requirements =
+            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_info as *const ImageMemoryRequirementsInfo2<'lt>,
-            p_memory_requirements.as_mut_ptr(),
+            &mut p_memory_requirements,
         );
-        p_memory_requirements.assume_init()
+        {
+            p_memory_requirements.p_next = std::ptr::null_mut();
+            p_memory_requirements
+        }
     }
 }
 impl Device {
@@ -21533,6 +21583,7 @@ impl Device {
     pub unsafe fn get_descriptor_set_layout_support<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         p_create_info: &DescriptorSetLayoutCreateInfo<'lt>,
+        p_support: Option<DescriptorSetLayoutSupport<'lt>>,
     ) -> DescriptorSetLayoutSupport<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -21548,13 +21599,17 @@ impl Device {
             .unwrap_unchecked()
             .get_descriptor_set_layout_support()
             .unwrap_unchecked();
-        let mut p_support = MaybeUninit::<DescriptorSetLayoutSupport<'lt>>::zeroed();
+        let mut p_support =
+            p_support.unwrap_or_else(|| MaybeUninit::<DescriptorSetLayoutSupport<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_create_info as *const DescriptorSetLayoutCreateInfo<'lt>,
-            p_support.as_mut_ptr(),
+            &mut p_support,
         );
-        p_support.assume_init()
+        {
+            p_support.p_next = std::ptr::null_mut();
+            p_support
+        }
     }
 }
 impl CommandBuffer {

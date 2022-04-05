@@ -4549,6 +4549,7 @@ impl Device {
     pub unsafe fn get_generated_commands_memory_requirements_nv<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, Device>,
         p_info: &GeneratedCommandsMemoryRequirementsInfoNV<'lt>,
+        p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -4564,13 +4565,17 @@ impl Device {
             .unwrap_unchecked()
             .get_generated_commands_memory_requirements_nv()
             .unwrap_unchecked();
-        let mut p_memory_requirements = MaybeUninit::<MemoryRequirements2<'lt>>::zeroed();
+        let mut p_memory_requirements =
+            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_info as *const GeneratedCommandsMemoryRequirementsInfoNV<'lt>,
-            p_memory_requirements.as_mut_ptr(),
+            &mut p_memory_requirements,
         );
-        p_memory_requirements.assume_init()
+        {
+            p_memory_requirements.p_next = std::ptr::null_mut();
+            p_memory_requirements
+        }
     }
 }
 impl Device {

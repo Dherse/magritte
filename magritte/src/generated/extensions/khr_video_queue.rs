@@ -6736,6 +6736,7 @@ impl PhysicalDevice {
     pub unsafe fn get_physical_device_video_capabilities_khr<'a: 'this, 'this, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         p_video_profile: &VideoProfileKHR<'lt>,
+        p_capabilities: Option<VideoCapabilitiesKHR<'lt>>,
     ) -> VulkanResult<VideoCapabilitiesKHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -6753,14 +6754,18 @@ impl PhysicalDevice {
             .unwrap_unchecked()
             .get_physical_device_video_capabilities_khr()
             .unwrap_unchecked();
-        let mut p_capabilities = MaybeUninit::<VideoCapabilitiesKHR<'lt>>::zeroed();
+        let mut p_capabilities =
+            p_capabilities.unwrap_or_else(|| MaybeUninit::<VideoCapabilitiesKHR<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             p_video_profile as *const VideoProfileKHR<'lt>,
-            p_capabilities.as_mut_ptr(),
+            &mut p_capabilities,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_capabilities.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_capabilities.p_next = std::ptr::null_mut();
+                p_capabilities
+            }),
             e => VulkanResult::Err(e),
         }
     }

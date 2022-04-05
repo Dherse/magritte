@@ -738,6 +738,7 @@ impl Device {
         self: &'this Unique<'a, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         fd: Option<i32>,
+        p_memory_fd_properties: Option<MemoryFdPropertiesKHR<'lt>>,
     ) -> VulkanResult<MemoryFdPropertiesKHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
@@ -753,15 +754,19 @@ impl Device {
             .unwrap_unchecked()
             .get_memory_fd_properties_khr()
             .unwrap_unchecked();
-        let mut p_memory_fd_properties = MaybeUninit::<MemoryFdPropertiesKHR<'lt>>::zeroed();
+        let mut p_memory_fd_properties =
+            p_memory_fd_properties.unwrap_or_else(|| MaybeUninit::<MemoryFdPropertiesKHR<'lt>>::zeroed().assume_init());
         let _return = _function(
             self.as_raw(),
             handle_type,
             fd.unwrap_or_default() as _,
-            p_memory_fd_properties.as_mut_ptr(),
+            &mut p_memory_fd_properties,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_memory_fd_properties.assume_init()),
+            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+                p_memory_fd_properties.p_next = std::ptr::null_mut();
+                p_memory_fd_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
