@@ -169,14 +169,14 @@ Here are the following families that need to be implemented in the code generato
 - [ ] Documentation for Vulkan version
 - [x] Documentation for extensions
 - [x] Handles
-- [ ] Higher level handles (wrappers)
-- [ ] Loaders
+- [x] Higher level handles (`Unique`)
+- [x] Loaders
 - [x] Extensions (doc only)
 - [x] Opaque types (aliases of `c_void`)
 - [x] ~Type aliases~
 - [x] Structs
 - [ ] Structure pointer chains
-- [ ] Struct builders
+- [x] ~Struct builders~
 - [x] Unions
 - [x] Function pointers
 - [x] Base types
@@ -186,6 +186,10 @@ Here are the following families that need to be implemented in the code generato
 - [x] Bit masks
 - [x] Bit mask flags
 - [x] ~Function/command aliases~ 
-- [ ] Functions
+- [x] Functions
 - [ ] Commands & command buffers
 - [x] Conditional compilation
+- [ ] Fixing naming bugs
+- [ ] Dedicated `VkImage` for `VkSwapchainKHR`
+- [ ] Remove `khr` in function name
+- [ ] Function alias flattening
