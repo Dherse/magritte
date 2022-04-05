@@ -24,12 +24,12 @@ pub unsafe fn create_surface<'a: 'b, 'b>(
 ) -> VulkanResult<Unique<'b, SurfaceKHR>> {
     match window_handle.raw_window_handle() {
         #[cfg(target_os = "windows")]
-        RawWindowHandle::Windows(handle) => {
-            let surface_desc = extensions::khr_win32_surface::Win32SurfaceCreateInfoKHR::default()
-                .set_hinstance(handle.hinstance)
-                .set_hwnd(handle.hwnd);
+        RawWindowHandle::Win32(handle) => {
+            let surface_desc = extensions::khr_win_32_surface::Win32SurfaceCreateInfoKHR::default()
+                .set_hinstance(std::mem::transmute(handle.hinstance))
+                .set_hwnd(std::mem::transmute(handle.hwnd));
 
-            instance.create_win32_surface(&surface_desc, allocation_callbacks)
+            instance.create_win32_surface_khr(&surface_desc, allocation_callbacks)
         },
 
         #[cfg(any(
@@ -108,7 +108,7 @@ pub fn enable_required_extensions<W: HasRawWindowHandle>(
 ) -> Result<Extensions, VulkanResultCodes> {
     let extensions = match window_handle.raw_window_handle() {
         #[cfg(target_os = "windows")]
-        RawWindowHandle::Windows(_) => extensions.enable_khr_surface().enable_khr_win_32_surface(),
+        RawWindowHandle::Win32(_) => extensions.enable_khr_surface().enable_khr_win_32_surface(),
 
         #[cfg(any(
             target_os = "linux",
