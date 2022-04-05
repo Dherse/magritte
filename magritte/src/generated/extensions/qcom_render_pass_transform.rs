@@ -197,7 +197,7 @@ pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassTransformBeginInfoQCOM")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RenderPassTransformBeginInfoQCOM<'lt> {
@@ -224,11 +224,11 @@ impl<'lt> Default for RenderPassTransformBeginInfoQCOM<'lt> {
 }
 impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -262,18 +262,18 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
     pub fn transform_mut(&mut self) -> &mut SurfaceTransformFlagBitsKHR {
         &mut self.transform
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::transform`]
-    pub fn set_transform(&mut self, value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR) -> &mut Self {
+    ///Sets the value of [`Self::transform`]
+    pub fn set_transform(mut self, value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR) -> Self {
         self.transform = value;
         self
     }
@@ -334,7 +334,7 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceRenderPassTransformInfoQCOM")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
@@ -365,11 +365,11 @@ impl<'lt> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
 }
 impl<'lt> CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -411,23 +411,23 @@ impl<'lt> CommandBufferInheritanceRenderPassTransformInfoQCOM<'lt> {
     pub fn render_area_mut(&mut self) -> &mut Rect2D {
         &mut self.render_area
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::transform`]
-    pub fn set_transform(&mut self, value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR) -> &mut Self {
+    ///Sets the value of [`Self::transform`]
+    pub fn set_transform(mut self, value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR) -> Self {
         self.transform = value;
         self
     }
-    ///Sets the raw value of [`Self::render_area`]
-    pub fn set_render_area(&mut self, value: crate::vulkan1_0::Rect2D) -> &mut Self {
+    ///Sets the value of [`Self::render_area`]
+    pub fn set_render_area(mut self, value: crate::vulkan1_0::Rect2D) -> Self {
         self.render_area = value;
         self
     }

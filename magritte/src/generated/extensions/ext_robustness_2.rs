@@ -10,7 +10,7 @@
 //!extraction](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fxvertex-input-extraction).These additional requirements  **may**  be expensive on some implementations, and
 //!should only be enabled when truly necessary.This extension also adds support for “null
 //! descriptors”, where
-//![`crate::utils::Handle::null`] **can**  be used instead of a valid handle.
+//![`crate::Handle::null`] **can**  be used instead of a valid handle.
 //!Accesses to null descriptors have well-defined behavior, and do not rely on
 //!robustness.
 //!# Revision
@@ -92,8 +92,8 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///   the dimensions of the image view. Out of bounds image loads will return zero values, with
 ///   (0,0,1) values [inserted for missing G, B, or A components]() based on the format.
 /// - [`null_descriptor`] indicates whether descriptors  **can**  be written with a
-///   [`crate::utils::Handle::null`] resource or view, which are considered valid to access and act
-///   as if the descriptor were bound to nothing.
+///   [`crate::Handle::null`] resource or view, which are considered valid to access and act as if
+///   the descriptor were bound to nothing.
 ///If the [`PhysicalDeviceRobustness2FeaturesEXT`] structure is included in the [`p_next`] chain of
 /// the
 ///[`PhysicalDeviceFeatures2`] structure passed to
@@ -120,7 +120,7 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRobustness2FeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2FeaturesEXT<'lt> {
@@ -152,7 +152,7 @@ pub struct PhysicalDeviceRobustness2FeaturesEXT<'lt> {
     ///components]() based on the format.
     pub robust_image_access_2: Bool32,
     ///[`null_descriptor`] indicates whether
-    ///descriptors  **can**  be written with a [`crate::utils::Handle::null`] resource or
+    ///descriptors  **can**  be written with a [`crate::Handle::null`] resource or
     ///view, which are considered valid to access and act as if the descriptor
     ///were bound to nothing.
     pub null_descriptor: Bool32,
@@ -171,8 +171,8 @@ impl<'lt> Default for PhysicalDeviceRobustness2FeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::robust_buffer_access_2`]
     pub fn robust_buffer_access_2_raw(&self) -> Bool32 {
@@ -187,22 +187,22 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
         self.null_descriptor
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::robust_buffer_access_2`]
-    pub fn set_robust_buffer_access_2_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_robust_buffer_access_2_raw(mut self, value: Bool32) -> Self {
         self.robust_buffer_access_2 = value;
         self
     }
     ///Sets the raw value of [`Self::robust_image_access_2`]
-    pub fn set_robust_image_access_2_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_robust_image_access_2_raw(mut self, value: Bool32) -> Self {
         self.robust_image_access_2 = value;
         self
     }
     ///Sets the raw value of [`Self::null_descriptor`]
-    pub fn set_null_descriptor_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_null_descriptor_raw(mut self, value: Bool32) -> Self {
         self.null_descriptor = value;
         self
     }
@@ -294,28 +294,28 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::robust_buffer_access_2`]
-    pub fn set_robust_buffer_access_2(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::robust_buffer_access_2`]
+    pub fn set_robust_buffer_access_2(mut self, value: bool) -> Self {
         self.robust_buffer_access_2 = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::robust_image_access_2`]
-    pub fn set_robust_image_access_2(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::robust_image_access_2`]
+    pub fn set_robust_image_access_2(mut self, value: bool) -> Self {
         self.robust_image_access_2 = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::null_descriptor`]
-    pub fn set_null_descriptor(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::null_descriptor`]
+    pub fn set_null_descriptor(mut self, value: bool) -> Self {
         self.null_descriptor = value as u8 as u32;
         self
     }
@@ -358,7 +358,7 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRobustness2PropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2PropertiesEXT<'lt> {
@@ -395,11 +395,11 @@ impl<'lt> Default for PhysicalDeviceRobustness2PropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceRobustness2PropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -443,29 +443,23 @@ impl<'lt> PhysicalDeviceRobustness2PropertiesEXT<'lt> {
     pub fn robust_uniform_buffer_access_size_alignment_mut(&mut self) -> &mut DeviceSize {
         &mut self.robust_uniform_buffer_access_size_alignment
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::robust_storage_buffer_access_size_alignment`]
-    pub fn set_robust_storage_buffer_access_size_alignment(
-        &mut self,
-        value: crate::vulkan1_0::DeviceSize,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::robust_storage_buffer_access_size_alignment`]
+    pub fn set_robust_storage_buffer_access_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.robust_storage_buffer_access_size_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::robust_uniform_buffer_access_size_alignment`]
-    pub fn set_robust_uniform_buffer_access_size_alignment(
-        &mut self,
-        value: crate::vulkan1_0::DeviceSize,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::robust_uniform_buffer_access_size_alignment`]
+    pub fn set_robust_uniform_buffer_access_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.robust_uniform_buffer_access_size_alignment = value;
         self
     }

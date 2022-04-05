@@ -274,7 +274,7 @@ impl BlendOverlapEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
@@ -310,20 +310,20 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::advanced_blend_coherent_operations`]
     pub fn advanced_blend_coherent_operations_raw(&self) -> Bool32 {
         self.advanced_blend_coherent_operations
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_coherent_operations`]
-    pub fn set_advanced_blend_coherent_operations_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_advanced_blend_coherent_operations_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_coherent_operations = value;
         self
     }
@@ -371,18 +371,18 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_coherent_operations`]
-    pub fn set_advanced_blend_coherent_operations(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_coherent_operations`]
+    pub fn set_advanced_blend_coherent_operations(mut self, value: bool) -> Self {
         self.advanced_blend_coherent_operations = value as u8 as u32;
         self
     }
@@ -444,7 +444,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
@@ -499,8 +499,8 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::advanced_blend_independent_blend`]
     pub fn advanced_blend_independent_blend_raw(&self) -> Bool32 {
@@ -523,32 +523,32 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
         self.advanced_blend_all_operations
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_independent_blend`]
-    pub fn set_advanced_blend_independent_blend_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_advanced_blend_independent_blend_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_independent_blend = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_src_color`]
-    pub fn set_advanced_blend_non_premultiplied_src_color_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_advanced_blend_non_premultiplied_src_color_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_non_premultiplied_src_color = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_dst_color`]
-    pub fn set_advanced_blend_non_premultiplied_dst_color_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_advanced_blend_non_premultiplied_dst_color_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_non_premultiplied_dst_color = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_correlated_overlap`]
-    pub fn set_advanced_blend_correlated_overlap_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_advanced_blend_correlated_overlap_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_correlated_overlap = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_all_operations`]
-    pub fn set_advanced_blend_all_operations_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_advanced_blend_all_operations_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_all_operations = value;
         self
     }
@@ -694,43 +694,43 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_max_color_attachments`]
-    pub fn set_advanced_blend_max_color_attachments(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_max_color_attachments`]
+    pub fn set_advanced_blend_max_color_attachments(mut self, value: u32) -> Self {
         self.advanced_blend_max_color_attachments = value;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_independent_blend`]
-    pub fn set_advanced_blend_independent_blend(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_independent_blend`]
+    pub fn set_advanced_blend_independent_blend(mut self, value: bool) -> Self {
         self.advanced_blend_independent_blend = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_src_color`]
-    pub fn set_advanced_blend_non_premultiplied_src_color(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_non_premultiplied_src_color`]
+    pub fn set_advanced_blend_non_premultiplied_src_color(mut self, value: bool) -> Self {
         self.advanced_blend_non_premultiplied_src_color = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_dst_color`]
-    pub fn set_advanced_blend_non_premultiplied_dst_color(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_non_premultiplied_dst_color`]
+    pub fn set_advanced_blend_non_premultiplied_dst_color(mut self, value: bool) -> Self {
         self.advanced_blend_non_premultiplied_dst_color = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_correlated_overlap`]
-    pub fn set_advanced_blend_correlated_overlap(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_correlated_overlap`]
+    pub fn set_advanced_blend_correlated_overlap(mut self, value: bool) -> Self {
         self.advanced_blend_correlated_overlap = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::advanced_blend_all_operations`]
-    pub fn set_advanced_blend_all_operations(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::advanced_blend_all_operations`]
+    pub fn set_advanced_blend_all_operations(mut self, value: bool) -> Self {
         self.advanced_blend_all_operations = value as u8 as u32;
         self
     }
@@ -839,17 +839,17 @@ impl<'lt> PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
         self.dst_premultiplied
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::src_premultiplied`]
-    pub fn set_src_premultiplied_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_src_premultiplied_raw(mut self, value: Bool32) -> Self {
         self.src_premultiplied = value;
         self
     }
     ///Sets the raw value of [`Self::dst_premultiplied`]
-    pub fn set_dst_premultiplied_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_dst_premultiplied_raw(mut self, value: Bool32) -> Self {
         self.dst_premultiplied = value;
         self
     }
@@ -920,31 +920,31 @@ impl<'lt> PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
     pub fn blend_overlap_mut(&mut self) -> &mut BlendOverlapEXT {
         &mut self.blend_overlap
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_premultiplied`]
-    pub fn set_src_premultiplied(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::src_premultiplied`]
+    pub fn set_src_premultiplied(mut self, value: bool) -> Self {
         self.src_premultiplied = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::dst_premultiplied`]
-    pub fn set_dst_premultiplied(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::dst_premultiplied`]
+    pub fn set_dst_premultiplied(mut self, value: bool) -> Self {
         self.dst_premultiplied = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::blend_overlap`]
+    ///Sets the value of [`Self::blend_overlap`]
     pub fn set_blend_overlap(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_blend_operation_advanced::BlendOverlapEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.blend_overlap = value;
         self
     }

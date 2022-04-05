@@ -95,7 +95,7 @@ pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static CStr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt> {
@@ -123,20 +123,20 @@ impl<'lt> Default for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<
 }
 impl<'lt> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shader_subgroup_uniform_control_flow`]
     pub fn shader_subgroup_uniform_control_flow_raw(&self) -> Bool32 {
         self.shader_subgroup_uniform_control_flow
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_subgroup_uniform_control_flow`]
-    pub fn set_shader_subgroup_uniform_control_flow_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_subgroup_uniform_control_flow_raw(mut self, value: Bool32) -> Self {
         self.shader_subgroup_uniform_control_flow = value;
         self
     }
@@ -184,18 +184,18 @@ impl<'lt> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_subgroup_uniform_control_flow`]
-    pub fn set_shader_subgroup_uniform_control_flow(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_subgroup_uniform_control_flow`]
+    pub fn set_shader_subgroup_uniform_control_flow(mut self, value: bool) -> Self {
         self.shader_subgroup_uniform_control_flow = value as u8 as u32;
         self
     }

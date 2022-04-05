@@ -85,7 +85,7 @@ pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceYcbcrImageArraysFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt> {
@@ -114,20 +114,20 @@ impl<'lt> Default for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::ycbcr_image_arrays`]
     pub fn ycbcr_image_arrays_raw(&self) -> Bool32 {
         self.ycbcr_image_arrays
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::ycbcr_image_arrays`]
-    pub fn set_ycbcr_image_arrays_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ycbcr_image_arrays_raw(mut self, value: Bool32) -> Self {
         self.ycbcr_image_arrays = value;
         self
     }
@@ -175,18 +175,18 @@ impl<'lt> PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::ycbcr_image_arrays`]
-    pub fn set_ycbcr_image_arrays(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ycbcr_image_arrays`]
+    pub fn set_ycbcr_image_arrays(mut self, value: bool) -> Self {
         self.ycbcr_image_arrays = value as u8 as u32;
         self
     }

@@ -51,19 +51,25 @@ pub const EXT_HOST_QUERY_RESET_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_HOST_QUERY_RESET_EXTENSION_NAME")]
 pub const EXT_HOST_QUERY_RESET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_host_query_reset");
-///The V-table of [`Device`] for functions from VK_EXT_host_query_reset
+///The V-table of [`Device`] for functions from `VK_EXT_host_query_reset`
 pub struct DeviceExtHostQueryResetVTable {
     ///See [`FNResetQueryPool`] for more information.
     pub reset_query_pool: FNResetQueryPool,
 }
 impl DeviceExtHostQueryResetVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
-            reset_query_pool: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkResetQueryPoolEXT"))) },
+            reset_query_pool: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkResetQueryPoolEXT").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::reset_query_pool`]. See [`FNResetQueryPool`] for more information.

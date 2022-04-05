@@ -127,6 +127,7 @@ use crate::{
     vulkan1_0::{
         BaseInStructure, BaseOutStructure, Bool32, Device, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
     },
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -169,8 +170,8 @@ pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///## Valid Usage
 /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
 ///   **must**  be a valid [`SurfaceKHR`] handle
-/// - If `pSurfaceInfo->surface` is not [`crate::utils::Handle::null`], it  **must**  be supported
-///   by [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+/// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
+///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
 ///   equivalent platform-specific mechanism
 ///
 ///## Valid Usage (Implicit)
@@ -484,7 +485,7 @@ impl FullScreenExclusiveEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceFullScreenExclusiveInfoEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceFullScreenExclusiveInfoEXT<'lt> {
@@ -511,11 +512,11 @@ impl<'lt> Default for SurfaceFullScreenExclusiveInfoEXT<'lt> {
 }
 impl<'lt> SurfaceFullScreenExclusiveInfoEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -549,21 +550,21 @@ impl<'lt> SurfaceFullScreenExclusiveInfoEXT<'lt> {
     pub fn full_screen_exclusive_mut(&mut self) -> &mut FullScreenExclusiveEXT {
         &mut self.full_screen_exclusive
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::full_screen_exclusive`]
+    ///Sets the value of [`Self::full_screen_exclusive`]
     pub fn set_full_screen_exclusive(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_full_screen_exclusive::FullScreenExclusiveEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.full_screen_exclusive = value;
         self
     }
@@ -637,12 +638,12 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
         &self.hmonitor
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::hmonitor`]
-    pub fn set_hmonitor_raw(&mut self, value: HMONITOR) -> &mut Self {
+    pub fn set_hmonitor_raw(mut self, value: HMONITOR) -> Self {
         self.hmonitor = value;
         self
     }
@@ -658,8 +659,8 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::hmonitor`]
-    pub fn hmonitor(&self) -> &HMONITOR {
-        &self.hmonitor
+    pub fn hmonitor(&self) -> HMONITOR {
+        self.hmonitor
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -669,18 +670,18 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
     pub fn hmonitor_mut(&mut self) -> &mut HMONITOR {
         &mut self.hmonitor
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::hmonitor`]
-    pub fn set_hmonitor(&mut self, value: crate::native::HMONITOR) -> &mut Self {
+    ///Sets the value of [`Self::hmonitor`]
+    pub fn set_hmonitor(mut self, value: crate::native::HMONITOR) -> Self {
         self.hmonitor = value;
         self
     }
@@ -726,7 +727,7 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilitiesFullScreenExclusiveEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
@@ -752,20 +753,20 @@ impl<'lt> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
 }
 impl<'lt> SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::full_screen_exclusive_supported`]
     pub fn full_screen_exclusive_supported_raw(&self) -> Bool32 {
         self.full_screen_exclusive_supported
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::full_screen_exclusive_supported`]
-    pub fn set_full_screen_exclusive_supported_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_full_screen_exclusive_supported_raw(mut self, value: Bool32) -> Self {
         self.full_screen_exclusive_supported = value;
         self
     }
@@ -813,38 +814,390 @@ impl<'lt> SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::full_screen_exclusive_supported`]
-    pub fn set_full_screen_exclusive_supported(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::full_screen_exclusive_supported`]
+    pub fn set_full_screen_exclusive_supported(mut self, value: bool) -> Self {
         self.full_screen_exclusive_supported = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_EXT_full_screen_exclusive
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfacePresentModes2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModes2EXT.html) - Query supported presentation modes
+    ///# C Specifications
+    ///Alternatively, to query the supported presentation modes for a surface
+    ///combined with select other fixed swapchain creation parameters, call:
+    ///```c
+    ///// Provided by VK_EXT_full_screen_exclusive
+    ///VkResult vkGetPhysicalDeviceSurfacePresentModes2EXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    const VkPhysicalDeviceSurfaceInfo2KHR*      pSurfaceInfo,
+    ///    uint32_t*                                   pPresentModeCount,
+    ///    VkPresentModeKHR*                           pPresentModes);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`p_surface_info`] is a pointer to a [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    ///   describing the surface and other fixed parameters that would be consumed by
+    ///   [`create_swapchain_khr`].
+    /// - [`p_present_mode_count`] is a pointer to an integer related to the number of presentation
+    ///   modes available or queried, as described below.
+    /// - [`p_present_modes`] is either `NULL` or a pointer to an array of [`PresentModeKHR`]
+    ///   values, indicating the supported presentation modes.
+    ///# Description
+    ///[`get_physical_device_surface_present_modes2_ext`] behaves similarly to
+    ///[`get_physical_device_surface_present_modes_khr`], with the ability to specify
+    ///extended inputs via chained input structures.
+    ///## Valid Usage
+    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
+    ///   **must**  be a valid [`SurfaceKHR`] handle
+    /// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
+    ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+    ///   equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_surface_info`] **must**  be a valid pointer to a valid
+    ///   [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    /// - [`p_present_mode_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_present_mode_count`] is not `0`, and [`p_present_modes`] is
+    ///   not `NULL`, [`p_present_modes`] **must**  be a valid pointer to an array of
+    ///   [`p_present_mode_count`][`PresentModeKHR`] values
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`PhysicalDevice`]
+    /// - [`PhysicalDeviceSurfaceInfo2KHR`]
+    /// - [`PresentModeKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfacePresentModes2EXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_present_modes2_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
+        p_present_mode_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PresentModeKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_full_screen_exclusive()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_present_modes2_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_full_screen_exclusive()
+            .unwrap_unchecked()
+            .get_physical_device_surface_present_modes2_ext()
+            .unwrap_unchecked();
+        let mut p_present_mode_count = match p_present_mode_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_present_modes =
+            SmallVec::<PresentModeKHR>::from_elem(Default::default(), p_present_mode_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
+            &mut p_present_mode_count,
+            p_present_modes.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_present_modes)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetDeviceGroupSurfacePresentModes2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceGroupSurfacePresentModes2EXT.html) - Query device group present capabilities for a surface
+    ///# C Specifications
+    ///Alternatively, to query the supported device group presentation modes for a
+    ///surface combined with select other fixed swapchain creation parameters,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_1 with VK_EXT_full_screen_exclusive, VK_KHR_device_group with
+    ///// VK_EXT_full_screen_exclusive
+    ///VkResult vkGetDeviceGroupSurfacePresentModes2EXT(
+    ///    VkDevice                                    device,
+    ///    const VkPhysicalDeviceSurfaceInfo2KHR*      pSurfaceInfo,
+    ///    VkDeviceGroupPresentModeFlagsKHR*           pModes);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device.
+    /// - [`p_surface_info`] is a pointer to a [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    ///   describing the surface and other fixed parameters that would be consumed by
+    ///   [`create_swapchain_khr`].
+    /// - [`p_modes`] is a pointer to a [`DeviceGroupPresentModeFlagsKHR`] in which the supported
+    ///   device group present modes for the surface are returned.
+    ///# Description
+    ///[`get_device_group_surface_present_modes2_ext`] behaves similarly to
+    ///[`get_device_group_surface_present_modes_khr`], with the ability to specify
+    ///extended inputs via chained input structures.
+    ///## Valid Usage
+    /// - `pSurfaceInfo->surface` **must**  be supported by all physical devices associated with
+    ///   [`device`], as reported by [`get_physical_device_surface_support_khr`] or an equivalent
+    ///   platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_surface_info`] **must**  be a valid pointer to a valid
+    ///   [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    /// - [`p_modes`] **must**  be a valid pointer to a [`DeviceGroupPresentModeFlagsKHR`] value
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`VK_KHR_device_group`]
+    /// - [`crate::vulkan1_1`]
+    /// - [`Device`]
+    /// - [`DeviceGroupPresentModeFlagsKHR`]
+    /// - [`PhysicalDeviceSurfaceInfo2KHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDeviceGroupSurfacePresentModes2EXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_device_group_surface_present_modes2_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
+        p_modes: &mut DeviceGroupPresentModeFlagsKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_full_screen_exclusive()
+            .expect("extension/version not loaded")
+            .get_device_group_surface_present_modes2_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_full_screen_exclusive()
+            .unwrap_unchecked()
+            .get_device_group_surface_present_modes2_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
+            p_modes as *mut DeviceGroupPresentModeFlagsKHR,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkAcquireFullScreenExclusiveModeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireFullScreenExclusiveModeEXT.html) - Acquire full-screen exclusive mode for a swapchain
+    ///# C Specifications
+    ///To acquire exclusive full-screen access for a swapchain, call:
+    ///```c
+    ///// Provided by VK_EXT_full_screen_exclusive
+    ///VkResult vkAcquireFullScreenExclusiveModeEXT(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swapchain`].
+    /// - [`swapchain`] is the swapchain to acquire exclusive full-screen access for.
+    ///# Description
+    ///## Valid Usage
+    /// - [`swapchain`] **must**  not be in the retired state
+    /// - [`swapchain`] **must**  be a swapchain created with a
+    ///   [`SurfaceFullScreenExclusiveInfoEXT`] structure, with `fullScreenExclusive` set to
+    ///   `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`
+    /// - [`swapchain`] **must**  not currently have exclusive full-screen access
+    ///A return value of `VK_SUCCESS` indicates that the [`swapchain`]
+    ///successfully acquired exclusive full-screen access.
+    ///The swapchain will retain this exclusivity until either the application
+    ///releases exclusive full-screen access with
+    ///[`release_full_screen_exclusive_mode_ext`], destroys the swapchain, or if any
+    ///of the swapchain commands return
+    ///`VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` indicating that the mode
+    ///was lost because of platform-specific changes.If the swapchain was unable to acquire
+    /// exclusive full-screen access to the
+    ///display then `VK_ERROR_INITIALIZATION_FAILED` is returned.
+    ///An application  **can**  attempt to acquire exclusive full-screen access again
+    ///for the same swapchain even if this command fails, or if
+    ///`VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` has been returned by a
+    ///swapchain command.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`Device`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkAcquireFullScreenExclusiveModeEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn acquire_full_screen_exclusive_mode_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_full_screen_exclusive()
+            .expect("extension/version not loaded")
+            .acquire_full_screen_exclusive_mode_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_full_screen_exclusive()
+            .unwrap_unchecked()
+            .acquire_full_screen_exclusive_mode_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), swapchain);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkReleaseFullScreenExclusiveModeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkReleaseFullScreenExclusiveModeEXT.html) - Release full-screen exclusive mode from a swapchain
+    ///# C Specifications
+    ///To release exclusive full-screen access from a swapchain, call:
+    ///```c
+    ///// Provided by VK_EXT_full_screen_exclusive
+    ///VkResult vkReleaseFullScreenExclusiveModeEXT(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swapchain`].
+    /// - [`swapchain`] is the swapchain to release exclusive full-screen access from.
+    ///# Description
+    ///## Valid Usage
+    /// - [`swapchain`] **must**  not be in the retired state
+    /// - [`swapchain`] **must**  be a swapchain created with a
+    ///   [`SurfaceFullScreenExclusiveInfoEXT`] structure, with `fullScreenExclusive` set to
+    ///   `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`
+    ///# Related
+    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`Device`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkReleaseFullScreenExclusiveModeEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn release_full_screen_exclusive_mode_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_full_screen_exclusive()
+            .expect("extension/version not loaded")
+            .release_full_screen_exclusive_mode_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_full_screen_exclusive()
+            .unwrap_unchecked()
+            .release_full_screen_exclusive_mode_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), swapchain);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_full_screen_exclusive`
 pub struct InstanceExtFullScreenExclusiveVTable {
     ///See [`FNGetPhysicalDeviceSurfacePresentModes2Ext`] for more information.
     pub get_physical_device_surface_present_modes2_ext: FNGetPhysicalDeviceSurfacePresentModes2Ext,
 }
 impl InstanceExtFullScreenExclusiveVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_surface_present_modes2_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceSurfacePresentModes2EXT"),
+                    crate::cstr!("vkGetPhysicalDeviceSurfacePresentModes2EXT").as_ptr(),
                 ))
             },
         }
@@ -855,7 +1208,7 @@ impl InstanceExtFullScreenExclusiveVTable {
         self.get_physical_device_surface_present_modes2_ext
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_full_screen_exclusive
+///The V-table of [`Device`] for functions from `VK_EXT_full_screen_exclusive`
 pub struct DeviceExtFullScreenExclusiveVTable {
     ///See [`FNGetDeviceGroupSurfacePresentModes2Ext`] for more information.
     pub get_device_group_surface_present_modes2_ext: FNGetDeviceGroupSurfacePresentModes2Ext,
@@ -866,22 +1219,32 @@ pub struct DeviceExtFullScreenExclusiveVTable {
 }
 impl DeviceExtFullScreenExclusiveVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_device_group_surface_present_modes2_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceGroupSurfacePresentModes2EXT"),
+                    crate::cstr!("vkGetDeviceGroupSurfacePresentModes2EXT").as_ptr(),
                 ))
             },
             acquire_full_screen_exclusive_mode_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireFullScreenExclusiveModeEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkAcquireFullScreenExclusiveModeEXT").as_ptr(),
+                ))
             },
             release_full_screen_exclusive_mode_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkReleaseFullScreenExclusiveModeEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkReleaseFullScreenExclusiveModeEXT").as_ptr(),
+                ))
             },
         }
     }

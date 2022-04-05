@@ -170,10 +170,12 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    entry::Entry,
     extensions::khr_display::SurfaceTransformFlagsKHR,
     vulkan1_0::{
         AllocationCallbacks, Bool32, Extent2D, Format, ImageUsageFlags, Instance, PhysicalDevice, VulkanResultCodes,
     },
+    AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -182,6 +184,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -219,8 +222,8 @@ pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surfa
 ///
 ///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
-/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
-///   [`SurfaceKHR`] handle
+/// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid [`SurfaceKHR`]
+///   handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - If [`surface`] is a valid handle, it  **must**  have been created, allocated, or retrieved
@@ -405,18 +408,18 @@ pub type FNGetPhysicalDeviceSurfaceCapabilitiesKhr = Option<
 ///format.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
 ///returned in [`p_surface_formats`] will be identical for every valid surface
 ///created on this physical device, and so [`surface`] **can**  be
-///[`crate::utils::Handle::null`].
+///[`crate::Handle::null`].
 ///## Valid Usage
 /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
 ///   valid [`SurfaceKHR`] handle
-/// - If [`surface`] is not [`crate::utils::Handle::null`], it  **must**  be supported by
+/// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
 ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
 ///   equivalent platform-specific mechanism
 ///
 ///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
-/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
-///   [`SurfaceKHR`] handle
+/// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid [`SurfaceKHR`]
+///   handle
 /// - [`p_surface_format_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_surface_format_count`] is not `0`, and [`p_surface_formats`] is
 ///   not `NULL`, [`p_surface_formats`] **must**  be a valid pointer to an array of
@@ -484,18 +487,18 @@ pub type FNGetPhysicalDeviceSurfaceFormatsKhr = Option<
 ///returned.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
 ///returned in [`p_present_modes`] will be identical for every valid surface
 ///created on this physical device, and so [`surface`] **can**  be
-///[`crate::utils::Handle::null`].
+///[`crate::Handle::null`].
 ///## Valid Usage
 /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
 ///   valid [`SurfaceKHR`] handle
-/// - If [`surface`] is not [`crate::utils::Handle::null`], it  **must**  be supported by
+/// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
 ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
 ///   equivalent platform-specific mechanism
 ///
 ///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
-/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
-///   [`SurfaceKHR`] handle
+/// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid [`SurfaceKHR`]
+///   handle
 /// - [`p_present_mode_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_present_mode_count`] is not `0`, and [`p_present_modes`] is not
 ///   `NULL`, [`p_present_modes`] **must**  be a valid pointer to an array of
@@ -796,7 +799,7 @@ impl PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.8443142857142858em;" class="vlist"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span style="height:3.30003em;vertical-align:-1.400015em;" class="strut"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
 /// - [`VK_KHR_surface`]
@@ -1748,62 +1751,56 @@ impl SurfaceCapabilitiesKHR {
     pub fn supported_usage_flags_mut(&mut self) -> &mut ImageUsageFlags {
         &mut self.supported_usage_flags
     }
-    ///Sets the raw value of [`Self::min_image_count`]
-    pub fn set_min_image_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_image_count`]
+    pub fn set_min_image_count(mut self, value: u32) -> Self {
         self.min_image_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_image_count`]
-    pub fn set_max_image_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_image_count`]
+    pub fn set_max_image_count(mut self, value: u32) -> Self {
         self.max_image_count = value;
         self
     }
-    ///Sets the raw value of [`Self::current_extent`]
-    pub fn set_current_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::current_extent`]
+    pub fn set_current_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.current_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::min_image_extent`]
-    pub fn set_min_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::min_image_extent`]
+    pub fn set_min_image_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.min_image_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::max_image_extent`]
-    pub fn set_max_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::max_image_extent`]
+    pub fn set_max_image_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.max_image_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::max_image_array_layers`]
-    pub fn set_max_image_array_layers(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_image_array_layers`]
+    pub fn set_max_image_array_layers(mut self, value: u32) -> Self {
         self.max_image_array_layers = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_transforms`]
-    pub fn set_supported_transforms(
-        &mut self,
-        value: crate::extensions::khr_display::SurfaceTransformFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::supported_transforms`]
+    pub fn set_supported_transforms(mut self, value: crate::extensions::khr_display::SurfaceTransformFlagsKHR) -> Self {
         self.supported_transforms = value;
         self
     }
-    ///Sets the raw value of [`Self::current_transform`]
-    pub fn set_current_transform(
-        &mut self,
-        value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::current_transform`]
+    pub fn set_current_transform(mut self, value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR) -> Self {
         self.current_transform = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_composite_alpha`]
+    ///Sets the value of [`Self::supported_composite_alpha`]
     pub fn set_supported_composite_alpha(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_surface::CompositeAlphaFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.supported_composite_alpha = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_usage_flags`]
-    pub fn set_supported_usage_flags(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+    ///Sets the value of [`Self::supported_usage_flags`]
+    pub fn set_supported_usage_flags(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
         self.supported_usage_flags = value;
         self
     }
@@ -1873,15 +1870,518 @@ impl SurfaceFormatKHR {
     pub fn color_space_mut(&mut self) -> &mut ColorSpaceKHR {
         &mut self.color_space
     }
-    ///Sets the raw value of [`Self::format`]
-    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::format`]
+    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.format = value;
         self
     }
-    ///Sets the raw value of [`Self::color_space`]
-    pub fn set_color_space(&mut self, value: crate::extensions::khr_surface::ColorSpaceKHR) -> &mut Self {
+    ///Sets the value of [`Self::color_space`]
+    pub fn set_color_space(mut self, value: crate::extensions::khr_surface::ColorSpaceKHR) -> Self {
         self.color_space = value;
         self
+    }
+}
+impl Instance {
+    ///[vkDestroySurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroySurfaceKHR.html) - Destroy a VkSurfaceKHR object
+    ///# C Specifications
+    ///To destroy a [`SurfaceKHR`] object, call:
+    ///```c
+    ///// Provided by VK_KHR_surface
+    ///void vkDestroySurfaceKHR(
+    ///    VkInstance                                  instance,
+    ///    VkSurfaceKHR                                surface,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance used to create the surface.
+    /// - [`surface`] is the surface to destroy.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    ///# Description
+    ///Destroying a [`SurfaceKHR`] merely severs the connection between Vulkan
+    ///and the native surface, and does not imply destroying the native surface,
+    ///closing a window, or similar behavior.
+    ///## Valid Usage
+    /// - All [`SwapchainKHR`] objects created for [`surface`] **must**  have been destroyed prior
+    ///   to destroying [`surface`]
+    /// - If [`AllocationCallbacks`] were provided when [`surface`] was created, a compatible set of
+    ///   callbacks  **must**  be provided here
+    /// - If no [`AllocationCallbacks`] were provided when [`surface`] was created, [`p_allocator`]
+    ///   **must**  be `NULL`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid
+    ///   [`SurfaceKHR`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - If [`surface`] is a valid handle, it  **must**  have been created, allocated, or retrieved
+    ///   from [`instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`surface`] **must**  be externally synchronized
+    ///# Related
+    /// - [`VK_KHR_surface`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Instance`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroySurfaceKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_surface_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        surface: Option<SurfaceKHR>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_surface()
+            .expect("extension/version not loaded")
+            .destroy_surface_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_surface()
+            .unwrap_unchecked()
+            .destroy_surface_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            surface.unwrap_or_default(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfaceSupportKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html) - Query if presentation is supported
+    ///# C Specifications
+    ///To determine whether a queue family of a physical device supports
+    ///presentation to a given surface, call:
+    ///```c
+    ///// Provided by VK_KHR_surface
+    ///VkResult vkGetPhysicalDeviceSurfaceSupportKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t                                    queueFamilyIndex,
+    ///    VkSurfaceKHR                                surface,
+    ///    VkBool32*                                   pSupported);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device.
+    /// - [`queue_family_index`] is the queue family.
+    /// - [`surface`] is the surface.
+    /// - [`p_supported`] is a pointer to a [`Bool32`], which is set to [`TRUE`] to indicate
+    ///   support, and [`FALSE`] otherwise.
+    ///# Description
+    ///## Valid Usage
+    /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
+    ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`p_supported`] **must**  be a valid pointer to a [`Bool32`] value
+    /// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_surface`]
+    /// - [`Bool32`]
+    /// - [`PhysicalDevice`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfaceSupportKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_support_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        queue_family_index: Option<u32>,
+        surface: SurfaceKHR,
+    ) -> VulkanResult<bool> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_support_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .unwrap_unchecked()
+            .get_physical_device_surface_support_khr()
+            .unwrap_unchecked();
+        let mut p_supported: u32 = 0;
+        let _return = _function(
+            self.as_raw(),
+            queue_family_index.unwrap_or_default() as _,
+            surface,
+            &mut p_supported,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_supported != 0),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfaceCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html) - Query surface capabilities
+    ///# C Specifications
+    ///To query the basic capabilities of a surface, needed in order to create a
+    ///swapchain, call:
+    ///```c
+    ///// Provided by VK_KHR_surface
+    ///VkResult vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkSurfaceKHR                                surface,
+    ///    VkSurfaceCapabilitiesKHR*                   pSurfaceCapabilities);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`surface`] is the surface that will be associated with the swapchain.
+    /// - [`p_surface_capabilities`] is a pointer to a [`SurfaceCapabilitiesKHR`] structure in which
+    ///   the capabilities are returned.
+    ///# Description
+    ///## Valid Usage
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`surface`] **must**  be supported by [`physical_device`], as reported by
+    ///   [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`p_surface_capabilities`] **must**  be a valid pointer to a [`SurfaceCapabilitiesKHR`]
+    ///   structure
+    /// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_surface`]
+    /// - [`PhysicalDevice`]
+    /// - [`SurfaceCapabilitiesKHR`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilitiesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_capabilities_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        surface: SurfaceKHR,
+    ) -> VulkanResult<SurfaceCapabilitiesKHR> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_capabilities_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .unwrap_unchecked()
+            .get_physical_device_surface_capabilities_khr()
+            .unwrap_unchecked();
+        let mut p_surface_capabilities = MaybeUninit::<SurfaceCapabilitiesKHR>::uninit();
+        let _return = _function(self.as_raw(), surface, p_surface_capabilities.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_surface_capabilities.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfaceFormatsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html) - Query color formats supported by surface
+    ///# C Specifications
+    ///To query the supported swapchain format-color space pairs for a surface,
+    ///call:
+    ///```c
+    ///// Provided by VK_KHR_surface
+    ///VkResult vkGetPhysicalDeviceSurfaceFormatsKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkSurfaceKHR                                surface,
+    ///    uint32_t*                                   pSurfaceFormatCount,
+    ///    VkSurfaceFormatKHR*                         pSurfaceFormats);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`surface`] is the surface that will be associated with the swapchain.
+    /// - [`p_surface_format_count`] is a pointer to an integer related to the number of format
+    ///   pairs available or queried, as described below.
+    /// - [`p_surface_formats`] is either `NULL` or a pointer to an array of [`SurfaceFormatKHR`]
+    ///   structures.
+    ///# Description
+    ///If [`p_surface_formats`] is `NULL`, then the number of format pairs
+    ///supported for the given [`surface`] is returned in
+    ///[`p_surface_format_count`].
+    ///Otherwise, [`p_surface_format_count`] **must**  point to a variable set by the
+    ///user to the number of elements in the [`p_surface_formats`] array, and on
+    ///return the variable is overwritten with the number of structures actually
+    ///written to [`p_surface_formats`].
+    ///If the value of [`p_surface_format_count`] is less than the number of format
+    ///pairs supported, at most [`p_surface_format_count`] structures will be
+    ///written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available format pairs were
+    ///returned.The number of format pairs supported  **must**  be greater than or equal to 1.
+    ///[`p_surface_formats`] **must**  not contain an entry whose value for
+    ///`format` is `VK_FORMAT_UNDEFINED`.If [`p_surface_formats`] includes an entry whose value for
+    /// `colorSpace`
+    ///is `VK_COLOR_SPACE_SRGB_NONLINEAR_KHR` and whose value for `format`
+    ///is a UNORM (or SRGB) format and the corresponding SRGB (or UNORM) format is
+    ///a color renderable format for `VK_IMAGE_TILING_OPTIMAL`, then
+    ///[`p_surface_formats`] **must**  also contain an entry with the same value for
+    ///`colorSpace` and `format` equal to the corresponding SRGB (or UNORM)
+    ///format.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+    ///returned in [`p_surface_formats`] will be identical for every valid surface
+    ///created on this physical device, and so [`surface`] **can**  be
+    ///[`crate::Handle::null`].
+    ///## Valid Usage
+    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**
+    ///   be a valid [`SurfaceKHR`] handle
+    /// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
+    ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+    ///   equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid
+    ///   [`SurfaceKHR`] handle
+    /// - [`p_surface_format_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_surface_format_count`] is not `0`, and
+    ///   [`p_surface_formats`] is not `NULL`, [`p_surface_formats`] **must**  be a valid pointer to
+    ///   an array of [`p_surface_format_count`][`SurfaceFormatKHR`] structures
+    /// - Both of [`physical_device`], and [`surface`] that are valid handles of non-ignored
+    ///   parameters  **must**  have been created, allocated, or retrieved from the same
+    ///   [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_surface`]
+    /// - [`PhysicalDevice`]
+    /// - [`SurfaceFormatKHR`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfaceFormatsKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_formats_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        surface: Option<SurfaceKHR>,
+        p_surface_format_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<SurfaceFormatKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_formats_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .unwrap_unchecked()
+            .get_physical_device_surface_formats_khr()
+            .unwrap_unchecked();
+        let mut p_surface_format_count = match p_surface_format_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), surface.unwrap_or_default(), &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_surface_formats =
+            SmallVec::<SurfaceFormatKHR>::from_elem(Default::default(), p_surface_format_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            surface.unwrap_or_default(),
+            &mut p_surface_format_count,
+            p_surface_formats.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_surface_formats)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfacePresentModesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html) - Query supported presentation modes
+    ///# C Specifications
+    ///To query the supported presentation modes for a surface, call:
+    ///```c
+    ///// Provided by VK_KHR_surface
+    ///VkResult vkGetPhysicalDeviceSurfacePresentModesKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkSurfaceKHR                                surface,
+    ///    uint32_t*                                   pPresentModeCount,
+    ///    VkPresentModeKHR*                           pPresentModes);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`surface`] is the surface that will be associated with the swapchain.
+    /// - [`p_present_mode_count`] is a pointer to an integer related to the number of presentation
+    ///   modes available or queried, as described below.
+    /// - [`p_present_modes`] is either `NULL` or a pointer to an array of [`PresentModeKHR`]
+    ///   values, indicating the supported presentation modes.
+    ///# Description
+    ///If [`p_present_modes`] is `NULL`, then the number of presentation modes
+    ///supported for the given [`surface`] is returned in
+    ///[`p_present_mode_count`].
+    ///Otherwise, [`p_present_mode_count`] **must**  point to a variable set by the user
+    ///to the number of elements in the [`p_present_modes`] array, and on return
+    ///the variable is overwritten with the number of values actually written to
+    ///[`p_present_modes`].
+    ///If the value of [`p_present_mode_count`] is less than the number of
+    ///presentation modes supported, at most [`p_present_mode_count`] values will be
+    ///written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available modes were
+    ///returned.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+    ///returned in [`p_present_modes`] will be identical for every valid surface
+    ///created on this physical device, and so [`surface`] **can**  be
+    ///[`crate::Handle::null`].
+    ///## Valid Usage
+    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**
+    ///   be a valid [`SurfaceKHR`] handle
+    /// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
+    ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+    ///   equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid
+    ///   [`SurfaceKHR`] handle
+    /// - [`p_present_mode_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_present_mode_count`] is not `0`, and [`p_present_modes`] is
+    ///   not `NULL`, [`p_present_modes`] **must**  be a valid pointer to an array of
+    ///   [`p_present_mode_count`][`PresentModeKHR`] values
+    /// - Both of [`physical_device`], and [`surface`] that are valid handles of non-ignored
+    ///   parameters  **must**  have been created, allocated, or retrieved from the same
+    ///   [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_surface`]
+    /// - [`PhysicalDevice`]
+    /// - [`PresentModeKHR`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfacePresentModesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_present_modes_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        surface: Option<SurfaceKHR>,
+        p_present_mode_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PresentModeKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_present_modes_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_surface()
+            .unwrap_unchecked()
+            .get_physical_device_surface_present_modes_khr()
+            .unwrap_unchecked();
+        let mut p_present_mode_count = match p_present_mode_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), surface.unwrap_or_default(), &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_present_modes =
+            SmallVec::<PresentModeKHR>::from_elem(Default::default(), p_present_mode_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            surface.unwrap_or_default(),
+            &mut p_present_mode_count,
+            p_present_modes.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_present_modes)
+            },
+            e => VulkanResult::Err(e),
+        }
     }
 }
 ///[VkSurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceKHR.html) - Opaque handle to a surface object
@@ -1955,7 +2455,33 @@ impl Default for SurfaceKHR {
         Self::null()
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_surface
+impl Handle for SurfaceKHR {
+    type Parent<'a> = Unique<'a, Instance>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.instance().destroy_surface_khr(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, SurfaceKHR> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent()
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_surface`
 pub struct InstanceKhrSurfaceVTable {
     ///See [`FNDestroySurfaceKhr`] for more information.
     pub destroy_surface_khr: FNDestroySurfaceKhr,
@@ -1970,28 +2496,40 @@ pub struct InstanceKhrSurfaceVTable {
 }
 impl InstanceKhrSurfaceVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
-            destroy_surface_khr: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroySurfaceKHR"))) },
+            destroy_surface_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroySurfaceKHR").as_ptr()))
+            },
             get_physical_device_surface_support_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceSurfaceSupportKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceSupportKHR").as_ptr(),
+                ))
             },
             get_physical_device_surface_capabilities_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilitiesKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilitiesKHR").as_ptr(),
                 ))
             },
             get_physical_device_surface_formats_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceSurfaceFormatsKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceFormatsKHR").as_ptr(),
+                ))
             },
             get_physical_device_surface_present_modes_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceSurfacePresentModesKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceSurfacePresentModesKHR").as_ptr(),
                 ))
             },
         }

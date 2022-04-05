@@ -245,11 +245,22 @@ impl<'a> Field<'a> {
         // get the name as an identifier of the field
         let name = self.as_ident();
 
-        // get the type of the field
-        let ty = self.ty().as_ty(source, Some(imports)).0;
-
         // generate the documentation
         let doc = format!("Gets the value of [`Self::{}`]", self.name());
+
+        if self.ty().is_opaque(source) {
+            let (ty, _) = self.ty().as_raw_ty(source, Some(imports), false);
+
+            return Some(quote! {
+                #[doc = #doc]
+                pub fn #name(&self) -> #ty {
+                    self.#name
+                }
+            });
+        }
+
+        // get the type of the field
+        let ty = self.ty().as_ty(source, Some(imports)).0;
 
         // unsafe keyword if needed
         let is_unsafe = !self.ty().is_safe_conversion();
@@ -401,7 +412,7 @@ impl<'a> Field<'a> {
 
         Some(quote! {
             #[doc = #doc]
-            pub fn #ident(&mut self, value: #ty) -> &mut Self {
+            pub fn #ident(mut self, value: #ty) -> Self {
                 self.#name = value;
 
                 self
@@ -416,7 +427,21 @@ impl<'a> Field<'a> {
         let ident = Ident::new(&setter_name, Span::call_site());
 
         // generate the documentation
-        let doc = format!("Sets the raw value of [`Self::{}`]", self.name());
+        let doc = format!("Sets the value of [`Self::{}`]", self.name());
+
+        if self.ty().is_opaque(source) {
+            let (ty, _) = self.ty().as_raw_ty(source, None, false);
+            let name = self.as_ident();
+
+            return Some(quote! {
+                #[doc = #doc]
+                pub fn #ident(mut self, value: #ty) -> Self {
+                    self.#name = value;
+
+                    self
+                }
+            });
+        }
 
         let len_field: Option<Cow<'a, str>> = if let Ty::Slice(_, _, len) = self.ty() {
             let vars = len.variables();
@@ -440,7 +465,7 @@ impl<'a> Field<'a> {
 
         Some(quote! {
             #[doc = #doc]
-            pub fn #ident(&mut self, #(#fields),*) -> &mut Self {
+            pub fn #ident(mut self, #(#fields),*) -> Self {
                 #tokens
 
                 self

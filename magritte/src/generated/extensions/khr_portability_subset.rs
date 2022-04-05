@@ -164,7 +164,7 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
@@ -271,8 +271,8 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::constant_alpha_color_blend_factors`]
     pub fn constant_alpha_color_blend_factors_raw(&self) -> Bool32 {
@@ -335,82 +335,82 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
         self.vertex_attribute_access_beyond_stride
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::constant_alpha_color_blend_factors`]
-    pub fn set_constant_alpha_color_blend_factors_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_constant_alpha_color_blend_factors_raw(mut self, value: Bool32) -> Self {
         self.constant_alpha_color_blend_factors = value;
         self
     }
     ///Sets the raw value of [`Self::events`]
-    pub fn set_events_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_events_raw(mut self, value: Bool32) -> Self {
         self.events = value;
         self
     }
     ///Sets the raw value of [`Self::image_view_format_reinterpretation`]
-    pub fn set_image_view_format_reinterpretation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_image_view_format_reinterpretation_raw(mut self, value: Bool32) -> Self {
         self.image_view_format_reinterpretation = value;
         self
     }
     ///Sets the raw value of [`Self::image_view_format_swizzle`]
-    pub fn set_image_view_format_swizzle_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_image_view_format_swizzle_raw(mut self, value: Bool32) -> Self {
         self.image_view_format_swizzle = value;
         self
     }
     ///Sets the raw value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn set_image_view_2_d_on_3_d_image_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_image_view_2_d_on_3_d_image_raw(mut self, value: Bool32) -> Self {
         self.image_view_2_d_on_3_d_image = value;
         self
     }
     ///Sets the raw value of [`Self::multisample_array_image`]
-    pub fn set_multisample_array_image_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_multisample_array_image_raw(mut self, value: Bool32) -> Self {
         self.multisample_array_image = value;
         self
     }
     ///Sets the raw value of [`Self::mutable_comparison_samplers`]
-    pub fn set_mutable_comparison_samplers_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_mutable_comparison_samplers_raw(mut self, value: Bool32) -> Self {
         self.mutable_comparison_samplers = value;
         self
     }
     ///Sets the raw value of [`Self::point_polygons`]
-    pub fn set_point_polygons_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_point_polygons_raw(mut self, value: Bool32) -> Self {
         self.point_polygons = value;
         self
     }
     ///Sets the raw value of [`Self::sampler_mip_lod_bias`]
-    pub fn set_sampler_mip_lod_bias_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_sampler_mip_lod_bias_raw(mut self, value: Bool32) -> Self {
         self.sampler_mip_lod_bias = value;
         self
     }
     ///Sets the raw value of [`Self::separate_stencil_mask_ref`]
-    pub fn set_separate_stencil_mask_ref_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_separate_stencil_mask_ref_raw(mut self, value: Bool32) -> Self {
         self.separate_stencil_mask_ref = value;
         self
     }
     ///Sets the raw value of [`Self::shader_sample_rate_interpolation_functions`]
-    pub fn set_shader_sample_rate_interpolation_functions_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_sample_rate_interpolation_functions_raw(mut self, value: Bool32) -> Self {
         self.shader_sample_rate_interpolation_functions = value;
         self
     }
     ///Sets the raw value of [`Self::tessellation_isolines`]
-    pub fn set_tessellation_isolines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_tessellation_isolines_raw(mut self, value: Bool32) -> Self {
         self.tessellation_isolines = value;
         self
     }
     ///Sets the raw value of [`Self::tessellation_point_mode`]
-    pub fn set_tessellation_point_mode_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_tessellation_point_mode_raw(mut self, value: Bool32) -> Self {
         self.tessellation_point_mode = value;
         self
     }
     ///Sets the raw value of [`Self::triangle_fans`]
-    pub fn set_triangle_fans_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_triangle_fans_raw(mut self, value: Bool32) -> Self {
         self.triangle_fans = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_attribute_access_beyond_stride`]
-    pub fn set_vertex_attribute_access_beyond_stride_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_vertex_attribute_access_beyond_stride_raw(mut self, value: Bool32) -> Self {
         self.vertex_attribute_access_beyond_stride = value;
         self
     }
@@ -764,88 +764,88 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::constant_alpha_color_blend_factors`]
-    pub fn set_constant_alpha_color_blend_factors(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::constant_alpha_color_blend_factors`]
+    pub fn set_constant_alpha_color_blend_factors(mut self, value: bool) -> Self {
         self.constant_alpha_color_blend_factors = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::events`]
-    pub fn set_events(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::events`]
+    pub fn set_events(mut self, value: bool) -> Self {
         self.events = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::image_view_format_reinterpretation`]
-    pub fn set_image_view_format_reinterpretation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::image_view_format_reinterpretation`]
+    pub fn set_image_view_format_reinterpretation(mut self, value: bool) -> Self {
         self.image_view_format_reinterpretation = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::image_view_format_swizzle`]
-    pub fn set_image_view_format_swizzle(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::image_view_format_swizzle`]
+    pub fn set_image_view_format_swizzle(mut self, value: bool) -> Self {
         self.image_view_format_swizzle = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn set_image_view_2_d_on_3_d_image(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::image_view_2_d_on_3_d_image`]
+    pub fn set_image_view_2_d_on_3_d_image(mut self, value: bool) -> Self {
         self.image_view_2_d_on_3_d_image = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::multisample_array_image`]
-    pub fn set_multisample_array_image(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::multisample_array_image`]
+    pub fn set_multisample_array_image(mut self, value: bool) -> Self {
         self.multisample_array_image = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::mutable_comparison_samplers`]
-    pub fn set_mutable_comparison_samplers(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::mutable_comparison_samplers`]
+    pub fn set_mutable_comparison_samplers(mut self, value: bool) -> Self {
         self.mutable_comparison_samplers = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::point_polygons`]
-    pub fn set_point_polygons(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::point_polygons`]
+    pub fn set_point_polygons(mut self, value: bool) -> Self {
         self.point_polygons = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::sampler_mip_lod_bias`]
-    pub fn set_sampler_mip_lod_bias(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::sampler_mip_lod_bias`]
+    pub fn set_sampler_mip_lod_bias(mut self, value: bool) -> Self {
         self.sampler_mip_lod_bias = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::separate_stencil_mask_ref`]
-    pub fn set_separate_stencil_mask_ref(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::separate_stencil_mask_ref`]
+    pub fn set_separate_stencil_mask_ref(mut self, value: bool) -> Self {
         self.separate_stencil_mask_ref = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::shader_sample_rate_interpolation_functions`]
-    pub fn set_shader_sample_rate_interpolation_functions(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_sample_rate_interpolation_functions`]
+    pub fn set_shader_sample_rate_interpolation_functions(mut self, value: bool) -> Self {
         self.shader_sample_rate_interpolation_functions = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::tessellation_isolines`]
-    pub fn set_tessellation_isolines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::tessellation_isolines`]
+    pub fn set_tessellation_isolines(mut self, value: bool) -> Self {
         self.tessellation_isolines = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::tessellation_point_mode`]
-    pub fn set_tessellation_point_mode(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::tessellation_point_mode`]
+    pub fn set_tessellation_point_mode(mut self, value: bool) -> Self {
         self.tessellation_point_mode = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::triangle_fans`]
-    pub fn set_triangle_fans(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::triangle_fans`]
+    pub fn set_triangle_fans(mut self, value: bool) -> Self {
         self.triangle_fans = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::vertex_attribute_access_beyond_stride`]
-    pub fn set_vertex_attribute_access_beyond_stride(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::vertex_attribute_access_beyond_stride`]
+    pub fn set_vertex_attribute_access_beyond_stride(mut self, value: bool) -> Self {
         self.vertex_attribute_access_beyond_stride = value as u8 as u32;
         self
     }
@@ -888,7 +888,7 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
@@ -918,11 +918,11 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -956,18 +956,18 @@ impl<'lt> PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     pub fn min_vertex_input_binding_stride_alignment_mut(&mut self) -> &mut u32 {
         &mut self.min_vertex_input_binding_stride_alignment
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::min_vertex_input_binding_stride_alignment`]
-    pub fn set_min_vertex_input_binding_stride_alignment(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_vertex_input_binding_stride_alignment`]
+    pub fn set_min_vertex_input_binding_stride_alignment(mut self, value: u32) -> Self {
         self.min_vertex_input_binding_stride_alignment = value;
         self
     }

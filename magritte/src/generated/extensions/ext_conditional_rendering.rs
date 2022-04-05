@@ -72,8 +72,9 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, Device, DeviceSize, StructureType,
+use crate::{
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, Device, DeviceSize, StructureType},
+    AsRaw, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -630,7 +631,7 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -673,31 +674,31 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
     pub fn flags_mut(&mut self) -> &mut ConditionalRenderingFlagsEXT {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::buffer`]
-    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::buffer`]
+    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::offset`]
+    pub fn set_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.offset = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_conditional_rendering::ConditionalRenderingFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
@@ -790,12 +791,12 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
         self.conditional_rendering_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::conditional_rendering_enable`]
-    pub fn set_conditional_rendering_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_conditional_rendering_enable_raw(mut self, value: Bool32) -> Self {
         self.conditional_rendering_enable = value;
         self
     }
@@ -836,18 +837,18 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::conditional_rendering_enable`]
-    pub fn set_conditional_rendering_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::conditional_rendering_enable`]
+    pub fn set_conditional_rendering_enable(mut self, value: bool) -> Self {
         self.conditional_rendering_enable = value as u8 as u32;
         self
     }
@@ -896,7 +897,7 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConditionalRenderingFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
@@ -928,8 +929,8 @@ impl<'lt> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::conditional_rendering`]
     pub fn conditional_rendering_raw(&self) -> Bool32 {
@@ -940,17 +941,17 @@ impl<'lt> PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
         self.inherited_conditional_rendering
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::conditional_rendering`]
-    pub fn set_conditional_rendering_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_conditional_rendering_raw(mut self, value: Bool32) -> Self {
         self.conditional_rendering = value;
         self
     }
     ///Sets the raw value of [`Self::inherited_conditional_rendering`]
-    pub fn set_inherited_conditional_rendering_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_inherited_conditional_rendering_raw(mut self, value: Bool32) -> Self {
         self.inherited_conditional_rendering = value;
         self
     }
@@ -1020,28 +1021,174 @@ impl<'lt> PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::conditional_rendering`]
-    pub fn set_conditional_rendering(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::conditional_rendering`]
+    pub fn set_conditional_rendering(mut self, value: bool) -> Self {
         self.conditional_rendering = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::inherited_conditional_rendering`]
-    pub fn set_inherited_conditional_rendering(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::inherited_conditional_rendering`]
+    pub fn set_inherited_conditional_rendering(mut self, value: bool) -> Self {
         self.inherited_conditional_rendering = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_conditional_rendering
+impl CommandBuffer {
+    ///[vkCmdBeginConditionalRenderingEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html) - Define the beginning of a conditional rendering block
+    ///# C Specifications
+    ///To begin conditional rendering, call:
+    ///```c
+    ///// Provided by VK_EXT_conditional_rendering
+    ///void vkCmdBeginConditionalRenderingEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkConditionalRenderingBeginInfoEXT*   pConditionalRenderingBegin);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which this command will be recorded.
+    /// - [`p_conditional_rendering_begin`] is a pointer to a [`ConditionalRenderingBeginInfoEXT`]
+    ///   structure specifying parameters of conditional rendering.
+    ///# Description
+    ///## Valid Usage
+    /// - Conditional rendering  **must**  not already be [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_conditional_rendering_begin`] **must**  be a valid pointer to a valid
+    ///   [`ConditionalRenderingBeginInfoEXT`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_conditional_rendering`]
+    /// - [`CommandBuffer`]
+    /// - [`ConditionalRenderingBeginInfoEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBeginConditionalRenderingEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_begin_conditional_rendering_ext<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_conditional_rendering_begin: &ConditionalRenderingBeginInfoEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_conditional_rendering()
+            .expect("extension/version not loaded")
+            .cmd_begin_conditional_rendering_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_conditional_rendering()
+            .unwrap_unchecked()
+            .cmd_begin_conditional_rendering_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_conditional_rendering_begin as *const ConditionalRenderingBeginInfoEXT<'lt>,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdEndConditionalRenderingEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEndConditionalRenderingEXT.html) - Define the end of a conditional rendering block
+    ///# C Specifications
+    ///To end conditional rendering, call:
+    ///```c
+    ///// Provided by VK_EXT_conditional_rendering
+    ///void vkCmdEndConditionalRenderingEXT(
+    ///    VkCommandBuffer                             commandBuffer);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which this command will be recorded.
+    ///# Description
+    ///Once ended, conditional rendering becomes inactive.
+    ///## Valid Usage
+    /// - Conditional rendering  **must**  be [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
+    /// - If conditional rendering was made [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
+    ///   outside of a render pass instance, it  **must**  not be ended inside a render pass
+    ///   instance
+    /// - If conditional rendering was made [active](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#active-conditional-rendering)
+    ///   within a subpass it  **must**  be ended in the same subpass
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_conditional_rendering`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdEndConditionalRenderingEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_end_conditional_rendering_ext<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_conditional_rendering()
+            .expect("extension/version not loaded")
+            .cmd_end_conditional_rendering_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_conditional_rendering()
+            .unwrap_unchecked()
+            .cmd_end_conditional_rendering_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw());
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_conditional_rendering`
 pub struct DeviceExtConditionalRenderingVTable {
     ///See [`FNCmdBeginConditionalRenderingExt`] for more information.
     pub cmd_begin_conditional_rendering_ext: FNCmdBeginConditionalRenderingExt,
@@ -1050,16 +1197,26 @@ pub struct DeviceExtConditionalRenderingVTable {
 }
 impl DeviceExtConditionalRenderingVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_begin_conditional_rendering_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginConditionalRenderingEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdBeginConditionalRenderingEXT").as_ptr(),
+                ))
             },
             cmd_end_conditional_rendering_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndConditionalRenderingEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdEndConditionalRenderingEXT").as_ptr(),
+                ))
             },
         }
     }

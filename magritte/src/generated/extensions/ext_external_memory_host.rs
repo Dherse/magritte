@@ -83,10 +83,12 @@
 use crate::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, Device, DeviceSize, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
+    AsRaw, Unique, VulkanResult,
 };
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -228,7 +230,7 @@ pub type FNGetMemoryHostPointerPropertiesExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryHostPointerInfoEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryHostPointerInfoEXT<'lt> {
@@ -262,16 +264,16 @@ impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::host_pointer`]
-    pub fn host_pointer_raw(&self) -> &*mut c_void {
-        &self.host_pointer
+    pub fn host_pointer_raw(&self) -> *mut c_void {
+        self.host_pointer
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::host_pointer`]
-    pub fn set_host_pointer_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_host_pointer_raw(mut self, value: *mut c_void) -> Self {
         self.host_pointer = value;
         self
     }
@@ -312,23 +314,23 @@ impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
     pub unsafe fn host_pointer_mut(&mut self) -> &mut c_void {
         &mut *self.host_pointer
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
-    ///Sets the raw value of [`Self::host_pointer`]
-    pub fn set_host_pointer(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::host_pointer`]
+    pub fn set_host_pointer(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.host_pointer = value as *mut _;
         self
     }
@@ -368,7 +370,7 @@ impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryHostPointerPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryHostPointerPropertiesEXT<'lt> {
@@ -395,11 +397,11 @@ impl<'lt> Default for MemoryHostPointerPropertiesEXT<'lt> {
 }
 impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -433,18 +435,18 @@ impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
     pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
         &mut self.memory_type_bits
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(mut self, value: u32) -> Self {
         self.memory_type_bits = value;
         self
     }
@@ -489,7 +491,7 @@ impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalMemoryHostPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
@@ -518,11 +520,11 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -556,36 +558,134 @@ impl<'lt> PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     pub fn min_imported_host_pointer_alignment_mut(&mut self) -> &mut DeviceSize {
         &mut self.min_imported_host_pointer_alignment
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::min_imported_host_pointer_alignment`]
-    pub fn set_min_imported_host_pointer_alignment(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::min_imported_host_pointer_alignment`]
+    pub fn set_min_imported_host_pointer_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.min_imported_host_pointer_alignment = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_external_memory_host
+impl Device {
+    ///[vkGetMemoryHostPointerPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryHostPointerPropertiesEXT.html) - Get properties of external memory host pointer
+    ///# C Specifications
+    ///To determine the correct parameters to use when importing host pointers,
+    ///call:
+    ///```c
+    ///// Provided by VK_EXT_external_memory_host
+    ///VkResult vkGetMemoryHostPointerPropertiesEXT(
+    ///    VkDevice                                    device,
+    ///    VkExternalMemoryHandleTypeFlagBits          handleType,
+    ///    const void*                                 pHostPointer,
+    ///    VkMemoryHostPointerPropertiesEXT*           pMemoryHostPointerProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that will be importing [`p_host_pointer`].
+    /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
+    ///   handle [`p_host_pointer`].
+    /// - [`p_host_pointer`] is the host pointer to import from.
+    /// - [`p_memory_host_pointer_properties`] is a pointer to a [`MemoryHostPointerPropertiesEXT`]
+    ///   structure in which the host pointer properties are returned.
+    ///# Description
+    ///## Valid Usage
+    /// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT` or
+    ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`
+    /// - [`p_host_pointer`] **must**  be a pointer aligned to an integer multiple of
+    ///   [`PhysicalDeviceExternalMemoryHostPropertiesEXT::min_imported_host_pointer_alignment`]
+    /// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`,
+    ///   [`p_host_pointer`] **must**  be a pointer to host memory
+    /// - If [`handle_type`] is `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`,
+    ///   [`p_host_pointer`] **must**  be a pointer to host mapped foreign memory
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+    /// - [`p_memory_host_pointer_properties`] **must**  be a valid pointer to a
+    ///   [`MemoryHostPointerPropertiesEXT`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+    ///# Related
+    /// - [`VK_EXT_external_memory_host`]
+    /// - [`Device`]
+    /// - [`ExternalMemoryHandleTypeFlagBits`]
+    /// - [`MemoryHostPointerPropertiesEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetMemoryHostPointerPropertiesEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_memory_host_pointer_properties_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        handle_type: ExternalMemoryHandleTypeFlagBits,
+        p_host_pointer: *const c_void,
+    ) -> VulkanResult<MemoryHostPointerPropertiesEXT<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_external_memory_host()
+            .expect("extension/version not loaded")
+            .get_memory_host_pointer_properties_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_external_memory_host()
+            .unwrap_unchecked()
+            .get_memory_host_pointer_properties_ext()
+            .unwrap_unchecked();
+        let mut p_memory_host_pointer_properties = MaybeUninit::<MemoryHostPointerPropertiesEXT<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            handle_type,
+            p_host_pointer,
+            p_memory_host_pointer_properties.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, p_memory_host_pointer_properties.assume_init())
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_external_memory_host`
 pub struct DeviceExtExternalMemoryHostVTable {
     ///See [`FNGetMemoryHostPointerPropertiesExt`] for more information.
     pub get_memory_host_pointer_properties_ext: FNGetMemoryHostPointerPropertiesExt,
 }
 impl DeviceExtExternalMemoryHostVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_memory_host_pointer_properties_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryHostPointerPropertiesEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetMemoryHostPointerPropertiesEXT").as_ptr(),
+                ))
             },
         }
     }

@@ -139,7 +139,7 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicStateFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
@@ -178,20 +178,20 @@ impl<'lt> Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::extended_dynamic_state`]
     pub fn extended_dynamic_state_raw(&self) -> Bool32 {
         self.extended_dynamic_state
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::extended_dynamic_state`]
-    pub fn set_extended_dynamic_state_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_extended_dynamic_state_raw(mut self, value: Bool32) -> Self {
         self.extended_dynamic_state = value;
         self
     }
@@ -239,23 +239,23 @@ impl<'lt> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::extended_dynamic_state`]
-    pub fn set_extended_dynamic_state(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::extended_dynamic_state`]
+    pub fn set_extended_dynamic_state(mut self, value: bool) -> Self {
         self.extended_dynamic_state = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_extended_dynamic_state
+///The V-table of [`Device`] for functions from `VK_EXT_extended_dynamic_state`
 pub struct DeviceExtExtendedDynamicStateVTable {
     ///See [`FNCmdSetCullMode`] for more information.
     pub cmd_set_cull_mode: FNCmdSetCullMode,
@@ -284,41 +284,54 @@ pub struct DeviceExtExtendedDynamicStateVTable {
 }
 impl DeviceExtExtendedDynamicStateVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
-            cmd_set_cull_mode: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCullModeEXT"))) },
-            cmd_set_front_face: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFrontFaceEXT"))) },
+            cmd_set_cull_mode: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCullModeEXT").as_ptr()))
+            },
+            cmd_set_front_face: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFrontFaceEXT").as_ptr()))
+            },
             cmd_set_primitive_topology: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveTopologyEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveTopologyEXT").as_ptr()))
             },
             cmd_set_viewport_with_count: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWithCountEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWithCountEXT").as_ptr()))
             },
             cmd_set_scissor_with_count: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetScissorWithCountEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetScissorWithCountEXT").as_ptr()))
             },
             cmd_bind_vertex_buffers2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindVertexBuffers2EXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindVertexBuffers2EXT").as_ptr()))
             },
             cmd_set_depth_test_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthTestEnableEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthTestEnableEXT").as_ptr()))
             },
             cmd_set_depth_write_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthWriteEnableEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthWriteEnableEXT").as_ptr()))
             },
             cmd_set_depth_compare_op: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthCompareOpEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthCompareOpEXT").as_ptr()))
             },
             cmd_set_depth_bounds_test_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthBoundsTestEnableEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdSetDepthBoundsTestEnableEXT").as_ptr(),
+                ))
             },
             cmd_set_stencil_test_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilTestEnableEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilTestEnableEXT").as_ptr()))
             },
-            cmd_set_stencil_op: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilOpEXT"))) },
+            cmd_set_stencil_op: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilOpEXT").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::cmd_set_cull_mode`]. See [`FNCmdSetCullMode`] for more information.

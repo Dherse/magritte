@@ -236,7 +236,7 @@ pub const NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderImageFootprintFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
@@ -263,20 +263,20 @@ impl<'lt> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::image_footprint`]
     pub fn image_footprint_raw(&self) -> Bool32 {
         self.image_footprint
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::image_footprint`]
-    pub fn set_image_footprint_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_image_footprint_raw(mut self, value: Bool32) -> Self {
         self.image_footprint = value;
         self
     }
@@ -324,18 +324,18 @@ impl<'lt> PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::image_footprint`]
-    pub fn set_image_footprint(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::image_footprint`]
+    pub fn set_image_footprint(mut self, value: bool) -> Self {
         self.image_footprint = value as u8 as u32;
         self
     }

@@ -53,7 +53,7 @@ pub const AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME")]
 pub const AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD_draw_indirect_count");
-///The V-table of [`Device`] for functions from VK_AMD_draw_indirect_count
+///The V-table of [`Device`] for functions from `VK_AMD_draw_indirect_count`
 pub struct DeviceAmdDrawIndirectCountVTable {
     ///See [`FNCmdDrawIndirectCount`] for more information.
     pub cmd_draw_indirect_count: FNCmdDrawIndirectCount,
@@ -62,16 +62,23 @@ pub struct DeviceAmdDrawIndirectCountVTable {
 }
 impl DeviceAmdDrawIndirectCountVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_draw_indirect_count: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndirectCountAMD")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndirectCountAMD").as_ptr()))
             },
             cmd_draw_indexed_indirect_count: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndexedIndirectCountAMD")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdDrawIndexedIndirectCountAMD").as_ptr(),
+                ))
             },
         }
     }

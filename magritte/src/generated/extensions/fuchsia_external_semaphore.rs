@@ -61,6 +61,7 @@ use crate::{
     native::zx_handle_t,
     vulkan1_0::{BaseInStructure, Device, Semaphore, StructureType, VulkanResultCodes},
     vulkan1_1::{ExternalSemaphoreHandleTypeFlagBits, SemaphoreImportFlags},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -280,12 +281,12 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
         &self.zircon_handle
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::zircon_handle`]
-    pub fn set_zircon_handle_raw(&mut self, value: zx_handle_t) -> &mut Self {
+    pub fn set_zircon_handle_raw(mut self, value: zx_handle_t) -> Self {
         self.zircon_handle = value;
         self
     }
@@ -313,8 +314,8 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
         self.handle_type
     }
     ///Gets the value of [`Self::zircon_handle`]
-    pub fn zircon_handle(&self) -> &zx_handle_t {
-        &self.zircon_handle
+    pub fn zircon_handle(&self) -> zx_handle_t {
+        self.zircon_handle
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -336,33 +337,33 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
     pub fn zircon_handle_mut(&mut self) -> &mut zx_handle_t {
         &mut self.zircon_handle
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::semaphore`]
-    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+    ///Sets the value of [`Self::semaphore`]
+    pub fn set_semaphore(mut self, value: crate::vulkan1_0::Semaphore) -> Self {
         self.semaphore = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_1::SemaphoreImportFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_1::SemaphoreImportFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
-    ///Sets the raw value of [`Self::zircon_handle`]
-    pub fn set_zircon_handle(&mut self, value: crate::native::zx_handle_t) -> &mut Self {
+    ///Sets the value of [`Self::zircon_handle`]
+    pub fn set_zircon_handle(mut self, value: crate::native::zx_handle_t) -> Self {
         self.zircon_handle = value;
         self
     }
@@ -454,7 +455,7 @@ impl<'lt> SemaphoreGetZirconHandleInfoFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -489,28 +490,188 @@ impl<'lt> SemaphoreGetZirconHandleInfoFUCHSIA<'lt> {
     pub fn handle_type_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlagBits {
         &mut self.handle_type
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::semaphore`]
-    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+    ///Sets the value of [`Self::semaphore`]
+    pub fn set_semaphore(mut self, value: crate::vulkan1_0::Semaphore) -> Self {
         self.semaphore = value;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_FUCHSIA_external_semaphore
+impl Device {
+    ///[vkGetSemaphoreZirconHandleFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSemaphoreZirconHandleFUCHSIA.html) - Get a Zircon event handle for a semaphore
+    ///# C Specifications
+    ///To export a Zircon event handle representing the payload of a semaphore,
+    ///call:
+    ///```c
+    ///// Provided by VK_FUCHSIA_external_semaphore
+    ///VkResult vkGetSemaphoreZirconHandleFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    const VkSemaphoreGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo,
+    ///    zx_handle_t*                                pZirconHandle);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that created the semaphore being exported.
+    /// - [`p_get_zircon_handle_info`] is a pointer to a [`SemaphoreGetZirconHandleInfoFUCHSIA`]
+    ///   structure containing parameters of the export operation.
+    /// - [`p_zircon_handle`] will return the Zircon event handle representing the semaphore
+    ///   payload.
+    ///# Description
+    ///Each call to [`get_semaphore_zircon_handle_fuchsia`] **must**  create a Zircon
+    ///event handle and transfer ownership of it to the application.
+    ///To avoid leaking resources, the application  **must**  release ownership of the
+    ///Zircon event handle when it is no longer needed.Exporting a Zircon event handle from a
+    /// semaphore  **may**  have side effects
+    ///depending on the transference of the specified handle type, as described in
+    ///[Importing Semaphore State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_get_zircon_handle_info`] **must**  be a valid pointer to a valid
+    ///   [`SemaphoreGetZirconHandleInfoFUCHSIA`] structure
+    /// - [`p_zircon_handle`] **must**  be a valid pointer to a [`zx_handle_t`] value
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_FUCHSIA_external_semaphore`]
+    /// - [`Device`]
+    /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetSemaphoreZirconHandleFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_semaphore_zircon_handle_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_get_zircon_handle_info: &SemaphoreGetZirconHandleInfoFUCHSIA<'lt>,
+    ) -> VulkanResult<zx_handle_t> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_external_semaphore()
+            .expect("extension/version not loaded")
+            .get_semaphore_zircon_handle_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_external_semaphore()
+            .unwrap_unchecked()
+            .get_semaphore_zircon_handle_fuchsia()
+            .unwrap_unchecked();
+        let mut p_zircon_handle = std::mem::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_get_zircon_handle_info as *const SemaphoreGetZirconHandleInfoFUCHSIA<'lt>,
+            &mut p_zircon_handle,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_zircon_handle),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkImportSemaphoreZirconHandleFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkImportSemaphoreZirconHandleFUCHSIA.html) - Import a semaphore from a Zircon event handle
+    ///# C Specifications
+    ///To import a semaphore payload from a Zircon event handle, call:
+    ///```c
+    ///// Provided by VK_FUCHSIA_external_semaphore
+    ///VkResult vkImportSemaphoreZirconHandleFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    const VkImportSemaphoreZirconHandleInfoFUCHSIA* pImportSemaphoreZirconHandleInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that created the semaphore.
+    /// - [`p_import_semaphore_zircon_handle_info`] is a pointer to a
+    ///   [`ImportSemaphoreZirconHandleInfoFUCHSIA`] structure specifying the semaphore and import
+    ///   parameters.
+    ///# Description
+    ///Importing a semaphore payload from a Zircon event handle transfers ownership
+    ///of the handle from the application to the Vulkan implementation.
+    ///The application  **must**  not perform any operations on the handle after a
+    ///successful import.Applications  **can**  import the same semaphore payload into multiple
+    /// instances
+    ///of Vulkan, into the same instance from which it was exported, and multiple
+    ///times into a given Vulkan instance.
+    ///## Valid Usage
+    /// - `semaphore` **must**  not be associated with any queue command that has not yet completed
+    ///   execution on that queue
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_import_semaphore_zircon_handle_info`] **must**  be a valid pointer to a valid
+    ///   [`ImportSemaphoreZirconHandleInfoFUCHSIA`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+    ///# Related
+    /// - [`VK_FUCHSIA_external_semaphore`]
+    /// - [`Device`]
+    /// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkImportSemaphoreZirconHandleFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn import_semaphore_zircon_handle_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_import_semaphore_zircon_handle_info: &ImportSemaphoreZirconHandleInfoFUCHSIA<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_external_semaphore()
+            .expect("extension/version not loaded")
+            .import_semaphore_zircon_handle_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_external_semaphore()
+            .unwrap_unchecked()
+            .import_semaphore_zircon_handle_fuchsia()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_import_semaphore_zircon_handle_info as *const ImportSemaphoreZirconHandleInfoFUCHSIA<'lt>,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_FUCHSIA_external_semaphore`
 pub struct DeviceFuchsiaExternalSemaphoreVTable {
     ///See [`FNGetSemaphoreZirconHandleFuchsia`] for more information.
     pub get_semaphore_zircon_handle_fuchsia: FNGetSemaphoreZirconHandleFuchsia,
@@ -519,16 +680,26 @@ pub struct DeviceFuchsiaExternalSemaphoreVTable {
 }
 impl DeviceFuchsiaExternalSemaphoreVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_semaphore_zircon_handle_fuchsia: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreZirconHandleFUCHSIA")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetSemaphoreZirconHandleFUCHSIA").as_ptr(),
+                ))
             },
             import_semaphore_zircon_handle_fuchsia: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkImportSemaphoreZirconHandleFUCHSIA")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkImportSemaphoreZirconHandleFUCHSIA").as_ptr(),
+                ))
             },
         }
     }

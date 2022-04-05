@@ -412,7 +412,7 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderCoreProperties2AMD")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD<'lt> {
@@ -445,11 +445,11 @@ impl<'lt> Default for PhysicalDeviceShaderCoreProperties2AMD<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -491,26 +491,26 @@ impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     pub fn active_compute_unit_count_mut(&mut self) -> &mut u32 {
         &mut self.active_compute_unit_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_core_features`]
+    ///Sets the value of [`Self::shader_core_features`]
     pub fn set_shader_core_features(
-        &mut self,
+        mut self,
         value: crate::extensions::amd_shader_core_properties_2::ShaderCorePropertiesFlagsAMD,
-    ) -> &mut Self {
+    ) -> Self {
         self.shader_core_features = value;
         self
     }
-    ///Sets the raw value of [`Self::active_compute_unit_count`]
-    pub fn set_active_compute_unit_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::active_compute_unit_count`]
+    pub fn set_active_compute_unit_count(mut self, value: u32) -> Self {
         self.active_compute_unit_count = value;
         self
     }

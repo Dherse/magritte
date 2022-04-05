@@ -98,7 +98,7 @@ pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
@@ -130,20 +130,20 @@ impl<'lt> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::ycbcr_2_plane_444_formats`]
     pub fn ycbcr_2_plane_444_formats_raw(&self) -> Bool32 {
         self.ycbcr_2_plane_444_formats
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::ycbcr_2_plane_444_formats`]
-    pub fn set_ycbcr_2_plane_444_formats_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ycbcr_2_plane_444_formats_raw(mut self, value: Bool32) -> Self {
         self.ycbcr_2_plane_444_formats = value;
         self
     }
@@ -191,18 +191,18 @@ impl<'lt> PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::ycbcr_2_plane_444_formats`]
-    pub fn set_ycbcr_2_plane_444_formats(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ycbcr_2_plane_444_formats`]
+    pub fn set_ycbcr_2_plane_444_formats(mut self, value: bool) -> Self {
         self.ycbcr_2_plane_444_formats = value as u8 as u32;
         self
     }

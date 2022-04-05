@@ -83,6 +83,7 @@ use crate::{
     extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
     native::{DWORD, HANDLE, SECURITY_ATTRIBUTES},
     vulkan1_0::{BaseInStructure, Device, DeviceMemory, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -235,12 +236,12 @@ impl<'lt> ImportMemoryWin32HandleInfoNV<'lt> {
         &self.handle
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::handle`]
-    pub fn set_handle_raw(&mut self, value: HANDLE) -> &mut Self {
+    pub fn set_handle_raw(mut self, value: HANDLE) -> Self {
         self.handle = value;
         self
     }
@@ -260,8 +261,8 @@ impl<'lt> ImportMemoryWin32HandleInfoNV<'lt> {
         self.handle_type
     }
     ///Gets the value of [`Self::handle`]
-    pub fn handle(&self) -> &HANDLE {
-        &self.handle
+    pub fn handle(&self) -> HANDLE {
+        self.handle
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -275,26 +276,26 @@ impl<'lt> ImportMemoryWin32HandleInfoNV<'lt> {
     pub fn handle_mut(&mut self) -> &mut HANDLE {
         &mut self.handle
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
+    ///Sets the value of [`Self::handle_type`]
     pub fn set_handle_type(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.handle_type = value;
         self
     }
-    ///Sets the raw value of [`Self::handle`]
-    pub fn set_handle(&mut self, value: crate::native::HANDLE) -> &mut Self {
+    ///Sets the value of [`Self::handle`]
+    pub fn set_handle(mut self, value: crate::native::HANDLE) -> Self {
         self.handle = value;
         self
     }
@@ -384,12 +385,12 @@ impl<'lt> ExportMemoryWin32HandleInfoNV<'lt> {
         &self.dw_access
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::dw_access`]
-    pub fn set_dw_access_raw(&mut self, value: DWORD) -> &mut Self {
+    pub fn set_dw_access_raw(mut self, value: DWORD) -> Self {
         self.dw_access = value;
         self
     }
@@ -405,15 +406,12 @@ impl<'lt> ExportMemoryWin32HandleInfoNV<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::attributes`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn attributes(&self) -> &SECURITY_ATTRIBUTES {
-        &*self.attributes
+    pub fn attributes(&self) -> *const SECURITY_ATTRIBUTES {
+        self.attributes
     }
     ///Gets the value of [`Self::dw_access`]
-    pub fn dw_access(&self) -> &DWORD {
-        &self.dw_access
+    pub fn dw_access(&self) -> DWORD {
+        self.dw_access
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -423,41 +421,127 @@ impl<'lt> ExportMemoryWin32HandleInfoNV<'lt> {
     pub fn dw_access_mut(&mut self) -> &mut DWORD {
         &mut self.dw_access
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::attributes`]
-    pub fn set_attributes(&mut self, value: &'lt crate::native::SECURITY_ATTRIBUTES) -> &mut Self {
-        self.attributes = value as *const _;
+    ///Sets the value of [`Self::attributes`]
+    pub fn set_attributes(mut self, value: *const crate::native::SECURITY_ATTRIBUTES) -> Self {
+        self.attributes = value;
         self
     }
-    ///Sets the raw value of [`Self::dw_access`]
-    pub fn set_dw_access(&mut self, value: crate::native::DWORD) -> &mut Self {
+    ///Sets the value of [`Self::dw_access`]
+    pub fn set_dw_access(mut self, value: crate::native::DWORD) -> Self {
         self.dw_access = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_external_memory_win32
+impl Device {
+    ///[vkGetMemoryWin32HandleNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryWin32HandleNV.html) - Retrieve Win32 handle to a device memory object
+    ///# C Specifications
+    ///To retrieve the handle corresponding to a device memory object created with
+    ///[`ExportMemoryAllocateInfoNV::handle_types`] set to include
+    ///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV` or
+    ///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV`, call:
+    ///```c
+    ///// Provided by VK_NV_external_memory_win32
+    ///VkResult vkGetMemoryWin32HandleNV(
+    ///    VkDevice                                    device,
+    ///    VkDeviceMemory                              memory,
+    ///    VkExternalMemoryHandleTypeFlagsNV           handleType,
+    ///    HANDLE*                                     pHandle);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the memory.
+    /// - [`memory`] is the [`DeviceMemory`] object.
+    /// - [`handle_type`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] containing a single
+    ///   bit specifying the type of handle requested.
+    /// - `handle` is a pointer to a Windows [`HANDLE`] in which the handle is returned.
+    ///# Description
+    ///## Valid Usage
+    /// - [`handle_type`] **must**  be a flag specified in
+    ///   [`ExportMemoryAllocateInfoNV::handle_types`] when allocating [`memory`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+    /// - [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
+    ///   values
+    /// - [`handle_type`] **must**  not be `0`
+    /// - [`p_handle`] **must**  be a valid pointer to a [`HANDLE`] value
+    /// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_NV_external_memory_win32`]
+    /// - [`Device`]
+    /// - [`DeviceMemory`]
+    /// - [`ExternalMemoryHandleTypeFlagsNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetMemoryWin32HandleNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_memory_win32_handle_nv<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        memory: DeviceMemory,
+        handle_type: ExternalMemoryHandleTypeFlagsNV,
+    ) -> VulkanResult<HANDLE> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nv_external_memory_win_32()
+            .expect("extension/version not loaded")
+            .get_memory_win32_handle_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nv_external_memory_win_32()
+            .unwrap_unchecked()
+            .get_memory_win32_handle_nv()
+            .unwrap_unchecked();
+        let mut p_handle = std::mem::zeroed();
+        let _return = _function(self.as_raw(), memory, handle_type, &mut p_handle);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_handle),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_external_memory_win32`
 pub struct DeviceNvExternalMemoryWin32VTable {
     ///See [`FNGetMemoryWin32HandleNv`] for more information.
     pub get_memory_win32_handle_nv: FNGetMemoryWin32HandleNv,
 }
 impl DeviceNvExternalMemoryWin32VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_memory_win32_handle_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryWin32HandleNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryWin32HandleNV").as_ptr()))
             },
         }
     }

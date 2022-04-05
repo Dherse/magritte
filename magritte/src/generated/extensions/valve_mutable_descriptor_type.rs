@@ -131,7 +131,7 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
@@ -166,20 +166,20 @@ impl<'lt> Default for PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 }
 impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::mutable_descriptor_type`]
     pub fn mutable_descriptor_type_raw(&self) -> Bool32 {
         self.mutable_descriptor_type
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::mutable_descriptor_type`]
-    pub fn set_mutable_descriptor_type_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_mutable_descriptor_type_raw(mut self, value: Bool32) -> Self {
         self.mutable_descriptor_type = value;
         self
     }
@@ -227,18 +227,18 @@ impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::mutable_descriptor_type`]
-    pub fn set_mutable_descriptor_type(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::mutable_descriptor_type`]
+    pub fn set_mutable_descriptor_type(mut self, value: bool) -> Self {
         self.mutable_descriptor_type = value as u8 as u32;
         self
     }
@@ -319,7 +319,7 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
         self.descriptor_types
     }
     ///Sets the raw value of [`Self::descriptor_types`]
-    pub fn set_descriptor_types_raw(&mut self, value: *const DescriptorType) -> &mut Self {
+    pub fn set_descriptor_types_raw(mut self, value: *const DescriptorType) -> Self {
         self.descriptor_types = value;
         self
     }
@@ -338,13 +338,13 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
     pub fn descriptor_type_count_mut(&mut self) -> &mut u32 {
         &mut self.descriptor_type_count
     }
-    ///Sets the raw value of [`Self::descriptor_type_count`]
-    pub fn set_descriptor_type_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::descriptor_type_count`]
+    pub fn set_descriptor_type_count(mut self, value: u32) -> Self {
         self.descriptor_type_count = value;
         self
     }
-    ///Sets the raw value of [`Self::descriptor_types`]
-    pub fn set_descriptor_types(&mut self, value: &'lt [crate::vulkan1_0::DescriptorType]) -> &mut Self {
+    ///Sets the value of [`Self::descriptor_types`]
+    pub fn set_descriptor_types(mut self, value: &'lt [crate::vulkan1_0::DescriptorType]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.descriptor_types = value.as_ptr();
@@ -441,15 +441,12 @@ impl<'lt> MutableDescriptorTypeCreateInfoVALVE<'lt> {
         self.mutable_descriptor_type_lists
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::mutable_descriptor_type_lists`]
-    pub fn set_mutable_descriptor_type_lists_raw(
-        &mut self,
-        value: *const MutableDescriptorTypeListVALVE<'lt>,
-    ) -> &mut Self {
+    pub fn set_mutable_descriptor_type_lists_raw(mut self, value: *const MutableDescriptorTypeListVALVE<'lt>) -> Self {
         self.mutable_descriptor_type_lists = value;
         self
     }
@@ -486,26 +483,26 @@ impl<'lt> MutableDescriptorTypeCreateInfoVALVE<'lt> {
     pub fn mutable_descriptor_type_list_count_mut(&mut self) -> &mut u32 {
         &mut self.mutable_descriptor_type_list_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::mutable_descriptor_type_list_count`]
-    pub fn set_mutable_descriptor_type_list_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::mutable_descriptor_type_list_count`]
+    pub fn set_mutable_descriptor_type_list_count(mut self, value: u32) -> Self {
         self.mutable_descriptor_type_list_count = value;
         self
     }
-    ///Sets the raw value of [`Self::mutable_descriptor_type_lists`]
+    ///Sets the value of [`Self::mutable_descriptor_type_lists`]
     pub fn set_mutable_descriptor_type_lists(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::valve_mutable_descriptor_type::MutableDescriptorTypeListVALVE<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.mutable_descriptor_type_lists = value.as_ptr();

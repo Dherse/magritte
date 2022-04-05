@@ -441,7 +441,7 @@ impl<'lt> PipelineCompilerControlCreateInfoAMD<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -468,21 +468,21 @@ impl<'lt> PipelineCompilerControlCreateInfoAMD<'lt> {
     pub fn compiler_control_flags_mut(&mut self) -> &mut PipelineCompilerControlFlagsAMD {
         &mut self.compiler_control_flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::compiler_control_flags`]
+    ///Sets the value of [`Self::compiler_control_flags`]
     pub fn set_compiler_control_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::amd_pipeline_compiler_control::PipelineCompilerControlFlagsAMD,
-    ) -> &mut Self {
+    ) -> Self {
         self.compiler_control_flags = value;
         self
     }

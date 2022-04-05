@@ -71,7 +71,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, Bool32, CommandBuffer, Device, StructureType};
+use crate::{
+    vulkan1_0::{BaseInStructure, Bool32, CommandBuffer, Device, StructureType},
+    AsRaw, SmallVec, Unique,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -213,13 +216,13 @@ impl ViewportWScalingNV {
     pub fn ycoeff_mut(&mut self) -> &mut f32 {
         &mut self.ycoeff
     }
-    ///Sets the raw value of [`Self::xcoeff`]
-    pub fn set_xcoeff(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::xcoeff`]
+    pub fn set_xcoeff(mut self, value: f32) -> Self {
         self.xcoeff = value;
         self
     }
-    ///Sets the raw value of [`Self::ycoeff`]
-    pub fn set_ycoeff(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::ycoeff`]
+    pub fn set_ycoeff(mut self, value: f32) -> Self {
         self.ycoeff = value;
         self
     }
@@ -315,17 +318,17 @@ impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
         self.viewport_w_scalings
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_w_scaling_enable`]
-    pub fn set_viewport_w_scaling_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_viewport_w_scaling_enable_raw(mut self, value: Bool32) -> Self {
         self.viewport_w_scaling_enable = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_w_scalings`]
-    pub fn set_viewport_w_scalings_raw(&mut self, value: *const ViewportWScalingNV) -> &mut Self {
+    pub fn set_viewport_w_scalings_raw(mut self, value: *const ViewportWScalingNV) -> Self {
         self.viewport_w_scalings = value;
         self
     }
@@ -381,31 +384,31 @@ impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
     pub fn viewport_count_mut(&mut self) -> &mut u32 {
         &mut self.viewport_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::viewport_w_scaling_enable`]
-    pub fn set_viewport_w_scaling_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::viewport_w_scaling_enable`]
+    pub fn set_viewport_w_scaling_enable(mut self, value: bool) -> Self {
         self.viewport_w_scaling_enable = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::viewport_count`]
-    pub fn set_viewport_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::viewport_count`]
+    pub fn set_viewport_count(mut self, value: u32) -> Self {
         self.viewport_count = value;
         self
     }
-    ///Sets the raw value of [`Self::viewport_w_scalings`]
+    ///Sets the value of [`Self::viewport_w_scalings`]
     pub fn set_viewport_w_scalings(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_clip_space_w_scaling::ViewportWScalingNV],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.viewport_w_scalings = value.as_ptr();
@@ -413,20 +416,122 @@ impl<'lt> PipelineViewportWScalingStateCreateInfoNV<'lt> {
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_clip_space_w_scaling
+impl CommandBuffer {
+    ///[vkCmdSetViewportWScalingNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetViewportWScalingNV.html) - Set the viewport W scaling dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the viewport  **W**  scaling
+    ///parameters, call:
+    ///```c
+    ///// Provided by VK_NV_clip_space_w_scaling
+    ///void vkCmdSetViewportWScalingNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    firstViewport,
+    ///    uint32_t                                    viewportCount,
+    ///    const VkViewportWScalingNV*                 pViewportWScalings);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`first_viewport`] is the index of the first viewport whose parameters are updated by the
+    ///   command.
+    /// - [`viewport_count`] is the number of viewports whose parameters are updated by the command.
+    /// - [`p_viewport_w_scalings`] is a pointer to an array of [`ViewportWScalingNV`] structures
+    ///   specifying viewport parameters.
+    ///# Description
+    ///The viewport parameters taken from element i of
+    ///[`p_viewport_w_scalings`] replace the current state for the viewport index
+    ///[`first_viewport`] +  i, for i in [0,
+    ///[`viewport_count`]).This command sets the viewport  **W**  scaling for subsequent drawing
+    /// commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineViewportWScalingStateCreateInfoNV`]::[`p_viewport_w_scalings`]
+    ///values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - The sum of [`first_viewport`] and [`viewport_count`] **must**  be between `1` and
+    ///   [`PhysicalDeviceLimits::max_viewports`], inclusive
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_viewport_w_scalings`] **must**  be a valid pointer to an array of
+    ///   [`viewport_count`][`ViewportWScalingNV`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`viewport_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_clip_space_w_scaling`]
+    /// - [`CommandBuffer`]
+    /// - [`ViewportWScalingNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetViewportWScalingNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_viewport_w_scaling_nv<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        first_viewport: Option<u32>,
+        p_viewport_w_scalings: &[crate::extensions::nv_clip_space_w_scaling::ViewportWScalingNV],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_clip_space_w_scaling()
+            .expect("extension/version not loaded")
+            .cmd_set_viewport_w_scaling_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_clip_space_w_scaling()
+            .unwrap_unchecked()
+            .cmd_set_viewport_w_scaling_nv()
+            .unwrap_unchecked();
+        let viewport_count = (|len: usize| len)(p_viewport_w_scalings.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            first_viewport.unwrap_or_default() as _,
+            viewport_count,
+            p_viewport_w_scalings.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_clip_space_w_scaling`
 pub struct DeviceNvClipSpaceWScalingVTable {
     ///See [`FNCmdSetViewportWScalingNv`] for more information.
     pub cmd_set_viewport_w_scaling_nv: FNCmdSetViewportWScalingNv,
 }
 impl DeviceNvClipSpaceWScalingVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_viewport_w_scaling_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWScalingNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWScalingNV").as_ptr()))
             },
         }
     }

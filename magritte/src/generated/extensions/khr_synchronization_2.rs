@@ -194,6 +194,7 @@ use crate::{
         FNCmdPipelineBarrier2, FNCmdResetEvent2, FNCmdSetEvent2, FNCmdWaitEvents2, FNCmdWriteTimestamp2,
         FNQueueSubmit2, PipelineStageFlags2,
     },
+    AsRaw, SmallVec, Unique,
 };
 use std::{
     ffi::{c_void, CStr},
@@ -442,7 +443,7 @@ pub type FNCmdWriteBufferMarker2Amd = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyCheckpointProperties2NV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyCheckpointProperties2NV<'lt> {
@@ -469,11 +470,11 @@ impl<'lt> Default for QueueFamilyCheckpointProperties2NV<'lt> {
 }
 impl<'lt> QueueFamilyCheckpointProperties2NV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -507,18 +508,18 @@ impl<'lt> QueueFamilyCheckpointProperties2NV<'lt> {
     pub fn checkpoint_execution_stage_mask_mut(&mut self) -> &mut PipelineStageFlags2 {
         &mut self.checkpoint_execution_stage_mask
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::checkpoint_execution_stage_mask`]
-    pub fn set_checkpoint_execution_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::checkpoint_execution_stage_mask`]
+    pub fn set_checkpoint_execution_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.checkpoint_execution_stage_mask = value;
         self
     }
@@ -563,7 +564,7 @@ impl<'lt> QueueFamilyCheckpointProperties2NV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCheckpointData2NV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CheckpointData2NV<'lt> {
@@ -594,20 +595,20 @@ impl<'lt> Default for CheckpointData2NV<'lt> {
 }
 impl<'lt> CheckpointData2NV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::checkpoint_marker`]
-    pub fn checkpoint_marker_raw(&self) -> &*mut c_void {
-        &self.checkpoint_marker
+    pub fn checkpoint_marker_raw(&self) -> *mut c_void {
+        self.checkpoint_marker
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::checkpoint_marker`]
-    pub fn set_checkpoint_marker_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_checkpoint_marker_raw(mut self, value: *mut c_void) -> Self {
         self.checkpoint_marker = value;
         self
     }
@@ -655,28 +656,269 @@ impl<'lt> CheckpointData2NV<'lt> {
     pub unsafe fn checkpoint_marker_mut(&mut self) -> &mut c_void {
         &mut *self.checkpoint_marker
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::stage`]
-    pub fn set_stage(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::stage`]
+    pub fn set_stage(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.stage = value;
         self
     }
-    ///Sets the raw value of [`Self::checkpoint_marker`]
-    pub fn set_checkpoint_marker(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::checkpoint_marker`]
+    pub fn set_checkpoint_marker(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.checkpoint_marker = value as *mut _;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_synchronization2
+impl Queue {
+    ///[vkGetQueueCheckpointData2NV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetQueueCheckpointData2NV.html) - Retrieve diagnostic checkpoint data
+    ///# C Specifications
+    ///If the device encounters an error during execution, the implementation will
+    ///return a `VK_ERROR_DEVICE_LOST` error to the application at some point
+    ///during host execution.
+    ///When this happens, the application  **can**  call
+    ///[`get_queue_checkpoint_data2_nv`] to retrieve information on the most recent
+    ///diagnostic checkpoints that were executed by the device.
+    ///```c
+    ///// Provided by VK_KHR_synchronization2 with VK_NV_device_diagnostic_checkpoints
+    ///void vkGetQueueCheckpointData2NV(
+    ///    VkQueue                                     queue,
+    ///    uint32_t*                                   pCheckpointDataCount,
+    ///    VkCheckpointData2NV*                        pCheckpointData);
+    ///```
+    ///# Parameters
+    /// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
+    /// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
+    ///   markers available or queried, as described below.
+    /// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointData2NV`]
+    ///   structures.
+    ///# Description
+    ///If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+    ///available is returned in [`p_checkpoint_data_count`].
+    ///Otherwise, [`p_checkpoint_data_count`] **must**  point to a variable set by the
+    ///user to the number of elements in the [`p_checkpoint_data`] array, and on
+    ///return the variable is overwritten with the number of structures actually
+    ///written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+    /// checkpoint markers
+    ///available, at most [`p_checkpoint_data_count`] structures will be written.
+    ///## Valid Usage
+    /// - The device that [`queue`] belongs to  **must**  be in the lost state
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`queue`] **must**  be a valid [`Queue`] handle
+    /// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and
+    ///   [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to
+    ///   an array of [`p_checkpoint_data_count`][`CheckpointData2NV`] structures
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`VK_NV_device_diagnostic_checkpoints`]
+    /// - [`CheckpointData2NV`]
+    /// - [`Queue`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetQueueCheckpointData2NV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_queue_checkpoint_data2_nv<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Queue>,
+        p_checkpoint_data_count: Option<usize>,
+    ) -> SmallVec<CheckpointData2NV<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_synchronization_2()
+            .expect("extension/version not loaded")
+            .get_queue_checkpoint_data2_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_synchronization_2()
+            .unwrap_unchecked()
+            .get_queue_checkpoint_data2_nv()
+            .unwrap_unchecked();
+        let mut p_checkpoint_data_count = match p_checkpoint_data_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_checkpoint_data =
+            SmallVec::<CheckpointData2NV<'lt>>::from_elem(Default::default(), p_checkpoint_data_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            &mut p_checkpoint_data_count,
+            p_checkpoint_data.as_mut_ptr(),
+        );
+        p_checkpoint_data
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdWriteBufferMarker2AMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdWriteBufferMarker2AMD.html) - Execute a pipelined write of a marker value into a buffer
+    ///# C Specifications
+    ///To write a 32-bit marker value into a buffer as a pipelined operation, call:
+    ///```c
+    ///// Provided by VK_KHR_synchronization2 with VK_AMD_buffer_marker
+    ///void vkCmdWriteBufferMarker2AMD(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPipelineStageFlags2                       stage,
+    ///    VkBuffer                                    dstBuffer,
+    ///    VkDeviceSize                                dstOffset,
+    ///    uint32_t                                    marker);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`stage`] specifies the pipeline stage whose completion triggers the marker write.
+    /// - [`dst_buffer`] is the buffer where the marker will be written.
+    /// - [`dst_offset`] is the byte offset into the buffer where the marker will be written.
+    /// - [`marker`] is the 32-bit value of the marker.
+    ///# Description
+    ///The command will write the 32-bit marker value into the buffer only after
+    ///all preceding commands have finished executing up to at least the specified
+    ///pipeline stage.
+    ///This includes the completion of other preceding
+    ///[`cmd_write_buffer_marker2_amd`] commands so long as their specified
+    ///pipeline stages occur either at the same time or earlier than this command’s
+    ///specified [`stage`].While consecutive buffer marker writes with the same [`stage`] parameter
+    ///implicitly complete in submission order, memory and execution dependencies
+    ///between buffer marker writes and other operations  **must**  still be explicitly
+    ///ordered using synchronization commands.
+    ///The access scope for buffer marker writes falls under the
+    ///`VK_ACCESS_TRANSFER_WRITE_BIT`, and the pipeline stages for identifying
+    ///the synchronization scope  **must**  include both [`stage`] and
+    ///`VK_PIPELINE_STAGE_TRANSFER_BIT`.
+    ///## Valid Usage
+    /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
+    /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
+    ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
+    /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
+    /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
+    /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
+    /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
+    /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
+    /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
+    /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
+    /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - [`stage`] **must**  include only a single pipeline stage
+    /// - [`stage`] **must**  include only stages that are valid for the queue family that was used
+    ///   to create the command pool that [`command_buffer`] was allocated from
+    /// - [`dst_offset`] **must**  be less than or equal to the size of [`dst_buffer`] minus `4`
+    /// - [`dst_buffer`] **must**  have been created with the `VK_BUFFER_USAGE_TRANSFER_DST_BIT`
+    ///   usage flag
+    /// - If [`dst_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to
+    ///   a single [`DeviceMemory`] object
+    /// - [`dst_offset`] **must**  be a multiple of `4`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`stage`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+    /// - [`dst_buffer`] **must**  be a valid [`Buffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, or compute operations
+    /// - Both of [`command_buffer`], and [`dst_buffer`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_AMD_buffer_marker`]
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`Buffer`]
+    /// - [`CommandBuffer`]
+    /// - [`DeviceSize`]
+    /// - [`PipelineStageFlags2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdWriteBufferMarker2AMD")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_write_buffer_marker2_amd<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        stage: PipelineStageFlags2,
+        dst_buffer: Buffer,
+        dst_offset: DeviceSize,
+        marker: Option<u32>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_synchronization_2()
+            .expect("extension/version not loaded")
+            .cmd_write_buffer_marker2_amd()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_synchronization_2()
+            .unwrap_unchecked()
+            .cmd_write_buffer_marker2_amd()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            stage,
+            dst_buffer,
+            dst_offset,
+            marker.unwrap_or_default() as _,
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_synchronization2`
 pub struct DeviceKhrSynchronization2VTable {
     ///See [`FNGetQueueCheckpointData2Nv`] for more information.
     pub get_queue_checkpoint_data2_nv: FNGetQueueCheckpointData2Nv,
@@ -697,26 +939,38 @@ pub struct DeviceKhrSynchronization2VTable {
 }
 impl DeviceKhrSynchronization2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_queue_checkpoint_data2_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetQueueCheckpointData2NV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetQueueCheckpointData2NV").as_ptr()))
             },
             cmd_write_buffer_marker2_amd: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteBufferMarker2AMD")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteBufferMarker2AMD").as_ptr()))
             },
-            cmd_set_event2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetEvent2KHR"))) },
-            cmd_reset_event2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResetEvent2KHR"))) },
-            cmd_wait_events2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWaitEvents2KHR"))) },
+            cmd_set_event2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetEvent2KHR").as_ptr()))
+            },
+            cmd_reset_event2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResetEvent2KHR").as_ptr()))
+            },
+            cmd_wait_events2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWaitEvents2KHR").as_ptr()))
+            },
             cmd_pipeline_barrier2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPipelineBarrier2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPipelineBarrier2KHR").as_ptr()))
             },
-            queue_submit2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueSubmit2KHR"))) },
+            queue_submit2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueSubmit2KHR").as_ptr()))
+            },
             cmd_write_timestamp2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteTimestamp2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteTimestamp2KHR").as_ptr()))
             },
         }
     }

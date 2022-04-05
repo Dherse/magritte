@@ -143,6 +143,16 @@ impl<'a> Ty<'a> {
         )
     }
 
+    /// Checks whether the current type is a void pointer and returns its mutability
+    pub fn is_void_ptr_mut(&self) -> Option<Mutability> {
+        match self {
+            Ty::Pointer(mut_, box Ty::Native(Native::Void)) | Ty::Slice(mut_, box Ty::Native(Native::Void), _) => {
+                Some(*mut_)
+            },
+            _ => None,
+        }
+    }
+
     /// Checks whether the current type is a [`std::ffi::CStr`]
     pub fn is_cstr(&self) -> bool {
         matches!(self, Ty::NullTerminatedString(Mutability::Const))

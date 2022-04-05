@@ -91,6 +91,7 @@
 use crate::{
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
     vulkan1_0::{BaseInStructure, Buffer, CommandBuffer, Device, DeviceSize, Extent2D, StructureType},
+    AsRaw, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -1810,17 +1811,17 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
         self.reference_slots
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::setup_reference_slot`]
-    pub fn set_setup_reference_slot_raw(&mut self, value: *const VideoReferenceSlotKHR<'lt>) -> &mut Self {
+    pub fn set_setup_reference_slot_raw(mut self, value: *const VideoReferenceSlotKHR<'lt>) -> Self {
         self.setup_reference_slot = value;
         self
     }
     ///Sets the raw value of [`Self::reference_slots`]
-    pub fn set_reference_slots_raw(&mut self, value: *const VideoReferenceSlotKHR<'lt>) -> &mut Self {
+    pub fn set_reference_slots_raw(mut self, value: *const VideoReferenceSlotKHR<'lt>) -> Self {
         self.reference_slots = value;
         self
     }
@@ -1925,80 +1926,80 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
     pub fn preceding_externally_encoded_bytes_mut(&mut self) -> &mut u32 {
         &mut self.preceding_externally_encoded_bytes
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_video_encode_queue::VideoEncodeFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_video_encode_queue::VideoEncodeFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::quality_level`]
-    pub fn set_quality_level(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::quality_level`]
+    pub fn set_quality_level(mut self, value: u32) -> Self {
         self.quality_level = value;
         self
     }
-    ///Sets the raw value of [`Self::coded_extent`]
-    pub fn set_coded_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::coded_extent`]
+    pub fn set_coded_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.coded_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_bitstream_buffer`]
-    pub fn set_dst_bitstream_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::dst_bitstream_buffer`]
+    pub fn set_dst_bitstream_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.dst_bitstream_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_bitstream_buffer_offset`]
-    pub fn set_dst_bitstream_buffer_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::dst_bitstream_buffer_offset`]
+    pub fn set_dst_bitstream_buffer_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.dst_bitstream_buffer_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_bitstream_buffer_max_range`]
-    pub fn set_dst_bitstream_buffer_max_range(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::dst_bitstream_buffer_max_range`]
+    pub fn set_dst_bitstream_buffer_max_range(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.dst_bitstream_buffer_max_range = value;
         self
     }
-    ///Sets the raw value of [`Self::src_picture_resource`]
+    ///Sets the value of [`Self::src_picture_resource`]
     pub fn set_src_picture_resource(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoPictureResourceKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.src_picture_resource = value;
         self
     }
-    ///Sets the raw value of [`Self::setup_reference_slot`]
+    ///Sets the value of [`Self::setup_reference_slot`]
     pub fn set_setup_reference_slot(
-        &mut self,
+        mut self,
         value: &'lt crate::extensions::khr_video_queue::VideoReferenceSlotKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.setup_reference_slot = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::reference_slot_count`]
-    pub fn set_reference_slot_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::reference_slot_count`]
+    pub fn set_reference_slot_count(mut self, value: u32) -> Self {
         self.reference_slot_count = value;
         self
     }
-    ///Sets the raw value of [`Self::reference_slots`]
+    ///Sets the value of [`Self::reference_slots`]
     pub fn set_reference_slots(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::khr_video_queue::VideoReferenceSlotKHR<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.reference_slots = value.as_ptr();
         self.reference_slot_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::preceding_externally_encoded_bytes`]
-    pub fn set_preceding_externally_encoded_bytes(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::preceding_externally_encoded_bytes`]
+    pub fn set_preceding_externally_encoded_bytes(mut self, value: u32) -> Self {
         self.preceding_externally_encoded_bytes = value;
         self
     }
@@ -2136,12 +2137,12 @@ impl<'lt> VideoEncodeRateControlInfoKHR<'lt> {
         self.layer_configs
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::layer_configs`]
-    pub fn set_layer_configs_raw(&mut self, value: *const VideoEncodeRateControlLayerInfoKHR<'lt>) -> &mut Self {
+    pub fn set_layer_configs_raw(mut self, value: *const VideoEncodeRateControlLayerInfoKHR<'lt>) -> Self {
         self.layer_configs = value;
         self
     }
@@ -2191,42 +2192,42 @@ impl<'lt> VideoEncodeRateControlInfoKHR<'lt> {
     pub fn layer_count_mut(&mut self) -> &mut u8 {
         &mut self.layer_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_encode_queue::VideoEncodeRateControlFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::rate_control_mode`]
+    ///Sets the value of [`Self::rate_control_mode`]
     pub fn set_rate_control_mode(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_encode_queue::VideoEncodeRateControlModeFlagBitsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.rate_control_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::layer_count`]
-    pub fn set_layer_count(&mut self, value: u8) -> &mut Self {
+    ///Sets the value of [`Self::layer_count`]
+    pub fn set_layer_count(mut self, value: u8) -> Self {
         self.layer_count = value;
         self
     }
-    ///Sets the raw value of [`Self::layer_configs`]
+    ///Sets the value of [`Self::layer_configs`]
     pub fn set_layer_configs(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::khr_video_encode_queue::VideoEncodeRateControlLayerInfoKHR<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u8;
         let len_ = len_;
         self.layer_configs = value.as_ptr();
@@ -2381,7 +2382,7 @@ impl<'lt> VideoEncodeRateControlLayerInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2448,43 +2449,43 @@ impl<'lt> VideoEncodeRateControlLayerInfoKHR<'lt> {
     pub fn initial_virtual_buffer_size_in_ms_mut(&mut self) -> &mut u32 {
         &mut self.initial_virtual_buffer_size_in_ms
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::average_bitrate`]
-    pub fn set_average_bitrate(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::average_bitrate`]
+    pub fn set_average_bitrate(mut self, value: u32) -> Self {
         self.average_bitrate = value;
         self
     }
-    ///Sets the raw value of [`Self::max_bitrate`]
-    pub fn set_max_bitrate(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_bitrate`]
+    pub fn set_max_bitrate(mut self, value: u32) -> Self {
         self.max_bitrate = value;
         self
     }
-    ///Sets the raw value of [`Self::frame_rate_numerator`]
-    pub fn set_frame_rate_numerator(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::frame_rate_numerator`]
+    pub fn set_frame_rate_numerator(mut self, value: u32) -> Self {
         self.frame_rate_numerator = value;
         self
     }
-    ///Sets the raw value of [`Self::frame_rate_denominator`]
-    pub fn set_frame_rate_denominator(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::frame_rate_denominator`]
+    pub fn set_frame_rate_denominator(mut self, value: u32) -> Self {
         self.frame_rate_denominator = value;
         self
     }
-    ///Sets the raw value of [`Self::virtual_buffer_size_in_ms`]
-    pub fn set_virtual_buffer_size_in_ms(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::virtual_buffer_size_in_ms`]
+    pub fn set_virtual_buffer_size_in_ms(mut self, value: u32) -> Self {
         self.virtual_buffer_size_in_ms = value;
         self
     }
-    ///Sets the raw value of [`Self::initial_virtual_buffer_size_in_ms`]
-    pub fn set_initial_virtual_buffer_size_in_ms(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::initial_virtual_buffer_size_in_ms`]
+    pub fn set_initial_virtual_buffer_size_in_ms(mut self, value: u32) -> Self {
         self.initial_virtual_buffer_size_in_ms = value;
         self
     }
@@ -2632,7 +2633,7 @@ impl<'lt> VideoEncodeCapabilitiesKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2691,62 +2692,135 @@ impl<'lt> VideoEncodeCapabilitiesKHR<'lt> {
     pub fn input_image_data_fill_alignment_mut(&mut self) -> &mut Extent2D {
         &mut self.input_image_data_fill_alignment
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_encode_queue::VideoEncodeCapabilityFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::rate_control_modes`]
+    ///Sets the value of [`Self::rate_control_modes`]
     pub fn set_rate_control_modes(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_encode_queue::VideoEncodeRateControlModeFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.rate_control_modes = value;
         self
     }
-    ///Sets the raw value of [`Self::rate_control_layer_count`]
-    pub fn set_rate_control_layer_count(&mut self, value: u8) -> &mut Self {
+    ///Sets the value of [`Self::rate_control_layer_count`]
+    pub fn set_rate_control_layer_count(mut self, value: u8) -> Self {
         self.rate_control_layer_count = value;
         self
     }
-    ///Sets the raw value of [`Self::quality_level_count`]
-    pub fn set_quality_level_count(&mut self, value: u8) -> &mut Self {
+    ///Sets the value of [`Self::quality_level_count`]
+    pub fn set_quality_level_count(mut self, value: u8) -> Self {
         self.quality_level_count = value;
         self
     }
-    ///Sets the raw value of [`Self::input_image_data_fill_alignment`]
-    pub fn set_input_image_data_fill_alignment(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::input_image_data_fill_alignment`]
+    pub fn set_input_image_data_fill_alignment(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.input_image_data_fill_alignment = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_video_encode_queue
+impl CommandBuffer {
+    ///[vkCmdEncodeVideoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEncodeVideoKHR.html) - Encode operation for bitstream generation
+    ///# C Specifications
+    ///To launch an encode operation that results in bitstream generation, call:
+    ///```c
+    ///// Provided by VK_KHR_video_encode_queue
+    ///void vkCmdEncodeVideoKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkVideoEncodeInfoKHR*                 pEncodeInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer to be filled with this function for encoding to
+    ///   generate a bitstream.
+    /// - [`p_encode_info`] is a pointer to a [`VideoEncodeInfoKHR`] structure.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_encode_info`] **must**  be a valid pointer to a valid [`VideoEncodeInfoKHR`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support encode
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_video_encode_queue`]
+    /// - [`CommandBuffer`]
+    /// - [`VideoEncodeInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdEncodeVideoKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_encode_video_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, CommandBuffer>,
+        p_encode_info: &VideoEncodeInfoKHR<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_encode_queue()
+            .expect("extension/version not loaded")
+            .cmd_encode_video_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_encode_queue()
+            .unwrap_unchecked()
+            .cmd_encode_video_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_encode_info as *const VideoEncodeInfoKHR<'lt>);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_video_encode_queue`
 pub struct DeviceKhrVideoEncodeQueueVTable {
     ///See [`FNCmdEncodeVideoKhr`] for more information.
     pub cmd_encode_video_khr: FNCmdEncodeVideoKhr,
 }
 impl DeviceKhrVideoEncodeQueueVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_encode_video_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEncodeVideoKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEncodeVideoKHR").as_ptr()))
             },
         }
     }

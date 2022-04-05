@@ -127,6 +127,7 @@ use crate::{
         VulkanResultCodes,
     },
     vulkan1_1::{FNCmdDispatchBase, FNCmdSetDeviceMask, FNGetDeviceGroupPeerMemoryFeatures, MAX_DEVICE_GROUP_SIZE},
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -136,6 +137,7 @@ use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -906,7 +908,7 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentCapabilitiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceGroupPresentCapabilitiesKHR<'lt> {
@@ -940,11 +942,11 @@ impl<'lt> Default for DeviceGroupPresentCapabilitiesKHR<'lt> {
 }
 impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -986,26 +988,23 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
     pub fn modes_mut(&mut self) -> &mut DeviceGroupPresentModeFlagsKHR {
         &mut self.modes
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::present_mask`]
-    pub fn set_present_mask(&mut self, value: [u32; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE as usize]) -> &mut Self {
+    ///Sets the value of [`Self::present_mask`]
+    pub fn set_present_mask(mut self, value: [u32; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE as usize]) -> Self {
         self.present_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::modes`]
-    pub fn set_modes(
-        &mut self,
-        value: crate::extensions::khr_device_group::DeviceGroupPresentModeFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::modes`]
+    pub fn set_modes(mut self, value: crate::extensions::khr_device_group::DeviceGroupPresentModeFlagsKHR) -> Self {
         self.modes = value;
         self
     }
@@ -1027,15 +1026,15 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`swapchain`] is [`crate::utils::Handle::null`] or a handle of a swapchain that the image will
-///   be bound to.
+/// - [`swapchain`] is [`crate::Handle::null`] or a handle of a swapchain that the image will be
+///   bound to.
 ///# Description
 ///## Valid Usage
-/// -    If [`swapchain`] is not [`crate::utils::Handle::null`], the fields of [`ImageCreateInfo`] **must**  match the [implied image creation parameters](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#swapchain-wsi-image-create-info) of the swapchain
+/// -    If [`swapchain`] is not [`crate::Handle::null`], the fields of [`ImageCreateInfo`] **must**  match the [implied image creation parameters](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#swapchain-wsi-image-create-info) of the swapchain
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
-/// - If [`swapchain`] is not [`crate::utils::Handle::null`], [`swapchain`] **must**  be a valid
+/// - If [`swapchain`] is not [`crate::Handle::null`], [`swapchain`] **must**  be a valid
 ///   [`SwapchainKHR`] handle
 ///# Related
 /// - [`VK_KHR_device_group`]
@@ -1063,7 +1062,7 @@ pub struct ImageSwapchainCreateInfoKHR<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *const BaseInStructure<'lt>,
-    ///[`swapchain`] is [`crate::utils::Handle::null`] or a handle of a swapchain that
+    ///[`swapchain`] is [`crate::Handle::null`] or a handle of a swapchain that
     ///the image will be bound to.
     pub swapchain: SwapchainKHR,
 }
@@ -1083,7 +1082,7 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1110,18 +1109,18 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
     pub fn swapchain_mut(&mut self) -> &mut SwapchainKHR {
         &mut self.swapchain
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain`]
-    pub fn set_swapchain(&mut self, value: crate::extensions::khr_swapchain::SwapchainKHR) -> &mut Self {
+    ///Sets the value of [`Self::swapchain`]
+    pub fn set_swapchain(mut self, value: crate::extensions::khr_swapchain::SwapchainKHR) -> Self {
         self.swapchain = value;
         self
     }
@@ -1145,7 +1144,7 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`swapchain`] is [`crate::utils::Handle::null`] or a swapchain handle.
+/// - [`swapchain`] is [`crate::Handle::null`] or a swapchain handle.
 /// - [`image_index`] is an image index within [`swapchain`].
 ///# Description
 ///If [`swapchain`] is not `NULL`, the [`swapchain`] and [`image_index`]
@@ -1189,7 +1188,7 @@ pub struct BindImageMemorySwapchainInfoKHR<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *const BaseInStructure<'lt>,
-    ///[`swapchain`] is [`crate::utils::Handle::null`] or a swapchain handle.
+    ///[`swapchain`] is [`crate::Handle::null`] or a swapchain handle.
     pub swapchain: SwapchainKHR,
     ///[`image_index`] is an image index within [`swapchain`].
     pub image_index: u32,
@@ -1211,7 +1210,7 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1246,23 +1245,23 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
     pub fn image_index_mut(&mut self) -> &mut u32 {
         &mut self.image_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain`]
-    pub fn set_swapchain(&mut self, value: crate::extensions::khr_swapchain::SwapchainKHR) -> &mut Self {
+    ///Sets the value of [`Self::swapchain`]
+    pub fn set_swapchain(mut self, value: crate::extensions::khr_swapchain::SwapchainKHR) -> Self {
         self.swapchain = value;
         self
     }
-    ///Sets the raw value of [`Self::image_index`]
-    pub fn set_image_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::image_index`]
+    pub fn set_image_index(mut self, value: u32) -> Self {
         self.image_index = value;
         self
     }
@@ -1287,8 +1286,8 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain`] is a non-retired swapchain from which an image is acquired.
 /// - [`timeout`] specifies how long the function waits, in nanoseconds, if no image is available.
-/// - [`semaphore`] is [`crate::utils::Handle::null`] or a semaphore to signal.
-/// - [`fence`] is [`crate::utils::Handle::null`] or a fence to signal.
+/// - [`semaphore`] is [`crate::Handle::null`] or a semaphore to signal.
+/// - [`fence`] is [`crate::Handle::null`] or a fence to signal.
 /// - [`device_mask`] is a mask of physical devices for which the swapchain image will be ready to
 ///   use when the semaphore or fence is signaled.
 ///# Description
@@ -1296,13 +1295,12 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 ///include all physical devices in the logical device.
 ///## Valid Usage
 /// - [`swapchain`] **must**  not be in the retired state
-/// - If [`semaphore`] is not [`crate::utils::Handle::null`] it  **must**  be unsignaled
-/// - If [`semaphore`] is not [`crate::utils::Handle::null`] it  **must**  not have any uncompleted
-///   signal or wait operations pending
-/// - If [`fence`] is not [`crate::utils::Handle::null`] it  **must**  be unsignaled and  **must**
-///   not be associated with any other queue command that has not yet completed execution on that
-///   queue
-/// - [`semaphore`] and [`fence`] **must**  not both be equal to [`crate::utils::Handle::null`]
+/// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  be unsignaled
+/// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  not have any uncompleted signal
+///   or wait operations pending
+/// - If [`fence`] is not [`crate::Handle::null`] it  **must**  be unsignaled and  **must**  not be
+///   associated with any other queue command that has not yet completed execution on that queue
+/// - [`semaphore`] and [`fence`] **must**  not both be equal to [`crate::Handle::null`]
 /// - [`device_mask`] **must**  be a valid device mask
 /// - [`device_mask`] **must**  not be zero
 /// - [`semaphore`] **must**  have a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`
@@ -1311,10 +1309,9 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
-/// - If [`semaphore`] is not [`crate::utils::Handle::null`], [`semaphore`] **must**  be a valid
+/// - If [`semaphore`] is not [`crate::Handle::null`], [`semaphore`] **must**  be a valid
 ///   [`Semaphore`] handle
-/// - If [`fence`] is not [`crate::utils::Handle::null`], [`fence`] **must**  be a valid [`Fence`]
-///   handle
+/// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be a valid [`Fence`] handle
 /// - Each of [`fence`], [`semaphore`], and [`swapchain`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Instance`]
 ///
@@ -1357,9 +1354,9 @@ pub struct AcquireNextImageInfoKHR<'lt> {
     ///[`timeout`] specifies how long the function waits, in nanoseconds, if
     ///no image is available.
     pub timeout: u64,
-    ///[`semaphore`] is [`crate::utils::Handle::null`] or a semaphore to signal.
+    ///[`semaphore`] is [`crate::Handle::null`] or a semaphore to signal.
     pub semaphore: Semaphore,
-    ///[`fence`] is [`crate::utils::Handle::null`] or a fence to signal.
+    ///[`fence`] is [`crate::Handle::null`] or a fence to signal.
     pub fence: Fence,
     ///[`device_mask`] is a mask of physical devices for which the swapchain
     ///image will be ready to use when the semaphore or fence is signaled.
@@ -1385,7 +1382,7 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1444,38 +1441,38 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
     pub fn device_mask_mut(&mut self) -> &mut u32 {
         &mut self.device_mask
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain`]
-    pub fn set_swapchain(&mut self, value: crate::extensions::khr_swapchain::SwapchainKHR) -> &mut Self {
+    ///Sets the value of [`Self::swapchain`]
+    pub fn set_swapchain(mut self, value: crate::extensions::khr_swapchain::SwapchainKHR) -> Self {
         self.swapchain = value;
         self
     }
-    ///Sets the raw value of [`Self::timeout`]
-    pub fn set_timeout(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::timeout`]
+    pub fn set_timeout(mut self, value: u64) -> Self {
         self.timeout = value;
         self
     }
-    ///Sets the raw value of [`Self::semaphore`]
-    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+    ///Sets the value of [`Self::semaphore`]
+    pub fn set_semaphore(mut self, value: crate::vulkan1_0::Semaphore) -> Self {
         self.semaphore = value;
         self
     }
-    ///Sets the raw value of [`Self::fence`]
-    pub fn set_fence(&mut self, value: crate::vulkan1_0::Fence) -> &mut Self {
+    ///Sets the value of [`Self::fence`]
+    pub fn set_fence(mut self, value: crate::vulkan1_0::Fence) -> Self {
         self.fence = value;
         self
     }
-    ///Sets the raw value of [`Self::device_mask`]
-    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::device_mask`]
+    pub fn set_device_mask(mut self, value: u32) -> Self {
         self.device_mask = value;
         self
     }
@@ -1618,12 +1615,12 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
         self.device_masks
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_masks`]
-    pub fn set_device_masks_raw(&mut self, value: *const u32) -> &mut Self {
+    pub fn set_device_masks_raw(mut self, value: *const u32) -> Self {
         self.device_masks = value;
         self
     }
@@ -1665,34 +1662,31 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
     pub fn mode_mut(&mut self) -> &mut DeviceGroupPresentModeFlagBitsKHR {
         &mut self.mode
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count(mut self, value: u32) -> Self {
         self.swapchain_count = value;
         self
     }
-    ///Sets the raw value of [`Self::device_masks`]
-    pub fn set_device_masks(&mut self, value: &'lt [u32]) -> &mut Self {
+    ///Sets the value of [`Self::device_masks`]
+    pub fn set_device_masks(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.device_masks = value.as_ptr();
         self.swapchain_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::mode`]
-    pub fn set_mode(
-        &mut self,
-        value: crate::extensions::khr_device_group::DeviceGroupPresentModeFlagBitsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::mode`]
+    pub fn set_mode(mut self, value: crate::extensions::khr_device_group::DeviceGroupPresentModeFlagBitsKHR) -> Self {
         self.mode = value;
         self
     }
@@ -1767,7 +1761,7 @@ impl<'lt> DeviceGroupSwapchainCreateInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1794,41 +1788,406 @@ impl<'lt> DeviceGroupSwapchainCreateInfoKHR<'lt> {
     pub fn modes_mut(&mut self) -> &mut DeviceGroupPresentModeFlagsKHR {
         &mut self.modes
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::modes`]
-    pub fn set_modes(
-        &mut self,
-        value: crate::extensions::khr_device_group::DeviceGroupPresentModeFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::modes`]
+    pub fn set_modes(mut self, value: crate::extensions::khr_device_group::DeviceGroupPresentModeFlagsKHR) -> Self {
         self.modes = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_device_group
+impl PhysicalDevice {
+    ///[vkGetPhysicalDevicePresentRectanglesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html) - Query present rectangles for a surface on a physical device
+    ///# C Specifications
+    ///When using `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR`,
+    ///the application  **may**  need to know which regions of the surface are used when
+    ///presenting locally on each physical device.
+    ///Presentation of swapchain images to this surface need only have valid
+    ///contents in the regions returned by this command.To query a set of rectangles used in
+    /// presentation on the physical device,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_1 with VK_KHR_swapchain, VK_KHR_device_group with VK_KHR_surface
+    ///VkResult vkGetPhysicalDevicePresentRectanglesKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkSurfaceKHR                                surface,
+    ///    uint32_t*                                   pRectCount,
+    ///    VkRect2D*                                   pRects);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device.
+    /// - [`surface`] is the surface.
+    /// - [`p_rect_count`] is a pointer to an integer related to the number of rectangles available
+    ///   or queried, as described below.
+    /// - [`p_rects`] is either `NULL` or a pointer to an array of [`Rect2D`] structures.
+    ///# Description
+    ///If [`p_rects`] is `NULL`, then the number of rectangles used when
+    ///presenting the given [`surface`] is returned in [`p_rect_count`].
+    ///Otherwise, [`p_rect_count`] **must**  point to a variable set by the user to the
+    ///number of elements in the [`p_rects`] array, and on return the variable is
+    ///overwritten with the number of structures actually written to [`p_rects`].
+    ///If the value of [`p_rect_count`] is less than the number of rectangles, at
+    ///most [`p_rect_count`] structures will be written, and `VK_INCOMPLETE`
+    ///will be returned instead of `VK_SUCCESS`, to indicate that not all the
+    ///available rectangles were returned.The values returned by this command are not invariant,
+    /// and  **may**  change in
+    ///response to the surface being moved, resized, or occluded.The rectangles returned by this
+    /// command  **must**  not overlap.
+    ///## Valid Usage
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`surface`] **must**  be supported by [`physical_device`], as reported by
+    ///   [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`p_rect_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_rect_count`] is not `0`, and [`p_rects`] is not `NULL`,
+    ///   [`p_rects`] **must**  be a valid pointer to an array of [`p_rect_count`][`Rect2D`]
+    ///   structures
+    /// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`surface`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_device_group`]
+    /// - [`VK_KHR_surface`]
+    /// - [`VK_KHR_swapchain`]
+    /// - [`crate::vulkan1_1`]
+    /// - [`PhysicalDevice`]
+    /// - [`Rect2D`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDevicePresentRectanglesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_present_rectangles_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        surface: SurfaceKHR,
+        p_rect_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<Rect2D>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_device_group()
+            .expect("extension/version not loaded")
+            .get_physical_device_present_rectangles_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_device_group()
+            .unwrap_unchecked()
+            .get_physical_device_present_rectangles_khr()
+            .unwrap_unchecked();
+        let mut p_rect_count = match p_rect_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), surface, &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_rects = SmallVec::<Rect2D>::from_elem(Default::default(), p_rect_count as usize);
+        let _return = _function(self.as_raw(), surface, &mut p_rect_count, p_rects.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_rects),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetDeviceGroupPresentCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html) - Query present capabilities from other physical devices
+    ///# C Specifications
+    ///A logical device that represents multiple physical devices  **may**  support
+    ///presenting from images on more than one physical device, or combining images
+    ///from multiple physical devices.To query these capabilities, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_1 with VK_KHR_swapchain, VK_KHR_device_group with VK_KHR_surface
+    ///VkResult vkGetDeviceGroupPresentCapabilitiesKHR(
+    ///    VkDevice                                    device,
+    ///    VkDeviceGroupPresentCapabilitiesKHR*        pDeviceGroupPresentCapabilities);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device.
+    /// - [`p_device_group_present_capabilities`] is a pointer to a
+    ///   [`DeviceGroupPresentCapabilitiesKHR`] structure in which the device’s capabilities are
+    ///   returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_device_group_present_capabilities`] **must**  be a valid pointer to a
+    ///   [`DeviceGroupPresentCapabilitiesKHR`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_device_group`]
+    /// - [`VK_KHR_surface`]
+    /// - [`VK_KHR_swapchain`]
+    /// - [`crate::vulkan1_1`]
+    /// - [`Device`]
+    /// - [`DeviceGroupPresentCapabilitiesKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDeviceGroupPresentCapabilitiesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_device_group_present_capabilities_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+    ) -> VulkanResult<DeviceGroupPresentCapabilitiesKHR<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_device_group()
+            .expect("extension/version not loaded")
+            .get_device_group_present_capabilities_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_device_group()
+            .unwrap_unchecked()
+            .get_device_group_present_capabilities_khr()
+            .unwrap_unchecked();
+        let mut p_device_group_present_capabilities = MaybeUninit::<DeviceGroupPresentCapabilitiesKHR<'lt>>::zeroed();
+        let _return = _function(self.as_raw(), p_device_group_present_capabilities.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, p_device_group_present_capabilities.assume_init())
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetDeviceGroupSurfacePresentModesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html) - Query present capabilities for a surface
+    ///# C Specifications
+    ///Some surfaces  **may**  not be capable of using all the device group present
+    ///modes.To query the supported device group present modes for a particular surface,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_1 with VK_KHR_swapchain, VK_KHR_device_group with VK_KHR_surface
+    ///VkResult vkGetDeviceGroupSurfacePresentModesKHR(
+    ///    VkDevice                                    device,
+    ///    VkSurfaceKHR                                surface,
+    ///    VkDeviceGroupPresentModeFlagsKHR*           pModes);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device.
+    /// - [`surface`] is the surface.
+    /// - [`p_modes`] is a pointer to a [`DeviceGroupPresentModeFlagsKHR`] in which the supported
+    ///   device group present modes for the surface are returned.
+    ///# Description
+    ///The modes returned by this command are not invariant, and  **may**  change in
+    ///response to the surface being moved, resized, or occluded.
+    ///These modes  **must**  be a subset of the modes returned by
+    ///[`get_device_group_present_capabilities_khr`].
+    ///## Valid Usage
+    /// - [`surface`] **must**  be supported by all physical devices associated with [`device`], as
+    ///   reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific
+    ///   mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`p_modes`] **must**  be a valid pointer to a [`DeviceGroupPresentModeFlagsKHR`] value
+    /// - Both of [`device`], and [`surface`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`surface`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_device_group`]
+    /// - [`VK_KHR_surface`]
+    /// - [`VK_KHR_swapchain`]
+    /// - [`crate::vulkan1_1`]
+    /// - [`Device`]
+    /// - [`DeviceGroupPresentModeFlagsKHR`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDeviceGroupSurfacePresentModesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_device_group_surface_present_modes_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        surface: SurfaceKHR,
+        p_modes: &mut DeviceGroupPresentModeFlagsKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_device_group()
+            .expect("extension/version not loaded")
+            .get_device_group_surface_present_modes_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_device_group()
+            .unwrap_unchecked()
+            .get_device_group_surface_present_modes_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), surface, p_modes as *mut DeviceGroupPresentModeFlagsKHR);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkAcquireNextImage2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireNextImage2KHR.html) - Retrieve the index of the next available presentable image
+    ///# C Specifications
+    ///To acquire an available presentable image to use, and retrieve the index of
+    ///that image, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_1 with VK_KHR_swapchain, VK_KHR_device_group with
+    ///// VK_KHR_swapchain
+    ///VkResult vkAcquireNextImage2KHR(
+    ///    VkDevice                                    device,
+    ///    const VkAcquireNextImageInfoKHR*            pAcquireInfo,
+    ///    uint32_t*                                   pImageIndex);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with `swapchain`.
+    /// - [`p_acquire_info`] is a pointer to a [`AcquireNextImageInfoKHR`] structure containing
+    ///   parameters of the acquire.
+    /// - [`p_image_index`] is a pointer to a `uint32_t` that is set to the index of the next image
+    ///   to use.
+    ///# Description
+    ///## Valid Usage
+    /// - If the number of currently acquired images is greater than the difference between the
+    ///   number of images in the `swapchain` member of [`p_acquire_info`] and the value of
+    ///   [`SurfaceCapabilitiesKHR::min_image_count`] as returned by a call to
+    ///   [`get_physical_device_surface_capabilities2_khr`] with the `surface` used to create
+    ///   `swapchain`, the `timeout` member of [`p_acquire_info`] **must**  not be `UINT64_MAX`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_acquire_info`] **must**  be a valid pointer to a valid [`AcquireNextImageInfoKHR`]
+    ///   structure
+    /// - [`p_image_index`] **must**  be a valid pointer to a `uint32_t` value
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_TIMEOUT`  - `VK_NOT_READY`  - `VK_SUBOPTIMAL_KHR`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
+    ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+    ///# Related
+    /// - [`VK_KHR_device_group`]
+    /// - [`VK_KHR_swapchain`]
+    /// - [`crate::vulkan1_1`]
+    /// - [`AcquireNextImageInfoKHR`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkAcquireNextImage2KHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn acquire_next_image2_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_acquire_info: &AcquireNextImageInfoKHR<'lt>,
+    ) -> VulkanResult<u32> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_device_group()
+            .expect("extension/version not loaded")
+            .acquire_next_image2_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_device_group()
+            .unwrap_unchecked()
+            .acquire_next_image2_khr()
+            .unwrap_unchecked();
+        let mut p_image_index = Default::default();
+        let _return = _function(
+            self.as_raw(),
+            p_acquire_info as *const AcquireNextImageInfoKHR<'lt>,
+            &mut p_image_index,
+        );
+        match _return {
+            VulkanResultCodes::Success
+            | VulkanResultCodes::Timeout
+            | VulkanResultCodes::NotReady
+            | VulkanResultCodes::SuboptimalKhr => VulkanResult::Success(_return, p_image_index),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_device_group`
 pub struct InstanceKhrDeviceGroupVTable {
     ///See [`FNGetPhysicalDevicePresentRectanglesKhr`] for more information.
     pub get_physical_device_present_rectangles_khr: FNGetPhysicalDevicePresentRectanglesKhr,
 }
 impl InstanceKhrDeviceGroupVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_present_rectangles_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDevicePresentRectanglesKHR"),
+                    crate::cstr!("vkGetPhysicalDevicePresentRectanglesKHR").as_ptr(),
                 ))
             },
         }
@@ -1839,7 +2198,7 @@ impl InstanceKhrDeviceGroupVTable {
         self.get_physical_device_present_rectangles_khr
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_device_group
+///The V-table of [`Device`] for functions from `VK_KHR_device_group`
 pub struct DeviceKhrDeviceGroupVTable {
     ///See [`FNGetDeviceGroupPresentCapabilitiesKhr`] for more information.
     pub get_device_group_present_capabilities_khr: FNGetDeviceGroupPresentCapabilitiesKhr,
@@ -1856,33 +2215,42 @@ pub struct DeviceKhrDeviceGroupVTable {
 }
 impl DeviceKhrDeviceGroupVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_device_group_present_capabilities_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceGroupPresentCapabilitiesKHR"),
+                    crate::cstr!("vkGetDeviceGroupPresentCapabilitiesKHR").as_ptr(),
                 ))
             },
             get_device_group_surface_present_modes_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceGroupSurfacePresentModesKHR"),
+                    crate::cstr!("vkGetDeviceGroupSurfacePresentModesKHR").as_ptr(),
                 ))
             },
             acquire_next_image2_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireNextImage2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireNextImage2KHR").as_ptr()))
             },
             get_device_group_peer_memory_features: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDeviceGroupPeerMemoryFeaturesKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceGroupPeerMemoryFeaturesKHR").as_ptr(),
+                ))
             },
             cmd_set_device_mask: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDeviceMaskKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDeviceMaskKHR").as_ptr()))
             },
-            cmd_dispatch_base: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDispatchBaseKHR"))) },
+            cmd_dispatch_base: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDispatchBaseKHR").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::get_device_group_present_capabilities_khr`]. See

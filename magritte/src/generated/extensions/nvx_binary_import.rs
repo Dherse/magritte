@@ -59,10 +59,18 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{AllocationCallbacks, BaseInStructure, CommandBuffer, Device, StructureType, VulkanResultCodes};
+use crate::{
+    entry::Entry,
+    vulkan1_0::{
+        AllocationCallbacks, BaseInStructure, CommandBuffer, Device, Instance, PhysicalDevice, StructureType,
+        VulkanResultCodes,
+    },
+    AsRaw, Handle, Unique, VulkanResult,
+};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    mem::MaybeUninit,
     os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -357,12 +365,12 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
         self.data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::data`]
-    pub fn set_data_raw(&mut self, value: *const c_void) -> &mut Self {
+    pub fn set_data_raw(mut self, value: *const c_void) -> Self {
         self.data = value;
         self
     }
@@ -396,23 +404,23 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
     pub fn data_size_mut(&mut self) -> &mut usize {
         &mut self.data_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::data_size`]
-    pub fn set_data_size(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::data_size`]
+    pub fn set_data_size(mut self, value: usize) -> Self {
         self.data_size = value;
         self
     }
-    ///Sets the raw value of [`Self::data`]
-    pub fn set_data(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::data`]
+    pub fn set_data(mut self, value: &'lt [std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.data = value.as_ptr();
@@ -490,12 +498,12 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
         self.name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_name_raw(mut self, value: *const c_char) -> Self {
         self.name = value;
         self
     }
@@ -529,23 +537,23 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
     pub fn module_mut(&mut self) -> &mut CuModuleNVX {
         &mut self.module
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::module`]
-    pub fn set_module(&mut self, value: crate::extensions::nvx_binary_import::CuModuleNVX) -> &mut Self {
+    ///Sets the value of [`Self::module`]
+    pub fn set_module(mut self, value: crate::extensions::nvx_binary_import::CuModuleNVX) -> Self {
         self.module = value;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: *const std::os::raw::c_char) -> Self {
         self.name = value;
         self
     }
@@ -669,17 +677,17 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
         self.extras
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::params`]
-    pub fn set_params_raw(&mut self, value: *const *const c_void) -> &mut Self {
+    pub fn set_params_raw(mut self, value: *const *const c_void) -> Self {
         self.params = value;
         self
     }
     ///Sets the raw value of [`Self::extras`]
-    pub fn set_extras_raw(&mut self, value: *const *const c_void) -> &mut Self {
+    pub fn set_extras_raw(mut self, value: *const *const c_void) -> Self {
         self.extras = value;
         self
     }
@@ -792,81 +800,436 @@ impl<'lt> CuLaunchInfoNVX<'lt> {
     pub fn extra_count_mut(&mut self) -> &mut usize {
         &mut self.extra_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::function`]
-    pub fn set_function(&mut self, value: crate::extensions::nvx_binary_import::CuFunctionNVX) -> &mut Self {
+    ///Sets the value of [`Self::function`]
+    pub fn set_function(mut self, value: crate::extensions::nvx_binary_import::CuFunctionNVX) -> Self {
         self.function = value;
         self
     }
-    ///Sets the raw value of [`Self::grid_dim_x`]
-    pub fn set_grid_dim_x(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::grid_dim_x`]
+    pub fn set_grid_dim_x(mut self, value: u32) -> Self {
         self.grid_dim_x = value;
         self
     }
-    ///Sets the raw value of [`Self::grid_dim_y`]
-    pub fn set_grid_dim_y(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::grid_dim_y`]
+    pub fn set_grid_dim_y(mut self, value: u32) -> Self {
         self.grid_dim_y = value;
         self
     }
-    ///Sets the raw value of [`Self::grid_dim_z`]
-    pub fn set_grid_dim_z(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::grid_dim_z`]
+    pub fn set_grid_dim_z(mut self, value: u32) -> Self {
         self.grid_dim_z = value;
         self
     }
-    ///Sets the raw value of [`Self::block_dim_x`]
-    pub fn set_block_dim_x(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::block_dim_x`]
+    pub fn set_block_dim_x(mut self, value: u32) -> Self {
         self.block_dim_x = value;
         self
     }
-    ///Sets the raw value of [`Self::block_dim_y`]
-    pub fn set_block_dim_y(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::block_dim_y`]
+    pub fn set_block_dim_y(mut self, value: u32) -> Self {
         self.block_dim_y = value;
         self
     }
-    ///Sets the raw value of [`Self::block_dim_z`]
-    pub fn set_block_dim_z(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::block_dim_z`]
+    pub fn set_block_dim_z(mut self, value: u32) -> Self {
         self.block_dim_z = value;
         self
     }
-    ///Sets the raw value of [`Self::shared_mem_bytes`]
-    pub fn set_shared_mem_bytes(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shared_mem_bytes`]
+    pub fn set_shared_mem_bytes(mut self, value: u32) -> Self {
         self.shared_mem_bytes = value;
         self
     }
-    ///Sets the raw value of [`Self::param_count`]
-    pub fn set_param_count(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::param_count`]
+    pub fn set_param_count(mut self, value: usize) -> Self {
         self.param_count = value;
         self
     }
-    ///Sets the raw value of [`Self::params`]
-    pub fn set_params(&mut self, value: &'lt [*const std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::params`]
+    pub fn set_params(mut self, value: &'lt [*const std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.params = value.as_ptr();
         self.param_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::extra_count`]
-    pub fn set_extra_count(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::extra_count`]
+    pub fn set_extra_count(mut self, value: usize) -> Self {
         self.extra_count = value;
         self
     }
-    ///Sets the raw value of [`Self::extras`]
-    pub fn set_extras(&mut self, value: &'lt [*const std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::extras`]
+    pub fn set_extras(mut self, value: &'lt [*const std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.extras = value.as_ptr();
         self.extra_count = len_;
         self
+    }
+}
+impl Device {
+    ///[vkCreateCuModuleNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateCuModuleNVX.html) - Stub description of vkCreateCuModuleNVX
+    ///# C Specifications
+    ///There is currently no specification language written for this command.
+    ///This section acts only as placeholder and to avoid dead links in the
+    ///specification and reference pages.
+    ///```c
+    ///// Provided by VK_NVX_binary_import
+    ///VkResult vkCreateCuModuleNVX(
+    ///    VkDevice                                    device,
+    ///    const VkCuModuleCreateInfoNVX*              pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkCuModuleNVX*                              pModule);
+    ///```
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`CuModuleCreateInfoNVX`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_module`] **must**  be a valid pointer to a [`CuModuleNVX`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_NVX_binary_import`]
+    /// - [`AllocationCallbacks`]
+    /// - [`CuModuleCreateInfoNVX`]
+    /// - [`CuModuleNVX`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateCuModuleNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_cu_module_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &CuModuleCreateInfoNVX<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, CuModuleNVX>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .expect("extension/version not loaded")
+            .create_cu_module_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .unwrap_unchecked()
+            .create_cu_module_nvx()
+            .unwrap_unchecked();
+        let mut p_module = MaybeUninit::<CuModuleNVX>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const CuModuleCreateInfoNVX<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_module.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, p_module.assume_init(), ())),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkCreateCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateCuFunctionNVX.html) - Stub description of vkCreateCuFunctionNVX
+    ///# C Specifications
+    ///There is currently no specification language written for this command.
+    ///This section acts only as placeholder and to avoid dead links in the
+    ///specification and reference pages.
+    ///```c
+    ///// Provided by VK_NVX_binary_import
+    ///VkResult vkCreateCuFunctionNVX(
+    ///    VkDevice                                    device,
+    ///    const VkCuFunctionCreateInfoNVX*            pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkCuFunctionNVX*                            pFunction);
+    ///```
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`CuFunctionCreateInfoNVX`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_function`] **must**  be a valid pointer to a [`CuFunctionNVX`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_NVX_binary_import`]
+    /// - [`AllocationCallbacks`]
+    /// - [`CuFunctionCreateInfoNVX`]
+    /// - [`CuFunctionNVX`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateCuFunctionNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_cu_function_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &CuFunctionCreateInfoNVX<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, CuFunctionNVX>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .expect("extension/version not loaded")
+            .create_cu_function_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .unwrap_unchecked()
+            .create_cu_function_nvx()
+            .unwrap_unchecked();
+        let mut p_function = MaybeUninit::<CuFunctionNVX>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const CuFunctionCreateInfoNVX<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_function.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_function.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyCuModuleNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyCuModuleNVX.html) - Stub description of vkDestroyCuModuleNVX
+    ///# C Specifications
+    ///There is currently no specification language written for this command.
+    ///This section acts only as placeholder and to avoid dead links in the
+    ///specification and reference pages.
+    ///```c
+    ///// Provided by VK_NVX_binary_import
+    ///void vkDestroyCuModuleNVX(
+    ///    VkDevice                                    device,
+    ///    VkCuModuleNVX                               module,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`module`] **must**  be a valid [`CuModuleNVX`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`module`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_NVX_binary_import`]
+    /// - [`AllocationCallbacks`]
+    /// - [`CuModuleNVX`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyCuModuleNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_cu_module_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        module: CuModuleNVX,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .expect("extension/version not loaded")
+            .destroy_cu_module_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .unwrap_unchecked()
+            .destroy_cu_module_nvx()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            module,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkDestroyCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyCuFunctionNVX.html) - Stub description of vkDestroyCuFunctionNVX
+    ///# C Specifications
+    ///There is currently no specification language written for this command.
+    ///This section acts only as placeholder and to avoid dead links in the
+    ///specification and reference pages.
+    ///```c
+    ///// Provided by VK_NVX_binary_import
+    ///void vkDestroyCuFunctionNVX(
+    ///    VkDevice                                    device,
+    ///    VkCuFunctionNVX                             function,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`function`] **must**  be a valid [`CuFunctionNVX`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`function`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_NVX_binary_import`]
+    /// - [`AllocationCallbacks`]
+    /// - [`CuFunctionNVX`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyCuFunctionNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_cu_function_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        function: CuFunctionNVX,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .expect("extension/version not loaded")
+            .destroy_cu_function_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nvx_binary_import()
+            .unwrap_unchecked()
+            .destroy_cu_function_nvx()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            function,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdCuLaunchKernelNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdCuLaunchKernelNVX.html) - Stub description of vkCmdCuLaunchKernelNVX
+    ///# C Specifications
+    ///There is currently no specification language written for this command.
+    ///This section acts only as placeholder and to avoid dead links in the
+    ///specification and reference pages.
+    ///```c
+    ///// Provided by VK_NVX_binary_import
+    ///void vkCmdCuLaunchKernelNVX(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCuLaunchInfoNVX*                    pLaunchInfo);
+    ///```
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_launch_info`] **must**  be a valid pointer to a valid [`CuLaunchInfoNVX`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NVX_binary_import`]
+    /// - [`CommandBuffer`]
+    /// - [`CuLaunchInfoNVX`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdCuLaunchKernelNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_cu_launch_kernel_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, CommandBuffer>,
+        p_launch_info: &CuLaunchInfoNVX<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nvx_binary_import()
+            .expect("extension/version not loaded")
+            .cmd_cu_launch_kernel_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nvx_binary_import()
+            .unwrap_unchecked()
+            .cmd_cu_launch_kernel_nvx()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_launch_info as *const CuLaunchInfoNVX<'lt>);
+        ()
     }
 }
 ///[VkCuModuleNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuModuleNVX.html) - Stub description of VkCuModuleNVX
@@ -919,6 +1282,42 @@ impl Default for CuModuleNVX {
         Self::null()
     }
 }
+impl Handle for CuModuleNVX {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device().destroy_cu_module_nvx(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, CuModuleNVX> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
 ///[VkCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionNVX.html) - Stub description of VkCuFunctionNVX
 ///# C Specifications
 ///There is currently no specification language written for this type.
@@ -969,7 +1368,43 @@ impl Default for CuFunctionNVX {
         Self::null()
     }
 }
-///The V-table of [`Device`] for functions from VK_NVX_binary_import
+impl Handle for CuFunctionNVX {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device().destroy_cu_function_nvx(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, CuFunctionNVX> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NVX_binary_import`
 pub struct DeviceNvxBinaryImportVTable {
     ///See [`FNCreateCuModuleNvx`] for more information.
     pub create_cu_module_nvx: FNCreateCuModuleNvx,
@@ -984,25 +1419,29 @@ pub struct DeviceNvxBinaryImportVTable {
 }
 impl DeviceNvxBinaryImportVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_cu_module_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateCuModuleNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateCuModuleNVX").as_ptr()))
             },
             create_cu_function_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateCuFunctionNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateCuFunctionNVX").as_ptr()))
             },
             destroy_cu_module_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyCuModuleNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyCuModuleNVX").as_ptr()))
             },
             destroy_cu_function_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyCuFunctionNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyCuFunctionNVX").as_ptr()))
             },
             cmd_cu_launch_kernel_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCuLaunchKernelNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCuLaunchKernelNVX").as_ptr()))
             },
         }
     }

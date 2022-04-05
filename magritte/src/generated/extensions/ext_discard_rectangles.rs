@@ -61,7 +61,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, CommandBuffer, Device, Rect2D, StructureType};
+use crate::{
+    vulkan1_0::{BaseInStructure, BaseOutStructure, CommandBuffer, Device, Rect2D, StructureType},
+    AsRaw, SmallVec, Unique,
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
@@ -287,7 +290,7 @@ impl std::fmt::Debug for PipelineDiscardRectangleStateCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDiscardRectanglePropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
@@ -314,11 +317,11 @@ impl<'lt> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -352,18 +355,18 @@ impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     pub fn max_discard_rectangles_mut(&mut self) -> &mut u32 {
         &mut self.max_discard_rectangles
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_discard_rectangles`]
-    pub fn set_max_discard_rectangles(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_discard_rectangles`]
+    pub fn set_max_discard_rectangles(mut self, value: u32) -> Self {
         self.max_discard_rectangles = value;
         self
     }
@@ -469,12 +472,12 @@ impl<'lt> PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
         self.discard_rectangles
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::discard_rectangles`]
-    pub fn set_discard_rectangles_raw(&mut self, value: *const Rect2D) -> &mut Self {
+    pub fn set_discard_rectangles_raw(mut self, value: *const Rect2D) -> Self {
         self.discard_rectangles = value;
         self
     }
@@ -524,39 +527,39 @@ impl<'lt> PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     pub fn discard_rectangle_count_mut(&mut self) -> &mut u32 {
         &mut self.discard_rectangle_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_discard_rectangles::PipelineDiscardRectangleStateCreateFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::discard_rectangle_mode`]
+    ///Sets the value of [`Self::discard_rectangle_mode`]
     pub fn set_discard_rectangle_mode(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_discard_rectangles::DiscardRectangleModeEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.discard_rectangle_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::discard_rectangle_count`]
-    pub fn set_discard_rectangle_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::discard_rectangle_count`]
+    pub fn set_discard_rectangle_count(mut self, value: u32) -> Self {
         self.discard_rectangle_count = value;
         self
     }
-    ///Sets the raw value of [`Self::discard_rectangles`]
-    pub fn set_discard_rectangles(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+    ///Sets the value of [`Self::discard_rectangles`]
+    pub fn set_discard_rectangles(mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.discard_rectangles = value.as_ptr();
@@ -564,20 +567,132 @@ impl<'lt> PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_discard_rectangles
+impl CommandBuffer {
+    ///[vkCmdSetDiscardRectangleEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetDiscardRectangleEXT.html) - Set discard rectangles dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the discard rectangles,
+    ///call:
+    ///```c
+    ///// Provided by VK_EXT_discard_rectangles
+    ///void vkCmdSetDiscardRectangleEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    firstDiscardRectangle,
+    ///    uint32_t                                    discardRectangleCount,
+    ///    const VkRect2D*                             pDiscardRectangles);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`first_discard_rectangle`] is the index of the first discard rectangle whose state is
+    ///   updated by the command.
+    /// - [`discard_rectangle_count`] is the number of discard rectangles whose state are updated by
+    ///   the command.
+    /// - [`p_discard_rectangles`] is a pointer to an array of [`Rect2D`] structures specifying
+    ///   discard rectangles.
+    ///# Description
+    ///The discard rectangle taken from element i of [`p_discard_rectangles`]
+    ///replace the current state for the discard rectangle at index
+    ///[`first_discard_rectangle`] +  i, for i in [0,
+    ///[`discard_rectangle_count`]).This command sets the discard rectangles for subsequent drawing
+    /// commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDiscardRectangleStateCreateInfoEXT`]::[`p_discard_rectangles`]
+    ///values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - The sum of [`first_discard_rectangle`] and [`discard_rectangle_count`] **must**  be less
+    ///   than or equal to [`PhysicalDeviceDiscardRectanglePropertiesEXT::max_discard_rectangles`]
+    /// - The `x` and `y` member of `offset` in each [`Rect2D`] element of [`p_discard_rectangles`]
+    ///   **must**  be greater than or equal to `0`
+    /// - Evaluation of (`offset.x` +  `extent.width`) in each [`Rect2D`] element of
+    ///   [`p_discard_rectangles`] **must**  not cause a signed integer addition overflow
+    /// - Evaluation of (`offset.y` +  `extent.height`) in each [`Rect2D`] element of
+    ///   [`p_discard_rectangles`] **must**  not cause a signed integer addition overflow
+    /// - If this command is recorded in a secondary command buffer with
+    ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor_2_d`] enabled, then this
+    ///   function  **must**  not be called
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_discard_rectangles`] **must**  be a valid pointer to an array of
+    ///   [`discard_rectangle_count`][`Rect2D`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`discard_rectangle_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_discard_rectangles`]
+    /// - [`CommandBuffer`]
+    /// - [`Rect2D`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetDiscardRectangleEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_discard_rectangle_ext<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        first_discard_rectangle: Option<u32>,
+        p_discard_rectangles: &[crate::vulkan1_0::Rect2D],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_discard_rectangles()
+            .expect("extension/version not loaded")
+            .cmd_set_discard_rectangle_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_discard_rectangles()
+            .unwrap_unchecked()
+            .cmd_set_discard_rectangle_ext()
+            .unwrap_unchecked();
+        let discard_rectangle_count = (|len: usize| len)(p_discard_rectangles.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            first_discard_rectangle.unwrap_or_default() as _,
+            discard_rectangle_count,
+            p_discard_rectangles.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_discard_rectangles`
 pub struct DeviceExtDiscardRectanglesVTable {
     ///See [`FNCmdSetDiscardRectangleExt`] for more information.
     pub cmd_set_discard_rectangle_ext: FNCmdSetDiscardRectangleExt,
 }
 impl DeviceExtDiscardRectanglesVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_discard_rectangle_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDiscardRectangleEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDiscardRectangleEXT").as_ptr()))
             },
         }
     }

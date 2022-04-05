@@ -87,14 +87,13 @@ impl<'a> Ty<'a> {
     /// Checks whether the type is copy
     pub fn is_copy(&self, source: &Source<'a>) -> bool {
         match self {
-            Ty::Pointer(Mutability::Const, _)
+            Ty::Pointer(_, _)
             | Ty::Native(_)
             | Ty::StringArray(_)
             | Ty::NullTerminatedString(_)
-            | Ty::Slice(Mutability::Const, _, _) => true,
+            | Ty::Slice(_, _, _) => true,
             Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_copy(source),
             Ty::Array(ty, _) => ty.is_copy(source),
-            Ty::Pointer(Mutability::Mutable, _) | Ty::Slice(Mutability::Mutable, _, _) => false,
         }
     }
 
@@ -226,8 +225,37 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Creates a converter from the "raw" type to its "rustified type" as an inline call, only one
+    /// layer deep so as to not allocate.
+    pub fn rust_to_c_converter_inline(&self, source: &Source<'a>, value: &str) -> TokenStream {
+        let value_ident = Ident::new(value, Span::call_site());
+        match self {
+            Ty::Named(Cow::Borrowed("VkBool32")) => quote! { #value_ident as u8 as u32 },
+            Ty::Pointer(mutability, _) => {
+                let ptr_mut = mutability.as_ptr_token();
+
+                quote! {
+                    #value_ident as *#ptr_mut _
+                }
+            },
+            Ty::Native(_) | Ty::Named(_) | Ty::StringArray(_) | Ty::Array(_, _) => value_ident.to_token_stream(),
+            Ty::NullTerminatedString(_) => quote! {
+                #value_ident.as_ptr()
+            },
+            Ty::Slice(mutability, _, _) => match mutability {
+                Mutability::Mutable => quote! {
+                    #value_ident.as_mut_ptr()
+                },
+                Mutability::Const => quote! {
+                    #value_ident.as_ptr()
+                },
+            },
+        }
+    }
+
     /// Creates a converter from the "raw" type to its "rustified type", only one layer deep
     /// so as to not allocate. Returns the converter and whether or not the output is a reference.
+    /// TODO: make name more explicit
     pub fn rust_to_c_converter(
         &self,
         source: &Source<'a>,

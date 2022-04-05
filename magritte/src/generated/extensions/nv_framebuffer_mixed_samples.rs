@@ -335,17 +335,17 @@ impl<'lt> PipelineCoverageModulationStateCreateInfoNV<'lt> {
         self.coverage_modulation_table
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::coverage_modulation_table_enable`]
-    pub fn set_coverage_modulation_table_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_coverage_modulation_table_enable_raw(mut self, value: Bool32) -> Self {
         self.coverage_modulation_table_enable = value;
         self
     }
     ///Sets the raw value of [`Self::coverage_modulation_table`]
-    pub fn set_coverage_modulation_table_raw(&mut self, value: *const f32) -> &mut Self {
+    pub fn set_coverage_modulation_table_raw(mut self, value: *const f32) -> Self {
         self.coverage_modulation_table = value;
         self
     }
@@ -420,44 +420,44 @@ impl<'lt> PipelineCoverageModulationStateCreateInfoNV<'lt> {
     pub fn coverage_modulation_table_count_mut(&mut self) -> &mut u32 {
         &mut self.coverage_modulation_table_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_framebuffer_mixed_samples::PipelineCoverageModulationStateCreateFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::coverage_modulation_mode`]
+    ///Sets the value of [`Self::coverage_modulation_mode`]
     pub fn set_coverage_modulation_mode(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_framebuffer_mixed_samples::CoverageModulationModeNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.coverage_modulation_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::coverage_modulation_table_enable`]
-    pub fn set_coverage_modulation_table_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::coverage_modulation_table_enable`]
+    pub fn set_coverage_modulation_table_enable(mut self, value: bool) -> Self {
         self.coverage_modulation_table_enable = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::coverage_modulation_table_count`]
-    pub fn set_coverage_modulation_table_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::coverage_modulation_table_count`]
+    pub fn set_coverage_modulation_table_count(mut self, value: u32) -> Self {
         self.coverage_modulation_table_count = value;
         self
     }
-    ///Sets the raw value of [`Self::coverage_modulation_table`]
-    pub fn set_coverage_modulation_table(&mut self, value: &'lt [f32]) -> &mut Self {
+    ///Sets the value of [`Self::coverage_modulation_table`]
+    pub fn set_coverage_modulation_table(mut self, value: &'lt [f32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.coverage_modulation_table = value.as_ptr();

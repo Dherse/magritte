@@ -92,6 +92,7 @@
 use crate::{
     extensions::khr_swapchain::{SwapchainCreateInfoKHR, SwapchainKHR},
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Bool32, Device, Rect2D, StructureType, VulkanResultCodes},
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -303,12 +304,12 @@ impl<'lt> DisplayPresentInfoKHR<'lt> {
         self.persistent
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::persistent`]
-    pub fn set_persistent_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_persistent_raw(mut self, value: Bool32) -> Self {
         self.persistent = value;
         self
     }
@@ -365,46 +366,163 @@ impl<'lt> DisplayPresentInfoKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_rect`]
-    pub fn set_src_rect(&mut self, value: crate::vulkan1_0::Rect2D) -> &mut Self {
+    ///Sets the value of [`Self::src_rect`]
+    pub fn set_src_rect(mut self, value: crate::vulkan1_0::Rect2D) -> Self {
         self.src_rect = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_rect`]
-    pub fn set_dst_rect(&mut self, value: crate::vulkan1_0::Rect2D) -> &mut Self {
+    ///Sets the value of [`Self::dst_rect`]
+    pub fn set_dst_rect(mut self, value: crate::vulkan1_0::Rect2D) -> Self {
         self.dst_rect = value;
         self
     }
-    ///Sets the raw value of [`Self::persistent`]
-    pub fn set_persistent(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::persistent`]
+    pub fn set_persistent(mut self, value: bool) -> Self {
         self.persistent = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_display_swapchain
+impl Device {
+    ///[vkCreateSharedSwapchainsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateSharedSwapchainsKHR.html) - Create multiple swapchains that share presentable images
+    ///# C Specifications
+    ///When the [`VK_KHR_display_swapchain`] extension is enabled, multiple
+    ///swapchains that share presentable images are created by calling:
+    ///```c
+    ///// Provided by VK_KHR_display_swapchain
+    ///VkResult vkCreateSharedSwapchainsKHR(
+    ///    VkDevice                                    device,
+    ///    uint32_t                                    swapchainCount,
+    ///    const VkSwapchainCreateInfoKHR*             pCreateInfos,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkSwapchainKHR*                             pSwapchains);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device to create the swapchains for.
+    /// - [`swapchain_count`] is the number of swapchains to create.
+    /// - [`p_create_infos`] is a pointer to an array of [`SwapchainCreateInfoKHR`] structures
+    ///   specifying the parameters of the created swapchains.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the swapchain objects when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    /// - [`p_swapchains`] is a pointer to an array of [`SwapchainKHR`] handles in which the created
+    ///   swapchain objects will be returned.
+    ///# Description
+    ///[`create_shared_swapchains_khr`] is similar to [`create_swapchain_khr`],
+    ///except that it takes an array of [`SwapchainCreateInfoKHR`] structures,
+    ///and returns an array of swapchain objects.The swapchain creation parameters that affect the
+    /// properties and number of
+    ///presentable images  **must**  match between all the swapchains.
+    ///If the displays used by any of the swapchains do not use the same
+    ///presentable image layout or are incompatible in a way that prevents sharing
+    ///images, swapchain creation will fail with the result code
+    ///`VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`.
+    ///If any error occurs, no swapchains will be created.
+    ///Images presented to multiple swapchains  **must**  be re-acquired from all of
+    ///them before transitioning away from `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`.
+    ///After destroying one or more of the swapchains, the remaining swapchains and
+    ///the presentable images  **can**  continue to be used.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_infos`] **must**  be a valid pointer to an array of [`swapchain_count`] valid
+    ///   [`SwapchainCreateInfoKHR`] structures
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_swapchains`] **must**  be a valid pointer to an array of
+    ///   [`swapchain_count`][`SwapchainKHR`] handles
+    /// - [`swapchain_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`p_create_infos`][].surface  **must**  be externally synchronized
+    /// - Host access to [`p_create_infos`][].oldSwapchain  **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`  - `VK_ERROR_DEVICE_LOST`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_display_swapchain`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`SwapchainCreateInfoKHR`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateSharedSwapchainsKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_shared_swapchains_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_infos: &[crate::extensions::khr_swapchain::SwapchainCreateInfoKHR<'lt>],
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<SmallVec<Unique<'this, SwapchainKHR>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_display_swapchain()
+            .expect("extension/version not loaded")
+            .create_shared_swapchains_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_display_swapchain()
+            .unwrap_unchecked()
+            .create_shared_swapchains_khr()
+            .unwrap_unchecked();
+        let swapchain_count = (|len: usize| len)(p_create_infos.len()) as _;
+        let mut p_swapchains = SmallVec::<SwapchainKHR>::from_elem(Default::default(), swapchain_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            swapchain_count,
+            p_create_infos.as_ptr(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_swapchains.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(
+                _return,
+                p_swapchains.into_iter().map(|i| Unique::new(self, i, ())).collect(),
+            ),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_display_swapchain`
 pub struct DeviceKhrDisplaySwapchainVTable {
     ///See [`FNCreateSharedSwapchainsKhr`] for more information.
     pub create_shared_swapchains_khr: FNCreateSharedSwapchainsKhr,
 }
 impl DeviceKhrDisplaySwapchainVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_shared_swapchains_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateSharedSwapchainsKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateSharedSwapchainsKHR").as_ptr()))
             },
         }
     }

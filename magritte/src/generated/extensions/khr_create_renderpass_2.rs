@@ -94,7 +94,7 @@ pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_CREATE_RENDERPASS_2_EXTENSION_NAME")]
 pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_create_renderpass2");
-///The V-table of [`Device`] for functions from VK_KHR_create_renderpass2
+///The V-table of [`Device`] for functions from `VK_KHR_create_renderpass2`
 pub struct DeviceKhrCreateRenderpass2VTable {
     ///See [`FNCreateRenderPass2`] for more information.
     pub create_render_pass2: FNCreateRenderPass2,
@@ -107,20 +107,26 @@ pub struct DeviceKhrCreateRenderpass2VTable {
 }
 impl DeviceKhrCreateRenderpass2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_render_pass2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateRenderPass2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateRenderPass2KHR").as_ptr()))
             },
             cmd_begin_render_pass2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderPass2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderPass2KHR").as_ptr()))
             },
-            cmd_next_subpass2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdNextSubpass2KHR"))) },
+            cmd_next_subpass2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdNextSubpass2KHR").as_ptr()))
+            },
             cmd_end_render_pass2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderPass2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderPass2KHR").as_ptr()))
             },
         }
     }

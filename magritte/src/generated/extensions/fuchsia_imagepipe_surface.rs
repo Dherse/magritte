@@ -45,8 +45,9 @@ use crate::{
     extensions::khr_surface::SurfaceKHR,
     native::zx_handle_t,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION")]
@@ -219,12 +220,12 @@ impl<'lt> ImagePipeSurfaceCreateInfoFUCHSIA<'lt> {
         &self.image_pipe_handle
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::image_pipe_handle`]
-    pub fn set_image_pipe_handle_raw(&mut self, value: zx_handle_t) -> &mut Self {
+    pub fn set_image_pipe_handle_raw(mut self, value: zx_handle_t) -> Self {
         self.image_pipe_handle = value;
         self
     }
@@ -244,8 +245,8 @@ impl<'lt> ImagePipeSurfaceCreateInfoFUCHSIA<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::image_pipe_handle`]
-    pub fn image_pipe_handle(&self) -> &zx_handle_t {
-        &self.image_pipe_handle
+    pub fn image_pipe_handle(&self) -> zx_handle_t {
+        self.image_pipe_handle
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -259,44 +260,136 @@ impl<'lt> ImagePipeSurfaceCreateInfoFUCHSIA<'lt> {
     pub fn image_pipe_handle_mut(&mut self) -> &mut zx_handle_t {
         &mut self.image_pipe_handle
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_imagepipe_surface::ImagePipeSurfaceCreateFlagsFUCHSIA,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::image_pipe_handle`]
-    pub fn set_image_pipe_handle(&mut self, value: crate::native::zx_handle_t) -> &mut Self {
+    ///Sets the value of [`Self::image_pipe_handle`]
+    pub fn set_image_pipe_handle(mut self, value: crate::native::zx_handle_t) -> Self {
         self.image_pipe_handle = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_FUCHSIA_imagepipe_surface
+impl Instance {
+    ///[vkCreateImagePipeSurfaceFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateImagePipeSurfaceFUCHSIA.html) - Create a slink:VkSurfaceKHR object for a Fuchsia ImagePipe
+    ///# C Specifications
+    ///To create a [`SurfaceKHR`] object for a Fuchsia ImagePipe, call:
+    ///```c
+    ///// Provided by VK_FUCHSIA_imagepipe_surface
+    ///VkResult vkCreateImagePipeSurfaceFUCHSIA(
+    ///    VkInstance                                  instance,
+    ///    const VkImagePipeSurfaceCreateInfoFUCHSIA*  pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkSurfaceKHR*                               pSurface);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance to associate with the surface.
+    /// - [`p_create_info`] is a pointer to a [`ImagePipeSurfaceCreateInfoFUCHSIA`] structure
+    ///   containing parameters affecting the creation of the surface object.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
+    ///   is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid
+    ///   [`ImagePipeSurfaceCreateInfoFUCHSIA`] structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_FUCHSIA_imagepipe_surface`]
+    /// - [`AllocationCallbacks`]
+    /// - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
+    /// - [`Instance`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateImagePipeSurfaceFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_image_pipe_surface_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &ImagePipeSurfaceCreateInfoFUCHSIA<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_imagepipe_surface()
+            .expect("extension/version not loaded")
+            .create_image_pipe_surface_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_imagepipe_surface()
+            .unwrap_unchecked()
+            .create_image_pipe_surface_fuchsia()
+            .unwrap_unchecked();
+        let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const ImagePipeSurfaceCreateInfoFUCHSIA<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_surface.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_FUCHSIA_imagepipe_surface`
 pub struct InstanceFuchsiaImagepipeSurfaceVTable {
     ///See [`FNCreateImagePipeSurfaceFuchsia`] for more information.
     pub create_image_pipe_surface_fuchsia: FNCreateImagePipeSurfaceFuchsia,
 }
 impl InstanceFuchsiaImagepipeSurfaceVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_image_pipe_surface_fuchsia: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateImagePipeSurfaceFUCHSIA")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateImagePipeSurfaceFUCHSIA").as_ptr(),
+                ))
             },
         }
     }

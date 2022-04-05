@@ -39,8 +39,9 @@
 use crate::{
     extensions::khr_display::DisplayKHR,
     vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
-use std::ffi::CStr;
+use std::{ffi::CStr, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_ACQUIRE_DRM_DISPLAY_SPEC_VERSION")]
@@ -122,7 +123,7 @@ pub type FNAcquireDrmDisplayExt = Option<
 ///# Description
 ///If there is no [`DisplayKHR`] corresponding to the [`connector_id`] on
 ///the [`physical_device`], the returning [`display`] must be set to
-///[`crate::utils::Handle::null`].
+///[`crate::Handle::null`].
 ///The provided [`drm_fd`] must correspond to the one owned by the
 ///[`physical_device`].
 ///If not, the error code `VK_ERROR_UNKNOWN` must be returned.
@@ -161,7 +162,178 @@ pub type FNGetDrmDisplayExt = Option<
         display: *mut DisplayKHR,
     ) -> VulkanResultCodes,
 >;
-///The V-table of [`Instance`] for functions from VK_EXT_acquire_drm_display
+impl PhysicalDevice {
+    ///[vkAcquireDrmDisplayEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireDrmDisplayEXT.html) - Acquire access to a VkDisplayKHR using DRM
+    ///# C Specifications
+    ///To acquire permission to directly a display in Vulkan from the Direct
+    ///Rendering Manager (DRM) interface, call:
+    ///```c
+    ///// Provided by VK_EXT_acquire_drm_display
+    ///VkResult vkAcquireDrmDisplayEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    int32_t                                     drmFd,
+    ///    VkDisplayKHR                                display);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] The physical device the display is on.
+    /// - [`drm_fd`] DRM primary file descriptor.
+    /// - [`display`] The display the caller wishes Vulkan to control.
+    ///# Description
+    ///All permissions necessary to control the display are granted to the Vulkan
+    ///instance associated with the provided [`physical_device`] until the display
+    ///is either released or the connector is unplugged.
+    ///The provided [`drm_fd`] must correspond to the one owned by the
+    ///[`physical_device`].
+    ///If not, the error code `VK_ERROR_UNKNOWN` must be returned.
+    ///The DRM FD must have DRM master permissions.
+    ///If any error is encountered during the acquisition of the display, the call
+    ///must return the error code `VK_ERROR_INITIALIZATION_FAILED`.The provided DRM fd should not
+    /// be closed before the display is released,
+    ///attempting to do it may result in undefined behaviour.
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+    /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_EXT_acquire_drm_display`]
+    /// - [`DisplayKHR`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkAcquireDrmDisplayEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn acquire_drm_display_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        drm_fd: Option<i32>,
+        display: DisplayKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_drm_display()
+            .expect("extension/version not loaded")
+            .acquire_drm_display_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_drm_display()
+            .unwrap_unchecked()
+            .acquire_drm_display_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), drm_fd.unwrap_or_default() as _, display);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetDrmDisplayEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDrmDisplayEXT.html) - Query the VkDisplayKHR corresponding to a DRM connector ID
+    ///# C Specifications
+    ///Before acquiring a display from the DRM interface, the caller may want to
+    ///select a specific [`DisplayKHR`] handle by identifying it using a
+    ///[`connector_id`].
+    ///To do so, call:
+    ///```c
+    ///// Provided by VK_EXT_acquire_drm_display
+    ///VkResult vkGetDrmDisplayEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    int32_t                                     drmFd,
+    ///    uint32_t                                    connectorId,
+    ///    VkDisplayKHR*                               display);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] The physical device to query the display from.
+    /// - [`drm_fd`] DRM primary file descriptor.
+    /// - [`connector_id`] Identifier of the specified DRM connector.
+    /// - [`display`] The corresponding [`DisplayKHR`] handle will be returned here.
+    ///# Description
+    ///If there is no [`DisplayKHR`] corresponding to the [`connector_id`] on
+    ///the [`physical_device`], the returning [`display`] must be set to
+    ///[`crate::Handle::null`].
+    ///The provided [`drm_fd`] must correspond to the one owned by the
+    ///[`physical_device`].
+    ///If not, the error code `VK_ERROR_UNKNOWN` must be returned.
+    ///Master permissions are not required, because the file descriptor is just
+    ///used for information gathering purposes.
+    ///The given [`connector_id`] must be a resource owned by the provided
+    ///[`drm_fd`].
+    ///If not, the error code `VK_ERROR_UNKNOWN` must be returned.
+    ///If any error is encountered during the identification of the display, the
+    ///call must return the error code `VK_ERROR_INITIALIZATION_FAILED`.
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_acquire_drm_display`]
+    /// - [`DisplayKHR`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDrmDisplayEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_drm_display_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        drm_fd: Option<i32>,
+        connector_id: Option<u32>,
+    ) -> VulkanResult<Unique<'this, DisplayKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_drm_display()
+            .expect("extension/version not loaded")
+            .get_drm_display_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_drm_display()
+            .unwrap_unchecked()
+            .get_drm_display_ext()
+            .unwrap_unchecked();
+        let mut display = MaybeUninit::<DisplayKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            drm_fd.unwrap_or_default() as _,
+            connector_id.unwrap_or_default() as _,
+            display.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, display.assume_init(), ())),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_acquire_drm_display`
 pub struct InstanceExtAcquireDrmDisplayVTable {
     ///See [`FNAcquireDrmDisplayExt`] for more information.
     pub acquire_drm_display_ext: FNAcquireDrmDisplayExt,
@@ -170,15 +342,21 @@ pub struct InstanceExtAcquireDrmDisplayVTable {
 }
 impl InstanceExtAcquireDrmDisplayVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             acquire_drm_display_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireDrmDisplayEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireDrmDisplayEXT").as_ptr()))
             },
-            get_drm_display_ext: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDrmDisplayEXT"))) },
+            get_drm_display_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDrmDisplayEXT").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::acquire_drm_display_ext`]. See [`FNAcquireDrmDisplayExt`] for more information.

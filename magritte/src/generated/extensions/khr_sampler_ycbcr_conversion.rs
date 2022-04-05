@@ -161,7 +161,7 @@ pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME")]
 pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_sampler_ycbcr_conversion");
-///The V-table of [`Device`] for functions from VK_KHR_sampler_ycbcr_conversion
+///The V-table of [`Device`] for functions from `VK_KHR_sampler_ycbcr_conversion`
 pub struct DeviceKhrSamplerYcbcrConversionVTable {
     ///See [`FNCreateSamplerYcbcrConversion`] for more information.
     pub create_sampler_ycbcr_conversion: FNCreateSamplerYcbcrConversion,
@@ -170,16 +170,26 @@ pub struct DeviceKhrSamplerYcbcrConversionVTable {
 }
 impl DeviceKhrSamplerYcbcrConversionVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_sampler_ycbcr_conversion: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateSamplerYcbcrConversionKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateSamplerYcbcrConversionKHR").as_ptr(),
+                ))
             },
             destroy_sampler_ycbcr_conversion: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroySamplerYcbcrConversionKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDestroySamplerYcbcrConversionKHR").as_ptr(),
+                ))
             },
         }
     }

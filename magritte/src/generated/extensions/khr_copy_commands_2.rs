@@ -102,7 +102,7 @@ pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_COPY_COMMANDS_2_EXTENSION_NAME")]
 pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_copy_commands2");
-///The V-table of [`Device`] for functions from VK_KHR_copy_commands2
+///The V-table of [`Device`] for functions from `VK_KHR_copy_commands2`
 pub struct DeviceKhrCopyCommands2VTable {
     ///See [`FNCmdCopyBuffer2`] for more information.
     pub cmd_copy_buffer2: FNCmdCopyBuffer2,
@@ -119,22 +119,32 @@ pub struct DeviceKhrCopyCommands2VTable {
 }
 impl DeviceKhrCopyCommands2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
-            cmd_copy_buffer2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBuffer2KHR"))) },
-            cmd_copy_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImage2KHR"))) },
-            cmd_blit_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBlitImage2KHR"))) },
+            cmd_copy_buffer2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBuffer2KHR").as_ptr()))
+            },
+            cmd_copy_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImage2KHR").as_ptr()))
+            },
+            cmd_blit_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBlitImage2KHR").as_ptr()))
+            },
             cmd_copy_buffer_to_image2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBufferToImage2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBufferToImage2KHR").as_ptr()))
             },
             cmd_copy_image_to_buffer2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImageToBuffer2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImageToBuffer2KHR").as_ptr()))
             },
             cmd_resolve_image2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResolveImage2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResolveImage2KHR").as_ptr()))
             },
         }
     }

@@ -54,6 +54,7 @@ use crate::{
     vulkan1_0::{
         BaseOutStructure, Extent2D, ImageUsageFlags, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
     },
+    AsRaw, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -63,6 +64,7 @@ use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -561,7 +563,7 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilities2EXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceCapabilities2EXT<'lt> {
@@ -663,11 +665,11 @@ impl<'lt> Default for SurfaceCapabilities2EXT<'lt> {
 }
 impl<'lt> SurfaceCapabilities2EXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -781,100 +783,184 @@ impl<'lt> SurfaceCapabilities2EXT<'lt> {
     pub fn supported_surface_counters_mut(&mut self) -> &mut SurfaceCounterFlagsEXT {
         &mut self.supported_surface_counters
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::min_image_count`]
-    pub fn set_min_image_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_image_count`]
+    pub fn set_min_image_count(mut self, value: u32) -> Self {
         self.min_image_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_image_count`]
-    pub fn set_max_image_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_image_count`]
+    pub fn set_max_image_count(mut self, value: u32) -> Self {
         self.max_image_count = value;
         self
     }
-    ///Sets the raw value of [`Self::current_extent`]
-    pub fn set_current_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::current_extent`]
+    pub fn set_current_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.current_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::min_image_extent`]
-    pub fn set_min_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::min_image_extent`]
+    pub fn set_min_image_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.min_image_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::max_image_extent`]
-    pub fn set_max_image_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::max_image_extent`]
+    pub fn set_max_image_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.max_image_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::max_image_array_layers`]
-    pub fn set_max_image_array_layers(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_image_array_layers`]
+    pub fn set_max_image_array_layers(mut self, value: u32) -> Self {
         self.max_image_array_layers = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_transforms`]
-    pub fn set_supported_transforms(
-        &mut self,
-        value: crate::extensions::khr_display::SurfaceTransformFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::supported_transforms`]
+    pub fn set_supported_transforms(mut self, value: crate::extensions::khr_display::SurfaceTransformFlagsKHR) -> Self {
         self.supported_transforms = value;
         self
     }
-    ///Sets the raw value of [`Self::current_transform`]
-    pub fn set_current_transform(
-        &mut self,
-        value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::current_transform`]
+    pub fn set_current_transform(mut self, value: crate::extensions::khr_surface::SurfaceTransformFlagBitsKHR) -> Self {
         self.current_transform = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_composite_alpha`]
+    ///Sets the value of [`Self::supported_composite_alpha`]
     pub fn set_supported_composite_alpha(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_surface::CompositeAlphaFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.supported_composite_alpha = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_usage_flags`]
-    pub fn set_supported_usage_flags(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+    ///Sets the value of [`Self::supported_usage_flags`]
+    pub fn set_supported_usage_flags(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
         self.supported_usage_flags = value;
         self
     }
-    ///Sets the raw value of [`Self::supported_surface_counters`]
+    ///Sets the value of [`Self::supported_surface_counters`]
     pub fn set_supported_surface_counters(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_display_surface_counter::SurfaceCounterFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.supported_surface_counters = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_EXT_display_surface_counter
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfaceCapabilities2EXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html) - Query surface capabilities
+    ///# C Specifications
+    ///To query the basic capabilities of a surface, needed in order to create a
+    ///swapchain, call:
+    ///```c
+    ///// Provided by VK_EXT_display_surface_counter
+    ///VkResult vkGetPhysicalDeviceSurfaceCapabilities2EXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkSurfaceKHR                                surface,
+    ///    VkSurfaceCapabilities2EXT*                  pSurfaceCapabilities);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`surface`] is the surface that will be associated with the swapchain.
+    /// - [`p_surface_capabilities`] is a pointer to a [`SurfaceCapabilities2EXT`] structure in
+    ///   which the capabilities are returned.
+    ///# Description
+    ///[`get_physical_device_surface_capabilities2_ext`] behaves similarly to
+    ///[`get_physical_device_surface_capabilities_khr`], with the ability to return
+    ///extended information by adding extending structures to the `pNext` chain
+    ///of its [`p_surface_capabilities`] parameter.
+    ///## Valid Usage
+    /// - [[VUID-{refpage}-surface-06523]]  [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [[VUID-{refpage}-surface-06211]]  [`surface`] **must**  be supported by
+    ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+    ///   equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+    /// - [`p_surface_capabilities`] **must**  be a valid pointer to a [`SurfaceCapabilities2EXT`]
+    ///   structure
+    /// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_EXT_display_surface_counter`]
+    /// - [`PhysicalDevice`]
+    /// - [`SurfaceCapabilities2EXT`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilities2EXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_capabilities2_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        surface: SurfaceKHR,
+    ) -> VulkanResult<SurfaceCapabilities2EXT<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_display_surface_counter()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_capabilities2_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_display_surface_counter()
+            .unwrap_unchecked()
+            .get_physical_device_surface_capabilities2_ext()
+            .unwrap_unchecked();
+        let mut p_surface_capabilities = MaybeUninit::<SurfaceCapabilities2EXT<'lt>>::zeroed();
+        let _return = _function(self.as_raw(), surface, p_surface_capabilities.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_surface_capabilities.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_display_surface_counter`
 pub struct InstanceExtDisplaySurfaceCounterVTable {
     ///See [`FNGetPhysicalDeviceSurfaceCapabilities2Ext`] for more information.
     pub get_physical_device_surface_capabilities2_ext: FNGetPhysicalDeviceSurfaceCapabilities2Ext,
 }
 impl InstanceExtDisplaySurfaceCounterVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_surface_capabilities2_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilities2EXT"),
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilities2EXT").as_ptr(),
                 ))
             },
         }

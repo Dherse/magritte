@@ -77,6 +77,7 @@
 use crate::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseOutStructure, Bool32, Device, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -214,7 +215,7 @@ pub type FNWaitForPresentKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePresentWaitFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePresentWaitFeaturesKHR<'lt> {
@@ -241,20 +242,20 @@ impl<'lt> Default for PhysicalDevicePresentWaitFeaturesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePresentWaitFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::present_wait`]
     pub fn present_wait_raw(&self) -> Bool32 {
         self.present_wait
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::present_wait`]
-    pub fn set_present_wait_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_present_wait_raw(mut self, value: Bool32) -> Self {
         self.present_wait = value;
         self
     }
@@ -302,36 +303,158 @@ impl<'lt> PhysicalDevicePresentWaitFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::present_wait`]
-    pub fn set_present_wait(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::present_wait`]
+    pub fn set_present_wait(mut self, value: bool) -> Self {
         self.present_wait = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_present_wait
+impl Device {
+    ///[vkWaitForPresentKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkWaitForPresentKHR.html) - Wait for presentation
+    ///# C Specifications
+    ///When the [`presentWait`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentWait) feature is enabled, an
+    ///application  **can**  wait for an image to be presented to the user by first
+    ///specifying a presentId for the target presentation by adding a
+    ///[`PresentIdKHR`] structure to the `pNext` chain of the
+    ///[`PresentInfoKHR`] structure and then waiting for that presentation to
+    ///complete by calling:
+    ///```c
+    ///// Provided by VK_KHR_present_wait
+    ///VkResult vkWaitForPresentKHR(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain,
+    ///    uint64_t                                    presentId,
+    ///    uint64_t                                    timeout);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swapchain`].
+    /// - [`swapchain`] is the non-retired swapchain on which an image was queued for presentation.
+    /// - [`present_id`] is the presentation presentId to wait for.
+    /// - [`timeout`] is the timeout period in units of nanoseconds. [`timeout`] is adjusted to the
+    ///   closest value allowed by the implementation-dependent timeout accuracy, which  **may**  be
+    ///   substantially longer than one nanosecond, and  **may**  be longer than the requested
+    ///   period.
+    ///# Description
+    ///[`wait_for_present_khr`] waits for the presentId associated with
+    ///[`swapchain`] to be increased in value so that it is at least equal to
+    ///[`present_id`].For `VK_PRESENT_MODE_MAILBOX_KHR` (or other present mode where images
+    ///may be replaced in the presentation queue) any wait of this type associated
+    ///with such an image  **must**  be signaled no later than a wait associated with
+    ///the replacing image would be signaled.When the presentation has completed, the presentId
+    /// associated with the
+    ///related `pSwapchains` entry will be increased in value so that it is at
+    ///least equal to the value provided in the [`PresentIdKHR`] structure.There is no requirement
+    /// for any precise timing relationship between the
+    ///presentation of the image to the user and the update of the presentId value,
+    ///but implementations  **should**  make this as close as possible to the
+    ///presentation of the first pixel in the new image to the user.The call to
+    /// [`wait_for_present_khr`] will block until either the presentId
+    ///associated with [`swapchain`] is greater than or equal to [`present_id`],
+    ///or [`timeout`] nanoseconds passes.
+    ///When the swapchain becomes OUT_OF_DATE, the call will either return
+    ///`VK_SUCCESS` (if the image was delivered to the presentation engine and
+    ///may have been presented to the user) or will return early with status
+    ///`VK_ERROR_OUT_OF_DATE_KHR` (if the image was not presented to the user).As an exception to
+    /// the normal rules for objects which are externally
+    ///synchronized, the [`swapchain`] passed to [`wait_for_present_khr`] **may**
+    ///be simultaneously used by other threads in calls to functions other than
+    ///[`destroy_swapchain_khr`].
+    ///Access to the swapchain data associated with this extension  **must**  be atomic
+    ///within the implementation.
+    ///## Valid Usage
+    /// - [`swapchain`] **must**  not be in the retired state
+    /// - The [`presentWait`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentWait)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`swapchain`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_TIMEOUT`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_DEVICE_LOST`
+    ///# Related
+    /// - [`VK_KHR_present_wait`]
+    /// - [`Device`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkWaitForPresentKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn wait_for_present_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+        present_id: Option<u64>,
+        timeout: Option<u64>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_present_wait()
+            .expect("extension/version not loaded")
+            .wait_for_present_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_present_wait()
+            .unwrap_unchecked()
+            .wait_for_present_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            swapchain,
+            present_id.unwrap_or_default() as _,
+            timeout.unwrap_or_default() as _,
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Timeout => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_present_wait`
 pub struct DeviceKhrPresentWaitVTable {
     ///See [`FNWaitForPresentKhr`] for more information.
     pub wait_for_present_khr: FNWaitForPresentKhr,
 }
 impl DeviceKhrPresentWaitVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             wait_for_present_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitForPresentKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitForPresentKHR").as_ptr()))
             },
         }
     }

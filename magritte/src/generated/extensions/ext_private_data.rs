@@ -78,7 +78,7 @@ pub const EXT_PRIVATE_DATA_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_PRIVATE_DATA_EXTENSION_NAME")]
 pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_private_data");
-///The V-table of [`Device`] for functions from VK_EXT_private_data
+///The V-table of [`Device`] for functions from `VK_EXT_private_data`
 pub struct DeviceExtPrivateDataVTable {
     ///See [`FNCreatePrivateDataSlot`] for more information.
     pub create_private_data_slot: FNCreatePrivateDataSlot,
@@ -91,19 +91,27 @@ pub struct DeviceExtPrivateDataVTable {
 }
 impl DeviceExtPrivateDataVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_private_data_slot: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreatePrivateDataSlotEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreatePrivateDataSlotEXT").as_ptr()))
             },
             destroy_private_data_slot: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyPrivateDataSlotEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyPrivateDataSlotEXT").as_ptr()))
             },
-            set_private_data: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetPrivateDataEXT"))) },
-            get_private_data: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPrivateDataEXT"))) },
+            set_private_data: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetPrivateDataEXT").as_ptr()))
+            },
+            get_private_data: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPrivateDataEXT").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::create_private_data_slot`]. See [`FNCreatePrivateDataSlot`] for more

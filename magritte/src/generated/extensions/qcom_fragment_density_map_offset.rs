@@ -98,7 +98,7 @@ pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
@@ -124,20 +124,20 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
 }
 impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::fragment_density_map_offset`]
     pub fn fragment_density_map_offset_raw(&self) -> Bool32 {
         self.fragment_density_map_offset
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map_offset`]
-    pub fn set_fragment_density_map_offset_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fragment_density_map_offset_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_map_offset = value;
         self
     }
@@ -185,18 +185,18 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_map_offset`]
-    pub fn set_fragment_density_map_offset(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_map_offset`]
+    pub fn set_fragment_density_map_offset(mut self, value: bool) -> Self {
         self.fragment_density_map_offset = value as u8 as u32;
         self
     }
@@ -239,7 +239,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
@@ -266,11 +266,11 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> 
 }
 impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -304,18 +304,18 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
     pub fn fragment_density_offset_granularity_mut(&mut self) -> &mut Extent2D {
         &mut self.fragment_density_offset_granularity
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_offset_granularity`]
-    pub fn set_fragment_density_offset_granularity(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_offset_granularity`]
+    pub fn set_fragment_density_offset_granularity(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.fragment_density_offset_granularity = value;
         self
     }
@@ -448,12 +448,12 @@ impl<'lt> SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
         self.fragment_density_offsets
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_offsets`]
-    pub fn set_fragment_density_offsets_raw(&mut self, value: *const Offset2D) -> &mut Self {
+    pub fn set_fragment_density_offsets_raw(mut self, value: *const Offset2D) -> Self {
         self.fragment_density_offsets = value;
         self
     }
@@ -490,23 +490,23 @@ impl<'lt> SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt> {
     pub fn fragment_density_offset_count_mut(&mut self) -> &mut u32 {
         &mut self.fragment_density_offset_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_offset_count`]
-    pub fn set_fragment_density_offset_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_offset_count`]
+    pub fn set_fragment_density_offset_count(mut self, value: u32) -> Self {
         self.fragment_density_offset_count = value;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_offsets`]
-    pub fn set_fragment_density_offsets(&mut self, value: &'lt [crate::vulkan1_0::Offset2D]) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_offsets`]
+    pub fn set_fragment_density_offsets(mut self, value: &'lt [crate::vulkan1_0::Offset2D]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.fragment_density_offsets = value.as_ptr();

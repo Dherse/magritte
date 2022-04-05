@@ -192,12 +192,12 @@ impl<'lt> PresentRegionsKHR<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const PresentRegionKHR<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const PresentRegionKHR<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -231,26 +231,26 @@ impl<'lt> PresentRegionsKHR<'lt> {
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
         &mut self.swapchain_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count(mut self, value: u32) -> Self {
         self.swapchain_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
+    ///Sets the value of [`Self::regions`]
     pub fn set_regions(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::khr_incremental_present::PresentRegionKHR<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
@@ -337,7 +337,7 @@ impl<'lt> PresentRegionKHR<'lt> {
         self.rectangles
     }
     ///Sets the raw value of [`Self::rectangles`]
-    pub fn set_rectangles_raw(&mut self, value: *const RectLayerKHR) -> &mut Self {
+    pub fn set_rectangles_raw(mut self, value: *const RectLayerKHR) -> Self {
         self.rectangles = value;
         self
     }
@@ -356,16 +356,13 @@ impl<'lt> PresentRegionKHR<'lt> {
     pub fn rectangle_count_mut(&mut self) -> &mut u32 {
         &mut self.rectangle_count
     }
-    ///Sets the raw value of [`Self::rectangle_count`]
-    pub fn set_rectangle_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::rectangle_count`]
+    pub fn set_rectangle_count(mut self, value: u32) -> Self {
         self.rectangle_count = value;
         self
     }
-    ///Sets the raw value of [`Self::rectangles`]
-    pub fn set_rectangles(
-        &mut self,
-        value: &'lt [crate::extensions::khr_incremental_present::RectLayerKHR],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::rectangles`]
+    pub fn set_rectangles(mut self, value: &'lt [crate::extensions::khr_incremental_present::RectLayerKHR]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.rectangles = value.as_ptr();
@@ -462,18 +459,18 @@ impl RectLayerKHR {
     pub fn layer_mut(&mut self) -> &mut u32 {
         &mut self.layer
     }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {
+    ///Sets the value of [`Self::offset`]
+    pub fn set_offset(mut self, value: crate::vulkan1_0::Offset2D) -> Self {
         self.offset = value;
         self
     }
-    ///Sets the raw value of [`Self::extent`]
-    pub fn set_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::extent`]
+    pub fn set_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.extent = value;
         self
     }
-    ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::layer`]
+    pub fn set_layer(mut self, value: u32) -> Self {
         self.layer = value;
         self
     }

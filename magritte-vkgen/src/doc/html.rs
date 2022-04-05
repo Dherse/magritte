@@ -437,19 +437,19 @@ where
             self.out.push_str("[`crate::vulkan1_3`]");
             return Some(());
         } else if trimmed == "VK_API_VERSION_1_0" {
-            self.out.push_str("[`crate::utils::Version::VULKAN1_0`]");
+            self.out.push_str("[`crate::Version::VULKAN1_0`]");
             return Some(());
         } else if trimmed == "VK_API_VERSION_1_1" {
-            self.out.push_str("[`crate::utils::Version::VULKAN1_1`]");
+            self.out.push_str("[`crate::Version::VULKAN1_1`]");
             return Some(());
         } else if trimmed == "VK_API_VERSION_1_2" {
-            self.out.push_str("[`crate::utils::Version::VULKAN1_2`]");
+            self.out.push_str("[`crate::Version::VULKAN1_2`]");
             return Some(());
         } else if trimmed == "VK_API_VERSION_1_3" {
-            self.out.push_str("[`crate::utils::Version::VULKAN1_3`]");
+            self.out.push_str("[`crate::Version::VULKAN1_3`]");
             return Some(());
         } else if trimmed == "VK_NULL_HANDLE" {
-            self.out.push_str("[`crate::utils::Handle::null`]");
+            self.out.push_str("[`crate::Handle::null`]");
             return Some(());
         }
 

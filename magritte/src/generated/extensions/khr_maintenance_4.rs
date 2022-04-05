@@ -91,7 +91,7 @@ pub const KHR_MAINTENANCE_4_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_MAINTENANCE_4_EXTENSION_NAME")]
 pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_maintenance4");
-///The V-table of [`Device`] for functions from VK_KHR_maintenance4
+///The V-table of [`Device`] for functions from `VK_KHR_maintenance4`
 pub struct DeviceKhrMaintenance4VTable {
     ///See [`FNGetDeviceBufferMemoryRequirements`] for more information.
     pub get_device_buffer_memory_requirements: FNGetDeviceBufferMemoryRequirements,
@@ -102,24 +102,31 @@ pub struct DeviceKhrMaintenance4VTable {
 }
 impl DeviceKhrMaintenance4VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_device_buffer_memory_requirements: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceBufferMemoryRequirementsKHR"),
+                    crate::cstr!("vkGetDeviceBufferMemoryRequirementsKHR").as_ptr(),
                 ))
             },
             get_device_image_memory_requirements: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDeviceImageMemoryRequirementsKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceImageMemoryRequirementsKHR").as_ptr(),
+                ))
             },
             get_device_image_sparse_memory_requirements: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceImageSparseMemoryRequirementsKHR"),
+                    crate::cstr!("vkGetDeviceImageSparseMemoryRequirementsKHR").as_ptr(),
                 ))
             },
         }

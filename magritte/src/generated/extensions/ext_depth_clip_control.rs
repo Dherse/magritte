@@ -115,7 +115,7 @@ pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDepthClipControlFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
@@ -143,20 +143,20 @@ impl<'lt> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::depth_clip_control`]
     pub fn depth_clip_control_raw(&self) -> Bool32 {
         self.depth_clip_control
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::depth_clip_control`]
-    pub fn set_depth_clip_control_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_depth_clip_control_raw(mut self, value: Bool32) -> Self {
         self.depth_clip_control = value;
         self
     }
@@ -204,18 +204,18 @@ impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::depth_clip_control`]
-    pub fn set_depth_clip_control(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::depth_clip_control`]
+    pub fn set_depth_clip_control(mut self, value: bool) -> Self {
         self.depth_clip_control = value as u8 as u32;
         self
     }
@@ -292,12 +292,12 @@ impl<'lt> PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
         self.negative_one_to_one
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::negative_one_to_one`]
-    pub fn set_negative_one_to_one_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_negative_one_to_one_raw(mut self, value: Bool32) -> Self {
         self.negative_one_to_one = value;
         self
     }
@@ -338,18 +338,18 @@ impl<'lt> PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::negative_one_to_one`]
-    pub fn set_negative_one_to_one(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::negative_one_to_one`]
+    pub fn set_negative_one_to_one(mut self, value: bool) -> Self {
         self.negative_one_to_one = value as u8 as u32;
         self
     }

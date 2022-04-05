@@ -156,7 +156,7 @@ pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME")]
 pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_timeline_semaphore");
-///The V-table of [`Device`] for functions from VK_KHR_timeline_semaphore
+///The V-table of [`Device`] for functions from `VK_KHR_timeline_semaphore`
 pub struct DeviceKhrTimelineSemaphoreVTable {
     ///See [`FNGetSemaphoreCounterValue`] for more information.
     pub get_semaphore_counter_value: FNGetSemaphoreCounterValue,
@@ -167,16 +167,27 @@ pub struct DeviceKhrTimelineSemaphoreVTable {
 }
 impl DeviceKhrTimelineSemaphoreVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_semaphore_counter_value: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreCounterValueKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetSemaphoreCounterValueKHR").as_ptr(),
+                ))
             },
-            wait_semaphores: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitSemaphoresKHR"))) },
-            signal_semaphore: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkSignalSemaphoreKHR"))) },
+            wait_semaphores: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitSemaphoresKHR").as_ptr()))
+            },
+            signal_semaphore: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSignalSemaphoreKHR").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::get_semaphore_counter_value`]. See [`FNGetSemaphoreCounterValue`] for more

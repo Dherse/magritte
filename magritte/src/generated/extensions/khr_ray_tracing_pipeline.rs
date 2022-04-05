@@ -265,6 +265,7 @@ use crate::{
         DeviceSize, Pipeline, PipelineCache, PipelineCreateFlags, PipelineDynamicStateCreateInfo, PipelineLayout,
         PipelineShaderStageCreateInfo, StructureType, VulkanResultCodes,
     },
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -469,8 +470,8 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 ///```
 ///# Parameters
 /// - [`device`] is the logical device that creates the ray tracing pipelines.
-/// - [`deferred_operation`] is [`crate::utils::Handle::null`] or the handle of a valid [`DeferredOperationKHR`][request deferral](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#deferred-host-operations-requesting) object for this command.
-/// - [`pipeline_cache`] is either [`crate::utils::Handle::null`], indicating that pipeline caching is disabled, or the handle of a valid [pipeline cache](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-cache) object, in which case use of that cache is enabled for the duration of the command.
+/// - [`deferred_operation`] is [`crate::Handle::null`] or the handle of a valid [`DeferredOperationKHR`][request deferral](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#deferred-host-operations-requesting) object for this command.
+/// - [`pipeline_cache`] is either [`crate::Handle::null`], indicating that pipeline caching is disabled, or the handle of a valid [pipeline cache](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-cache) object, in which case use of that cache is enabled for the duration of the command.
 /// - [`create_info_count`] is the length of the [`p_create_infos`] and [`p_pipelines`] arrays.
 /// - [`p_create_infos`] is a pointer to an array of [`RayTracingPipelineCreateInfoKHR`] structures.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
@@ -497,22 +498,21 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 /// - If [`pipeline_cache`] was created with `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`,
 ///   host access to [`pipeline_cache`] **must**  be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fundamentals-threadingbehavior)
 ///
-/// - If [`deferred_operation`] is not [`crate::utils::Handle::null`], it  **must**  be a valid
+/// - If [`deferred_operation`] is not [`crate::Handle::null`], it  **must**  be a valid
 ///   [`DeferredOperationKHR`] object
 /// - Any previous deferred operation that was associated with [`deferred_operation`] **must**  be
 ///   complete
 /// - The [`rayTracingPipeline`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipeline)
 ///   feature  **must**  be enabled
-/// - If [`deferred_operation`] is not [`crate::utils::Handle::null`], the `flags` member of
-///   elements of [`p_create_infos`] **must**  not include
-///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
+/// - If [`deferred_operation`] is not [`crate::Handle::null`], the `flags` member of elements of
+///   [`p_create_infos`] **must**  not include `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
 ///
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
-/// - If [`deferred_operation`] is not [`crate::utils::Handle::null`], [`deferred_operation`]
-///   **must**  be a valid [`DeferredOperationKHR`] handle
-/// - If [`pipeline_cache`] is not [`crate::utils::Handle::null`], [`pipeline_cache`] **must**  be a
-///   valid [`PipelineCache`] handle
+/// - If [`deferred_operation`] is not [`crate::Handle::null`], [`deferred_operation`] **must**  be
+///   a valid [`DeferredOperationKHR`] handle
+/// - If [`pipeline_cache`] is not [`crate::Handle::null`], [`pipeline_cache`] **must**  be a valid
+///   [`PipelineCache`] handle
 /// - [`p_create_infos`] **must**  be a valid pointer to an array of [`create_info_count`] valid
 ///   [`RayTracingPipelineCreateInfoKHR`] structures
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
@@ -1544,12 +1544,12 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
         self.shader_group_capture_replay_handle
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_group_capture_replay_handle`]
-    pub fn set_shader_group_capture_replay_handle_raw(&mut self, value: *const c_void) -> &mut Self {
+    pub fn set_shader_group_capture_replay_handle_raw(mut self, value: *const c_void) -> Self {
         self.shader_group_capture_replay_handle = value;
         self
     }
@@ -1615,46 +1615,46 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
     pub fn intersection_shader_mut(&mut self) -> &mut u32 {
         &mut self.intersection_shader
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::type_`]
+    ///Sets the value of [`Self::type_`]
     pub fn set_type_(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupTypeKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.type_ = value;
         self
     }
-    ///Sets the raw value of [`Self::general_shader`]
-    pub fn set_general_shader(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::general_shader`]
+    pub fn set_general_shader(mut self, value: u32) -> Self {
         self.general_shader = value;
         self
     }
-    ///Sets the raw value of [`Self::closest_hit_shader`]
-    pub fn set_closest_hit_shader(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::closest_hit_shader`]
+    pub fn set_closest_hit_shader(mut self, value: u32) -> Self {
         self.closest_hit_shader = value;
         self
     }
-    ///Sets the raw value of [`Self::any_hit_shader`]
-    pub fn set_any_hit_shader(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::any_hit_shader`]
+    pub fn set_any_hit_shader(mut self, value: u32) -> Self {
         self.any_hit_shader = value;
         self
     }
-    ///Sets the raw value of [`Self::intersection_shader`]
-    pub fn set_intersection_shader(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::intersection_shader`]
+    pub fn set_intersection_shader(mut self, value: u32) -> Self {
         self.intersection_shader = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_group_capture_replay_handle`]
-    pub fn set_shader_group_capture_replay_handle(&mut self, value: &'lt std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::shader_group_capture_replay_handle`]
+    pub fn set_shader_group_capture_replay_handle(mut self, value: &'lt std::ffi::c_void) -> Self {
         self.shader_group_capture_replay_handle = value as *const _;
         self
     }
@@ -1736,14 +1736,14 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 ///   [`base_pipeline_index`] is `-1`, [`base_pipeline_handle`] **must**  be a valid handle to a ray
 ///   tracing [`Pipeline`]
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
-///   [`base_pipeline_handle`] is [`crate::utils::Handle::null`], [`base_pipeline_index`] **must**
-///   be a valid index into the calling command’s `pCreateInfos` parameter
+///   [`base_pipeline_handle`] is [`crate::Handle::null`], [`base_pipeline_index`] **must**  be a
+///   valid index into the calling command’s `pCreateInfos` parameter
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
 ///   [`base_pipeline_index`] is not `-1`, [`base_pipeline_handle`] **must**  be
-///   [`crate::utils::Handle::null`]
+///   [`crate::Handle::null`]
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
-///   [`base_pipeline_handle`] is not [`crate::utils::Handle::null`], [`base_pipeline_index`]
-///   **must**  be `-1`
+///   [`base_pipeline_handle`] is not [`crate::Handle::null`], [`base_pipeline_index`] **must**  be
+///   `-1`
 /// -    The shader code for the entry points identified by [`stages`], and the rest of the state identified by this structure  **must**  adhere to the pipeline linking rules described in the [Shader Interfaces](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#interfaces) chapter
 /// - [`layout`] **must**  be [consistent](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#descriptorsets-pipelinelayout-consistency)
 ///   with all shaders specified in [`stages`]
@@ -1964,35 +1964,32 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
         self.dynamic_state
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::stages`]
-    pub fn set_stages_raw(&mut self, value: *const PipelineShaderStageCreateInfo<'lt>) -> &mut Self {
+    pub fn set_stages_raw(mut self, value: *const PipelineShaderStageCreateInfo<'lt>) -> Self {
         self.stages = value;
         self
     }
     ///Sets the raw value of [`Self::groups`]
-    pub fn set_groups_raw(&mut self, value: *const RayTracingShaderGroupCreateInfoKHR<'lt>) -> &mut Self {
+    pub fn set_groups_raw(mut self, value: *const RayTracingShaderGroupCreateInfoKHR<'lt>) -> Self {
         self.groups = value;
         self
     }
     ///Sets the raw value of [`Self::library_info`]
-    pub fn set_library_info_raw(&mut self, value: *const PipelineLibraryCreateInfoKHR<'lt>) -> &mut Self {
+    pub fn set_library_info_raw(mut self, value: *const PipelineLibraryCreateInfoKHR<'lt>) -> Self {
         self.library_info = value;
         self
     }
     ///Sets the raw value of [`Self::library_interface`]
-    pub fn set_library_interface_raw(
-        &mut self,
-        value: *const RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
-    ) -> &mut Self {
+    pub fn set_library_interface_raw(mut self, value: *const RayTracingPipelineInterfaceCreateInfoKHR<'lt>) -> Self {
         self.library_interface = value;
         self
     }
     ///Sets the raw value of [`Self::dynamic_state`]
-    pub fn set_dynamic_state_raw(&mut self, value: *const PipelineDynamicStateCreateInfo<'lt>) -> &mut Self {
+    pub fn set_dynamic_state_raw(mut self, value: *const PipelineDynamicStateCreateInfo<'lt>) -> Self {
         self.dynamic_state = value;
         self
     }
@@ -2102,91 +2099,88 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
     pub fn base_pipeline_index_mut(&mut self) -> &mut i32 {
         &mut self.base_pipeline_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_0::PipelineCreateFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_0::PipelineCreateFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::stage_count`]
-    pub fn set_stage_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stage_count`]
+    pub fn set_stage_count(mut self, value: u32) -> Self {
         self.stage_count = value;
         self
     }
-    ///Sets the raw value of [`Self::stages`]
-    pub fn set_stages(&mut self, value: &'lt [crate::vulkan1_0::PipelineShaderStageCreateInfo<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::stages`]
+    pub fn set_stages(mut self, value: &'lt [crate::vulkan1_0::PipelineShaderStageCreateInfo<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.stages = value.as_ptr();
         self.stage_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::group_count`]
-    pub fn set_group_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::group_count`]
+    pub fn set_group_count(mut self, value: u32) -> Self {
         self.group_count = value;
         self
     }
-    ///Sets the raw value of [`Self::groups`]
+    ///Sets the value of [`Self::groups`]
     pub fn set_groups(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupCreateInfoKHR<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.groups = value.as_ptr();
         self.group_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::max_pipeline_ray_recursion_depth`]
-    pub fn set_max_pipeline_ray_recursion_depth(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_pipeline_ray_recursion_depth`]
+    pub fn set_max_pipeline_ray_recursion_depth(mut self, value: u32) -> Self {
         self.max_pipeline_ray_recursion_depth = value;
         self
     }
-    ///Sets the raw value of [`Self::library_info`]
+    ///Sets the value of [`Self::library_info`]
     pub fn set_library_info(
-        &mut self,
+        mut self,
         value: &'lt crate::extensions::khr_pipeline_library::PipelineLibraryCreateInfoKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.library_info = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::library_interface`]
+    ///Sets the value of [`Self::library_interface`]
     pub fn set_library_interface(
-        &mut self,
+        mut self,
         value: &'lt crate::extensions::khr_ray_tracing_pipeline::RayTracingPipelineInterfaceCreateInfoKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.library_interface = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::dynamic_state`]
-    pub fn set_dynamic_state(
-        &mut self,
-        value: &'lt crate::vulkan1_0::PipelineDynamicStateCreateInfo<'lt>,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::dynamic_state`]
+    pub fn set_dynamic_state(mut self, value: &'lt crate::vulkan1_0::PipelineDynamicStateCreateInfo<'lt>) -> Self {
         self.dynamic_state = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::layout`]
-    pub fn set_layout(&mut self, value: crate::vulkan1_0::PipelineLayout) -> &mut Self {
+    ///Sets the value of [`Self::layout`]
+    pub fn set_layout(mut self, value: crate::vulkan1_0::PipelineLayout) -> Self {
         self.layout = value;
         self
     }
-    ///Sets the raw value of [`Self::base_pipeline_handle`]
-    pub fn set_base_pipeline_handle(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+    ///Sets the value of [`Self::base_pipeline_handle`]
+    pub fn set_base_pipeline_handle(mut self, value: crate::vulkan1_0::Pipeline) -> Self {
         self.base_pipeline_handle = value;
         self
     }
-    ///Sets the raw value of [`Self::base_pipeline_index`]
-    pub fn set_base_pipeline_index(&mut self, value: i32) -> &mut Self {
+    ///Sets the value of [`Self::base_pipeline_index`]
+    pub fn set_base_pipeline_index(mut self, value: i32) -> Self {
         self.base_pipeline_index = value;
         self
     }
@@ -2249,7 +2243,7 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelineFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
@@ -2300,8 +2294,8 @@ impl<'lt> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 }
 impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::ray_tracing_pipeline`]
     pub fn ray_tracing_pipeline_raw(&self) -> Bool32 {
@@ -2325,36 +2319,33 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
         self.ray_traversal_primitive_culling
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::ray_tracing_pipeline`]
-    pub fn set_ray_tracing_pipeline_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ray_tracing_pipeline_raw(mut self, value: Bool32) -> Self {
         self.ray_tracing_pipeline = value;
         self
     }
     ///Sets the raw value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
-    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_raw(mut self, value: Bool32) -> Self {
         self.ray_tracing_pipeline_shader_group_handle_capture_replay = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
-    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_mixed_raw(
-        &mut self,
-        value: Bool32,
-    ) -> &mut Self {
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_mixed_raw(mut self, value: Bool32) -> Self {
         self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed = value;
         self
     }
     ///Sets the raw value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
-    pub fn set_ray_tracing_pipeline_trace_rays_indirect_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ray_tracing_pipeline_trace_rays_indirect_raw(mut self, value: Bool32) -> Self {
         self.ray_tracing_pipeline_trace_rays_indirect = value;
         self
     }
     ///Sets the raw value of [`Self::ray_traversal_primitive_culling`]
-    pub fn set_ray_traversal_primitive_culling_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ray_traversal_primitive_culling_raw(mut self, value: Bool32) -> Self {
         self.ray_traversal_primitive_culling = value;
         self
     }
@@ -2492,39 +2483,38 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::ray_tracing_pipeline`]
-    pub fn set_ray_tracing_pipeline(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_tracing_pipeline`]
+    pub fn set_ray_tracing_pipeline(mut self, value: bool) -> Self {
         self.ray_tracing_pipeline = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
-    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay(mut self, value: bool) -> Self {
         self.ray_tracing_pipeline_shader_group_handle_capture_replay = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
-    /// [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
-    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_mixed(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`]
+    pub fn set_ray_tracing_pipeline_shader_group_handle_capture_replay_mixed(mut self, value: bool) -> Self {
         self.ray_tracing_pipeline_shader_group_handle_capture_replay_mixed = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
-    pub fn set_ray_tracing_pipeline_trace_rays_indirect(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_tracing_pipeline_trace_rays_indirect`]
+    pub fn set_ray_tracing_pipeline_trace_rays_indirect(mut self, value: bool) -> Self {
         self.ray_tracing_pipeline_trace_rays_indirect = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::ray_traversal_primitive_culling`]
-    pub fn set_ray_traversal_primitive_culling(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_traversal_primitive_culling`]
+    pub fn set_ray_traversal_primitive_culling(mut self, value: bool) -> Self {
         self.ray_traversal_primitive_culling = value as u8 as u32;
         self
     }
@@ -2589,7 +2579,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelinePropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
@@ -2645,11 +2635,11 @@ impl<'lt> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
 }
 impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2739,53 +2729,53 @@ impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     pub fn max_ray_hit_attribute_size_mut(&mut self) -> &mut u32 {
         &mut self.max_ray_hit_attribute_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_group_handle_size`]
-    pub fn set_shader_group_handle_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shader_group_handle_size`]
+    pub fn set_shader_group_handle_size(mut self, value: u32) -> Self {
         self.shader_group_handle_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_ray_recursion_depth`]
-    pub fn set_max_ray_recursion_depth(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_ray_recursion_depth`]
+    pub fn set_max_ray_recursion_depth(mut self, value: u32) -> Self {
         self.max_ray_recursion_depth = value;
         self
     }
-    ///Sets the raw value of [`Self::max_shader_group_stride`]
-    pub fn set_max_shader_group_stride(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_shader_group_stride`]
+    pub fn set_max_shader_group_stride(mut self, value: u32) -> Self {
         self.max_shader_group_stride = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_group_base_alignment`]
-    pub fn set_shader_group_base_alignment(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shader_group_base_alignment`]
+    pub fn set_shader_group_base_alignment(mut self, value: u32) -> Self {
         self.shader_group_base_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_group_handle_capture_replay_size`]
-    pub fn set_shader_group_handle_capture_replay_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shader_group_handle_capture_replay_size`]
+    pub fn set_shader_group_handle_capture_replay_size(mut self, value: u32) -> Self {
         self.shader_group_handle_capture_replay_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_ray_dispatch_invocation_count`]
-    pub fn set_max_ray_dispatch_invocation_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_ray_dispatch_invocation_count`]
+    pub fn set_max_ray_dispatch_invocation_count(mut self, value: u32) -> Self {
         self.max_ray_dispatch_invocation_count = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_group_handle_alignment`]
-    pub fn set_shader_group_handle_alignment(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shader_group_handle_alignment`]
+    pub fn set_shader_group_handle_alignment(mut self, value: u32) -> Self {
         self.shader_group_handle_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::max_ray_hit_attribute_size`]
-    pub fn set_max_ray_hit_attribute_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_ray_hit_attribute_size`]
+    pub fn set_max_ray_hit_attribute_size(mut self, value: u32) -> Self {
         self.max_ray_hit_attribute_size = value;
         self
     }
@@ -2876,18 +2866,18 @@ impl StridedDeviceAddressRegionKHR {
     pub fn size_mut(&mut self) -> &mut DeviceSize {
         &mut self.size
     }
-    ///Sets the raw value of [`Self::device_address`]
-    pub fn set_device_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
+    ///Sets the value of [`Self::device_address`]
+    pub fn set_device_address(mut self, value: crate::vulkan1_0::DeviceAddress) -> Self {
         self.device_address = value;
         self
     }
-    ///Sets the raw value of [`Self::stride`]
-    pub fn set_stride(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::stride`]
+    pub fn set_stride(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.stride = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.size = value;
         self
     }
@@ -2979,18 +2969,18 @@ impl TraceRaysIndirectCommandKHR {
     pub fn depth_mut(&mut self) -> &mut u32 {
         &mut self.depth
     }
-    ///Sets the raw value of [`Self::width`]
-    pub fn set_width(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::width`]
+    pub fn set_width(mut self, value: u32) -> Self {
         self.width = value;
         self
     }
-    ///Sets the raw value of [`Self::height`]
-    pub fn set_height(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::height`]
+    pub fn set_height(mut self, value: u32) -> Self {
         self.height = value;
         self
     }
-    ///Sets the raw value of [`Self::depth`]
-    pub fn set_depth(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::depth`]
+    pub fn set_depth(mut self, value: u32) -> Self {
         self.depth = value;
         self
     }
@@ -3080,7 +3070,7 @@ impl<'lt> RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -3115,28 +3105,1152 @@ impl<'lt> RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     pub fn max_pipeline_ray_hit_attribute_size_mut(&mut self) -> &mut u32 {
         &mut self.max_pipeline_ray_hit_attribute_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::max_pipeline_ray_payload_size`]
-    pub fn set_max_pipeline_ray_payload_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_pipeline_ray_payload_size`]
+    pub fn set_max_pipeline_ray_payload_size(mut self, value: u32) -> Self {
         self.max_pipeline_ray_payload_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_pipeline_ray_hit_attribute_size`]
-    pub fn set_max_pipeline_ray_hit_attribute_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_pipeline_ray_hit_attribute_size`]
+    pub fn set_max_pipeline_ray_hit_attribute_size(mut self, value: u32) -> Self {
         self.max_pipeline_ray_hit_attribute_size = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_ray_tracing_pipeline
+impl Device {
+    ///[vkGetRayTracingShaderGroupHandlesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetRayTracingShaderGroupHandlesKHR.html) - Query ray tracing pipeline shader group handles
+    ///# C Specifications
+    ///To query the opaque handles of shaders in the ray tracing pipeline, call:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///VkResult vkGetRayTracingShaderGroupHandlesKHR(
+    ///    VkDevice                                    device,
+    ///    VkPipeline                                  pipeline,
+    ///    uint32_t                                    firstGroup,
+    ///    uint32_t                                    groupCount,
+    ///    size_t                                      dataSize,
+    ///    void*                                       pData);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_NV_ray_tracing
+    ///VkResult vkGetRayTracingShaderGroupHandlesNV(
+    ///    VkDevice                                    device,
+    ///    VkPipeline                                  pipeline,
+    ///    uint32_t                                    firstGroup,
+    ///    uint32_t                                    groupCount,
+    ///    size_t                                      dataSize,
+    ///    void*                                       pData);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device containing the ray tracing pipeline.
+    /// - [`pipeline`] is the ray tracing pipeline object containing the shaders.
+    /// - [`first_group`] is the index of the first group to retrieve a handle     for from the
+    ///   [`RayTracingPipelineCreateInfoKHR::groups`] or [`RayTracingPipelineCreateInfoNV::groups`]
+    ///   array.
+    /// - [`group_count`] is the number of shader handles to retrieve.
+    /// - [`data_size`] is the size in bytes of the buffer pointed to by [`p_data`].
+    /// - [`p_data`] is a pointer to a user-allocated buffer where the results will be written.
+    ///# Description
+    ///## Valid Usage
+    /// - [`pipeline`] **must**  be a ray tracing pipeline
+    /// - [`first_group`] **must**  be less than the number of shader groups in [`pipeline`]
+    /// - The sum of [`first_group`] and [`group_count`] **must**  be less than or equal to the
+    ///   number of shader groups in [`pipeline`]
+    /// - [`data_size`] **must**  be at least
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_size`] ×
+    ///   [`group_count`]
+    /// - [`pipeline`] **must**  have not been created with `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
+    /// - [`p_data`] **must**  be a valid pointer to an array of [`data_size`] bytes
+    /// - [`data_size`] **must**  be greater than `0`
+    /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`VK_NV_ray_tracing`]
+    /// - [`Device`]
+    /// - [`Pipeline`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetRayTracingShaderGroupHandlesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_ray_tracing_shader_group_handles_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        pipeline: Pipeline,
+        first_group: Option<u32>,
+        group_count: Option<u32>,
+        data_size: usize,
+        p_data: *mut c_void,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .get_ray_tracing_shader_group_handles_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .get_ray_tracing_shader_group_handles_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            pipeline,
+            first_group.unwrap_or_default() as _,
+            group_count.unwrap_or_default() as _,
+            data_size,
+            p_data,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetRayTracingCaptureReplayShaderGroupHandlesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetRayTracingCaptureReplayShaderGroupHandlesKHR.html) - Query ray tracing capture replay pipeline shader group handles
+    ///# C Specifications
+    ///To query the optional capture handle information of shaders in the ray
+    ///tracing pipeline, call:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///VkResult vkGetRayTracingCaptureReplayShaderGroupHandlesKHR(
+    ///    VkDevice                                    device,
+    ///    VkPipeline                                  pipeline,
+    ///    uint32_t                                    firstGroup,
+    ///    uint32_t                                    groupCount,
+    ///    size_t                                      dataSize,
+    ///    void*                                       pData);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device containing the ray tracing pipeline.
+    /// - [`pipeline`] is the ray tracing pipeline object containing the shaders.
+    /// - [`first_group`] is the index of the first group to retrieve a handle for from the
+    ///   [`RayTracingPipelineCreateInfoKHR::groups`] array.
+    /// - [`group_count`] is the number of shader handles to retrieve.
+    /// - [`data_size`] is the size in bytes of the buffer pointed to by [`p_data`].
+    /// - [`p_data`] is a pointer to a user-allocated buffer where the results will be written.
+    ///# Description
+    ///## Valid Usage
+    /// - [`pipeline`] **must**  be a ray tracing pipeline
+    /// - [`first_group`] **must**  be less than the number of shader groups in [`pipeline`]
+    /// - The sum of [`first_group`] and [`group_count`] **must**  be less than or equal to the
+    ///   number of shader groups in [`pipeline`]
+    /// - [`data_size`] **must**  be at least
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_capture_replay_size`]
+    ///   × [`group_count`]
+    /// - [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
+    ///   ray_tracing_pipeline_shader_group_handle_capture_replay`] **must**  be enabled to call
+    ///   this function
+    /// - [`pipeline`] **must**  have been created with a `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
+    /// - [`p_data`] **must**  be a valid pointer to an array of [`data_size`] bytes
+    /// - [`data_size`] **must**  be greater than `0`
+    /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`Device`]
+    /// - [`Pipeline`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetRayTracingCaptureReplayShaderGroupHandlesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        pipeline: Pipeline,
+        first_group: Option<u32>,
+        group_count: Option<u32>,
+        data_size: usize,
+        p_data: *mut c_void,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .get_ray_tracing_capture_replay_shader_group_handles_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .get_ray_tracing_capture_replay_shader_group_handles_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            pipeline,
+            first_group.unwrap_or_default() as _,
+            group_count.unwrap_or_default() as _,
+            data_size,
+            p_data,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkCreateRayTracingPipelinesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateRayTracingPipelinesKHR.html) - Creates a new ray tracing pipeline object
+    ///# C Specifications
+    ///To create ray tracing pipelines, call:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///VkResult vkCreateRayTracingPipelinesKHR(
+    ///    VkDevice                                    device,
+    ///    VkDeferredOperationKHR                      deferredOperation,
+    ///    VkPipelineCache                             pipelineCache,
+    ///    uint32_t                                    createInfoCount,
+    ///    const VkRayTracingPipelineCreateInfoKHR*    pCreateInfos,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkPipeline*                                 pPipelines);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the ray tracing pipelines.
+    /// - [`deferred_operation`] is [`crate::Handle::null`] or the handle of a valid [`DeferredOperationKHR`][request deferral](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#deferred-host-operations-requesting) object for this command.
+    /// - [`pipeline_cache`] is either [`crate::Handle::null`], indicating that pipeline caching is disabled, or the handle of a valid [pipeline cache](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-cache) object, in which case use of that cache is enabled for the duration of the command.
+    /// - [`create_info_count`] is the length of the [`p_create_infos`] and [`p_pipelines`] arrays.
+    /// - [`p_create_infos`] is a pointer to an array of [`RayTracingPipelineCreateInfoKHR`]
+    ///   structures.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_pipelines`] is a pointer to an array in which the resulting ray tracing pipeline
+    ///   objects are returned.
+    ///# Description
+    ///The `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` error is returned if the
+    ///implementation is unable to re-use the shader group handles provided in
+    ///[`RayTracingShaderGroupCreateInfoKHR::shader_group_capture_replay_handle`]
+    ///when
+    ///[`PhysicalDeviceRayTracingPipelineFeaturesKHR::
+    /// ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    ///is enabled.
+    ///## Valid Usage
+    /// - If the `flags` member of any element of [`p_create_infos`] contains the
+    ///   `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and the `basePipelineIndex` member of that same
+    ///   element is not `-1`, `basePipelineIndex` **must**  be less than the index into
+    ///   [`p_create_infos`] that corresponds to that element
+    /// - If the `flags` member of any element of [`p_create_infos`] contains the
+    ///   `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, the base pipeline  **must**  have been created
+    ///   with the `VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT` flag set
+    /// - `flags` **must**  not contain the `VK_PIPELINE_CREATE_DISPATCH_BASE` flag
+    /// -    If [`pipeline_cache`] was created with `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`, host access to [`pipeline_cache`] **must**  be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fundamentals-threadingbehavior)
+    ///
+    /// - If [`deferred_operation`] is not [`crate::Handle::null`], it  **must**  be a valid
+    ///   [`DeferredOperationKHR`] object
+    /// - Any previous deferred operation that was associated with [`deferred_operation`] **must**
+    ///   be complete
+    /// - The [`rayTracingPipeline`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipeline)
+    ///   feature  **must**  be enabled
+    /// - If [`deferred_operation`] is not [`crate::Handle::null`], the `flags` member of elements
+    ///   of [`p_create_infos`] **must**  not include
+    ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - If [`deferred_operation`] is not [`crate::Handle::null`], [`deferred_operation`] **must**
+    ///   be a valid [`DeferredOperationKHR`] handle
+    /// - If [`pipeline_cache`] is not [`crate::Handle::null`], [`pipeline_cache`] **must**  be a
+    ///   valid [`PipelineCache`] handle
+    /// - [`p_create_infos`] **must**  be a valid pointer to an array of [`create_info_count`] valid
+    ///   [`RayTracingPipelineCreateInfoKHR`] structures
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_pipelines`] **must**  be a valid pointer to an array of
+    ///   [`create_info_count`][`Pipeline`] handles
+    /// - [`create_info_count`] **must**  be greater than `0`
+    /// - If [`deferred_operation`] is a valid handle, it  **must**  have been created, allocated,
+    ///   or retrieved from [`device`]
+    /// - If [`pipeline_cache`] is a valid handle, it  **must**  have been created, allocated, or
+    ///   retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`  -
+    ///   `VK_PIPELINE_COMPILE_REQUIRED_EXT`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`AllocationCallbacks`]
+    /// - [`DeferredOperationKHR`]
+    /// - [`Device`]
+    /// - [`Pipeline`]
+    /// - [`PipelineCache`]
+    /// - [`RayTracingPipelineCreateInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateRayTracingPipelinesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_ray_tracing_pipelines_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        deferred_operation: Option<DeferredOperationKHR>,
+        pipeline_cache: Option<PipelineCache>,
+        p_create_infos: &[crate::extensions::khr_ray_tracing_pipeline::RayTracingPipelineCreateInfoKHR<'lt>],
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<SmallVec<Unique<'this, Pipeline>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .create_ray_tracing_pipelines_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .create_ray_tracing_pipelines_khr()
+            .unwrap_unchecked();
+        let create_info_count = (|len: usize| len)(p_create_infos.len()) as _;
+        let mut p_pipelines = SmallVec::<Pipeline>::from_elem(Default::default(), create_info_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            deferred_operation.unwrap_or_default(),
+            pipeline_cache.unwrap_or_default(),
+            create_info_count,
+            p_create_infos.as_ptr(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_pipelines.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success
+            | VulkanResultCodes::OperationDeferredKhr
+            | VulkanResultCodes::OperationNotDeferredKhr
+            | VulkanResultCodes::PipelineCompileRequired => VulkanResult::Success(
+                _return,
+                p_pipelines.into_iter().map(|i| Unique::new(self, i, ())).collect(),
+            ),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetRayTracingShaderGroupStackSizeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetRayTracingShaderGroupStackSizeKHR.html) - Query ray tracing pipeline shader group shader stack size
+    ///# C Specifications
+    ///To query the pipeline stack size of shaders in a shader group in the ray
+    ///tracing pipeline, call:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///VkDeviceSize vkGetRayTracingShaderGroupStackSizeKHR(
+    ///    VkDevice                                    device,
+    ///    VkPipeline                                  pipeline,
+    ///    uint32_t                                    group,
+    ///    VkShaderGroupShaderKHR                      groupShader);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device containing the ray tracing pipeline.
+    /// - [`pipeline`] is the ray tracing pipeline object containing the shaders groups.
+    /// - [`group`] is the index of the shader group to query.
+    /// - [`group_shader`] is the type of shader from the group to query.
+    ///# Description
+    ///The return value is the ray tracing pipeline stack size in bytes for the
+    ///specified shader as called from the specified shader group.
+    ///## Valid Usage
+    /// - [`pipeline`] **must**  be a ray tracing pipeline
+    /// - The value of [`group`] must be less than the number of shader groups in [`pipeline`]
+    /// - The shader identified by [`group_shader`] in [`group`] **must**  not be
+    ///   [`SHADER_UNUSED_KHR`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
+    /// - [`group_shader`] **must**  be a valid [`ShaderGroupShaderKHR`] value
+    /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`Device`]
+    /// - [`Pipeline`]
+    /// - [`ShaderGroupShaderKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetRayTracingShaderGroupStackSizeKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_ray_tracing_shader_group_stack_size_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        pipeline: Pipeline,
+        group: Option<u32>,
+        group_shader: ShaderGroupShaderKHR,
+    ) -> DeviceSize {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .get_ray_tracing_shader_group_stack_size_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .get_ray_tracing_shader_group_stack_size_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), pipeline, group.unwrap_or_default() as _, group_shader);
+        _return
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdTraceRaysKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdTraceRaysKHR.html) - Initialize a ray tracing dispatch
+    ///# C Specifications
+    ///To dispatch ray tracing use:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///void vkCmdTraceRaysKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkStridedDeviceAddressRegionKHR*      pRaygenShaderBindingTable,
+    ///    const VkStridedDeviceAddressRegionKHR*      pMissShaderBindingTable,
+    ///    const VkStridedDeviceAddressRegionKHR*      pHitShaderBindingTable,
+    ///    const VkStridedDeviceAddressRegionKHR*      pCallableShaderBindingTable,
+    ///    uint32_t                                    width,
+    ///    uint32_t                                    height,
+    ///    uint32_t                                    depth);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_raygen_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the ray generation shader stage.
+    /// - [`p_miss_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the miss shader stage.
+    /// - [`p_hit_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the hit shader stage.
+    /// - [`p_callable_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the callable shader stage.
+    /// - [`width`] is the width of the ray trace query dimensions.
+    /// - [`height`] is height of the ray trace query dimensions.
+    /// - [`depth`] is depth of the ray trace query dimensions.
+    ///# Description
+    ///When the command is executed, a ray generation group of [`width`]
+    ///× [`height`] × [`depth`] rays is assembled.
+    ///## Valid Usage
+    /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
+    ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+    ///   command, then the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+    /// - If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and
+    ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+    ///   command, then the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+    /// - If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format
+    ///   features]() **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
+    /// - If a [`ImageView`] is accessed using atomic operations as a result of this command, then
+    ///   the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
+    /// - If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then
+    ///   the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+    /// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` as a result of this command
+    ///   **must**  have a [`ImageViewType`] and format that supports cubic filtering, as specified
+    ///   by [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic`] returned by
+    ///   [`get_physical_device_image_format_properties2`]
+    /// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` with a reduction mode of either
+    ///   `VK_SAMPLER_REDUCTION_MODE_MIN` or `VK_SAMPLER_REDUCTION_MODE_MAX` as a result of this
+    ///   command  **must**  have a [`ImageViewType`] and format that supports cubic filtering
+    ///   together with minmax filtering, as specified by
+    ///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic_minmax`] returned by
+    ///   [`get_physical_device_image_format_properties2`]
+    /// - Any [`Image`] created with a [`ImageCreateInfo::flags`] containing
+    ///   `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` sampled as a result of this command  **must**
+    ///   only be sampled using a [`SamplerAddressMode`] of `VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE`
+    /// - Any [`ImageView`] or [`BufferView`] being written as a storage image or storage texel
+    ///   buffer where the image format field of the `OpTypeImage` is `Unknown` then the view’s
+    ///   format feature  **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT`
+    /// - Any [`ImageView`] or [`BufferView`] being read as a storage image or storage texel buffer
+    ///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format
+    ///   feature  **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT`
+    /// - For each set *n* that is statically used by the [`Pipeline`] bound to the pipeline bind
+    ///   point used by this command, a descriptor set  **must**  have been bound to *n* at the same
+    ///   pipeline bind point, with a [`PipelineLayout`] that is compatible for set *n*, with the
+    ///   [`PipelineLayout`] used to create the current [`Pipeline`], as described in
+    ///   [[descriptorsets-compatibility]]()
+    /// - If the [`maintenance4`]() feature is not enabled, then for each push constant that is
+    ///   statically used by the [`Pipeline`] bound to the pipeline bind point used by this command,
+    ///   a push constant value  **must**  have been set for the same pipeline bind point, with a
+    ///   [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used
+    ///   to create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
+    /// - Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],
+    ///   **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline
+    ///   bind point used by this command
+    /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
+    ///   any dynamic state, that state  **must**  have been set or inherited (if the
+    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
+    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   dynamic
+    /// - There  **must**  not have been any calls to dynamic state setting commands for any state
+    ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
+    ///   by this command, since that pipeline was bound
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used to sample from any [`Image`] with a [`ImageView`] of the type
+    ///   `VK_IMAGE_VIEW_TYPE_3D`, `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`,
+    ///   `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with
+    ///   `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions that
+    ///   includes a LOD bias or any offset values, in any shader stage
+    /// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object
+    ///   bound to the pipeline bind point used by this command accesses a uniform buffer, it
+    ///   **must**  not access values outside of the range of the buffer as specified in the
+    ///   descriptor set bound to the same pipeline bind point
+    /// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object
+    ///   bound to the pipeline bind point used by this command accesses a storage buffer, it
+    ///   **must**  not access values outside of the range of the buffer as specified in the
+    ///   descriptor set bound to the same pipeline bind point
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, any resource accessed by the [`Pipeline`] object bound to the pipeline bind
+    ///   point used by this command  **must**  not be a protected resource
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+    ///   conversion](), that object  **must**  only be used with `OpImageSample*` or
+    ///   `OpImageSparseSample*` instructions
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+    ///   conversion](), that object  **must**  not use the `ConstOffset` and `Offset` operands
+    /// - If a [`ImageView`] is accessed using `OpImageWrite` as a result of this command, then the
+    ///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many
+    ///   components as the image view’s format
+    /// - If a [`BufferView`] is accessed using `OpImageWrite` as a result of this command, then the
+    ///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many
+    ///   components as the buffer view’s format
+    /// - If a [`ImageView`] with a [`Format`] that has a 64-bit component width is accessed as a
+    ///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+    ///   **must**  have a `Width` of 64
+    /// - If a [`ImageView`] with a [`Format`] that has a component width less than 64-bit is
+    ///   accessed as a result of this command, the `SampledType` of the `OpTypeImage` operand of
+    ///   that instruction  **must**  have a `Width` of 32
+    /// - If a [`BufferView`] with a [`Format`] that has a 64-bit component width is accessed as a
+    ///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+    ///   **must**  have a `Width` of 64
+    /// - If a [`BufferView`] with a [`Format`] that has a component width less than 64-bit is
+    ///   accessed as a result of this command, the `SampledType` of the `OpTypeImage` operand of
+    ///   that instruction  **must**  have a `Width` of 32
+    /// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Image`] objects created
+    ///   with the `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+    ///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+    ///   command
+    /// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Buffer`] objects created
+    ///   with the `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+    ///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+    ///   command
+    /// - Any shader group handle referenced by this call  **must**  have been queried from the
+    ///   currently bound ray tracing pipeline
+    ///
+    /// - This command  **must**  not cause a shader call instruction to be executed from a shader
+    ///   invocation with a [recursion depth]() greater than the value of
+    ///   `maxPipelineRayRecursionDepth` used to create the bound ray tracing pipeline
+    /// - If the buffer from which `pRayGenShaderBindingTable->deviceAddress` was queried is
+    ///   non-sparse then it  **must**  be bound completely and contiguously to a single
+    ///   [`DeviceMemory`] object
+    /// - The buffer from which the `pRayGenShaderBindingTable->deviceAddress` is queried  **must**
+    ///   have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage flag
+    /// - `pRayGenShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `size` member of `pRayGenShaderBindingTable` **must**  be equal to its `stride` member
+    /// - If the buffer from which `pMissShaderBindingTable->deviceAddress` was queried is
+    ///   non-sparse then it  **must**  be bound completely and contiguously to a single
+    ///   [`DeviceMemory`] object
+    /// - The buffer from which the `pMissShaderBindingTable->deviceAddress` is queried  **must**
+    ///   have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage flag
+    /// - `pMissShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `stride` member of [`p_miss_shader_binding_table`] **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_alignment`]
+    /// - The `stride` member of [`p_miss_shader_binding_table`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_shader_group_stride`]
+    /// - If the buffer from which `pHitShaderBindingTable->deviceAddress` was queried is non-sparse
+    ///   then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`]
+    ///   object
+    /// - The buffer from which the `pHitShaderBindingTable->deviceAddress` is queried  **must**
+    ///   have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage flag
+    /// - `pHitShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `stride` member of [`p_hit_shader_binding_table`] **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_alignment`]
+    /// - The `stride` member of [`p_hit_shader_binding_table`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_shader_group_stride`]
+    /// - If the buffer from which `pCallableShaderBindingTable->deviceAddress` was queried is
+    ///   non-sparse then it  **must**  be bound completely and contiguously to a single
+    ///   [`DeviceMemory`] object
+    /// - The buffer from which the `pCallableShaderBindingTable->deviceAddress` is queried
+    ///   **must**  have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage
+    ///   flag
+    /// - `pCallableShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `stride` member of [`p_callable_shader_binding_table`] **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_alignment`]
+    /// - The `stride` member of [`p_callable_shader_binding_table`] **must**  be less than or equal
+    ///   to [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_shader_group_stride`]
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, the `deviceAddress`
+    ///   member of [`p_hit_shader_binding_table`] **must**  not be zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, the `deviceAddress`
+    ///   member of [`p_hit_shader_binding_table`] **must**  not be zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, the shader group handle
+    ///   identified by [`p_miss_shader_binding_table`] **must**  not be set to zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`, entries in
+    ///   [`p_hit_shader_binding_table`] accessed as a result of this command in order to execute an
+    ///   any-hit shader  **must**  not be set to zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, entries in
+    ///   [`p_hit_shader_binding_table`] accessed as a result of this command in order to execute a
+    ///   closest hit shader  **must**  not be set to zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, entries in
+    ///   [`p_hit_shader_binding_table`] accessed as a result of this command in order to execute an
+    ///   intersection shader  **must**  not be set to zero
+    /// - Any non-zero hit shader group entries in [`p_hit_shader_binding_table`] accessed by this
+    ///   call from a geometry with a `geometryType` of `VK_GEOMETRY_TYPE_TRIANGLES_KHR` **must**
+    ///   have been created with `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR`
+    /// - Any non-zero hit shader group entries in [`p_hit_shader_binding_table`] accessed by this
+    ///   call from a geometry with a `geometryType` of `VK_GEOMETRY_TYPE_AABBS_KHR` **must**  have
+    ///   been created with `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`
+    ///
+    /// - [`command_buffer`] **must**  not be a protected command buffer
+    /// - [`width`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceLimits::max_compute_work_group_count`][0] ×
+    ///   [`PhysicalDeviceLimits::max_compute_work_group_size`][0]
+    /// - [`height`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceLimits::max_compute_work_group_count`][1] ×
+    ///   [`PhysicalDeviceLimits::max_compute_work_group_size`][1]
+    /// - [`depth`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceLimits::max_compute_work_group_count`][2] ×
+    ///   [`PhysicalDeviceLimits::max_compute_work_group_size`][2]
+    /// - [`width`] × [`height`] × [`depth`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_dispatch_invocation_count`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_raygen_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`p_miss_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`p_hit_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`p_callable_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`CommandBuffer`]
+    /// - [`StridedDeviceAddressRegionKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdTraceRaysKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_trace_rays_khr<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_raygen_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        p_miss_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        p_hit_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        p_callable_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        width: Option<u32>,
+        height: Option<u32>,
+        depth: Option<u32>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .cmd_trace_rays_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .cmd_trace_rays_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_raygen_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            p_miss_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            p_hit_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            p_callable_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            width.unwrap_or_default() as _,
+            height.unwrap_or_default() as _,
+            depth.unwrap_or_default() as _,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdTraceRaysIndirectKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdTraceRaysIndirectKHR.html) - Initialize an indirect ray tracing dispatch
+    ///# C Specifications
+    ///To dispatch ray tracing, with some parameters sourced on the device, use:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///void vkCmdTraceRaysIndirectKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkStridedDeviceAddressRegionKHR*      pRaygenShaderBindingTable,
+    ///    const VkStridedDeviceAddressRegionKHR*      pMissShaderBindingTable,
+    ///    const VkStridedDeviceAddressRegionKHR*      pHitShaderBindingTable,
+    ///    const VkStridedDeviceAddressRegionKHR*      pCallableShaderBindingTable,
+    ///    VkDeviceAddress                             indirectDeviceAddress);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_raygen_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the ray generation shader stage.
+    /// - [`p_miss_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the miss shader stage.
+    /// - [`p_hit_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the hit shader stage.
+    /// - [`p_callable_shader_binding_table`] is a [`StridedDeviceAddressRegionKHR`] that holds the
+    ///   shader binding table data for the callable shader stage.
+    /// - [`indirect_device_address`] is a buffer device address which is a pointer to a
+    ///   [`TraceRaysIndirectCommandKHR`] structure containing the trace ray parameters.
+    ///# Description
+    ///[`cmd_trace_rays_indirect_khr`] behaves similarly to [`cmd_trace_rays_khr`]
+    ///except that the ray trace query dimensions are read by the device from
+    ///[`indirect_device_address`] during execution.
+    ///## Valid Usage
+    /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
+    ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+    ///   command, then the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+    /// - If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and
+    ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+    ///   command, then the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+    /// - If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format
+    ///   features]() **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
+    /// - If a [`ImageView`] is accessed using atomic operations as a result of this command, then
+    ///   the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
+    /// - If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then
+    ///   the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+    /// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` as a result of this command
+    ///   **must**  have a [`ImageViewType`] and format that supports cubic filtering, as specified
+    ///   by [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic`] returned by
+    ///   [`get_physical_device_image_format_properties2`]
+    /// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` with a reduction mode of either
+    ///   `VK_SAMPLER_REDUCTION_MODE_MIN` or `VK_SAMPLER_REDUCTION_MODE_MAX` as a result of this
+    ///   command  **must**  have a [`ImageViewType`] and format that supports cubic filtering
+    ///   together with minmax filtering, as specified by
+    ///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic_minmax`] returned by
+    ///   [`get_physical_device_image_format_properties2`]
+    /// - Any [`Image`] created with a [`ImageCreateInfo::flags`] containing
+    ///   `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` sampled as a result of this command  **must**
+    ///   only be sampled using a [`SamplerAddressMode`] of `VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE`
+    /// - Any [`ImageView`] or [`BufferView`] being written as a storage image or storage texel
+    ///   buffer where the image format field of the `OpTypeImage` is `Unknown` then the view’s
+    ///   format feature  **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT`
+    /// - Any [`ImageView`] or [`BufferView`] being read as a storage image or storage texel buffer
+    ///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format
+    ///   feature  **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT`
+    /// - For each set *n* that is statically used by the [`Pipeline`] bound to the pipeline bind
+    ///   point used by this command, a descriptor set  **must**  have been bound to *n* at the same
+    ///   pipeline bind point, with a [`PipelineLayout`] that is compatible for set *n*, with the
+    ///   [`PipelineLayout`] used to create the current [`Pipeline`], as described in
+    ///   [[descriptorsets-compatibility]]()
+    /// - If the [`maintenance4`]() feature is not enabled, then for each push constant that is
+    ///   statically used by the [`Pipeline`] bound to the pipeline bind point used by this command,
+    ///   a push constant value  **must**  have been set for the same pipeline bind point, with a
+    ///   [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used
+    ///   to create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
+    /// - Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],
+    ///   **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline
+    ///   bind point used by this command
+    /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
+    ///   any dynamic state, that state  **must**  have been set or inherited (if the
+    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
+    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   dynamic
+    /// - There  **must**  not have been any calls to dynamic state setting commands for any state
+    ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
+    ///   by this command, since that pipeline was bound
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used to sample from any [`Image`] with a [`ImageView`] of the type
+    ///   `VK_IMAGE_VIEW_TYPE_3D`, `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`,
+    ///   `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with
+    ///   `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions that
+    ///   includes a LOD bias or any offset values, in any shader stage
+    /// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object
+    ///   bound to the pipeline bind point used by this command accesses a uniform buffer, it
+    ///   **must**  not access values outside of the range of the buffer as specified in the
+    ///   descriptor set bound to the same pipeline bind point
+    /// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object
+    ///   bound to the pipeline bind point used by this command accesses a storage buffer, it
+    ///   **must**  not access values outside of the range of the buffer as specified in the
+    ///   descriptor set bound to the same pipeline bind point
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, any resource accessed by the [`Pipeline`] object bound to the pipeline bind
+    ///   point used by this command  **must**  not be a protected resource
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+    ///   conversion](), that object  **must**  only be used with `OpImageSample*` or
+    ///   `OpImageSparseSample*` instructions
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+    ///   conversion](), that object  **must**  not use the `ConstOffset` and `Offset` operands
+    /// - If a [`ImageView`] is accessed using `OpImageWrite` as a result of this command, then the
+    ///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many
+    ///   components as the image view’s format
+    /// - If a [`BufferView`] is accessed using `OpImageWrite` as a result of this command, then the
+    ///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many
+    ///   components as the buffer view’s format
+    /// - If a [`ImageView`] with a [`Format`] that has a 64-bit component width is accessed as a
+    ///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+    ///   **must**  have a `Width` of 64
+    /// - If a [`ImageView`] with a [`Format`] that has a component width less than 64-bit is
+    ///   accessed as a result of this command, the `SampledType` of the `OpTypeImage` operand of
+    ///   that instruction  **must**  have a `Width` of 32
+    /// - If a [`BufferView`] with a [`Format`] that has a 64-bit component width is accessed as a
+    ///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+    ///   **must**  have a `Width` of 64
+    /// - If a [`BufferView`] with a [`Format`] that has a component width less than 64-bit is
+    ///   accessed as a result of this command, the `SampledType` of the `OpTypeImage` operand of
+    ///   that instruction  **must**  have a `Width` of 32
+    /// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Image`] objects created
+    ///   with the `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+    ///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+    ///   command
+    /// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Buffer`] objects created
+    ///   with the `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+    ///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+    ///   command
+    /// - Any shader group handle referenced by this call  **must**  have been queried from the
+    ///   currently bound ray tracing pipeline
+    ///
+    /// - This command  **must**  not cause a shader call instruction to be executed from a shader
+    ///   invocation with a [recursion depth]() greater than the value of
+    ///   `maxPipelineRayRecursionDepth` used to create the bound ray tracing pipeline
+    /// - If the buffer from which `pRayGenShaderBindingTable->deviceAddress` was queried is
+    ///   non-sparse then it  **must**  be bound completely and contiguously to a single
+    ///   [`DeviceMemory`] object
+    /// - The buffer from which the `pRayGenShaderBindingTable->deviceAddress` is queried  **must**
+    ///   have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage flag
+    /// - `pRayGenShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `size` member of `pRayGenShaderBindingTable` **must**  be equal to its `stride` member
+    /// - If the buffer from which `pMissShaderBindingTable->deviceAddress` was queried is
+    ///   non-sparse then it  **must**  be bound completely and contiguously to a single
+    ///   [`DeviceMemory`] object
+    /// - The buffer from which the `pMissShaderBindingTable->deviceAddress` is queried  **must**
+    ///   have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage flag
+    /// - `pMissShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `stride` member of [`p_miss_shader_binding_table`] **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_alignment`]
+    /// - The `stride` member of [`p_miss_shader_binding_table`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_shader_group_stride`]
+    /// - If the buffer from which `pHitShaderBindingTable->deviceAddress` was queried is non-sparse
+    ///   then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`]
+    ///   object
+    /// - The buffer from which the `pHitShaderBindingTable->deviceAddress` is queried  **must**
+    ///   have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage flag
+    /// - `pHitShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `stride` member of [`p_hit_shader_binding_table`] **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_alignment`]
+    /// - The `stride` member of [`p_hit_shader_binding_table`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_shader_group_stride`]
+    /// - If the buffer from which `pCallableShaderBindingTable->deviceAddress` was queried is
+    ///   non-sparse then it  **must**  be bound completely and contiguously to a single
+    ///   [`DeviceMemory`] object
+    /// - The buffer from which the `pCallableShaderBindingTable->deviceAddress` is queried
+    ///   **must**  have been created with the `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` usage
+    ///   flag
+    /// - `pCallableShaderBindingTable->deviceAddress` **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_base_alignment`]
+    /// - The `stride` member of [`p_callable_shader_binding_table`] **must**  be a multiple of
+    ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_alignment`]
+    /// - The `stride` member of [`p_callable_shader_binding_table`] **must**  be less than or equal
+    ///   to [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_shader_group_stride`]
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, the `deviceAddress`
+    ///   member of [`p_hit_shader_binding_table`] **must**  not be zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, the `deviceAddress`
+    ///   member of [`p_hit_shader_binding_table`] **must**  not be zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, the shader group handle
+    ///   identified by [`p_miss_shader_binding_table`] **must**  not be set to zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`, entries in
+    ///   [`p_hit_shader_binding_table`] accessed as a result of this command in order to execute an
+    ///   any-hit shader  **must**  not be set to zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, entries in
+    ///   [`p_hit_shader_binding_table`] accessed as a result of this command in order to execute a
+    ///   closest hit shader  **must**  not be set to zero
+    /// - If the currently bound ray tracing pipeline was created with `flags` that included
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, entries in
+    ///   [`p_hit_shader_binding_table`] accessed as a result of this command in order to execute an
+    ///   intersection shader  **must**  not be set to zero
+    /// - Any non-zero hit shader group entries in [`p_hit_shader_binding_table`] accessed by this
+    ///   call from a geometry with a `geometryType` of `VK_GEOMETRY_TYPE_TRIANGLES_KHR` **must**
+    ///   have been created with `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR`
+    /// - Any non-zero hit shader group entries in [`p_hit_shader_binding_table`] accessed by this
+    ///   call from a geometry with a `geometryType` of `VK_GEOMETRY_TYPE_AABBS_KHR` **must**  have
+    ///   been created with `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`
+    ///
+    /// - If the buffer from which [`indirect_device_address`] was queried is non-sparse then it
+    ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
+    /// - The buffer from which [`indirect_device_address`] was queried  **must**  have been created
+    ///   with the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
+    /// - [`indirect_device_address`] **must**  be a multiple of `4`
+    /// - [`command_buffer`] **must**  not be a protected command buffer
+    /// - All device addresses between [`indirect_device_address`] and [`indirect_device_address`] +
+    ///   `sizeof`([`TraceRaysIndirectCommandKHR`]) - 1 **must**  be in the buffer device address
+    ///   range of the same buffer
+    /// - The [[`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_trace_rays_indirect`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipelineTraceRaysIndirect)
+    ///   feature  **must**  be enabled
+    /// - If the bound ray tracing pipeline was created with
+    ///   `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`[`PhysicalDeviceRayTracingMotionBlurFeaturesNV:
+    ///   :ray_tracing_motion_blur_pipeline_trace_rays_indirect`] feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_raygen_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`p_miss_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`p_hit_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`p_callable_shader_binding_table`] **must**  be a valid pointer to a valid
+    ///   [`StridedDeviceAddressRegionKHR`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`CommandBuffer`]
+    /// - [`DeviceAddress`]
+    /// - [`StridedDeviceAddressRegionKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdTraceRaysIndirectKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_trace_rays_indirect_khr<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_raygen_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        p_miss_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        p_hit_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        p_callable_shader_binding_table: &StridedDeviceAddressRegionKHR,
+        indirect_device_address: DeviceAddress,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .cmd_trace_rays_indirect_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .cmd_trace_rays_indirect_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_raygen_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            p_miss_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            p_hit_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            p_callable_shader_binding_table as *const StridedDeviceAddressRegionKHR,
+            indirect_device_address,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetRayTracingPipelineStackSizeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetRayTracingPipelineStackSizeKHR.html) - Set the stack size dynamically for a ray tracing pipeline
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the stack size for a ray
+    ///tracing pipeline, call:
+    ///```c
+    ///// Provided by VK_KHR_ray_tracing_pipeline
+    ///void vkCmdSetRayTracingPipelineStackSizeKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    pipelineStackSize);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`pipeline_stack_size`] is the stack size to use for subsequent ray tracing trace
+    ///   commands.
+    ///# Description
+    ///This command sets the stack size for subsequent ray tracing commands when
+    ///the ray tracing pipeline is created with
+    ///`VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, the stack size is computed as described in
+    ///[Ray Tracing Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-pipeline-stack).
+    ///## Valid Usage
+    /// - [`pipeline_stack_size`] **must**  be large enough for any dynamic execution through the
+    ///   shaders in the ray tracing pipeline used by a subsequent trace call
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetRayTracingPipelineStackSizeKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size_khr<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        pipeline_stack_size: Option<u32>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .expect("extension/version not loaded")
+            .cmd_set_ray_tracing_pipeline_stack_size_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_ray_tracing_pipeline()
+            .unwrap_unchecked()
+            .cmd_set_ray_tracing_pipeline_stack_size_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), pipeline_stack_size.unwrap_or_default() as _);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_ray_tracing_pipeline`
 pub struct DeviceKhrRayTracingPipelineVTable {
     ///See [`FNGetRayTracingShaderGroupHandlesKhr`] for more information.
     pub get_ray_tracing_shader_group_handles_khr: FNGetRayTracingShaderGroupHandlesKhr,
@@ -3155,37 +4269,49 @@ pub struct DeviceKhrRayTracingPipelineVTable {
 }
 impl DeviceKhrRayTracingPipelineVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_ray_tracing_shader_group_handles_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetRayTracingShaderGroupHandlesKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetRayTracingShaderGroupHandlesKHR").as_ptr(),
+                ))
             },
             get_ray_tracing_capture_replay_shader_group_handles_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetRayTracingCaptureReplayShaderGroupHandlesKHR"),
+                    crate::cstr!("vkGetRayTracingCaptureReplayShaderGroupHandlesKHR").as_ptr(),
                 ))
             },
             create_ray_tracing_pipelines_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateRayTracingPipelinesKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateRayTracingPipelinesKHR").as_ptr(),
+                ))
             },
             get_ray_tracing_shader_group_stack_size_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetRayTracingShaderGroupStackSizeKHR"),
+                    crate::cstr!("vkGetRayTracingShaderGroupStackSizeKHR").as_ptr(),
                 ))
             },
-            cmd_trace_rays_khr: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdTraceRaysKHR"))) },
+            cmd_trace_rays_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdTraceRaysKHR").as_ptr()))
+            },
             cmd_trace_rays_indirect_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdTraceRaysIndirectKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdTraceRaysIndirectKHR").as_ptr()))
             },
             cmd_set_ray_tracing_pipeline_stack_size_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkCmdSetRayTracingPipelineStackSizeKHR"),
+                    crate::cstr!("vkCmdSetRayTracingPipelineStackSizeKHR").as_ptr(),
                 ))
             },
         }

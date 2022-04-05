@@ -62,8 +62,9 @@
 use crate::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseInStructure, Device, StructureType, VulkanResultCodes},
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_GOOGLE_DISPLAY_TIMING_SPEC_VERSION")]
@@ -251,8 +252,8 @@ impl RefreshCycleDurationGOOGLE {
     pub fn refresh_duration_mut(&mut self) -> &mut u64 {
         &mut self.refresh_duration
     }
-    ///Sets the raw value of [`Self::refresh_duration`]
-    pub fn set_refresh_duration(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::refresh_duration`]
+    pub fn set_refresh_duration(mut self, value: u64) -> Self {
         self.refresh_duration = value;
         self
     }
@@ -404,28 +405,28 @@ impl PastPresentationTimingGOOGLE {
     pub fn present_margin_mut(&mut self) -> &mut u64 {
         &mut self.present_margin
     }
-    ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::present_id`]
+    pub fn set_present_id(mut self, value: u32) -> Self {
         self.present_id = value;
         self
     }
-    ///Sets the raw value of [`Self::desired_present_time`]
-    pub fn set_desired_present_time(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::desired_present_time`]
+    pub fn set_desired_present_time(mut self, value: u64) -> Self {
         self.desired_present_time = value;
         self
     }
-    ///Sets the raw value of [`Self::actual_present_time`]
-    pub fn set_actual_present_time(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::actual_present_time`]
+    pub fn set_actual_present_time(mut self, value: u64) -> Self {
         self.actual_present_time = value;
         self
     }
-    ///Sets the raw value of [`Self::earliest_present_time`]
-    pub fn set_earliest_present_time(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::earliest_present_time`]
+    pub fn set_earliest_present_time(mut self, value: u64) -> Self {
         self.earliest_present_time = value;
         self
     }
-    ///Sets the raw value of [`Self::present_margin`]
-    pub fn set_present_margin(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::present_margin`]
+    pub fn set_present_margin(mut self, value: u64) -> Self {
         self.present_margin = value;
         self
     }
@@ -527,12 +528,12 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
         self.times
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::times`]
-    pub fn set_times_raw(&mut self, value: *const PresentTimeGOOGLE) -> &mut Self {
+    pub fn set_times_raw(mut self, value: *const PresentTimeGOOGLE) -> Self {
         self.times = value;
         self
     }
@@ -566,26 +567,23 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
         &mut self.swapchain_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count(mut self, value: u32) -> Self {
         self.swapchain_count = value;
         self
     }
-    ///Sets the raw value of [`Self::times`]
-    pub fn set_times(
-        &mut self,
-        value: &'lt [crate::extensions::google_display_timing::PresentTimeGOOGLE],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::times`]
+    pub fn set_times(mut self, value: &'lt [crate::extensions::google_display_timing::PresentTimeGOOGLE]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.times = value.as_ptr();
@@ -675,18 +673,215 @@ impl PresentTimeGOOGLE {
     pub fn desired_present_time_mut(&mut self) -> &mut u64 {
         &mut self.desired_present_time
     }
-    ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::present_id`]
+    pub fn set_present_id(mut self, value: u32) -> Self {
         self.present_id = value;
         self
     }
-    ///Sets the raw value of [`Self::desired_present_time`]
-    pub fn set_desired_present_time(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::desired_present_time`]
+    pub fn set_desired_present_time(mut self, value: u64) -> Self {
         self.desired_present_time = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_GOOGLE_display_timing
+impl Device {
+    ///[vkGetRefreshCycleDurationGOOGLE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetRefreshCycleDurationGOOGLE.html) - Obtain the RC duration of the PE's display
+    ///# C Specifications
+    ///To query the duration of a refresh cycle (RC) for the presentation engine’s
+    ///display, call:
+    ///```c
+    ///// Provided by VK_GOOGLE_display_timing
+    ///VkResult vkGetRefreshCycleDurationGOOGLE(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain,
+    ///    VkRefreshCycleDurationGOOGLE*               pDisplayTimingProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swapchain`].
+    /// - [`swapchain`] is the swapchain to obtain the refresh duration for.
+    /// - [`p_display_timing_properties`] is a pointer to a [`RefreshCycleDurationGOOGLE`]
+    ///   structure.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - [`p_display_timing_properties`] **must**  be a valid pointer to a
+    ///   [`RefreshCycleDurationGOOGLE`] structure
+    /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`swapchain`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_GOOGLE_display_timing`]
+    /// - [`Device`]
+    /// - [`RefreshCycleDurationGOOGLE`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetRefreshCycleDurationGOOGLE")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_refresh_cycle_duration_google<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+    ) -> VulkanResult<RefreshCycleDurationGOOGLE> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .google_display_timing()
+            .expect("extension/version not loaded")
+            .get_refresh_cycle_duration_google()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .google_display_timing()
+            .unwrap_unchecked()
+            .get_refresh_cycle_duration_google()
+            .unwrap_unchecked();
+        let mut p_display_timing_properties = MaybeUninit::<RefreshCycleDurationGOOGLE>::uninit();
+        let _return = _function(self.as_raw(), swapchain, p_display_timing_properties.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_display_timing_properties.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetPastPresentationTimingGOOGLE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPastPresentationTimingGOOGLE.html) - Obtain timing of a previously-presented image
+    ///# C Specifications
+    ///The implementation will maintain a limited amount of history of timing
+    ///information about previous presents.
+    ///Because of the asynchronous nature of the presentation engine, the timing
+    ///information for a given [`queue_present_khr`] command will become
+    ///available some time later.
+    ///These time values can be asynchronously queried, and will be returned if
+    ///available.
+    ///All time values are in nanoseconds, relative to a monotonically-increasing
+    ///clock (e.g. `CLOCK_MONOTONIC` (see clock_gettime(2)) on Android and Linux).To asynchronously
+    /// query the presentation engine, for newly-available timing
+    ///information about one or more previous presents to a given swapchain, call:
+    ///```c
+    ///// Provided by VK_GOOGLE_display_timing
+    ///VkResult vkGetPastPresentationTimingGOOGLE(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain,
+    ///    uint32_t*                                   pPresentationTimingCount,
+    ///    VkPastPresentationTimingGOOGLE*             pPresentationTimings);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swapchain`].
+    /// - [`swapchain`] is the swapchain to obtain presentation timing information duration for.
+    /// - [`p_presentation_timing_count`] is a pointer to an integer related to the number of
+    ///   [`PastPresentationTimingGOOGLE`] structures to query, as described below.
+    /// - [`p_presentation_timings`] is either `NULL` or a pointer to an array of
+    ///   [`PastPresentationTimingGOOGLE`] structures.
+    ///# Description
+    ///If [`p_presentation_timings`] is `NULL`, then the number of newly-available
+    ///timing records for the given [`swapchain`] is returned in
+    ///[`p_presentation_timing_count`].
+    ///Otherwise, [`p_presentation_timing_count`] **must**  point to a variable set by
+    ///the user to the number of elements in the [`p_presentation_timings`] array,
+    ///and on return the variable is overwritten with the number of structures
+    ///actually written to [`p_presentation_timings`].
+    ///If the value of [`p_presentation_timing_count`] is less than the number of
+    ///newly-available timing records, at most [`p_presentation_timing_count`]
+    ///structures will be written, and `VK_INCOMPLETE` will be returned instead
+    ///of `VK_SUCCESS`, to indicate that not all the available timing records
+    ///were returned.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - [`p_presentation_timing_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_presentation_timing_count`] is not `0`, and
+    ///   [`p_presentation_timings`] is not `NULL`, [`p_presentation_timings`] **must**  be a valid
+    ///   pointer to an array of [`p_presentation_timing_count`][`PastPresentationTimingGOOGLE`]
+    ///   structures
+    /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`swapchain`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_GOOGLE_display_timing`]
+    /// - [`Device`]
+    /// - [`PastPresentationTimingGOOGLE`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPastPresentationTimingGOOGLE")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_past_presentation_timing_google<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+        p_presentation_timing_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PastPresentationTimingGOOGLE>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .google_display_timing()
+            .expect("extension/version not loaded")
+            .get_past_presentation_timing_google()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .google_display_timing()
+            .unwrap_unchecked()
+            .get_past_presentation_timing_google()
+            .unwrap_unchecked();
+        let mut p_presentation_timing_count = match p_presentation_timing_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), swapchain, &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_presentation_timings = SmallVec::<PastPresentationTimingGOOGLE>::from_elem(
+            Default::default(),
+            p_presentation_timing_count as usize,
+        );
+        let _return = _function(
+            self.as_raw(),
+            swapchain,
+            &mut p_presentation_timing_count,
+            p_presentation_timings.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_presentation_timings)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_GOOGLE_display_timing`
 pub struct DeviceGoogleDisplayTimingVTable {
     ///See [`FNGetRefreshCycleDurationGoogle`] for more information.
     pub get_refresh_cycle_duration_google: FNGetRefreshCycleDurationGoogle,
@@ -695,16 +890,26 @@ pub struct DeviceGoogleDisplayTimingVTable {
 }
 impl DeviceGoogleDisplayTimingVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_refresh_cycle_duration_google: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetRefreshCycleDurationGOOGLE")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetRefreshCycleDurationGOOGLE").as_ptr(),
+                ))
             },
             get_past_presentation_timing_google: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPastPresentationTimingGOOGLE")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPastPresentationTimingGOOGLE").as_ptr(),
+                ))
             },
         }
     }

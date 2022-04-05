@@ -199,6 +199,7 @@ impl<'a> Extension<'a> {
                     let mut out = Vec::with_capacity(#device_ext_len);
 
                     #(
+                        #[cfg(feature = #device_names)]
                         if self.#device_extensions() {
                             out.push(cstr!(#device_names));
                         }
@@ -212,6 +213,7 @@ impl<'a> Extension<'a> {
                     let mut out = Vec::with_capacity(#instance_ext_len);
 
                     #(
+                        #[cfg(feature = #instance_names)]
                         if self.#instance_extensions() {
                             out.push(cstr!(#instance_names));
                         }

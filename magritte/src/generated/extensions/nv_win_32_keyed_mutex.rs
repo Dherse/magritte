@@ -204,32 +204,32 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         self.release_keys
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_syncs`]
-    pub fn set_acquire_syncs_raw(&mut self, value: *const DeviceMemory) -> &mut Self {
+    pub fn set_acquire_syncs_raw(mut self, value: *const DeviceMemory) -> Self {
         self.acquire_syncs = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_keys`]
-    pub fn set_acquire_keys_raw(&mut self, value: *const u64) -> &mut Self {
+    pub fn set_acquire_keys_raw(mut self, value: *const u64) -> Self {
         self.acquire_keys = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_timeout_milliseconds`]
-    pub fn set_acquire_timeout_milliseconds_raw(&mut self, value: *const u32) -> &mut Self {
+    pub fn set_acquire_timeout_milliseconds_raw(mut self, value: *const u32) -> Self {
         self.acquire_timeout_milliseconds = value;
         self
     }
     ///Sets the raw value of [`Self::release_syncs`]
-    pub fn set_release_syncs_raw(&mut self, value: *const DeviceMemory) -> &mut Self {
+    pub fn set_release_syncs_raw(mut self, value: *const DeviceMemory) -> Self {
         self.release_syncs = value;
         self
     }
     ///Sets the raw value of [`Self::release_keys`]
-    pub fn set_release_keys_raw(&mut self, value: *const u64) -> &mut Self {
+    pub fn set_release_keys_raw(mut self, value: *const u64) -> Self {
         self.release_keys = value;
         self
     }
@@ -299,60 +299,60 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
     pub fn release_count_mut(&mut self) -> &mut u32 {
         &mut self.release_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::acquire_count`]
-    pub fn set_acquire_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::acquire_count`]
+    pub fn set_acquire_count(mut self, value: u32) -> Self {
         self.acquire_count = value;
         self
     }
-    ///Sets the raw value of [`Self::acquire_syncs`]
-    pub fn set_acquire_syncs(&mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> &mut Self {
+    ///Sets the value of [`Self::acquire_syncs`]
+    pub fn set_acquire_syncs(mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.acquire_syncs = value.as_ptr();
         self.acquire_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::acquire_keys`]
-    pub fn set_acquire_keys(&mut self, value: &'lt [u64]) -> &mut Self {
+    ///Sets the value of [`Self::acquire_keys`]
+    pub fn set_acquire_keys(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.acquire_keys = value.as_ptr();
         self.acquire_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::acquire_timeout_milliseconds`]
-    pub fn set_acquire_timeout_milliseconds(&mut self, value: &'lt [u32]) -> &mut Self {
+    ///Sets the value of [`Self::acquire_timeout_milliseconds`]
+    pub fn set_acquire_timeout_milliseconds(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.acquire_timeout_milliseconds = value.as_ptr();
         self.acquire_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::release_count`]
-    pub fn set_release_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::release_count`]
+    pub fn set_release_count(mut self, value: u32) -> Self {
         self.release_count = value;
         self
     }
-    ///Sets the raw value of [`Self::release_syncs`]
-    pub fn set_release_syncs(&mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> &mut Self {
+    ///Sets the value of [`Self::release_syncs`]
+    pub fn set_release_syncs(mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.release_syncs = value.as_ptr();
         self.release_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::release_keys`]
-    pub fn set_release_keys(&mut self, value: &'lt [u64]) -> &mut Self {
+    ///Sets the value of [`Self::release_keys`]
+    pub fn set_release_keys(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.release_keys = value.as_ptr();

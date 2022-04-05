@@ -92,7 +92,7 @@ pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryPriorityFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
@@ -120,20 +120,20 @@ impl<'lt> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::memory_priority`]
     pub fn memory_priority_raw(&self) -> Bool32 {
         self.memory_priority
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::memory_priority`]
-    pub fn set_memory_priority_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_memory_priority_raw(mut self, value: Bool32) -> Self {
         self.memory_priority = value;
         self
     }
@@ -181,18 +181,18 @@ impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::memory_priority`]
-    pub fn set_memory_priority(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::memory_priority`]
+    pub fn set_memory_priority(mut self, value: bool) -> Self {
         self.memory_priority = value as u8 as u32;
         self
     }
@@ -271,7 +271,7 @@ impl<'lt> MemoryPriorityAllocateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -298,18 +298,18 @@ impl<'lt> MemoryPriorityAllocateInfoEXT<'lt> {
     pub fn priority_mut(&mut self) -> &mut f32 {
         &mut self.priority
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::priority`]
-    pub fn set_priority(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::priority`]
+    pub fn set_priority(mut self, value: f32) -> Self {
         self.priority = value;
         self
     }

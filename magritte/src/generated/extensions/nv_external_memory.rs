@@ -148,7 +148,7 @@ impl<'lt> ExternalMemoryImageCreateInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -175,21 +175,21 @@ impl<'lt> ExternalMemoryImageCreateInfoNV<'lt> {
     pub fn handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagsNV {
         &mut self.handle_types
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::handle_types`]
+    ///Sets the value of [`Self::handle_types`]
     pub fn set_handle_types(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.handle_types = value;
         self
     }
@@ -265,7 +265,7 @@ impl<'lt> ExportMemoryAllocateInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -292,21 +292,21 @@ impl<'lt> ExportMemoryAllocateInfoNV<'lt> {
     pub fn handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagsNV {
         &mut self.handle_types
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::handle_types`]
+    ///Sets the value of [`Self::handle_types`]
     pub fn set_handle_types(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.handle_types = value;
         self
     }

@@ -52,8 +52,11 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    BaseOutStructure, CommandBuffer, Device, PipelineBindPoint, PipelineLayout, StructureType, WriteDescriptorSet,
+use crate::{
+    vulkan1_0::{
+        BaseOutStructure, CommandBuffer, Device, PipelineBindPoint, PipelineLayout, StructureType, WriteDescriptorSet,
+    },
+    AsRaw, SmallVec, Unique,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -219,7 +222,7 @@ pub type FNCmdPushDescriptorSetKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePushDescriptorPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
@@ -247,11 +250,11 @@ impl<'lt> Default for PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -285,36 +288,188 @@ impl<'lt> PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
     pub fn max_push_descriptors_mut(&mut self) -> &mut u32 {
         &mut self.max_push_descriptors
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_push_descriptors`]
-    pub fn set_max_push_descriptors(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_push_descriptors`]
+    pub fn set_max_push_descriptors(mut self, value: u32) -> Self {
         self.max_push_descriptors = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_push_descriptor
+impl CommandBuffer {
+    ///[vkCmdPushDescriptorSetKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdPushDescriptorSetKHR.html) - Pushes descriptor updates into a command buffer
+    ///# C Specifications
+    ///In addition to allocating descriptor sets and binding them to a command
+    ///buffer, an application  **can**  record descriptor updates into the command
+    ///buffer.To push descriptor updates into a command buffer, call:
+    ///```c
+    ///// Provided by VK_KHR_push_descriptor
+    ///void vkCmdPushDescriptorSetKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPipelineBindPoint                         pipelineBindPoint,
+    ///    VkPipelineLayout                            layout,
+    ///    uint32_t                                    set,
+    ///    uint32_t                                    descriptorWriteCount,
+    ///    const VkWriteDescriptorSet*                 pDescriptorWrites);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer that the descriptors will be recorded in.
+    /// - [`pipeline_bind_point`] is a [`PipelineBindPoint`] indicating the type of the pipeline
+    ///   that will use the descriptors. There is a separate set of push descriptor bindings for
+    ///   each pipeline type, so binding one does not disturb the others.
+    /// - [`layout`] is a [`PipelineLayout`] object used to program the bindings.
+    /// - [`set`] is the set number of the descriptor set in the pipeline layout that will be
+    ///   updated.
+    /// - [`descriptor_write_count`] is the number of elements in the [`p_descriptor_writes`] array.
+    /// - [`p_descriptor_writes`] is a pointer to an array of [`WriteDescriptorSet`] structures
+    ///   describing the descriptors to be updated.
+    ///# Description
+    ///*Push descriptors* are a small bank of descriptors whose storage is
+    ///internally managed by the command buffer rather than being written into a
+    ///descriptor set and later bound to a command buffer.
+    ///Push descriptors allow for incremental updates of descriptors without
+    ///managing the lifetime of descriptor sets.When a command buffer begins recording, all push
+    /// descriptors are undefined.
+    ///Push descriptors  **can**  be updated incrementally and cause shaders to use the
+    ///updated descriptors for subsequent [bound
+    ///pipeline commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-bindpoint-commands) with the pipeline type set by [`pipeline_bind_point`]
+    ///until the descriptor is overwritten, or else until the set is disturbed as
+    ///described in [Pipeline Layout
+    ///Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-compatibility).
+    ///When the set is disturbed or push descriptors with a different descriptor
+    ///set layout are set, all push descriptors are undefined.Push descriptors that are [statically used](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-staticuse) by a
+    ///pipeline  **must**  not be undefined at the time that a drawing or dispatching
+    ///command is recorded to execute using that pipeline.
+    ///This includes immutable sampler descriptors, which  **must**  be pushed before
+    ///they are accessed by a pipeline (the immutable samplers are pushed, rather
+    ///than the samplers in [`p_descriptor_writes`]).
+    ///Push descriptors that are not statically used  **can**  remain undefined.Push descriptors do
+    /// not use dynamic offsets.
+    ///Instead, the corresponding non-dynamic descriptor types  **can**  be used and the
+    ///`offset` member of [`DescriptorBufferInfo`] **can**  be changed each
+    ///time the descriptor is written.Each element of [`p_descriptor_writes`] is interpreted as in
+    ///[`WriteDescriptorSet`], except the `dstSet` member is ignored.To push an immutable sampler,
+    /// use a [`WriteDescriptorSet`] with
+    ///`dstBinding` and `dstArrayElement` selecting the immutable sampler’s
+    ///binding.
+    ///If the descriptor type is `VK_DESCRIPTOR_TYPE_SAMPLER`, the
+    ///`pImageInfo` parameter is ignored and the immutable sampler is taken
+    ///from the push descriptor set layout in the pipeline layout.
+    ///If the descriptor type is `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`,
+    ///the `sampler` member of the `pImageInfo` parameter is ignored and
+    ///the immutable sampler is taken from the push descriptor set layout in the
+    ///pipeline layout.
+    ///## Valid Usage
+    /// - [`pipeline_bind_point`] **must**  be supported by the [`command_buffer`]’s parent
+    ///   [`CommandPool`]’s queue family
+    /// - [`set`] **must**  be less than [`PipelineLayoutCreateInfo::set_layout_count`] provided
+    ///   when [`layout`] was created
+    /// - [`set`] **must**  be the unique set number in the pipeline layout that uses a descriptor
+    ///   set layout that was created with `VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR`
+    /// - For each element i where [`p_descriptor_writes`][i].`descriptorType` is
+    ///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE`, `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`, or
+    ///   `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`, [`p_descriptor_writes`][i].`pImageInfo` **must**
+    ///   be a valid pointer to an array of [`p_descriptor_writes`][i].`descriptorCount` valid
+    ///   [`DescriptorImageInfo`] structures
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
+    /// - [`layout`] **must**  be a valid [`PipelineLayout`] handle
+    /// - [`p_descriptor_writes`] **must**  be a valid pointer to an array of
+    ///   [`descriptor_write_count`] valid [`WriteDescriptorSet`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - [`descriptor_write_count`] **must**  be greater than `0`
+    /// - Both of [`command_buffer`], and [`layout`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_push_descriptor`]
+    /// - [`CommandBuffer`]
+    /// - [`PipelineBindPoint`]
+    /// - [`PipelineLayout`]
+    /// - [`WriteDescriptorSet`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdPushDescriptorSetKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_push_descriptor_set_khr<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        pipeline_bind_point: PipelineBindPoint,
+        layout: PipelineLayout,
+        set: Option<u32>,
+        p_descriptor_writes: &[crate::vulkan1_0::WriteDescriptorSet<'lt>],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_push_descriptor()
+            .expect("extension/version not loaded")
+            .cmd_push_descriptor_set_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_push_descriptor()
+            .unwrap_unchecked()
+            .cmd_push_descriptor_set_khr()
+            .unwrap_unchecked();
+        let descriptor_write_count = (|len: usize| len)(p_descriptor_writes.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            pipeline_bind_point,
+            layout,
+            set.unwrap_or_default() as _,
+            descriptor_write_count,
+            p_descriptor_writes.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_push_descriptor`
 pub struct DeviceKhrPushDescriptorVTable {
     ///See [`FNCmdPushDescriptorSetKhr`] for more information.
     pub cmd_push_descriptor_set_khr: FNCmdPushDescriptorSetKhr,
 }
 impl DeviceKhrPushDescriptorVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_push_descriptor_set_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPushDescriptorSetKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPushDescriptorSetKHR").as_ptr()))
             },
         }
     }

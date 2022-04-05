@@ -41,11 +41,14 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    BaseInStructure, BaseOutStructure, DescriptorType, Device, DeviceAddress, DeviceSize, ImageView, Sampler,
-    StructureType, VulkanResultCodes,
+use crate::{
+    vulkan1_0::{
+        BaseInStructure, BaseOutStructure, DescriptorType, Device, DeviceAddress, DeviceSize, ImageView, Sampler,
+        StructureType, VulkanResultCodes,
+    },
+    AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION")]
@@ -166,8 +169,8 @@ pub type FNGetImageViewAddressNvx = Option<
 /// - [`p_next`] **must**  be `NULL`
 /// - [`image_view`] **must**  be a valid [`ImageView`] handle
 /// - [`descriptor_type`] **must**  be a valid [`DescriptorType`] value
-/// - If [`sampler`] is not [`crate::utils::Handle::null`], [`sampler`] **must**  be a valid
-///   [`Sampler`] handle
+/// - If [`sampler`] is not [`crate::Handle::null`], [`sampler`] **must**  be a valid [`Sampler`]
+///   handle
 /// - Both of [`image_view`], and [`sampler`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
@@ -224,7 +227,7 @@ impl<'lt> ImageViewHandleInfoNVX<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -267,28 +270,28 @@ impl<'lt> ImageViewHandleInfoNVX<'lt> {
     pub fn sampler_mut(&mut self) -> &mut Sampler {
         &mut self.sampler
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::image_view`]
-    pub fn set_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+    ///Sets the value of [`Self::image_view`]
+    pub fn set_image_view(mut self, value: crate::vulkan1_0::ImageView) -> Self {
         self.image_view = value;
         self
     }
-    ///Sets the raw value of [`Self::descriptor_type`]
-    pub fn set_descriptor_type(&mut self, value: crate::vulkan1_0::DescriptorType) -> &mut Self {
+    ///Sets the value of [`Self::descriptor_type`]
+    pub fn set_descriptor_type(mut self, value: crate::vulkan1_0::DescriptorType) -> Self {
         self.descriptor_type = value;
         self
     }
-    ///Sets the raw value of [`Self::sampler`]
-    pub fn set_sampler(&mut self, value: crate::vulkan1_0::Sampler) -> &mut Self {
+    ///Sets the value of [`Self::sampler`]
+    pub fn set_sampler(mut self, value: crate::vulkan1_0::Sampler) -> Self {
         self.sampler = value;
         self
     }
@@ -329,7 +332,7 @@ impl<'lt> ImageViewHandleInfoNVX<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewAddressPropertiesNVX")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageViewAddressPropertiesNVX<'lt> {
@@ -358,11 +361,11 @@ impl<'lt> Default for ImageViewAddressPropertiesNVX<'lt> {
 }
 impl<'lt> ImageViewAddressPropertiesNVX<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -404,28 +407,152 @@ impl<'lt> ImageViewAddressPropertiesNVX<'lt> {
     pub fn size_mut(&mut self) -> &mut DeviceSize {
         &mut self.size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::device_address`]
-    pub fn set_device_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
+    ///Sets the value of [`Self::device_address`]
+    pub fn set_device_address(mut self, value: crate::vulkan1_0::DeviceAddress) -> Self {
         self.device_address = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.size = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NVX_image_view_handle
+impl Device {
+    ///[vkGetImageViewHandleNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageViewHandleNVX.html) - Get the handle for an image view for a specific descriptor type
+    ///# C Specifications
+    ///To get the handle for an image view, call:
+    ///```c
+    ///// Provided by VK_NVX_image_view_handle
+    ///uint32_t vkGetImageViewHandleNVX(
+    ///    VkDevice                                    device,
+    ///    const VkImageViewHandleInfoNVX*             pInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the image view.
+    /// - [`p_info`] describes the image view to query and type of handle.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageViewHandleInfoNVX`] structure
+    ///# Related
+    /// - [`VK_NVX_image_view_handle`]
+    /// - [`Device`]
+    /// - [`ImageViewHandleInfoNVX`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetImageViewHandleNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_image_view_handle_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_info: &ImageViewHandleInfoNVX<'lt>,
+    ) -> u32 {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nvx_image_view_handle()
+            .expect("extension/version not loaded")
+            .get_image_view_handle_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nvx_image_view_handle()
+            .unwrap_unchecked()
+            .get_image_view_handle_nvx()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_info as *const ImageViewHandleInfoNVX<'lt>);
+        _return
+    }
+}
+impl Device {
+    ///[vkGetImageViewAddressNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageViewAddressNVX.html) - Get the device address of an image view
+    ///# C Specifications
+    ///To get the device address for an image view, call:
+    ///```c
+    ///// Provided by VK_NVX_image_view_handle
+    ///VkResult vkGetImageViewAddressNVX(
+    ///    VkDevice                                    device,
+    ///    VkImageView                                 imageView,
+    ///    VkImageViewAddressPropertiesNVX*            pProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the image view.
+    /// - [`image_view`] is a handle to the image view.
+    /// - [`p_properties`] contains the device address and size when the call returns.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`image_view`] **must**  be a valid [`ImageView`] handle
+    /// - [`p_properties`] **must**  be a valid pointer to a [`ImageViewAddressPropertiesNVX`]
+    ///   structure
+    /// - [`image_view`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_UNKNOWN`
+    ///# Related
+    /// - [`VK_NVX_image_view_handle`]
+    /// - [`Device`]
+    /// - [`ImageView`]
+    /// - [`ImageViewAddressPropertiesNVX`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetImageViewAddressNVX")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_image_view_address_nvx<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        image_view: ImageView,
+    ) -> VulkanResult<ImageViewAddressPropertiesNVX<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nvx_image_view_handle()
+            .expect("extension/version not loaded")
+            .get_image_view_address_nvx()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nvx_image_view_handle()
+            .unwrap_unchecked()
+            .get_image_view_address_nvx()
+            .unwrap_unchecked();
+        let mut p_properties = MaybeUninit::<ImageViewAddressPropertiesNVX<'lt>>::zeroed();
+        let _return = _function(self.as_raw(), image_view, p_properties.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_properties.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NVX_image_view_handle`
 pub struct DeviceNvxImageViewHandleVTable {
     ///See [`FNGetImageViewHandleNvx`] for more information.
     pub get_image_view_handle_nvx: FNGetImageViewHandleNvx,
@@ -434,16 +561,20 @@ pub struct DeviceNvxImageViewHandleVTable {
 }
 impl DeviceNvxImageViewHandleVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_image_view_handle_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageViewHandleNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageViewHandleNVX").as_ptr()))
             },
             get_image_view_address_nvx: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageViewAddressNVX")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageViewAddressNVX").as_ptr()))
             },
         }
     }

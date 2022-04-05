@@ -76,6 +76,7 @@ use crate::{
     vulkan1_0::{
         BaseInStructure, BaseOutStructure, Buffer, CommandBuffer, Device, DeviceSize, Extent2D, Offset2D, StructureType,
     },
+    AsRaw, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -912,7 +913,7 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeCapabilitiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeCapabilitiesKHR<'lt> {
@@ -939,11 +940,11 @@ impl<'lt> Default for VideoDecodeCapabilitiesKHR<'lt> {
 }
 impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -977,21 +978,21 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
     pub fn flags_mut(&mut self) -> &mut VideoDecodeCapabilityFlagsKHR {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_decode_queue::VideoDecodeCapabilityFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
@@ -1178,17 +1179,17 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
         self.reference_slots
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::setup_reference_slot`]
-    pub fn set_setup_reference_slot_raw(&mut self, value: *const VideoReferenceSlotKHR<'lt>) -> &mut Self {
+    pub fn set_setup_reference_slot_raw(mut self, value: *const VideoReferenceSlotKHR<'lt>) -> Self {
         self.setup_reference_slot = value;
         self
     }
     ///Sets the raw value of [`Self::reference_slots`]
-    pub fn set_reference_slots_raw(&mut self, value: *const VideoReferenceSlotKHR<'lt>) -> &mut Self {
+    pub fn set_reference_slots_raw(mut self, value: *const VideoReferenceSlotKHR<'lt>) -> Self {
         self.reference_slots = value;
         self
     }
@@ -1285,72 +1286,72 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
     pub fn reference_slot_count_mut(&mut self) -> &mut u32 {
         &mut self.reference_slot_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_video_decode_queue::VideoDecodeFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_video_decode_queue::VideoDecodeFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::coded_offset`]
-    pub fn set_coded_offset(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {
+    ///Sets the value of [`Self::coded_offset`]
+    pub fn set_coded_offset(mut self, value: crate::vulkan1_0::Offset2D) -> Self {
         self.coded_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::coded_extent`]
-    pub fn set_coded_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::coded_extent`]
+    pub fn set_coded_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.coded_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::src_buffer`]
-    pub fn set_src_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::src_buffer`]
+    pub fn set_src_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.src_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::src_buffer_offset`]
-    pub fn set_src_buffer_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::src_buffer_offset`]
+    pub fn set_src_buffer_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.src_buffer_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::src_buffer_range`]
-    pub fn set_src_buffer_range(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::src_buffer_range`]
+    pub fn set_src_buffer_range(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.src_buffer_range = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_picture_resource`]
+    ///Sets the value of [`Self::dst_picture_resource`]
     pub fn set_dst_picture_resource(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoPictureResourceKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.dst_picture_resource = value;
         self
     }
-    ///Sets the raw value of [`Self::setup_reference_slot`]
+    ///Sets the value of [`Self::setup_reference_slot`]
     pub fn set_setup_reference_slot(
-        &mut self,
+        mut self,
         value: &'lt crate::extensions::khr_video_queue::VideoReferenceSlotKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.setup_reference_slot = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::reference_slot_count`]
-    pub fn set_reference_slot_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::reference_slot_count`]
+    pub fn set_reference_slot_count(mut self, value: u32) -> Self {
         self.reference_slot_count = value;
         self
     }
-    ///Sets the raw value of [`Self::reference_slots`]
+    ///Sets the value of [`Self::reference_slots`]
     pub fn set_reference_slots(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::khr_video_queue::VideoReferenceSlotKHR<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.reference_slots = value.as_ptr();
@@ -1358,20 +1359,93 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_video_decode_queue
+impl CommandBuffer {
+    ///[vkCmdDecodeVideoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDecodeVideoKHR.html) - Decode a frame
+    ///# C Specifications
+    ///To decode a frame, call:
+    ///```c
+    ///// Provided by VK_KHR_video_decode_queue
+    ///void vkCmdDecodeVideoKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkVideoDecodeInfoKHR*                 pFrameInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer to be filled with this function for decode frame
+    ///   command.
+    /// - [`p_frame_info`] is a pointer to a [`VideoDecodeInfoKHR`] structure.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_frame_info`] **must**  be a valid pointer to a valid [`VideoDecodeInfoKHR`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_video_decode_queue`]
+    /// - [`CommandBuffer`]
+    /// - [`VideoDecodeInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdDecodeVideoKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_decode_video_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, CommandBuffer>,
+        p_frame_info: &VideoDecodeInfoKHR<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_decode_queue()
+            .expect("extension/version not loaded")
+            .cmd_decode_video_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_decode_queue()
+            .unwrap_unchecked()
+            .cmd_decode_video_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_frame_info as *const VideoDecodeInfoKHR<'lt>);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_video_decode_queue`
 pub struct DeviceKhrVideoDecodeQueueVTable {
     ///See [`FNCmdDecodeVideoKhr`] for more information.
     pub cmd_decode_video_khr: FNCmdDecodeVideoKhr,
 }
 impl DeviceKhrVideoDecodeQueueVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_decode_video_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDecodeVideoKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDecodeVideoKHR").as_ptr()))
             },
         }
     }

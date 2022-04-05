@@ -92,7 +92,7 @@ pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_pr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePresentIdFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePresentIdFeaturesKHR<'lt> {
@@ -120,20 +120,20 @@ impl<'lt> Default for PhysicalDevicePresentIdFeaturesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::present_id`]
     pub fn present_id_raw(&self) -> Bool32 {
         self.present_id
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_present_id_raw(mut self, value: Bool32) -> Self {
         self.present_id = value;
         self
     }
@@ -181,18 +181,18 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::present_id`]
+    pub fn set_present_id(mut self, value: bool) -> Self {
         self.present_id = value as u8 as u32;
         self
     }
@@ -307,12 +307,12 @@ impl<'lt> PresentIdKHR<'lt> {
         self.present_ids
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::present_ids`]
-    pub fn set_present_ids_raw(&mut self, value: *const u64) -> &mut Self {
+    pub fn set_present_ids_raw(mut self, value: *const u64) -> Self {
         self.present_ids = value;
         self
     }
@@ -346,23 +346,23 @@ impl<'lt> PresentIdKHR<'lt> {
     pub fn swapchain_count_mut(&mut self) -> &mut u32 {
         &mut self.swapchain_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::swapchain_count`]
+    pub fn set_swapchain_count(mut self, value: u32) -> Self {
         self.swapchain_count = value;
         self
     }
-    ///Sets the raw value of [`Self::present_ids`]
-    pub fn set_present_ids(&mut self, value: &'lt [u64]) -> &mut Self {
+    ///Sets the value of [`Self::present_ids`]
+    pub fn set_present_ids(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.present_ids = value.as_ptr();

@@ -101,6 +101,7 @@
 use crate::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseOutStructure, Device, ImageUsageFlags, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -190,7 +191,7 @@ pub type FNGetSwapchainStatusKhr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSharedPresentSurfaceCapabilitiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SharedPresentSurfaceCapabilitiesKHR<'lt> {
@@ -224,11 +225,11 @@ impl<'lt> Default for SharedPresentSurfaceCapabilitiesKHR<'lt> {
 }
 impl<'lt> SharedPresentSurfaceCapabilitiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -262,36 +263,110 @@ impl<'lt> SharedPresentSurfaceCapabilitiesKHR<'lt> {
     pub fn shared_present_supported_usage_flags_mut(&mut self) -> &mut ImageUsageFlags {
         &mut self.shared_present_supported_usage_flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shared_present_supported_usage_flags`]
-    pub fn set_shared_present_supported_usage_flags(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+    ///Sets the value of [`Self::shared_present_supported_usage_flags`]
+    pub fn set_shared_present_supported_usage_flags(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
         self.shared_present_supported_usage_flags = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_shared_presentable_image
+impl Device {
+    ///[vkGetSwapchainStatusKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainStatusKHR.html) - Get a swapchain's status
+    ///# C Specifications
+    ///In order to query a swapchain’s status when rendering to a shared
+    ///presentable image, call:
+    ///```c
+    ///// Provided by VK_KHR_shared_presentable_image
+    ///VkResult vkGetSwapchainStatusKHR(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swapchain`].
+    /// - [`swapchain`] is the swapchain to query.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`swapchain`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_SUBOPTIMAL_KHR`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
+    ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
+    ///# Related
+    /// - [`VK_KHR_shared_presentable_image`]
+    /// - [`Device`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetSwapchainStatusKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_swapchain_status_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_shared_presentable_image()
+            .expect("extension/version not loaded")
+            .get_swapchain_status_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_shared_presentable_image()
+            .unwrap_unchecked()
+            .get_swapchain_status_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), swapchain);
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::SuboptimalKhr => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_shared_presentable_image`
 pub struct DeviceKhrSharedPresentableImageVTable {
     ///See [`FNGetSwapchainStatusKhr`] for more information.
     pub get_swapchain_status_khr: FNGetSwapchainStatusKhr,
 }
 impl DeviceKhrSharedPresentableImageVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_swapchain_status_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSwapchainStatusKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSwapchainStatusKHR").as_ptr()))
             },
         }
     }

@@ -141,29 +141,29 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///[`RenderingInfo`] to define a
 ///[fragment shading rate
 ///attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment).
-///If [`image_view`] is [`crate::utils::Handle::null`], or if this structure is not
+///If [`image_view`] is [`crate::Handle::null`], or if this structure is not
 ///specified, the implementation behaves as if a valid shading rate attachment
 ///was specified with all texels specifying a single pixel per fragment.
 ///## Valid Usage
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL` or `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have been created with
 ///   `VK_IMAGE_USAGE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`],
-///   `shadingRateAttachmentTexelSize.width` **must**  be a power of two value
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.width` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
-/// - If [`image_view`] is not [`crate::utils::Handle::null`],
-///   `shadingRateAttachmentTexelSize.height` **must**  be a power of two value
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], `shadingRateAttachmentTexelSize.height` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
-/// -    If [`image_view`] is not [`crate::utils::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+/// - If [`image_view`] is not [`crate::Handle::null`], `shadingRateAttachmentTexelSize.width`
+///   **must**  be a power of two value
+/// -    If [`image_view`] is not [`crate::Handle::null`], `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`image_view`] is not [`crate::Handle::null`], `shadingRateAttachmentTexelSize.width` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.width`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+/// - If [`image_view`] is not [`crate::Handle::null`], `shadingRateAttachmentTexelSize.height`
+///   **must**  be a power of two value
+/// -    If [`image_view`] is not [`crate::Handle::null`], `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSize)
+/// -    If [`image_view`] is not [`crate::Handle::null`], `shadingRateAttachmentTexelSize.height` **must**  be greater than or equal to [`minFragmentShadingRateAttachmentTexelSize.height`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minFragmentShadingRateAttachmentTexelSize)
+/// -    If [`image_view`] is not [`crate::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.width` and `shadingRateAttachmentTexelSize.height` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
+/// -    If [`image_view`] is not [`crate::Handle::null`], the quotient of `shadingRateAttachmentTexelSize.height` and `shadingRateAttachmentTexelSize.width` **must**  be less than or equal to [`maxFragmentShadingRateAttachmentTexelSizeAspectRatio`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFragmentShadingRateAttachmentTexelSizeAspectRatio)
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
@@ -221,7 +221,7 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -264,28 +264,28 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     pub fn shading_rate_attachment_texel_size_mut(&mut self) -> &mut Extent2D {
         &mut self.shading_rate_attachment_texel_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::image_view`]
-    pub fn set_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+    ///Sets the value of [`Self::image_view`]
+    pub fn set_image_view(mut self, value: crate::vulkan1_0::ImageView) -> Self {
         self.image_view = value;
         self
     }
-    ///Sets the raw value of [`Self::image_layout`]
-    pub fn set_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::image_layout`]
+    pub fn set_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_attachment_texel_size`]
-    pub fn set_shading_rate_attachment_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_attachment_texel_size`]
+    pub fn set_shading_rate_attachment_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.shading_rate_attachment_texel_size = value;
         self
     }
@@ -312,14 +312,14 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 ///This structure can be included in the [`p_next`] chain of
 ///[`RenderingInfo`] to define a fragment density map.
 ///If this structure is not included in the [`p_next`] chain, [`image_view`]
-///is treated as [`crate::utils::Handle::null`].
+///is treated as [`crate::Handle::null`].
 ///## Valid Usage
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL` or `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have been created with
 ///   `VK_IMAGE_USAGE_FRAGMENT_DENSITY_MAP_BIT_EXT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  not have been created
-///   with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  not have been created with
+///   `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`
@@ -375,7 +375,7 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -410,23 +410,23 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
     pub fn image_layout_mut(&mut self) -> &mut ImageLayout {
         &mut self.image_layout
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::image_view`]
-    pub fn set_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+    ///Sets the value of [`Self::image_view`]
+    pub fn set_image_view(mut self, value: crate::vulkan1_0::ImageView) -> Self {
         self.image_view = value;
         self
     }
-    ///Sets the raw value of [`Self::image_layout`]
-    pub fn set_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::image_layout`]
+    pub fn set_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.image_layout = value;
         self
     }
@@ -464,7 +464,7 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///   count of a depth/stencil attachment.
 ///# Description
 ///If [`CommandBufferInheritanceInfo::render_pass`] is
-///[`crate::utils::Handle::null`], `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
+///[`crate::Handle::null`], `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
 ///is specified in [`CommandBufferBeginInfo::flags`], and the
 ///[`p_next`] chain of [`CommandBufferInheritanceInfo`] includes
 ///[`AttachmentSampleCountInfoAMD`], then this structure defines the sample
@@ -473,7 +473,7 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 ///[`CommandBufferInheritanceRenderingInfo::rasterization_samples`] is
 ///used as the sample count for each attachment.
 ///If [`CommandBufferInheritanceInfo::render_pass`] is not
-///[`crate::utils::Handle::null`], or
+///[`crate::Handle::null`], or
 ///`VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
 ///[`CommandBufferBeginInfo::flags`], parameters of this structure
 ///are ignored.[`AttachmentSampleCountInfoAMD`] **can**  also be included in the
@@ -553,12 +553,12 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
         self.color_attachment_samples
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachment_samples`]
-    pub fn set_color_attachment_samples_raw(&mut self, value: *const SampleCountFlagBits) -> &mut Self {
+    pub fn set_color_attachment_samples_raw(mut self, value: *const SampleCountFlagBits) -> Self {
         self.color_attachment_samples = value;
         self
     }
@@ -600,31 +600,31 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
     pub fn depth_stencil_attachment_samples_mut(&mut self) -> &mut SampleCountFlagBits {
         &mut self.depth_stencil_attachment_samples
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_count`]
+    pub fn set_color_attachment_count(mut self, value: u32) -> Self {
         self.color_attachment_count = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_samples`]
-    pub fn set_color_attachment_samples(&mut self, value: &'lt [crate::vulkan1_0::SampleCountFlagBits]) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_samples`]
+    pub fn set_color_attachment_samples(mut self, value: &'lt [crate::vulkan1_0::SampleCountFlagBits]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.color_attachment_samples = value.as_ptr();
         self.color_attachment_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::depth_stencil_attachment_samples`]
-    pub fn set_depth_stencil_attachment_samples(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::depth_stencil_attachment_samples`]
+    pub fn set_depth_stencil_attachment_samples(mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> Self {
         self.depth_stencil_attachment_samples = value;
         self
     }
@@ -732,17 +732,17 @@ impl<'lt> MultiviewPerViewAttributesInfoNVX<'lt> {
         self.per_view_attributes_position_x_only
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::per_view_attributes`]
-    pub fn set_per_view_attributes_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_per_view_attributes_raw(mut self, value: Bool32) -> Self {
         self.per_view_attributes = value;
         self
     }
     ///Sets the raw value of [`Self::per_view_attributes_position_x_only`]
-    pub fn set_per_view_attributes_position_x_only_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_per_view_attributes_position_x_only_raw(mut self, value: Bool32) -> Self {
         self.per_view_attributes_position_x_only = value;
         self
     }
@@ -805,28 +805,28 @@ impl<'lt> MultiviewPerViewAttributesInfoNVX<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::per_view_attributes`]
-    pub fn set_per_view_attributes(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::per_view_attributes`]
+    pub fn set_per_view_attributes(mut self, value: bool) -> Self {
         self.per_view_attributes = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::per_view_attributes_position_x_only`]
-    pub fn set_per_view_attributes_position_x_only(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::per_view_attributes_position_x_only`]
+    pub fn set_per_view_attributes_position_x_only(mut self, value: bool) -> Self {
         self.per_view_attributes_position_x_only = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_dynamic_rendering
+///The V-table of [`Device`] for functions from `VK_KHR_dynamic_rendering`
 pub struct DeviceKhrDynamicRenderingVTable {
     ///See [`FNCmdBeginRendering`] for more information.
     pub cmd_begin_rendering: FNCmdBeginRendering,
@@ -835,15 +835,21 @@ pub struct DeviceKhrDynamicRenderingVTable {
 }
 impl DeviceKhrDynamicRenderingVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_begin_rendering: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderingKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderingKHR").as_ptr()))
             },
-            cmd_end_rendering: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderingKHR"))) },
+            cmd_end_rendering: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderingKHR").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::cmd_begin_rendering`]. See [`FNCmdBeginRendering`] for more information.

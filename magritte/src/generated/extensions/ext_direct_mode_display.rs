@@ -54,6 +54,7 @@
 use crate::{
     extensions::khr_display::DisplayKHR,
     vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 use std::ffi::CStr;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -99,19 +100,89 @@ pub const EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 #[doc(alias = "vkReleaseDisplayEXT")]
 pub type FNReleaseDisplayExt =
     Option<unsafe extern "system" fn(physical_device: PhysicalDevice, display: DisplayKHR) -> VulkanResultCodes>;
-///The V-table of [`Instance`] for functions from VK_EXT_direct_mode_display
+impl PhysicalDevice {
+    ///[vkReleaseDisplayEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkReleaseDisplayEXT.html) - Release access to an acquired VkDisplayKHR
+    ///# C Specifications
+    ///To release a previously acquired display, call:
+    ///```c
+    ///// Provided by VK_EXT_direct_mode_display
+    ///VkResult vkReleaseDisplayEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkDisplayKHR                                display);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] The physical device the display is on.
+    /// - [`display`] The display to release control of.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+    /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    ///# Related
+    /// - [`VK_EXT_direct_mode_display`]
+    /// - [`DisplayKHR`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkReleaseDisplayEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn release_display_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        display: DisplayKHR,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_direct_mode_display()
+            .expect("extension/version not loaded")
+            .release_display_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_direct_mode_display()
+            .unwrap_unchecked()
+            .release_display_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), display);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_direct_mode_display`
 pub struct InstanceExtDirectModeDisplayVTable {
     ///See [`FNReleaseDisplayExt`] for more information.
     pub release_display_ext: FNReleaseDisplayExt,
 }
 impl InstanceExtDirectModeDisplayVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
-            release_display_ext: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkReleaseDisplayEXT"))) },
+            release_display_ext: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkReleaseDisplayEXT").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::release_display_ext`]. See [`FNReleaseDisplayExt`] for more information.

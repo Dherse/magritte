@@ -113,7 +113,7 @@ pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME")]
 pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_buffer_device_address");
-///The V-table of [`Device`] for functions from VK_KHR_buffer_device_address
+///The V-table of [`Device`] for functions from `VK_KHR_buffer_device_address`
 pub struct DeviceKhrBufferDeviceAddressVTable {
     ///See [`FNGetBufferOpaqueCaptureAddress`] for more information.
     pub get_buffer_opaque_capture_address: FNGetBufferOpaqueCaptureAddress,
@@ -124,21 +124,28 @@ pub struct DeviceKhrBufferDeviceAddressVTable {
 }
 impl DeviceKhrBufferDeviceAddressVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_buffer_opaque_capture_address: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferOpaqueCaptureAddressKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetBufferOpaqueCaptureAddressKHR").as_ptr(),
+                ))
             },
             get_buffer_device_address: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferDeviceAddressKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferDeviceAddressKHR").as_ptr()))
             },
             get_device_memory_opaque_capture_address: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceMemoryOpaqueCaptureAddressKHR"),
+                    crate::cstr!("vkGetDeviceMemoryOpaqueCaptureAddressKHR").as_ptr(),
                 ))
             },
         }

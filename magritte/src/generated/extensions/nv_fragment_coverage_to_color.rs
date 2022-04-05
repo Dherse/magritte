@@ -195,12 +195,12 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
         self.coverage_to_color_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::coverage_to_color_enable`]
-    pub fn set_coverage_to_color_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_coverage_to_color_enable_raw(mut self, value: Bool32) -> Self {
         self.coverage_to_color_enable = value;
         self
     }
@@ -257,31 +257,31 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
     pub fn coverage_to_color_location_mut(&mut self) -> &mut u32 {
         &mut self.coverage_to_color_location
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_fragment_coverage_to_color::PipelineCoverageToColorStateCreateFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::coverage_to_color_enable`]
-    pub fn set_coverage_to_color_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::coverage_to_color_enable`]
+    pub fn set_coverage_to_color_enable(mut self, value: bool) -> Self {
         self.coverage_to_color_enable = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::coverage_to_color_location`]
-    pub fn set_coverage_to_color_location(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::coverage_to_color_location`]
+    pub fn set_coverage_to_color_location(mut self, value: u32) -> Self {
         self.coverage_to_color_location = value;
         self
     }

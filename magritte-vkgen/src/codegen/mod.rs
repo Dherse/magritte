@@ -168,6 +168,20 @@ impl<'a> Source<'a> {
             let (imports, _, out) = per_origin.get_mut(handle.origin()).unwrap();
 
             handle.generate_code(self, imports, doc, out);
+
+            handle
+                .functions()
+                .iter()
+                .filter_map(|fn_| self.find(fn_))
+                .filter_map(|ref_| ref_.as_function())
+                .filter(|fn_| !fn_.origin().is_disabled())
+                .for_each(|fn_| {
+                    let (imports, _, out) = per_origin.get_mut(fn_.origin()).unwrap();
+
+                    handle.generate_fn_code(self, imports, doc, fn_, out);
+
+                    // fn_.generate_code(source, imports, doc, self, &mut fns)
+                });
         }
 
         let mut all_functions = Vec::new();
@@ -321,14 +335,17 @@ impl<'a> Source<'a> {
 
             all.push(extension.name().to_string());
 
-            out.insert(
-                extension.name().to_string(),
-                extension
-                    .required()
-                    .into_iter()
-                    .map(|s| s.to_string())
-                    .collect::<Vec<_>>(),
-            );
+            let mut dependencies = extension
+                .required()
+                .into_iter()
+                .map(|s| s.to_string())
+                .collect::<Vec<_>>();
+
+            if extension.name() == "VK_KHR_surface" {
+                dependencies.push("VK_KHR_display".to_string());
+            }
+
+            out.insert(extension.name().to_string(), dependencies);
         }
 
         out.insert("all".to_string(), all);

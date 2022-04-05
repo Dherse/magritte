@@ -167,8 +167,12 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Extent2D, ImageLayout, ImageView, StructureType,
+use crate::{
+    vulkan1_0::{
+        BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Extent2D, ImageLayout, ImageView,
+        StructureType,
+    },
+    AsRaw, SmallVec, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -197,29 +201,29 @@ pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`image_view`] is an image view handle specifying the shading rate image. [`image_view`]
-///   **may**  be set to [`crate::utils::Handle::null`], which is equivalent to specifying a view of
-///   an image filled with zero values.
+///   **may**  be set to [`crate::Handle::null`], which is equivalent to specifying a view of an
+///   image filled with zero values.
 /// - [`image_layout`] is the layout that the image subresources accessible from [`image_view`] will
 ///   be in when the shading rate image is accessed.
 ///# Description
 ///## Valid Usage
 /// - The [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shadingRateImage)
 ///   feature  **must**  be enabled
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  be a valid
-///   [`ImageView`] handle of type `VK_IMAGE_VIEW_TYPE_2D` or `VK_IMAGE_VIEW_TYPE_2D_ARRAY`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have a format of
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  be a valid [`ImageView`]
+///   handle of type `VK_IMAGE_VIEW_TYPE_2D` or `VK_IMAGE_VIEW_TYPE_2D_ARRAY`
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have a format of
 ///   `VK_FORMAT_R8_UINT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
-///   a `usage` value including `VK_IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_layout`] **must**  match the
-///   actual [`ImageLayout`] of each subresource accessible from [`image_view`] at the time the
-///   subresource is accessed
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_layout`] **must**  be
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have been created with a
+///   `usage` value including `VK_IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV`
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_layout`] **must**  match the actual
+///   [`ImageLayout`] of each subresource accessible from [`image_view`] at the time the subresource
+///   is accessed
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_layout`] **must**  be
 ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV` or `VK_IMAGE_LAYOUT_GENERAL`
 ///
 ///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -647,7 +651,7 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
         self.shading_rate_palette_entries
     }
     ///Sets the raw value of [`Self::shading_rate_palette_entries`]
-    pub fn set_shading_rate_palette_entries_raw(&mut self, value: *const ShadingRatePaletteEntryNV) -> &mut Self {
+    pub fn set_shading_rate_palette_entries_raw(mut self, value: *const ShadingRatePaletteEntryNV) -> Self {
         self.shading_rate_palette_entries = value;
         self
     }
@@ -669,16 +673,16 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
     pub fn shading_rate_palette_entry_count_mut(&mut self) -> &mut u32 {
         &mut self.shading_rate_palette_entry_count
     }
-    ///Sets the raw value of [`Self::shading_rate_palette_entry_count`]
-    pub fn set_shading_rate_palette_entry_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_palette_entry_count`]
+    pub fn set_shading_rate_palette_entry_count(mut self, value: u32) -> Self {
         self.shading_rate_palette_entry_count = value;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_palette_entries`]
+    ///Sets the value of [`Self::shading_rate_palette_entries`]
     pub fn set_shading_rate_palette_entries(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_shading_rate_image::ShadingRatePaletteEntryNV],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.shading_rate_palette_entries = value.as_ptr();
@@ -789,17 +793,17 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
         self.shading_rate_palettes
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shading_rate_image_enable`]
-    pub fn set_shading_rate_image_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shading_rate_image_enable_raw(mut self, value: Bool32) -> Self {
         self.shading_rate_image_enable = value;
         self
     }
     ///Sets the raw value of [`Self::shading_rate_palettes`]
-    pub fn set_shading_rate_palettes_raw(&mut self, value: *const ShadingRatePaletteNV<'lt>) -> &mut Self {
+    pub fn set_shading_rate_palettes_raw(mut self, value: *const ShadingRatePaletteNV<'lt>) -> Self {
         self.shading_rate_palettes = value;
         self
     }
@@ -855,31 +859,31 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     pub fn viewport_count_mut(&mut self) -> &mut u32 {
         &mut self.viewport_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_image_enable`]
-    pub fn set_shading_rate_image_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_image_enable`]
+    pub fn set_shading_rate_image_enable(mut self, value: bool) -> Self {
         self.shading_rate_image_enable = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::viewport_count`]
-    pub fn set_viewport_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::viewport_count`]
+    pub fn set_viewport_count(mut self, value: u32) -> Self {
         self.viewport_count = value;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_palettes`]
+    ///Sets the value of [`Self::shading_rate_palettes`]
     pub fn set_shading_rate_palettes(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_shading_rate_image::ShadingRatePaletteNV<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.shading_rate_palettes = value.as_ptr();
@@ -933,7 +937,7 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShadingRateImageFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
@@ -968,8 +972,8 @@ impl<'lt> Default for PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shading_rate_image`]
     pub fn shading_rate_image_raw(&self) -> Bool32 {
@@ -980,17 +984,17 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
         self.shading_rate_coarse_sample_order
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shading_rate_image`]
-    pub fn set_shading_rate_image_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shading_rate_image_raw(mut self, value: Bool32) -> Self {
         self.shading_rate_image = value;
         self
     }
     ///Sets the raw value of [`Self::shading_rate_coarse_sample_order`]
-    pub fn set_shading_rate_coarse_sample_order_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shading_rate_coarse_sample_order_raw(mut self, value: Bool32) -> Self {
         self.shading_rate_coarse_sample_order = value;
         self
     }
@@ -1060,23 +1064,23 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_image`]
-    pub fn set_shading_rate_image(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_image`]
+    pub fn set_shading_rate_image(mut self, value: bool) -> Self {
         self.shading_rate_image = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_coarse_sample_order`]
-    pub fn set_shading_rate_coarse_sample_order(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_coarse_sample_order`]
+    pub fn set_shading_rate_coarse_sample_order(mut self, value: bool) -> Self {
         self.shading_rate_coarse_sample_order = value as u8 as u32;
         self
     }
@@ -1128,7 +1132,7 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShadingRateImagePropertiesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
@@ -1170,11 +1174,11 @@ impl<'lt> Default for PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1224,28 +1228,28 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     pub fn shading_rate_max_coarse_samples_mut(&mut self) -> &mut u32 {
         &mut self.shading_rate_max_coarse_samples
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_texel_size`]
-    pub fn set_shading_rate_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_texel_size`]
+    pub fn set_shading_rate_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.shading_rate_texel_size = value;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_palette_size`]
-    pub fn set_shading_rate_palette_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_palette_size`]
+    pub fn set_shading_rate_palette_size(mut self, value: u32) -> Self {
         self.shading_rate_palette_size = value;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_max_coarse_samples`]
-    pub fn set_shading_rate_max_coarse_samples(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shading_rate_max_coarse_samples`]
+    pub fn set_shading_rate_max_coarse_samples(mut self, value: u32) -> Self {
         self.shading_rate_max_coarse_samples = value;
         self
     }
@@ -1338,18 +1342,18 @@ impl CoarseSampleLocationNV {
     pub fn sample_mut(&mut self) -> &mut u32 {
         &mut self.sample
     }
-    ///Sets the raw value of [`Self::pixel_x`]
-    pub fn set_pixel_x(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pixel_x`]
+    pub fn set_pixel_x(mut self, value: u32) -> Self {
         self.pixel_x = value;
         self
     }
-    ///Sets the raw value of [`Self::pixel_y`]
-    pub fn set_pixel_y(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pixel_y`]
+    pub fn set_pixel_y(mut self, value: u32) -> Self {
         self.pixel_y = value;
         self
     }
-    ///Sets the raw value of [`Self::sample`]
-    pub fn set_sample(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::sample`]
+    pub fn set_sample(mut self, value: u32) -> Self {
         self.sample = value;
         self
     }
@@ -1455,7 +1459,7 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
         self.sample_locations
     }
     ///Sets the raw value of [`Self::sample_locations`]
-    pub fn set_sample_locations_raw(&mut self, value: *const CoarseSampleLocationNV) -> &mut Self {
+    pub fn set_sample_locations_raw(mut self, value: *const CoarseSampleLocationNV) -> Self {
         self.sample_locations = value;
         self
     }
@@ -1490,29 +1494,29 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
     pub fn sample_location_count_mut(&mut self) -> &mut u32 {
         &mut self.sample_location_count
     }
-    ///Sets the raw value of [`Self::shading_rate`]
+    ///Sets the value of [`Self::shading_rate`]
     pub fn set_shading_rate(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_shading_rate_image::ShadingRatePaletteEntryNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.shading_rate = value;
         self
     }
-    ///Sets the raw value of [`Self::sample_count`]
-    pub fn set_sample_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::sample_count`]
+    pub fn set_sample_count(mut self, value: u32) -> Self {
         self.sample_count = value;
         self
     }
-    ///Sets the raw value of [`Self::sample_location_count`]
-    pub fn set_sample_location_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::sample_location_count`]
+    pub fn set_sample_location_count(mut self, value: u32) -> Self {
         self.sample_location_count = value;
         self
     }
-    ///Sets the raw value of [`Self::sample_locations`]
+    ///Sets the value of [`Self::sample_locations`]
     pub fn set_sample_locations(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_shading_rate_image::CoarseSampleLocationNV],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.sample_locations = value.as_ptr();
@@ -1631,12 +1635,12 @@ impl<'lt> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
         self.custom_sample_orders
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::custom_sample_orders`]
-    pub fn set_custom_sample_orders_raw(&mut self, value: *const CoarseSampleOrderCustomNV<'lt>) -> &mut Self {
+    pub fn set_custom_sample_orders_raw(mut self, value: *const CoarseSampleOrderCustomNV<'lt>) -> Self {
         self.custom_sample_orders = value;
         self
     }
@@ -1678,34 +1682,34 @@ impl<'lt> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     pub fn custom_sample_order_count_mut(&mut self) -> &mut u32 {
         &mut self.custom_sample_order_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::sample_order_type`]
+    ///Sets the value of [`Self::sample_order_type`]
     pub fn set_sample_order_type(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_shading_rate_image::CoarseSampleOrderTypeNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.sample_order_type = value;
         self
     }
-    ///Sets the raw value of [`Self::custom_sample_order_count`]
-    pub fn set_custom_sample_order_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::custom_sample_order_count`]
+    pub fn set_custom_sample_order_count(mut self, value: u32) -> Self {
         self.custom_sample_order_count = value;
         self
     }
-    ///Sets the raw value of [`Self::custom_sample_orders`]
+    ///Sets the value of [`Self::custom_sample_orders`]
     pub fn set_custom_sample_orders(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_shading_rate_image::CoarseSampleOrderCustomNV<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.custom_sample_orders = value.as_ptr();
@@ -1713,7 +1717,306 @@ impl<'lt> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_shading_rate_image
+impl CommandBuffer {
+    ///[vkCmdBindShadingRateImageNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBindShadingRateImageNV.html) - Bind a shading rate image on a command buffer
+    ///# C Specifications
+    ///When shading rate image usage is enabled in the bound pipeline, the pipeline
+    ///uses a shading rate image specified by the command:
+    ///```c
+    ///// Provided by VK_NV_shading_rate_image
+    ///void vkCmdBindShadingRateImageNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkImageView                                 imageView,
+    ///    VkImageLayout                               imageLayout);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`image_view`] is an image view handle specifying the shading rate image. [`image_view`]
+    ///   **may**  be set to [`crate::Handle::null`], which is equivalent to specifying a view of an
+    ///   image filled with zero values.
+    /// - [`image_layout`] is the layout that the image subresources accessible from [`image_view`]
+    ///   will be in when the shading rate image is accessed.
+    ///# Description
+    ///## Valid Usage
+    /// - The [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shadingRateImage)
+    ///   feature  **must**  be enabled
+    /// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  be a valid [`ImageView`]
+    ///   handle of type `VK_IMAGE_VIEW_TYPE_2D` or `VK_IMAGE_VIEW_TYPE_2D_ARRAY`
+    /// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have a format of
+    ///   `VK_FORMAT_R8_UINT`
+    /// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have been created with a
+    ///   `usage` value including `VK_IMAGE_USAGE_SHADING_RATE_IMAGE_BIT_NV`
+    /// - If [`image_view`] is not [`crate::Handle::null`], [`image_layout`] **must**  match the
+    ///   actual [`ImageLayout`] of each subresource accessible from [`image_view`] at the time the
+    ///   subresource is accessed
+    /// - If [`image_view`] is not [`crate::Handle::null`], [`image_layout`] **must**  be
+    ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV` or `VK_IMAGE_LAYOUT_GENERAL`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
+    ///   [`ImageView`] handle
+    /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - Both of [`command_buffer`], and [`image_view`] that are valid handles of non-ignored
+    ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_shading_rate_image`]
+    /// - [`CommandBuffer`]
+    /// - [`ImageLayout`]
+    /// - [`ImageView`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBindShadingRateImageNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_bind_shading_rate_image_nv<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        image_view: Option<ImageView>,
+        image_layout: ImageLayout,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_shading_rate_image()
+            .expect("extension/version not loaded")
+            .cmd_bind_shading_rate_image_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_shading_rate_image()
+            .unwrap_unchecked()
+            .cmd_bind_shading_rate_image_nv()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), image_view.unwrap_or_default(), image_layout);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetViewportShadingRatePaletteNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html) - Set shading rate image palettes dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the per-viewport shading
+    ///rate image palettes, call:
+    ///```c
+    ///// Provided by VK_NV_shading_rate_image
+    ///void vkCmdSetViewportShadingRatePaletteNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    firstViewport,
+    ///    uint32_t                                    viewportCount,
+    ///    const VkShadingRatePaletteNV*               pShadingRatePalettes);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`first_viewport`] is the index of the first viewport whose shading rate palette is
+    ///   updated by the command.
+    /// - [`viewport_count`] is the number of viewports whose shading rate palettes are updated by
+    ///   the command.
+    /// - [`p_shading_rate_palettes`] is a pointer to an array of [`ShadingRatePaletteNV`]
+    ///   structures defining the palette for each viewport.
+    ///# Description
+    ///This command sets the per-viewport shading rate image palettes for
+    ///subsequent drawing commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineViewportShadingRateImageStateCreateInfoNV`]::[`p_shading_rate_palettes`]
+    ///values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - The [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shadingRateImage)
+    ///   feature  **must**  be enabled
+    /// - The sum of [`first_viewport`] and [`viewport_count`] **must**  be between `1` and
+    ///   [`PhysicalDeviceLimits::max_viewports`], inclusive
+    /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
+    ///   feature is not enabled, [`first_viewport`] **must**  be `0`
+    /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
+    ///   feature is not enabled, [`viewport_count`] **must**  be `1`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_shading_rate_palettes`] **must**  be a valid pointer to an array of [`viewport_count`]
+    ///   valid [`ShadingRatePaletteNV`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`viewport_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_shading_rate_image`]
+    /// - [`CommandBuffer`]
+    /// - [`ShadingRatePaletteNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetViewportShadingRatePaletteNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_viewport_shading_rate_palette_nv<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        first_viewport: Option<u32>,
+        p_shading_rate_palettes: &[crate::extensions::nv_shading_rate_image::ShadingRatePaletteNV<'lt>],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_shading_rate_image()
+            .expect("extension/version not loaded")
+            .cmd_set_viewport_shading_rate_palette_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_shading_rate_image()
+            .unwrap_unchecked()
+            .cmd_set_viewport_shading_rate_palette_nv()
+            .unwrap_unchecked();
+        let viewport_count = (|len: usize| len)(p_shading_rate_palettes.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            first_viewport.unwrap_or_default() as _,
+            viewport_count,
+            p_shading_rate_palettes.as_ptr(),
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetCoarseSampleOrderNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html) - Set order of coverage samples for coarse fragments dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the order of coverage
+    ///samples in fragments larger than one pixel, call:
+    ///```c
+    ///// Provided by VK_NV_shading_rate_image
+    ///void vkCmdSetCoarseSampleOrderNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkCoarseSampleOrderTypeNV                   sampleOrderType,
+    ///    uint32_t                                    customSampleOrderCount,
+    ///    const VkCoarseSampleOrderCustomNV*          pCustomSampleOrders);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`sample_order_type`] specifies the mechanism used to order coverage samples in fragments
+    ///   larger than one pixel.
+    /// - [`custom_sample_order_count`] specifies the number of custom sample orderings to use when
+    ///   ordering coverage samples.
+    /// - [`p_custom_sample_orders`] is a pointer to an array of [`CoarseSampleOrderCustomNV`]
+    ///   structures, each structure specifying the coverage sample order for a single combination
+    ///   of fragment area and coverage sample count.
+    ///# Description
+    ///If [`sample_order_type`] is `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`, the
+    ///coverage sample order used for any combination of fragment area and coverage
+    ///sample count not enumerated in [`p_custom_sample_orders`] will be identical
+    ///to that used for `VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV`.This command sets the order of
+    /// coverage samples for subsequent drawing
+    ///commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineViewportCoarseSampleOrderStateCreateInfoNV`] values used to
+    ///create the currently active pipeline.
+    ///## Valid Usage
+    /// - If [`sample_order_type`] is not `VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV`,
+    ///   `customSamplerOrderCount` **must**  be `0`
+    /// - The array [`p_custom_sample_orders`] **must**  not contain two structures with matching
+    ///   values for both the `shadingRate` and `sampleCount` members
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`sample_order_type`] **must**  be a valid [`CoarseSampleOrderTypeNV`] value
+    /// - If [`custom_sample_order_count`] is not `0`, [`p_custom_sample_orders`] **must**  be a
+    ///   valid pointer to an array of [`custom_sample_order_count`] valid
+    ///   [`CoarseSampleOrderCustomNV`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_shading_rate_image`]
+    /// - [`CoarseSampleOrderCustomNV`]
+    /// - [`CoarseSampleOrderTypeNV`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetCoarseSampleOrderNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_coarse_sample_order_nv<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        sample_order_type: CoarseSampleOrderTypeNV,
+        p_custom_sample_orders: &[crate::extensions::nv_shading_rate_image::CoarseSampleOrderCustomNV<'lt>],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_shading_rate_image()
+            .expect("extension/version not loaded")
+            .cmd_set_coarse_sample_order_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_shading_rate_image()
+            .unwrap_unchecked()
+            .cmd_set_coarse_sample_order_nv()
+            .unwrap_unchecked();
+        let custom_sample_order_count = (|len: usize| len)(p_custom_sample_orders.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            sample_order_type,
+            custom_sample_order_count,
+            p_custom_sample_orders.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_shading_rate_image`
 pub struct DeviceNvShadingRateImageVTable {
     ///See [`FNCmdBindShadingRateImageNv`] for more information.
     pub cmd_bind_shading_rate_image_nv: FNCmdBindShadingRateImageNv,
@@ -1724,19 +2027,26 @@ pub struct DeviceNvShadingRateImageVTable {
 }
 impl DeviceNvShadingRateImageVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_bind_shading_rate_image_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindShadingRateImageNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindShadingRateImageNV").as_ptr()))
             },
             cmd_set_viewport_shading_rate_palette_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportShadingRatePaletteNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdSetViewportShadingRatePaletteNV").as_ptr(),
+                ))
             },
             cmd_set_coarse_sample_order_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCoarseSampleOrderNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCoarseSampleOrderNV").as_ptr()))
             },
         }
     }

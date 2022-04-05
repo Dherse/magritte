@@ -150,9 +150,13 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    AllocationCallbacks, BaseInStructure, Bool32, CommandBuffer, Device, Instance, ObjectType, Queue, StructureType,
-    VulkanResultCodes,
+use crate::{
+    entry::Entry,
+    vulkan1_0::{
+        AllocationCallbacks, BaseInStructure, Bool32, CommandBuffer, Device, Instance, ObjectType, Queue,
+        StructureType, VulkanResultCodes,
+    },
+    AsRaw, Handle, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -162,6 +166,7 @@ use std::{
     ffi::{c_void, CStr},
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
     os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -235,7 +240,7 @@ pub type PFNDebugUtilsMessengerCallbackEXT = Option<
 ///# Description
 ///## Valid Usage
 /// - `pNameInfo->objectType` **must**  not be `VK_OBJECT_TYPE_UNKNOWN`
-/// - `pNameInfo->objectHandle` **must**  not be [`crate::utils::Handle::null`]
+/// - `pNameInfo->objectHandle` **must**  not be [`crate::Handle::null`]
 ///
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
@@ -499,7 +504,7 @@ pub type FNCreateDebugUtilsMessengerExt = Option<
 ///
 ///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
-/// - If [`messenger`] is not [`crate::utils::Handle::null`], [`messenger`] **must**  be a valid
+/// - If [`messenger`] is not [`crate::Handle::null`], [`messenger`] **must**  be a valid
 ///   [`DebugUtilsMessengerEXT`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
@@ -1677,8 +1682,8 @@ impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
 ///previously set name is removed.
 ///## Valid Usage
 /// - If [`object_type`] is `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  not be
-///   [`crate::utils::Handle::null`]
-/// -    If [`object_type`] is not `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  be [`crate::utils::Handle::null`] or a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
+///   [`crate::Handle::null`]
+/// -    If [`object_type`] is not `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  be [`crate::Handle::null`] or a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT`
@@ -1742,12 +1747,12 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
         self.object_name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_object_name_raw(mut self, value: *const c_char) -> Self {
         self.object_name = value;
         self
     }
@@ -1789,28 +1794,28 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
     pub fn object_handle_mut(&mut self) -> &mut u64 {
         &mut self.object_handle
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::object_type`]
-    pub fn set_object_type(&mut self, value: crate::vulkan1_0::ObjectType) -> &mut Self {
+    ///Sets the value of [`Self::object_type`]
+    pub fn set_object_type(mut self, value: crate::vulkan1_0::ObjectType) -> Self {
         self.object_type = value;
         self
     }
-    ///Sets the raw value of [`Self::object_handle`]
-    pub fn set_object_handle(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::object_handle`]
+    pub fn set_object_handle(mut self, value: u64) -> Self {
         self.object_handle = value;
         self
     }
-    ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::object_name`]
+    pub fn set_object_name(mut self, value: *const std::os::raw::c_char) -> Self {
         self.object_name = value;
         self
     }
@@ -1916,12 +1921,12 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
         self.tag
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::tag`]
-    pub fn set_tag_raw(&mut self, value: *const c_void) -> &mut Self {
+    pub fn set_tag_raw(mut self, value: *const c_void) -> Self {
         self.tag = value;
         self
     }
@@ -1979,38 +1984,38 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
     pub fn tag_size_mut(&mut self) -> &mut usize {
         &mut self.tag_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::object_type`]
-    pub fn set_object_type(&mut self, value: crate::vulkan1_0::ObjectType) -> &mut Self {
+    ///Sets the value of [`Self::object_type`]
+    pub fn set_object_type(mut self, value: crate::vulkan1_0::ObjectType) -> Self {
         self.object_type = value;
         self
     }
-    ///Sets the raw value of [`Self::object_handle`]
-    pub fn set_object_handle(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::object_handle`]
+    pub fn set_object_handle(mut self, value: u64) -> Self {
         self.object_handle = value;
         self
     }
-    ///Sets the raw value of [`Self::tag_name`]
-    pub fn set_tag_name(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::tag_name`]
+    pub fn set_tag_name(mut self, value: u64) -> Self {
         self.tag_name = value;
         self
     }
-    ///Sets the raw value of [`Self::tag_size`]
-    pub fn set_tag_size(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::tag_size`]
+    pub fn set_tag_size(mut self, value: usize) -> Self {
         self.tag_size = value;
         self
     }
-    ///Sets the raw value of [`Self::tag`]
-    pub fn set_tag(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::tag`]
+    pub fn set_tag(mut self, value: &'lt [std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.tag = value.as_ptr();
@@ -2103,12 +2108,12 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
         self.label_name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::label_name`]
-    pub fn set_label_name_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_label_name_raw(mut self, value: *const c_char) -> Self {
         self.label_name = value;
         self
     }
@@ -2142,23 +2147,23 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
     pub fn color_mut(&mut self) -> &mut [f32; 4 as usize] {
         &mut self.color
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::label_name`]
-    pub fn set_label_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::label_name`]
+    pub fn set_label_name(mut self, value: *const std::os::raw::c_char) -> Self {
         self.label_name = value;
         self
     }
-    ///Sets the raw value of [`Self::color`]
-    pub fn set_color(&mut self, value: [f32; 4 as usize]) -> &mut Self {
+    ///Sets the value of [`Self::color`]
+    pub fn set_color(mut self, value: [f32; 4 as usize]) -> Self {
         self.color = value;
         self
     }
@@ -2241,6 +2246,7 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerCreateInfoEXT")]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT<'lt> {
@@ -2286,16 +2292,16 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::user_data`]
-    pub fn user_data_raw(&self) -> &*mut c_void {
-        &self.user_data
+    pub fn user_data_raw(&self) -> *mut c_void {
+        self.user_data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_user_data_raw(mut self, value: *mut c_void) -> Self {
         self.user_data = value;
         self
     }
@@ -2323,8 +2329,8 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
         self.message_type
     }
     ///Gets the value of [`Self::pfn_user_callback`]
-    pub fn pfn_user_callback(&self) -> &PFNDebugUtilsMessengerCallbackEXT {
-        &self.pfn_user_callback
+    pub fn pfn_user_callback(&self) -> PFNDebugUtilsMessengerCallbackEXT {
+        self.pfn_user_callback
     }
     ///Gets the value of [`Self::user_data`]
     ///# Safety
@@ -2360,50 +2366,47 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
     pub unsafe fn user_data_mut(&mut self) -> &mut c_void {
         &mut *self.user_data
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_debug_utils::DebugUtilsMessengerCreateFlagsEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::ext_debug_utils::DebugUtilsMessengerCreateFlagsEXT) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::message_severity`]
+    ///Sets the value of [`Self::message_severity`]
     pub fn set_message_severity(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_debug_utils::DebugUtilsMessageSeverityFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.message_severity = value;
         self
     }
-    ///Sets the raw value of [`Self::message_type`]
+    ///Sets the value of [`Self::message_type`]
     pub fn set_message_type(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_debug_utils::DebugUtilsMessageTypeFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.message_type = value;
         self
     }
-    ///Sets the raw value of [`Self::pfn_user_callback`]
+    ///Sets the value of [`Self::pfn_user_callback`]
     pub fn set_pfn_user_callback(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_debug_utils::PFNDebugUtilsMessengerCallbackEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.pfn_user_callback = value;
         self
     }
-    ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::user_data`]
+    pub fn set_user_data(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.user_data = value as *mut _;
         self
     }
@@ -2583,32 +2586,32 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
         self.objects
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::message_id_name`]
-    pub fn set_message_id_name_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_message_id_name_raw(mut self, value: *const c_char) -> Self {
         self.message_id_name = value;
         self
     }
     ///Sets the raw value of [`Self::message`]
-    pub fn set_message_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_message_raw(mut self, value: *const c_char) -> Self {
         self.message = value;
         self
     }
     ///Sets the raw value of [`Self::queue_labels`]
-    pub fn set_queue_labels_raw(&mut self, value: *const DebugUtilsLabelEXT<'lt>) -> &mut Self {
+    pub fn set_queue_labels_raw(mut self, value: *const DebugUtilsLabelEXT<'lt>) -> Self {
         self.queue_labels = value;
         self
     }
     ///Sets the raw value of [`Self::cmd_buf_labels`]
-    pub fn set_cmd_buf_labels_raw(&mut self, value: *const DebugUtilsLabelEXT<'lt>) -> &mut Self {
+    pub fn set_cmd_buf_labels_raw(mut self, value: *const DebugUtilsLabelEXT<'lt>) -> Self {
         self.cmd_buf_labels = value;
         self
     }
     ///Sets the raw value of [`Self::objects`]
-    pub fn set_objects_raw(&mut self, value: *const DebugUtilsObjectNameInfoEXT<'lt>) -> &mut Self {
+    pub fn set_objects_raw(mut self, value: *const DebugUtilsObjectNameInfoEXT<'lt>) -> Self {
         self.objects = value;
         self
     }
@@ -2702,86 +2705,884 @@ impl<'lt> DebugUtilsMessengerCallbackDataEXT<'lt> {
     pub fn object_count_mut(&mut self) -> &mut u32 {
         &mut self.object_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_debug_utils::DebugUtilsMessengerCallbackDataFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::message_id_name`]
-    pub fn set_message_id_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::message_id_name`]
+    pub fn set_message_id_name(mut self, value: *const std::os::raw::c_char) -> Self {
         self.message_id_name = value;
         self
     }
-    ///Sets the raw value of [`Self::message_id_number`]
-    pub fn set_message_id_number(&mut self, value: i32) -> &mut Self {
+    ///Sets the value of [`Self::message_id_number`]
+    pub fn set_message_id_number(mut self, value: i32) -> Self {
         self.message_id_number = value;
         self
     }
-    ///Sets the raw value of [`Self::message`]
-    pub fn set_message(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::message`]
+    pub fn set_message(mut self, value: *const std::os::raw::c_char) -> Self {
         self.message = value;
         self
     }
-    ///Sets the raw value of [`Self::queue_label_count`]
-    pub fn set_queue_label_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::queue_label_count`]
+    pub fn set_queue_label_count(mut self, value: u32) -> Self {
         self.queue_label_count = value;
         self
     }
-    ///Sets the raw value of [`Self::queue_labels`]
+    ///Sets the value of [`Self::queue_labels`]
     pub fn set_queue_labels(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::ext_debug_utils::DebugUtilsLabelEXT<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.queue_labels = value.as_ptr();
         self.queue_label_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::cmd_buf_label_count`]
-    pub fn set_cmd_buf_label_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::cmd_buf_label_count`]
+    pub fn set_cmd_buf_label_count(mut self, value: u32) -> Self {
         self.cmd_buf_label_count = value;
         self
     }
-    ///Sets the raw value of [`Self::cmd_buf_labels`]
+    ///Sets the value of [`Self::cmd_buf_labels`]
     pub fn set_cmd_buf_labels(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::ext_debug_utils::DebugUtilsLabelEXT<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.cmd_buf_labels = value.as_ptr();
         self.cmd_buf_label_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::object_count`]
-    pub fn set_object_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::object_count`]
+    pub fn set_object_count(mut self, value: u32) -> Self {
         self.object_count = value;
         self
     }
-    ///Sets the raw value of [`Self::objects`]
+    ///Sets the value of [`Self::objects`]
     pub fn set_objects(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.objects = value.as_ptr();
         self.object_count = len_;
         self
+    }
+}
+impl Instance {
+    ///[vkCreateDebugUtilsMessengerEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html) - Create a debug messenger object
+    ///# C Specifications
+    ///A debug messenger triggers a debug callback with a debug message when an
+    ///event of interest occurs.
+    ///To create a debug messenger which will trigger a debug callback, call:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///VkResult vkCreateDebugUtilsMessengerEXT(
+    ///    VkInstance                                  instance,
+    ///    const VkDebugUtilsMessengerCreateInfoEXT*   pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkDebugUtilsMessengerEXT*                   pMessenger);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance the messenger will be used with.
+    /// - [`p_create_info`] is a pointer to a [`DebugUtilsMessengerCreateInfoEXT`] structure
+    ///   containing the callback pointer, as well as defining conditions under which this messenger
+    ///   will trigger the callback.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_messenger`] is a pointer to a [`DebugUtilsMessengerEXT`] handle in which the created
+    ///   object is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid
+    ///   [`DebugUtilsMessengerCreateInfoEXT`] structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_messenger`] **must**  be a valid pointer to a [`DebugUtilsMessengerEXT`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///The application  **must**  ensure that [`create_debug_utils_messenger_ext`] is
+    ///not executed in parallel with any Vulkan command that is also called with
+    ///[`instance`] or child of [`instance`] as the dispatchable argument.
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`AllocationCallbacks`]
+    /// - [`DebugUtilsMessengerCreateInfoEXT`]
+    /// - [`DebugUtilsMessengerEXT`]
+    /// - [`Instance`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateDebugUtilsMessengerEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_debug_utils_messenger_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &DebugUtilsMessengerCreateInfoEXT<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, DebugUtilsMessengerEXT>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .create_debug_utils_messenger_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .create_debug_utils_messenger_ext()
+            .unwrap_unchecked();
+        let mut p_messenger = MaybeUninit::<DebugUtilsMessengerEXT>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const DebugUtilsMessengerCreateInfoEXT<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_messenger.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_messenger.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Instance {
+    ///[vkDestroyDebugUtilsMessengerEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html) - Destroy a debug messenger object
+    ///# C Specifications
+    ///To destroy a [`DebugUtilsMessengerEXT`] object, call:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkDestroyDebugUtilsMessengerEXT(
+    ///    VkInstance                                  instance,
+    ///    VkDebugUtilsMessengerEXT                    messenger,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance where the callback was created.
+    /// - [`messenger`] is the [`DebugUtilsMessengerEXT`] object to destroy. [`messenger`] is an
+    ///   externally synchronized object and  **must**  not be used on more than one thread at a
+    ///   time. This means that [`destroy_debug_utils_messenger_ext`] **must**  not be called when a
+    ///   callback is active.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    ///# Description
+    ///## Valid Usage
+    /// - If [`AllocationCallbacks`] were provided when [`messenger`] was created, a compatible set
+    ///   of callbacks  **must**  be provided here
+    /// - If no [`AllocationCallbacks`] were provided when [`messenger`] was created,
+    ///   [`p_allocator`] **must**  be `NULL`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - If [`messenger`] is not [`crate::Handle::null`], [`messenger`] **must**  be a valid
+    ///   [`DebugUtilsMessengerEXT`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - If [`messenger`] is a valid handle, it  **must**  have been created, allocated, or
+    ///   retrieved from [`instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`messenger`] **must**  be externally synchronized
+    ///The application  **must**  ensure that [`destroy_debug_utils_messenger_ext`] is
+    ///not executed in parallel with any Vulkan command that is also called with
+    ///[`instance`] or child of [`instance`] as the dispatchable argument.
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`AllocationCallbacks`]
+    /// - [`DebugUtilsMessengerEXT`]
+    /// - [`Instance`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyDebugUtilsMessengerEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_debug_utils_messenger_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        messenger: Option<DebugUtilsMessengerEXT>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .destroy_debug_utils_messenger_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .destroy_debug_utils_messenger_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            messenger.unwrap_or_default(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Instance {
+    ///[vkSubmitDebugUtilsMessageEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html) - Inject a message into a debug stream
+    ///# C Specifications
+    ///There may be times that a user wishes to intentionally submit a debug
+    ///message.
+    ///To do this, call:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkSubmitDebugUtilsMessageEXT(
+    ///    VkInstance                                  instance,
+    ///    VkDebugUtilsMessageSeverityFlagBitsEXT      messageSeverity,
+    ///    VkDebugUtilsMessageTypeFlagsEXT             messageTypes,
+    ///    const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the debug stream’s [`Instance`].
+    /// - [`message_severity`] is a [`DebugUtilsMessageSeverityFlagBitsEXT`] value specifying the
+    ///   severity of this event/message.
+    /// - [`message_types`] is a bitmask of [`DebugUtilsMessageTypeFlagBitsEXT`] specifying which
+    ///   type of event(s) to identify with this message.
+    /// - [`p_callback_data`] contains all the callback related data in the
+    ///   [`DebugUtilsMessengerCallbackDataEXT`] structure.
+    ///# Description
+    ///The call will propagate through the layers and generate callback(s) as
+    ///indicated by the message’s flags.
+    ///The parameters are passed on to the callback in addition to the
+    ///`pUserData` value that was defined at the time the messenger was
+    ///registered.
+    ///## Valid Usage
+    /// - The `objectType` member of each element of `pCallbackData->pObjects` **must**  not be
+    ///   `VK_OBJECT_TYPE_UNKNOWN`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`message_severity`] **must**  be a valid [`DebugUtilsMessageSeverityFlagBitsEXT`] value
+    /// - [`message_types`] **must**  be a valid combination of [`DebugUtilsMessageTypeFlagBitsEXT`]
+    ///   values
+    /// - [`message_types`] **must**  not be `0`
+    /// - [`p_callback_data`] **must**  be a valid pointer to a valid
+    ///   [`DebugUtilsMessengerCallbackDataEXT`] structure
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`DebugUtilsMessageSeverityFlagBitsEXT`]
+    /// - [`DebugUtilsMessageTypeFlagsEXT`]
+    /// - [`DebugUtilsMessengerCallbackDataEXT`]
+    /// - [`Instance`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSubmitDebugUtilsMessageEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn submit_debug_utils_message_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        message_severity: DebugUtilsMessageSeverityFlagBitsEXT,
+        message_types: DebugUtilsMessageTypeFlagsEXT,
+        p_callback_data: &DebugUtilsMessengerCallbackDataEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .submit_debug_utils_message_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .submit_debug_utils_message_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            message_severity,
+            message_types,
+            p_callback_data as *const DebugUtilsMessengerCallbackDataEXT<'lt>,
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkSetDebugUtilsObjectNameEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html) - Give a user-friendly name to an object
+    ///# C Specifications
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///VkResult vkSetDebugUtilsObjectNameEXT(
+    ///    VkDevice                                    device,
+    ///    const VkDebugUtilsObjectNameInfoEXT*        pNameInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the object.
+    /// - [`p_name_info`] is a pointer to a [`DebugUtilsObjectNameInfoEXT`] structure specifying
+    ///   parameters of the name to set on the object.
+    ///# Description
+    ///## Valid Usage
+    /// - `pNameInfo->objectType` **must**  not be `VK_OBJECT_TYPE_UNKNOWN`
+    /// - `pNameInfo->objectHandle` **must**  not be [`crate::Handle::null`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_name_info`] **must**  be a valid pointer to a valid [`DebugUtilsObjectNameInfoEXT`]
+    ///   structure
+    ///
+    ///## Host Synchronization
+    /// - Host access to `pNameInfo->objectHandle` **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`DebugUtilsObjectNameInfoEXT`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetDebugUtilsObjectNameEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_debug_utils_object_name_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_name_info: &DebugUtilsObjectNameInfoEXT<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .set_debug_utils_object_name_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .set_debug_utils_object_name_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_name_info as *const DebugUtilsObjectNameInfoEXT<'lt>);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkSetDebugUtilsObjectTagEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html) - Attach arbitrary data to an object
+    ///# C Specifications
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///VkResult vkSetDebugUtilsObjectTagEXT(
+    ///    VkDevice                                    device,
+    ///    const VkDebugUtilsObjectTagInfoEXT*         pTagInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the object.
+    /// - [`p_tag_info`] is a pointer to a [`DebugUtilsObjectTagInfoEXT`] structure specifying
+    ///   parameters of the tag to attach to the object.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_tag_info`] **must**  be a valid pointer to a valid [`DebugUtilsObjectTagInfoEXT`]
+    ///   structure
+    ///
+    ///## Host Synchronization
+    /// - Host access to `pTagInfo->objectHandle` **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`DebugUtilsObjectTagInfoEXT`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetDebugUtilsObjectTagEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_debug_utils_object_tag_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_tag_info: &DebugUtilsObjectTagInfoEXT<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .set_debug_utils_object_tag_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .set_debug_utils_object_tag_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_tag_info as *const DebugUtilsObjectTagInfoEXT<'lt>);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Queue {
+    ///[vkQueueBeginDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html) - Open a queue debug label region
+    ///# C Specifications
+    ///A queue debug label region is opened by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkQueueBeginDebugUtilsLabelEXT(
+    ///    VkQueue                                     queue,
+    ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
+    ///```
+    ///# Parameters
+    /// - [`queue`] is the queue in which to start a debug label region.
+    /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters
+    ///   of the label region to open.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`queue`] **must**  be a valid [`Queue`] handle
+    /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`DebugUtilsLabelEXT`]
+    /// - [`Queue`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkQueueBeginDebugUtilsLabelEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn queue_begin_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Queue>,
+        p_label_info: &DebugUtilsLabelEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .queue_begin_debug_utils_label_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .queue_begin_debug_utils_label_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
+        ()
+    }
+}
+impl Queue {
+    ///[vkQueueEndDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html) - Close a queue debug label region
+    ///# C Specifications
+    ///A queue debug label region is closed by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkQueueEndDebugUtilsLabelEXT(
+    ///    VkQueue                                     queue);
+    ///```
+    ///# Parameters
+    /// - [`queue`] is the queue in which a debug label region should be closed.
+    ///# Description
+    ///The calls to [`queue_begin_debug_utils_label_ext`] and
+    ///[`queue_end_debug_utils_label_ext`] **must**  be matched and balanced.
+    ///## Valid Usage
+    /// - There  **must**  be an outstanding [`queue_begin_debug_utils_label_ext`] command prior to
+    ///   the [`queue_end_debug_utils_label_ext`] on the queue
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`queue`] **must**  be a valid [`Queue`] handle
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`Queue`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkQueueEndDebugUtilsLabelEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn queue_end_debug_utils_label_ext<'a: 'this, 'this>(self: &'this Unique<'a, Queue>) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .queue_end_debug_utils_label_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .queue_end_debug_utils_label_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw());
+        ()
+    }
+}
+impl Queue {
+    ///[vkQueueInsertDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html) - Insert a label into a queue
+    ///# C Specifications
+    ///A single label can be inserted into a queue by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkQueueInsertDebugUtilsLabelEXT(
+    ///    VkQueue                                     queue,
+    ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
+    ///```
+    ///# Parameters
+    /// - [`queue`] is the queue into which a debug label will be inserted.
+    /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters
+    ///   of the label to insert.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`queue`] **must**  be a valid [`Queue`] handle
+    /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`DebugUtilsLabelEXT`]
+    /// - [`Queue`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkQueueInsertDebugUtilsLabelEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn queue_insert_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Queue>,
+        p_label_info: &DebugUtilsLabelEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .queue_insert_debug_utils_label_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .queue_insert_debug_utils_label_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdBeginDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html) - Open a command buffer debug label region
+    ///# C Specifications
+    ///A command buffer debug label region can be opened by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkCmdBeginDebugUtilsLabelEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters
+    ///   of the label region to open.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`CommandBuffer`]
+    /// - [`DebugUtilsLabelEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBeginDebugUtilsLabelEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_begin_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_label_info: &DebugUtilsLabelEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .cmd_begin_debug_utils_label_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .cmd_begin_debug_utils_label_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdEndDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html) - Close a command buffer label region
+    ///# C Specifications
+    ///A command buffer label region can be closed by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkCmdEndDebugUtilsLabelEXT(
+    ///    VkCommandBuffer                             commandBuffer);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    ///# Description
+    ///An application  **may**  open a debug label region in one command buffer and
+    ///close it in another, or otherwise split debug label regions across multiple
+    ///command buffers or multiple queue submissions.
+    ///When viewed from the linear series of submissions to a single queue, the
+    ///calls to [`cmd_begin_debug_utils_label_ext`] and
+    ///[`cmd_end_debug_utils_label_ext`] **must**  be matched and balanced.There  **can**  be
+    /// problems reporting command buffer debug labels during the
+    ///recording process because command buffers  **may**  be recorded out of sequence
+    ///with the resulting execution order.
+    ///Since the recording order  **may**  be different, a solitary command buffer  **may**
+    ///have an inconsistent view of the debug label regions by itself.
+    ///Therefore, if an issue occurs during the recording of a command buffer, and
+    ///the environment requires returning debug labels, the implementation  **may**
+    ///return only those labels it is aware of.
+    ///This is true even if the implementation is aware of only the debug labels
+    ///within the command buffer being actively recorded.
+    ///## Valid Usage
+    /// - There  **must**  be an outstanding [`cmd_begin_debug_utils_label_ext`] command prior to
+    ///   the [`cmd_end_debug_utils_label_ext`] on the queue that [`command_buffer`] is submitted to
+    /// - If [`command_buffer`] is a secondary command buffer, there  **must**  be an outstanding
+    ///   [`cmd_begin_debug_utils_label_ext`] command recorded to [`command_buffer`] that has not
+    ///   previously been ended by a call to [`cmd_end_debug_utils_label_ext`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdEndDebugUtilsLabelEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_end_debug_utils_label_ext<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .cmd_end_debug_utils_label_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .cmd_end_debug_utils_label_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw());
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdInsertDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html) - Insert a label into a command buffer
+    ///# C Specifications
+    ///A single debug label can be inserted into a command buffer by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_utils
+    ///void vkCmdInsertDebugUtilsLabelEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - `pInfo` is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters of the
+    ///   label to insert.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_utils`]
+    /// - [`CommandBuffer`]
+    /// - [`DebugUtilsLabelEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdInsertDebugUtilsLabelEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_insert_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_label_info: &DebugUtilsLabelEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .expect("extension/version not loaded")
+            .cmd_insert_debug_utils_label_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_utils()
+            .unwrap_unchecked()
+            .cmd_insert_debug_utils_label_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
+        ()
     }
 }
 ///[VkDebugUtilsMessengerEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerEXT.html) - Opaque handle to a debug messenger object
@@ -2832,7 +3633,34 @@ impl Default for DebugUtilsMessengerEXT {
         Self::null()
     }
 }
-///The V-table of [`Instance`] for functions from VK_EXT_debug_utils
+impl Handle for DebugUtilsMessengerEXT {
+    type Parent<'a> = Unique<'a, Instance>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.instance()
+            .destroy_debug_utils_messenger_ext(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, DebugUtilsMessengerEXT> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent()
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_debug_utils`
 pub struct InstanceExtDebugUtilsVTable {
     ///See [`FNCreateDebugUtilsMessengerExt`] for more information.
     pub create_debug_utils_messenger_ext: FNCreateDebugUtilsMessengerExt,
@@ -2843,19 +3671,29 @@ pub struct InstanceExtDebugUtilsVTable {
 }
 impl InstanceExtDebugUtilsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_debug_utils_messenger_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateDebugUtilsMessengerEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateDebugUtilsMessengerEXT").as_ptr(),
+                ))
             },
             destroy_debug_utils_messenger_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyDebugUtilsMessengerEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDestroyDebugUtilsMessengerEXT").as_ptr(),
+                ))
             },
             submit_debug_utils_message_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSubmitDebugUtilsMessageEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSubmitDebugUtilsMessageEXT").as_ptr()))
             },
         }
     }
@@ -2875,7 +3713,7 @@ impl InstanceExtDebugUtilsVTable {
         self.submit_debug_utils_message_ext
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_debug_utils
+///The V-table of [`Device`] for functions from `VK_EXT_debug_utils`
 pub struct DeviceExtDebugUtilsVTable {
     ///See [`FNSetDebugUtilsObjectNameExt`] for more information.
     pub set_debug_utils_object_name_ext: FNSetDebugUtilsObjectNameExt,
@@ -2896,34 +3734,47 @@ pub struct DeviceExtDebugUtilsVTable {
 }
 impl DeviceExtDebugUtilsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             set_debug_utils_object_name_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetDebugUtilsObjectNameEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetDebugUtilsObjectNameEXT").as_ptr()))
             },
             set_debug_utils_object_tag_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetDebugUtilsObjectTagEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetDebugUtilsObjectTagEXT").as_ptr()))
             },
             queue_begin_debug_utils_label_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueBeginDebugUtilsLabelEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkQueueBeginDebugUtilsLabelEXT").as_ptr(),
+                ))
             },
             queue_end_debug_utils_label_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueEndDebugUtilsLabelEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueEndDebugUtilsLabelEXT").as_ptr()))
             },
             queue_insert_debug_utils_label_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueInsertDebugUtilsLabelEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkQueueInsertDebugUtilsLabelEXT").as_ptr(),
+                ))
             },
             cmd_begin_debug_utils_label_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginDebugUtilsLabelEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginDebugUtilsLabelEXT").as_ptr()))
             },
             cmd_end_debug_utils_label_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndDebugUtilsLabelEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndDebugUtilsLabelEXT").as_ptr()))
             },
             cmd_insert_debug_utils_label_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdInsertDebugUtilsLabelEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdInsertDebugUtilsLabelEXT").as_ptr(),
+                ))
             },
         }
     }

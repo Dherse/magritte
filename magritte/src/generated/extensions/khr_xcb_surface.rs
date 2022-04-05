@@ -79,8 +79,9 @@ use crate::{
     vulkan1_0::{
         AllocationCallbacks, BaseInStructure, Bool32, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
     },
+    AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_XCB_SURFACE_SPEC_VERSION")]
@@ -306,12 +307,12 @@ impl<'lt> XcbSurfaceCreateInfoKHR<'lt> {
         &self.window
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::window`]
-    pub fn set_window_raw(&mut self, value: xcb_window_t) -> &mut Self {
+    pub fn set_window_raw(mut self, value: xcb_window_t) -> Self {
         self.window = value;
         self
     }
@@ -331,15 +332,12 @@ impl<'lt> XcbSurfaceCreateInfoKHR<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::connection`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn connection(&self) -> &xcb_connection_t {
-        &*self.connection
+    pub fn connection(&self) -> *mut xcb_connection_t {
+        self.connection
     }
     ///Gets the value of [`Self::window`]
-    pub fn window(&self) -> &xcb_window_t {
-        &self.window
+    pub fn window(&self) -> xcb_window_t {
+        self.window
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -360,33 +358,192 @@ impl<'lt> XcbSurfaceCreateInfoKHR<'lt> {
     pub fn window_mut(&mut self) -> &mut xcb_window_t {
         &mut self.window
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_xcb_surface::XcbSurfaceCreateFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_xcb_surface::XcbSurfaceCreateFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::connection`]
-    pub fn set_connection(&mut self, value: &'lt mut crate::native::xcb_connection_t) -> &mut Self {
-        self.connection = value as *mut _;
+    ///Sets the value of [`Self::connection`]
+    pub fn set_connection(mut self, value: *mut crate::native::xcb_connection_t) -> Self {
+        self.connection = value;
         self
     }
-    ///Sets the raw value of [`Self::window`]
-    pub fn set_window(&mut self, value: crate::native::xcb_window_t) -> &mut Self {
+    ///Sets the value of [`Self::window`]
+    pub fn set_window(mut self, value: crate::native::xcb_window_t) -> Self {
         self.window = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_xcb_surface
+impl Instance {
+    ///[vkCreateXcbSurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateXcbSurfaceKHR.html) - Create a slink:VkSurfaceKHR object for a X11 window, using the XCB client-side library
+    ///# C Specifications
+    ///To create a [`SurfaceKHR`] object for an X11 window, using the XCB
+    ///client-side library, call:
+    ///```c
+    ///// Provided by VK_KHR_xcb_surface
+    ///VkResult vkCreateXcbSurfaceKHR(
+    ///    VkInstance                                  instance,
+    ///    const VkXcbSurfaceCreateInfoKHR*            pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkSurfaceKHR*                               pSurface);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance to associate the surface with.
+    /// - [`p_create_info`] is a pointer to a [`XcbSurfaceCreateInfoKHR`] structure containing
+    ///   parameters affecting the creation of the surface object.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
+    ///   is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`XcbSurfaceCreateInfoKHR`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_xcb_surface`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Instance`]
+    /// - [`SurfaceKHR`]
+    /// - [`XcbSurfaceCreateInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateXcbSurfaceKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_xcb_surface_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &XcbSurfaceCreateInfoKHR<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_xcb_surface()
+            .expect("extension/version not loaded")
+            .create_xcb_surface_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_xcb_surface()
+            .unwrap_unchecked()
+            .create_xcb_surface_khr()
+            .unwrap_unchecked();
+        let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const XcbSurfaceCreateInfoKHR<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_surface.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceXcbPresentationSupportKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceXcbPresentationSupportKHR.html) - Query physical device for presentation to X11 server using XCB
+    ///# C Specifications
+    ///To determine whether a queue family of a physical device supports
+    ///presentation to an X11 server, using the XCB client-side library, call:
+    ///```c
+    ///// Provided by VK_KHR_xcb_surface
+    ///VkBool32 vkGetPhysicalDeviceXcbPresentationSupportKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t                                    queueFamilyIndex,
+    ///    xcb_connection_t*                           connection,
+    ///    xcb_visualid_t                              visual_id);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device.
+    /// - [`queue_family_index`] is the queue family index.
+    /// - [`connection`] is a pointer to an [`xcb_connection_t`] to the X server.
+    /// - [`visual_id`] is an X11 visual ([`xcb_visualid_t`]).
+    ///# Description
+    ///This platform-specific function  **can**  be called prior to creating a surface.
+    ///## Valid Usage
+    /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
+    ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`connection`] **must**  be a valid pointer to an [`xcb_connection_t`] value
+    ///# Related
+    /// - [`VK_KHR_xcb_surface`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceXcbPresentationSupportKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_xcb_presentation_support_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        queue_family_index: Option<u32>,
+        visual_id: xcb_visualid_t,
+    ) -> (xcb_connection_t, bool) {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_xcb_surface()
+            .expect("extension/version not loaded")
+            .get_physical_device_xcb_presentation_support_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_xcb_surface()
+            .unwrap_unchecked()
+            .get_physical_device_xcb_presentation_support_khr()
+            .unwrap_unchecked();
+        let mut connection = std::mem::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            queue_family_index.unwrap_or_default() as _,
+            &mut connection,
+            visual_id,
+        );
+        (connection, unsafe { std::mem::transmute(_return as u8) })
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_xcb_surface`
 pub struct InstanceKhrXcbSurfaceVTable {
     ///See [`FNCreateXcbSurfaceKhr`] for more information.
     pub create_xcb_surface_khr: FNCreateXcbSurfaceKhr,
@@ -395,18 +552,22 @@ pub struct InstanceKhrXcbSurfaceVTable {
 }
 impl InstanceKhrXcbSurfaceVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_xcb_surface_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateXcbSurfaceKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateXcbSurfaceKHR").as_ptr()))
             },
             get_physical_device_xcb_presentation_support_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceXcbPresentationSupportKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceXcbPresentationSupportKHR").as_ptr(),
                 ))
             },
         }

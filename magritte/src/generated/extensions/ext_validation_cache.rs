@@ -62,7 +62,13 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{AllocationCallbacks, BaseInStructure, Device, StructureType, VulkanResultCodes};
+use crate::{
+    entry::Entry,
+    vulkan1_0::{
+        AllocationCallbacks, BaseInStructure, Device, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
+    },
+    AsRaw, Handle, SmallVec, Unique, VulkanResult,
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
@@ -70,6 +76,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -104,7 +111,7 @@ pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///[`ShaderModuleCreateInfo`] structure’s `pNext` chain.
 ///If a [`ShaderModuleValidationCacheCreateInfoEXT`] object is included in
 ///the [`ShaderModuleCreateInfo::p_next`] chain, and its
-///`validationCache` field is not [`crate::utils::Handle::null`], the implementation
+///`validationCache` field is not [`crate::Handle::null`], the implementation
 ///will query it for possible reuse opportunities and update it with new
 ///content.
 ///The use of the validation cache object in these commands is internally
@@ -168,8 +175,8 @@ pub type FNCreateValidationCacheExt = Option<
 ///
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
-/// - If [`validation_cache`] is not [`crate::utils::Handle::null`], [`validation_cache`] **must**
-///   be a valid [`ValidationCacheEXT`] handle
+/// - If [`validation_cache`] is not [`crate::Handle::null`], [`validation_cache`] **must**  be a
+///   valid [`ValidationCacheEXT`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - If [`validation_cache`] is a valid handle, it  **must**  have been created, allocated, or
@@ -533,12 +540,12 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
         self.initial_data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::initial_data`]
-    pub fn set_initial_data_raw(&mut self, value: *const c_void) -> &mut Self {
+    pub fn set_initial_data_raw(mut self, value: *const c_void) -> Self {
         self.initial_data = value;
         self
     }
@@ -580,31 +587,28 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
     pub fn initial_data_size_mut(&mut self) -> &mut usize {
         &mut self.initial_data_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_validation_cache::ValidationCacheCreateFlagsEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::ext_validation_cache::ValidationCacheCreateFlagsEXT) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::initial_data_size`]
-    pub fn set_initial_data_size(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::initial_data_size`]
+    pub fn set_initial_data_size(mut self, value: usize) -> Self {
         self.initial_data_size = value;
         self
     }
-    ///Sets the raw value of [`Self::initial_data`]
-    pub fn set_initial_data(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::initial_data`]
+    pub fn set_initial_data(mut self, value: &'lt [std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.initial_data = value.as_ptr();
@@ -683,7 +687,7 @@ impl<'lt> ShaderModuleValidationCacheCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -710,23 +714,394 @@ impl<'lt> ShaderModuleValidationCacheCreateInfoEXT<'lt> {
     pub fn validation_cache_mut(&mut self) -> &mut ValidationCacheEXT {
         &mut self.validation_cache
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::validation_cache`]
-    pub fn set_validation_cache(
-        &mut self,
-        value: crate::extensions::ext_validation_cache::ValidationCacheEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::validation_cache`]
+    pub fn set_validation_cache(mut self, value: crate::extensions::ext_validation_cache::ValidationCacheEXT) -> Self {
         self.validation_cache = value;
         self
+    }
+}
+impl Device {
+    ///[vkCreateValidationCacheEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateValidationCacheEXT.html) - Creates a new validation cache
+    ///# C Specifications
+    ///To create validation cache objects, call:
+    ///```c
+    ///// Provided by VK_EXT_validation_cache
+    ///VkResult vkCreateValidationCacheEXT(
+    ///    VkDevice                                    device,
+    ///    const VkValidationCacheCreateInfoEXT*       pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkValidationCacheEXT*                       pValidationCache);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the validation cache object.
+    /// - [`p_create_info`] is a pointer to a [`ValidationCacheCreateInfoEXT`] structure containing
+    ///   the initial parameters for the validation cache object.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_validation_cache`] is a pointer to a [`ValidationCacheEXT`] handle in which the
+    ///   resulting validation cache object is returned.
+    ///# Description
+    ///Once created, a validation cache  **can**  be passed to the
+    ///[`create_shader_module`] command by adding this object to the
+    ///[`ShaderModuleCreateInfo`] structure’s `pNext` chain.
+    ///If a [`ShaderModuleValidationCacheCreateInfoEXT`] object is included in
+    ///the [`ShaderModuleCreateInfo::p_next`] chain, and its
+    ///`validationCache` field is not [`crate::Handle::null`], the implementation
+    ///will query it for possible reuse opportunities and update it with new
+    ///content.
+    ///The use of the validation cache object in these commands is internally
+    ///synchronized, and the same validation cache object  **can**  be used in multiple
+    ///threads simultaneously.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`ValidationCacheCreateInfoEXT`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_validation_cache`] **must**  be a valid pointer to a [`ValidationCacheEXT`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_validation_cache`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`ValidationCacheCreateInfoEXT`]
+    /// - [`ValidationCacheEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateValidationCacheEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_validation_cache_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &ValidationCacheCreateInfoEXT<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, ValidationCacheEXT>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .expect("extension/version not loaded")
+            .create_validation_cache_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .unwrap_unchecked()
+            .create_validation_cache_ext()
+            .unwrap_unchecked();
+        let mut p_validation_cache = MaybeUninit::<ValidationCacheEXT>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const ValidationCacheCreateInfoEXT<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_validation_cache.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_validation_cache.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyValidationCacheEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyValidationCacheEXT.html) - Destroy a validation cache object
+    ///# C Specifications
+    ///To destroy a validation cache, call:
+    ///```c
+    ///// Provided by VK_EXT_validation_cache
+    ///void vkDestroyValidationCacheEXT(
+    ///    VkDevice                                    device,
+    ///    VkValidationCacheEXT                        validationCache,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that destroys the validation cache object.
+    /// - [`validation_cache`] is the handle of the validation cache to destroy.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    ///# Description
+    ///## Valid Usage
+    /// - If [`AllocationCallbacks`] were provided when [`validation_cache`] was created, a
+    ///   compatible set of callbacks  **must**  be provided here
+    /// - If no [`AllocationCallbacks`] were provided when [`validation_cache`] was created,
+    ///   [`p_allocator`] **must**  be `NULL`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - If [`validation_cache`] is not [`crate::Handle::null`], [`validation_cache`] **must**  be
+    ///   a valid [`ValidationCacheEXT`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - If [`validation_cache`] is a valid handle, it  **must**  have been created, allocated, or
+    ///   retrieved from [`device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`validation_cache`] **must**  be externally synchronized
+    ///# Related
+    /// - [`VK_EXT_validation_cache`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`ValidationCacheEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyValidationCacheEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_validation_cache_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        validation_cache: Option<ValidationCacheEXT>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .expect("extension/version not loaded")
+            .destroy_validation_cache_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .unwrap_unchecked()
+            .destroy_validation_cache_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            validation_cache.unwrap_or_default(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkGetValidationCacheDataEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetValidationCacheDataEXT.html) - Get the data store from a validation cache
+    ///# C Specifications
+    ///Data  **can**  be retrieved from a validation cache object using the command:
+    ///```c
+    ///// Provided by VK_EXT_validation_cache
+    ///VkResult vkGetValidationCacheDataEXT(
+    ///    VkDevice                                    device,
+    ///    VkValidationCacheEXT                        validationCache,
+    ///    size_t*                                     pDataSize,
+    ///    void*                                       pData);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the validation cache.
+    /// - [`validation_cache`] is the validation cache to retrieve data from.
+    /// - [`p_data_size`] is a pointer to a value related to the amount of data in the validation
+    ///   cache, as described below.
+    /// - [`p_data`] is either `NULL` or a pointer to a buffer.
+    ///# Description
+    ///If [`p_data`] is `NULL`, then the maximum size of the data that  **can**  be
+    ///retrieved from the validation cache, in bytes, is returned in
+    ///[`p_data_size`].
+    ///Otherwise, [`p_data_size`] **must**  point to a variable set by the user to the
+    ///size of the buffer, in bytes, pointed to by [`p_data`], and on return the
+    ///variable is overwritten with the amount of data actually written to
+    ///[`p_data`].
+    ///If [`p_data_size`] is less than the maximum size that  **can**  be retrieved by
+    ///the validation cache, at most [`p_data_size`] bytes will be written to
+    ///[`p_data`], and [`get_validation_cache_data_ext`] will return
+    ///`VK_INCOMPLETE` instead of `VK_SUCCESS`, to indicate that not all of
+    ///the validation cache was returned.Any data written to [`p_data`] is valid and  **can**  be
+    /// provided as the
+    ///`pInitialData` member of the [`ValidationCacheCreateInfoEXT`]
+    ///structure passed to [`create_validation_cache_ext`].Two calls to
+    /// [`get_validation_cache_data_ext`] with the same parameters
+    /// **must**  retrieve the same data unless a command that modifies the contents of
+    ///the cache is called between them.Applications  **can**  store the data retrieved from the
+    /// validation cache, and
+    ///use these data, possibly in a future run of the application, to populate new
+    ///validation cache objects.
+    ///The results of validation, however,  **may**  depend on the vendor ID, device ID,
+    ///driver version, and other details of the device.
+    ///To enable applications to detect when previously retrieved data is
+    ///incompatible with the device, the initial bytes written to [`p_data`] **must**
+    ///be a header consisting of the following members:The first four bytes encode the length of
+    /// the entire validation cache
+    ///header, in bytes.
+    ///This value includes all fields in the header including the validation cache
+    ///version field and the size of the length field.The next four bytes encode the validation
+    /// cache version, as described for
+    ///[`ValidationCacheHeaderVersionEXT`].
+    ///A consumer of the validation cache  **should**  use the cache version to
+    ///interpret the remainder of the cache header.If [`p_data_size`] is less than what is
+    /// necessary to store this header,
+    ///nothing will be written to [`p_data`] and zero will be written to
+    ///[`p_data_size`].
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`validation_cache`] **must**  be a valid [`ValidationCacheEXT`] handle
+    /// - [`p_data_size`] **must**  be a valid pointer to a `size_t` value
+    /// - If the value referenced by [`p_data_size`] is not `0`, and [`p_data`] is not `NULL`,
+    ///   [`p_data`] **must**  be a valid pointer to an array of [`p_data_size`] bytes
+    /// - [`validation_cache`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_validation_cache`]
+    /// - [`Device`]
+    /// - [`ValidationCacheEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetValidationCacheDataEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_validation_cache_data_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        validation_cache: ValidationCacheEXT,
+        p_data_size: *mut usize,
+        p_data: Option<*mut c_void>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .expect("extension/version not loaded")
+            .get_validation_cache_data_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .unwrap_unchecked()
+            .get_validation_cache_data_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            validation_cache,
+            p_data_size,
+            p_data.unwrap_or_else(std::ptr::null_mut),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkMergeValidationCachesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkMergeValidationCachesEXT.html) - Combine the data stores of validation caches
+    ///# C Specifications
+    ///Validation cache objects  **can**  be merged using the command:
+    ///```c
+    ///// Provided by VK_EXT_validation_cache
+    ///VkResult vkMergeValidationCachesEXT(
+    ///    VkDevice                                    device,
+    ///    VkValidationCacheEXT                        dstCache,
+    ///    uint32_t                                    srcCacheCount,
+    ///    const VkValidationCacheEXT*                 pSrcCaches);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the validation cache objects.
+    /// - [`dst_cache`] is the handle of the validation cache to merge results into.
+    /// - [`src_cache_count`] is the length of the [`p_src_caches`] array.
+    /// - [`p_src_caches`] is a pointer to an array of validation cache handles, which will be
+    ///   merged into [`dst_cache`]. The previous contents of [`dst_cache`] are included after the
+    ///   merge.
+    ///# Description
+    ///## Valid Usage
+    /// - [`dst_cache`] **must**  not appear in the list of source caches
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`dst_cache`] **must**  be a valid [`ValidationCacheEXT`] handle
+    /// - [`p_src_caches`] **must**  be a valid pointer to an array of [`src_cache_count`] valid
+    ///   [`ValidationCacheEXT`] handles
+    /// - [`src_cache_count`] **must**  be greater than `0`
+    /// - [`dst_cache`] **must**  have been created, allocated, or retrieved from [`device`]
+    /// - Each element of [`p_src_caches`] **must**  have been created, allocated, or retrieved from
+    ///   [`device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`dst_cache`] **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_validation_cache`]
+    /// - [`Device`]
+    /// - [`ValidationCacheEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkMergeValidationCachesEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn merge_validation_caches_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        dst_cache: ValidationCacheEXT,
+        p_src_caches: &[crate::extensions::ext_validation_cache::ValidationCacheEXT],
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .expect("extension/version not loaded")
+            .merge_validation_caches_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_validation_cache()
+            .unwrap_unchecked()
+            .merge_validation_caches_ext()
+            .unwrap_unchecked();
+        let src_cache_count = (|len: usize| len)(p_src_caches.len()) as _;
+        let _return = _function(self.as_raw(), dst_cache, src_cache_count, p_src_caches.as_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
     }
 }
 ///[VkValidationCacheEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationCacheEXT.html) - Opaque handle to a validation cache object
@@ -791,7 +1166,43 @@ impl Default for ValidationCacheEXT {
         Self::null()
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_validation_cache
+impl Handle for ValidationCacheEXT {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device().destroy_validation_cache_ext(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, ValidationCacheEXT> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_validation_cache`
 pub struct DeviceExtValidationCacheVTable {
     ///See [`FNCreateValidationCacheExt`] for more information.
     pub create_validation_cache_ext: FNCreateValidationCacheExt,
@@ -804,22 +1215,26 @@ pub struct DeviceExtValidationCacheVTable {
 }
 impl DeviceExtValidationCacheVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_validation_cache_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateValidationCacheEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateValidationCacheEXT").as_ptr()))
             },
             destroy_validation_cache_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyValidationCacheEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyValidationCacheEXT").as_ptr()))
             },
             get_validation_cache_data_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetValidationCacheDataEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetValidationCacheDataEXT").as_ptr()))
             },
             merge_validation_caches_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkMergeValidationCachesEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkMergeValidationCachesEXT").as_ptr()))
             },
         }
     }

@@ -93,6 +93,7 @@
 use crate::{
     extensions::khr_fragment_shading_rate::FragmentShadingRateCombinerOpKHR,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, SampleCountFlagBits, StructureType},
+    AsRaw, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -463,7 +464,7 @@ impl FragmentShadingRateTypeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
@@ -501,8 +502,8 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::fragment_shading_rate_enums`]
     pub fn fragment_shading_rate_enums_raw(&self) -> Bool32 {
@@ -517,22 +518,22 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
         self.no_invocation_fragment_shading_rates
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_shading_rate_enums`]
-    pub fn set_fragment_shading_rate_enums_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fragment_shading_rate_enums_raw(mut self, value: Bool32) -> Self {
         self.fragment_shading_rate_enums = value;
         self
     }
     ///Sets the raw value of [`Self::supersample_fragment_shading_rates`]
-    pub fn set_supersample_fragment_shading_rates_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_supersample_fragment_shading_rates_raw(mut self, value: Bool32) -> Self {
         self.supersample_fragment_shading_rates = value;
         self
     }
     ///Sets the raw value of [`Self::no_invocation_fragment_shading_rates`]
-    pub fn set_no_invocation_fragment_shading_rates_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_no_invocation_fragment_shading_rates_raw(mut self, value: Bool32) -> Self {
         self.no_invocation_fragment_shading_rates = value;
         self
     }
@@ -624,28 +625,28 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::fragment_shading_rate_enums`]
-    pub fn set_fragment_shading_rate_enums(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fragment_shading_rate_enums`]
+    pub fn set_fragment_shading_rate_enums(mut self, value: bool) -> Self {
         self.fragment_shading_rate_enums = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::supersample_fragment_shading_rates`]
-    pub fn set_supersample_fragment_shading_rates(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::supersample_fragment_shading_rates`]
+    pub fn set_supersample_fragment_shading_rates(mut self, value: bool) -> Self {
         self.supersample_fragment_shading_rates = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::no_invocation_fragment_shading_rates`]
-    pub fn set_no_invocation_fragment_shading_rates(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::no_invocation_fragment_shading_rates`]
+    pub fn set_no_invocation_fragment_shading_rates(mut self, value: bool) -> Self {
         self.no_invocation_fragment_shading_rates = value as u8 as u32;
         self
     }
@@ -693,7 +694,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
@@ -722,11 +723,11 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -761,21 +762,21 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     pub fn max_fragment_shading_rate_invocation_count_mut(&mut self) -> &mut SampleCountFlagBits {
         &mut self.max_fragment_shading_rate_invocation_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_fragment_shading_rate_invocation_count`]
+    ///Sets the value of [`Self::max_fragment_shading_rate_invocation_count`]
     pub fn set_max_fragment_shading_rate_invocation_count(
-        &mut self,
+        mut self,
         value: crate::vulkan1_0::SampleCountFlagBits,
-    ) -> &mut Self {
+    ) -> Self {
         self.max_fragment_shading_rate_invocation_count = value;
         self
     }
@@ -883,7 +884,7 @@ impl<'lt> PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -926,55 +927,178 @@ impl<'lt> PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     pub fn combiner_ops_mut(&mut self) -> &mut [FragmentShadingRateCombinerOpKHR; 2 as usize] {
         &mut self.combiner_ops
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate_type`]
+    ///Sets the value of [`Self::shading_rate_type`]
     pub fn set_shading_rate_type(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_fragment_shading_rate_enums::FragmentShadingRateTypeNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.shading_rate_type = value;
         self
     }
-    ///Sets the raw value of [`Self::shading_rate`]
+    ///Sets the value of [`Self::shading_rate`]
     pub fn set_shading_rate(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_fragment_shading_rate_enums::FragmentShadingRateNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.shading_rate = value;
         self
     }
-    ///Sets the raw value of [`Self::combiner_ops`]
+    ///Sets the value of [`Self::combiner_ops`]
     pub fn set_combiner_ops(
-        &mut self,
+        mut self,
         value: [crate::extensions::khr_fragment_shading_rate::FragmentShadingRateCombinerOpKHR; 2 as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.combiner_ops = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_fragment_shading_rate_enums
+impl CommandBuffer {
+    ///[vkCmdSetFragmentShadingRateEnumNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html) - Set pipeline fragment shading rate dynamically for a command buffer using enums
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the pipeline fragment
+    ///shading rate and combiner operation, call:
+    ///```c
+    ///// Provided by VK_NV_fragment_shading_rate_enums
+    ///void vkCmdSetFragmentShadingRateEnumNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkFragmentShadingRateNV                     shadingRate,
+    ///    const VkFragmentShadingRateCombinerOpKHR    combinerOps[2]);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`shading_rate`] specifies a [`FragmentShadingRateNV`] enum indicating the pipeline
+    ///   fragment shading rate for subsequent drawing commands.
+    /// - [`combiner_ops`] specifies a [`FragmentShadingRateCombinerOpKHR`] determining how the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-pipeline),
+    ///   [primitive](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive),
+    ///   and [attachment shading rates](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment)
+    ///   are [combined](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-combining)
+    ///   for fragments generated by subsequent drawing commands.
+    ///# Description
+    ///This command sets the pipeline fragment shading rate and combiner operation
+    ///for subsequent drawing commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_FRAGMENT_SHADING_RATE_KHR` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineFragmentShadingRateEnumStateCreateInfoNV`] values used to
+    ///create the currently active pipeline.
+    ///## Valid Usage
+    /// - If [`pipelineFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineFragmentShadingRate)
+    ///   is not enabled, [`shading_rate`] **must**  be
+    ///   `VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV`
+    /// - If [`supersampleFragmentShadingRates`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-supersampleFragmentShadingRates)
+    ///   is not enabled, [`shading_rate`] **must**  not be
+    ///   `VK_FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV`,
+    ///   `VK_FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV`,
+    ///   `VK_FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV`, or
+    ///   `VK_FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV`
+    /// - If [`noInvocationFragmentShadingRates`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-noInvocationFragmentShadingRates)
+    ///   is not enabled, [`shading_rate`] **must**  not be
+    ///   `VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV`
+    /// - [`fragmentShadingRateEnums`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentShadingRateEnums)
+    ///   **must**  be enabled
+    /// - One of [`pipelineFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineFragmentShadingRate),
+    ///   [`primitiveFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate),
+    ///   or [`attachmentFragmentShadingRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate)
+    ///   **must**  be enabled
+    /// - If the [`primitiveFragmentShadingRate` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveFragmentShadingRate)
+    ///   is not enabled, [`combiner_ops`][0]  **must**  be
+    ///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`
+    /// - If the [`attachmentFragmentShadingRate` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-attachmentFragmentShadingRate)
+    ///   is not enabled, [`combiner_ops`][1]  **must**  be
+    ///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`
+    /// - If the [`fragmentSizeNonTrivialCombinerOps`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateNonTrivialCombinerOps)
+    ///   limit is not supported, elements of [`combiner_ops`] **must**  be either
+    ///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR` or
+    ///   `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`shading_rate`] **must**  be a valid [`FragmentShadingRateNV`] value
+    /// - Any given element of [`combiner_ops`] **must**  be a valid
+    ///   [`FragmentShadingRateCombinerOpKHR`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_fragment_shading_rate_enums`]
+    /// - [`CommandBuffer`]
+    /// - [`FragmentShadingRateCombinerOpKHR`]
+    /// - [`FragmentShadingRateNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetFragmentShadingRateEnumNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_fragment_shading_rate_enum_nv<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        shading_rate: FragmentShadingRateNV,
+        combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_fragment_shading_rate_enums()
+            .expect("extension/version not loaded")
+            .cmd_set_fragment_shading_rate_enum_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_fragment_shading_rate_enums()
+            .unwrap_unchecked()
+            .cmd_set_fragment_shading_rate_enum_nv()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), shading_rate, combiner_ops);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_fragment_shading_rate_enums`
 pub struct DeviceNvFragmentShadingRateEnumsVTable {
     ///See [`FNCmdSetFragmentShadingRateEnumNv`] for more information.
     pub cmd_set_fragment_shading_rate_enum_nv: FNCmdSetFragmentShadingRateEnumNv,
 }
 impl DeviceNvFragmentShadingRateEnumsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_fragment_shading_rate_enum_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFragmentShadingRateEnumNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdSetFragmentShadingRateEnumNV").as_ptr(),
+                ))
             },
         }
     }

@@ -45,10 +45,12 @@
 use crate::{
     extensions::khr_surface::SurfaceKHR,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -245,12 +247,12 @@ impl<'lt> MetalSurfaceCreateInfoEXT<'lt> {
         self.layer
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer_raw(&mut self, value: *const CaMetalLayer) -> &mut Self {
+    pub fn set_layer_raw(mut self, value: *const CaMetalLayer) -> Self {
         self.layer = value;
         self
     }
@@ -284,41 +286,131 @@ impl<'lt> MetalSurfaceCreateInfoEXT<'lt> {
     pub fn flags_mut(&mut self) -> &mut MetalSurfaceCreateFlagsEXT {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::ext_metal_surface::MetalSurfaceCreateFlagsEXT) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::ext_metal_surface::MetalSurfaceCreateFlagsEXT) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer(&mut self, value: &'lt crate::extensions::ext_metal_surface::CaMetalLayer) -> &mut Self {
+    ///Sets the value of [`Self::layer`]
+    pub fn set_layer(mut self, value: &'lt crate::extensions::ext_metal_surface::CaMetalLayer) -> Self {
         self.layer = value as *const _;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_EXT_metal_surface
+impl Instance {
+    ///[vkCreateMetalSurfaceEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateMetalSurfaceEXT.html) - Create a VkSurfaceKHR object for CAMetalLayer
+    ///# C Specifications
+    ///To create a [`SurfaceKHR`] object for a [`CaMetalLayer`], call:
+    ///```c
+    ///// Provided by VK_EXT_metal_surface
+    ///VkResult vkCreateMetalSurfaceEXT(
+    ///    VkInstance                                  instance,
+    ///    const VkMetalSurfaceCreateInfoEXT*          pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkSurfaceKHR*                               pSurface);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance with which to associate the surface.
+    /// - [`p_create_info`] is a pointer to a [`MetalSurfaceCreateInfoEXT`] structure specifying
+    ///   parameters affecting the creation of the surface object.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
+    ///   is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`MetalSurfaceCreateInfoEXT`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+    ///# Related
+    /// - [`VK_EXT_metal_surface`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Instance`]
+    /// - [`MetalSurfaceCreateInfoEXT`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateMetalSurfaceEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_metal_surface_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &MetalSurfaceCreateInfoEXT<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_metal_surface()
+            .expect("extension/version not loaded")
+            .create_metal_surface_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_metal_surface()
+            .unwrap_unchecked()
+            .create_metal_surface_ext()
+            .unwrap_unchecked();
+        let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const MetalSurfaceCreateInfoEXT<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_surface.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_metal_surface`
 pub struct InstanceExtMetalSurfaceVTable {
     ///See [`FNCreateMetalSurfaceExt`] for more information.
     pub create_metal_surface_ext: FNCreateMetalSurfaceExt,
 }
 impl InstanceExtMetalSurfaceVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_metal_surface_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateMetalSurfaceEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateMetalSurfaceEXT").as_ptr()))
             },
         }
     }

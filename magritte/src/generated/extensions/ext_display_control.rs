@@ -83,12 +83,13 @@ use crate::{
         khr_swapchain::SwapchainKHR,
     },
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Device, Fence, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DISPLAY_CONTROL_SPEC_VERSION")]
@@ -575,7 +576,7 @@ impl<'lt> DisplayPowerInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -602,21 +603,18 @@ impl<'lt> DisplayPowerInfoEXT<'lt> {
     pub fn power_state_mut(&mut self) -> &mut DisplayPowerStateEXT {
         &mut self.power_state
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::power_state`]
-    pub fn set_power_state(
-        &mut self,
-        value: crate::extensions::ext_display_control::DisplayPowerStateEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::power_state`]
+    pub fn set_power_state(mut self, value: crate::extensions::ext_display_control::DisplayPowerStateEXT) -> Self {
         self.power_state = value;
         self
     }
@@ -685,7 +683,7 @@ impl<'lt> DeviceEventInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -712,18 +710,18 @@ impl<'lt> DeviceEventInfoEXT<'lt> {
     pub fn device_event_mut(&mut self) -> &mut DeviceEventTypeEXT {
         &mut self.device_event
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::device_event`]
-    pub fn set_device_event(&mut self, value: crate::extensions::ext_display_control::DeviceEventTypeEXT) -> &mut Self {
+    ///Sets the value of [`Self::device_event`]
+    pub fn set_device_event(mut self, value: crate::extensions::ext_display_control::DeviceEventTypeEXT) -> Self {
         self.device_event = value;
         self
     }
@@ -793,7 +791,7 @@ impl<'lt> DisplayEventInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -820,21 +818,18 @@ impl<'lt> DisplayEventInfoEXT<'lt> {
     pub fn display_event_mut(&mut self) -> &mut DisplayEventTypeEXT {
         &mut self.display_event
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::display_event`]
-    pub fn set_display_event(
-        &mut self,
-        value: crate::extensions::ext_display_control::DisplayEventTypeEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::display_event`]
+    pub fn set_display_event(mut self, value: crate::extensions::ext_display_control::DisplayEventTypeEXT) -> Self {
         self.display_event = value;
         self
     }
@@ -911,7 +906,7 @@ impl<'lt> SwapchainCounterCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -938,26 +933,358 @@ impl<'lt> SwapchainCounterCreateInfoEXT<'lt> {
     pub fn surface_counters_mut(&mut self) -> &mut SurfaceCounterFlagsEXT {
         &mut self.surface_counters
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::surface_counters`]
+    ///Sets the value of [`Self::surface_counters`]
     pub fn set_surface_counters(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_display_surface_counter::SurfaceCounterFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.surface_counters = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_display_control
+impl Device {
+    ///[vkDisplayPowerControlEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDisplayPowerControlEXT.html) - Set the power state of a display
+    ///# C Specifications
+    ///To set the power state of a display, call:
+    ///```c
+    ///// Provided by VK_EXT_display_control
+    ///VkResult vkDisplayPowerControlEXT(
+    ///    VkDevice                                    device,
+    ///    VkDisplayKHR                                display,
+    ///    const VkDisplayPowerInfoEXT*                pDisplayPowerInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is a logical device associated with [`display`].
+    /// - [`display`] is the display whose power state is modified.
+    /// - [`p_display_power_info`] is a pointer to a [`DisplayPowerInfoEXT`] structure specifying
+    ///   the new power state of [`display`].
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+    /// - [`p_display_power_info`] **must**  be a valid pointer to a valid [`DisplayPowerInfoEXT`]
+    ///   structure
+    /// - Both of [`device`], and [`display`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`PhysicalDevice`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_display_control`]
+    /// - [`Device`]
+    /// - [`DisplayKHR`]
+    /// - [`DisplayPowerInfoEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDisplayPowerControlEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn display_power_control_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        display: DisplayKHR,
+        p_display_power_info: &DisplayPowerInfoEXT<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .expect("extension/version not loaded")
+            .display_power_control_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .unwrap_unchecked()
+            .display_power_control_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            display,
+            p_display_power_info as *const DisplayPowerInfoEXT<'lt>,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkRegisterDeviceEventEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkRegisterDeviceEventEXT.html) - Signal a fence when a device event occurs
+    ///# C Specifications
+    ///To create a fence that will be signaled when an event occurs on a device,
+    ///call:
+    ///```c
+    ///// Provided by VK_EXT_display_control
+    ///VkResult vkRegisterDeviceEventEXT(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceEventInfoEXT*                 pDeviceEventInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkFence*                                    pFence);
+    ///```
+    ///# Parameters
+    /// - [`device`] is a logical device on which the event  **may**  occur.
+    /// - [`p_device_event_info`] is a pointer to a [`DeviceEventInfoEXT`] structure describing the
+    ///   event of interest to the application.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_fence`] is a pointer to a handle in which the resulting fence object is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_device_event_info`] **must**  be a valid pointer to a valid [`DeviceEventInfoEXT`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_fence`] **must**  be a valid pointer to a [`Fence`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_display_control`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`DeviceEventInfoEXT`]
+    /// - [`Fence`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkRegisterDeviceEventEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn register_device_event_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_device_event_info: &DeviceEventInfoEXT<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, Fence>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .expect("extension/version not loaded")
+            .register_device_event_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .unwrap_unchecked()
+            .register_device_event_ext()
+            .unwrap_unchecked();
+        let mut p_fence = MaybeUninit::<Fence>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_device_event_info as *const DeviceEventInfoEXT<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_fence.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkRegisterDisplayEventEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkRegisterDisplayEventEXT.html) - Signal a fence when a display event occurs
+    ///# C Specifications
+    ///To create a fence that will be signaled when an event occurs on a
+    ///[`DisplayKHR`] object, call:
+    ///```c
+    ///// Provided by VK_EXT_display_control
+    ///VkResult vkRegisterDisplayEventEXT(
+    ///    VkDevice                                    device,
+    ///    VkDisplayKHR                                display,
+    ///    const VkDisplayEventInfoEXT*                pDisplayEventInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkFence*                                    pFence);
+    ///```
+    ///# Parameters
+    /// - [`device`] is a logical device associated with [`display`]
+    /// - [`display`] is the display on which the event  **may**  occur.
+    /// - [`p_display_event_info`] is a pointer to a [`DisplayEventInfoEXT`] structure describing
+    ///   the event of interest to the application.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_fence`] is a pointer to a handle in which the resulting fence object is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+    /// - [`p_display_event_info`] **must**  be a valid pointer to a valid [`DisplayEventInfoEXT`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_fence`] **must**  be a valid pointer to a [`Fence`] handle
+    /// - Both of [`device`], and [`display`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`PhysicalDevice`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_display_control`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`DisplayEventInfoEXT`]
+    /// - [`DisplayKHR`]
+    /// - [`Fence`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkRegisterDisplayEventEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn register_display_event_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        display: DisplayKHR,
+        p_display_event_info: &DisplayEventInfoEXT<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, Fence>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .expect("extension/version not loaded")
+            .register_display_event_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .unwrap_unchecked()
+            .register_display_event_ext()
+            .unwrap_unchecked();
+        let mut p_fence = MaybeUninit::<Fence>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            display,
+            p_display_event_info as *const DisplayEventInfoEXT<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_fence.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetSwapchainCounterEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainCounterEXT.html) - Query the current value of a surface counter
+    ///# C Specifications
+    ///The requested counters become active when the first presentation command for
+    ///the associated swapchain is processed by the presentation engine.
+    ///To query the value of an active counter, use:
+    ///```c
+    ///// Provided by VK_EXT_display_control
+    ///VkResult vkGetSwapchainCounterEXT(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapchain,
+    ///    VkSurfaceCounterFlagBitsEXT                 counter,
+    ///    uint64_t*                                   pCounterValue);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the [`Device`] associated with [`swapchain`].
+    /// - [`swapchain`] is the swapchain from which to query the counter value.
+    /// - [`counter`] is a [`SurfaceCounterFlagBitsEXT`] value specifying the counter to query.
+    /// - [`p_counter_value`] will return the current value of the counter.
+    ///# Description
+    ///If a counter is not available because the swapchain is out of date, the
+    ///implementation  **may**  return `VK_ERROR_OUT_OF_DATE_KHR`.
+    ///## Valid Usage
+    /// - One or more present commands on [`swapchain`] **must**  have been processed by the
+    ///   presentation engine
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - [`counter`] **must**  be a valid [`SurfaceCounterFlagBitsEXT`] value
+    /// - [`p_counter_value`] **must**  be a valid pointer to a `uint64_t` value
+    /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
+    ///   from the same [`Instance`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`
+    ///# Related
+    /// - [`VK_EXT_display_control`]
+    /// - [`Device`]
+    /// - [`SurfaceCounterFlagBitsEXT`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetSwapchainCounterEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_swapchain_counter_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swapchain: SwapchainKHR,
+        counter: SurfaceCounterFlagBitsEXT,
+    ) -> VulkanResult<u64> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .expect("extension/version not loaded")
+            .get_swapchain_counter_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_display_control()
+            .unwrap_unchecked()
+            .get_swapchain_counter_ext()
+            .unwrap_unchecked();
+        let mut p_counter_value = Default::default();
+        let _return = _function(self.as_raw(), swapchain, counter, &mut p_counter_value);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_counter_value),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_display_control`
 pub struct DeviceExtDisplayControlVTable {
     ///See [`FNDisplayPowerControlExt`] for more information.
     pub display_power_control_ext: FNDisplayPowerControlExt,
@@ -970,22 +1297,26 @@ pub struct DeviceExtDisplayControlVTable {
 }
 impl DeviceExtDisplayControlVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             display_power_control_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDisplayPowerControlEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDisplayPowerControlEXT").as_ptr()))
             },
             register_device_event_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkRegisterDeviceEventEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkRegisterDeviceEventEXT").as_ptr()))
             },
             register_display_event_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkRegisterDisplayEventEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkRegisterDisplayEventEXT").as_ptr()))
             },
             get_swapchain_counter_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSwapchainCounterEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSwapchainCounterEXT").as_ptr()))
             },
         }
     }

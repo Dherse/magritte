@@ -137,12 +137,12 @@ impl<'lt> DedicatedAllocationImageCreateInfoNV<'lt> {
         self.dedicated_allocation
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::dedicated_allocation`]
-    pub fn set_dedicated_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_dedicated_allocation_raw(mut self, value: Bool32) -> Self {
         self.dedicated_allocation = value;
         self
     }
@@ -183,18 +183,18 @@ impl<'lt> DedicatedAllocationImageCreateInfoNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::dedicated_allocation`]
-    pub fn set_dedicated_allocation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::dedicated_allocation`]
+    pub fn set_dedicated_allocation(mut self, value: bool) -> Self {
         self.dedicated_allocation = value as u8 as u32;
         self
     }
@@ -270,12 +270,12 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
         self.dedicated_allocation
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::dedicated_allocation`]
-    pub fn set_dedicated_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_dedicated_allocation_raw(mut self, value: Bool32) -> Self {
         self.dedicated_allocation = value;
         self
     }
@@ -316,18 +316,18 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::dedicated_allocation`]
-    pub fn set_dedicated_allocation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::dedicated_allocation`]
+    pub fn set_dedicated_allocation(mut self, value: bool) -> Self {
         self.dedicated_allocation = value as u8 as u32;
         self
     }
@@ -351,35 +351,33 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`image`] is [`crate::utils::Handle::null`] or a handle of an image which this memory will be
-///   bound to.
-/// - [`buffer`] is [`crate::utils::Handle::null`] or a handle of a buffer which this memory will be
-///   bound to.
+/// - [`image`] is [`crate::Handle::null`] or a handle of an image which this memory will be bound
+///   to.
+/// - [`buffer`] is [`crate::Handle::null`] or a handle of a buffer which this memory will be bound
+///   to.
 ///# Description
 ///## Valid Usage
-/// - At least one of [`image`] and [`buffer`] **must**  be [`crate::utils::Handle::null`]
-/// - If [`image`] is not [`crate::utils::Handle::null`], the image  **must**  have been created
-///   with [`DedicatedAllocationImageCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
-/// - If [`buffer`] is not [`crate::utils::Handle::null`], the buffer  **must**  have been created
-///   with [`DedicatedAllocationBufferCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
-/// - If [`image`] is not [`crate::utils::Handle::null`], [`MemoryAllocateInfo::allocation_size`]
-///   **must**  equal the [`MemoryRequirements::size`] of the image
-/// - If [`buffer`] is not [`crate::utils::Handle::null`], [`MemoryAllocateInfo::allocation_size`]
-///   **must**  equal the [`MemoryRequirements::size`] of the buffer
-/// - If [`image`] is not [`crate::utils::Handle::null`] and [`MemoryAllocateInfo`] defines a memory
-///   import operation, the memory being imported  **must**  also be a dedicated image allocation
-///   and [`image`] **must**  be identical to the image associated with the imported memory
-/// - If [`buffer`] is not [`crate::utils::Handle::null`] and [`MemoryAllocateInfo`] defines a
-///   memory import operation, the memory being imported  **must**  also be a dedicated buffer
-///   allocation and [`buffer`] **must**  be identical to the buffer associated with the imported
-///   memory
+/// - At least one of [`image`] and [`buffer`] **must**  be [`crate::Handle::null`]
+/// - If [`image`] is not [`crate::Handle::null`], the image  **must**  have been created with
+///   [`DedicatedAllocationImageCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
+/// - If [`buffer`] is not [`crate::Handle::null`], the buffer  **must**  have been created with
+///   [`DedicatedAllocationBufferCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
+/// - If [`image`] is not [`crate::Handle::null`], [`MemoryAllocateInfo::allocation_size`] **must**
+///   equal the [`MemoryRequirements::size`] of the image
+/// - If [`buffer`] is not [`crate::Handle::null`], [`MemoryAllocateInfo::allocation_size`] **must**
+///   equal the [`MemoryRequirements::size`] of the buffer
+/// - If [`image`] is not [`crate::Handle::null`] and [`MemoryAllocateInfo`] defines a memory import
+///   operation, the memory being imported  **must**  also be a dedicated image allocation and
+///   [`image`] **must**  be identical to the image associated with the imported memory
+/// - If [`buffer`] is not [`crate::Handle::null`] and [`MemoryAllocateInfo`] defines a memory
+///   import operation, the memory being imported  **must**  also be a dedicated buffer allocation
+///   and [`buffer`] **must**  be identical to the buffer associated with the imported memory
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV`
-/// - If [`image`] is not [`crate::utils::Handle::null`], [`image`] **must**  be a valid [`Image`]
+/// - If [`image`] is not [`crate::Handle::null`], [`image`] **must**  be a valid [`Image`] handle
+/// - If [`buffer`] is not [`crate::Handle::null`], [`buffer`] **must**  be a valid [`Buffer`]
 ///   handle
-/// - If [`buffer`] is not [`crate::utils::Handle::null`], [`buffer`] **must**  be a valid
-///   [`Buffer`] handle
 /// - Both of [`buffer`], and [`image`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
@@ -407,10 +405,10 @@ pub struct DedicatedAllocationMemoryAllocateInfoNV<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *const BaseInStructure<'lt>,
-    ///[`image`] is [`crate::utils::Handle::null`] or a handle of an image which this
+    ///[`image`] is [`crate::Handle::null`] or a handle of an image which this
     ///memory will be bound to.
     pub image: Image,
-    ///[`buffer`] is [`crate::utils::Handle::null`] or a handle of a buffer which this
+    ///[`buffer`] is [`crate::Handle::null`] or a handle of a buffer which this
     ///memory will be bound to.
     pub buffer: Buffer,
 }
@@ -431,7 +429,7 @@ impl<'lt> DedicatedAllocationMemoryAllocateInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -466,23 +464,23 @@ impl<'lt> DedicatedAllocationMemoryAllocateInfoNV<'lt> {
     pub fn buffer_mut(&mut self) -> &mut Buffer {
         &mut self.buffer
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::image`]
-    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::image`]
+    pub fn set_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.image = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer`]
-    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::buffer`]
+    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.buffer = value;
         self
     }

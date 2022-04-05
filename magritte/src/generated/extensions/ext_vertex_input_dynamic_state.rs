@@ -54,7 +54,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Device, Format, StructureType, VertexInputRate};
+use crate::{
+    vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Device, Format, StructureType, VertexInputRate},
+    AsRaw, SmallVec, Unique,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -198,7 +201,7 @@ pub type FNCmdSetVertexInputExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
@@ -226,20 +229,20 @@ impl<'lt> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::vertex_input_dynamic_state`]
     pub fn vertex_input_dynamic_state_raw(&self) -> Bool32 {
         self.vertex_input_dynamic_state
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_input_dynamic_state`]
-    pub fn set_vertex_input_dynamic_state_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_vertex_input_dynamic_state_raw(mut self, value: Bool32) -> Self {
         self.vertex_input_dynamic_state = value;
         self
     }
@@ -287,18 +290,18 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::vertex_input_dynamic_state`]
-    pub fn set_vertex_input_dynamic_state(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::vertex_input_dynamic_state`]
+    pub fn set_vertex_input_dynamic_state(mut self, value: bool) -> Self {
         self.vertex_input_dynamic_state = value as u8 as u32;
         self
     }
@@ -356,7 +359,7 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputBindingDescription2EXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT<'lt> {
@@ -408,11 +411,11 @@ impl<'lt> Default for VertexInputBindingDescription2EXT<'lt> {
 }
 impl<'lt> VertexInputBindingDescription2EXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -470,33 +473,33 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
     pub fn divisor_mut(&mut self) -> &mut u32 {
         &mut self.divisor
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::binding`]
+    pub fn set_binding(mut self, value: u32) -> Self {
         self.binding = value;
         self
     }
-    ///Sets the raw value of [`Self::stride`]
-    pub fn set_stride(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stride`]
+    pub fn set_stride(mut self, value: u32) -> Self {
         self.stride = value;
         self
     }
-    ///Sets the raw value of [`Self::input_rate`]
-    pub fn set_input_rate(&mut self, value: crate::vulkan1_0::VertexInputRate) -> &mut Self {
+    ///Sets the value of [`Self::input_rate`]
+    pub fn set_input_rate(mut self, value: crate::vulkan1_0::VertexInputRate) -> Self {
         self.input_rate = value;
         self
     }
-    ///Sets the raw value of [`Self::divisor`]
-    pub fn set_divisor(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::divisor`]
+    pub fn set_divisor(mut self, value: u32) -> Self {
         self.divisor = value;
         self
     }
@@ -555,7 +558,7 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputAttributeDescription2EXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT<'lt> {
@@ -592,11 +595,11 @@ impl<'lt> Default for VertexInputAttributeDescription2EXT<'lt> {
 }
 impl<'lt> VertexInputAttributeDescription2EXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -654,51 +657,174 @@ impl<'lt> VertexInputAttributeDescription2EXT<'lt> {
     pub fn offset_mut(&mut self) -> &mut u32 {
         &mut self.offset
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::location`]
-    pub fn set_location(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::location`]
+    pub fn set_location(mut self, value: u32) -> Self {
         self.location = value;
         self
     }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::binding`]
+    pub fn set_binding(mut self, value: u32) -> Self {
         self.binding = value;
         self
     }
-    ///Sets the raw value of [`Self::format`]
-    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::format`]
+    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.format = value;
         self
     }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::offset`]
+    pub fn set_offset(mut self, value: u32) -> Self {
         self.offset = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_vertex_input_dynamic_state
+impl CommandBuffer {
+    ///[vkCmdSetVertexInputEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetVertexInputEXT.html) - Set the vertex input state dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the vertex input attribute
+    ///and vertex input binding descriptions, call:
+    ///```c
+    ///// Provided by VK_EXT_vertex_input_dynamic_state
+    ///void vkCmdSetVertexInputEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    vertexBindingDescriptionCount,
+    ///    const VkVertexInputBindingDescription2EXT*  pVertexBindingDescriptions,
+    ///    uint32_t                                    vertexAttributeDescriptionCount,
+    ///    const VkVertexInputAttributeDescription2EXT* pVertexAttributeDescriptions);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`vertex_binding_description_count`] is the number of vertex binding descriptions provided
+    ///   in [`p_vertex_binding_descriptions`].
+    /// - [`p_vertex_binding_descriptions`] is a pointer to an array of
+    ///   [`VertexInputBindingDescription2EXT`] structures.
+    /// - [`vertex_attribute_description_count`] is the number of vertex attribute descriptions
+    ///   provided in [`p_vertex_attribute_descriptions`].
+    /// - [`p_vertex_attribute_descriptions`] is a pointer to an array of
+    ///   [`VertexInputAttributeDescription2EXT`] structures.
+    ///# Description
+    ///This command sets the vertex input attribute and vertex input binding
+    ///descriptions state for subsequent drawing commands when the graphics
+    ///pipeline is created with `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`GraphicsPipelineCreateInfo::vertex_input_state`] values used to
+    ///create the currently active pipeline.If the bound pipeline state object was also created
+    /// with the
+    ///`VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` dynamic state enabled,
+    ///then [`cmd_bind_vertex_buffers2`] can be used instead of
+    ///[`cmd_set_vertex_input_ext`] to dynamically set the stride.
+    ///## Valid Usage
+    /// - The [vertexInputDynamicState](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexInputDynamicState)
+    ///   feature  **must**  be enabled
+    /// - [`vertex_binding_description_count`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceLimits::max_vertex_input_bindings`]
+    /// - [`vertex_attribute_description_count`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceLimits::max_vertex_input_attributes`]
+    /// - For every `binding` specified by each element of [`p_vertex_attribute_descriptions`], a
+    ///   [`VertexInputBindingDescription2EXT`] **must**  exist in [`p_vertex_binding_descriptions`]
+    ///   with the same value of `binding`
+    /// - All elements of [`p_vertex_binding_descriptions`] **must**  describe distinct binding
+    ///   numbers
+    /// - All elements of [`p_vertex_attribute_descriptions`] **must**  describe distinct attribute
+    ///   locations
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - If [`vertex_binding_description_count`] is not `0`, [`p_vertex_binding_descriptions`]
+    ///   **must**  be a valid pointer to an array of [`vertex_binding_description_count`] valid
+    ///   [`VertexInputBindingDescription2EXT`] structures
+    /// - If [`vertex_attribute_description_count`] is not `0`, [`p_vertex_attribute_descriptions`]
+    ///   **must**  be a valid pointer to an array of [`vertex_attribute_description_count`] valid
+    ///   [`VertexInputAttributeDescription2EXT`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_vertex_input_dynamic_state`]
+    /// - [`CommandBuffer`]
+    /// - [`VertexInputAttributeDescription2EXT`]
+    /// - [`VertexInputBindingDescription2EXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetVertexInputEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_vertex_input_ext<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_vertex_binding_descriptions : & [crate :: extensions :: ext_vertex_input_dynamic_state :: VertexInputBindingDescription2EXT < 'lt >],
+        p_vertex_attribute_descriptions : & [crate :: extensions :: ext_vertex_input_dynamic_state :: VertexInputAttributeDescription2EXT < 'lt >],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_vertex_input_dynamic_state()
+            .expect("extension/version not loaded")
+            .cmd_set_vertex_input_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_vertex_input_dynamic_state()
+            .unwrap_unchecked()
+            .cmd_set_vertex_input_ext()
+            .unwrap_unchecked();
+        let vertex_binding_description_count = (|len: usize| len)(p_vertex_binding_descriptions.len()) as _;
+        let vertex_attribute_description_count = (|len: usize| len)(p_vertex_attribute_descriptions.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            vertex_binding_description_count,
+            p_vertex_binding_descriptions.as_ptr(),
+            vertex_attribute_description_count,
+            p_vertex_attribute_descriptions.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_vertex_input_dynamic_state`
 pub struct DeviceExtVertexInputDynamicStateVTable {
     ///See [`FNCmdSetVertexInputExt`] for more information.
     pub cmd_set_vertex_input_ext: FNCmdSetVertexInputExt,
 }
 impl DeviceExtVertexInputDynamicStateVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_vertex_input_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetVertexInputEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetVertexInputEXT").as_ptr()))
             },
         }
     }

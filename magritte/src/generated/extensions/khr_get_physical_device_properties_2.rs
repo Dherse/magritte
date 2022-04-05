@@ -107,7 +107,7 @@ pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME")]
 pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_KHR_get_physical_device_properties2");
-///The V-table of [`Instance`] for functions from VK_KHR_get_physical_device_properties2
+///The V-table of [`Instance`] for functions from `VK_KHR_get_physical_device_properties2`
 pub struct InstanceKhrGetPhysicalDeviceProperties2VTable {
     ///See [`FNGetPhysicalDeviceFeatures2`] for more information.
     pub get_physical_device_features2: FNGetPhysicalDeviceFeatures2,
@@ -126,45 +126,55 @@ pub struct InstanceKhrGetPhysicalDeviceProperties2VTable {
 }
 impl InstanceKhrGetPhysicalDeviceProperties2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_features2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceFeatures2KHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceFeatures2KHR").as_ptr(),
+                ))
             },
             get_physical_device_properties2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceProperties2KHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceProperties2KHR").as_ptr(),
+                ))
             },
             get_physical_device_format_properties2: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceFormatProperties2KHR"),
+                    crate::cstr!("vkGetPhysicalDeviceFormatProperties2KHR").as_ptr(),
                 ))
             },
             get_physical_device_image_format_properties2: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceImageFormatProperties2KHR"),
+                    crate::cstr!("vkGetPhysicalDeviceImageFormatProperties2KHR").as_ptr(),
                 ))
             },
             get_physical_device_queue_family_properties2: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceQueueFamilyProperties2KHR"),
+                    crate::cstr!("vkGetPhysicalDeviceQueueFamilyProperties2KHR").as_ptr(),
                 ))
             },
             get_physical_device_memory_properties2: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceMemoryProperties2KHR"),
+                    crate::cstr!("vkGetPhysicalDeviceMemoryProperties2KHR").as_ptr(),
                 ))
             },
             get_physical_device_sparse_image_format_properties2: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceSparseImageFormatProperties2KHR"),
+                    crate::cstr!("vkGetPhysicalDeviceSparseImageFormatProperties2KHR").as_ptr(),
                 ))
             },
         }

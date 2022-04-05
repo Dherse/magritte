@@ -55,8 +55,9 @@ use crate::{
     extensions::khr_display::DisplayKHR,
     native::{Display, RROutput},
     vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
-use std::ffi::CStr;
+use std::{ffi::CStr, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION")]
@@ -143,7 +144,7 @@ pub type FNAcquireXlibDisplayExt = Option<
 /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
 ///# Description
 ///If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
-///[`physical_device`], [`crate::utils::Handle::null`] **must**  be returned in
+///[`physical_device`], [`crate::Handle::null`] **must**  be returned in
 ///[`p_display`].
 ///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
@@ -174,7 +175,168 @@ pub type FNGetRandROutputDisplayExt = Option<
         p_display: *mut DisplayKHR,
     ) -> VulkanResultCodes,
 >;
-///The V-table of [`Instance`] for functions from VK_EXT_acquire_xlib_display
+impl PhysicalDevice {
+    ///[vkAcquireXlibDisplayEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireXlibDisplayEXT.html) - Acquire access to a VkDisplayKHR using Xlib
+    ///# C Specifications
+    ///To acquire permission to directly access a display in Vulkan from an X11
+    ///server, call:
+    ///```c
+    ///// Provided by VK_EXT_acquire_xlib_display
+    ///VkResult vkAcquireXlibDisplayEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    Display*                                    dpy,
+    ///    VkDisplayKHR                                display);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] The physical device the display is on.
+    /// - [`dpy`] A connection to the X11 server that currently owns [`display`].
+    /// - [`display`] The display the caller wishes to control in Vulkan.
+    ///# Description
+    ///All permissions necessary to control the display are granted to the Vulkan
+    ///instance associated with [`physical_device`] until the display is released
+    ///or the X11 connection specified by [`dpy`] is terminated.
+    ///Permission to access the display  **may**  be temporarily revoked during periods
+    ///when the X11 server from which control was acquired itself loses access to
+    ///[`display`].
+    ///During such periods, operations which require access to the display  **must**
+    ///fail with an approriate error code.
+    ///If the X11 server associated with [`dpy`] does not own [`display`], or
+    ///if permission to access it has already been acquired by another entity, the
+    ///call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
+    /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
+    /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_EXT_acquire_xlib_display`]
+    /// - [`DisplayKHR`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkAcquireXlibDisplayEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn acquire_xlib_display_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        display: DisplayKHR,
+    ) -> VulkanResult<Display> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_xlib_display()
+            .expect("extension/version not loaded")
+            .acquire_xlib_display_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_xlib_display()
+            .unwrap_unchecked()
+            .acquire_xlib_display_ext()
+            .unwrap_unchecked();
+        let mut dpy = std::mem::zeroed();
+        let _return = _function(self.as_raw(), &mut dpy, display);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, dpy),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetRandROutputDisplayEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetRandROutputDisplayEXT.html) - Query the VkDisplayKHR corresponding to an X11 RandR Output
+    ///# C Specifications
+    ///When acquiring displays from an X11 server, an application may also wish to
+    ///enumerate and identify them using a native handle rather than a
+    ///[`DisplayKHR`] handle.
+    ///To determine the [`DisplayKHR`] handle corresponding to an X11 RandR
+    ///Output, call:
+    ///```c
+    ///// Provided by VK_EXT_acquire_xlib_display
+    ///VkResult vkGetRandROutputDisplayEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    Display*                                    dpy,
+    ///    RROutput                                    rrOutput,
+    ///    VkDisplayKHR*                               pDisplay);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] The physical device to query the display handle on.
+    /// - [`dpy`] A connection to the X11 server from which [`rr_output`] was queried.
+    /// - [`rr_output`] An X11 RandR output ID.
+    /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
+    ///# Description
+    ///If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
+    ///[`physical_device`], [`crate::Handle::null`] **must**  be returned in
+    ///[`p_display`].
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
+    /// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_acquire_xlib_display`]
+    /// - [`DisplayKHR`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetRandROutputDisplayEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_rand_r_output_display_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        rr_output: RROutput,
+    ) -> VulkanResult<(Display, Unique<'this, DisplayKHR>)> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_xlib_display()
+            .expect("extension/version not loaded")
+            .get_rand_r_output_display_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_acquire_xlib_display()
+            .unwrap_unchecked()
+            .get_rand_r_output_display_ext()
+            .unwrap_unchecked();
+        let mut dpy = std::mem::zeroed();
+        let mut p_display = MaybeUninit::<DisplayKHR>::uninit();
+        let _return = _function(self.as_raw(), &mut dpy, rr_output, p_display.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, (dpy, Unique::new(self, p_display.assume_init(), ())))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_acquire_xlib_display`
 pub struct InstanceExtAcquireXlibDisplayVTable {
     ///See [`FNAcquireXlibDisplayExt`] for more information.
     pub acquire_xlib_display_ext: FNAcquireXlibDisplayExt,
@@ -183,16 +345,20 @@ pub struct InstanceExtAcquireXlibDisplayVTable {
 }
 impl InstanceExtAcquireXlibDisplayVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             acquire_xlib_display_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireXlibDisplayEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireXlibDisplayEXT").as_ptr()))
             },
             get_rand_r_output_display_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetRandROutputDisplayEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetRandROutputDisplayEXT").as_ptr()))
             },
         }
     }

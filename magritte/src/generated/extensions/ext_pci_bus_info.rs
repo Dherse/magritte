@@ -96,7 +96,7 @@ pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePCIBusInfoPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
@@ -131,11 +131,11 @@ impl<'lt> Default for PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -193,33 +193,33 @@ impl<'lt> PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
     pub fn pci_function_mut(&mut self) -> &mut u32 {
         &mut self.pci_function
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::pci_domain`]
-    pub fn set_pci_domain(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pci_domain`]
+    pub fn set_pci_domain(mut self, value: u32) -> Self {
         self.pci_domain = value;
         self
     }
-    ///Sets the raw value of [`Self::pci_bus`]
-    pub fn set_pci_bus(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pci_bus`]
+    pub fn set_pci_bus(mut self, value: u32) -> Self {
         self.pci_bus = value;
         self
     }
-    ///Sets the raw value of [`Self::pci_device`]
-    pub fn set_pci_device(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pci_device`]
+    pub fn set_pci_device(mut self, value: u32) -> Self {
         self.pci_device = value;
         self
     }
-    ///Sets the raw value of [`Self::pci_function`]
-    pub fn set_pci_function(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pci_function`]
+    pub fn set_pci_function(mut self, value: u32) -> Self {
         self.pci_function = value;
         self
     }

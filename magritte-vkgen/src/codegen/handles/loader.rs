@@ -37,7 +37,7 @@ impl<'a> Handle<'a> {
                 // handle the fact that `vkGetDeviceProcAddr` is actually loaded
                 // by the instance
                 if fn_.original_name() == "vkGetDeviceProcAddr" {
-                    if self.original_name() == "VkDevice" {
+                    if self.original_name() == "VkInstance" {
                         return Some(fn_);
                     } else {
                         return None;
@@ -249,13 +249,12 @@ impl<'a> Handle<'a> {
 
             impl #name {
                 #[doc = "Loads the VTable from the owner and the names"]
-                pub fn load<F>(
-                    loader_fn: F,
+                #[track_caller]
+                pub fn load(
+                    loader_fn: unsafe extern "system" fn(#loader, *const std::os::raw::c_char) -> Option<unsafe extern "system" fn()>,
                     loader: #loader,
-                    variant: Extensions,
+                    variant: &Extensions,
                 ) -> Self
-                    where
-                        F: Fn(#loader, &'static CStr) -> Option<extern "system" fn()> + Copy,
                 {
                     Self {
                         #(
@@ -267,6 +266,7 @@ impl<'a> Handle<'a> {
 
                 #(
                     #[inline(always)]
+                    #[track_caller]
                     #conditional_compilations
                     pub const fn #idents(&self) -> #opt_types {
                         #refs self.#idents #as_refs
@@ -315,7 +315,7 @@ impl<'a> Handle<'a> {
 
         // the documentation string
         let doc = format!(
-            "The V-table of [`{}`] for functions from {}",
+            "The V-table of [`{}`] for functions from `{}`",
             self.name(),
             origin.name()
         );
@@ -365,12 +365,11 @@ impl<'a> Handle<'a> {
 
             impl #name {
                 #[doc = "Loads the VTable from the owner and the names"]
-                pub fn load<F>(
-                    loader_fn: F,
+                #[track_caller]
+                pub fn load(
+                    loader_fn: unsafe extern "system" fn(#loader, *const std::os::raw::c_char) -> Option<unsafe extern "system" fn()>,
                     loader: #loader,
                 ) -> Self
-                    where
-                        F: Fn(#loader, &'static CStr) -> Option<extern "system" fn()>
                 {
                     Self {
                         #(#field_inits),*

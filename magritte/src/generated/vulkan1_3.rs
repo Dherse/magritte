@@ -1,5 +1,6 @@
 use crate::{
     core::{MAX_DESCRIPTION_SIZE, MAX_EXTENSION_NAME_SIZE},
+    entry::Entry,
     vulkan1_0::{
         AllocationCallbacks, AttachmentLoadOp, AttachmentStoreOp, BaseInStructure, BaseOutStructure, Bool32, Buffer,
         BufferCreateInfo, ClearValue, CommandBuffer, CompareOp, CullModeFlags, DependencyFlags, Device, DeviceSize,
@@ -10,6 +11,7 @@ use crate::{
     },
     vulkan1_1::{MemoryRequirements2, SparseImageMemoryRequirements2},
     vulkan1_2::ResolveModeFlagBits,
+    AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -19,6 +21,7 @@ use std::{
     ffi::{c_void, CStr},
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
     os::raw::c_char,
 };
 ///[vkGetDeviceBufferMemoryRequirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceBufferMemoryRequirements.html) - Returns the memory requirements for specified Vulkan object
@@ -357,8 +360,8 @@ pub type FNCreatePrivateDataSlot = Option<
 ///
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
-/// - If [`private_data_slot`] is not [`crate::utils::Handle::null`], [`private_data_slot`] **must**
-///   be a valid [`PrivateDataSlot`] handle
+/// - If [`private_data_slot`] is not [`crate::Handle::null`], [`private_data_slot`] **must**  be a
+///   valid [`PrivateDataSlot`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - If [`private_data_slot`] is a valid handle, it  **must**  have been created, allocated, or
@@ -548,7 +551,7 @@ pub type FNGetPrivateData = Option<
 /// - [`submit_count`] is the number of elements in the [`p_submits`] array.
 /// - [`p_submits`] is a pointer to an array of [`SubmitInfo2`] structures, each specifying a
 ///   command buffer submission batch.
-/// - [`fence`] is an  **optional**  handle to a fence to be signaled once all submitted command buffers have completed execution. If [`fence`] is not [`crate::utils::Handle::null`], it defines a [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling).
+/// - [`fence`] is an  **optional**  handle to a fence to be signaled once all submitted command buffers have completed execution. If [`fence`] is not [`crate::Handle::null`], it defines a [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling).
 ///# Description
 ///[`queue_submit2`] is a [queue submission
 ///command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission), with each batch defined by an element of [`p_submits`].Semaphore operations submitted with [`queue_submit2`] have additional
@@ -575,9 +578,9 @@ pub type FNGetPrivateData = Option<
 ///`VK_ERROR_DEVICE_LOST`.
 ///See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device).
 ///## Valid Usage
-/// - If [`fence`] is not [`crate::utils::Handle::null`], [`fence`] **must**  be unsignaled
-/// - If [`fence`] is not [`crate::utils::Handle::null`], [`fence`] **must**  not be associated with
-///   any other queue command that has not yet completed execution on that queue
+/// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be unsignaled
+/// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  not be associated with any
+///   other queue command that has not yet completed execution on that queue
 /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
 ///   feature  **must**  be enabled
 /// - If a command recorded into the `commandBuffer` member of any element of the
@@ -618,8 +621,7 @@ pub type FNGetPrivateData = Option<
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - If [`submit_count`] is not `0`, [`p_submits`] **must**  be a valid pointer to an array of
 ///   [`submit_count`] valid [`SubmitInfo2`] structures
-/// - If [`fence`] is not [`crate::utils::Handle::null`], [`fence`] **must**  be a valid [`Fence`]
-///   handle
+/// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be a valid [`Fence`] handle
 /// - Both of [`fence`], and [`queue`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
 ///
@@ -1018,10 +1020,10 @@ pub type FNCmdSetScissorWithCount =
 ///updated addresses in their address calculations for subsequent drawing
 ///commands.
 ///If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) feature is enabled,
-///elements of [`p_buffers`] **can**  be [`crate::utils::Handle::null`], and  **can**  be used by
+///elements of [`p_buffers`] **can**  be [`crate::Handle::null`], and  **can**  be used by
 ///the vertex shader.
 ///If a vertex input attribute is bound to a vertex input binding that is
-///[`crate::utils::Handle::null`], the values taken from memory are considered to be
+///[`crate::Handle::null`], the values taken from memory are considered to be
 ///zero, and missing G, B, or A components are
 ///[filled with (0,0,1)](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fxvertex-input-extraction).This command also [dynamically sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the byte
 ///strides between consecutive elements within buffer [`p_buffers`][i] to the
@@ -1047,10 +1049,9 @@ pub type FNCmdSetScissorWithCount =
 /// - Each element of [`p_buffers`] that is non-sparse  **must**  be bound completely and
 ///   contiguously to a single [`DeviceMemory`] object
 /// - If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
-///   feature is not enabled, all elements of [`p_buffers`] **must**  not be
-///   [`crate::utils::Handle::null`]
-/// - If an element of [`p_buffers`] is [`crate::utils::Handle::null`], then the corresponding
-///   element of [`p_offsets`] **must**  be zero
+///   feature is not enabled, all elements of [`p_buffers`] **must**  not be [`crate::Handle::null`]
+/// - If an element of [`p_buffers`] is [`crate::Handle::null`], then the corresponding element of
+///   [`p_offsets`] **must**  be zero
 /// - If [`p_strides`] is not `NULL` each element of [`p_strides`] **must**  be less than or equal
 ///   to [`PhysicalDeviceLimits::max_vertex_input_binding_stride`]
 /// - If [`p_strides`] is not `NULL` each element of [`p_strides`] **must**  be either 0 or greater
@@ -1062,7 +1063,7 @@ pub type FNCmdSetScissorWithCount =
 ///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_buffers`] **must**  be a valid pointer to an array of [`binding_count`] valid or
-///   [`crate::utils::Handle::null`][`Buffer`] handles
+///   [`crate::Handle::null`][`Buffer`] handles
 /// - [`p_offsets`] **must**  be a valid pointer to an array of [`binding_count`][`DeviceSize`]
 ///   values
 /// - If [`p_sizes`] is not `NULL`, [`p_sizes`] **must**  be a valid pointer to an array of
@@ -9420,7 +9421,7 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -9447,18 +9448,18 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
     pub fn private_data_slot_request_count_mut(&mut self) -> &mut u32 {
         &mut self.private_data_slot_request_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::private_data_slot_request_count`]
-    pub fn set_private_data_slot_request_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::private_data_slot_request_count`]
+    pub fn set_private_data_slot_request_count(mut self, value: u32) -> Self {
         self.private_data_slot_request_count = value;
         self
     }
@@ -9534,7 +9535,7 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -9561,18 +9562,18 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
     pub fn flags_mut(&mut self) -> &mut PrivateDataSlotCreateFlags {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_3::PrivateDataSlotCreateFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_3::PrivateDataSlotCreateFlags) -> Self {
         self.flags = value;
         self
     }
@@ -9623,7 +9624,7 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePrivateDataFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePrivateDataFeatures<'lt> {
@@ -9651,20 +9652,20 @@ impl<'lt> Default for PhysicalDevicePrivateDataFeatures<'lt> {
 }
 impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::private_data`]
     pub fn private_data_raw(&self) -> Bool32 {
         self.private_data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::private_data`]
-    pub fn set_private_data_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_private_data_raw(mut self, value: Bool32) -> Self {
         self.private_data = value;
         self
     }
@@ -9712,18 +9713,18 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::private_data`]
-    pub fn set_private_data(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::private_data`]
+    pub fn set_private_data(mut self, value: bool) -> Self {
         self.private_data = value as u8 as u32;
         self
     }
@@ -9805,12 +9806,12 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
         self.create_info
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::create_info`]
-    pub fn set_create_info_raw(&mut self, value: *const BufferCreateInfo<'lt>) -> &mut Self {
+    pub fn set_create_info_raw(mut self, value: *const BufferCreateInfo<'lt>) -> Self {
         self.create_info = value;
         self
     }
@@ -9836,18 +9837,18 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
     pub fn s_type_mut(&mut self) -> &mut StructureType {
         &mut self.s_type
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::create_info`]
-    pub fn set_create_info(&mut self, value: &'lt crate::vulkan1_0::BufferCreateInfo<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::create_info`]
+    pub fn set_create_info(mut self, value: &'lt crate::vulkan1_0::BufferCreateInfo<'lt>) -> Self {
         self.create_info = value as *const _;
         self
     }
@@ -9966,12 +9967,12 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
         self.create_info
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::create_info`]
-    pub fn set_create_info_raw(&mut self, value: *const ImageCreateInfo<'lt>) -> &mut Self {
+    pub fn set_create_info_raw(mut self, value: *const ImageCreateInfo<'lt>) -> Self {
         self.create_info = value;
         self
     }
@@ -10005,23 +10006,23 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
     pub fn plane_aspect_mut(&mut self) -> &mut ImageAspectFlagBits {
         &mut self.plane_aspect
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::create_info`]
-    pub fn set_create_info(&mut self, value: &'lt crate::vulkan1_0::ImageCreateInfo<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::create_info`]
+    pub fn set_create_info(mut self, value: &'lt crate::vulkan1_0::ImageCreateInfo<'lt>) -> Self {
         self.create_info = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::plane_aspect`]
-    pub fn set_plane_aspect(&mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::plane_aspect`]
+    pub fn set_plane_aspect(mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> Self {
         self.plane_aspect = value;
         self
     }
@@ -10081,7 +10082,7 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockFeatures<'lt> {
@@ -10119,8 +10120,8 @@ impl<'lt> Default for PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::inline_uniform_block`]
     pub fn inline_uniform_block_raw(&self) -> Bool32 {
@@ -10131,17 +10132,17 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
         self.descriptor_binding_inline_uniform_block_update_after_bind
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::inline_uniform_block`]
-    pub fn set_inline_uniform_block_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_inline_uniform_block_raw(mut self, value: Bool32) -> Self {
         self.inline_uniform_block = value;
         self
     }
     ///Sets the raw value of [`Self::descriptor_binding_inline_uniform_block_update_after_bind`]
-    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind_raw(mut self, value: Bool32) -> Self {
         self.descriptor_binding_inline_uniform_block_update_after_bind = value;
         self
     }
@@ -10212,23 +10213,23 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::inline_uniform_block`]
-    pub fn set_inline_uniform_block(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::inline_uniform_block`]
+    pub fn set_inline_uniform_block(mut self, value: bool) -> Self {
         self.inline_uniform_block = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::descriptor_binding_inline_uniform_block_update_after_bind`]
-    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::descriptor_binding_inline_uniform_block_update_after_bind`]
+    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind(mut self, value: bool) -> Self {
         self.descriptor_binding_inline_uniform_block_update_after_bind = value as u8 as u32;
         self
     }
@@ -10300,7 +10301,7 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockProperties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockProperties<'lt> {
@@ -10338,11 +10339,11 @@ impl<'lt> Default for PhysicalDeviceInlineUniformBlockProperties<'lt> {
 }
 impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -10411,39 +10412,38 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
     pub fn max_descriptor_set_update_after_bind_inline_uniform_blocks_mut(&mut self) -> &mut u32 {
         &mut self.max_descriptor_set_update_after_bind_inline_uniform_blocks
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_inline_uniform_block_size`]
-    pub fn set_max_inline_uniform_block_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_inline_uniform_block_size`]
+    pub fn set_max_inline_uniform_block_size(mut self, value: u32) -> Self {
         self.max_inline_uniform_block_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
+    pub fn set_max_per_stage_descriptor_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_per_stage_descriptor_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
+    pub fn set_max_per_stage_descriptor_update_after_bind_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of [`Self::max_descriptor_set_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_descriptor_set_inline_uniform_blocks`]
+    pub fn set_max_descriptor_set_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_descriptor_set_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_update_after_bind_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
+    pub fn set_max_descriptor_set_update_after_bind_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_descriptor_set_update_after_bind_inline_uniform_blocks = value;
         self
     }
@@ -10536,12 +10536,12 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
         self.data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::data`]
-    pub fn set_data_raw(&mut self, value: *const c_void) -> &mut Self {
+    pub fn set_data_raw(mut self, value: *const c_void) -> Self {
         self.data = value;
         self
     }
@@ -10575,23 +10575,23 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
     pub fn data_size_mut(&mut self) -> &mut u32 {
         &mut self.data_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::data_size`]
-    pub fn set_data_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::data_size`]
+    pub fn set_data_size(mut self, value: u32) -> Self {
         self.data_size = value;
         self
     }
-    ///Sets the raw value of [`Self::data`]
-    pub fn set_data(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::data`]
+    pub fn set_data(mut self, value: &'lt [std::ffi::c_void]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.data = value.as_ptr();
@@ -10679,7 +10679,7 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -10706,18 +10706,18 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
     pub fn max_inline_uniform_block_bindings_mut(&mut self) -> &mut u32 {
         &mut self.max_inline_uniform_block_bindings
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::max_inline_uniform_block_bindings`]
-    pub fn set_max_inline_uniform_block_bindings(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_inline_uniform_block_bindings`]
+    pub fn set_max_inline_uniform_block_bindings(mut self, value: u32) -> Self {
         self.max_inline_uniform_block_bindings = value;
         self
     }
@@ -10773,7 +10773,7 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance4Features")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Features<'lt> {
@@ -10810,20 +10810,20 @@ impl<'lt> Default for PhysicalDeviceMaintenance4Features<'lt> {
 }
 impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::maintenance_4`]
     pub fn maintenance_4_raw(&self) -> Bool32 {
         self.maintenance_4
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::maintenance_4`]
-    pub fn set_maintenance_4_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_maintenance_4_raw(mut self, value: Bool32) -> Self {
         self.maintenance_4 = value;
         self
     }
@@ -10871,18 +10871,18 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::maintenance_4`]
-    pub fn set_maintenance_4(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::maintenance_4`]
+    pub fn set_maintenance_4(mut self, value: bool) -> Self {
         self.maintenance_4 = value as u8 as u32;
         self
     }
@@ -10929,7 +10929,7 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance4Properties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Properties<'lt> {
@@ -10955,11 +10955,11 @@ impl<'lt> Default for PhysicalDeviceMaintenance4Properties<'lt> {
 }
 impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -10993,18 +10993,18 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
     pub fn max_buffer_size_mut(&mut self) -> &mut DeviceSize {
         &mut self.max_buffer_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_buffer_size`]
-    pub fn set_max_buffer_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::max_buffer_size`]
+    pub fn set_max_buffer_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.max_buffer_size = value;
         self
     }
@@ -11073,7 +11073,7 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTextureCompressionASTCHDRFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
@@ -11123,20 +11123,20 @@ impl<'lt> Default for PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::texture_compression_astc_hdr`]
     pub fn texture_compression_astc_hdr_raw(&self) -> Bool32 {
         self.texture_compression_astc_hdr
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::texture_compression_astc_hdr`]
-    pub fn set_texture_compression_astc_hdr_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_texture_compression_astc_hdr_raw(mut self, value: Bool32) -> Self {
         self.texture_compression_astc_hdr = value;
         self
     }
@@ -11184,18 +11184,18 @@ impl<'lt> PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::texture_compression_astc_hdr`]
-    pub fn set_texture_compression_astc_hdr(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::texture_compression_astc_hdr`]
+    pub fn set_texture_compression_astc_hdr(mut self, value: bool) -> Self {
         self.texture_compression_astc_hdr = value as u8 as u32;
         self
     }
@@ -11277,13 +11277,13 @@ impl PipelineCreationFeedback {
     pub fn duration_mut(&mut self) -> &mut u64 {
         &mut self.duration
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_3::PipelineCreationFeedbackFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_3::PipelineCreationFeedbackFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::duration`]
-    pub fn set_duration(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::duration`]
+    pub fn set_duration(mut self, value: u64) -> Self {
         self.duration = value;
         self
     }
@@ -11379,7 +11379,7 @@ impl PipelineCreationFeedback {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedbackCreateInfo")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineCreationFeedbackCreateInfo<'lt> {
@@ -11418,25 +11418,25 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::pipeline_creation_feedback`]
-    pub fn pipeline_creation_feedback_raw(&self) -> &*mut PipelineCreationFeedback {
-        &self.pipeline_creation_feedback
+    pub fn pipeline_creation_feedback_raw(&self) -> *mut PipelineCreationFeedback {
+        self.pipeline_creation_feedback
     }
     ///Gets the raw value of [`Self::pipeline_stage_creation_feedbacks`]
-    pub fn pipeline_stage_creation_feedbacks_raw(&self) -> &*mut PipelineCreationFeedback {
-        &self.pipeline_stage_creation_feedbacks
+    pub fn pipeline_stage_creation_feedbacks_raw(&self) -> *mut PipelineCreationFeedback {
+        self.pipeline_stage_creation_feedbacks
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::pipeline_creation_feedback`]
-    pub fn set_pipeline_creation_feedback_raw(&mut self, value: *mut PipelineCreationFeedback) -> &mut Self {
+    pub fn set_pipeline_creation_feedback_raw(mut self, value: *mut PipelineCreationFeedback) -> Self {
         self.pipeline_creation_feedback = value;
         self
     }
     ///Sets the raw value of [`Self::pipeline_stage_creation_feedbacks`]
-    pub fn set_pipeline_stage_creation_feedbacks_raw(&mut self, value: *mut PipelineCreationFeedback) -> &mut Self {
+    pub fn set_pipeline_stage_creation_feedbacks_raw(mut self, value: *mut PipelineCreationFeedback) -> Self {
         self.pipeline_stage_creation_feedbacks = value;
         self
     }
@@ -11497,34 +11497,34 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
             self.pipeline_stage_creation_feedback_count as usize,
         )
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_creation_feedback`]
+    ///Sets the value of [`Self::pipeline_creation_feedback`]
     pub fn set_pipeline_creation_feedback(
-        &mut self,
+        mut self,
         value: &'lt mut crate::vulkan1_3::PipelineCreationFeedback,
-    ) -> &mut Self {
+    ) -> Self {
         self.pipeline_creation_feedback = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_stage_creation_feedback_count`]
-    pub fn set_pipeline_stage_creation_feedback_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_stage_creation_feedback_count`]
+    pub fn set_pipeline_stage_creation_feedback_count(mut self, value: u32) -> Self {
         self.pipeline_stage_creation_feedback_count = value;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_stage_creation_feedbacks`]
+    ///Sets the value of [`Self::pipeline_stage_creation_feedbacks`]
     pub fn set_pipeline_stage_creation_feedbacks(
-        &mut self,
+        mut self,
         value: &'lt mut [crate::vulkan1_3::PipelineCreationFeedback],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.pipeline_stage_creation_feedbacks = value.as_mut_ptr();
@@ -11583,7 +11583,7 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
@@ -11611,20 +11611,20 @@ impl<'lt> Default for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> 
 }
 impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shader_demote_to_helper_invocation`]
     pub fn shader_demote_to_helper_invocation_raw(&self) -> Bool32 {
         self.shader_demote_to_helper_invocation
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_demote_to_helper_invocation`]
-    pub fn set_shader_demote_to_helper_invocation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_demote_to_helper_invocation_raw(mut self, value: Bool32) -> Self {
         self.shader_demote_to_helper_invocation = value;
         self
     }
@@ -11672,18 +11672,18 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_demote_to_helper_invocation`]
-    pub fn set_shader_demote_to_helper_invocation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_demote_to_helper_invocation`]
+    pub fn set_shader_demote_to_helper_invocation(mut self, value: bool) -> Self {
         self.shader_demote_to_helper_invocation = value as u8 as u32;
         self
     }
@@ -11757,7 +11757,7 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentProperties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
@@ -11792,8 +11792,8 @@ impl<'lt> Default for PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 }
 impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
     pub fn storage_texel_buffer_offset_single_texel_alignment_raw(&self) -> Bool32 {
@@ -11804,17 +11804,17 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
         self.uniform_texel_buffer_offset_single_texel_alignment
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_storage_texel_buffer_offset_single_texel_alignment_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_storage_texel_buffer_offset_single_texel_alignment_raw(mut self, value: Bool32) -> Self {
         self.storage_texel_buffer_offset_single_texel_alignment = value;
         self
     }
     ///Sets the raw value of [`Self::uniform_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_uniform_texel_buffer_offset_single_texel_alignment_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_uniform_texel_buffer_offset_single_texel_alignment_raw(mut self, value: Bool32) -> Self {
         self.uniform_texel_buffer_offset_single_texel_alignment = value;
         self
     }
@@ -11904,39 +11904,33 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::storage_texel_buffer_offset_alignment_bytes`]
-    pub fn set_storage_texel_buffer_offset_alignment_bytes(
-        &mut self,
-        value: crate::vulkan1_0::DeviceSize,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::storage_texel_buffer_offset_alignment_bytes`]
+    pub fn set_storage_texel_buffer_offset_alignment_bytes(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.storage_texel_buffer_offset_alignment_bytes = value;
         self
     }
-    ///Sets the raw value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_storage_texel_buffer_offset_single_texel_alignment(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
+    pub fn set_storage_texel_buffer_offset_single_texel_alignment(mut self, value: bool) -> Self {
         self.storage_texel_buffer_offset_single_texel_alignment = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::uniform_texel_buffer_offset_alignment_bytes`]
-    pub fn set_uniform_texel_buffer_offset_alignment_bytes(
-        &mut self,
-        value: crate::vulkan1_0::DeviceSize,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::uniform_texel_buffer_offset_alignment_bytes`]
+    pub fn set_uniform_texel_buffer_offset_alignment_bytes(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.uniform_texel_buffer_offset_alignment_bytes = value;
         self
     }
-    ///Sets the raw value of [`Self::uniform_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_uniform_texel_buffer_offset_single_texel_alignment(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::uniform_texel_buffer_offset_single_texel_alignment`]
+    pub fn set_uniform_texel_buffer_offset_single_texel_alignment(mut self, value: bool) -> Self {
         self.uniform_texel_buffer_offset_single_texel_alignment = value as u8 as u32;
         self
     }
@@ -11995,7 +11989,7 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupSizeControlFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
@@ -12030,8 +12024,8 @@ impl<'lt> Default for PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::subgroup_size_control`]
     pub fn subgroup_size_control_raw(&self) -> Bool32 {
@@ -12042,17 +12036,17 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
         self.compute_full_subgroups
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::subgroup_size_control`]
-    pub fn set_subgroup_size_control_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_subgroup_size_control_raw(mut self, value: Bool32) -> Self {
         self.subgroup_size_control = value;
         self
     }
     ///Sets the raw value of [`Self::compute_full_subgroups`]
-    pub fn set_compute_full_subgroups_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_compute_full_subgroups_raw(mut self, value: Bool32) -> Self {
         self.compute_full_subgroups = value;
         self
     }
@@ -12122,23 +12116,23 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::subgroup_size_control`]
-    pub fn set_subgroup_size_control(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::subgroup_size_control`]
+    pub fn set_subgroup_size_control(mut self, value: bool) -> Self {
         self.subgroup_size_control = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::compute_full_subgroups`]
-    pub fn set_compute_full_subgroups(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::compute_full_subgroups`]
+    pub fn set_compute_full_subgroups(mut self, value: bool) -> Self {
         self.compute_full_subgroups = value as u8 as u32;
         self
     }
@@ -12198,7 +12192,7 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupSizeControlProperties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlProperties<'lt> {
@@ -12233,11 +12227,11 @@ impl<'lt> Default for PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 }
 impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -12295,33 +12289,33 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
     pub fn required_subgroup_size_stages_mut(&mut self) -> &mut ShaderStageFlags {
         &mut self.required_subgroup_size_stages
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::min_subgroup_size`]
-    pub fn set_min_subgroup_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_subgroup_size`]
+    pub fn set_min_subgroup_size(mut self, value: u32) -> Self {
         self.min_subgroup_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_subgroup_size`]
-    pub fn set_max_subgroup_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_subgroup_size`]
+    pub fn set_max_subgroup_size(mut self, value: u32) -> Self {
         self.max_subgroup_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_compute_workgroup_subgroups`]
-    pub fn set_max_compute_workgroup_subgroups(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_compute_workgroup_subgroups`]
+    pub fn set_max_compute_workgroup_subgroups(mut self, value: u32) -> Self {
         self.max_compute_workgroup_subgroups = value;
         self
     }
-    ///Sets the raw value of [`Self::required_subgroup_size_stages`]
-    pub fn set_required_subgroup_size_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+    ///Sets the value of [`Self::required_subgroup_size_stages`]
+    pub fn set_required_subgroup_size_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
         self.required_subgroup_size_stages = value;
         self
     }
@@ -12375,7 +12369,7 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineShaderStageRequiredSubgroupSizeCreateInfo")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
@@ -12403,11 +12397,11 @@ impl<'lt> Default for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 }
 impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -12441,18 +12435,18 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
     pub fn required_subgroup_size_mut(&mut self) -> &mut u32 {
         &mut self.required_subgroup_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::required_subgroup_size`]
-    pub fn set_required_subgroup_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::required_subgroup_size`]
+    pub fn set_required_subgroup_size(mut self, value: u32) -> Self {
         self.required_subgroup_size = value;
         self
     }
@@ -12511,7 +12505,7 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineCreationCacheControlFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
@@ -12543,20 +12537,20 @@ impl<'lt> Default for PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 }
 impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::pipeline_creation_cache_control`]
     pub fn pipeline_creation_cache_control_raw(&self) -> Bool32 {
         self.pipeline_creation_cache_control
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::pipeline_creation_cache_control`]
-    pub fn set_pipeline_creation_cache_control_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_pipeline_creation_cache_control_raw(mut self, value: Bool32) -> Self {
         self.pipeline_creation_cache_control = value;
         self
     }
@@ -12604,18 +12598,18 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_creation_cache_control`]
-    pub fn set_pipeline_creation_cache_control(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_creation_cache_control`]
+    pub fn set_pipeline_creation_cache_control(mut self, value: bool) -> Self {
         self.pipeline_creation_cache_control = value as u8 as u32;
         self
     }
@@ -12733,7 +12727,7 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan13Features")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Features<'lt> {
@@ -12879,8 +12873,8 @@ impl<'lt> Default for PhysicalDeviceVulkan13Features<'lt> {
 }
 impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::robust_image_access`]
     pub fn robust_image_access_raw(&self) -> Bool32 {
@@ -12943,82 +12937,82 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
         self.maintenance_4
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::robust_image_access`]
-    pub fn set_robust_image_access_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_robust_image_access_raw(mut self, value: Bool32) -> Self {
         self.robust_image_access = value;
         self
     }
     ///Sets the raw value of [`Self::inline_uniform_block`]
-    pub fn set_inline_uniform_block_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_inline_uniform_block_raw(mut self, value: Bool32) -> Self {
         self.inline_uniform_block = value;
         self
     }
     ///Sets the raw value of [`Self::descriptor_binding_inline_uniform_block_update_after_bind`]
-    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind_raw(mut self, value: Bool32) -> Self {
         self.descriptor_binding_inline_uniform_block_update_after_bind = value;
         self
     }
     ///Sets the raw value of [`Self::pipeline_creation_cache_control`]
-    pub fn set_pipeline_creation_cache_control_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_pipeline_creation_cache_control_raw(mut self, value: Bool32) -> Self {
         self.pipeline_creation_cache_control = value;
         self
     }
     ///Sets the raw value of [`Self::private_data`]
-    pub fn set_private_data_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_private_data_raw(mut self, value: Bool32) -> Self {
         self.private_data = value;
         self
     }
     ///Sets the raw value of [`Self::shader_demote_to_helper_invocation`]
-    pub fn set_shader_demote_to_helper_invocation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_demote_to_helper_invocation_raw(mut self, value: Bool32) -> Self {
         self.shader_demote_to_helper_invocation = value;
         self
     }
     ///Sets the raw value of [`Self::shader_terminate_invocation`]
-    pub fn set_shader_terminate_invocation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_terminate_invocation_raw(mut self, value: Bool32) -> Self {
         self.shader_terminate_invocation = value;
         self
     }
     ///Sets the raw value of [`Self::subgroup_size_control`]
-    pub fn set_subgroup_size_control_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_subgroup_size_control_raw(mut self, value: Bool32) -> Self {
         self.subgroup_size_control = value;
         self
     }
     ///Sets the raw value of [`Self::compute_full_subgroups`]
-    pub fn set_compute_full_subgroups_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_compute_full_subgroups_raw(mut self, value: Bool32) -> Self {
         self.compute_full_subgroups = value;
         self
     }
     ///Sets the raw value of [`Self::synchronization_2`]
-    pub fn set_synchronization_2_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_synchronization_2_raw(mut self, value: Bool32) -> Self {
         self.synchronization_2 = value;
         self
     }
     ///Sets the raw value of [`Self::texture_compression_astc_hdr`]
-    pub fn set_texture_compression_astc_hdr_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_texture_compression_astc_hdr_raw(mut self, value: Bool32) -> Self {
         self.texture_compression_astc_hdr = value;
         self
     }
     ///Sets the raw value of [`Self::shader_zero_initialize_workgroup_memory`]
-    pub fn set_shader_zero_initialize_workgroup_memory_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_zero_initialize_workgroup_memory_raw(mut self, value: Bool32) -> Self {
         self.shader_zero_initialize_workgroup_memory = value;
         self
     }
     ///Sets the raw value of [`Self::dynamic_rendering`]
-    pub fn set_dynamic_rendering_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_dynamic_rendering_raw(mut self, value: Bool32) -> Self {
         self.dynamic_rendering = value;
         self
     }
     ///Sets the raw value of [`Self::shader_integer_dot_product`]
-    pub fn set_shader_integer_dot_product_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_integer_dot_product_raw(mut self, value: Bool32) -> Self {
         self.shader_integer_dot_product = value;
         self
     }
     ///Sets the raw value of [`Self::maintenance_4`]
-    pub fn set_maintenance_4_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_maintenance_4_raw(mut self, value: Bool32) -> Self {
         self.maintenance_4 = value;
         self
     }
@@ -13375,88 +13369,88 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::robust_image_access`]
-    pub fn set_robust_image_access(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::robust_image_access`]
+    pub fn set_robust_image_access(mut self, value: bool) -> Self {
         self.robust_image_access = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::inline_uniform_block`]
-    pub fn set_inline_uniform_block(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::inline_uniform_block`]
+    pub fn set_inline_uniform_block(mut self, value: bool) -> Self {
         self.inline_uniform_block = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::descriptor_binding_inline_uniform_block_update_after_bind`]
-    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::descriptor_binding_inline_uniform_block_update_after_bind`]
+    pub fn set_descriptor_binding_inline_uniform_block_update_after_bind(mut self, value: bool) -> Self {
         self.descriptor_binding_inline_uniform_block_update_after_bind = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_creation_cache_control`]
-    pub fn set_pipeline_creation_cache_control(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_creation_cache_control`]
+    pub fn set_pipeline_creation_cache_control(mut self, value: bool) -> Self {
         self.pipeline_creation_cache_control = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::private_data`]
-    pub fn set_private_data(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::private_data`]
+    pub fn set_private_data(mut self, value: bool) -> Self {
         self.private_data = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::shader_demote_to_helper_invocation`]
-    pub fn set_shader_demote_to_helper_invocation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_demote_to_helper_invocation`]
+    pub fn set_shader_demote_to_helper_invocation(mut self, value: bool) -> Self {
         self.shader_demote_to_helper_invocation = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::shader_terminate_invocation`]
-    pub fn set_shader_terminate_invocation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_terminate_invocation`]
+    pub fn set_shader_terminate_invocation(mut self, value: bool) -> Self {
         self.shader_terminate_invocation = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::subgroup_size_control`]
-    pub fn set_subgroup_size_control(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::subgroup_size_control`]
+    pub fn set_subgroup_size_control(mut self, value: bool) -> Self {
         self.subgroup_size_control = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::compute_full_subgroups`]
-    pub fn set_compute_full_subgroups(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::compute_full_subgroups`]
+    pub fn set_compute_full_subgroups(mut self, value: bool) -> Self {
         self.compute_full_subgroups = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::synchronization_2`]
-    pub fn set_synchronization_2(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::synchronization_2`]
+    pub fn set_synchronization_2(mut self, value: bool) -> Self {
         self.synchronization_2 = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::texture_compression_astc_hdr`]
-    pub fn set_texture_compression_astc_hdr(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::texture_compression_astc_hdr`]
+    pub fn set_texture_compression_astc_hdr(mut self, value: bool) -> Self {
         self.texture_compression_astc_hdr = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::shader_zero_initialize_workgroup_memory`]
-    pub fn set_shader_zero_initialize_workgroup_memory(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_zero_initialize_workgroup_memory`]
+    pub fn set_shader_zero_initialize_workgroup_memory(mut self, value: bool) -> Self {
         self.shader_zero_initialize_workgroup_memory = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::dynamic_rendering`]
-    pub fn set_dynamic_rendering(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::dynamic_rendering`]
+    pub fn set_dynamic_rendering(mut self, value: bool) -> Self {
         self.dynamic_rendering = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::shader_integer_dot_product`]
-    pub fn set_shader_integer_dot_product(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_integer_dot_product`]
+    pub fn set_shader_integer_dot_product(mut self, value: bool) -> Self {
         self.shader_integer_dot_product = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::maintenance_4`]
-    pub fn set_maintenance_4(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::maintenance_4`]
+    pub fn set_maintenance_4(mut self, value: bool) -> Self {
         self.maintenance_4 = value as u8 as u32;
         self
     }
@@ -13694,7 +13688,7 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan13Properties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Properties<'lt> {
@@ -13852,8 +13846,8 @@ impl<'lt> Default for PhysicalDeviceVulkan13Properties<'lt> {
 }
 impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
     pub fn integer_dot_product_8_bit_unsigned_accelerated_raw(&self) -> Bool32 {
@@ -14002,231 +13996,228 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
         self.uniform_texel_buffer_offset_single_texel_alignment
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_8_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_8_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_8_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_8_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_8_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_8_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_8_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_unsigned_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_signed_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated_raw(
-        &mut self,
-        value: Bool32,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_16_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_16_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_16_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_16_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_16_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_16_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_16_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_16_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_16_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_16_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_32_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_32_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_32_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_32_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_32_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_32_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_32_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_32_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_32_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_32_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_64_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_64_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_64_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_64_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_64_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_64_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_64_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_64_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_64_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_64_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_storage_texel_buffer_offset_single_texel_alignment_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_storage_texel_buffer_offset_single_texel_alignment_raw(mut self, value: Bool32) -> Self {
         self.storage_texel_buffer_offset_single_texel_alignment = value;
         self
     }
     ///Sets the raw value of [`Self::uniform_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_uniform_texel_buffer_offset_single_texel_alignment_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_uniform_texel_buffer_offset_single_texel_alignment_raw(mut self, value: Bool32) -> Self {
         self.uniform_texel_buffer_offset_single_texel_alignment = value;
         self
     }
@@ -15167,307 +15158,276 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
     pub fn max_buffer_size_mut(&mut self) -> &mut DeviceSize {
         &mut self.max_buffer_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::min_subgroup_size`]
-    pub fn set_min_subgroup_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_subgroup_size`]
+    pub fn set_min_subgroup_size(mut self, value: u32) -> Self {
         self.min_subgroup_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_subgroup_size`]
-    pub fn set_max_subgroup_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_subgroup_size`]
+    pub fn set_max_subgroup_size(mut self, value: u32) -> Self {
         self.max_subgroup_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_compute_workgroup_subgroups`]
-    pub fn set_max_compute_workgroup_subgroups(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_compute_workgroup_subgroups`]
+    pub fn set_max_compute_workgroup_subgroups(mut self, value: u32) -> Self {
         self.max_compute_workgroup_subgroups = value;
         self
     }
-    ///Sets the raw value of [`Self::required_subgroup_size_stages`]
-    pub fn set_required_subgroup_size_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+    ///Sets the value of [`Self::required_subgroup_size_stages`]
+    pub fn set_required_subgroup_size_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
         self.required_subgroup_size_stages = value;
         self
     }
-    ///Sets the raw value of [`Self::max_inline_uniform_block_size`]
-    pub fn set_max_inline_uniform_block_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_inline_uniform_block_size`]
+    pub fn set_max_inline_uniform_block_size(mut self, value: u32) -> Self {
         self.max_inline_uniform_block_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_per_stage_descriptor_inline_uniform_blocks`]
+    pub fn set_max_per_stage_descriptor_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_per_stage_descriptor_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of
-    /// [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_per_stage_descriptor_update_after_bind_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_per_stage_descriptor_update_after_bind_inline_uniform_blocks`]
+    pub fn set_max_per_stage_descriptor_update_after_bind_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_per_stage_descriptor_update_after_bind_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of [`Self::max_descriptor_set_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_descriptor_set_inline_uniform_blocks`]
+    pub fn set_max_descriptor_set_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_descriptor_set_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
-    pub fn set_max_descriptor_set_update_after_bind_inline_uniform_blocks(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_descriptor_set_update_after_bind_inline_uniform_blocks`]
+    pub fn set_max_descriptor_set_update_after_bind_inline_uniform_blocks(mut self, value: u32) -> Self {
         self.max_descriptor_set_update_after_bind_inline_uniform_blocks = value;
         self
     }
-    ///Sets the raw value of [`Self::max_inline_uniform_total_size`]
-    pub fn set_max_inline_uniform_total_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_inline_uniform_total_size`]
+    pub fn set_max_inline_uniform_total_size(mut self, value: u32) -> Self {
         self.max_inline_uniform_total_size = value;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_8_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_8_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_8_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_8_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_8_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_8_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_8_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_8_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_8_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_8_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_8_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_unsigned_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_4_x_8_bit_packed_unsigned_accelerated`]
+    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_signed_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_4_x_8_bit_packed_signed_accelerated`]
+    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_16_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_16_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_16_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_16_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_16_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_16_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_16_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_16_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_16_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_16_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_16_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_16_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_16_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_32_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_32_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_32_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_32_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_32_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_32_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_32_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_32_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_32_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_32_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_32_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_32_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_32_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_64_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_64_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_64_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_64_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_64_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_64_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_64_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_64_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_64_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_64_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_64_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_64_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_64_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_8_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_8_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated =
             value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_16_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_16_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_32_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_32_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_64_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_64_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::storage_texel_buffer_offset_alignment_bytes`]
-    pub fn set_storage_texel_buffer_offset_alignment_bytes(
-        &mut self,
-        value: crate::vulkan1_0::DeviceSize,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::storage_texel_buffer_offset_alignment_bytes`]
+    pub fn set_storage_texel_buffer_offset_alignment_bytes(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.storage_texel_buffer_offset_alignment_bytes = value;
         self
     }
-    ///Sets the raw value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_storage_texel_buffer_offset_single_texel_alignment(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::storage_texel_buffer_offset_single_texel_alignment`]
+    pub fn set_storage_texel_buffer_offset_single_texel_alignment(mut self, value: bool) -> Self {
         self.storage_texel_buffer_offset_single_texel_alignment = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::uniform_texel_buffer_offset_alignment_bytes`]
-    pub fn set_uniform_texel_buffer_offset_alignment_bytes(
-        &mut self,
-        value: crate::vulkan1_0::DeviceSize,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::uniform_texel_buffer_offset_alignment_bytes`]
+    pub fn set_uniform_texel_buffer_offset_alignment_bytes(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.uniform_texel_buffer_offset_alignment_bytes = value;
         self
     }
-    ///Sets the raw value of [`Self::uniform_texel_buffer_offset_single_texel_alignment`]
-    pub fn set_uniform_texel_buffer_offset_single_texel_alignment(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::uniform_texel_buffer_offset_single_texel_alignment`]
+    pub fn set_uniform_texel_buffer_offset_single_texel_alignment(mut self, value: bool) -> Self {
         self.uniform_texel_buffer_offset_single_texel_alignment = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::max_buffer_size`]
-    pub fn set_max_buffer_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::max_buffer_size`]
+    pub fn set_max_buffer_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.max_buffer_size = value;
         self
     }
@@ -15522,7 +15482,7 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceToolProperties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceToolProperties<'lt> {
@@ -15566,11 +15526,11 @@ impl<'lt> Default for PhysicalDeviceToolProperties<'lt> {
 }
 impl<'lt> PhysicalDeviceToolProperties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -15636,50 +15596,41 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
     pub fn layer_mut(&mut self) -> &mut [c_char; MAX_EXTENSION_NAME_SIZE as usize] {
         &mut self.layer
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(
-        &mut self,
-        value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize]) -> Self {
         self.name = value;
         self
     }
-    ///Sets the raw value of [`Self::version`]
-    pub fn set_version(
-        &mut self,
-        value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::version`]
+    pub fn set_version(mut self, value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize]) -> Self {
         self.version = value;
         self
     }
-    ///Sets the raw value of [`Self::purposes`]
-    pub fn set_purposes(&mut self, value: crate::vulkan1_3::ToolPurposeFlags) -> &mut Self {
+    ///Sets the value of [`Self::purposes`]
+    pub fn set_purposes(mut self, value: crate::vulkan1_3::ToolPurposeFlags) -> Self {
         self.purposes = value;
         self
     }
-    ///Sets the raw value of [`Self::description`]
+    ///Sets the value of [`Self::description`]
     pub fn set_description(
-        &mut self,
+        mut self,
         value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.description = value;
         self
     }
-    ///Sets the raw value of [`Self::layer`]
-    pub fn set_layer(
-        &mut self,
-        value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::layer`]
+    pub fn set_layer(mut self, value: [std::os::raw::c_char; crate::core::MAX_EXTENSION_NAME_SIZE as usize]) -> Self {
         self.layer = value;
         self
     }
@@ -15735,7 +15686,7 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
@@ -15763,20 +15714,20 @@ impl<'lt> Default for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shader_zero_initialize_workgroup_memory`]
     pub fn shader_zero_initialize_workgroup_memory_raw(&self) -> Bool32 {
         self.shader_zero_initialize_workgroup_memory
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_zero_initialize_workgroup_memory`]
-    pub fn set_shader_zero_initialize_workgroup_memory_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_zero_initialize_workgroup_memory_raw(mut self, value: Bool32) -> Self {
         self.shader_zero_initialize_workgroup_memory = value;
         self
     }
@@ -15824,18 +15775,18 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_zero_initialize_workgroup_memory`]
-    pub fn set_shader_zero_initialize_workgroup_memory(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_zero_initialize_workgroup_memory`]
+    pub fn set_shader_zero_initialize_workgroup_memory(mut self, value: bool) -> Self {
         self.shader_zero_initialize_workgroup_memory = value as u8 as u32;
         self
     }
@@ -15886,7 +15837,7 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageRobustnessFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageRobustnessFeatures<'lt> {
@@ -15919,20 +15870,20 @@ impl<'lt> Default for PhysicalDeviceImageRobustnessFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::robust_image_access`]
     pub fn robust_image_access_raw(&self) -> Bool32 {
         self.robust_image_access
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::robust_image_access`]
-    pub fn set_robust_image_access_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_robust_image_access_raw(mut self, value: Bool32) -> Self {
         self.robust_image_access = value;
         self
     }
@@ -15980,18 +15931,18 @@ impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::robust_image_access`]
-    pub fn set_robust_image_access(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::robust_image_access`]
+    pub fn set_robust_image_access(mut self, value: bool) -> Self {
         self.robust_image_access = value as u8 as u32;
         self
     }
@@ -16080,7 +16031,7 @@ impl<'lt> BufferCopy2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16123,28 +16074,28 @@ impl<'lt> BufferCopy2<'lt> {
     pub fn size_mut(&mut self) -> &mut DeviceSize {
         &mut self.size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_offset`]
-    pub fn set_src_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::src_offset`]
+    pub fn set_src_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.src_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_offset`]
-    pub fn set_dst_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::dst_offset`]
+    pub fn set_dst_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.dst_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.size = value;
         self
     }
@@ -16257,7 +16208,7 @@ impl<'lt> ImageCopy2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16316,38 +16267,38 @@ impl<'lt> ImageCopy2<'lt> {
     pub fn extent_mut(&mut self) -> &mut Extent3D {
         &mut self.extent
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_subresource`]
-    pub fn set_src_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::src_subresource`]
+    pub fn set_src_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.src_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::src_offset`]
-    pub fn set_src_offset(&mut self, value: crate::vulkan1_0::Offset3D) -> &mut Self {
+    ///Sets the value of [`Self::src_offset`]
+    pub fn set_src_offset(mut self, value: crate::vulkan1_0::Offset3D) -> Self {
         self.src_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_subresource`]
-    pub fn set_dst_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::dst_subresource`]
+    pub fn set_dst_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.dst_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_offset`]
-    pub fn set_dst_offset(&mut self, value: crate::vulkan1_0::Offset3D) -> &mut Self {
+    ///Sets the value of [`Self::dst_offset`]
+    pub fn set_dst_offset(mut self, value: crate::vulkan1_0::Offset3D) -> Self {
         self.dst_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::extent`]
-    pub fn set_extent(&mut self, value: crate::vulkan1_0::Extent3D) -> &mut Self {
+    ///Sets the value of [`Self::extent`]
+    pub fn set_extent(mut self, value: crate::vulkan1_0::Extent3D) -> Self {
         self.extent = value;
         self
     }
@@ -16453,7 +16404,7 @@ impl<'lt> ImageBlit2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16504,33 +16455,33 @@ impl<'lt> ImageBlit2<'lt> {
     pub fn dst_offsets_mut(&mut self) -> &mut [Offset3D; 2 as usize] {
         &mut self.dst_offsets
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_subresource`]
-    pub fn set_src_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::src_subresource`]
+    pub fn set_src_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.src_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::src_offsets`]
-    pub fn set_src_offsets(&mut self, value: [crate::vulkan1_0::Offset3D; 2 as usize]) -> &mut Self {
+    ///Sets the value of [`Self::src_offsets`]
+    pub fn set_src_offsets(mut self, value: [crate::vulkan1_0::Offset3D; 2 as usize]) -> Self {
         self.src_offsets = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_subresource`]
-    pub fn set_dst_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::dst_subresource`]
+    pub fn set_dst_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.dst_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_offsets`]
-    pub fn set_dst_offsets(&mut self, value: [crate::vulkan1_0::Offset3D; 2 as usize]) -> &mut Self {
+    ///Sets the value of [`Self::dst_offsets`]
+    pub fn set_dst_offsets(mut self, value: [crate::vulkan1_0::Offset3D; 2 as usize]) -> Self {
         self.dst_offsets = value;
         self
     }
@@ -16664,7 +16615,7 @@ impl<'lt> BufferImageCopy2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16731,43 +16682,43 @@ impl<'lt> BufferImageCopy2<'lt> {
     pub fn image_extent_mut(&mut self) -> &mut Extent3D {
         &mut self.image_extent
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::buffer_offset`]
-    pub fn set_buffer_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::buffer_offset`]
+    pub fn set_buffer_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.buffer_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_row_length`]
-    pub fn set_buffer_row_length(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::buffer_row_length`]
+    pub fn set_buffer_row_length(mut self, value: u32) -> Self {
         self.buffer_row_length = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_image_height`]
-    pub fn set_buffer_image_height(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::buffer_image_height`]
+    pub fn set_buffer_image_height(mut self, value: u32) -> Self {
         self.buffer_image_height = value;
         self
     }
-    ///Sets the raw value of [`Self::image_subresource`]
-    pub fn set_image_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::image_subresource`]
+    pub fn set_image_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.image_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::image_offset`]
-    pub fn set_image_offset(&mut self, value: crate::vulkan1_0::Offset3D) -> &mut Self {
+    ///Sets the value of [`Self::image_offset`]
+    pub fn set_image_offset(mut self, value: crate::vulkan1_0::Offset3D) -> Self {
         self.image_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::image_extent`]
-    pub fn set_image_extent(&mut self, value: crate::vulkan1_0::Extent3D) -> &mut Self {
+    ///Sets the value of [`Self::image_extent`]
+    pub fn set_image_extent(mut self, value: crate::vulkan1_0::Extent3D) -> Self {
         self.image_extent = value;
         self
     }
@@ -16879,7 +16830,7 @@ impl<'lt> ImageResolve2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16938,38 +16889,38 @@ impl<'lt> ImageResolve2<'lt> {
     pub fn extent_mut(&mut self) -> &mut Extent3D {
         &mut self.extent
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_subresource`]
-    pub fn set_src_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::src_subresource`]
+    pub fn set_src_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.src_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::src_offset`]
-    pub fn set_src_offset(&mut self, value: crate::vulkan1_0::Offset3D) -> &mut Self {
+    ///Sets the value of [`Self::src_offset`]
+    pub fn set_src_offset(mut self, value: crate::vulkan1_0::Offset3D) -> Self {
         self.src_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_subresource`]
-    pub fn set_dst_subresource(&mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> &mut Self {
+    ///Sets the value of [`Self::dst_subresource`]
+    pub fn set_dst_subresource(mut self, value: crate::vulkan1_0::ImageSubresourceLayers) -> Self {
         self.dst_subresource = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_offset`]
-    pub fn set_dst_offset(&mut self, value: crate::vulkan1_0::Offset3D) -> &mut Self {
+    ///Sets the value of [`Self::dst_offset`]
+    pub fn set_dst_offset(mut self, value: crate::vulkan1_0::Offset3D) -> Self {
         self.dst_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::extent`]
-    pub fn set_extent(&mut self, value: crate::vulkan1_0::Extent3D) -> &mut Self {
+    ///Sets the value of [`Self::extent`]
+    pub fn set_extent(mut self, value: crate::vulkan1_0::Extent3D) -> Self {
         self.extent = value;
         self
     }
@@ -17095,12 +17046,12 @@ impl<'lt> CopyBufferInfo2<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const BufferCopy2<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const BufferCopy2<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -17150,33 +17101,33 @@ impl<'lt> CopyBufferInfo2<'lt> {
     pub fn region_count_mut(&mut self) -> &mut u32 {
         &mut self.region_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_buffer`]
-    pub fn set_src_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::src_buffer`]
+    pub fn set_src_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.src_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_buffer`]
-    pub fn set_dst_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::dst_buffer`]
+    pub fn set_dst_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.dst_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::region_count`]
+    pub fn set_region_count(mut self, value: u32) -> Self {
         self.region_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions(&mut self, value: &'lt [crate::vulkan1_3::BufferCopy2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::regions`]
+    pub fn set_regions(mut self, value: &'lt [crate::vulkan1_3::BufferCopy2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
@@ -17455,12 +17406,12 @@ impl<'lt> CopyImageInfo2<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const ImageCopy2<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const ImageCopy2<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -17526,43 +17477,43 @@ impl<'lt> CopyImageInfo2<'lt> {
     pub fn region_count_mut(&mut self) -> &mut u32 {
         &mut self.region_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_image`]
-    pub fn set_src_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::src_image`]
+    pub fn set_src_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.src_image = value;
         self
     }
-    ///Sets the raw value of [`Self::src_image_layout`]
-    pub fn set_src_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::src_image_layout`]
+    pub fn set_src_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.src_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image`]
-    pub fn set_dst_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::dst_image`]
+    pub fn set_dst_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.dst_image = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image_layout`]
-    pub fn set_dst_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::dst_image_layout`]
+    pub fn set_dst_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.dst_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::region_count`]
+    pub fn set_region_count(mut self, value: u32) -> Self {
         self.region_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions(&mut self, value: &'lt [crate::vulkan1_3::ImageCopy2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::regions`]
+    pub fn set_regions(mut self, value: &'lt [crate::vulkan1_3::ImageCopy2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
@@ -17788,12 +17739,12 @@ impl<'lt> BlitImageInfo2<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const ImageBlit2<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const ImageBlit2<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -17867,51 +17818,51 @@ impl<'lt> BlitImageInfo2<'lt> {
     pub fn filter_mut(&mut self) -> &mut Filter {
         &mut self.filter
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_image`]
-    pub fn set_src_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::src_image`]
+    pub fn set_src_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.src_image = value;
         self
     }
-    ///Sets the raw value of [`Self::src_image_layout`]
-    pub fn set_src_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::src_image_layout`]
+    pub fn set_src_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.src_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image`]
-    pub fn set_dst_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::dst_image`]
+    pub fn set_dst_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.dst_image = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image_layout`]
-    pub fn set_dst_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::dst_image_layout`]
+    pub fn set_dst_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.dst_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::region_count`]
+    pub fn set_region_count(mut self, value: u32) -> Self {
         self.region_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions(&mut self, value: &'lt [crate::vulkan1_3::ImageBlit2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::regions`]
+    pub fn set_regions(mut self, value: &'lt [crate::vulkan1_3::ImageBlit2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
         self.region_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::filter`]
-    pub fn set_filter(&mut self, value: crate::vulkan1_0::Filter) -> &mut Self {
+    ///Sets the value of [`Self::filter`]
+    pub fn set_filter(mut self, value: crate::vulkan1_0::Filter) -> Self {
         self.filter = value;
         self
     }
@@ -18130,12 +18081,12 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const BufferImageCopy2<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const BufferImageCopy2<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -18193,38 +18144,38 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
     pub fn region_count_mut(&mut self) -> &mut u32 {
         &mut self.region_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_buffer`]
-    pub fn set_src_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::src_buffer`]
+    pub fn set_src_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.src_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image`]
-    pub fn set_dst_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::dst_image`]
+    pub fn set_dst_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.dst_image = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image_layout`]
-    pub fn set_dst_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::dst_image_layout`]
+    pub fn set_dst_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.dst_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::region_count`]
+    pub fn set_region_count(mut self, value: u32) -> Self {
         self.region_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions(&mut self, value: &'lt [crate::vulkan1_3::BufferImageCopy2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::regions`]
+    pub fn set_regions(mut self, value: &'lt [crate::vulkan1_3::BufferImageCopy2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
@@ -18442,12 +18393,12 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const BufferImageCopy2<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const BufferImageCopy2<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -18505,38 +18456,38 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
     pub fn region_count_mut(&mut self) -> &mut u32 {
         &mut self.region_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_image`]
-    pub fn set_src_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::src_image`]
+    pub fn set_src_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.src_image = value;
         self
     }
-    ///Sets the raw value of [`Self::src_image_layout`]
-    pub fn set_src_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::src_image_layout`]
+    pub fn set_src_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.src_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_buffer`]
-    pub fn set_dst_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::dst_buffer`]
+    pub fn set_dst_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.dst_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::region_count`]
+    pub fn set_region_count(mut self, value: u32) -> Self {
         self.region_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions(&mut self, value: &'lt [crate::vulkan1_3::BufferImageCopy2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::regions`]
+    pub fn set_regions(mut self, value: &'lt [crate::vulkan1_3::BufferImageCopy2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
@@ -18725,12 +18676,12 @@ impl<'lt> ResolveImageInfo2<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(&mut self, value: *const ImageResolve2<'lt>) -> &mut Self {
+    pub fn set_regions_raw(mut self, value: *const ImageResolve2<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -18796,43 +18747,43 @@ impl<'lt> ResolveImageInfo2<'lt> {
     pub fn region_count_mut(&mut self) -> &mut u32 {
         &mut self.region_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_image`]
-    pub fn set_src_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::src_image`]
+    pub fn set_src_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.src_image = value;
         self
     }
-    ///Sets the raw value of [`Self::src_image_layout`]
-    pub fn set_src_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::src_image_layout`]
+    pub fn set_src_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.src_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image`]
-    pub fn set_dst_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::dst_image`]
+    pub fn set_dst_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.dst_image = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_image_layout`]
-    pub fn set_dst_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::dst_image_layout`]
+    pub fn set_dst_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.dst_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::region_count`]
-    pub fn set_region_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::region_count`]
+    pub fn set_region_count(mut self, value: u32) -> Self {
         self.region_count = value;
         self
     }
-    ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions(&mut self, value: &'lt [crate::vulkan1_3::ImageResolve2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::regions`]
+    pub fn set_regions(mut self, value: &'lt [crate::vulkan1_3::ImageResolve2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.regions = value.as_ptr();
@@ -18891,7 +18842,7 @@ impl<'lt> ResolveImageInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderTerminateInvocationFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
@@ -18919,20 +18870,20 @@ impl<'lt> Default for PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shader_terminate_invocation`]
     pub fn shader_terminate_invocation_raw(&self) -> Bool32 {
         self.shader_terminate_invocation
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_terminate_invocation`]
-    pub fn set_shader_terminate_invocation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_terminate_invocation_raw(mut self, value: Bool32) -> Self {
         self.shader_terminate_invocation = value;
         self
     }
@@ -18980,18 +18931,18 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_terminate_invocation`]
-    pub fn set_shader_terminate_invocation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_terminate_invocation`]
+    pub fn set_shader_terminate_invocation(mut self, value: bool) -> Self {
         self.shader_terminate_invocation = value as u8 as u32;
         self
     }
@@ -19397,7 +19348,7 @@ impl<'lt> MemoryBarrier2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -19448,33 +19399,33 @@ impl<'lt> MemoryBarrier2<'lt> {
     pub fn dst_access_mask_mut(&mut self) -> &mut AccessFlags2 {
         &mut self.dst_access_mask
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_stage_mask`]
-    pub fn set_src_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::src_stage_mask`]
+    pub fn set_src_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.src_stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::src_access_mask`]
-    pub fn set_src_access_mask(&mut self, value: crate::vulkan1_3::AccessFlags2) -> &mut Self {
+    ///Sets the value of [`Self::src_access_mask`]
+    pub fn set_src_access_mask(mut self, value: crate::vulkan1_3::AccessFlags2) -> Self {
         self.src_access_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_stage_mask`]
-    pub fn set_dst_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::dst_stage_mask`]
+    pub fn set_dst_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.dst_stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_access_mask`]
-    pub fn set_dst_access_mask(&mut self, value: crate::vulkan1_3::AccessFlags2) -> &mut Self {
+    ///Sets the value of [`Self::dst_access_mask`]
+    pub fn set_dst_access_mask(mut self, value: crate::vulkan1_3::AccessFlags2) -> Self {
         self.dst_access_mask = value;
         self
     }
@@ -20076,7 +20027,7 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20175,63 +20126,63 @@ impl<'lt> ImageMemoryBarrier2<'lt> {
     pub fn subresource_range_mut(&mut self) -> &mut ImageSubresourceRange {
         &mut self.subresource_range
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_stage_mask`]
-    pub fn set_src_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::src_stage_mask`]
+    pub fn set_src_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.src_stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::src_access_mask`]
-    pub fn set_src_access_mask(&mut self, value: crate::vulkan1_3::AccessFlags2) -> &mut Self {
+    ///Sets the value of [`Self::src_access_mask`]
+    pub fn set_src_access_mask(mut self, value: crate::vulkan1_3::AccessFlags2) -> Self {
         self.src_access_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_stage_mask`]
-    pub fn set_dst_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::dst_stage_mask`]
+    pub fn set_dst_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.dst_stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_access_mask`]
-    pub fn set_dst_access_mask(&mut self, value: crate::vulkan1_3::AccessFlags2) -> &mut Self {
+    ///Sets the value of [`Self::dst_access_mask`]
+    pub fn set_dst_access_mask(mut self, value: crate::vulkan1_3::AccessFlags2) -> Self {
         self.dst_access_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::old_layout`]
-    pub fn set_old_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::old_layout`]
+    pub fn set_old_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.old_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::new_layout`]
-    pub fn set_new_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::new_layout`]
+    pub fn set_new_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.new_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::src_queue_family_index`]
-    pub fn set_src_queue_family_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::src_queue_family_index`]
+    pub fn set_src_queue_family_index(mut self, value: u32) -> Self {
         self.src_queue_family_index = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_queue_family_index`]
-    pub fn set_dst_queue_family_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::dst_queue_family_index`]
+    pub fn set_dst_queue_family_index(mut self, value: u32) -> Self {
         self.dst_queue_family_index = value;
         self
     }
-    ///Sets the raw value of [`Self::image`]
-    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+    ///Sets the value of [`Self::image`]
+    pub fn set_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.image = value;
         self
     }
-    ///Sets the raw value of [`Self::subresource_range`]
-    pub fn set_subresource_range(&mut self, value: crate::vulkan1_0::ImageSubresourceRange) -> &mut Self {
+    ///Sets the value of [`Self::subresource_range`]
+    pub fn set_subresource_range(mut self, value: crate::vulkan1_0::ImageSubresourceRange) -> Self {
         self.subresource_range = value;
         self
     }
@@ -20716,7 +20667,7 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20807,58 +20758,58 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
     pub fn size_mut(&mut self) -> &mut DeviceSize {
         &mut self.size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::src_stage_mask`]
-    pub fn set_src_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::src_stage_mask`]
+    pub fn set_src_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.src_stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::src_access_mask`]
-    pub fn set_src_access_mask(&mut self, value: crate::vulkan1_3::AccessFlags2) -> &mut Self {
+    ///Sets the value of [`Self::src_access_mask`]
+    pub fn set_src_access_mask(mut self, value: crate::vulkan1_3::AccessFlags2) -> Self {
         self.src_access_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_stage_mask`]
-    pub fn set_dst_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::dst_stage_mask`]
+    pub fn set_dst_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.dst_stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_access_mask`]
-    pub fn set_dst_access_mask(&mut self, value: crate::vulkan1_3::AccessFlags2) -> &mut Self {
+    ///Sets the value of [`Self::dst_access_mask`]
+    pub fn set_dst_access_mask(mut self, value: crate::vulkan1_3::AccessFlags2) -> Self {
         self.dst_access_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::src_queue_family_index`]
-    pub fn set_src_queue_family_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::src_queue_family_index`]
+    pub fn set_src_queue_family_index(mut self, value: u32) -> Self {
         self.src_queue_family_index = value;
         self
     }
-    ///Sets the raw value of [`Self::dst_queue_family_index`]
-    pub fn set_dst_queue_family_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::dst_queue_family_index`]
+    pub fn set_dst_queue_family_index(mut self, value: u32) -> Self {
         self.dst_queue_family_index = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer`]
-    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::buffer`]
+    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::offset`]
+    pub fn set_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.offset = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.size = value;
         self
     }
@@ -21007,22 +20958,22 @@ impl<'lt> DependencyInfo<'lt> {
         self.image_memory_barriers
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::memory_barriers`]
-    pub fn set_memory_barriers_raw(&mut self, value: *const MemoryBarrier2<'lt>) -> &mut Self {
+    pub fn set_memory_barriers_raw(mut self, value: *const MemoryBarrier2<'lt>) -> Self {
         self.memory_barriers = value;
         self
     }
     ///Sets the raw value of [`Self::buffer_memory_barriers`]
-    pub fn set_buffer_memory_barriers_raw(&mut self, value: *const BufferMemoryBarrier2<'lt>) -> &mut Self {
+    pub fn set_buffer_memory_barriers_raw(mut self, value: *const BufferMemoryBarrier2<'lt>) -> Self {
         self.buffer_memory_barriers = value;
         self
     }
     ///Sets the raw value of [`Self::image_memory_barriers`]
-    pub fn set_image_memory_barriers_raw(&mut self, value: *const ImageMemoryBarrier2<'lt>) -> &mut Self {
+    pub fn set_image_memory_barriers_raw(mut self, value: *const ImageMemoryBarrier2<'lt>) -> Self {
         self.image_memory_barriers = value;
         self
     }
@@ -21094,57 +21045,54 @@ impl<'lt> DependencyInfo<'lt> {
     pub fn image_memory_barrier_count_mut(&mut self) -> &mut u32 {
         &mut self.image_memory_barrier_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::dependency_flags`]
-    pub fn set_dependency_flags(&mut self, value: crate::vulkan1_0::DependencyFlags) -> &mut Self {
+    ///Sets the value of [`Self::dependency_flags`]
+    pub fn set_dependency_flags(mut self, value: crate::vulkan1_0::DependencyFlags) -> Self {
         self.dependency_flags = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_barrier_count`]
-    pub fn set_memory_barrier_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::memory_barrier_count`]
+    pub fn set_memory_barrier_count(mut self, value: u32) -> Self {
         self.memory_barrier_count = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_barriers`]
-    pub fn set_memory_barriers(&mut self, value: &'lt [crate::vulkan1_3::MemoryBarrier2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::memory_barriers`]
+    pub fn set_memory_barriers(mut self, value: &'lt [crate::vulkan1_3::MemoryBarrier2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.memory_barriers = value.as_ptr();
         self.memory_barrier_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::buffer_memory_barrier_count`]
-    pub fn set_buffer_memory_barrier_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::buffer_memory_barrier_count`]
+    pub fn set_buffer_memory_barrier_count(mut self, value: u32) -> Self {
         self.buffer_memory_barrier_count = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_memory_barriers`]
-    pub fn set_buffer_memory_barriers(
-        &mut self,
-        value: &'lt [crate::vulkan1_3::BufferMemoryBarrier2<'lt>],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::buffer_memory_barriers`]
+    pub fn set_buffer_memory_barriers(mut self, value: &'lt [crate::vulkan1_3::BufferMemoryBarrier2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.buffer_memory_barriers = value.as_ptr();
         self.buffer_memory_barrier_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::image_memory_barrier_count`]
-    pub fn set_image_memory_barrier_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::image_memory_barrier_count`]
+    pub fn set_image_memory_barrier_count(mut self, value: u32) -> Self {
         self.image_memory_barrier_count = value;
         self
     }
-    ///Sets the raw value of [`Self::image_memory_barriers`]
-    pub fn set_image_memory_barriers(&mut self, value: &'lt [crate::vulkan1_3::ImageMemoryBarrier2<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::image_memory_barriers`]
+    pub fn set_image_memory_barriers(mut self, value: &'lt [crate::vulkan1_3::ImageMemoryBarrier2<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.image_memory_barriers = value.as_ptr();
@@ -21291,7 +21239,7 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21342,33 +21290,33 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
     pub fn device_index_mut(&mut self) -> &mut u32 {
         &mut self.device_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::semaphore`]
-    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+    ///Sets the value of [`Self::semaphore`]
+    pub fn set_semaphore(mut self, value: crate::vulkan1_0::Semaphore) -> Self {
         self.semaphore = value;
         self
     }
-    ///Sets the raw value of [`Self::value`]
-    pub fn set_value(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::value`]
+    pub fn set_value(mut self, value: u64) -> Self {
         self.value = value;
         self
     }
-    ///Sets the raw value of [`Self::stage_mask`]
-    pub fn set_stage_mask(&mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> &mut Self {
+    ///Sets the value of [`Self::stage_mask`]
+    pub fn set_stage_mask(mut self, value: crate::vulkan1_3::PipelineStageFlags2) -> Self {
         self.stage_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::device_index`]
-    pub fn set_device_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::device_index`]
+    pub fn set_device_index(mut self, value: u32) -> Self {
         self.device_index = value;
         self
     }
@@ -21458,7 +21406,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21493,23 +21441,23 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
     pub fn device_mask_mut(&mut self) -> &mut u32 {
         &mut self.device_mask
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::command_buffer`]
-    pub fn set_command_buffer(&mut self, value: crate::vulkan1_0::CommandBuffer) -> &mut Self {
+    ///Sets the value of [`Self::command_buffer`]
+    pub fn set_command_buffer(mut self, value: crate::vulkan1_0::CommandBuffer) -> Self {
         self.command_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::device_mask`]
-    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::device_mask`]
+    pub fn set_device_mask(mut self, value: u32) -> Self {
         self.device_mask = value;
         self
     }
@@ -21670,22 +21618,22 @@ impl<'lt> SubmitInfo2<'lt> {
         self.signal_semaphore_infos
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::wait_semaphore_infos`]
-    pub fn set_wait_semaphore_infos_raw(&mut self, value: *const SemaphoreSubmitInfo<'lt>) -> &mut Self {
+    pub fn set_wait_semaphore_infos_raw(mut self, value: *const SemaphoreSubmitInfo<'lt>) -> Self {
         self.wait_semaphore_infos = value;
         self
     }
     ///Sets the raw value of [`Self::command_buffer_infos`]
-    pub fn set_command_buffer_infos_raw(&mut self, value: *const CommandBufferSubmitInfo<'lt>) -> &mut Self {
+    pub fn set_command_buffer_infos_raw(mut self, value: *const CommandBufferSubmitInfo<'lt>) -> Self {
         self.command_buffer_infos = value;
         self
     }
     ///Sets the raw value of [`Self::signal_semaphore_infos`]
-    pub fn set_signal_semaphore_infos_raw(&mut self, value: *const SemaphoreSubmitInfo<'lt>) -> &mut Self {
+    pub fn set_signal_semaphore_infos_raw(mut self, value: *const SemaphoreSubmitInfo<'lt>) -> Self {
         self.signal_semaphore_infos = value;
         self
     }
@@ -21757,60 +21705,54 @@ impl<'lt> SubmitInfo2<'lt> {
     pub fn signal_semaphore_info_count_mut(&mut self) -> &mut u32 {
         &mut self.signal_semaphore_info_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_3::SubmitFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_3::SubmitFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_info_count`]
-    pub fn set_wait_semaphore_info_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::wait_semaphore_info_count`]
+    pub fn set_wait_semaphore_info_count(mut self, value: u32) -> Self {
         self.wait_semaphore_info_count = value;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_infos`]
-    pub fn set_wait_semaphore_infos(&mut self, value: &'lt [crate::vulkan1_3::SemaphoreSubmitInfo<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::wait_semaphore_infos`]
+    pub fn set_wait_semaphore_infos(mut self, value: &'lt [crate::vulkan1_3::SemaphoreSubmitInfo<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.wait_semaphore_infos = value.as_ptr();
         self.wait_semaphore_info_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::command_buffer_info_count`]
-    pub fn set_command_buffer_info_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::command_buffer_info_count`]
+    pub fn set_command_buffer_info_count(mut self, value: u32) -> Self {
         self.command_buffer_info_count = value;
         self
     }
-    ///Sets the raw value of [`Self::command_buffer_infos`]
-    pub fn set_command_buffer_infos(
-        &mut self,
-        value: &'lt [crate::vulkan1_3::CommandBufferSubmitInfo<'lt>],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::command_buffer_infos`]
+    pub fn set_command_buffer_infos(mut self, value: &'lt [crate::vulkan1_3::CommandBufferSubmitInfo<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.command_buffer_infos = value.as_ptr();
         self.command_buffer_info_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::signal_semaphore_info_count`]
-    pub fn set_signal_semaphore_info_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::signal_semaphore_info_count`]
+    pub fn set_signal_semaphore_info_count(mut self, value: u32) -> Self {
         self.signal_semaphore_info_count = value;
         self
     }
-    ///Sets the raw value of [`Self::signal_semaphore_infos`]
-    pub fn set_signal_semaphore_infos(
-        &mut self,
-        value: &'lt [crate::vulkan1_3::SemaphoreSubmitInfo<'lt>],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::signal_semaphore_infos`]
+    pub fn set_signal_semaphore_infos(mut self, value: &'lt [crate::vulkan1_3::SemaphoreSubmitInfo<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.signal_semaphore_infos = value.as_ptr();
@@ -21865,7 +21807,7 @@ impl<'lt> SubmitInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSynchronization2Features")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceSynchronization2Features<'lt> {
@@ -21893,20 +21835,20 @@ impl<'lt> Default for PhysicalDeviceSynchronization2Features<'lt> {
 }
 impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::synchronization_2`]
     pub fn synchronization_2_raw(&self) -> Bool32 {
         self.synchronization_2
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::synchronization_2`]
-    pub fn set_synchronization_2_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_synchronization_2_raw(mut self, value: Bool32) -> Self {
         self.synchronization_2 = value;
         self
     }
@@ -21954,18 +21896,18 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::synchronization_2`]
-    pub fn set_synchronization_2(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::synchronization_2`]
+    pub fn set_synchronization_2(mut self, value: bool) -> Self {
         self.synchronization_2 = value as u8 as u32;
         self
     }
@@ -22023,7 +21965,7 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
@@ -22051,20 +21993,20 @@ impl<'lt> Default for PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shader_integer_dot_product`]
     pub fn shader_integer_dot_product_raw(&self) -> Bool32 {
         self.shader_integer_dot_product
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_integer_dot_product`]
-    pub fn set_shader_integer_dot_product_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_integer_dot_product_raw(mut self, value: Bool32) -> Self {
         self.shader_integer_dot_product = value;
         self
     }
@@ -22112,18 +22054,18 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_integer_dot_product`]
-    pub fn set_shader_integer_dot_product(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_integer_dot_product`]
+    pub fn set_shader_integer_dot_product(mut self, value: bool) -> Self {
         self.shader_integer_dot_product = value as u8 as u32;
         self
     }
@@ -22242,7 +22184,7 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductProperties")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
@@ -22355,8 +22297,8 @@ impl<'lt> Default for PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
     pub fn integer_dot_product_8_bit_unsigned_accelerated_raw(&self) -> Bool32 {
@@ -22497,221 +22439,218 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
         self.integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_8_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_8_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_8_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_8_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_8_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_8_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_8_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_8_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_unsigned_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_signed_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated_raw(
-        &mut self,
-        value: Bool32,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_16_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_16_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_16_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_16_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_16_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_16_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_16_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_16_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_16_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_16_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_32_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_32_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_32_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_32_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_32_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_32_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_32_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_32_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_32_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_32_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_64_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_64_bit_unsigned_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_64_bit_unsigned_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_64_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_64_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_64_bit_signed_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_64_bit_signed_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_64_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of [`Self::integer_dot_product_64_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated_raw(mut self, value: Bool32) -> Self {
         self.integer_dot_product_64_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_signed_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_signed_accelerated = value;
         self
     }
     ///Sets the raw value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated_raw(
-        &mut self,
+        mut self,
         value: Bool32,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated = value;
         self
     }
@@ -23497,225 +23436,201 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_8_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_8_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_8_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_8_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_8_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_8_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_8_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_8_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_8_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_8_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_8_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_8_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_8_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_unsigned_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_4_x_8_bit_packed_unsigned_accelerated`]
+    pub fn set_integer_dot_product_4_x_8_bit_packed_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_4_x_8_bit_packed_signed_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_4_x_8_bit_packed_signed_accelerated`]
+    pub fn set_integer_dot_product_4_x_8_bit_packed_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    pub fn set_integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_4_x_8_bit_packed_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_16_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_16_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_16_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_16_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_16_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_16_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_16_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_16_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_16_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_16_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_16_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_16_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_16_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_16_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_32_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_32_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_32_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_32_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_32_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_32_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_32_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_32_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_32_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_32_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_32_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_32_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_32_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_32_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_64_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_64_bit_unsigned_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_64_bit_unsigned_accelerated`]
+    pub fn set_integer_dot_product_64_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_64_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_64_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_64_bit_signed_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_64_bit_signed_accelerated`]
+    pub fn set_integer_dot_product_64_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_64_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::integer_dot_product_64_bit_mixed_signedness_accelerated`]
-    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::integer_dot_product_64_bit_mixed_signedness_accelerated`]
+    pub fn set_integer_dot_product_64_bit_mixed_signedness_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_64_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_8_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_8_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_4_x_8_bit_packed_mixed_signedness_accelerated =
             value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_16_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_16_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_32_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_32_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_signed_accelerated`]
-    pub fn set_integer_dot_product_accumulating_saturating_64_bit_signed_accelerated(
-        &mut self,
-        value: bool,
-    ) -> &mut Self {
+    pub fn set_integer_dot_product_accumulating_saturating_64_bit_signed_accelerated(mut self, value: bool) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_signed_accelerated = value as u8 as u32;
         self
     }
-    ///Sets the raw value of
+    ///Sets the value of
     /// [`Self::integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated`]
     pub fn set_integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated(
-        &mut self,
+        mut self,
         value: bool,
-    ) -> &mut Self {
+    ) -> Self {
         self.integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated = value as u8 as u32;
         self
     }
@@ -23767,7 +23682,7 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatProperties3")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FormatProperties3<'lt> {
@@ -23803,11 +23718,11 @@ impl<'lt> Default for FormatProperties3<'lt> {
 }
 impl<'lt> FormatProperties3<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -23857,28 +23772,28 @@ impl<'lt> FormatProperties3<'lt> {
     pub fn buffer_features_mut(&mut self) -> &mut FormatFeatureFlags2 {
         &mut self.buffer_features
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::linear_tiling_features`]
-    pub fn set_linear_tiling_features(&mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> &mut Self {
+    ///Sets the value of [`Self::linear_tiling_features`]
+    pub fn set_linear_tiling_features(mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> Self {
         self.linear_tiling_features = value;
         self
     }
-    ///Sets the raw value of [`Self::optimal_tiling_features`]
-    pub fn set_optimal_tiling_features(&mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> &mut Self {
+    ///Sets the value of [`Self::optimal_tiling_features`]
+    pub fn set_optimal_tiling_features(mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> Self {
         self.optimal_tiling_features = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_features`]
-    pub fn set_buffer_features(&mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> &mut Self {
+    ///Sets the value of [`Self::buffer_features`]
+    pub fn set_buffer_features(mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> Self {
         self.buffer_features = value;
         self
     }
@@ -24015,12 +23930,12 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
         self.color_attachment_formats
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachment_formats`]
-    pub fn set_color_attachment_formats_raw(&mut self, value: *const Format) -> &mut Self {
+    pub fn set_color_attachment_formats_raw(mut self, value: *const Format) -> Self {
         self.color_attachment_formats = value;
         self
     }
@@ -24078,41 +23993,41 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
     pub fn stencil_attachment_format_mut(&mut self) -> &mut Format {
         &mut self.stencil_attachment_format
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::view_mask`]
+    pub fn set_view_mask(mut self, value: u32) -> Self {
         self.view_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_count`]
+    pub fn set_color_attachment_count(mut self, value: u32) -> Self {
         self.color_attachment_count = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_formats`]
-    pub fn set_color_attachment_formats(&mut self, value: &'lt [crate::vulkan1_0::Format]) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_formats`]
+    pub fn set_color_attachment_formats(mut self, value: &'lt [crate::vulkan1_0::Format]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.color_attachment_formats = value.as_ptr();
         self.color_attachment_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::depth_attachment_format`]
-    pub fn set_depth_attachment_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::depth_attachment_format`]
+    pub fn set_depth_attachment_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.depth_attachment_format = value;
         self
     }
-    ///Sets the raw value of [`Self::stencil_attachment_format`]
-    pub fn set_stencil_attachment_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::stencil_attachment_format`]
+    pub fn set_stencil_attachment_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.stencil_attachment_format = value;
         self
     }
@@ -24167,14 +24082,14 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///decorated with a `Location` value of  **X** , then it uses the attachment
 ///provided in [`color_attachments`][ **X** ].
 ///If the `imageView` member of any element of [`color_attachments`] is
-///[`crate::utils::Handle::null`], writes to the corresponding location by a fragment are
+///[`crate::Handle::null`], writes to the corresponding location by a fragment are
 ///discarded.
 ///## Valid Usage
 /// - If [`view_mask`] is `0`, [`layer_count`] **must**  not be `0`
 /// - If neither the [`VK_AMD_mixed_attachment_samples`] nor the [`VK_NV_framebuffer_mixed_samples`]
 ///   extensions are enabled, `imageView` members of [`depth_attachment`], [`stencil_attachment`],
-///   and elements of [`color_attachments`] that are not [`crate::utils::Handle::null`] **must**
-///   have been created with the same `sampleCount`
+///   and elements of [`color_attachments`] that are not [`crate::Handle::null`] **must**  have been
+///   created with the same `sampleCount`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0, `renderArea.offset.x` **must**  be greater than
 ///   or equal to 0
@@ -24184,135 +24099,133 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0, the width of the `imageView` member of any
 ///   element of [`color_attachments`], [`depth_attachment`], or [`stencil_attachment`] that is not
-///   [`crate::utils::Handle::null`] **must**  be greater than or equal to `renderArea.offset.x` +
+///   [`crate::Handle::null`] **must**  be greater than or equal to `renderArea.offset.x` +
 ///   `renderArea.extent.width`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0, the height of the `imageView` member of any
 ///   element of [`color_attachments`], [`depth_attachment`], or [`stencil_attachment`] that is not
-///   [`crate::utils::Handle::null`] **must**  be greater than or equal to `renderArea.offset.y` +
+///   [`crate::Handle::null`] **must**  be greater than or equal to `renderArea.offset.y` +
 ///   `renderArea.extent.height`
 /// - If the [`p_next`] chain contains [`DeviceGroupRenderPassBeginInfo`], the width of the
 ///   `imageView` member of any element of [`color_attachments`], [`depth_attachment`], or
-///   [`stencil_attachment`] that is not [`crate::utils::Handle::null`] **must**  be greater than or
-///   equal to the sum of the `offset.x` and `extent.width` members of each element of
+///   [`stencil_attachment`] that is not [`crate::Handle::null`] **must**  be greater than or equal
+///   to the sum of the `offset.x` and `extent.width` members of each element of
 ///   `pDeviceRenderAreas`
 /// - If the [`p_next`] chain contains [`DeviceGroupRenderPassBeginInfo`], the height of the
 ///   `imageView` member of any element of [`color_attachments`], [`depth_attachment`], or
-///   [`stencil_attachment`] that is not [`crate::utils::Handle::null`] **must**  be greater than or
-///   equal to the sum of the `offset.y` and `extent.height` members of each element of
+///   [`stencil_attachment`] that is not [`crate::Handle::null`] **must**  be greater than or equal
+///   to the sum of the `offset.y` and `extent.height` members of each element of
 ///   `pDeviceRenderAreas`
 /// - If neither [`depth_attachment`] or [`stencil_attachment`] are `NULL` and the `imageView`
-///   member of either structure is not [`crate::utils::Handle::null`], the `imageView` member of
-///   each structure  **must**  be the same
+///   member of either structure is not [`crate::Handle::null`], the `imageView` member of each
+///   structure  **must**  be the same
 /// - If neither [`depth_attachment`] or [`stencil_attachment`] are `NULL`, and the `resolveMode`
 ///   member of each is not `VK_RESOLVE_MODE_NONE`, the `resolveImageView` member of each structure
 ///   **must**  be the same
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], that `imageView` **must**  have
-///   been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
+///   [`color_attachments`] is not [`crate::Handle::null`], that `imageView` **must**  have been
+///   created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->imageView` **must**  have been created with
-///   a format that includes a depth aspect
+///   [`crate::Handle::null`], `pDepthAttachment->imageView` **must**  have been created with a
+///   format that includes a depth aspect
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->imageView` **must**  have been created with
+///   [`crate::Handle::null`], `pDepthAttachment->imageView` **must**  have been created with
 ///   `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->imageView` **must**  have been created
-///   with a format that includes a stencil aspect
+///   [`crate::Handle::null`], `pStencilAttachment->imageView` **must**  have been created with a
+///   format that includes a stencil aspect
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->imageView` **must**  have been created
-///   with a stencil usage including `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
+///   [`crate::Handle::null`], `pStencilAttachment->imageView` **must**  have been created with a
+///   stencil usage including `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], the `layout` member of that
-///   element of [`color_attachments`] **must**  not be
-///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` or
+///   [`color_attachments`] is not [`crate::Handle::null`], the `layout` member of that element of
+///   [`color_attachments`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], if the `resolveMode` member of
-///   that element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
+///   [`color_attachments`] is not [`crate::Handle::null`], if the `resolveMode` member of that
+///   element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
 ///   member  **must**  not be `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->layout` **must**  not be
+///   [`crate::Handle::null`], `pDepthAttachment->layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL`, `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], and `pDepthAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pDepthAttachment->resolveImageLayout` **must**  not be
+///   [`crate::Handle::null`], and `pDepthAttachment->resolveMode` is not `VK_RESOLVE_MODE_NONE`,
+///   `pDepthAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->layout` **must**  not be
+///   [`crate::Handle::null`], `pStencilAttachment->layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`stencil_attachment`] is not `NULL`, `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], and `pStencilAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pStencilAttachment->resolveImageLayout` **must**  not be
+///   [`crate::Handle::null`], and `pStencilAttachment->resolveMode` is not `VK_RESOLVE_MODE_NONE`,
+///   `pStencilAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], the `layout` member of that
-///   element of [`color_attachments`] **must**  not be
+///   [`color_attachments`] is not [`crate::Handle::null`], the `layout` member of that element of
+///   [`color_attachments`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], if the `resolveMode` member of
-///   that element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
+///   [`color_attachments`] is not [`crate::Handle::null`], if the `resolveMode` member of that
+///   element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
 ///   member  **must**  not be `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL` or
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL`, `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], and `pDepthAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pDepthAttachment->resolveImageLayout` **must**  not be
+///   [`crate::Handle::null`], and `pDepthAttachment->resolveMode` is not `VK_RESOLVE_MODE_NONE`,
+///   `pDepthAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
 /// - If [`stencil_attachment`] is not `NULL`, `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], and `pStencilAttachment->resolveMode` is not
-///   `VK_RESOLVE_MODE_NONE`, `pStencilAttachment->resolveImageLayout` **must**  not be
+///   [`crate::Handle::null`], and `pStencilAttachment->resolveMode` is not `VK_RESOLVE_MODE_NONE`,
+///   `pStencilAttachment->resolveImageLayout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], the `layout` member of that
-///   element of [`color_attachments`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
+///   [`color_attachments`] is not [`crate::Handle::null`], the `layout` member of that element of
+///   [`color_attachments`] **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`color_attachment_count`] is not `0` and the `imageView` member of an element of
-///   [`color_attachments`] is not [`crate::utils::Handle::null`], if the `resolveMode` member of
-///   that element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
+///   [`color_attachments`] is not [`crate::Handle::null`], if the `resolveMode` member of that
+///   element of [`color_attachments`] is not `VK_RESOLVE_MODE_NONE`, its `resolveImageLayout`
 ///   member  **must**  not be `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 /// - If [`depth_attachment`] is not `NULL` and `pDepthAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pDepthAttachment->resolveMode` **must**  be one of the bits
-///   set in [`PhysicalDeviceDepthStencilResolveProperties::supported_depth_resolve_modes`]
+///   [`crate::Handle::null`], `pDepthAttachment->resolveMode` **must**  be one of the bits set in
+///   [`PhysicalDeviceDepthStencilResolveProperties::supported_depth_resolve_modes`]
 /// - If [`stencil_attachment`] is not `NULL` and `pStencilAttachment->imageView` is not
-///   [`crate::utils::Handle::null`], `pStencilAttachment->resolveMode` **must**  be one of the bits
-///   set in [`PhysicalDeviceDepthStencilResolveProperties::supported_stencil_resolve_modes`]
+///   [`crate::Handle::null`], `pStencilAttachment->resolveMode` **must**  be one of the bits set in
+///   [`PhysicalDeviceDepthStencilResolveProperties::supported_stencil_resolve_modes`]
 /// - If [`depth_attachment`] or [`stencil_attachment`] are both not `NULL`,
 ///   `pDepthAttachment->imageView` and `pStencilAttachment->imageView` are both not
-///   [`crate::utils::Handle::null`], and
+///   [`crate::Handle::null`], and
 ///   [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve_none`] is [`FALSE`], the
 ///   `resolveMode` of both structures  **must**  be the same value
 /// - If [`depth_attachment`] or [`stencil_attachment`] are both not `NULL`,
 ///   `pDepthAttachment->imageView` and `pStencilAttachment->imageView` are both not
-///   [`crate::utils::Handle::null`],
-///   [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve`] is [`FALSE`], and the
-///   `resolveMode` of neither structure is `VK_RESOLVE_MODE_NONE`, the `resolveMode` of both
-///   structures  **must**  be the same value
+///   [`crate::Handle::null`], [`PhysicalDeviceDepthStencilResolveProperties::independent_resolve`]
+///   is [`FALSE`], and the `resolveMode` of neither structure is `VK_RESOLVE_MODE_NONE`, the
+///   `resolveMode` of both structures  **must**  be the same value
 /// - [`color_attachment_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_color_attachments`]
-/// -    If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [non-subsample image feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapNonSubsampledImages) is not enabled, valid `imageView` and `resolveImageView` members of [`depth_attachment`], [`stencil_attachment`], and each element of [`color_attachments`] **must**  be a [`ImageView`] created with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
+/// -    If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is not [`crate::Handle::null`], and [non-subsample image feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapNonSubsampledImages) is not enabled, valid `imageView` and `resolveImageView` members of [`depth_attachment`], [`stencil_attachment`], and each element of [`color_attachments`] **must**  be a [`ImageView`] created with `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   not `0`, `imageView` **must**  have a [`layer_count`] greater than or equal to the index of
-///   the most significant bit in [`view_mask`]
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], and [`view_mask`] is not `0`,
+///   `imageView` **must**  have a [`layer_count`] greater than or equal to the index of the most
+///   significant bit in [`view_mask`]
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   `0`, `imageView` **must**  have a [`layer_count`] equal to `1`
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], and [`view_mask`] is `0`,
+///   `imageView` **must**  have a [`layer_count`] equal to `1`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
@@ -24320,47 +24233,46 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
 ///   mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.41586em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span style="margin-right:0.02778em;"
-///   class="mord mathdefault mtight">r</span><span class="mord mathdefault mtight">e</span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
 ///   mtight">+</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
@@ -24369,9 +24281,361 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
+///   `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
+///   class="mord mathdefault mtight">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
+///   class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
+/// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], it  **must**  not be equal to
+///   the `imageView` or `resolveImageView` member of [`depth_attachment`], [`stencil_attachment`],
+///   or any element of [`color_attachments`]
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
@@ -24384,46 +24648,46 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
 ///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
@@ -24447,309 +24711,48 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
 ///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
-///   class="mord mathdefault mtight">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or equal
-///   to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
 ///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
-/// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
-///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
-///   [`stencil_attachment`], or any element of [`color_attachments`]
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
 ///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.41586em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a width greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
 ///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
@@ -24767,183 +24770,9 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.446108em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:1.80002em;vertical-align:-0.65002em;"
-///   class="strut"></span><span class="minner"><span class="mopen delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span
-///   class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
-///   class="mord mathdefault mtight">S</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::utils::Handle::null`], `imageView` **must**  have a height greater than or
-///   equal to <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span
-///   style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
@@ -24952,27 +24781,88 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
 ///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
 ///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
-///   class="vlist"><span
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 ///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
+///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
@@ -24985,12 +24875,32 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
+///   mathdefault mtight">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
@@ -24998,25 +24908,25 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.5480799999999999em;"
 ///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
 ///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
 ///   `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   `0`, `imageView` **must**  have a [`layer_count`] that is either equal to `1` or greater than
-///   or equal to [`layer_count`]
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], and [`view_mask`] is `0`,
+///   `imageView` **must**  have a [`layer_count`] that is either equal to `1` or greater than or
+///   equal to [`layer_count`]
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], and [`view_mask`] is
-///   not `0`, `imageView` **must**  have a [`layer_count`] that either equal to `1` or greater than
-///   or equal to the index of the most significant bit in [`view_mask`]
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], and [`view_mask`] is not `0`,
+///   `imageView` **must**  have a [`layer_count`] that either equal to `1` or greater than or equal
+///   to the index of the most significant bit in [`view_mask`]
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
-///   equal to the `imageView` or `resolveImageView` member of [`depth_attachment`],
-///   [`stencil_attachment`], or any element of [`color_attachments`]
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], it  **must**  not be equal to
+///   the `imageView` or `resolveImageView` member of [`depth_attachment`], [`stencil_attachment`],
+///   or any element of [`color_attachments`]
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
-///   included in the [`p_next`] chain is not [`crate::utils::Handle::null`], it  **must**  not be
-///   equal to the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`]
-///   structure included in the [`p_next`] chain
+///   included in the [`p_next`] chain is not [`crate::Handle::null`], it  **must**  not be equal to
+///   the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
+///   included in the [`p_next`] chain
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
 ///   feature is not enabled, [`view_mask`] **must**  be `0`
 /// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
@@ -25125,22 +25035,22 @@ impl<'lt> RenderingInfo<'lt> {
         self.stencil_attachment
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachments`]
-    pub fn set_color_attachments_raw(&mut self, value: *const RenderingAttachmentInfo<'lt>) -> &mut Self {
+    pub fn set_color_attachments_raw(mut self, value: *const RenderingAttachmentInfo<'lt>) -> Self {
         self.color_attachments = value;
         self
     }
     ///Sets the raw value of [`Self::depth_attachment`]
-    pub fn set_depth_attachment_raw(&mut self, value: *const RenderingAttachmentInfo<'lt>) -> &mut Self {
+    pub fn set_depth_attachment_raw(mut self, value: *const RenderingAttachmentInfo<'lt>) -> Self {
         self.depth_attachment = value;
         self
     }
     ///Sets the raw value of [`Self::stencil_attachment`]
-    pub fn set_stencil_attachment_raw(&mut self, value: *const RenderingAttachmentInfo<'lt>) -> &mut Self {
+    pub fn set_stencil_attachment_raw(mut self, value: *const RenderingAttachmentInfo<'lt>) -> Self {
         self.stencil_attachment = value;
         self
     }
@@ -25220,56 +25130,56 @@ impl<'lt> RenderingInfo<'lt> {
     pub fn color_attachment_count_mut(&mut self) -> &mut u32 {
         &mut self.color_attachment_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_3::RenderingFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_3::RenderingFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::render_area`]
-    pub fn set_render_area(&mut self, value: crate::vulkan1_0::Rect2D) -> &mut Self {
+    ///Sets the value of [`Self::render_area`]
+    pub fn set_render_area(mut self, value: crate::vulkan1_0::Rect2D) -> Self {
         self.render_area = value;
         self
     }
-    ///Sets the raw value of [`Self::layer_count`]
-    pub fn set_layer_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::layer_count`]
+    pub fn set_layer_count(mut self, value: u32) -> Self {
         self.layer_count = value;
         self
     }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::view_mask`]
+    pub fn set_view_mask(mut self, value: u32) -> Self {
         self.view_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_count`]
+    pub fn set_color_attachment_count(mut self, value: u32) -> Self {
         self.color_attachment_count = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachments`]
-    pub fn set_color_attachments(&mut self, value: &'lt [crate::vulkan1_3::RenderingAttachmentInfo<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::color_attachments`]
+    pub fn set_color_attachments(mut self, value: &'lt [crate::vulkan1_3::RenderingAttachmentInfo<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.color_attachments = value.as_ptr();
         self.color_attachment_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::depth_attachment`]
-    pub fn set_depth_attachment(&mut self, value: &'lt crate::vulkan1_3::RenderingAttachmentInfo<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::depth_attachment`]
+    pub fn set_depth_attachment(mut self, value: &'lt crate::vulkan1_3::RenderingAttachmentInfo<'lt>) -> Self {
         self.depth_attachment = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::stencil_attachment`]
-    pub fn set_stencil_attachment(&mut self, value: &'lt crate::vulkan1_3::RenderingAttachmentInfo<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::stencil_attachment`]
+    pub fn set_stencil_attachment(mut self, value: &'lt crate::vulkan1_3::RenderingAttachmentInfo<'lt>) -> Self {
         self.stencil_attachment = value as *const _;
         self
     }
@@ -25319,7 +25229,7 @@ impl<'lt> RenderingInfo<'lt> {
 ///[`load_op`] and [`store_op`], within the render area
 ///for each device
 ///specified in [`RenderingInfo`].
-///If [`image_view`] is [`crate::utils::Handle::null`], other members of this structure
+///If [`image_view`] is [`crate::Handle::null`], other members of this structure
 ///are ignored; writes to this attachment will be discarded, and no load,
 ///store, or resolve operations will be performed.If [`resolve_mode`] is `VK_RESOLVE_MODE_NONE`,
 /// then
@@ -25337,65 +25247,65 @@ impl<'lt> RenderingInfo<'lt> {
 /// end of a suspended render pass instance remain defined
 ///for access by a resuming render pass instance.
 ///## Valid Usage
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and has a non-integer color format,
+/// - If [`image_view`] is not [`crate::Handle::null`] and has a non-integer color format,
 ///   [`resolve_mode`] **must**  be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_AVERAGE_BIT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and has an integer color format,
+/// - If [`image_view`] is not [`crate::Handle::null`] and has an integer color format,
 ///   [`resolve_mode`] **must**  be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`image_view`] **must**  not have a sample count of
 ///   `VK_SAMPLE_COUNT_1_BIT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_view`] **must**  have a sample count of
 ///   `VK_SAMPLE_COUNT_1_BIT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`image_view`] and [`resolve_image_view`] **must**  have the same
 ///   [`Format`]
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_UNDEFINED`, `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`, `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED`,
 ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL`,
 ///   `VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL`, `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`, or
 ///   `VK_IMAGE_LAYOUT_PREINITIALIZED`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL` or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_READ_ONLY_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_FRAGMENT_SHADING_RATE_ATTACHMENT_OPTIMAL_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], `layout` **must**  not be
+/// - If [`image_view`] is not [`crate::Handle::null`], `layout` **must**  not be
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`] and [`resolve_mode`] is not
+/// - If [`image_view`] is not [`crate::Handle::null`] and [`resolve_mode`] is not
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO`
 /// - [`p_next`] **must**  be `NULL`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 /// - If [`resolve_mode`] is not `0`, [`resolve_mode`] **must**  be a valid [`ResolveModeFlagBits`]
 ///   value
-/// - If [`resolve_image_view`] is not [`crate::utils::Handle::null`], [`resolve_image_view`]
-///   **must**  be a valid [`ImageView`] handle
+/// - If [`resolve_image_view`] is not [`crate::Handle::null`], [`resolve_image_view`] **must**  be
+///   a valid [`ImageView`] handle
 /// - [`resolve_image_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`load_op`] **must**  be a valid [`AttachmentLoadOp`] value
 /// - [`store_op`] **must**  be a valid [`AttachmentStoreOp`] value
@@ -25483,7 +25393,7 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -25566,53 +25476,53 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
     pub fn clear_value_mut(&mut self) -> &mut ClearValue {
         &mut self.clear_value
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::image_view`]
-    pub fn set_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+    ///Sets the value of [`Self::image_view`]
+    pub fn set_image_view(mut self, value: crate::vulkan1_0::ImageView) -> Self {
         self.image_view = value;
         self
     }
-    ///Sets the raw value of [`Self::image_layout`]
-    pub fn set_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::image_layout`]
+    pub fn set_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::resolve_mode`]
-    pub fn set_resolve_mode(&mut self, value: crate::vulkan1_2::ResolveModeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::resolve_mode`]
+    pub fn set_resolve_mode(mut self, value: crate::vulkan1_2::ResolveModeFlagBits) -> Self {
         self.resolve_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::resolve_image_view`]
-    pub fn set_resolve_image_view(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+    ///Sets the value of [`Self::resolve_image_view`]
+    pub fn set_resolve_image_view(mut self, value: crate::vulkan1_0::ImageView) -> Self {
         self.resolve_image_view = value;
         self
     }
-    ///Sets the raw value of [`Self::resolve_image_layout`]
-    pub fn set_resolve_image_layout(&mut self, value: crate::vulkan1_0::ImageLayout) -> &mut Self {
+    ///Sets the value of [`Self::resolve_image_layout`]
+    pub fn set_resolve_image_layout(mut self, value: crate::vulkan1_0::ImageLayout) -> Self {
         self.resolve_image_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::load_op`]
-    pub fn set_load_op(&mut self, value: crate::vulkan1_0::AttachmentLoadOp) -> &mut Self {
+    ///Sets the value of [`Self::load_op`]
+    pub fn set_load_op(mut self, value: crate::vulkan1_0::AttachmentLoadOp) -> Self {
         self.load_op = value;
         self
     }
-    ///Sets the raw value of [`Self::store_op`]
-    pub fn set_store_op(&mut self, value: crate::vulkan1_0::AttachmentStoreOp) -> &mut Self {
+    ///Sets the value of [`Self::store_op`]
+    pub fn set_store_op(mut self, value: crate::vulkan1_0::AttachmentStoreOp) -> Self {
         self.store_op = value;
         self
     }
-    ///Sets the raw value of [`Self::clear_value`]
-    pub fn set_clear_value(&mut self, value: crate::vulkan1_0::ClearValue) -> &mut Self {
+    ///Sets the value of [`Self::clear_value`]
+    pub fn set_clear_value(mut self, value: crate::vulkan1_0::ClearValue) -> Self {
         self.clear_value = value;
         self
     }
@@ -25662,7 +25572,7 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDynamicRenderingFeatures")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingFeatures<'lt> {
@@ -25689,20 +25599,20 @@ impl<'lt> Default for PhysicalDeviceDynamicRenderingFeatures<'lt> {
 }
 impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::dynamic_rendering`]
     pub fn dynamic_rendering_raw(&self) -> Bool32 {
         self.dynamic_rendering
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::dynamic_rendering`]
-    pub fn set_dynamic_rendering_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_dynamic_rendering_raw(mut self, value: Bool32) -> Self {
         self.dynamic_rendering = value;
         self
     }
@@ -25750,18 +25660,18 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::dynamic_rendering`]
-    pub fn set_dynamic_rendering(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::dynamic_rendering`]
+    pub fn set_dynamic_rendering(mut self, value: bool) -> Self {
         self.dynamic_rendering = value as u8 as u32;
         self
     }
@@ -25808,7 +25718,7 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 ///controls parameters of dynamic render pass instances that the
 ///[`CommandBuffer`] **can**  be executed within.
 ///If [`CommandBufferInheritanceInfo::render_pass`] is not
-///[`crate::utils::Handle::null`], or
+///[`crate::Handle::null`], or
 ///`VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
 ///[`CommandBufferBeginInfo`]::[`flags`], parameters of this structure
 ///are ignored.If [`color_attachment_count`] is `0` and the
@@ -25922,12 +25832,12 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
         self.color_attachment_formats
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_attachment_formats`]
-    pub fn set_color_attachment_formats_raw(&mut self, value: *const Format) -> &mut Self {
+    pub fn set_color_attachment_formats_raw(mut self, value: *const Format) -> Self {
         self.color_attachment_formats = value;
         self
     }
@@ -26001,53 +25911,3746 @@ impl<'lt> CommandBufferInheritanceRenderingInfo<'lt> {
     pub fn rasterization_samples_mut(&mut self) -> &mut SampleCountFlagBits {
         &mut self.rasterization_samples
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_3::RenderingFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_3::RenderingFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::view_mask`]
-    pub fn set_view_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::view_mask`]
+    pub fn set_view_mask(mut self, value: u32) -> Self {
         self.view_mask = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_count`]
-    pub fn set_color_attachment_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_count`]
+    pub fn set_color_attachment_count(mut self, value: u32) -> Self {
         self.color_attachment_count = value;
         self
     }
-    ///Sets the raw value of [`Self::color_attachment_formats`]
-    pub fn set_color_attachment_formats(&mut self, value: &'lt [crate::vulkan1_0::Format]) -> &mut Self {
+    ///Sets the value of [`Self::color_attachment_formats`]
+    pub fn set_color_attachment_formats(mut self, value: &'lt [crate::vulkan1_0::Format]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.color_attachment_formats = value.as_ptr();
         self.color_attachment_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::depth_attachment_format`]
-    pub fn set_depth_attachment_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::depth_attachment_format`]
+    pub fn set_depth_attachment_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.depth_attachment_format = value;
         self
     }
-    ///Sets the raw value of [`Self::stencil_attachment_format`]
-    pub fn set_stencil_attachment_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::stencil_attachment_format`]
+    pub fn set_stencil_attachment_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.stencil_attachment_format = value;
         self
     }
-    ///Sets the raw value of [`Self::rasterization_samples`]
-    pub fn set_rasterization_samples(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::rasterization_samples`]
+    pub fn set_rasterization_samples(mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> Self {
         self.rasterization_samples = value;
         self
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceToolProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceToolProperties.html) - Reports properties of tools active on the specified physical device
+    ///# C Specifications
+    ///Information about tools providing debugging, profiling, or similar services,
+    ///active for a given physical device, can be obtained by calling:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///VkResult vkGetPhysicalDeviceToolProperties(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t*                                   pToolCount,
+    ///    VkPhysicalDeviceToolProperties*             pToolProperties);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_tooling_info
+    ///VkResult vkGetPhysicalDeviceToolPropertiesEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t*                                   pToolCount,
+    ///    VkPhysicalDeviceToolProperties*             pToolProperties);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the handle to the physical device to query for active tools.
+    /// - [`p_tool_count`] is a pointer to an integer describing the number of tools active on
+    ///   [`physical_device`].
+    /// - [`p_tool_properties`] is either `NULL` or a pointer to an array of
+    ///   [`PhysicalDeviceToolProperties`] structures.
+    ///# Description
+    ///If [`p_tool_properties`] is `NULL`, then the number of tools currently
+    ///active on [`physical_device`] is returned in [`p_tool_count`].
+    ///Otherwise, [`p_tool_count`] **must**  point to a variable set by the user to the
+    ///number of elements in the [`p_tool_properties`] array, and on return the
+    ///variable is overwritten with the number of structures actually written to
+    ///[`p_tool_properties`].
+    ///If [`p_tool_count`] is less than the number of currently active tools, at
+    ///most [`p_tool_count`] structures will be written.The count and properties of active tools
+    /// **may**  change in response to events
+    ///outside the scope of the specification.
+    ///An application  **should**  assume these properties might change at any given
+    ///time.
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_tool_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_tool_count`] is not `0`, and [`p_tool_properties`] is not
+    ///   `NULL`, [`p_tool_properties`] **must**  be a valid pointer to an array of
+    ///   [`p_tool_count`][`PhysicalDeviceToolProperties`] structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_tooling_info`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`PhysicalDevice`]
+    /// - [`PhysicalDeviceToolProperties`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceToolProperties")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_tool_properties<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_tool_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PhysicalDeviceToolProperties<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .get_physical_device_tool_properties()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .get_physical_device_tool_properties()
+            .unwrap_unchecked();
+        let mut p_tool_count = match p_tool_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_tool_properties =
+            SmallVec::<PhysicalDeviceToolProperties<'lt>>::from_elem(Default::default(), p_tool_count as usize);
+        let _return = _function(self.as_raw(), &mut p_tool_count, p_tool_properties.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_tool_properties)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetDeviceBufferMemoryRequirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceBufferMemoryRequirements.html) - Returns the memory requirements for specified Vulkan object
+    ///# C Specifications
+    ///To determine the memory requirements for a buffer resource without creating
+    ///an object, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkGetDeviceBufferMemoryRequirements(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceBufferMemoryRequirements*     pInfo,
+    ///    VkMemoryRequirements2*                      pMemoryRequirements);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_maintenance4
+    ///void vkGetDeviceBufferMemoryRequirementsKHR(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceBufferMemoryRequirements*     pInfo,
+    ///    VkMemoryRequirements2*                      pMemoryRequirements);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device intended to own the buffer.
+    /// - [`p_info`] is a pointer to a [`DeviceBufferMemoryRequirements`] structure containing
+    ///   parameters required for the memory requirements query.
+    /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
+    ///   memory requirements of the buffer object are returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceBufferMemoryRequirements`]
+    ///   structure
+    /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
+    ///   structure
+    ///# Related
+    /// - [`VK_KHR_maintenance4`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Device`]
+    /// - [`DeviceBufferMemoryRequirements`]
+    /// - [`MemoryRequirements2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDeviceBufferMemoryRequirements")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_device_buffer_memory_requirements<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_info: &DeviceBufferMemoryRequirements<'lt>,
+    ) -> MemoryRequirements2<'lt> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .get_device_buffer_memory_requirements()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .get_device_buffer_memory_requirements()
+            .unwrap_unchecked();
+        let mut p_memory_requirements = MaybeUninit::<MemoryRequirements2<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_info as *const DeviceBufferMemoryRequirements<'lt>,
+            p_memory_requirements.as_mut_ptr(),
+        );
+        p_memory_requirements.assume_init()
+    }
+}
+impl Device {
+    ///[vkGetDeviceImageMemoryRequirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceImageMemoryRequirements.html) - Returns the memory requirements for specified Vulkan object
+    ///# C Specifications
+    ///To determine the memory requirements for an image resource without creating
+    ///an object, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkGetDeviceImageMemoryRequirements(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceImageMemoryRequirements*      pInfo,
+    ///    VkMemoryRequirements2*                      pMemoryRequirements);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_maintenance4
+    ///void vkGetDeviceImageMemoryRequirementsKHR(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceImageMemoryRequirements*      pInfo,
+    ///    VkMemoryRequirements2*                      pMemoryRequirements);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device intended to own the image.
+    /// - [`p_info`] is a pointer to a [`DeviceImageMemoryRequirements`] structure containing
+    ///   parameters required for the memory requirements query.
+    /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
+    ///   memory requirements of the image object are returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`]
+    ///   structure
+    /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
+    ///   structure
+    ///# Related
+    /// - [`VK_KHR_maintenance4`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Device`]
+    /// - [`DeviceImageMemoryRequirements`]
+    /// - [`MemoryRequirements2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDeviceImageMemoryRequirements")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_device_image_memory_requirements<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_info: &DeviceImageMemoryRequirements<'lt>,
+    ) -> MemoryRequirements2<'lt> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .get_device_image_memory_requirements()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .get_device_image_memory_requirements()
+            .unwrap_unchecked();
+        let mut p_memory_requirements = MaybeUninit::<MemoryRequirements2<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_info as *const DeviceImageMemoryRequirements<'lt>,
+            p_memory_requirements.as_mut_ptr(),
+        );
+        p_memory_requirements.assume_init()
+    }
+}
+impl Device {
+    ///[vkGetDeviceImageSparseMemoryRequirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetDeviceImageSparseMemoryRequirements.html) - Query the memory requirements for a sparse image
+    ///# C Specifications
+    ///To determine the sparse memory requirements for an image resource without
+    ///creating an object, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkGetDeviceImageSparseMemoryRequirements(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceImageMemoryRequirements*      pInfo,
+    ///    uint32_t*                                   pSparseMemoryRequirementCount,
+    ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_maintenance4
+    ///void vkGetDeviceImageSparseMemoryRequirementsKHR(
+    ///    VkDevice                                    device,
+    ///    const VkDeviceImageMemoryRequirements*      pInfo,
+    ///    uint32_t*                                   pSparseMemoryRequirementCount,
+    ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device intended to own the image.
+    /// - [`p_info`] is a pointer to a [`DeviceImageMemoryRequirements`] structure containing
+    ///   parameters required for the memory requirements query.
+    /// - [`p_sparse_memory_requirement_count`] is a pointer to an integer related to the number of
+    ///   sparse memory requirements available or queried, as described below.
+    /// - [`p_sparse_memory_requirements`] is either `NULL` or a pointer to an array of
+    ///   [`SparseImageMemoryRequirements2`] structures.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`]
+    ///   structure
+    /// - [`p_sparse_memory_requirement_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_sparse_memory_requirement_count`] is not `0`, and
+    ///   [`p_sparse_memory_requirements`] is not `NULL`, [`p_sparse_memory_requirements`] **must**
+    ///   be a valid pointer to an array of
+    ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
+    ///# Related
+    /// - [`VK_KHR_maintenance4`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Device`]
+    /// - [`DeviceImageMemoryRequirements`]
+    /// - [`SparseImageMemoryRequirements2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetDeviceImageSparseMemoryRequirements")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_device_image_sparse_memory_requirements<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_info: &DeviceImageMemoryRequirements<'lt>,
+        p_sparse_memory_requirement_count: Option<usize>,
+    ) -> SmallVec<SparseImageMemoryRequirements2<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .get_device_image_sparse_memory_requirements()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .get_device_image_sparse_memory_requirements()
+            .unwrap_unchecked();
+        let mut p_sparse_memory_requirement_count = match p_sparse_memory_requirement_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_info as *const DeviceImageMemoryRequirements<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_sparse_memory_requirements = SmallVec::<SparseImageMemoryRequirements2<'lt>>::from_elem(
+            Default::default(),
+            p_sparse_memory_requirement_count as usize,
+        );
+        let _return = _function(
+            self.as_raw(),
+            p_info as *const DeviceImageMemoryRequirements<'lt>,
+            &mut p_sparse_memory_requirement_count,
+            p_sparse_memory_requirements.as_mut_ptr(),
+        );
+        p_sparse_memory_requirements
+    }
+}
+impl Device {
+    ///[vkCreatePrivateDataSlot](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreatePrivateDataSlot.html) - Create a slot for private data storage
+    ///# C Specifications
+    ///To create a private data slot, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///VkResult vkCreatePrivateDataSlot(
+    ///    VkDevice                                    device,
+    ///    const VkPrivateDataSlotCreateInfo*          pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkPrivateDataSlot*                          pPrivateDataSlot);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_private_data
+    ///VkResult vkCreatePrivateDataSlotEXT(
+    ///    VkDevice                                    device,
+    ///    const VkPrivateDataSlotCreateInfo*          pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkPrivateDataSlot*                          pPrivateDataSlot);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device associated with the creation of the object(s) holding the
+    ///   private data slot.
+    /// - [`p_create_info`] is a pointer to a [`PrivateDataSlotCreateInfo`]
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_private_data_slot`] is a pointer to a [`PrivateDataSlot`] handle in which the
+    ///   resulting private data slot is returned
+    ///# Description
+    ///## Valid Usage
+    /// - The [`privateData`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-privateData)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`PrivateDataSlotCreateInfo`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_private_data_slot`] **must**  be a valid pointer to a [`PrivateDataSlot`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_private_data`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`PrivateDataSlot`]
+    /// - [`PrivateDataSlotCreateInfo`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreatePrivateDataSlot")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_private_data_slot<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &PrivateDataSlotCreateInfo<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, PrivateDataSlot>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .create_private_data_slot()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .create_private_data_slot()
+            .unwrap_unchecked();
+        let mut p_private_data_slot = MaybeUninit::<PrivateDataSlot>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const PrivateDataSlotCreateInfo<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_private_data_slot.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_private_data_slot.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyPrivateDataSlot](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyPrivateDataSlot.html) - Destroy a private data slot
+    ///# C Specifications
+    ///To destroy a private data slot, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkDestroyPrivateDataSlot(
+    ///    VkDevice                                    device,
+    ///    VkPrivateDataSlot                           privateDataSlot,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_private_data
+    ///void vkDestroyPrivateDataSlotEXT(
+    ///    VkDevice                                    device,
+    ///    VkPrivateDataSlot                           privateDataSlot,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device associated with the creation of the object(s) holding the
+    ///   private data slot.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`private_data_slot`] is the private data slot to destroy.
+    ///# Description
+    ///## Valid Usage
+    /// - If [`AllocationCallbacks`] were provided when [`private_data_slot`] was created, a
+    ///   compatible set of callbacks  **must**  be provided here
+    /// - If no [`AllocationCallbacks`] were provided when [`private_data_slot`] was created,
+    ///   [`p_allocator`] **must**  be `NULL`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - If [`private_data_slot`] is not [`crate::Handle::null`], [`private_data_slot`] **must**
+    ///   be a valid [`PrivateDataSlot`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - If [`private_data_slot`] is a valid handle, it  **must**  have been created, allocated, or
+    ///   retrieved from [`device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`private_data_slot`] **must**  be externally synchronized
+    ///# Related
+    /// - [`VK_EXT_private_data`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`PrivateDataSlot`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyPrivateDataSlot")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_private_data_slot<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        private_data_slot: Option<PrivateDataSlot>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .destroy_private_data_slot()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .destroy_private_data_slot()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            private_data_slot.unwrap_or_default(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkSetPrivateData](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetPrivateData.html) - Associate data with a Vulkan object
+    ///# C Specifications
+    ///To store user defined data in a slot associated with a Vulkan object, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///VkResult vkSetPrivateData(
+    ///    VkDevice                                    device,
+    ///    VkObjectType                                objectType,
+    ///    uint64_t                                    objectHandle,
+    ///    VkPrivateDataSlot                           privateDataSlot,
+    ///    uint64_t                                    data);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_private_data
+    ///VkResult vkSetPrivateDataEXT(
+    ///    VkDevice                                    device,
+    ///    VkObjectType                                objectType,
+    ///    uint64_t                                    objectHandle,
+    ///    VkPrivateDataSlot                           privateDataSlot,
+    ///    uint64_t                                    data);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the object.
+    /// - [`object_type`] is a [`ObjectType`] specifying the type of object to associate data with.
+    /// - [`object_handle`] is a handle to the object to associate data with.
+    /// - [`private_data_slot`] is a handle to a [`PrivateDataSlot`] specifying location of private
+    ///   data storage.
+    /// - [`data`] is user defined data to associate the object with. This data will be stored at
+    ///   [`private_data_slot`].
+    ///# Description
+    ///## Valid Usage
+    /// - [`object_handle`] **must**  be [`device`] or a child of [`device`]
+    /// - [`object_handle`] **must**  be a valid handle to an object of type [`object_type`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`object_type`] **must**  be a valid [`ObjectType`] value
+    /// - [`private_data_slot`] **must**  be a valid [`PrivateDataSlot`] handle
+    /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_private_data`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Device`]
+    /// - [`ObjectType`]
+    /// - [`PrivateDataSlot`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetPrivateData")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_private_data<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        object_type: ObjectType,
+        object_handle: Option<u64>,
+        private_data_slot: PrivateDataSlot,
+        data: Option<u64>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .set_private_data()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .set_private_data()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            object_type,
+            object_handle.unwrap_or_default() as _,
+            private_data_slot,
+            data.unwrap_or_default() as _,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetPrivateData](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPrivateData.html) - Retrieve data associated with a Vulkan object
+    ///# C Specifications
+    ///To retrieve user defined data from a slot associated with a Vulkan object,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkGetPrivateData(
+    ///    VkDevice                                    device,
+    ///    VkObjectType                                objectType,
+    ///    uint64_t                                    objectHandle,
+    ///    VkPrivateDataSlot                           privateDataSlot,
+    ///    uint64_t*                                   pData);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_private_data
+    ///void vkGetPrivateDataEXT(
+    ///    VkDevice                                    device,
+    ///    VkObjectType                                objectType,
+    ///    uint64_t                                    objectHandle,
+    ///    VkPrivateDataSlot                           privateDataSlot,
+    ///    uint64_t*                                   pData);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the object
+    /// - [`object_type`] is a [`ObjectType`] specifying the type of object data is associated with.
+    /// - [`object_handle`] is a handle to the object data is associated with.
+    /// - [`private_data_slot`] is a handle to a [`PrivateDataSlot`] specifying location of private
+    ///   data pointer storage.
+    /// - [`p_data`] is a pointer to specify where user data is returned. `0` will be written in the
+    ///   absence of a previous call to [`set_private_data`] using the object specified by
+    ///   [`object_handle`].
+    ///# Description
+    ///## Valid Usage
+    /// - [`object_type`] **must**  be `VK_OBJECT_TYPE_DEVICE`, or an object type whose parent is
+    ///   [`Device`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`object_type`] **must**  be a valid [`ObjectType`] value
+    /// - [`private_data_slot`] **must**  be a valid [`PrivateDataSlot`] handle
+    /// - [`p_data`] **must**  be a valid pointer to a `uint64_t` value
+    /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_EXT_private_data`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Device`]
+    /// - [`ObjectType`]
+    /// - [`PrivateDataSlot`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPrivateData")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_private_data<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        object_type: ObjectType,
+        object_handle: Option<u64>,
+        private_data_slot: PrivateDataSlot,
+    ) -> u64 {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .get_private_data()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .get_private_data()
+            .unwrap_unchecked();
+        let mut p_data = Default::default();
+        let _return = _function(
+            self.as_raw(),
+            object_type,
+            object_handle.unwrap_or_default() as _,
+            private_data_slot,
+            &mut p_data,
+        );
+        p_data
+    }
+}
+impl Queue {
+    ///[vkQueueSubmit2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkQueueSubmit2.html) - Submits command buffers to a queue
+    ///# C Specifications
+    ///To submit command buffers to a queue, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///VkResult vkQueueSubmit2(
+    ///    VkQueue                                     queue,
+    ///    uint32_t                                    submitCount,
+    ///    const VkSubmitInfo2*                        pSubmits,
+    ///    VkFence                                     fence);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_synchronization2
+    ///VkResult vkQueueSubmit2KHR(
+    ///    VkQueue                                     queue,
+    ///    uint32_t                                    submitCount,
+    ///    const VkSubmitInfo2*                        pSubmits,
+    ///    VkFence                                     fence);
+    ///```
+    ///# Parameters
+    /// - [`queue`] is the queue that the command buffers will be submitted to.
+    /// - [`submit_count`] is the number of elements in the [`p_submits`] array.
+    /// - [`p_submits`] is a pointer to an array of [`SubmitInfo2`] structures, each specifying a
+    ///   command buffer submission batch.
+    /// - [`fence`] is an  **optional**  handle to a fence to be signaled once all submitted command
+    ///   buffers have completed execution. If [`fence`] is not [`crate::Handle::null`], it defines a
+    ///   [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling).
+    ///# Description
+    ///[`queue_submit2`] is a [queue submission
+    ///command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission), with each batch defined by an element of [`p_submits`].Semaphore operations submitted with [`queue_submit2`] have additional
+    ///ordering constraints compared to other submission commands, with
+    ///dependencies involving previous and subsequent queue operations.
+    ///Information about these additional constraints can be found in the
+    ///[semaphore](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores) section of [the
+    ///synchronization chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).If any command buffer submitted to this queue is in the
+    ///[executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), it is moved to the
+    ///[pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
+    ///Once execution of all submissions of a command buffer complete, it moves
+    ///from the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), back to the
+    ///[executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
+    ///If a command buffer was recorded with the
+    ///`VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT` flag, it instead moves
+    ///back to the [invalid state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).If [`queue_submit2`] fails, it  **may**  return
+    ///`VK_ERROR_OUT_OF_HOST_MEMORY` or `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
+    ///If it does, the implementation  **must**  ensure that the state and contents of
+    ///any resources or synchronization primitives referenced by the submitted
+    ///command buffers and any semaphores referenced by [`p_submits`] is
+    ///unaffected by the call or its failure.
+    ///If [`queue_submit2`] fails in such a way that the implementation is
+    ///unable to make that guarantee, the implementation  **must**  return
+    ///`VK_ERROR_DEVICE_LOST`.
+    ///See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device).
+    ///## Valid Usage
+    /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be unsignaled
+    /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  not be associated with
+    ///   any other queue command that has not yet completed execution on that queue
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - If a command recorded into the `commandBuffer` member of any element of the
+    ///   `pCommandBufferInfos` member of any element of [`p_submits`] referenced an [`Event`], that
+    ///   event  **must**  not be referenced by a command that has been submitted to another queue
+    ///   and is still in the *pending state*
+    /// - The `semaphore` member of any binary semaphore element of the `pSignalSemaphoreInfos`
+    ///   member of any element of [`p_submits`] **must**  be unsignaled when the semaphore signal
+    ///   operation it defines is executed on the device
+    /// - The `stageMask` member of any element of the `pSignalSemaphoreInfos` member of any element
+    ///   of [`p_submits`] **must**  only include pipeline stages that are supported by the queue
+    ///   family which [`queue`] belongs to
+    /// - The `stageMask` member of any element of the `pWaitSemaphoreInfos` member of any element
+    ///   of [`p_submits`] **must**  only include pipeline stages that are supported by the queue
+    ///   family which [`queue`] belongs to
+    /// - When a semaphore wait operation for a binary semaphore is executed, as defined by the
+    ///   `semaphore` member of any element of the `pWaitSemaphoreInfos` member of any element of
+    ///   [`p_submits`], there  **must**  be no other queues waiting on the same semaphore
+    /// -    The `semaphore` member of any element of the `pWaitSemaphoreInfos` member of any element of [`p_submits`] **must**  be semaphores that are signaled, or have [semaphore signal operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) previously submitted for execution
+    /// - Any `semaphore` member of any element of the `pWaitSemaphoreInfos` member of any element
+    ///   of [`p_submits`] that was created with a [`SemaphoreTypeKHR`] of
+    ///   `VK_SEMAPHORE_TYPE_BINARY_KHR` **must**  reference a semaphore signal operation that has
+    ///   been submitted for execution and any semaphore signal operations on which it depends (if
+    ///   any)  **must**  have also been submitted for execution
+    /// -    The `commandBuffer` member of any element of the `pCommandBufferInfos` member of any element of [`p_submits`] **must**  be in the [pending or executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
+    /// -    If a command recorded into the `commandBuffer` member of any element of the `pCommandBufferInfos` member of any element of [`p_submits`] was not recorded with the `VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT`, it  **must**  not be in the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
+    /// -    Any [secondary command buffers recorded](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-secondary) into the `commandBuffer` member of any element of the `pCommandBufferInfos` member of any element of [`p_submits`] **must**  be in the [pending or executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
+    /// -    If any [secondary command buffers recorded](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-secondary) into the `commandBuffer` member of any element of the `pCommandBufferInfos` member of any element of [`p_submits`] was not recorded with the `VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT`, it  **must**  not be in the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
+    /// - The `commandBuffer` member of any element of the `pCommandBufferInfos` member of any
+    ///   element of [`p_submits`] **must**  have been allocated from a [`CommandPool`] that was
+    ///   created for the same queue family [`queue`] belongs to
+    /// -    If a command recorded into the `commandBuffer` member of any element of the `pCommandBufferInfos` member of any element of [`p_submits`] includes a [Queue Family Transfer Acquire Operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire), there  **must**  exist a previously submitted [Queue Family Transfer Release Operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release) on a queue in the queue family identified by the acquire operation, with parameters matching the acquire operation as defined in the definition of such [acquire operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire), and which happens before the acquire operation
+    /// -    If a command recorded into the `commandBuffer` member of any element of the `pCommandBufferInfos` member of any element of [`p_submits`] was a [`cmd_begin_query`] whose `queryPool` was created with a `queryType` of `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`, the [profiling lock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#profiling-lock) **must**  have been held continuously on the [`Device`] that [`queue`] was retrieved from, throughout recording of those command buffers
+    /// - If [`queue`] was not created with `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT`, the `flags`
+    ///   member of any element of [`p_submits`] **must**  not include `VK_SUBMIT_PROTECTED_BIT_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`queue`] **must**  be a valid [`Queue`] handle
+    /// - If [`submit_count`] is not `0`, [`p_submits`] **must**  be a valid pointer to an array of
+    ///   [`submit_count`] valid [`SubmitInfo2`] structures
+    /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be a valid [`Fence`]
+    ///   handle
+    /// - Both of [`fence`], and [`queue`] that are valid handles of non-ignored parameters
+    ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`queue`] **must**  be externally synchronized
+    /// - Host access to [`fence`] **must**  be externally synchronized
+    ///
+    ///## Command Properties
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_DEVICE_LOST`
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Fence`]
+    /// - [`Queue`]
+    /// - [`SubmitInfo2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkQueueSubmit2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn queue_submit2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, Queue>,
+        p_submits: &[crate::vulkan1_3::SubmitInfo2<'lt>],
+        fence: Option<Fence>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .queue_submit2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .queue_submit2()
+            .unwrap_unchecked();
+        let submit_count = (|len: usize| len)(p_submits.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            submit_count,
+            p_submits.as_ptr(),
+            fence.unwrap_or_default(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetCullMode](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetCullMode.html) - Set cull mode dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the cull mode, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetCullMode(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkCullModeFlags                             cullMode);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetCullModeEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkCullModeFlags                             cullMode);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`cull_mode`] specifies the cull mode property to use for drawing.
+    ///# Description
+    ///This command sets the cull mode for subsequent drawing commands when the
+    ///graphics pipeline is created with `VK_DYNAMIC_STATE_CULL_MODE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`cull_mode`] value used to
+    ///create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`cull_mode`] **must**  be a valid combination of [`CullModeFlagBits`] values
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CullModeFlags`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetCullMode")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_cull_mode<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        cull_mode: CullModeFlags,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_cull_mode()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_cull_mode()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), cull_mode);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetFrontFace](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetFrontFace.html) - Set front face orientation dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the front face orientation,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetFrontFace(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkFrontFace                                 frontFace);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetFrontFaceEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkFrontFace                                 frontFace);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`front_face`] is a [`FrontFace`] value specifying the front-facing triangle orientation
+    ///   to be used for culling.
+    ///# Description
+    ///This command sets the front face orientation for subsequent drawing commands
+    ///when the graphics pipeline is created with `VK_DYNAMIC_STATE_FRONT_FACE`
+    ///set in [`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`front_face`] value used to
+    ///create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`front_face`] **must**  be a valid [`FrontFace`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`FrontFace`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetFrontFace")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_front_face<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        front_face: FrontFace,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_front_face()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_front_face()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), front_face);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetPrimitiveTopology](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetPrimitiveTopology.html) - Set primitive topology state dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) primitive topology, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetPrimitiveTopology(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPrimitiveTopology                         primitiveTopology);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetPrimitiveTopologyEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPrimitiveTopology                         primitiveTopology);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`primitive_topology`] specifies the primitive topology to use for drawing.
+    ///# Description
+    ///This command sets the primitive topology for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineInputAssemblyStateCreateInfo::topology`] value used to
+    ///create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`primitive_topology`] **must**  be a valid [`PrimitiveTopology`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`PrimitiveTopology`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetPrimitiveTopology")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_primitive_topology<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        primitive_topology: PrimitiveTopology,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_primitive_topology()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_primitive_topology()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), primitive_topology);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetViewportWithCount](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetViewportWithCount.html) - Set the viewport count and viewports dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the viewport count and
+    ///viewports, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetViewportWithCount(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    viewportCount,
+    ///    const VkViewport*                           pViewports);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetViewportWithCountEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    viewportCount,
+    ///    const VkViewport*                           pViewports);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`viewport_count`] specifies the viewport count.
+    /// - [`p_viewports`] specifies the viewports to use for drawing.
+    ///# Description
+    ///This command sets the viewport count and viewports state for subsequent
+    ///drawing commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the corresponding
+    ///[`PipelineViewportStateCreateInfo`]::[`viewport_count`] and
+    ///[`p_viewports`] values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - [`viewport_count`] **must**  be between `1` and [`PhysicalDeviceLimits::max_viewports`],
+    ///   inclusive
+    /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
+    ///   feature is not enabled, [`viewport_count`] **must**  be `1`
+    /// - [`command_buffer`] **must**  not have
+    ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor_2_d`] enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_viewports`] **must**  be a valid pointer to an array of [`viewport_count`] valid
+    ///   [`Viewport`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`viewport_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`Viewport`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetViewportWithCount")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_viewport_with_count<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_viewports: &[crate::vulkan1_0::Viewport],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_viewport_with_count()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_viewport_with_count()
+            .unwrap_unchecked();
+        let viewport_count = (|len: usize| len)(p_viewports.len()) as _;
+        let _return = _function(self.as_raw(), viewport_count, p_viewports.as_ptr());
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetScissorWithCount](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetScissorWithCount.html) - Set the scissor count and scissor rectangular bounds dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the scissor count and
+    ///scissor rectangular bounds, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetScissorWithCount(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    scissorCount,
+    ///    const VkRect2D*                             pScissors);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetScissorWithCountEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    scissorCount,
+    ///    const VkRect2D*                             pScissors);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`scissor_count`] specifies the scissor count.
+    /// - [`p_scissors`] specifies the scissors to use for drawing.
+    ///# Description
+    ///This command sets the scissor count and scissor rectangular bounds state for
+    ///subsequence drawing commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the corresponding
+    ///[`PipelineViewportStateCreateInfo`]::[`scissor_count`] and
+    ///[`p_scissors`] values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - [`scissor_count`] **must**  be between `1` and [`PhysicalDeviceLimits::max_viewports`],
+    ///   inclusive
+    /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
+    ///   feature is not enabled, [`scissor_count`] **must**  be `1`
+    /// - The `x` and `y` members of `offset` member of any element of [`p_scissors`] **must**  be
+    ///   greater than or equal to `0`
+    /// - Evaluation of (`offset.x` +  `extent.width`) **must**  not cause a signed integer addition
+    ///   overflow for any element of [`p_scissors`]
+    /// - Evaluation of (`offset.y` +  `extent.height`) **must**  not cause a signed integer
+    ///   addition overflow for any element of [`p_scissors`]
+    /// - [`command_buffer`] **must**  not have
+    ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor_2_d`] enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_scissors`] **must**  be a valid pointer to an array of [`scissor_count`][`Rect2D`]
+    ///   structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`scissor_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`Rect2D`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetScissorWithCount")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_scissor_with_count<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_scissors: &[crate::vulkan1_0::Rect2D],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_scissor_with_count()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_scissor_with_count()
+            .unwrap_unchecked();
+        let scissor_count = (|len: usize| len)(p_scissors.len()) as _;
+        let _return = _function(self.as_raw(), scissor_count, p_scissors.as_ptr());
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdBindVertexBuffers2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBindVertexBuffers2.html) - Bind vertex buffers to a command buffer and dynamically set strides
+    ///# C Specifications
+    ///Alternatively, to bind vertex buffers, along with their sizes and strides,
+    ///to a command buffer for use in subsequent drawing commands, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdBindVertexBuffers2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    firstBinding,
+    ///    uint32_t                                    bindingCount,
+    ///    const VkBuffer*                             pBuffers,
+    ///    const VkDeviceSize*                         pOffsets,
+    ///    const VkDeviceSize*                         pSizes,
+    ///    const VkDeviceSize*                         pStrides);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdBindVertexBuffers2EXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    firstBinding,
+    ///    uint32_t                                    bindingCount,
+    ///    const VkBuffer*                             pBuffers,
+    ///    const VkDeviceSize*                         pOffsets,
+    ///    const VkDeviceSize*                         pSizes,
+    ///    const VkDeviceSize*                         pStrides);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`first_binding`] is the index of the first vertex input binding whose state is updated by
+    ///   the command.
+    /// - [`binding_count`] is the number of vertex input bindings whose state is updated by the
+    ///   command.
+    /// - [`p_buffers`] is a pointer to an array of buffer handles.
+    /// - [`p_offsets`] is a pointer to an array of buffer offsets.
+    /// - [`p_sizes`] is `NULL` or a pointer to an array of the size in bytes of vertex data bound
+    ///   from [`p_buffers`].
+    /// - [`p_strides`] is `NULL` or a pointer to an array of buffer strides.
+    ///# Description
+    ///The values taken from elements i of [`p_buffers`] and [`p_offsets`]
+    ///replace the current state for the vertex input binding
+    ///[`first_binding`] +  i, for i in [0,
+    ///[`binding_count`]).
+    ///The vertex input binding is updated to start at the offset indicated by
+    ///[`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
+    ///If [`p_sizes`] is not `NULL` then [`p_sizes`][i] specifies the bound size
+    ///of the vertex buffer starting from the corresponding elements of
+    ///[`p_buffers`][i] plus [`p_offsets`][i].
+    ///All vertex input attributes that use each of these bindings will use these
+    ///updated addresses in their address calculations for subsequent drawing
+    ///commands.
+    ///If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) feature is enabled,
+    ///elements of [`p_buffers`] **can**  be [`crate::Handle::null`], and  **can**  be used by
+    ///the vertex shader.
+    ///If a vertex input attribute is bound to a vertex input binding that is
+    ///[`crate::Handle::null`], the values taken from memory are considered to be
+    ///zero, and missing G, B, or A components are
+    ///[filled with (0,0,1)](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fxvertex-input-extraction).This command also [dynamically sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the byte
+    ///strides between consecutive elements within buffer [`p_buffers`][i] to the
+    ///corresponding [`p_strides`][i] value when the graphics pipeline is created
+    ///with `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, strides are specified by the
+    ///[`VertexInputBindingDescription::stride`] values used to create
+    ///the currently active pipeline.If the bound pipeline state object was also created with the
+    ///`VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled then
+    ///[`cmd_set_vertex_input_ext`] **can**  be used instead of
+    ///[`cmd_bind_vertex_buffers2`] to set the stride.
+    ///## Valid Usage
+    /// - [`first_binding`] **must**  be less than
+    ///   [`PhysicalDeviceLimits::max_vertex_input_bindings`]
+    /// - The sum of [`first_binding`] and [`binding_count`] **must**  be less than or equal to
+    ///   [`PhysicalDeviceLimits::max_vertex_input_bindings`]
+    /// - All elements of [`p_offsets`] **must**  be less than the size of the corresponding element
+    ///   in [`p_buffers`]
+    /// - If [`p_sizes`] is not `NULL`, all elements of [`p_offsets`] plus [`p_sizes`] **must**  be
+    ///   less than or equal to the size of the corresponding element in [`p_buffers`]
+    /// - All elements of [`p_buffers`] **must**  have been created with the
+    ///   `VK_BUFFER_USAGE_VERTEX_BUFFER_BIT` flag
+    /// - Each element of [`p_buffers`] that is non-sparse  **must**  be bound completely and
+    ///   contiguously to a single [`DeviceMemory`] object
+    /// - If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor)
+    ///   feature is not enabled, all elements of [`p_buffers`] **must**  not be
+    ///   [`crate::Handle::null`]
+    /// - If an element of [`p_buffers`] is [`crate::Handle::null`], then the corresponding element
+    ///   of [`p_offsets`] **must**  be zero
+    /// - If [`p_strides`] is not `NULL` each element of [`p_strides`] **must**  be less than or
+    ///   equal to [`PhysicalDeviceLimits::max_vertex_input_binding_stride`]
+    /// - If [`p_strides`] is not `NULL` each element of [`p_strides`] **must**  be either 0 or
+    ///   greater than or equal to the maximum extent of all vertex input attributes fetched from
+    ///   the corresponding binding, where the extent is calculated as the
+    ///   [`VertexInputAttributeDescription::offset`] plus
+    ///   [`VertexInputAttributeDescription::format`] size
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_buffers`] **must**  be a valid pointer to an array of [`binding_count`] valid or
+    ///   [`crate::Handle::null`][`Buffer`] handles
+    /// - [`p_offsets`] **must**  be a valid pointer to an array of [`binding_count`][`DeviceSize`]
+    ///   values
+    /// - If [`p_sizes`] is not `NULL`, [`p_sizes`] **must**  be a valid pointer to an array of
+    ///   [`binding_count`][`DeviceSize`] values
+    /// - If [`p_strides`] is not `NULL`, [`p_strides`] **must**  be a valid pointer to an array of
+    ///   [`binding_count`][`DeviceSize`] values
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - If any of [`p_sizes`], or [`p_strides`] are not `NULL`, [`binding_count`] **must**  be
+    ///   greater than `0`
+    /// - Both of [`command_buffer`], and the elements of [`p_buffers`] that are valid handles of
+    ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
+    ///   [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Buffer`]
+    /// - [`CommandBuffer`]
+    /// - [`DeviceSize`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBindVertexBuffers2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_bind_vertex_buffers2<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        first_binding: Option<u32>,
+        p_buffers: Option<&[crate::vulkan1_0::Buffer]>,
+        p_offsets: &[crate::vulkan1_0::DeviceSize],
+        p_sizes: Option<&[crate::vulkan1_0::DeviceSize]>,
+        p_strides: Option<&[crate::vulkan1_0::DeviceSize]>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_bind_vertex_buffers2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_bind_vertex_buffers2()
+            .unwrap_unchecked();
+        let binding_count = (|len: usize| len)(p_buffers.map_or(0, |i| i.len())) as _;
+        let _return = _function(
+            self.as_raw(),
+            first_binding.unwrap_or_default() as _,
+            binding_count,
+            p_buffers.map(|slice| slice.as_ptr()).unwrap_or_else(std::ptr::null),
+            p_offsets.as_ptr(),
+            p_sizes.map(|slice| slice.as_ptr()).unwrap_or_else(std::ptr::null),
+            p_strides.map(|slice| slice.as_ptr()).unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetDepthTestEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetDepthTestEnable.html) - Set depth test enable dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically enable or disable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the depth
+    ///test, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetDepthTestEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthTestEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetDepthTestEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthTestEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`depth_test_enable`] specifies if the depth test is enabled.
+    ///# Description
+    ///This command sets the depth test enable for subsequent drawing commands when
+    ///the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_test_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetDepthTestEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_depth_test_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        depth_test_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_depth_test_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_depth_test_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), depth_test_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetDepthWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetDepthWriteEnable.html) - Set depth write enable dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the depth write enable,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetDepthWriteEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthWriteEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetDepthWriteEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthWriteEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`depth_write_enable`] specifies if depth writes are enabled.
+    ///# Description
+    ///This command sets the depth write enable for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_write_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetDepthWriteEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_depth_write_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        depth_write_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_depth_write_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_depth_write_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), depth_write_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetDepthCompareOp](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetDepthCompareOp.html) - Set depth comparison operator dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the depth compare operator,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetDepthCompareOp(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkCompareOp                                 depthCompareOp);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetDepthCompareOpEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkCompareOp                                 depthCompareOp);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`depth_compare_op`] specifies the depth comparison operator.
+    ///# Description
+    ///This command sets the depth comparison operator for subsequent drawing
+    ///commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_COMPARE_OP` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_compare_op`] value used
+    ///to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`depth_compare_op`] **must**  be a valid [`CompareOp`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CompareOp`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetDepthCompareOp")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_depth_compare_op<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        depth_compare_op: CompareOp,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_depth_compare_op()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_depth_compare_op()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), depth_compare_op);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetDepthBoundsTestEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetDepthBoundsTestEnable.html) - Set depth bounds test enable dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically enable or disable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the depth
+    ///bounds test, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetDepthBoundsTestEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthBoundsTestEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetDepthBoundsTestEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthBoundsTestEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`depth_bounds_test_enable`] specifies if the depth bounds test is enabled.
+    ///# Description
+    ///This command sets the depth bounds enable for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_bounds_test_enable`]
+    ///value used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetDepthBoundsTestEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_depth_bounds_test_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        depth_bounds_test_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_depth_bounds_test_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_depth_bounds_test_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), depth_bounds_test_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetStencilTestEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetStencilTestEnable.html) - Set stencil test enable dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically enable or disable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the stencil
+    ///test, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetStencilTestEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    stencilTestEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetStencilTestEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    stencilTestEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`stencil_test_enable`] specifies if the stencil test is enabled.
+    ///# Description
+    ///This command sets the stencil test enable for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetStencilTestEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_stencil_test_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        stencil_test_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_stencil_test_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_stencil_test_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), stencil_test_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetStencilOp](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetStencilOp.html) - Set stencil operation dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the stencil operation, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetStencilOp(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkStencilFaceFlags                          faceMask,
+    ///    VkStencilOp                                 failOp,
+    ///    VkStencilOp                                 passOp,
+    ///    VkStencilOp                                 depthFailOp,
+    ///    VkCompareOp                                 compareOp);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state
+    ///void vkCmdSetStencilOpEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkStencilFaceFlags                          faceMask,
+    ///    VkStencilOp                                 failOp,
+    ///    VkStencilOp                                 passOp,
+    ///    VkStencilOp                                 depthFailOp,
+    ///    VkCompareOp                                 compareOp);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`face_mask`] is a bitmask of [`StencilFaceFlagBits`] specifying the set of stencil state
+    ///   for which to update the stencil operation.
+    /// - [`fail_op`] is a [`StencilOp`] value specifying the action performed on samples that fail
+    ///   the stencil test.
+    /// - [`pass_op`] is a [`StencilOp`] value specifying the action performed on samples that pass
+    ///   both the depth and stencil tests.
+    /// - [`depth_fail_op`] is a [`StencilOp`] value specifying the action performed on samples that
+    ///   pass the stencil test and fail the depth test.
+    /// - [`compare_op`] is a [`CompareOp`] value specifying the comparison operator used in the
+    ///   stencil test.
+    ///# Description
+    ///This command sets the stencil operation for subsequent drawing commands when
+    ///the graphics pipeline is created with `VK_DYNAMIC_STATE_STENCIL_OP` set
+    ///in [`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the corresponding
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`fail_op`], [`pass_op`],
+    ///[`depth_fail_op`], and [`compare_op`] values used to create the currently
+    ///active pipeline, for both front and back faces.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`face_mask`] **must**  be a valid combination of [`StencilFaceFlagBits`] values
+    /// - [`face_mask`] **must**  not be `0`
+    /// - [`fail_op`] **must**  be a valid [`StencilOp`] value
+    /// - [`pass_op`] **must**  be a valid [`StencilOp`] value
+    /// - [`depth_fail_op`] **must**  be a valid [`StencilOp`] value
+    /// - [`compare_op`] **must**  be a valid [`CompareOp`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CompareOp`]
+    /// - [`StencilFaceFlags`]
+    /// - [`StencilOp`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetStencilOp")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_stencil_op<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        face_mask: StencilFaceFlags,
+        fail_op: StencilOp,
+        pass_op: StencilOp,
+        depth_fail_op: StencilOp,
+        compare_op: CompareOp,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_stencil_op()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_stencil_op()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), face_mask, fail_op, pass_op, depth_fail_op, compare_op);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetRasterizerDiscardEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetRasterizerDiscardEnable.html) - Control whether primitives are discarded before the rasterization stage dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically enable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) whether primitives are
+    ///discarded before the rasterization stage, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetRasterizerDiscardEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    rasterizerDiscardEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state2
+    ///void vkCmdSetRasterizerDiscardEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    rasterizerDiscardEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`rasterizer_discard_enable`] controls whether primitives are discarded immediately before
+    ///   the rasterization stage.
+    ///# Description
+    ///This command sets the discard enable for subsequent drawing commands when
+    ///the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`rasterizer_discard_enable`]
+    ///value used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetRasterizerDiscardEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_rasterizer_discard_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        rasterizer_discard_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_rasterizer_discard_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_rasterizer_discard_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), rasterizer_discard_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetDepthBiasEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetDepthBiasEnable.html) - Control whether to bias fragment depth values dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically enable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) whether to bias fragment
+    ///depth values, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetDepthBiasEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthBiasEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state2
+    ///void vkCmdSetDepthBiasEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    depthBiasEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`depth_bias_enable`] controls whether to bias fragment depth values.
+    ///# Description
+    ///This command sets the depth bias enable for subsequent drawing commands when
+    ///the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`depth_bias_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetDepthBiasEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_depth_bias_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        depth_bias_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_depth_bias_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_depth_bias_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), depth_bias_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetPrimitiveRestartEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetPrimitiveRestartEnable.html) - Set primitive assembly restart state dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically control](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) whether a special vertex
+    ///index value is treated as restarting the assembly of primitives, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetPrimitiveRestartEnable(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    primitiveRestartEnable);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_EXT_extended_dynamic_state2
+    ///void vkCmdSetPrimitiveRestartEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    primitiveRestartEnable);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`primitive_restart_enable`] controls whether a special vertex index value is treated as
+    ///   restarting the assembly of primitives. It behaves in the same way as
+    ///   [`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
+    ///# Description
+    ///This command sets the primitive restart enable for subsequent drawing
+    ///commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
+    ///value used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetPrimitiveRestartEnable")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_primitive_restart_enable<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        primitive_restart_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_primitive_restart_enable()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_primitive_restart_enable()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), primitive_restart_enable as u8 as u32);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdCopyBuffer2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdCopyBuffer2.html) - Copy data between buffer regions
+    ///# C Specifications
+    ///To copy data between buffer objects, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdCopyBuffer2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyBufferInfo2*                    pCopyBufferInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_copy_commands2
+    ///void vkCmdCopyBuffer2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyBufferInfo2*                    pCopyBufferInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_copy_buffer_info`] is a pointer to a [`CopyBufferInfo2`] structure describing the copy
+    ///   parameters.
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_buffer`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `srcBuffer` **must**  not be a protected buffer
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstBuffer` **must**  not be a protected buffer
+    /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstBuffer` **must**  not be an unprotected buffer
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_copy_buffer_info`] **must**  be a valid pointer to a valid [`CopyBufferInfo2`]
+    ///   structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_copy_commands2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CopyBufferInfo2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdCopyBuffer2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_copy_buffer2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_copy_buffer_info: &CopyBufferInfo2<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_copy_buffer2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_copy_buffer2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_copy_buffer_info as *const CopyBufferInfo2<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdCopyImage2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdCopyImage2.html) - Copy data between images
+    ///# C Specifications
+    ///To copy data between image objects, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdCopyImage2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyImageInfo2*                     pCopyImageInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_copy_commands2
+    ///void vkCmdCopyImage2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyImageInfo2*                     pCopyImageInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_copy_image_info`] is a pointer to a [`CopyImageInfo2`] structure describing the copy
+    ///   parameters.
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_image`], but includes
+    ///extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `srcImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be an unprotected image
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_copy_image_info`] **must**  be a valid pointer to a valid [`CopyImageInfo2`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_copy_commands2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CopyImageInfo2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdCopyImage2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_copy_image2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_copy_image_info: &CopyImageInfo2<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_copy_image2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_copy_image2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_copy_image_info as *const CopyImageInfo2<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdBlitImage2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBlitImage2.html) - Copy regions of an image, potentially performing format conversion,
+    ///# C Specifications
+    ///To copy regions of a source image into a destination image, potentially
+    ///performing format conversion, arbitrary scaling, and filtering, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdBlitImage2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkBlitImageInfo2*                     pBlitImageInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_copy_commands2
+    ///void vkCmdBlitImage2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkBlitImageInfo2*                     pBlitImageInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_blit_image_info`] is a pointer to a [`BlitImageInfo2`] structure describing the blit
+    ///   parameters.
+    ///# Description
+    ///This command is functionally identical to [`cmd_blit_image`], but includes
+    ///extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `srcImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be an unprotected image
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_blit_image_info`] **must**  be a valid pointer to a valid [`BlitImageInfo2`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_copy_commands2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`BlitImageInfo2`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBlitImage2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_blit_image2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_blit_image_info: &BlitImageInfo2<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_blit_image2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_blit_image2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_blit_image_info as *const BlitImageInfo2<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdCopyBufferToImage2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdCopyBufferToImage2.html) - Copy data from a buffer into an image
+    ///# C Specifications
+    ///To copy data from a buffer object to an image object, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdCopyBufferToImage2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyBufferToImageInfo2*             pCopyBufferToImageInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_copy_commands2
+    ///void vkCmdCopyBufferToImage2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyBufferToImageInfo2*             pCopyBufferToImageInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_copy_buffer_to_image_info`] is a pointer to a [`CopyBufferToImageInfo2`] structure
+    ///   describing the copy parameters.
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_buffer_to_image`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `srcBuffer` **must**  not be a protected buffer
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be an unprotected image
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_copy_buffer_to_image_info`] **must**  be a valid pointer to a valid
+    ///   [`CopyBufferToImageInfo2`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_copy_commands2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CopyBufferToImageInfo2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdCopyBufferToImage2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_copy_buffer_to_image2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_copy_buffer_to_image_info: &CopyBufferToImageInfo2<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_copy_buffer_to_image2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_copy_buffer_to_image2()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_copy_buffer_to_image_info as *const CopyBufferToImageInfo2<'lt>,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdCopyImageToBuffer2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdCopyImageToBuffer2.html) - Copy image data into a buffer
+    ///# C Specifications
+    ///To copy data from an image object to a buffer object, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdCopyImageToBuffer2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyImageToBufferInfo2*             pCopyImageToBufferInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_copy_commands2
+    ///void vkCmdCopyImageToBuffer2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkCopyImageToBufferInfo2*             pCopyImageToBufferInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_copy_image_to_buffer_info`] is a pointer to a [`CopyImageToBufferInfo2`] structure
+    ///   describing the copy parameters.
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_image_to_buffer`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `srcImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstBuffer` **must**  not be a protected buffer
+    /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstBuffer` **must**  not be an unprotected buffer
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_copy_image_to_buffer_info`] **must**  be a valid pointer to a valid
+    ///   [`CopyImageToBufferInfo2`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_copy_commands2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`CopyImageToBufferInfo2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdCopyImageToBuffer2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_copy_image_to_buffer2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_copy_image_to_buffer_info: &CopyImageToBufferInfo2<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_copy_image_to_buffer2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_copy_image_to_buffer2()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_copy_image_to_buffer_info as *const CopyImageToBufferInfo2<'lt>,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdResolveImage2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdResolveImage2.html) - Resolve regions of an image
+    ///# C Specifications
+    ///To resolve a multisample image to a non-multisample image, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdResolveImage2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkResolveImageInfo2*                  pResolveImageInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_copy_commands2
+    ///void vkCmdResolveImage2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkResolveImageInfo2*                  pResolveImageInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`p_resolve_image_info`] is a pointer to a [`ResolveImageInfo2`] structure describing the
+    ///   resolve parameters.
+    ///# Description
+    ///This command is functionally identical to [`cmd_resolve_image`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `srcImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be a protected image
+    /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
+    ///   supported, `dstImage` **must**  not be an unprotected image
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_resolve_image_info`] **must**  be a valid pointer to a valid [`ResolveImageInfo2`]
+    ///   structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_copy_commands2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`ResolveImageInfo2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdResolveImage2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_resolve_image2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_resolve_image_info: &ResolveImageInfo2<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_resolve_image2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_resolve_image2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_resolve_image_info as *const ResolveImageInfo2<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetEvent2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetEvent2.html) - Set an event object to signaled state
+    ///# C Specifications
+    ///To signal an event from a device, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdSetEvent2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkEvent                                     event,
+    ///    const VkDependencyInfo*                     pDependencyInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_synchronization2
+    ///void vkCmdSetEvent2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkEvent                                     event,
+    ///    const VkDependencyInfo*                     pDependencyInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`event`] is the event that will be signaled.
+    /// - [`p_dependency_info`] is a pointer to a [`DependencyInfo`] structure defining the first
+    ///   scopes of this operation.
+    ///# Description
+    ///When [`cmd_set_event2`] is submitted to a queue, it defines the first half
+    ///of memory dependencies defined by [`p_dependency_info`], as well as an event
+    ///signal operation which sets the event to the signaled state.
+    ///A memory dependency is defined between the event signal operation and
+    ///commands that occur earlier in submission order.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+    ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are defined by
+    ///the union of all the memory dependencies defined by [`p_dependency_info`],
+    ///and are applied to all operations that occur earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///[Queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+    ///[image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
+    ///defined by [`p_dependency_info`] are also included in the first scopes.The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes only the event signal operation, and any
+    ///[queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+    ///[image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
+    ///defined by [`p_dependency_info`].The second [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes)
+    ///includes only [queue family ownership
+    ///transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout
+    ///transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Future [`cmd_wait_events2`] commands rely on all values of each element in
+    ///[`p_dependency_info`] matching exactly with those used to signal the
+    ///corresponding event.
+    ///[`cmd_wait_events`] **must**  not be used to wait on the result of a signal
+    ///operation defined by [`cmd_set_event2`].If [`event`] is already in the signaled state when
+    /// [`cmd_set_event2`] is
+    ///executed on the device, then [`cmd_set_event2`] has no effect, no event
+    ///signal operation occurs, and no dependency is generated.
+    ///## Valid Usage
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - The `dependencyFlags` member of [`p_dependency_info`] **must**  be `0`
+    /// - The current device mask of [`command_buffer`] **must**  include exactly one physical
+    ///   device
+    /// - The `srcStageMask` member of any element of the `pMemoryBarriers`,
+    ///   `pBufferMemoryBarriers`, or `pImageMemoryBarriers` members of [`p_dependency_info`]
+    ///   **must**  only include pipeline stages valid for the queue family that was used to create
+    ///   the command pool that [`command_buffer`] was allocated from
+    /// - The `dstStageMask` member of any element of the `pMemoryBarriers`,
+    ///   `pBufferMemoryBarriers`, or `pImageMemoryBarriers` members of [`p_dependency_info`]
+    ///   **must**  only include pipeline stages valid for the queue family that was used to create
+    ///   the command pool that [`command_buffer`] was allocated from
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`event`] **must**  be a valid [`Event`] handle
+    /// - [`p_dependency_info`] **must**  be a valid pointer to a valid [`DependencyInfo`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - Both of [`command_buffer`], and [`event`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`DependencyInfo`]
+    /// - [`Event`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetEvent2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_event2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        event: Event,
+        p_dependency_info: &DependencyInfo<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_set_event2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_set_event2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), event, p_dependency_info as *const DependencyInfo<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdResetEvent2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdResetEvent2.html) - Reset an event object to non-signaled state
+    ///# C Specifications
+    ///To unsignal the event from a device, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdResetEvent2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkEvent                                     event,
+    ///    VkPipelineStageFlags2                       stageMask);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_synchronization2
+    ///void vkCmdResetEvent2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkEvent                                     event,
+    ///    VkPipelineStageFlags2                       stageMask);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`event`] is the event that will be unsignaled.
+    /// - [`stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages used to determine the first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
+    ///# Description
+    ///When [`cmd_reset_event2`] is submitted to a queue, it defines an execution
+    ///dependency on commands that were submitted before it, and defines an event
+    ///unsignal operation which resets the event to the unsignaled state.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes all commands that occur earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///The synchronization scope is limited to operations by [`stage_mask`] or
+    ///stages that are [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
+    ///than [`stage_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes only the event unsignal operation.If [`event`] is already in the unsignaled state
+    /// when
+    ///[`cmd_reset_event2`] is executed on the device, then this command has no
+    ///effect, no event unsignal operation occurs, and no execution dependency is
+    ///generated.
+    ///## Valid Usage
+    /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
+    /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
+    ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
+    /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
+    /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
+    /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
+    /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
+    /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
+    /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
+    /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
+    /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
+    ///   feature is not enabled, [`stage_mask`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - [`stage_mask`] **must**  not include `VK_PIPELINE_STAGE_2_HOST_BIT`
+    /// - There  **must**  be an execution dependency between [`cmd_reset_event2`] and the execution
+    ///   of any [`cmd_wait_events`] that includes [`event`] in its `pEvents` parameter
+    /// - There  **must**  be an execution dependency between [`cmd_reset_event2`] and the execution
+    ///   of any [`cmd_wait_events2`] that includes [`event`] in its `pEvents` parameter
+    /// - [`command_buffer`]’s current device mask  **must**  include exactly one physical device
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`event`] **must**  be a valid [`Event`] handle
+    /// - [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - Both of [`command_buffer`], and [`event`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`Event`]
+    /// - [`PipelineStageFlags2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdResetEvent2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_reset_event2<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        event: Event,
+        stage_mask: PipelineStageFlags2,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_reset_event2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_reset_event2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), event, stage_mask);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdWaitEvents2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdWaitEvents2.html) - Wait for one or more events
+    ///# C Specifications
+    ///To wait for one or more events to enter the signaled state on a device,
+    ///call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdWaitEvents2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    eventCount,
+    ///    const VkEvent*                              pEvents,
+    ///    const VkDependencyInfo*                     pDependencyInfos);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_synchronization2
+    ///void vkCmdWaitEvents2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    eventCount,
+    ///    const VkEvent*                              pEvents,
+    ///    const VkDependencyInfo*                     pDependencyInfos);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`event_count`] is the length of the [`p_events`] array.
+    /// - [`p_events`] is a pointer to an array of [`event_count`] events to wait on.
+    /// - [`p_dependency_infos`] is a pointer to an array of [`event_count`][`DependencyInfo`] structures, defining the second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
+    ///# Description
+    ///When [`cmd_wait_events2`] is submitted to a queue, it inserts memory
+    ///dependencies according to the elements of [`p_dependency_infos`] and each
+    ///corresponding element of [`p_events`].
+    ///[`cmd_wait_events2`] **must**  not be used to wait on event signal operations
+    ///occurring on other queues, or signal operations executed by
+    ///[`cmd_set_event`].The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+    ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
+    ///dependency defined by any element i of [`p_dependency_infos`] are
+    ///applied to operations that occurred earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the last event
+    ///signal operation on element i of [`p_events`].Signal operations for an event at index i are
+    /// only included if:
+    /// - The event was signaled by a [`cmd_set_event2`] command that occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) with a `dependencyInfo` parameter exactly equal to the element of [`p_dependency_infos`] at index i ; or
+    /// - The event was created without `VK_EVENT_CREATE_DEVICE_ONLY_BIT`, and the first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) defined by the element of [`p_dependency_infos`] at index i only includes host operations (`VK_PIPELINE_STAGE_2_HOST_BIT`).
+    ///The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
+    ///memory dependency defined by any element i of [`p_dependency_infos`]
+    ///are applied to operations that occurred later in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than
+    ///[`cmd_wait_events2`].
+    ///## Valid Usage
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - Members of [`p_events`] **must**  not have been signaled by [`cmd_set_event`]
+    /// - For any element i of [`p_events`], if that event is signaled by [`cmd_set_event2`], that
+    ///   command’s `dependencyInfo` parameter  **must**  be exactly equal to the ith element of
+    ///   [`p_dependency_infos`]
+    /// - For any element i of [`p_events`], if that event is signaled by [`set_event`], barriers in
+    ///   the ith element of [`p_dependency_infos`] **must**  include only host operations in their first
+    ///   [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    /// - For any element i of [`p_events`], if barriers in the ith element of
+    ///   [`p_dependency_infos`] include only host operations, the ith element of [`p_events`]
+    ///   **must**  be signaled before [`cmd_wait_events2`] is executed
+    /// -    For any element i of [`p_events`], if barriers in the ith element of [`p_dependency_infos`] do not include host operations, the ith element of [`p_events`] **must**  be signaled by a corresponding [`cmd_set_event2`] that occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order)
+    /// - The `srcStageMask` member of any element of the `pMemoryBarriers`,
+    ///   `pBufferMemoryBarriers`, or `pImageMemoryBarriers` members of [`p_dependency_infos`]
+    ///   **must**  either include only pipeline stages valid for the queue family that was used to
+    ///   create the command pool that [`command_buffer`] was allocated from, or include only
+    ///   `VK_PIPELINE_STAGE_2_HOST_BIT`
+    /// - The `dstStageMask` member of any element of the `pMemoryBarriers`,
+    ///   `pBufferMemoryBarriers`, or `pImageMemoryBarriers` members of [`p_dependency_infos`]
+    ///   **must**  only include pipeline stages valid for the queue family that was used to create
+    ///   the command pool that [`command_buffer`] was allocated from
+    /// - The `dependencyFlags` member of any element of `pDependencyInfo` **must**  be `0`
+    /// - If [`p_events`] includes one or more events that will be signaled by [`set_event`] after
+    ///   [`command_buffer`] has been submitted to a queue, then [`cmd_wait_events2`] **must**  not
+    ///   be called inside a render pass instance
+    /// - [`command_buffer`]’s current device mask  **must**  include exactly one physical device
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_events`] **must**  be a valid pointer to an array of [`event_count`] valid [`Event`]
+    ///   handles
+    /// - [`p_dependency_infos`] **must**  be a valid pointer to an array of [`event_count`] valid
+    ///   [`DependencyInfo`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - [`event_count`] **must**  be greater than `0`
+    /// - Both of [`command_buffer`], and the elements of [`p_events`] **must**  have been created,
+    ///   allocated, or retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`DependencyInfo`]
+    /// - [`Event`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdWaitEvents2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_wait_events2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_events: &[crate::vulkan1_0::Event],
+        p_dependency_infos: &[crate::vulkan1_3::DependencyInfo<'lt>],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_wait_events2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_wait_events2()
+            .unwrap_unchecked();
+        let event_count = (|len: usize| len)(p_events.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            event_count,
+            p_events.as_ptr(),
+            p_dependency_infos.as_ptr(),
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdPipelineBarrier2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdPipelineBarrier2.html) - Insert a memory dependency
+    ///# C Specifications
+    ///To record a pipeline barrier, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdPipelineBarrier2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkDependencyInfo*                     pDependencyInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_synchronization2
+    ///void vkCmdPipelineBarrier2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkDependencyInfo*                     pDependencyInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`p_dependency_info`] is a pointer to a [`DependencyInfo`] structure defining the scopes
+    ///   of this operation.
+    ///# Description
+    ///When [`cmd_pipeline_barrier2`] is submitted to a queue, it defines memory
+    ///dependencies between commands that were submitted before it, and those
+    ///submitted after it.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+    ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
+    ///dependency defined by [`p_dependency_info`] are applied to operations that
+    ///occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
+    ///memory dependency defined by [`p_dependency_info`] are applied to operations
+    ///that occurred later in [submission
+    ///order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).If [`cmd_pipeline_barrier2`] is recorded within a render pass instance,
+    ///the synchronization scopes are
+    ///[limited to
+    ///operations within the same subpass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-barriers-subpass-self-dependencies).
+    ///## Valid Usage
+    /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the render pass
+    ///   **must**  have been created with at least one [`SubpassDependency`] instance in
+    ///   [`RenderPassCreateInfo::dependencies`] that expresses a dependency from the current
+    ///   subpass to itself, with [synchronization scopes]() and [access scopes]() that are all
+    ///   supersets of the scopes defined in this command
+    /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, it  **must**  not
+    ///   include any buffer memory barriers
+    /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the `image` member
+    ///   of any image memory barrier included in this command  **must**  be an attachment used in
+    ///   the current subpass both as an input attachment, and as either a color or depth/stencil
+    ///   attachment
+    /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the `oldLayout` and
+    ///   `newLayout` members of any image memory barrier included in this command  **must**  be
+    ///   equal
+    /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the
+    ///   `srcQueueFamilyIndex` and `dstQueueFamilyIndex` members of any image memory barrier
+    ///   included in this command  **must**  be equal
+    /// - If [`cmd_pipeline_barrier2`] is called outside of a render pass instance,
+    ///   `VK_DEPENDENCY_VIEW_LOCAL_BIT` **must**  not be included in the dependency flags
+    /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the render pass
+    ///   **must**  not have been started with [`cmd_begin_rendering`]
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - The `srcStageMask` member of any element of the `pMemoryBarriers`,
+    ///   `pBufferMemoryBarriers`, or `pImageMemoryBarriers` members of [`p_dependency_info`]
+    ///   **must**  only include pipeline stages valid for the queue family that was used to create
+    ///   the command pool that [`command_buffer`] was allocated from
+    /// - The `dstStageMask` member of any element of the `pMemoryBarriers`,
+    ///   `pBufferMemoryBarriers`, or `pImageMemoryBarriers` members of [`p_dependency_info`]
+    ///   **must**  only include pipeline stages valid for the queue family that was used to create
+    ///   the command pool that [`command_buffer`] was allocated from
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_dependency_info`] **must**  be a valid pointer to a valid [`DependencyInfo`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`DependencyInfo`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdPipelineBarrier2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_pipeline_barrier2<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_dependency_info: &DependencyInfo<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_pipeline_barrier2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_pipeline_barrier2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_dependency_info as *const DependencyInfo<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdWriteTimestamp2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdWriteTimestamp2.html) - Write a device timestamp into a query object
+    ///# C Specifications
+    ///To request a timestamp, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdWriteTimestamp2(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPipelineStageFlags2                       stage,
+    ///    VkQueryPool                                 queryPool,
+    ///    uint32_t                                    query);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_synchronization2
+    ///void vkCmdWriteTimestamp2KHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPipelineStageFlags2                       stage,
+    ///    VkQueryPool                                 queryPool,
+    ///    uint32_t                                    query);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`stage`] specifies a stage of the pipeline.
+    /// - [`query_pool`] is the query pool that will manage the timestamp.
+    /// - [`query`] is the query within the query pool that will contain the timestamp.
+    ///# Description
+    ///When [`cmd_write_timestamp2`] is submitted to a queue, it defines an
+    ///execution dependency on commands that were submitted before it, and writes a
+    ///timestamp to a query pool.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes all commands that occur earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///The synchronization scope is limited to operations on the pipeline stage
+    ///specified by [`stage`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes only the timestamp write operation.When the timestamp value is written, the
+    /// availability status of the query is
+    ///set to available.Comparisons between timestamps are not meaningful if the timestamps are
+    ///written by commands submitted to different queues.If [`cmd_write_timestamp2`] is called
+    /// while executing a render pass
+    ///instance that has multiview enabled, the timestamp uses N consecutive
+    ///query indices in the query pool (starting at [`query`]) where N is
+    ///the number of bits set in the view mask of the subpass the command is
+    ///executed in.
+    ///The resulting query values are determined by an implementation-dependent
+    ///choice of one of the following behaviors:
+    /// - The first query is a timestamp value and (if more than one bit is set in the view mask)
+    ///   zero is written to the remaining queries. If two timestamps are written in the same
+    ///   subpass, the sum of the execution time of all views between those commands is the
+    ///   difference between the first query written by each command.
+    /// - All N queries are timestamp values. If two timestamps are written in the same subpass, the
+    ///   sum of the execution time of all views between those commands is the sum of the difference
+    ///   between corresponding queries written by each command. The difference between
+    ///   corresponding queries  **may**  be the execution time of a single view.
+    ///In either case, the application  **can**  sum the differences between all N
+    ///queries to determine the total execution time.
+    ///## Valid Usage
+    /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
+    /// - If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-tessellationShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT` or
+    ///   `VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT`
+    /// - If the [conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-conditionalRendering)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
+    /// - If the [fragment density map](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-fragmentDensityMap)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
+    /// - If the [transform feedback](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-transformFeedback)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
+    /// - If the [mesh shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-meshShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`
+    /// - If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
+    /// - If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
+    /// - If the [subpass shading](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subpassShading)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI`
+    /// - If the [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-invocationMask)
+    ///   feature is not enabled, [`stage`] **must**  not contain
+    ///   `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
+    /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
+    ///   feature  **must**  be enabled
+    /// - [`stage`] **must**  only include a single pipeline stage
+    /// - [`stage`] **must**  only include stages valid for the queue family that was used to create
+    ///   the command pool that [`command_buffer`] was allocated from
+    /// - [`query_pool`] **must**  have been created with a `queryType` of `VK_QUERY_TYPE_TIMESTAMP`
+    /// - The query identified by [`query_pool`] and [`query`] **must**  be *unavailable*
+    /// - The command pool’s queue family  **must**  support a non-zero `timestampValidBits`
+    /// - [`query`] **must**  be less than the number of queries in [`query_pool`]
+    /// - All queries used by the command  **must**  be unavailable
+    /// - If [`cmd_write_timestamp2`] is called within a render pass instance, the sum of [`query`]
+    ///   and the number of bits set in the current subpass’s view mask  **must**  be less than or
+    ///   equal to the number of queries in [`query_pool`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`stage`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
+    /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   transfer, graphics, compute, decode, or encode operations
+    /// - Both of [`command_buffer`], and [`query_pool`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_synchronization2`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`PipelineStageFlags2`]
+    /// - [`QueryPool`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdWriteTimestamp2")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_write_timestamp2<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        stage: PipelineStageFlags2,
+        query_pool: QueryPool,
+        query: Option<u32>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_write_timestamp2()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_write_timestamp2()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), stage, query_pool, query.unwrap_or_default() as _);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdBeginRendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBeginRendering.html) - Begin a dynamic render pass instance
+    ///# C Specifications
+    ///To begin a render pass instance, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdBeginRendering(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkRenderingInfo*                      pRenderingInfo);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_dynamic_rendering
+    ///void vkCmdBeginRenderingKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkRenderingInfo*                      pRenderingInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer in which to record the command.
+    /// - [`p_rendering_info`] is a pointer to a [`RenderingInfo`] structure specifying details of
+    ///   the render pass instance to begin.
+    ///# Description
+    ///After beginning a render pass instance, the command buffer is ready to
+    ///record [draw commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing).If `pRenderingInfo->flags` includes `VK_RENDERING_RESUMING_BIT` then
+    ///this render pass is resumed from a render pass instance that has been
+    ///suspended earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///## Valid Usage
+    /// - The [`dynamicRendering`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-dynamicRendering)
+    ///   feature  **must**  be enabled
+    /// - If [`command_buffer`] is a secondary command buffer, `pRenderingInfo->flags` **must**  not
+    ///   include `VK_RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_rendering_info`] **must**  be a valid pointer to a valid [`RenderingInfo`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_dynamic_rendering`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    /// - [`RenderingInfo`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBeginRendering")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_begin_rendering<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_rendering_info: &RenderingInfo<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_begin_rendering()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_begin_rendering()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_rendering_info as *const RenderingInfo<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdEndRendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEndRendering.html) - End a dynamic render pass instance
+    ///# C Specifications
+    ///To end a render pass instance, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_3
+    ///void vkCmdEndRendering(
+    ///    VkCommandBuffer                             commandBuffer);
+    ///```
+    ///or the equivalent command
+    ///```c
+    ///// Provided by VK_KHR_dynamic_rendering
+    ///void vkCmdEndRenderingKHR(
+    ///    VkCommandBuffer                             commandBuffer);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer in which to record the command.
+    ///# Description
+    ///If the value of `pRenderingInfo->flags` used to begin this render pass
+    ///instance included `VK_RENDERING_SUSPENDING_BIT`, then this render pass
+    ///is suspended and will be resumed later in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///## Valid Usage
+    /// - The current render pass instance  **must**  have been begun with [`cmd_begin_rendering`]
+    /// - The current render pass instance  **must**  have been begun in [`command_buffer`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - This command  **must**  only be called inside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_dynamic_rendering`]
+    /// - [`crate::vulkan1_3`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdEndRendering")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_end_rendering<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .expect("extension/version not loaded")
+            .cmd_end_rendering()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .vulkan1_3()
+            .unwrap_unchecked()
+            .cmd_end_rendering()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw());
+        ()
     }
 }
 ///[VkPrivateDataSlot](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPrivateDataSlot.html) - Opaque handle to a private data slot object
@@ -26109,20 +29712,63 @@ impl Default for PrivateDataSlot {
         Self::null()
     }
 }
-///The V-table of [`Instance`] for functions from VULKAN_1_3
+impl Handle for PrivateDataSlot {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device().destroy_private_data_slot(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, PrivateDataSlot> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
+///The V-table of [`Instance`] for functions from `VULKAN_1_3`
 pub struct InstanceV13VTable {
     ///See [`FNGetPhysicalDeviceToolProperties`] for more information.
     pub get_physical_device_tool_properties: FNGetPhysicalDeviceToolProperties,
 }
 impl InstanceV13VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_tool_properties: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceToolProperties")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceToolProperties").as_ptr(),
+                ))
             },
         }
     }
@@ -26132,7 +29778,7 @@ impl InstanceV13VTable {
         self.get_physical_device_tool_properties
     }
 }
-///The V-table of [`Device`] for functions from VULKAN_1_3
+///The V-table of [`Device`] for functions from `VULKAN_1_3`
 pub struct DeviceV13VTable {
     ///See [`FNGetDeviceBufferMemoryRequirements`] for more information.
     pub get_device_buffer_memory_requirements: FNGetDeviceBufferMemoryRequirements,
@@ -26209,92 +29855,137 @@ pub struct DeviceV13VTable {
 }
 impl DeviceV13VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_device_buffer_memory_requirements: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDeviceBufferMemoryRequirements")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceBufferMemoryRequirements").as_ptr(),
+                ))
             },
             get_device_image_memory_requirements: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDeviceImageMemoryRequirements")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDeviceImageMemoryRequirements").as_ptr(),
+                ))
             },
             get_device_image_sparse_memory_requirements: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetDeviceImageSparseMemoryRequirements"),
+                    crate::cstr!("vkGetDeviceImageSparseMemoryRequirements").as_ptr(),
                 ))
             },
             create_private_data_slot: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreatePrivateDataSlot")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreatePrivateDataSlot").as_ptr()))
             },
             destroy_private_data_slot: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyPrivateDataSlot")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyPrivateDataSlot").as_ptr()))
             },
-            set_private_data: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetPrivateData"))) },
-            get_private_data: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPrivateData"))) },
-            queue_submit2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueSubmit2"))) },
-            cmd_set_cull_mode: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCullMode"))) },
-            cmd_set_front_face: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFrontFace"))) },
+            set_private_data: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetPrivateData").as_ptr()))
+            },
+            get_private_data: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPrivateData").as_ptr()))
+            },
+            queue_submit2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueSubmit2").as_ptr())) },
+            cmd_set_cull_mode: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCullMode").as_ptr()))
+            },
+            cmd_set_front_face: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFrontFace").as_ptr()))
+            },
             cmd_set_primitive_topology: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveTopology")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveTopology").as_ptr()))
             },
             cmd_set_viewport_with_count: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWithCount")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWithCount").as_ptr()))
             },
             cmd_set_scissor_with_count: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetScissorWithCount")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetScissorWithCount").as_ptr()))
             },
             cmd_bind_vertex_buffers2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindVertexBuffers2")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindVertexBuffers2").as_ptr()))
             },
             cmd_set_depth_test_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthTestEnable")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthTestEnable").as_ptr()))
             },
             cmd_set_depth_write_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthWriteEnable")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthWriteEnable").as_ptr()))
             },
             cmd_set_depth_compare_op: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthCompareOp")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthCompareOp").as_ptr()))
             },
             cmd_set_depth_bounds_test_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthBoundsTestEnable")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdSetDepthBoundsTestEnable").as_ptr(),
+                ))
             },
             cmd_set_stencil_test_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilTestEnable")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilTestEnable").as_ptr()))
             },
-            cmd_set_stencil_op: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilOp"))) },
+            cmd_set_stencil_op: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilOp").as_ptr()))
+            },
             cmd_set_rasterizer_discard_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetRasterizerDiscardEnable")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdSetRasterizerDiscardEnable").as_ptr(),
+                ))
             },
             cmd_set_depth_bias_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthBiasEnable")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthBiasEnable").as_ptr()))
             },
             cmd_set_primitive_restart_enable: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveRestartEnable")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdSetPrimitiveRestartEnable").as_ptr(),
+                ))
             },
-            cmd_copy_buffer2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBuffer2"))) },
-            cmd_copy_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImage2"))) },
-            cmd_blit_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBlitImage2"))) },
+            cmd_copy_buffer2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBuffer2").as_ptr()))
+            },
+            cmd_copy_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImage2").as_ptr()))
+            },
+            cmd_blit_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBlitImage2").as_ptr()))
+            },
             cmd_copy_buffer_to_image2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBufferToImage2")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBufferToImage2").as_ptr()))
             },
             cmd_copy_image_to_buffer2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImageToBuffer2")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImageToBuffer2").as_ptr()))
             },
-            cmd_resolve_image2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResolveImage2"))) },
-            cmd_set_event2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetEvent2"))) },
-            cmd_reset_event2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResetEvent2"))) },
-            cmd_wait_events2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWaitEvents2"))) },
+            cmd_resolve_image2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResolveImage2").as_ptr()))
+            },
+            cmd_set_event2: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetEvent2").as_ptr())) },
+            cmd_reset_event2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResetEvent2").as_ptr()))
+            },
+            cmd_wait_events2: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWaitEvents2").as_ptr()))
+            },
             cmd_pipeline_barrier2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPipelineBarrier2")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPipelineBarrier2").as_ptr()))
             },
             cmd_write_timestamp2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteTimestamp2")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteTimestamp2").as_ptr()))
             },
-            cmd_begin_rendering: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRendering"))) },
-            cmd_end_rendering: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRendering"))) },
+            cmd_begin_rendering: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRendering").as_ptr()))
+            },
+            cmd_end_rendering: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRendering").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::get_device_buffer_memory_requirements`]. See

@@ -196,7 +196,7 @@ impl<'lt> DeviceMemoryOverallocationCreateInfoAMD<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -223,21 +223,21 @@ impl<'lt> DeviceMemoryOverallocationCreateInfoAMD<'lt> {
     pub fn overallocation_behavior_mut(&mut self) -> &mut MemoryOverallocationBehaviorAMD {
         &mut self.overallocation_behavior
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::overallocation_behavior`]
+    ///Sets the value of [`Self::overallocation_behavior`]
     pub fn set_overallocation_behavior(
-        &mut self,
+        mut self,
         value: crate::extensions::amd_memory_overallocation_behavior::MemoryOverallocationBehaviorAMD,
-    ) -> &mut Self {
+    ) -> Self {
         self.overallocation_behavior = value;
         self
     }

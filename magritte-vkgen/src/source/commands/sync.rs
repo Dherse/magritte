@@ -44,6 +44,11 @@ impl<'a> ExternallySynced<'a> {
             Self::No
         }
     }
+
+    /// The type does not require any external synchronization
+    pub fn is_no(&self) -> bool {
+        matches!(self, Self::No)
+    }
 }
 
 fn externally_synced(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {

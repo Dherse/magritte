@@ -65,7 +65,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, StructureType};
+use crate::{
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, StructureType},
+    AsRaw, Unique,
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
@@ -269,7 +272,7 @@ impl LineRasterizationModeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceLineRasterizationFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
@@ -327,8 +330,8 @@ impl<'lt> Default for PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::rectangular_lines`]
     pub fn rectangular_lines_raw(&self) -> Bool32 {
@@ -355,37 +358,37 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
         self.stippled_smooth_lines
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::rectangular_lines`]
-    pub fn set_rectangular_lines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_rectangular_lines_raw(mut self, value: Bool32) -> Self {
         self.rectangular_lines = value;
         self
     }
     ///Sets the raw value of [`Self::bresenham_lines`]
-    pub fn set_bresenham_lines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_bresenham_lines_raw(mut self, value: Bool32) -> Self {
         self.bresenham_lines = value;
         self
     }
     ///Sets the raw value of [`Self::smooth_lines`]
-    pub fn set_smooth_lines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_smooth_lines_raw(mut self, value: Bool32) -> Self {
         self.smooth_lines = value;
         self
     }
     ///Sets the raw value of [`Self::stippled_rectangular_lines`]
-    pub fn set_stippled_rectangular_lines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_stippled_rectangular_lines_raw(mut self, value: Bool32) -> Self {
         self.stippled_rectangular_lines = value;
         self
     }
     ///Sets the raw value of [`Self::stippled_bresenham_lines`]
-    pub fn set_stippled_bresenham_lines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_stippled_bresenham_lines_raw(mut self, value: Bool32) -> Self {
         self.stippled_bresenham_lines = value;
         self
     }
     ///Sets the raw value of [`Self::stippled_smooth_lines`]
-    pub fn set_stippled_smooth_lines_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_stippled_smooth_lines_raw(mut self, value: Bool32) -> Self {
         self.stippled_smooth_lines = value;
         self
     }
@@ -543,43 +546,43 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::rectangular_lines`]
-    pub fn set_rectangular_lines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::rectangular_lines`]
+    pub fn set_rectangular_lines(mut self, value: bool) -> Self {
         self.rectangular_lines = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::bresenham_lines`]
-    pub fn set_bresenham_lines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::bresenham_lines`]
+    pub fn set_bresenham_lines(mut self, value: bool) -> Self {
         self.bresenham_lines = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::smooth_lines`]
-    pub fn set_smooth_lines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::smooth_lines`]
+    pub fn set_smooth_lines(mut self, value: bool) -> Self {
         self.smooth_lines = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::stippled_rectangular_lines`]
-    pub fn set_stippled_rectangular_lines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::stippled_rectangular_lines`]
+    pub fn set_stippled_rectangular_lines(mut self, value: bool) -> Self {
         self.stippled_rectangular_lines = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::stippled_bresenham_lines`]
-    pub fn set_stippled_bresenham_lines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::stippled_bresenham_lines`]
+    pub fn set_stippled_bresenham_lines(mut self, value: bool) -> Self {
         self.stippled_bresenham_lines = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::stippled_smooth_lines`]
-    pub fn set_stippled_smooth_lines(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::stippled_smooth_lines`]
+    pub fn set_stippled_smooth_lines(mut self, value: bool) -> Self {
         self.stippled_smooth_lines = value as u8 as u32;
         self
     }
@@ -620,7 +623,7 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceLineRasterizationPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
@@ -649,11 +652,11 @@ impl<'lt> Default for PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -687,18 +690,18 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     pub fn line_sub_pixel_precision_bits_mut(&mut self) -> &mut u32 {
         &mut self.line_sub_pixel_precision_bits
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::line_sub_pixel_precision_bits`]
-    pub fn set_line_sub_pixel_precision_bits(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::line_sub_pixel_precision_bits`]
+    pub fn set_line_sub_pixel_precision_bits(mut self, value: u32) -> Self {
         self.line_sub_pixel_precision_bits = value;
         self
     }
@@ -806,12 +809,12 @@ impl<'lt> PipelineRasterizationLineStateCreateInfoEXT<'lt> {
         self.stippled_line_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::stippled_line_enable`]
-    pub fn set_stippled_line_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_stippled_line_enable_raw(mut self, value: Bool32) -> Self {
         self.stippled_line_enable = value;
         self
     }
@@ -876,54 +879,143 @@ impl<'lt> PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     pub fn line_stipple_pattern_mut(&mut self) -> &mut u16 {
         &mut self.line_stipple_pattern
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::line_rasterization_mode`]
+    ///Sets the value of [`Self::line_rasterization_mode`]
     pub fn set_line_rasterization_mode(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_line_rasterization::LineRasterizationModeEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.line_rasterization_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::stippled_line_enable`]
-    pub fn set_stippled_line_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::stippled_line_enable`]
+    pub fn set_stippled_line_enable(mut self, value: bool) -> Self {
         self.stippled_line_enable = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::line_stipple_factor`]
-    pub fn set_line_stipple_factor(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::line_stipple_factor`]
+    pub fn set_line_stipple_factor(mut self, value: u32) -> Self {
         self.line_stipple_factor = value;
         self
     }
-    ///Sets the raw value of [`Self::line_stipple_pattern`]
-    pub fn set_line_stipple_pattern(&mut self, value: u16) -> &mut Self {
+    ///Sets the value of [`Self::line_stipple_pattern`]
+    pub fn set_line_stipple_pattern(mut self, value: u16) -> Self {
         self.line_stipple_pattern = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_line_rasterization
+impl CommandBuffer {
+    ///[vkCmdSetLineStippleEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetLineStippleEXT.html) - Set line stipple dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the line stipple state,
+    ///call:
+    ///```c
+    ///// Provided by VK_EXT_line_rasterization
+    ///void vkCmdSetLineStippleEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    lineStippleFactor,
+    ///    uint16_t                                    lineStipplePattern);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`line_stipple_factor`] is the repeat factor used in stippled line rasterization.
+    /// - [`line_stipple_pattern`] is the bit pattern used in stippled line rasterization.
+    ///# Description
+    ///This command sets the line stipple state for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_LINE_STIPPLE_EXT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_factor`]
+    ///and
+    ///[`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_pattern`]
+    ///values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - [`line_stipple_factor`] **must**  be in the range [1,256]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_line_rasterization`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetLineStippleEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_line_stipple_ext<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        line_stipple_factor: Option<u32>,
+        line_stipple_pattern: Option<u16>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_line_rasterization()
+            .expect("extension/version not loaded")
+            .cmd_set_line_stipple_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_line_rasterization()
+            .unwrap_unchecked()
+            .cmd_set_line_stipple_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            line_stipple_factor.unwrap_or_default() as _,
+            line_stipple_pattern.unwrap_or_default() as _,
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_line_rasterization`
 pub struct DeviceExtLineRasterizationVTable {
     ///See [`FNCmdSetLineStippleExt`] for more information.
     pub cmd_set_line_stipple_ext: FNCmdSetLineStippleExt,
 }
 impl DeviceExtLineRasterizationVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_line_stipple_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetLineStippleEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetLineStippleEXT").as_ptr()))
             },
         }
     }

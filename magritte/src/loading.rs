@@ -23,13 +23,25 @@ const LIB_PATH: &str = "libvulkan.dylib";
 /// Lib path for Windows
 const LIB_PATH: &str = "vulkan-1.dll";
 
-impl Entry<Library> {
+impl Entry {
     /// Tries to load the entry from a default location
+    ///
+    /// # Safety
+    /// This function deliberately leaks the library.
+    /// This means that Vulkan will **not** get unloaded when the [`Drop`] implementation
+    /// on entry is called and that calling this function multiple time **will** cause memory
+    /// usage to grow.
     pub fn new() -> Result<Self, libloading::Error> {
         Self::from_location(LIB_PATH)
     }
 
     /// Tries to load the entry from a specified location
+    ///
+    /// # Safety
+    /// This function deliberately leaks the library.
+    /// This means that Vulkan will **not** get unloaded when the [`Drop`] implementation
+    /// on entry is called and that calling this function multiple time **will** cause memory
+    /// usage to grow.
     pub fn from_location<P: AsRef<OsStr>>(path: P) -> Result<Self, libloading::Error> {
         // dynamically load the library
         let mut library = unsafe { Library::new(path)? };
@@ -62,6 +74,8 @@ impl Entry<Library> {
             }
         };
 
-        Ok(Self(library, v_table))
+        Box::leak(Box::new(library));
+
+        Ok(Self(v_table))
     }
 }

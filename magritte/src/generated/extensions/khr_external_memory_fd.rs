@@ -69,8 +69,9 @@
 use crate::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, Device, DeviceMemory, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
+    AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION")]
@@ -287,7 +288,7 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -322,23 +323,23 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
     pub fn fd_mut(&mut self) -> &mut i32 {
         &mut self.fd
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
-    ///Sets the raw value of [`Self::fd`]
-    pub fn set_fd(&mut self, value: i32) -> &mut Self {
+    ///Sets the value of [`Self::fd`]
+    pub fn set_fd(mut self, value: i32) -> Self {
         self.fd = value;
         self
     }
@@ -376,7 +377,7 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryFdPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct MemoryFdPropertiesKHR<'lt> {
@@ -403,11 +404,11 @@ impl<'lt> Default for MemoryFdPropertiesKHR<'lt> {
 }
 impl<'lt> MemoryFdPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -441,18 +442,18 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
     pub fn memory_type_bits_mut(&mut self) -> &mut u32 {
         &mut self.memory_type_bits
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(mut self, value: u32) -> Self {
         self.memory_type_bits = value;
         self
     }
@@ -541,7 +542,7 @@ impl<'lt> MemoryGetFdInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -576,28 +577,196 @@ impl<'lt> MemoryGetFdInfoKHR<'lt> {
     pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
         &mut self.handle_type
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::memory`]
-    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+    ///Sets the value of [`Self::memory`]
+    pub fn set_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
         self.memory = value;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_external_memory_fd
+impl Device {
+    ///[vkGetMemoryFdKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryFdKHR.html) - Get a POSIX file descriptor for a memory object
+    ///# C Specifications
+    ///To export a POSIX file descriptor referencing the payload of a Vulkan device
+    ///memory object, call:
+    ///```c
+    ///// Provided by VK_KHR_external_memory_fd
+    ///VkResult vkGetMemoryFdKHR(
+    ///    VkDevice                                    device,
+    ///    const VkMemoryGetFdInfoKHR*                 pGetFdInfo,
+    ///    int*                                        pFd);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that created the device memory being exported.
+    /// - [`p_get_fd_info`] is a pointer to a [`MemoryGetFdInfoKHR`] structure containing parameters
+    ///   of the export operation.
+    /// - [`p_fd`] will return a file descriptor referencing the payload of the device memory
+    ///   object.
+    ///# Description
+    ///Each call to [`get_memory_fd_khr`] **must**  create a new file descriptor
+    ///holding a reference to the memory object’s payload and transfer ownership of
+    ///the file descriptor to the application.
+    ///To avoid leaking resources, the application  **must**  release ownership of the
+    ///file descriptor using the `close` system call when it is no longer
+    ///needed, or by importing a Vulkan memory object from it.
+    ///Where supported by the operating system, the implementation  **must**  set the
+    ///file descriptor to be closed automatically when an `execve` system call
+    ///is made.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_get_fd_info`] **must**  be a valid pointer to a valid [`MemoryGetFdInfoKHR`] structure
+    /// - [`p_fd`] **must**  be a valid pointer to an `int` value
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_external_memory_fd`]
+    /// - [`Device`]
+    /// - [`MemoryGetFdInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetMemoryFdKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_memory_fd_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_get_fd_info: &MemoryGetFdInfoKHR<'lt>,
+    ) -> VulkanResult<i32> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_external_memory_fd()
+            .expect("extension/version not loaded")
+            .get_memory_fd_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_external_memory_fd()
+            .unwrap_unchecked()
+            .get_memory_fd_khr()
+            .unwrap_unchecked();
+        let mut p_fd = Default::default();
+        let _return = _function(
+            self.as_raw(),
+            p_get_fd_info as *const MemoryGetFdInfoKHR<'lt>,
+            &mut p_fd,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_fd),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetMemoryFdPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryFdPropertiesKHR.html) - Get Properties of External Memory File Descriptors
+    ///# C Specifications
+    ///POSIX file descriptor memory handles compatible with Vulkan  **may**  also be
+    ///created by non-Vulkan APIs using methods beyond the scope of this
+    ///specification.
+    ///To determine the correct parameters to use when importing such handles,
+    ///call:
+    ///```c
+    ///// Provided by VK_KHR_external_memory_fd
+    ///VkResult vkGetMemoryFdPropertiesKHR(
+    ///    VkDevice                                    device,
+    ///    VkExternalMemoryHandleTypeFlagBits          handleType,
+    ///    int                                         fd,
+    ///    VkMemoryFdPropertiesKHR*                    pMemoryFdProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that will be importing [`fd`].
+    /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
+    ///   handle [`fd`].
+    /// - [`fd`] is the handle which will be imported.
+    /// - [`p_memory_fd_properties`] is a pointer to a [`MemoryFdPropertiesKHR`] structure in which
+    ///   the properties of the handle [`fd`] are returned.
+    ///# Description
+    ///## Valid Usage
+    /// - [`fd`] **must**  be an external memory handle created outside of the Vulkan API
+    /// - [`handle_type`] **must**  not be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
+    /// - [`p_memory_fd_properties`] **must**  be a valid pointer to a [`MemoryFdPropertiesKHR`]
+    ///   structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+    ///# Related
+    /// - [`VK_KHR_external_memory_fd`]
+    /// - [`Device`]
+    /// - [`ExternalMemoryHandleTypeFlagBits`]
+    /// - [`MemoryFdPropertiesKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetMemoryFdPropertiesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_memory_fd_properties_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        handle_type: ExternalMemoryHandleTypeFlagBits,
+        fd: Option<i32>,
+    ) -> VulkanResult<MemoryFdPropertiesKHR<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_external_memory_fd()
+            .expect("extension/version not loaded")
+            .get_memory_fd_properties_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_external_memory_fd()
+            .unwrap_unchecked()
+            .get_memory_fd_properties_khr()
+            .unwrap_unchecked();
+        let mut p_memory_fd_properties = MaybeUninit::<MemoryFdPropertiesKHR<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            handle_type,
+            fd.unwrap_or_default() as _,
+            p_memory_fd_properties.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_memory_fd_properties.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_external_memory_fd`
 pub struct DeviceKhrExternalMemoryFdVTable {
     ///See [`FNGetMemoryFdKhr`] for more information.
     pub get_memory_fd_khr: FNGetMemoryFdKhr,
@@ -606,14 +775,20 @@ pub struct DeviceKhrExternalMemoryFdVTable {
 }
 impl DeviceKhrExternalMemoryFdVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
-            get_memory_fd_khr: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryFdKHR"))) },
+            get_memory_fd_khr: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryFdKHR").as_ptr()))
+            },
             get_memory_fd_properties_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryFdPropertiesKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryFdPropertiesKHR").as_ptr()))
             },
         }
     }

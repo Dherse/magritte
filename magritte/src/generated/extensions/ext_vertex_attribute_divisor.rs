@@ -150,13 +150,13 @@ impl VertexInputBindingDivisorDescriptionEXT {
     pub fn divisor_mut(&mut self) -> &mut u32 {
         &mut self.divisor
     }
-    ///Sets the raw value of [`Self::binding`]
-    pub fn set_binding(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::binding`]
+    pub fn set_binding(mut self, value: u32) -> Self {
         self.binding = value;
         self
     }
-    ///Sets the raw value of [`Self::divisor`]
-    pub fn set_divisor(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::divisor`]
+    pub fn set_divisor(mut self, value: u32) -> Self {
         self.divisor = value;
         self
     }
@@ -248,15 +248,12 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
         self.vertex_binding_divisors
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_binding_divisors`]
-    pub fn set_vertex_binding_divisors_raw(
-        &mut self,
-        value: *const VertexInputBindingDivisorDescriptionEXT,
-    ) -> &mut Self {
+    pub fn set_vertex_binding_divisors_raw(mut self, value: *const VertexInputBindingDivisorDescriptionEXT) -> Self {
         self.vertex_binding_divisors = value;
         self
     }
@@ -290,26 +287,26 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
     pub fn vertex_binding_divisor_count_mut(&mut self) -> &mut u32 {
         &mut self.vertex_binding_divisor_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::vertex_binding_divisor_count`]
-    pub fn set_vertex_binding_divisor_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::vertex_binding_divisor_count`]
+    pub fn set_vertex_binding_divisor_count(mut self, value: u32) -> Self {
         self.vertex_binding_divisor_count = value;
         self
     }
-    ///Sets the raw value of [`Self::vertex_binding_divisors`]
+    ///Sets the value of [`Self::vertex_binding_divisors`]
     pub fn set_vertex_binding_divisors(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::ext_vertex_attribute_divisor::VertexInputBindingDivisorDescriptionEXT],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.vertex_binding_divisors = value.as_ptr();
@@ -355,7 +352,7 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
@@ -383,11 +380,11 @@ impl<'lt> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -421,18 +418,18 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
     pub fn max_vertex_attrib_divisor_mut(&mut self) -> &mut u32 {
         &mut self.max_vertex_attrib_divisor
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_vertex_attrib_divisor`]
-    pub fn set_max_vertex_attrib_divisor(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_vertex_attrib_divisor`]
+    pub fn set_max_vertex_attrib_divisor(mut self, value: u32) -> Self {
         self.max_vertex_attrib_divisor = value;
         self
     }
@@ -483,7 +480,7 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
@@ -515,8 +512,8 @@ impl<'lt> Default for PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::vertex_attribute_instance_rate_divisor`]
     pub fn vertex_attribute_instance_rate_divisor_raw(&self) -> Bool32 {
@@ -527,17 +524,17 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
         self.vertex_attribute_instance_rate_zero_divisor
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_attribute_instance_rate_divisor`]
-    pub fn set_vertex_attribute_instance_rate_divisor_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_vertex_attribute_instance_rate_divisor_raw(mut self, value: Bool32) -> Self {
         self.vertex_attribute_instance_rate_divisor = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_attribute_instance_rate_zero_divisor`]
-    pub fn set_vertex_attribute_instance_rate_zero_divisor_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_vertex_attribute_instance_rate_zero_divisor_raw(mut self, value: Bool32) -> Self {
         self.vertex_attribute_instance_rate_zero_divisor = value;
         self
     }
@@ -608,23 +605,23 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::vertex_attribute_instance_rate_divisor`]
-    pub fn set_vertex_attribute_instance_rate_divisor(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::vertex_attribute_instance_rate_divisor`]
+    pub fn set_vertex_attribute_instance_rate_divisor(mut self, value: bool) -> Self {
         self.vertex_attribute_instance_rate_divisor = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::vertex_attribute_instance_rate_zero_divisor`]
-    pub fn set_vertex_attribute_instance_rate_zero_divisor(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::vertex_attribute_instance_rate_zero_divisor`]
+    pub fn set_vertex_attribute_instance_rate_zero_divisor(mut self, value: bool) -> Self {
         self.vertex_attribute_instance_rate_zero_divisor = value as u8 as u32;
         self
     }

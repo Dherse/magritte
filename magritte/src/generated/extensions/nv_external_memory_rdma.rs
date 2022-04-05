@@ -47,6 +47,7 @@
 use crate::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Device, DeviceMemory, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
+    AsRaw, Unique, VulkanResult,
 };
 use std::{
     ffi::{c_void, CStr},
@@ -157,7 +158,7 @@ pub type FNGetMemoryRemoteAddressNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalMemoryRDMAFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
@@ -187,20 +188,20 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::external_memory_rdma`]
     pub fn external_memory_rdma_raw(&self) -> Bool32 {
         self.external_memory_rdma
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::external_memory_rdma`]
-    pub fn set_external_memory_rdma_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_external_memory_rdma_raw(mut self, value: Bool32) -> Self {
         self.external_memory_rdma = value;
         self
     }
@@ -248,18 +249,18 @@ impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::external_memory_rdma`]
-    pub fn set_external_memory_rdma(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::external_memory_rdma`]
+    pub fn set_external_memory_rdma(mut self, value: bool) -> Self {
         self.external_memory_rdma = value as u8 as u32;
         self
     }
@@ -340,7 +341,7 @@ impl<'lt> MemoryGetRemoteAddressInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -375,41 +376,124 @@ impl<'lt> MemoryGetRemoteAddressInfoNV<'lt> {
     pub fn handle_type_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagBits {
         &mut self.handle_type
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::memory`]
-    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+    ///Sets the value of [`Self::memory`]
+    pub fn set_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
         self.memory = value;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_external_memory_rdma
+impl Device {
+    ///[vkGetMemoryRemoteAddressNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetMemoryRemoteAddressNV.html) - Get an address for a memory object accessible by remote devices
+    ///# C Specifications
+    ///To export an address representing the payload of a Vulkan device memory
+    ///object accessible by remote devices, call:
+    ///```c
+    ///// Provided by VK_NV_external_memory_rdma
+    ///VkResult vkGetMemoryRemoteAddressNV(
+    ///    VkDevice                                    device,
+    ///    const VkMemoryGetRemoteAddressInfoNV*       pMemoryGetRemoteAddressInfo,
+    ///    VkRemoteAddressNV*                          pAddress);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that created the device memory being exported.
+    /// - [`p_memory_get_remote_address_info`] is a pointer to a [`MemoryGetRemoteAddressInfoNV`]
+    ///   structure containing parameters of the export operation.
+    /// - [`p_address`] will return the address representing the payload of the device memory
+    ///   object.
+    ///# Description
+    ///More communication may be required between the kernel-mode drivers of the
+    ///devices involved.
+    ///This information is out of scope of this documentation and should be
+    ///requested from the vendors of the devices.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_memory_get_remote_address_info`] **must**  be a valid pointer to a valid
+    ///   [`MemoryGetRemoteAddressInfoNV`] structure
+    /// - [`p_address`] **must**  be a valid pointer to a [`RemoteAddressNV`] value
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+    ///# Related
+    /// - [`VK_NV_external_memory_rdma`]
+    /// - [`Device`]
+    /// - [`MemoryGetRemoteAddressInfoNV`]
+    /// - [`RemoteAddressNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetMemoryRemoteAddressNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_memory_remote_address_nv<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_memory_get_remote_address_info: &MemoryGetRemoteAddressInfoNV<'lt>,
+    ) -> VulkanResult<RemoteAddressNV> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nv_external_memory_rdma()
+            .expect("extension/version not loaded")
+            .get_memory_remote_address_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nv_external_memory_rdma()
+            .unwrap_unchecked()
+            .get_memory_remote_address_nv()
+            .unwrap_unchecked();
+        let mut p_address = std::mem::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_memory_get_remote_address_info as *const MemoryGetRemoteAddressInfoNV<'lt>,
+            &mut p_address,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_address),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_external_memory_rdma`
 pub struct DeviceNvExternalMemoryRdmaVTable {
     ///See [`FNGetMemoryRemoteAddressNv`] for more information.
     pub get_memory_remote_address_nv: FNGetMemoryRemoteAddressNv,
 }
 impl DeviceNvExternalMemoryRdmaVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_memory_remote_address_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryRemoteAddressNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetMemoryRemoteAddressNV").as_ptr()))
             },
         }
     }

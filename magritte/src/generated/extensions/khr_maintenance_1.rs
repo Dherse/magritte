@@ -81,19 +81,25 @@ pub const KHR_MAINTENANCE_1_SPEC_VERSION: u32 = 2;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_MAINTENANCE_1_EXTENSION_NAME")]
 pub const KHR_MAINTENANCE_1_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_maintenance1");
-///The V-table of [`Device`] for functions from VK_KHR_maintenance1
+///The V-table of [`Device`] for functions from `VK_KHR_maintenance1`
 pub struct DeviceKhrMaintenance1VTable {
     ///See [`FNTrimCommandPool`] for more information.
     pub trim_command_pool: FNTrimCommandPool,
 }
 impl DeviceKhrMaintenance1VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
-            trim_command_pool: unsafe { std::mem::transmute(loader_fn(loader, crate::cstr!("vkTrimCommandPoolKHR"))) },
+            trim_command_pool: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkTrimCommandPoolKHR").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::trim_command_pool`]. See [`FNTrimCommandPool`] for more information.

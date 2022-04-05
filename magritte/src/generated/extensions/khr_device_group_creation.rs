@@ -57,20 +57,27 @@ pub const KHR_DEVICE_GROUP_CREATION_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME")]
 pub const KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_device_group_creation");
-///The V-table of [`Instance`] for functions from VK_KHR_device_group_creation
+///The V-table of [`Instance`] for functions from `VK_KHR_device_group_creation`
 pub struct InstanceKhrDeviceGroupCreationVTable {
     ///See [`FNEnumeratePhysicalDeviceGroups`] for more information.
     pub enumerate_physical_device_groups: FNEnumeratePhysicalDeviceGroups,
 }
 impl InstanceKhrDeviceGroupCreationVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             enumerate_physical_device_groups: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkEnumeratePhysicalDeviceGroupsKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkEnumeratePhysicalDeviceGroupsKHR").as_ptr(),
+                ))
             },
         }
     }

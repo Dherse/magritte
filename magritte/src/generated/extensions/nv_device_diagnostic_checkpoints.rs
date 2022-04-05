@@ -46,8 +46,11 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    BaseOutStructure, CommandBuffer, Device, PipelineStageFlagBits, PipelineStageFlags, Queue, StructureType,
+use crate::{
+    vulkan1_0::{
+        BaseOutStructure, CommandBuffer, Device, PipelineStageFlagBits, PipelineStageFlags, Queue, StructureType,
+    },
+    AsRaw, SmallVec, Unique,
 };
 use std::{
     ffi::{c_void, CStr},
@@ -197,7 +200,7 @@ pub type FNCmdSetCheckpointNv =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyCheckpointPropertiesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyCheckpointPropertiesNV<'lt> {
@@ -224,11 +227,11 @@ impl<'lt> Default for QueueFamilyCheckpointPropertiesNV<'lt> {
 }
 impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -262,18 +265,18 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
     pub fn checkpoint_execution_stage_mask_mut(&mut self) -> &mut PipelineStageFlags {
         &mut self.checkpoint_execution_stage_mask
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::checkpoint_execution_stage_mask`]
-    pub fn set_checkpoint_execution_stage_mask(&mut self, value: crate::vulkan1_0::PipelineStageFlags) -> &mut Self {
+    ///Sets the value of [`Self::checkpoint_execution_stage_mask`]
+    pub fn set_checkpoint_execution_stage_mask(mut self, value: crate::vulkan1_0::PipelineStageFlags) -> Self {
         self.checkpoint_execution_stage_mask = value;
         self
     }
@@ -318,7 +321,7 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCheckpointDataNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CheckpointDataNV<'lt> {
@@ -349,20 +352,20 @@ impl<'lt> Default for CheckpointDataNV<'lt> {
 }
 impl<'lt> CheckpointDataNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::checkpoint_marker`]
-    pub fn checkpoint_marker_raw(&self) -> &*mut c_void {
-        &self.checkpoint_marker
+    pub fn checkpoint_marker_raw(&self) -> *mut c_void {
+        self.checkpoint_marker
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::checkpoint_marker`]
-    pub fn set_checkpoint_marker_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_checkpoint_marker_raw(mut self, value: *mut c_void) -> Self {
         self.checkpoint_marker = value;
         self
     }
@@ -410,28 +413,189 @@ impl<'lt> CheckpointDataNV<'lt> {
     pub unsafe fn checkpoint_marker_mut(&mut self) -> &mut c_void {
         &mut *self.checkpoint_marker
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::stage`]
-    pub fn set_stage(&mut self, value: crate::vulkan1_0::PipelineStageFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::stage`]
+    pub fn set_stage(mut self, value: crate::vulkan1_0::PipelineStageFlagBits) -> Self {
         self.stage = value;
         self
     }
-    ///Sets the raw value of [`Self::checkpoint_marker`]
-    pub fn set_checkpoint_marker(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::checkpoint_marker`]
+    pub fn set_checkpoint_marker(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.checkpoint_marker = value as *mut _;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_device_diagnostic_checkpoints
+impl Queue {
+    ///[vkGetQueueCheckpointDataNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetQueueCheckpointDataNV.html) - Retrieve diagnostic checkpoint data
+    ///# C Specifications
+    ///If the device encounters an error during execution, the implementation will
+    ///return a `VK_ERROR_DEVICE_LOST` error to the application at a certain
+    ///point during host execution.
+    ///When this happens, the application  **can**  call
+    ///[`get_queue_checkpoint_data_nv`] to retrieve information on the most recent
+    ///diagnostic checkpoints that were executed by the device.
+    ///```c
+    ///// Provided by VK_NV_device_diagnostic_checkpoints
+    ///void vkGetQueueCheckpointDataNV(
+    ///    VkQueue                                     queue,
+    ///    uint32_t*                                   pCheckpointDataCount,
+    ///    VkCheckpointDataNV*                         pCheckpointData);
+    ///```
+    ///# Parameters
+    /// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
+    /// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
+    ///   markers available or queried, as described below.
+    /// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointDataNV`]
+    ///   structures.
+    ///# Description
+    ///If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+    ///available is returned in [`p_checkpoint_data_count`].Otherwise, [`p_checkpoint_data_count`]
+    /// **must**  point to a variable set by the
+    ///user to the number of elements in the [`p_checkpoint_data`] array, and on
+    ///return the variable is overwritten with the number of structures actually
+    ///written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+    /// checkpoint markers
+    ///available, at most [`p_checkpoint_data_count`] structures will be written.
+    ///## Valid Usage
+    /// - The device that [`queue`] belongs to  **must**  be in the lost state
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`queue`] **must**  be a valid [`Queue`] handle
+    /// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and
+    ///   [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to
+    ///   an array of [`p_checkpoint_data_count`][`CheckpointDataNV`] structures
+    ///# Related
+    /// - [`VK_NV_device_diagnostic_checkpoints`]
+    /// - [`CheckpointDataNV`]
+    /// - [`Queue`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetQueueCheckpointDataNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_queue_checkpoint_data_nv<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Queue>,
+        p_checkpoint_data_count: Option<usize>,
+    ) -> SmallVec<CheckpointDataNV<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_diagnostic_checkpoints()
+            .expect("extension/version not loaded")
+            .get_queue_checkpoint_data_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_diagnostic_checkpoints()
+            .unwrap_unchecked()
+            .get_queue_checkpoint_data_nv()
+            .unwrap_unchecked();
+        let mut p_checkpoint_data_count = match p_checkpoint_data_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_checkpoint_data =
+            SmallVec::<CheckpointDataNV<'lt>>::from_elem(Default::default(), p_checkpoint_data_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            &mut p_checkpoint_data_count,
+            p_checkpoint_data.as_mut_ptr(),
+        );
+        p_checkpoint_data
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdSetCheckpointNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetCheckpointNV.html) - Insert diagnostic checkpoint in command stream
+    ///# C Specifications
+    ///Device diagnostic checkpoints are inserted into the command stream by
+    ///calling [`cmd_set_checkpoint_nv`].
+    ///```c
+    ///// Provided by VK_NV_device_diagnostic_checkpoints
+    ///void vkCmdSetCheckpointNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const void*                                 pCheckpointMarker);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer that will receive the marker
+    /// - [`p_checkpoint_marker`] is an opaque application-provided value that will be associated
+    ///   with the checkpoint.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, compute, or transfer operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_device_diagnostic_checkpoints`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetCheckpointNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_checkpoint_nv<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_checkpoint_marker: *const c_void,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_diagnostic_checkpoints()
+            .expect("extension/version not loaded")
+            .cmd_set_checkpoint_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_diagnostic_checkpoints()
+            .unwrap_unchecked()
+            .cmd_set_checkpoint_nv()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_checkpoint_marker);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_device_diagnostic_checkpoints`
 pub struct DeviceNvDeviceDiagnosticCheckpointsVTable {
     ///See [`FNGetQueueCheckpointDataNv`] for more information.
     pub get_queue_checkpoint_data_nv: FNGetQueueCheckpointDataNv,
@@ -440,16 +604,20 @@ pub struct DeviceNvDeviceDiagnosticCheckpointsVTable {
 }
 impl DeviceNvDeviceDiagnosticCheckpointsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_queue_checkpoint_data_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetQueueCheckpointDataNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetQueueCheckpointDataNV").as_ptr()))
             },
             cmd_set_checkpoint_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCheckpointNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCheckpointNV").as_ptr()))
             },
         }
     }

@@ -198,8 +198,9 @@ use crate::{
         SubresourceLayout, VulkanResultCodes,
     },
     vulkan1_3::FormatFeatureFlags2,
+    AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION")]
@@ -311,7 +312,7 @@ pub type FNGetImageDrmFormatModifierPropertiesExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesListEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesListEXT<'lt> {
@@ -342,20 +343,20 @@ impl<'lt> Default for DrmFormatModifierPropertiesListEXT<'lt> {
 }
 impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::drm_format_modifier_properties`]
-    pub fn drm_format_modifier_properties_raw(&self) -> &*mut DrmFormatModifierPropertiesEXT {
-        &self.drm_format_modifier_properties
+    pub fn drm_format_modifier_properties_raw(&self) -> *mut DrmFormatModifierPropertiesEXT {
+        self.drm_format_modifier_properties
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::drm_format_modifier_properties`]
-    pub fn set_drm_format_modifier_properties_raw(&mut self, value: *mut DrmFormatModifierPropertiesEXT) -> &mut Self {
+    pub fn set_drm_format_modifier_properties_raw(mut self, value: *mut DrmFormatModifierPropertiesEXT) -> Self {
         self.drm_format_modifier_properties = value;
         self
     }
@@ -409,26 +410,26 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
             self.drm_format_modifier_count as usize,
         )
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn set_drm_format_modifier_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_count`]
+    pub fn set_drm_format_modifier_count(mut self, value: u32) -> Self {
         self.drm_format_modifier_count = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_properties`]
+    ///Sets the value of [`Self::drm_format_modifier_properties`]
     pub fn set_drm_format_modifier_properties(
-        &mut self,
+        mut self,
         value: &'lt mut [crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesEXT],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.drm_format_modifier_properties = value.as_mut_ptr();
@@ -580,21 +581,18 @@ impl DrmFormatModifierPropertiesEXT {
     pub fn drm_format_modifier_tiling_features_mut(&mut self) -> &mut FormatFeatureFlags {
         &mut self.drm_format_modifier_tiling_features
     }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier`]
+    pub fn set_drm_format_modifier(mut self, value: u64) -> Self {
         self.drm_format_modifier = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn set_drm_format_modifier_plane_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_plane_count`]
+    pub fn set_drm_format_modifier_plane_count(mut self, value: u32) -> Self {
         self.drm_format_modifier_plane_count = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_tiling_features`]
-    pub fn set_drm_format_modifier_tiling_features(
-        &mut self,
-        value: crate::vulkan1_0::FormatFeatureFlags,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_tiling_features`]
+    pub fn set_drm_format_modifier_tiling_features(mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> Self {
         self.drm_format_modifier_tiling_features = value;
         self
     }
@@ -714,12 +712,12 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
         self.queue_family_indices
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::queue_family_indices`]
-    pub fn set_queue_family_indices_raw(&mut self, value: *const u32) -> &mut Self {
+    pub fn set_queue_family_indices_raw(mut self, value: *const u32) -> Self {
         self.queue_family_indices = value;
         self
     }
@@ -769,33 +767,33 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     pub fn queue_family_index_count_mut(&mut self) -> &mut u32 {
         &mut self.queue_family_index_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier`]
+    pub fn set_drm_format_modifier(mut self, value: u64) -> Self {
         self.drm_format_modifier = value;
         self
     }
-    ///Sets the raw value of [`Self::sharing_mode`]
-    pub fn set_sharing_mode(&mut self, value: crate::vulkan1_0::SharingMode) -> &mut Self {
+    ///Sets the value of [`Self::sharing_mode`]
+    pub fn set_sharing_mode(mut self, value: crate::vulkan1_0::SharingMode) -> Self {
         self.sharing_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::queue_family_index_count`]
-    pub fn set_queue_family_index_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::queue_family_index_count`]
+    pub fn set_queue_family_index_count(mut self, value: u32) -> Self {
         self.queue_family_index_count = value;
         self
     }
-    ///Sets the raw value of [`Self::queue_family_indices`]
-    pub fn set_queue_family_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+    ///Sets the value of [`Self::queue_family_indices`]
+    pub fn set_queue_family_indices(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.queue_family_indices = value.as_ptr();
@@ -888,12 +886,12 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
         self.drm_format_modifiers
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::drm_format_modifiers`]
-    pub fn set_drm_format_modifiers_raw(&mut self, value: *const u64) -> &mut Self {
+    pub fn set_drm_format_modifiers_raw(mut self, value: *const u64) -> Self {
         self.drm_format_modifiers = value;
         self
     }
@@ -927,23 +925,23 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     pub fn drm_format_modifier_count_mut(&mut self) -> &mut u32 {
         &mut self.drm_format_modifier_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn set_drm_format_modifier_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_count`]
+    pub fn set_drm_format_modifier_count(mut self, value: u32) -> Self {
         self.drm_format_modifier_count = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifiers`]
-    pub fn set_drm_format_modifiers(&mut self, value: &'lt [u64]) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifiers`]
+    pub fn set_drm_format_modifiers(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.drm_format_modifiers = value.as_ptr();
@@ -1071,12 +1069,12 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
         self.plane_layouts
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::plane_layouts`]
-    pub fn set_plane_layouts_raw(&mut self, value: *const SubresourceLayout) -> &mut Self {
+    pub fn set_plane_layouts_raw(mut self, value: *const SubresourceLayout) -> Self {
         self.plane_layouts = value;
         self
     }
@@ -1118,28 +1116,28 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     pub fn drm_format_modifier_plane_count_mut(&mut self) -> &mut u32 {
         &mut self.drm_format_modifier_plane_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier`]
+    pub fn set_drm_format_modifier(mut self, value: u64) -> Self {
         self.drm_format_modifier = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn set_drm_format_modifier_plane_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_plane_count`]
+    pub fn set_drm_format_modifier_plane_count(mut self, value: u32) -> Self {
         self.drm_format_modifier_plane_count = value;
         self
     }
-    ///Sets the raw value of [`Self::plane_layouts`]
-    pub fn set_plane_layouts(&mut self, value: &'lt [crate::vulkan1_0::SubresourceLayout]) -> &mut Self {
+    ///Sets the value of [`Self::plane_layouts`]
+    pub fn set_plane_layouts(mut self, value: &'lt [crate::vulkan1_0::SubresourceLayout]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.plane_layouts = value.as_ptr();
@@ -1189,7 +1187,7 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageDrmFormatModifierPropertiesEXT<'lt> {
@@ -1216,11 +1214,11 @@ impl<'lt> Default for ImageDrmFormatModifierPropertiesEXT<'lt> {
 }
 impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1254,18 +1252,18 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
     pub fn drm_format_modifier_mut(&mut self) -> &mut u64 {
         &mut self.drm_format_modifier
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier`]
+    pub fn set_drm_format_modifier(mut self, value: u64) -> Self {
         self.drm_format_modifier = value;
         self
     }
@@ -1323,7 +1321,7 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesList2EXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesList2EXT<'lt> {
@@ -1354,20 +1352,20 @@ impl<'lt> Default for DrmFormatModifierPropertiesList2EXT<'lt> {
 }
 impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::drm_format_modifier_properties`]
-    pub fn drm_format_modifier_properties_raw(&self) -> &*mut DrmFormatModifierProperties2EXT {
-        &self.drm_format_modifier_properties
+    pub fn drm_format_modifier_properties_raw(&self) -> *mut DrmFormatModifierProperties2EXT {
+        self.drm_format_modifier_properties
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::drm_format_modifier_properties`]
-    pub fn set_drm_format_modifier_properties_raw(&mut self, value: *mut DrmFormatModifierProperties2EXT) -> &mut Self {
+    pub fn set_drm_format_modifier_properties_raw(mut self, value: *mut DrmFormatModifierProperties2EXT) -> Self {
         self.drm_format_modifier_properties = value;
         self
     }
@@ -1421,26 +1419,26 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
             self.drm_format_modifier_count as usize,
         )
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_count`]
-    pub fn set_drm_format_modifier_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_count`]
+    pub fn set_drm_format_modifier_count(mut self, value: u32) -> Self {
         self.drm_format_modifier_count = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_properties`]
+    ///Sets the value of [`Self::drm_format_modifier_properties`]
     pub fn set_drm_format_modifier_properties(
-        &mut self,
+        mut self,
         value: &'lt mut [crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierProperties2EXT],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.drm_format_modifier_properties = value.as_mut_ptr();
@@ -1535,41 +1533,119 @@ impl DrmFormatModifierProperties2EXT {
     pub fn drm_format_modifier_tiling_features_mut(&mut self) -> &mut FormatFeatureFlags2 {
         &mut self.drm_format_modifier_tiling_features
     }
-    ///Sets the raw value of [`Self::drm_format_modifier`]
-    pub fn set_drm_format_modifier(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier`]
+    pub fn set_drm_format_modifier(mut self, value: u64) -> Self {
         self.drm_format_modifier = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_plane_count`]
-    pub fn set_drm_format_modifier_plane_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_plane_count`]
+    pub fn set_drm_format_modifier_plane_count(mut self, value: u32) -> Self {
         self.drm_format_modifier_plane_count = value;
         self
     }
-    ///Sets the raw value of [`Self::drm_format_modifier_tiling_features`]
-    pub fn set_drm_format_modifier_tiling_features(
-        &mut self,
-        value: crate::vulkan1_3::FormatFeatureFlags2,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::drm_format_modifier_tiling_features`]
+    pub fn set_drm_format_modifier_tiling_features(mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> Self {
         self.drm_format_modifier_tiling_features = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_image_drm_format_modifier
+impl Device {
+    ///[vkGetImageDrmFormatModifierPropertiesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageDrmFormatModifierPropertiesEXT.html) - Returns an image's DRM format modifier
+    ///# C Specifications
+    ///If an image was created with `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`,
+    ///then the image has a [Linux DRM format
+    ///modifier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-drm-format-modifier).
+    ///To query the *modifier*, call:
+    ///```c
+    ///// Provided by VK_EXT_image_drm_format_modifier
+    ///VkResult vkGetImageDrmFormatModifierPropertiesEXT(
+    ///    VkDevice                                    device,
+    ///    VkImage                                     image,
+    ///    VkImageDrmFormatModifierPropertiesEXT*      pProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the image.
+    /// - [`image`] is the queried image.
+    /// - [`p_properties`] is a pointer to a [`ImageDrmFormatModifierPropertiesEXT`] structure in
+    ///   which properties of the image’s *DRM format modifier* are returned.
+    ///# Description
+    ///## Valid Usage
+    /// - [`image`] **must**  have been created with [`ImageCreateInfo`] equal to
+    ///   `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`image`] **must**  be a valid [`Image`] handle
+    /// - [`p_properties`] **must**  be a valid pointer to a [`ImageDrmFormatModifierPropertiesEXT`]
+    ///   structure
+    /// - [`image`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_image_drm_format_modifier`]
+    /// - [`Device`]
+    /// - [`Image`]
+    /// - [`ImageDrmFormatModifierPropertiesEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetImageDrmFormatModifierPropertiesEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_image_drm_format_modifier_properties_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        image: Image,
+    ) -> VulkanResult<ImageDrmFormatModifierPropertiesEXT<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_image_drm_format_modifier()
+            .expect("extension/version not loaded")
+            .get_image_drm_format_modifier_properties_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_image_drm_format_modifier()
+            .unwrap_unchecked()
+            .get_image_drm_format_modifier_properties_ext()
+            .unwrap_unchecked();
+        let mut p_properties = MaybeUninit::<ImageDrmFormatModifierPropertiesEXT<'lt>>::zeroed();
+        let _return = _function(self.as_raw(), image, p_properties.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_properties.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_image_drm_format_modifier`
 pub struct DeviceExtImageDrmFormatModifierVTable {
     ///See [`FNGetImageDrmFormatModifierPropertiesExt`] for more information.
     pub get_image_drm_format_modifier_properties_ext: FNGetImageDrmFormatModifierPropertiesExt,
 }
 impl DeviceExtImageDrmFormatModifierVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_image_drm_format_modifier_properties_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetImageDrmFormatModifierPropertiesEXT"),
+                    crate::cstr!("vkGetImageDrmFormatModifierPropertiesEXT").as_ptr(),
                 ))
             },
         }

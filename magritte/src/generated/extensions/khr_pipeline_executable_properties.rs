@@ -86,6 +86,7 @@ use crate::{
     vulkan1_0::{
         BaseInStructure, BaseOutStructure, Bool32, Device, Pipeline, ShaderStageFlags, StructureType, VulkanResultCodes,
     },
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -466,7 +467,7 @@ impl PipelineExecutableStatisticFormatKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
@@ -495,20 +496,20 @@ impl<'lt> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt>
 }
 impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::pipeline_executable_info`]
     pub fn pipeline_executable_info_raw(&self) -> Bool32 {
         self.pipeline_executable_info
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::pipeline_executable_info`]
-    pub fn set_pipeline_executable_info_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_pipeline_executable_info_raw(mut self, value: Bool32) -> Self {
         self.pipeline_executable_info = value;
         self
     }
@@ -556,18 +557,18 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_executable_info`]
-    pub fn set_pipeline_executable_info(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_executable_info`]
+    pub fn set_pipeline_executable_info(mut self, value: bool) -> Self {
         self.pipeline_executable_info = value as u8 as u32;
         self
     }
@@ -636,7 +637,7 @@ impl<'lt> PipelineInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -663,18 +664,18 @@ impl<'lt> PipelineInfoKHR<'lt> {
     pub fn pipeline_mut(&mut self) -> &mut Pipeline {
         &mut self.pipeline
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline`]
-    pub fn set_pipeline(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+    ///Sets the value of [`Self::pipeline`]
+    pub fn set_pipeline(mut self, value: crate::vulkan1_0::Pipeline) -> Self {
         self.pipeline = value;
         self
     }
@@ -732,7 +733,7 @@ impl<'lt> PipelineInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutablePropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutablePropertiesKHR<'lt> {
@@ -774,11 +775,11 @@ impl<'lt> Default for PipelineExecutablePropertiesKHR<'lt> {
 }
 impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -836,36 +837,36 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
     pub fn subgroup_size_mut(&mut self) -> &mut u32 {
         &mut self.subgroup_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::stages`]
-    pub fn set_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+    ///Sets the value of [`Self::stages`]
+    pub fn set_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
         self.stages = value;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> Self {
         self.name = value;
         self
     }
-    ///Sets the raw value of [`Self::description`]
+    ///Sets the value of [`Self::description`]
     pub fn set_description(
-        &mut self,
+        mut self,
         value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.description = value;
         self
     }
-    ///Sets the raw value of [`Self::subgroup_size`]
-    pub fn set_subgroup_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::subgroup_size`]
+    pub fn set_subgroup_size(mut self, value: u32) -> Self {
         self.subgroup_size = value;
         self
     }
@@ -948,7 +949,7 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -983,23 +984,23 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
     pub fn executable_index_mut(&mut self) -> &mut u32 {
         &mut self.executable_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline`]
-    pub fn set_pipeline(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+    ///Sets the value of [`Self::pipeline`]
+    pub fn set_pipeline(mut self, value: crate::vulkan1_0::Pipeline) -> Self {
         self.pipeline = value;
         self
     }
-    ///Sets the raw value of [`Self::executable_index`]
-    pub fn set_executable_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::executable_index`]
+    pub fn set_executable_index(mut self, value: u32) -> Self {
         self.executable_index = value;
         self
     }
@@ -1047,6 +1048,7 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticKHR")]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR<'lt> {
@@ -1086,11 +1088,11 @@ impl<'lt> Default for PipelineExecutableStatisticKHR<'lt> {
 }
 impl<'lt> PipelineExecutableStatisticKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1148,42 +1150,42 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
     pub fn value_mut(&mut self) -> &mut PipelineExecutableStatisticValueKHR {
         &mut self.value
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> Self {
         self.name = value;
         self
     }
-    ///Sets the raw value of [`Self::description`]
+    ///Sets the value of [`Self::description`]
     pub fn set_description(
-        &mut self,
+        mut self,
         value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.description = value;
         self
     }
-    ///Sets the raw value of [`Self::format`]
+    ///Sets the value of [`Self::format`]
     pub fn set_format(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_pipeline_executable_properties::PipelineExecutableStatisticFormatKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.format = value;
         self
     }
-    ///Sets the raw value of [`Self::value`]
+    ///Sets the value of [`Self::value`]
     pub fn set_value(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_pipeline_executable_properties::PipelineExecutableStatisticValueKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.value = value;
         self
     }
@@ -1249,7 +1251,7 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableInternalRepresentationKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineExecutableInternalRepresentationKHR<'lt> {
@@ -1295,29 +1297,29 @@ impl<'lt> Default for PipelineExecutableInternalRepresentationKHR<'lt> {
 }
 impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::is_text`]
     pub fn is_text_raw(&self) -> Bool32 {
         self.is_text
     }
     ///Gets the raw value of [`Self::data`]
-    pub fn data_raw(&self) -> &*mut c_void {
-        &self.data
+    pub fn data_raw(&self) -> *mut c_void {
+        self.data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::is_text`]
-    pub fn set_is_text_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_is_text_raw(mut self, value: Bool32) -> Self {
         self.is_text = value;
         self
     }
     ///Sets the raw value of [`Self::data`]
-    pub fn set_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_data_raw(mut self, value: *mut c_void) -> Self {
         self.data = value;
         self
     }
@@ -1400,41 +1402,41 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
     pub unsafe fn data_mut(&mut self) -> &mut [c_void] {
         std::slice::from_raw_parts_mut(self.data, self.data_size as usize)
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> Self {
         self.name = value;
         self
     }
-    ///Sets the raw value of [`Self::description`]
+    ///Sets the value of [`Self::description`]
     pub fn set_description(
-        &mut self,
+        mut self,
         value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.description = value;
         self
     }
-    ///Sets the raw value of [`Self::is_text`]
-    pub fn set_is_text(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::is_text`]
+    pub fn set_is_text(mut self, value: bool) -> Self {
         self.is_text = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::data_size`]
-    pub fn set_data_size(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::data_size`]
+    pub fn set_data_size(mut self, value: usize) -> Self {
         self.data_size = value;
         self
     }
-    ///Sets the raw value of [`Self::data`]
-    pub fn set_data(&mut self, value: &'lt mut [std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::data`]
+    pub fn set_data(mut self, value: &'lt mut [std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.data = value.as_mut_ptr();
@@ -1502,7 +1504,373 @@ impl Default for PipelineExecutableStatisticValueKHR {
         unsafe { std::mem::zeroed() }
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_pipeline_executable_properties
+impl Device {
+    ///[vkGetPipelineExecutablePropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html) - Get the executables associated with a pipeline
+    ///# C Specifications
+    ///When a pipeline is created, its state and shaders are compiled into zero or
+    ///more device-specific executables, which are used when executing commands
+    ///against that pipeline.
+    ///To query the properties of these pipeline executables, call:
+    ///```c
+    ///// Provided by VK_KHR_pipeline_executable_properties
+    ///VkResult vkGetPipelineExecutablePropertiesKHR(
+    ///    VkDevice                                    device,
+    ///    const VkPipelineInfoKHR*                    pPipelineInfo,
+    ///    uint32_t*                                   pExecutableCount,
+    ///    VkPipelineExecutablePropertiesKHR*          pProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the pipeline.
+    /// - [`p_pipeline_info`] describes the pipeline being queried.
+    /// - [`p_executable_count`] is a pointer to an integer related to the number of pipeline
+    ///   executables available or queried, as described below.
+    /// - [`p_properties`] is either `NULL` or a pointer to an array of
+    ///   [`PipelineExecutablePropertiesKHR`] structures.
+    ///# Description
+    ///If [`p_properties`] is `NULL`, then the number of pipeline executables
+    ///associated with the pipeline is returned in [`p_executable_count`].
+    ///Otherwise, [`p_executable_count`] **must**  point to a variable set by the user
+    ///to the number of elements in the [`p_properties`] array, and on return the
+    ///variable is overwritten with the number of structures actually written to
+    ///[`p_properties`].
+    ///If [`p_executable_count`] is less than the number of pipeline executables
+    ///associated with the pipeline, at most [`p_executable_count`] structures will
+    ///be written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available properties were
+    ///returned.
+    ///## Valid Usage
+    /// - [`pipelineExecutableInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineExecutableInfo)
+    ///   **must**  be enabled
+    /// - `pipeline` member of [`p_pipeline_info`] **must**  have been created with [`device`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_pipeline_info`] **must**  be a valid pointer to a valid [`PipelineInfoKHR`] structure
+    /// - [`p_executable_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_executable_count`] is not `0`, and [`p_properties`] is not
+    ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
+    ///   [`p_executable_count`][`PipelineExecutablePropertiesKHR`] structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_pipeline_executable_properties`]
+    /// - [`Device`]
+    /// - [`PipelineExecutablePropertiesKHR`]
+    /// - [`PipelineInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPipelineExecutablePropertiesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_pipeline_executable_properties_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_pipeline_info: &PipelineInfoKHR<'lt>,
+        p_executable_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PipelineExecutablePropertiesKHR<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_pipeline_executable_properties()
+            .expect("extension/version not loaded")
+            .get_pipeline_executable_properties_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_pipeline_executable_properties()
+            .unwrap_unchecked()
+            .get_pipeline_executable_properties_khr()
+            .unwrap_unchecked();
+        let mut p_executable_count = match p_executable_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_pipeline_info as *const PipelineInfoKHR<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_properties = SmallVec::<PipelineExecutablePropertiesKHR<'lt>>::from_elem(
+            Default::default(),
+            p_executable_count as usize,
+        );
+        let _return = _function(
+            self.as_raw(),
+            p_pipeline_info as *const PipelineInfoKHR<'lt>,
+            &mut p_executable_count,
+            p_properties.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetPipelineExecutableStatisticsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html) - Get compile time statistics associated with a pipeline executable
+    ///# C Specifications
+    ///Each pipeline executable  **may**  have a set of statistics associated with it
+    ///that are generated by the pipeline compilation process.
+    ///These statistics  **may**  include things such as instruction counts, amount of
+    ///spilling (if any), maximum number of simultaneous threads, or anything else
+    ///which  **may**  aid developers in evaluating the expected performance of a
+    ///shader.
+    ///To query the compile-time statistics associated with a pipeline executable,
+    ///call:
+    ///```c
+    ///// Provided by VK_KHR_pipeline_executable_properties
+    ///VkResult vkGetPipelineExecutableStatisticsKHR(
+    ///    VkDevice                                    device,
+    ///    const VkPipelineExecutableInfoKHR*          pExecutableInfo,
+    ///    uint32_t*                                   pStatisticCount,
+    ///    VkPipelineExecutableStatisticKHR*           pStatistics);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the pipeline.
+    /// - [`p_executable_info`] describes the pipeline executable being queried.
+    /// - [`p_statistic_count`] is a pointer to an integer related to the number of statistics
+    ///   available or queried, as described below.
+    /// - [`p_statistics`] is either `NULL` or a pointer to an array of
+    ///   [`PipelineExecutableStatisticKHR`] structures.
+    ///# Description
+    ///If [`p_statistics`] is `NULL`, then the number of statistics associated
+    ///with the pipeline executable is returned in [`p_statistic_count`].
+    ///Otherwise, [`p_statistic_count`] **must**  point to a variable set by the user
+    ///to the number of elements in the [`p_statistics`] array, and on return the
+    ///variable is overwritten with the number of structures actually written to
+    ///[`p_statistics`].
+    ///If [`p_statistic_count`] is less than the number of statistics associated
+    ///with the pipeline executable, at most [`p_statistic_count`] structures will
+    ///be written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available statistics were
+    ///returned.
+    ///## Valid Usage
+    /// - [`pipelineExecutableInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineExecutableInfo)
+    ///   **must**  be enabled
+    /// - `pipeline` member of [`p_executable_info`] **must**  have been created with [`device`]
+    /// - `pipeline` member of [`p_executable_info`] **must**  have been created with
+    ///   `VK_PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_executable_info`] **must**  be a valid pointer to a valid
+    ///   [`PipelineExecutableInfoKHR`] structure
+    /// - [`p_statistic_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_statistic_count`] is not `0`, and [`p_statistics`] is not
+    ///   `NULL`, [`p_statistics`] **must**  be a valid pointer to an array of
+    ///   [`p_statistic_count`][`PipelineExecutableStatisticKHR`] structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_pipeline_executable_properties`]
+    /// - [`Device`]
+    /// - [`PipelineExecutableInfoKHR`]
+    /// - [`PipelineExecutableStatisticKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPipelineExecutableStatisticsKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_pipeline_executable_statistics_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_executable_info: &PipelineExecutableInfoKHR<'lt>,
+        p_statistic_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PipelineExecutableStatisticKHR<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_pipeline_executable_properties()
+            .expect("extension/version not loaded")
+            .get_pipeline_executable_statistics_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_pipeline_executable_properties()
+            .unwrap_unchecked()
+            .get_pipeline_executable_statistics_khr()
+            .unwrap_unchecked();
+        let mut p_statistic_count = match p_statistic_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_executable_info as *const PipelineExecutableInfoKHR<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_statistics =
+            SmallVec::<PipelineExecutableStatisticKHR<'lt>>::from_elem(Default::default(), p_statistic_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            p_executable_info as *const PipelineExecutableInfoKHR<'lt>,
+            &mut p_statistic_count,
+            p_statistics.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_statistics),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetPipelineExecutableInternalRepresentationsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html) - Get internal representations of the pipeline executable
+    ///# C Specifications
+    ///Each pipeline executable  **may**  have one or more text or binary internal
+    ///representations associated with it which are generated as part of the
+    ///compile process.
+    ///These  **may**  include the final shader assembly, a binary form of the compiled
+    ///shader, or the shader compiler’s internal representation at any number of
+    ///intermediate compile steps.
+    ///To query the internal representations associated with a pipeline executable,
+    ///call:
+    ///```c
+    ///// Provided by VK_KHR_pipeline_executable_properties
+    ///VkResult vkGetPipelineExecutableInternalRepresentationsKHR(
+    ///    VkDevice                                    device,
+    ///    const VkPipelineExecutableInfoKHR*          pExecutableInfo,
+    ///    uint32_t*                                   pInternalRepresentationCount,
+    ///    VkPipelineExecutableInternalRepresentationKHR* pInternalRepresentations);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the pipeline.
+    /// - [`p_executable_info`] describes the pipeline executable being queried.
+    /// - [`p_internal_representation_count`] is a pointer to an integer related to the number of
+    ///   internal representations available or queried, as described below.
+    /// - [`p_internal_representations`] is either `NULL` or a pointer to an array of
+    ///   [`PipelineExecutableInternalRepresentationKHR`] structures.
+    ///# Description
+    ///If [`p_internal_representations`] is `NULL`, then the number of internal
+    ///representations associated with the pipeline executable is returned in
+    ///[`p_internal_representation_count`].
+    ///Otherwise, [`p_internal_representation_count`] **must**  point to a variable set
+    ///by the user to the number of elements in the [`p_internal_representations`]
+    ///array, and on return the variable is overwritten with the number of
+    ///structures actually written to [`p_internal_representations`].
+    ///If [`p_internal_representation_count`] is less than the number of internal
+    ///representations associated with the pipeline executable, at most
+    ///[`p_internal_representation_count`] structures will be written, and
+    ///`VK_INCOMPLETE` will be returned instead of `VK_SUCCESS`, to
+    ///indicate that not all the available representations were returned.While the details of the
+    /// internal representations remain
+    ///implementation-dependent, the implementation  **should**  order the internal
+    ///representations in the order in which they occur in the compiled pipeline
+    ///with the final shader assembly (if any) last.
+    ///## Valid Usage
+    /// - [`pipelineExecutableInfo`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-pipelineExecutableInfo)
+    ///   **must**  be enabled
+    /// - `pipeline` member of [`p_executable_info`] **must**  have been created with [`device`]
+    /// - `pipeline` member of [`p_executable_info`] **must**  have been created with
+    ///   `VK_PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_executable_info`] **must**  be a valid pointer to a valid
+    ///   [`PipelineExecutableInfoKHR`] structure
+    /// - [`p_internal_representation_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_internal_representation_count`] is not `0`, and
+    ///   [`p_internal_representations`] is not `NULL`, [`p_internal_representations`] **must**  be
+    ///   a valid pointer to an array of
+    ///   [`p_internal_representation_count`][`PipelineExecutableInternalRepresentationKHR`]
+    ///   structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_pipeline_executable_properties`]
+    /// - [`Device`]
+    /// - [`PipelineExecutableInfoKHR`]
+    /// - [`PipelineExecutableInternalRepresentationKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPipelineExecutableInternalRepresentationsKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_pipeline_executable_internal_representations_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_executable_info: &PipelineExecutableInfoKHR<'lt>,
+        p_internal_representation_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<PipelineExecutableInternalRepresentationKHR<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_pipeline_executable_properties()
+            .expect("extension/version not loaded")
+            .get_pipeline_executable_internal_representations_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_pipeline_executable_properties()
+            .unwrap_unchecked()
+            .get_pipeline_executable_internal_representations_khr()
+            .unwrap_unchecked();
+        let mut p_internal_representation_count = match p_internal_representation_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_executable_info as *const PipelineExecutableInfoKHR<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_internal_representations = SmallVec::<PipelineExecutableInternalRepresentationKHR<'lt>>::from_elem(
+            Default::default(),
+            p_internal_representation_count as usize,
+        );
+        let _return = _function(
+            self.as_raw(),
+            p_executable_info as *const PipelineExecutableInfoKHR<'lt>,
+            &mut p_internal_representation_count,
+            p_internal_representations.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_internal_representations)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_pipeline_executable_properties`
 pub struct DeviceKhrPipelineExecutablePropertiesVTable {
     ///See [`FNGetPipelineExecutablePropertiesKhr`] for more information.
     pub get_pipeline_executable_properties_khr: FNGetPipelineExecutablePropertiesKhr,
@@ -1513,21 +1881,31 @@ pub struct DeviceKhrPipelineExecutablePropertiesVTable {
 }
 impl DeviceKhrPipelineExecutablePropertiesVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_pipeline_executable_properties_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPipelineExecutablePropertiesKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPipelineExecutablePropertiesKHR").as_ptr(),
+                ))
             },
             get_pipeline_executable_statistics_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPipelineExecutableStatisticsKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPipelineExecutableStatisticsKHR").as_ptr(),
+                ))
             },
             get_pipeline_executable_internal_representations_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPipelineExecutableInternalRepresentationsKHR"),
+                    crate::cstr!("vkGetPipelineExecutableInternalRepresentationsKHR").as_ptr(),
                 ))
             },
         }

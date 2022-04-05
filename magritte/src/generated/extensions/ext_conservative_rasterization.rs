@@ -276,7 +276,7 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConservativeRasterizationPropertiesEXT")]
-#[derive(Debug, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
@@ -377,8 +377,8 @@ impl<'lt> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> 
 }
 impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::primitive_underestimation`]
     pub fn primitive_underestimation_raw(&self) -> Bool32 {
@@ -405,37 +405,37 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
         self.conservative_rasterization_post_depth_coverage
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::primitive_underestimation`]
-    pub fn set_primitive_underestimation_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_primitive_underestimation_raw(mut self, value: Bool32) -> Self {
         self.primitive_underestimation = value;
         self
     }
     ///Sets the raw value of [`Self::conservative_point_and_line_rasterization`]
-    pub fn set_conservative_point_and_line_rasterization_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_conservative_point_and_line_rasterization_raw(mut self, value: Bool32) -> Self {
         self.conservative_point_and_line_rasterization = value;
         self
     }
     ///Sets the raw value of [`Self::degenerate_triangles_rasterized`]
-    pub fn set_degenerate_triangles_rasterized_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_degenerate_triangles_rasterized_raw(mut self, value: Bool32) -> Self {
         self.degenerate_triangles_rasterized = value;
         self
     }
     ///Sets the raw value of [`Self::degenerate_lines_rasterized`]
-    pub fn set_degenerate_lines_rasterized_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_degenerate_lines_rasterized_raw(mut self, value: Bool32) -> Self {
         self.degenerate_lines_rasterized = value;
         self
     }
     ///Sets the raw value of [`Self::fully_covered_fragment_shader_input_variable`]
-    pub fn set_fully_covered_fragment_shader_input_variable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fully_covered_fragment_shader_input_variable_raw(mut self, value: Bool32) -> Self {
         self.fully_covered_fragment_shader_input_variable = value;
         self
     }
     ///Sets the raw value of [`Self::conservative_rasterization_post_depth_coverage`]
-    pub fn set_conservative_rasterization_post_depth_coverage_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_conservative_rasterization_post_depth_coverage_raw(mut self, value: Bool32) -> Self {
         self.conservative_rasterization_post_depth_coverage = value;
         self
     }
@@ -620,58 +620,58 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::primitive_overestimation_size`]
-    pub fn set_primitive_overestimation_size(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::primitive_overestimation_size`]
+    pub fn set_primitive_overestimation_size(mut self, value: f32) -> Self {
         self.primitive_overestimation_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_extra_primitive_overestimation_size`]
-    pub fn set_max_extra_primitive_overestimation_size(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::max_extra_primitive_overestimation_size`]
+    pub fn set_max_extra_primitive_overestimation_size(mut self, value: f32) -> Self {
         self.max_extra_primitive_overestimation_size = value;
         self
     }
-    ///Sets the raw value of [`Self::extra_primitive_overestimation_size_granularity`]
-    pub fn set_extra_primitive_overestimation_size_granularity(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::extra_primitive_overestimation_size_granularity`]
+    pub fn set_extra_primitive_overestimation_size_granularity(mut self, value: f32) -> Self {
         self.extra_primitive_overestimation_size_granularity = value;
         self
     }
-    ///Sets the raw value of [`Self::primitive_underestimation`]
-    pub fn set_primitive_underestimation(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::primitive_underestimation`]
+    pub fn set_primitive_underestimation(mut self, value: bool) -> Self {
         self.primitive_underestimation = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::conservative_point_and_line_rasterization`]
-    pub fn set_conservative_point_and_line_rasterization(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::conservative_point_and_line_rasterization`]
+    pub fn set_conservative_point_and_line_rasterization(mut self, value: bool) -> Self {
         self.conservative_point_and_line_rasterization = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::degenerate_triangles_rasterized`]
-    pub fn set_degenerate_triangles_rasterized(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::degenerate_triangles_rasterized`]
+    pub fn set_degenerate_triangles_rasterized(mut self, value: bool) -> Self {
         self.degenerate_triangles_rasterized = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::degenerate_lines_rasterized`]
-    pub fn set_degenerate_lines_rasterized(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::degenerate_lines_rasterized`]
+    pub fn set_degenerate_lines_rasterized(mut self, value: bool) -> Self {
         self.degenerate_lines_rasterized = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::fully_covered_fragment_shader_input_variable`]
-    pub fn set_fully_covered_fragment_shader_input_variable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fully_covered_fragment_shader_input_variable`]
+    pub fn set_fully_covered_fragment_shader_input_variable(mut self, value: bool) -> Self {
         self.fully_covered_fragment_shader_input_variable = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::conservative_rasterization_post_depth_coverage`]
-    pub fn set_conservative_rasterization_post_depth_coverage(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::conservative_rasterization_post_depth_coverage`]
+    pub fn set_conservative_rasterization_post_depth_coverage(mut self, value: bool) -> Self {
         self.conservative_rasterization_post_depth_coverage = value as u8 as u32;
         self
     }
@@ -778,7 +778,7 @@ impl<'lt> PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -821,34 +821,34 @@ impl<'lt> PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     pub fn extra_primitive_overestimation_size_mut(&mut self) -> &mut f32 {
         &mut self.extra_primitive_overestimation_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_conservative_rasterization::PipelineRasterizationConservativeStateCreateFlagsEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::conservative_rasterization_mode`]
+    ///Sets the value of [`Self::conservative_rasterization_mode`]
     pub fn set_conservative_rasterization_mode(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_conservative_rasterization::ConservativeRasterizationModeEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.conservative_rasterization_mode = value;
         self
     }
-    ///Sets the raw value of [`Self::extra_primitive_overestimation_size`]
-    pub fn set_extra_primitive_overestimation_size(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::extra_primitive_overestimation_size`]
+    pub fn set_extra_primitive_overestimation_size(mut self, value: f32) -> Self {
         self.extra_primitive_overestimation_size = value;
         self
     }

@@ -7,7 +7,6 @@ use crate::{
     codegen::functions::wrapped::{ExtraCallInfo, StatefulFunctionGeneratorState},
     doc::Documentation,
     imports::Imports,
-    name::enum_name,
     origin::Origin,
     source::{Function, Handle, Source},
     ty::Ty,
@@ -27,12 +26,25 @@ impl<'a> Function<'a> {
         handle: &Handle<'a>,
         mut out: &mut TokenStream,
     ) {
-        let mut gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), Some(quote! { 'lt }));
+        let mut gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), None);
 
         let name = self.as_ident();
         let original_name = self.original_name();
 
         self.as_fn_pointer().generate_doc(source, doc, out);
+
+        let loader = match self.name() {
+            "get_instance_proc_addr" => Some(quote! { .entry() }),
+            "get_device_proc_addr" => Some(quote! { .instance() }),
+            _ => match handle.name() {
+                "Device" | "Instance" => None,
+                _ => match &*handle.ancestor_loader(source).unwrap() {
+                    "VkDevice" => Some(quote! { .device() }),
+                    "VkInstance" => Some(quote! { .instance() }),
+                    other => unreachable!("not a loader: {}", other),
+                },
+            },
+        };
 
         let extra_call = gen.extra_call_info.map(|info| {
             let ExtraCallInfo {
@@ -99,14 +111,20 @@ impl<'a> Function<'a> {
                 imports.push_origin(&Origin::Vulkan1_0, "VulkanResultCodes");
                 imports.push("crate::VulkanResult");
 
-                let successes = self
-                    .success_codes
-                    .iter()
-                    .map(|name| Ident::new(&enum_name(name, None, Some("VkResult")), Span::call_site()));
+                let result = source.enums.get_by_either("VulkanResultCodes").unwrap();
+                let successes = self.success_codes.iter().map(|name| {
+                    if let Some(variant) = result.variants().get_by_either(name) {
+                        variant.as_ident()
+                    } else if let Some(alias) = result.aliases().get_by_either(name) {
+                        result.variants.get_by_name(alias.of()).unwrap().as_ident()
+                    } else {
+                        unreachable!("unknown result variant: {}", name);
+                    }
+                });
 
                 quote! {
-                    match _result {
-                        #(VulkanResultCodes::#successes) |* => VulkanResult::Success(_result, #inner_return_value),
+                    match _return {
+                        #(VulkanResultCodes::#successes) |* => VulkanResult::Success(_return, #inner_return_value),
                         e => VulkanResult::Err(e)
                     }
                 }
@@ -115,43 +133,19 @@ impl<'a> Function<'a> {
         };
 
         let params = gen.function_args.into_iter();
-        let state_idents = gen.state_idents.into_iter();
-        let state_ty = gen.state_types.into_iter();
-        let state_init = gen.state_initializations.into_iter();
-        let state_set = gen.state_set.into_iter().map(|fun| fun(None));
-
+        let states = gen.states.into_iter();
         let return_init = gen.return_initializations.into_iter();
 
         let call_args = gen.call_args.into_iter().map(|fun| fun(None));
 
         let is_lifetime = self.has_lifetime(source);
 
-        let generics = if gen.generic_idents.is_empty() {
-            if is_lifetime {
-                Some(quote! {
-                    <'a>
-                })
-            } else {
-                None
-            }
-        } else {
-            let generic = gen.generic_idents.iter();
-            let lifetime = is_lifetime.then(|| quote! { 'a, });
-
+        let generics = if is_lifetime {
             Some(quote! {
-                <#lifetime #(#generic),*>
+                'lt,
             })
-        };
-
-        let generic_bounds = if gen.generic_bounds.is_empty() {
+        } else {
             None
-        } else {
-            let generic = gen.generic_idents.iter();
-            let bound = gen.generic_bounds.iter();
-
-            Some(quote! {
-                where #(#generic: #bound),*
-            })
         };
 
         // println!("{}: {:#?}", self.original_name(), gen);
@@ -166,9 +160,33 @@ impl<'a> Function<'a> {
             None
         };
 
-        let this = gen.this.not().then(|| quote! { &self, });
+        // let this = gen.this.not().then(|| quote! { self: &Unique<'a, #handle_ident>, });
 
-        let origin = Ident::new(&self.origin().as_name(), Span::call_site());
+        let origin = if self.name() == "get_instance_proc_addr" {
+            None
+        } else {
+            let ident = Ident::new(&self.origin().as_name(), Span::call_site());
+
+            Some(quote! {
+                .#ident()
+            })
+        };
+
+        let origin_expect =
+            (self.origin() != &Origin::Vulkan1_0 && self.name() != "get_instance_proc_addr").then(|| {
+                quote! {
+                    .expect("extension/version not loaded")
+                }
+            });
+
+        let origin_unwrap =
+            (self.origin() != &Origin::Vulkan1_0 && self.name() != "get_instance_proc_addr").then(|| {
+                quote! {
+                    .unwrap_unchecked()
+                }
+            });
+
+        let lifetime = gen.lifetime.not().then(|| quote! { 'parent, });
 
         quote_each_token! {
             out
@@ -176,29 +194,25 @@ impl<'a> Function<'a> {
             #alias
             #[track_caller]
             #[inline]
-            pub unsafe fn #name #generics(
-                #this
+            pub unsafe fn #name <'a: 'this, #lifetime 'this, #generics>(
+                // #this
                 #(#params),*
-            ) -> #return_ty #generic_bounds {
+            ) -> #return_ty {
                 #[cfg(any(debug_assertions, feature = "assertions"))]
-                let _function = self.vtable().#origin().#name().expect("not loaded");
+                let _function = self #loader .vtable() #origin #origin_expect.#name().expect("function not loaded");
 
                 #[cfg(not(any(debug_assertions, feature = "assertions")))]
-                let _function = self.vtable().#origin().#name().unwrap_unchecked();
+                let _function = self #loader .vtable() #origin #origin_unwrap.#name().unwrap_unchecked();
 
                 #(
-                    let mut #state_idents: #state_ty = #state_init;
+                    #states
                 )*
 
-                #(
-                    #state_set
-                )*
+                #extra_call
 
                 #(
                     #return_init
                 )*
-
-                #extra_call
 
                 let _return = _function(#(#call_args),*);
 

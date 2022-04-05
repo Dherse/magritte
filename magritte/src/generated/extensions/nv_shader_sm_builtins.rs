@@ -96,7 +96,7 @@ pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsPropertiesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
@@ -127,11 +127,11 @@ impl<'lt> Default for PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -173,23 +173,23 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
     pub fn shader_warps_per_sm_mut(&mut self) -> &mut u32 {
         &mut self.shader_warps_per_sm
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_sm_count`]
-    pub fn set_shader_sm_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shader_sm_count`]
+    pub fn set_shader_sm_count(mut self, value: u32) -> Self {
         self.shader_sm_count = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_warps_per_sm`]
-    pub fn set_shader_warps_per_sm(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::shader_warps_per_sm`]
+    pub fn set_shader_warps_per_sm(mut self, value: u32) -> Self {
         self.shader_warps_per_sm = value;
         self
     }
@@ -235,7 +235,7 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
@@ -263,20 +263,20 @@ impl<'lt> Default for PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::shader_sm_builtins`]
     pub fn shader_sm_builtins_raw(&self) -> Bool32 {
         self.shader_sm_builtins
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_sm_builtins`]
-    pub fn set_shader_sm_builtins_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_shader_sm_builtins_raw(mut self, value: Bool32) -> Self {
         self.shader_sm_builtins = value;
         self
     }
@@ -324,18 +324,18 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::shader_sm_builtins`]
-    pub fn set_shader_sm_builtins(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::shader_sm_builtins`]
+    pub fn set_shader_sm_builtins(mut self, value: bool) -> Self {
         self.shader_sm_builtins = value as u8 as u32;
         self
     }

@@ -69,10 +69,12 @@
 use crate::{
     extensions::khr_surface::SurfaceKHR,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{
     ffi::{c_void, CStr},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -241,7 +243,7 @@ impl std::fmt::Debug for AndroidSurfaceCreateFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidSurfaceCreateInfoKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AndroidSurfaceCreateInfoKHR<'lt> {
@@ -275,16 +277,16 @@ impl<'lt> AndroidSurfaceCreateInfoKHR<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::window`]
-    pub fn window_raw(&self) -> &*mut ANativeWindow {
-        &self.window
+    pub fn window_raw(&self) -> *mut ANativeWindow {
+        self.window
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::window`]
-    pub fn set_window_raw(&mut self, value: *mut ANativeWindow) -> &mut Self {
+    pub fn set_window_raw(mut self, value: *mut ANativeWindow) -> Self {
         self.window = value;
         self
     }
@@ -325,44 +327,144 @@ impl<'lt> AndroidSurfaceCreateInfoKHR<'lt> {
     pub unsafe fn window_mut(&mut self) -> &mut ANativeWindow {
         &mut *self.window
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::khr_android_surface::AndroidSurfaceCreateFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_android_surface::AndroidSurfaceCreateFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::window`]
-    pub fn set_window(&mut self, value: &'lt mut crate::extensions::khr_android_surface::ANativeWindow) -> &mut Self {
+    ///Sets the value of [`Self::window`]
+    pub fn set_window(mut self, value: &'lt mut crate::extensions::khr_android_surface::ANativeWindow) -> Self {
         self.window = value as *mut _;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_android_surface
+impl Instance {
+    ///[vkCreateAndroidSurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateAndroidSurfaceKHR.html) - Create a slink:VkSurfaceKHR object for an Android native window
+    ///# C Specifications
+    ///To create a [`SurfaceKHR`] object for an Android native window, call:
+    ///```c
+    ///// Provided by VK_KHR_android_surface
+    ///VkResult vkCreateAndroidSurfaceKHR(
+    ///    VkInstance                                  instance,
+    ///    const VkAndroidSurfaceCreateInfoKHR*        pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkSurfaceKHR*                               pSurface);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance to associate the surface with.
+    /// - [`p_create_info`] is a pointer to a [`AndroidSurfaceCreateInfoKHR`] structure containing
+    ///   parameters affecting the creation of the surface object.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
+    ///   is returned.
+    ///# Description
+    ///During the lifetime of a surface created using a particular
+    ///[`ANativeWindow`] handle any attempts to create another surface for the
+    ///same [`ANativeWindow`] and any attempts to connect to the same
+    ///[`ANativeWindow`] through other platform mechanisms will fail.If successful,
+    /// [`create_android_surface_khr`] increments the
+    ///[`ANativeWindow`]’s reference count, and [`destroy_surface_khr`] will
+    ///decrement it.On Android, when a swapchain’s `imageExtent` does not match the
+    ///surface’s `currentExtent`, the presentable images will be scaled to the
+    ///surface’s dimensions during presentation.
+    ///`minImageExtent` is (1,1), and `maxImageExtent` is the maximum
+    ///image size supported by the consumer.
+    ///For the system compositor, `currentExtent` is the window size (i.e. the
+    ///consumer’s preferred size).
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`AndroidSurfaceCreateInfoKHR`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
+    ///# Related
+    /// - [`VK_KHR_android_surface`]
+    /// - [`AllocationCallbacks`]
+    /// - [`AndroidSurfaceCreateInfoKHR`]
+    /// - [`Instance`]
+    /// - [`SurfaceKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateAndroidSurfaceKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_android_surface_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &AndroidSurfaceCreateInfoKHR<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_android_surface()
+            .expect("extension/version not loaded")
+            .create_android_surface_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_android_surface()
+            .unwrap_unchecked()
+            .create_android_surface_khr()
+            .unwrap_unchecked();
+        let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const AndroidSurfaceCreateInfoKHR<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_surface.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_android_surface`
 pub struct InstanceKhrAndroidSurfaceVTable {
     ///See [`FNCreateAndroidSurfaceKhr`] for more information.
     pub create_android_surface_khr: FNCreateAndroidSurfaceKhr,
 }
 impl InstanceKhrAndroidSurfaceVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_android_surface_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateAndroidSurfaceKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateAndroidSurfaceKHR").as_ptr()))
             },
         }
     }

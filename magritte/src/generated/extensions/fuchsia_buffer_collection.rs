@@ -113,12 +113,14 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    entry::Entry,
     native::zx_handle_t,
     vulkan1_0::{
         AllocationCallbacks, BaseInStructure, BaseOutStructure, BufferCreateInfo, ComponentMapping, Device,
-        FormatFeatureFlags, ImageCreateInfo, StructureType, VulkanResultCodes,
+        FormatFeatureFlags, ImageCreateInfo, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
     },
     vulkan1_1::{ChromaLocation, SamplerYcbcrModelConversion, SamplerYcbcrRange},
+    AsRaw, Handle, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -128,6 +130,7 @@ use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -980,7 +983,7 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1015,26 +1018,26 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
     pub fn index_mut(&mut self) -> &mut u32 {
         &mut self.index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::collection`]
+    ///Sets the value of [`Self::collection`]
     pub fn set_collection(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::BufferCollectionFUCHSIA,
-    ) -> &mut Self {
+    ) -> Self {
         self.collection = value;
         self
     }
-    ///Sets the raw value of [`Self::index`]
-    pub fn set_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::index`]
+    pub fn set_index(mut self, value: u32) -> Self {
         self.index = value;
         self
     }
@@ -1111,7 +1114,7 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1146,26 +1149,26 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     pub fn index_mut(&mut self) -> &mut u32 {
         &mut self.index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::collection`]
+    ///Sets the value of [`Self::collection`]
     pub fn set_collection(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::BufferCollectionFUCHSIA,
-    ) -> &mut Self {
+    ) -> Self {
         self.collection = value;
         self
     }
-    ///Sets the raw value of [`Self::index`]
-    pub fn set_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::index`]
+    pub fn set_index(mut self, value: u32) -> Self {
         self.index = value;
         self
     }
@@ -1242,7 +1245,7 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1277,26 +1280,26 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     pub fn index_mut(&mut self) -> &mut u32 {
         &mut self.index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::collection`]
+    ///Sets the value of [`Self::collection`]
     pub fn set_collection(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::BufferCollectionFUCHSIA,
-    ) -> &mut Self {
+    ) -> Self {
         self.collection = value;
         self
     }
-    ///Sets the raw value of [`Self::index`]
-    pub fn set_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::index`]
+    pub fn set_index(mut self, value: u32) -> Self {
         self.index = value;
         self
     }
@@ -1373,12 +1376,12 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
         &self.collection_token
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::collection_token`]
-    pub fn set_collection_token_raw(&mut self, value: zx_handle_t) -> &mut Self {
+    pub fn set_collection_token_raw(mut self, value: zx_handle_t) -> Self {
         self.collection_token = value;
         self
     }
@@ -1394,8 +1397,8 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::collection_token`]
-    pub fn collection_token(&self) -> &zx_handle_t {
-        &self.collection_token
+    pub fn collection_token(&self) -> zx_handle_t {
+        self.collection_token
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -1405,18 +1408,18 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
     pub fn collection_token_mut(&mut self) -> &mut zx_handle_t {
         &mut self.collection_token
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::collection_token`]
-    pub fn set_collection_token(&mut self, value: crate::native::zx_handle_t) -> &mut Self {
+    ///Sets the value of [`Self::collection_token`]
+    pub fn set_collection_token(mut self, value: crate::native::zx_handle_t) -> Self {
         self.collection_token = value;
         self
     }
@@ -1511,7 +1514,7 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionPropertiesFUCHSIA")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA<'lt> {
@@ -1577,11 +1580,11 @@ impl<'lt> Default for BufferCollectionPropertiesFUCHSIA<'lt> {
 }
 impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1695,71 +1698,71 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
     pub fn suggested_y_chroma_offset_mut(&mut self) -> &mut ChromaLocation {
         &mut self.suggested_y_chroma_offset
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::memory_type_bits`]
+    pub fn set_memory_type_bits(mut self, value: u32) -> Self {
         self.memory_type_bits = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_count`]
-    pub fn set_buffer_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::buffer_count`]
+    pub fn set_buffer_count(mut self, value: u32) -> Self {
         self.buffer_count = value;
         self
     }
-    ///Sets the raw value of [`Self::create_info_index`]
-    pub fn set_create_info_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::create_info_index`]
+    pub fn set_create_info_index(mut self, value: u32) -> Self {
         self.create_info_index = value;
         self
     }
-    ///Sets the raw value of [`Self::sysmem_pixel_format`]
-    pub fn set_sysmem_pixel_format(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::sysmem_pixel_format`]
+    pub fn set_sysmem_pixel_format(mut self, value: u64) -> Self {
         self.sysmem_pixel_format = value;
         self
     }
-    ///Sets the raw value of [`Self::format_features`]
-    pub fn set_format_features(&mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> &mut Self {
+    ///Sets the value of [`Self::format_features`]
+    pub fn set_format_features(mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> Self {
         self.format_features = value;
         self
     }
-    ///Sets the raw value of [`Self::sysmem_color_space_index`]
+    ///Sets the value of [`Self::sysmem_color_space_index`]
     pub fn set_sysmem_color_space_index(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::SysmemColorSpaceFUCHSIA<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.sysmem_color_space_index = value;
         self
     }
-    ///Sets the raw value of [`Self::sampler_ycbcr_conversion_components`]
-    pub fn set_sampler_ycbcr_conversion_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
+    ///Sets the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn set_sampler_ycbcr_conversion_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
         self.sampler_ycbcr_conversion_components = value;
         self
     }
-    ///Sets the raw value of [`Self::suggested_ycbcr_model`]
-    pub fn set_suggested_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
+    ///Sets the value of [`Self::suggested_ycbcr_model`]
+    pub fn set_suggested_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
         self.suggested_ycbcr_model = value;
         self
     }
-    ///Sets the raw value of [`Self::suggested_ycbcr_range`]
-    pub fn set_suggested_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
+    ///Sets the value of [`Self::suggested_ycbcr_range`]
+    pub fn set_suggested_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
         self.suggested_ycbcr_range = value;
         self
     }
-    ///Sets the raw value of [`Self::suggested_x_chroma_offset`]
-    pub fn set_suggested_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+    ///Sets the value of [`Self::suggested_x_chroma_offset`]
+    pub fn set_suggested_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
         self.suggested_x_chroma_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::suggested_y_chroma_offset`]
-    pub fn set_suggested_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+    ///Sets the value of [`Self::suggested_y_chroma_offset`]
+    pub fn set_suggested_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
         self.suggested_y_chroma_offset = value;
         self
     }
@@ -1853,7 +1856,7 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1896,31 +1899,31 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
     pub fn buffer_collection_constraints_mut(&mut self) -> &mut BufferCollectionConstraintsInfoFUCHSIA<'lt> {
         &mut self.buffer_collection_constraints
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::create_info`]
-    pub fn set_create_info(&mut self, value: crate::vulkan1_0::BufferCreateInfo<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::create_info`]
+    pub fn set_create_info(mut self, value: crate::vulkan1_0::BufferCreateInfo<'lt>) -> Self {
         self.create_info = value;
         self
     }
-    ///Sets the raw value of [`Self::required_format_features`]
-    pub fn set_required_format_features(&mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> &mut Self {
+    ///Sets the value of [`Self::required_format_features`]
+    pub fn set_required_format_features(mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> Self {
         self.required_format_features = value;
         self
     }
-    ///Sets the raw value of [`Self::buffer_collection_constraints`]
+    ///Sets the value of [`Self::buffer_collection_constraints`]
     pub fn set_buffer_collection_constraints(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::BufferCollectionConstraintsInfoFUCHSIA<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.buffer_collection_constraints = value;
         self
     }
@@ -1992,7 +1995,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2019,18 +2022,18 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
     pub fn color_space_mut(&mut self) -> &mut u32 {
         &mut self.color_space
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::color_space`]
-    pub fn set_color_space(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::color_space`]
+    pub fn set_color_space(mut self, value: u32) -> Self {
         self.color_space = value;
         self
     }
@@ -2148,12 +2151,12 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
         self.color_spaces
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_spaces`]
-    pub fn set_color_spaces_raw(&mut self, value: *const SysmemColorSpaceFUCHSIA<'lt>) -> &mut Self {
+    pub fn set_color_spaces_raw(mut self, value: *const SysmemColorSpaceFUCHSIA<'lt>) -> Self {
         self.color_spaces = value;
         self
     }
@@ -2219,49 +2222,49 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
     pub fn color_space_count_mut(&mut self) -> &mut u32 {
         &mut self.color_space_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::image_create_info`]
-    pub fn set_image_create_info(&mut self, value: crate::vulkan1_0::ImageCreateInfo<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::image_create_info`]
+    pub fn set_image_create_info(mut self, value: crate::vulkan1_0::ImageCreateInfo<'lt>) -> Self {
         self.image_create_info = value;
         self
     }
-    ///Sets the raw value of [`Self::required_format_features`]
-    pub fn set_required_format_features(&mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> &mut Self {
+    ///Sets the value of [`Self::required_format_features`]
+    pub fn set_required_format_features(mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> Self {
         self.required_format_features = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::ImageFormatConstraintsFlagsFUCHSIA,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::sysmem_pixel_format`]
-    pub fn set_sysmem_pixel_format(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::sysmem_pixel_format`]
+    pub fn set_sysmem_pixel_format(mut self, value: u64) -> Self {
         self.sysmem_pixel_format = value;
         self
     }
-    ///Sets the raw value of [`Self::color_space_count`]
-    pub fn set_color_space_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::color_space_count`]
+    pub fn set_color_space_count(mut self, value: u32) -> Self {
         self.color_space_count = value;
         self
     }
-    ///Sets the raw value of [`Self::color_spaces`]
+    ///Sets the value of [`Self::color_spaces`]
     pub fn set_color_spaces(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::fuchsia_buffer_collection::SysmemColorSpaceFUCHSIA<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.color_spaces = value.as_ptr();
@@ -2399,12 +2402,12 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
         self.format_constraints
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::format_constraints`]
-    pub fn set_format_constraints_raw(&mut self, value: *const ImageFormatConstraintsInfoFUCHSIA<'lt>) -> &mut Self {
+    pub fn set_format_constraints_raw(mut self, value: *const ImageFormatConstraintsInfoFUCHSIA<'lt>) -> Self {
         self.format_constraints = value;
         self
     }
@@ -2454,45 +2457,45 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
     pub fn flags_mut(&mut self) -> &mut ImageConstraintsInfoFlagsFUCHSIA {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::format_constraints_count`]
-    pub fn set_format_constraints_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::format_constraints_count`]
+    pub fn set_format_constraints_count(mut self, value: u32) -> Self {
         self.format_constraints_count = value;
         self
     }
-    ///Sets the raw value of [`Self::format_constraints`]
+    ///Sets the value of [`Self::format_constraints`]
     pub fn set_format_constraints(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::fuchsia_buffer_collection::ImageFormatConstraintsInfoFUCHSIA<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.format_constraints = value.as_ptr();
         self.format_constraints_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::buffer_collection_constraints`]
+    ///Sets the value of [`Self::buffer_collection_constraints`]
     pub fn set_buffer_collection_constraints(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::BufferCollectionConstraintsInfoFUCHSIA<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.buffer_collection_constraints = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::fuchsia_buffer_collection::ImageConstraintsInfoFlagsFUCHSIA,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
@@ -2600,7 +2603,7 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2659,40 +2662,479 @@ impl<'lt> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     pub fn min_buffer_count_for_shared_slack_mut(&mut self) -> &mut u32 {
         &mut self.min_buffer_count_for_shared_slack
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::min_buffer_count`]
-    pub fn set_min_buffer_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_buffer_count`]
+    pub fn set_min_buffer_count(mut self, value: u32) -> Self {
         self.min_buffer_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_buffer_count`]
-    pub fn set_max_buffer_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_buffer_count`]
+    pub fn set_max_buffer_count(mut self, value: u32) -> Self {
         self.max_buffer_count = value;
         self
     }
-    ///Sets the raw value of [`Self::min_buffer_count_for_camping`]
-    pub fn set_min_buffer_count_for_camping(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_buffer_count_for_camping`]
+    pub fn set_min_buffer_count_for_camping(mut self, value: u32) -> Self {
         self.min_buffer_count_for_camping = value;
         self
     }
-    ///Sets the raw value of [`Self::min_buffer_count_for_dedicated_slack`]
-    pub fn set_min_buffer_count_for_dedicated_slack(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_buffer_count_for_dedicated_slack`]
+    pub fn set_min_buffer_count_for_dedicated_slack(mut self, value: u32) -> Self {
         self.min_buffer_count_for_dedicated_slack = value;
         self
     }
-    ///Sets the raw value of [`Self::min_buffer_count_for_shared_slack`]
-    pub fn set_min_buffer_count_for_shared_slack(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_buffer_count_for_shared_slack`]
+    pub fn set_min_buffer_count_for_shared_slack(mut self, value: u32) -> Self {
         self.min_buffer_count_for_shared_slack = value;
         self
+    }
+}
+impl Device {
+    ///[vkCreateBufferCollectionFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateBufferCollectionFUCHSIA.html) - Create a new buffer collection
+    ///# C Specifications
+    ///To create an [`BufferCollectionFUCHSIA`] for Vulkan to participate in
+    ///the buffer collection:
+    ///```c
+    ///// Provided by VK_FUCHSIA_buffer_collection
+    ///VkResult vkCreateBufferCollectionFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    const VkBufferCollectionCreateInfoFUCHSIA*  pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkBufferCollectionFUCHSIA*                  pCollection);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the [`BufferCollectionFUCHSIA`]
+    /// - [`p_create_info`] is a pointer to a [`BufferCollectionCreateInfoFUCHSIA`] structure
+    ///   containing parameters affecting creation of the buffer collection
+    /// - [`p_allocator`] is a pointer to a [`AllocationCallbacks`] structure controlling host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation) chapter
+    /// - `pBufferCollection` is a pointer to a [`BufferCollectionFUCHSIA`] handle in which the
+    ///   resulting buffer collection object is returned
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid
+    ///   [`BufferCollectionCreateInfoFUCHSIA`] structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_collection`] **must**  be a valid pointer to a [`BufferCollectionFUCHSIA`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`  -
+    ///   `VK_ERROR_INITIALIZATION_FAILED`
+    ///
+    ///## Host AccessAll functions referencing a [`BufferCollectionFUCHSIA`] **must**  be
+    ///externally synchronized with the exception of
+    ///[`create_buffer_collection_fuchsia`].
+    ///# Related
+    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`AllocationCallbacks`]
+    /// - [`BufferCollectionCreateInfoFUCHSIA`]
+    /// - [`BufferCollectionFUCHSIA`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateBufferCollectionFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_buffer_collection_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &BufferCollectionCreateInfoFUCHSIA<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, BufferCollectionFUCHSIA>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .expect("extension/version not loaded")
+            .create_buffer_collection_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .unwrap_unchecked()
+            .create_buffer_collection_fuchsia()
+            .unwrap_unchecked();
+        let mut p_collection = MaybeUninit::<BufferCollectionFUCHSIA>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const BufferCollectionCreateInfoFUCHSIA<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_collection.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_collection.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkSetBufferCollectionBufferConstraintsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetBufferCollectionBufferConstraintsFUCHSIA.html) - Set buffer-based constraints for a buffer collection
+    ///# C Specifications
+    ///To set the constraints on a [`Buffer`] buffer collection, call:
+    ///```c
+    ///// Provided by VK_FUCHSIA_buffer_collection
+    ///VkResult vkSetBufferCollectionBufferConstraintsFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    VkBufferCollectionFUCHSIA                   collection,
+    ///    const VkBufferConstraintsInfoFUCHSIA*       pBufferConstraintsInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device
+    /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_buffer_constraints_info`] is a pointer to a [`BufferConstraintsInfoFUCHSIA`] structure
+    ///# Description
+    ///[`set_buffer_collection_buffer_constraints_fuchsia`] **may**  fail if the
+    ///implementation does not support the constraints specified in the
+    ///`bufferCollectionConstraints` structure.
+    ///If that occurs, [`set_buffer_collection_buffer_constraints_fuchsia`] will
+    ///return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+    ///## Valid Usage
+    /// - [`set_buffer_collection_image_constraints_fuchsia`] or
+    ///   [`set_buffer_collection_buffer_constraints_fuchsia`] **must**  not have already been
+    ///   called on [`collection`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_buffer_constraints_info`] **must**  be a valid pointer to a valid
+    ///   [`BufferConstraintsInfoFUCHSIA`] structure
+    /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
+    ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
+    ///# Related
+    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`BufferCollectionFUCHSIA`]
+    /// - [`BufferConstraintsInfoFUCHSIA`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetBufferCollectionBufferConstraintsFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        collection: BufferCollectionFUCHSIA,
+        p_buffer_constraints_info: &BufferConstraintsInfoFUCHSIA<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .expect("extension/version not loaded")
+            .set_buffer_collection_buffer_constraints_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .unwrap_unchecked()
+            .set_buffer_collection_buffer_constraints_fuchsia()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            collection,
+            p_buffer_constraints_info as *const BufferConstraintsInfoFUCHSIA<'lt>,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkSetBufferCollectionImageConstraintsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetBufferCollectionImageConstraintsFUCHSIA.html) - Set image-based constraints for a buffer collection
+    ///# C Specifications
+    ///Setting the constraints on the buffer collection initiates the format
+    ///negotiation and allocation of the buffer collection.
+    ///To set the constraints on a [`Image`] buffer collection, call:
+    ///```c
+    ///// Provided by VK_FUCHSIA_buffer_collection
+    ///VkResult vkSetBufferCollectionImageConstraintsFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    VkBufferCollectionFUCHSIA                   collection,
+    ///    const VkImageConstraintsInfoFUCHSIA*        pImageConstraintsInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device
+    /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_image_constraints_info`] is a pointer to a [`ImageConstraintsInfoFUCHSIA`] structure
+    ///# Description
+    ///[`set_buffer_collection_image_constraints_fuchsia`] **may**  fail if
+    ///[`p_image_constraints_info`]`::formatConstraintsCount` is larger than the
+    ///implementation-defined limit.
+    ///If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
+    ///return VK_ERROR_INITIALIZATION_FAILED.[`set_buffer_collection_image_constraints_fuchsia`]
+    /// **may**  fail if the
+    ///implementation does not support any of the formats described by the
+    ///[`p_image_constraints_info`] structure.
+    ///If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
+    ///return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+    ///## Valid Usage
+    /// - [`set_buffer_collection_image_constraints_fuchsia`] or
+    ///   [`set_buffer_collection_buffer_constraints_fuchsia`] **must**  not have already been
+    ///   called on [`collection`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_image_constraints_info`] **must**  be a valid pointer to a valid
+    ///   [`ImageConstraintsInfoFUCHSIA`] structure
+    /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
+    ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
+    ///# Related
+    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`BufferCollectionFUCHSIA`]
+    /// - [`Device`]
+    /// - [`ImageConstraintsInfoFUCHSIA`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetBufferCollectionImageConstraintsFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_buffer_collection_image_constraints_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        collection: BufferCollectionFUCHSIA,
+        p_image_constraints_info: &ImageConstraintsInfoFUCHSIA<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .expect("extension/version not loaded")
+            .set_buffer_collection_image_constraints_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .unwrap_unchecked()
+            .set_buffer_collection_image_constraints_fuchsia()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            collection,
+            p_image_constraints_info as *const ImageConstraintsInfoFUCHSIA<'lt>,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyBufferCollectionFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyBufferCollectionFUCHSIA.html) - Destroy a buffer collection
+    ///# C Specifications
+    ///To release a [`BufferCollectionFUCHSIA`]:
+    ///```c
+    ///// Provided by VK_FUCHSIA_buffer_collection
+    ///void vkDestroyBufferCollectionFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    VkBufferCollectionFUCHSIA                   collection,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the [`BufferCollectionFUCHSIA`]
+    /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_allocator`] is a pointer to a [`AllocationCallbacks`] structure controlling host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation) chapter
+    ///# Description
+    ///## Valid Usage
+    /// - [`Image`] and [`Buffer`] objects that referenced [`collection`] upon creation by inclusion
+    ///   of a [`BufferCollectionImageCreateInfoFUCHSIA`] or
+    ///   [`BufferCollectionBufferCreateInfoFUCHSIA`] chained to their [`ImageCreateInfo`] or
+    ///   [`BufferCreateInfo`] structures respectively,  **may**  outlive [`collection`].
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`AllocationCallbacks`]
+    /// - [`BufferCollectionFUCHSIA`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyBufferCollectionFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_buffer_collection_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        collection: BufferCollectionFUCHSIA,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .expect("extension/version not loaded")
+            .destroy_buffer_collection_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .unwrap_unchecked()
+            .destroy_buffer_collection_fuchsia()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            collection,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkGetBufferCollectionPropertiesFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetBufferCollectionPropertiesFUCHSIA.html) - Retrieve properties from a buffer collection
+    ///# C Specifications
+    ///After constraints have been set on the buffer collection by calling
+    ///[`set_buffer_collection_image_constraints_fuchsia`] or
+    ///[`set_buffer_collection_buffer_constraints_fuchsia`], call
+    ///[`get_buffer_collection_properties_fuchsia`] to retrieve the negotiated and
+    ///finalized properties of the buffer collection.The call to
+    /// [`get_buffer_collection_properties_fuchsia`] is synchronous.
+    ///It waits for the Sysmem format negotiation and buffer collection allocation
+    ///to complete before returning.
+    ///```c
+    ///// Provided by VK_FUCHSIA_buffer_collection
+    ///VkResult vkGetBufferCollectionPropertiesFUCHSIA(
+    ///    VkDevice                                    device,
+    ///    VkBufferCollectionFUCHSIA                   collection,
+    ///    VkBufferCollectionPropertiesFUCHSIA*        pProperties);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device handle
+    /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_properties`] is a pointer to the retrieved [`BufferCollectionPropertiesFUCHSIA`]
+    ///   struct
+    ///# Description
+    ///For image-based buffer collections, upon calling
+    ///[`get_buffer_collection_properties_fuchsia`], Sysmem will choose an element
+    ///of the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos`
+    ///established by the preceding call to
+    ///[`set_buffer_collection_image_constraints_fuchsia`].
+    ///The index of the element chosen is stored in and can be retrieved from
+    ///[`BufferCollectionPropertiesFUCHSIA::create_info_index`].For buffer-based buffer
+    /// collections, a single [`BufferCreateInfo`] is
+    ///specified as [`BufferConstraintsInfoFUCHSIA::create_info`].
+    ///[`BufferCollectionPropertiesFUCHSIA::create_info_index`] will
+    ///therefore always be zero.[`get_buffer_collection_properties_fuchsia`] **may**  fail if
+    /// Sysmem is unable
+    ///to resolve the constraints of all of the participants in the buffer
+    ///collection.
+    ///If that occurs, [`get_buffer_collection_properties_fuchsia`] will return
+    ///`VK_ERROR_INITIALIZATION_FAILED`.
+    ///## Valid Usage
+    /// - Prior to calling [`get_buffer_collection_properties_fuchsia`], the constraints on the
+    ///   buffer collection  **must**  have been set by either
+    ///   [`set_buffer_collection_image_constraints_fuchsia`] or
+    ///   [`set_buffer_collection_buffer_constraints_fuchsia`].
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
+    /// - [`p_properties`] **must**  be a valid pointer to a [`BufferCollectionPropertiesFUCHSIA`]
+    ///   structure
+    /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`BufferCollectionFUCHSIA`]
+    /// - [`BufferCollectionPropertiesFUCHSIA`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetBufferCollectionPropertiesFUCHSIA")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_buffer_collection_properties_fuchsia<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        collection: BufferCollectionFUCHSIA,
+    ) -> VulkanResult<BufferCollectionPropertiesFUCHSIA<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .expect("extension/version not loaded")
+            .get_buffer_collection_properties_fuchsia()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .fuchsia_buffer_collection()
+            .unwrap_unchecked()
+            .get_buffer_collection_properties_fuchsia()
+            .unwrap_unchecked();
+        let mut p_properties = MaybeUninit::<BufferCollectionPropertiesFUCHSIA<'lt>>::zeroed();
+        let _return = _function(self.as_raw(), collection, p_properties.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_properties.assume_init()),
+            e => VulkanResult::Err(e),
+        }
     }
 }
 ///[VkBufferCollectionFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionFUCHSIA.html) - Opaque handle to a buffer collection object
@@ -2758,7 +3200,44 @@ impl Default for BufferCollectionFUCHSIA {
         Self::null()
     }
 }
-///The V-table of [`Device`] for functions from VK_FUCHSIA_buffer_collection
+impl Handle for BufferCollectionFUCHSIA {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device()
+            .destroy_buffer_collection_fuchsia(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, BufferCollectionFUCHSIA> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_FUCHSIA_buffer_collection`
 pub struct DeviceFuchsiaBufferCollectionVTable {
     ///See [`FNCreateBufferCollectionFuchsia`] for more information.
     pub create_buffer_collection_fuchsia: FNCreateBufferCollectionFuchsia,
@@ -2773,33 +3252,43 @@ pub struct DeviceFuchsiaBufferCollectionVTable {
 }
 impl DeviceFuchsiaBufferCollectionVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_buffer_collection_fuchsia: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateBufferCollectionFUCHSIA")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateBufferCollectionFUCHSIA").as_ptr(),
+                ))
             },
             set_buffer_collection_buffer_constraints_fuchsia: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkSetBufferCollectionBufferConstraintsFUCHSIA"),
+                    crate::cstr!("vkSetBufferCollectionBufferConstraintsFUCHSIA").as_ptr(),
                 ))
             },
             set_buffer_collection_image_constraints_fuchsia: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkSetBufferCollectionImageConstraintsFUCHSIA"),
+                    crate::cstr!("vkSetBufferCollectionImageConstraintsFUCHSIA").as_ptr(),
                 ))
             },
             destroy_buffer_collection_fuchsia: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyBufferCollectionFUCHSIA")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDestroyBufferCollectionFUCHSIA").as_ptr(),
+                ))
             },
             get_buffer_collection_properties_fuchsia: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetBufferCollectionPropertiesFUCHSIA"),
+                    crate::cstr!("vkGetBufferCollectionPropertiesFUCHSIA").as_ptr(),
                 ))
             },
         }

@@ -86,7 +86,7 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///surface created on this physical device, and so in the
 ///[`get_physical_device_surface_capabilities2_khr`] call,
 ///[`PhysicalDeviceSurfaceInfo2KHR::surface`] **can**  be
-///[`crate::utils::Handle::null`].
+///[`crate::Handle::null`].
 ///In that case, the contents of
 ///[`SurfaceCapabilities2KHR::surface_capabilities`] as well as any
 ///other struct chained to it will be undefined.
@@ -144,12 +144,12 @@ impl<'lt> SurfaceProtectedCapabilitiesKHR<'lt> {
         self.supports_protected
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::supports_protected`]
-    pub fn set_supports_protected_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_supports_protected_raw(mut self, value: Bool32) -> Self {
         self.supports_protected = value;
         self
     }
@@ -190,18 +190,18 @@ impl<'lt> SurfaceProtectedCapabilitiesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::supports_protected`]
-    pub fn set_supports_protected(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::supports_protected`]
+    pub fn set_supports_protected(mut self, value: bool) -> Self {
         self.supports_protected = value as u8 as u32;
         self
     }

@@ -197,12 +197,12 @@ impl<'lt> ValidationFlagsEXT<'lt> {
         self.disabled_validation_checks
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::disabled_validation_checks`]
-    pub fn set_disabled_validation_checks_raw(&mut self, value: *const ValidationCheckEXT) -> &mut Self {
+    pub fn set_disabled_validation_checks_raw(mut self, value: *const ValidationCheckEXT) -> Self {
         self.disabled_validation_checks = value;
         self
     }
@@ -239,26 +239,26 @@ impl<'lt> ValidationFlagsEXT<'lt> {
     pub fn disabled_validation_check_count_mut(&mut self) -> &mut u32 {
         &mut self.disabled_validation_check_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::disabled_validation_check_count`]
-    pub fn set_disabled_validation_check_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::disabled_validation_check_count`]
+    pub fn set_disabled_validation_check_count(mut self, value: u32) -> Self {
         self.disabled_validation_check_count = value;
         self
     }
-    ///Sets the raw value of [`Self::disabled_validation_checks`]
+    ///Sets the value of [`Self::disabled_validation_checks`]
     pub fn set_disabled_validation_checks(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::ext_validation_flags::ValidationCheckEXT],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.disabled_validation_checks = value.as_ptr();

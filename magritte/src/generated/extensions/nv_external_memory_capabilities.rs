@@ -74,9 +74,12 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{
-    Format, ImageCreateFlags, ImageFormatProperties, ImageTiling, ImageType, ImageUsageFlags, Instance, PhysicalDevice,
-    VulkanResultCodes,
+use crate::{
+    vulkan1_0::{
+        Format, ImageCreateFlags, ImageFormatProperties, ImageTiling, ImageType, ImageUsageFlags, Instance,
+        PhysicalDevice, VulkanResultCodes,
+    },
+    AsRaw, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -85,6 +88,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -1117,52 +1121,176 @@ impl ExternalImageFormatPropertiesNV {
     pub fn compatible_handle_types_mut(&mut self) -> &mut ExternalMemoryHandleTypeFlagsNV {
         &mut self.compatible_handle_types
     }
-    ///Sets the raw value of [`Self::image_format_properties`]
-    pub fn set_image_format_properties(&mut self, value: crate::vulkan1_0::ImageFormatProperties) -> &mut Self {
+    ///Sets the value of [`Self::image_format_properties`]
+    pub fn set_image_format_properties(mut self, value: crate::vulkan1_0::ImageFormatProperties) -> Self {
         self.image_format_properties = value;
         self
     }
-    ///Sets the raw value of [`Self::external_memory_features`]
+    ///Sets the value of [`Self::external_memory_features`]
     pub fn set_external_memory_features(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryFeatureFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.external_memory_features = value;
         self
     }
-    ///Sets the raw value of [`Self::export_from_imported_handle_types`]
+    ///Sets the value of [`Self::export_from_imported_handle_types`]
     pub fn set_export_from_imported_handle_types(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.export_from_imported_handle_types = value;
         self
     }
-    ///Sets the raw value of [`Self::compatible_handle_types`]
+    ///Sets the value of [`Self::compatible_handle_types`]
     pub fn set_compatible_handle_types(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_external_memory_capabilities::ExternalMemoryHandleTypeFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.compatible_handle_types = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_NV_external_memory_capabilities
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceExternalImageFormatPropertiesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html) - Determine image capabilities compatible with external memory handle types
+    ///# C Specifications
+    ///To determine the image capabilities compatible with an external memory
+    ///handle type, call:
+    ///```c
+    ///// Provided by VK_NV_external_memory_capabilities
+    ///VkResult vkGetPhysicalDeviceExternalImageFormatPropertiesNV(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    VkFormat                                    format,
+    ///    VkImageType                                 type,
+    ///    VkImageTiling                               tiling,
+    ///    VkImageUsageFlags                           usage,
+    ///    VkImageCreateFlags                          flags,
+    ///    VkExternalMemoryHandleTypeFlagsNV           externalHandleType,
+    ///    VkExternalImageFormatPropertiesNV*          pExternalImageFormatProperties);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device from which to query the image capabilities
+    /// - [`format`] is the image format, corresponding to [`ImageCreateInfo`]::[`format`].
+    /// - [`type_`] is the image type, corresponding to [`ImageCreateInfo::image_type`].
+    /// - [`tiling`] is the image tiling, corresponding to [`ImageCreateInfo`]::[`tiling`].
+    /// - [`usage`] is the intended usage of the image, corresponding to
+    ///   [`ImageCreateInfo`]::[`usage`].
+    /// - [`flags`] is a bitmask describing additional parameters of the image, corresponding to
+    ///   [`ImageCreateInfo`]::[`flags`].
+    /// - [`external_handle_type`] is either one of the bits from
+    ///   [`ExternalMemoryHandleTypeFlagBitsNV`], or 0.
+    /// - [`p_external_image_format_properties`] is a pointer to a
+    ///   [`ExternalImageFormatPropertiesNV`] structure in which capabilities are returned.
+    ///# Description
+    ///If [`external_handle_type`] is 0,
+    ///`pExternalImageFormatProperties->imageFormatProperties` will return the
+    ///same values as a call to [`get_physical_device_image_format_properties`], and
+    ///the other members of [`p_external_image_format_properties`] will all be 0.
+    ///Otherwise, they are filled in as described for
+    ///[`ExternalImageFormatPropertiesNV`].
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`format`] **must**  be a valid [`Format`] value
+    /// - [`type_`] **must**  be a valid [`ImageType`] value
+    /// - [`tiling`] **must**  be a valid [`ImageTiling`] value
+    /// - [`usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
+    /// - [`usage`] **must**  not be `0`
+    /// - [`flags`] **must**  be a valid combination of [`ImageCreateFlagBits`] values
+    /// - [`external_handle_type`] **must**  be a valid combination of
+    ///   [`ExternalMemoryHandleTypeFlagBitsNV`] values
+    /// - [`p_external_image_format_properties`] **must**  be a valid pointer to a
+    ///   [`ExternalImageFormatPropertiesNV`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
+    ///# Related
+    /// - [`VK_NV_external_memory_capabilities`]
+    /// - [`ExternalImageFormatPropertiesNV`]
+    /// - [`ExternalMemoryHandleTypeFlagsNV`]
+    /// - [`Format`]
+    /// - [`ImageCreateFlags`]
+    /// - [`ImageTiling`]
+    /// - [`ImageType`]
+    /// - [`ImageUsageFlags`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceExternalImageFormatPropertiesNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_external_image_format_properties_nv<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        format: Format,
+        type_: ImageType,
+        tiling: ImageTiling,
+        usage: ImageUsageFlags,
+        flags: ImageCreateFlags,
+        external_handle_type: ExternalMemoryHandleTypeFlagsNV,
+    ) -> VulkanResult<ExternalImageFormatPropertiesNV> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .nv_external_memory_capabilities()
+            .expect("extension/version not loaded")
+            .get_physical_device_external_image_format_properties_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .nv_external_memory_capabilities()
+            .unwrap_unchecked()
+            .get_physical_device_external_image_format_properties_nv()
+            .unwrap_unchecked();
+        let mut p_external_image_format_properties = MaybeUninit::<ExternalImageFormatPropertiesNV>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            format,
+            type_,
+            tiling,
+            usage,
+            flags,
+            external_handle_type,
+            p_external_image_format_properties.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, p_external_image_format_properties.assume_init())
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_NV_external_memory_capabilities`
 pub struct InstanceNvExternalMemoryCapabilitiesVTable {
     ///See [`FNGetPhysicalDeviceExternalImageFormatPropertiesNv`] for more information.
     pub get_physical_device_external_image_format_properties_nv: FNGetPhysicalDeviceExternalImageFormatPropertiesNv,
 }
 impl InstanceNvExternalMemoryCapabilitiesVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_external_image_format_properties_nv: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceExternalImageFormatPropertiesNV"),
+                    crate::cstr!("vkGetPhysicalDeviceExternalImageFormatPropertiesNV").as_ptr(),
                 ))
             },
         }

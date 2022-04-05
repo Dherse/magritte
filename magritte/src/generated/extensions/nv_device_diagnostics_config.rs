@@ -498,7 +498,7 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDiagnosticsConfigFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
@@ -525,20 +525,20 @@ impl<'lt> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::diagnostics_config`]
     pub fn diagnostics_config_raw(&self) -> Bool32 {
         self.diagnostics_config
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::diagnostics_config`]
-    pub fn set_diagnostics_config_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_diagnostics_config_raw(mut self, value: Bool32) -> Self {
         self.diagnostics_config = value;
         self
     }
@@ -586,18 +586,18 @@ impl<'lt> PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::diagnostics_config`]
-    pub fn set_diagnostics_config(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::diagnostics_config`]
+    pub fn set_diagnostics_config(mut self, value: bool) -> Self {
         self.diagnostics_config = value as u8 as u32;
         self
     }
@@ -669,7 +669,7 @@ impl<'lt> DeviceDiagnosticsConfigCreateInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -696,21 +696,21 @@ impl<'lt> DeviceDiagnosticsConfigCreateInfoNV<'lt> {
     pub fn flags_mut(&mut self) -> &mut DeviceDiagnosticsConfigFlagsNV {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_device_diagnostics_config::DeviceDiagnosticsConfigFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }

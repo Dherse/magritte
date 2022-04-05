@@ -101,7 +101,7 @@ pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDrmPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
@@ -144,8 +144,8 @@ impl<'lt> Default for PhysicalDeviceDrmPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceDrmPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::has_primary`]
     pub fn has_primary_raw(&self) -> Bool32 {
@@ -156,17 +156,17 @@ impl<'lt> PhysicalDeviceDrmPropertiesEXT<'lt> {
         self.has_render
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::has_primary`]
-    pub fn set_has_primary_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_has_primary_raw(mut self, value: Bool32) -> Self {
         self.has_primary = value;
         self
     }
     ///Sets the raw value of [`Self::has_render`]
-    pub fn set_has_render_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_has_render_raw(mut self, value: Bool32) -> Self {
         self.has_render = value;
         self
     }
@@ -268,43 +268,43 @@ impl<'lt> PhysicalDeviceDrmPropertiesEXT<'lt> {
     pub fn render_minor_mut(&mut self) -> &mut i64 {
         &mut self.render_minor
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::has_primary`]
-    pub fn set_has_primary(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::has_primary`]
+    pub fn set_has_primary(mut self, value: bool) -> Self {
         self.has_primary = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::has_render`]
-    pub fn set_has_render(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::has_render`]
+    pub fn set_has_render(mut self, value: bool) -> Self {
         self.has_render = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::primary_major`]
-    pub fn set_primary_major(&mut self, value: i64) -> &mut Self {
+    ///Sets the value of [`Self::primary_major`]
+    pub fn set_primary_major(mut self, value: i64) -> Self {
         self.primary_major = value;
         self
     }
-    ///Sets the raw value of [`Self::primary_minor`]
-    pub fn set_primary_minor(&mut self, value: i64) -> &mut Self {
+    ///Sets the value of [`Self::primary_minor`]
+    pub fn set_primary_minor(mut self, value: i64) -> Self {
         self.primary_minor = value;
         self
     }
-    ///Sets the raw value of [`Self::render_major`]
-    pub fn set_render_major(&mut self, value: i64) -> &mut Self {
+    ///Sets the value of [`Self::render_major`]
+    pub fn set_render_major(mut self, value: i64) -> Self {
         self.render_major = value;
         self
     }
-    ///Sets the raw value of [`Self::render_minor`]
-    pub fn set_render_minor(&mut self, value: i64) -> &mut Self {
+    ///Sets the value of [`Self::render_minor`]
+    pub fn set_render_minor(mut self, value: i64) -> Self {
         self.render_minor = value;
         self
     }

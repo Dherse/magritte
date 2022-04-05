@@ -220,11 +220,7 @@ impl<'a> FunctionArgument<'a> {
 
         info!(?name, "generated rustified name");
 
-        let len = param
-            .altlen
-            .as_ref()
-            .or(param.len.as_ref())
-            .map(|s| s as &str);
+        let len = param.altlen.as_ref().or(param.len.as_ref()).map(|s| s as &str);
         info!(?len, "parsed len field");
 
         let optionality = match param

@@ -125,6 +125,7 @@ use crate::{
     vulkan1_0::{
         BaseInStructure, BaseOutStructure, Bool32, Device, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
     },
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -1333,7 +1334,7 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
@@ -1365,8 +1366,8 @@ impl<'lt> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::performance_counter_query_pools`]
     pub fn performance_counter_query_pools_raw(&self) -> Bool32 {
@@ -1377,17 +1378,17 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
         self.performance_counter_multiple_query_pools
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::performance_counter_query_pools`]
-    pub fn set_performance_counter_query_pools_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_performance_counter_query_pools_raw(mut self, value: Bool32) -> Self {
         self.performance_counter_query_pools = value;
         self
     }
     ///Sets the raw value of [`Self::performance_counter_multiple_query_pools`]
-    pub fn set_performance_counter_multiple_query_pools_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_performance_counter_multiple_query_pools_raw(mut self, value: Bool32) -> Self {
         self.performance_counter_multiple_query_pools = value;
         self
     }
@@ -1457,23 +1458,23 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::performance_counter_query_pools`]
-    pub fn set_performance_counter_query_pools(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::performance_counter_query_pools`]
+    pub fn set_performance_counter_query_pools(mut self, value: bool) -> Self {
         self.performance_counter_query_pools = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::performance_counter_multiple_query_pools`]
-    pub fn set_performance_counter_multiple_query_pools(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::performance_counter_multiple_query_pools`]
+    pub fn set_performance_counter_multiple_query_pools(mut self, value: bool) -> Self {
         self.performance_counter_multiple_query_pools = value as u8 as u32;
         self
     }
@@ -1516,7 +1517,7 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
@@ -1543,20 +1544,20 @@ impl<'lt> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 }
 impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::allow_command_buffer_query_copies`]
     pub fn allow_command_buffer_query_copies_raw(&self) -> Bool32 {
         self.allow_command_buffer_query_copies
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::allow_command_buffer_query_copies`]
-    pub fn set_allow_command_buffer_query_copies_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_allow_command_buffer_query_copies_raw(mut self, value: Bool32) -> Self {
         self.allow_command_buffer_query_copies = value;
         self
     }
@@ -1604,18 +1605,18 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::allow_command_buffer_query_copies`]
-    pub fn set_allow_command_buffer_query_copies(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::allow_command_buffer_query_copies`]
+    pub fn set_allow_command_buffer_query_copies(mut self, value: bool) -> Self {
         self.allow_command_buffer_query_copies = value as u8 as u32;
         self
     }
@@ -1665,7 +1666,7 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceCounterKHR<'lt> {
@@ -1705,11 +1706,11 @@ impl<'lt> Default for PerformanceCounterKHR<'lt> {
 }
 impl<'lt> PerformanceCounterKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1767,42 +1768,36 @@ impl<'lt> PerformanceCounterKHR<'lt> {
     pub fn uuid_mut(&mut self) -> &mut [u8; UUID_SIZE as usize] {
         &mut self.uuid
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::unit`]
-    pub fn set_unit(
-        &mut self,
-        value: crate::extensions::khr_performance_query::PerformanceCounterUnitKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::unit`]
+    pub fn set_unit(mut self, value: crate::extensions::khr_performance_query::PerformanceCounterUnitKHR) -> Self {
         self.unit = value;
         self
     }
-    ///Sets the raw value of [`Self::scope`]
-    pub fn set_scope(
-        &mut self,
-        value: crate::extensions::khr_performance_query::PerformanceCounterScopeKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::scope`]
+    pub fn set_scope(mut self, value: crate::extensions::khr_performance_query::PerformanceCounterScopeKHR) -> Self {
         self.scope = value;
         self
     }
-    ///Sets the raw value of [`Self::storage`]
+    ///Sets the value of [`Self::storage`]
     pub fn set_storage(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_performance_query::PerformanceCounterStorageKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.storage = value;
         self
     }
-    ///Sets the raw value of [`Self::uuid`]
-    pub fn set_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
+    ///Sets the value of [`Self::uuid`]
+    pub fn set_uuid(mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> Self {
         self.uuid = value;
         self
     }
@@ -1850,7 +1845,7 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR<'lt> {
@@ -1892,11 +1887,11 @@ impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
 }
 impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1954,42 +1949,39 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
     pub fn description_mut(&mut self) -> &mut [c_char; MAX_DESCRIPTION_SIZE as usize] {
         &mut self.description
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_performance_query::PerformanceCounterDescriptionFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> Self {
         self.name = value;
         self
     }
-    ///Sets the raw value of [`Self::category`]
-    pub fn set_category(
-        &mut self,
-        value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::category`]
+    pub fn set_category(mut self, value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize]) -> Self {
         self.category = value;
         self
     }
-    ///Sets the raw value of [`Self::description`]
+    ///Sets the value of [`Self::description`]
     pub fn set_description(
-        &mut self,
+        mut self,
         value: [std::os::raw::c_char; crate::core::MAX_DESCRIPTION_SIZE as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.description = value;
         self
     }
@@ -2086,12 +2078,12 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
         self.counter_indices
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::counter_indices`]
-    pub fn set_counter_indices_raw(&mut self, value: *const u32) -> &mut Self {
+    pub fn set_counter_indices_raw(mut self, value: *const u32) -> Self {
         self.counter_indices = value;
         self
     }
@@ -2133,28 +2125,28 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
     pub fn counter_index_count_mut(&mut self) -> &mut u32 {
         &mut self.counter_index_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::queue_family_index`]
-    pub fn set_queue_family_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::queue_family_index`]
+    pub fn set_queue_family_index(mut self, value: u32) -> Self {
         self.queue_family_index = value;
         self
     }
-    ///Sets the raw value of [`Self::counter_index_count`]
-    pub fn set_counter_index_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::counter_index_count`]
+    pub fn set_counter_index_count(mut self, value: u32) -> Self {
         self.counter_index_count = value;
         self
     }
-    ///Sets the raw value of [`Self::counter_indices`]
-    pub fn set_counter_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+    ///Sets the value of [`Self::counter_indices`]
+    pub fn set_counter_indices(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.counter_indices = value.as_ptr();
@@ -2237,7 +2229,7 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2272,26 +2264,23 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
     pub fn timeout_mut(&mut self) -> &mut u64 {
         &mut self.timeout
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::khr_performance_query::AcquireProfilingLockFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_performance_query::AcquireProfilingLockFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::timeout`]
-    pub fn set_timeout(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::timeout`]
+    pub fn set_timeout(mut self, value: u64) -> Self {
         self.timeout = value;
         self
     }
@@ -2363,7 +2352,7 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2390,18 +2379,18 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
     pub fn counter_pass_index_mut(&mut self) -> &mut u32 {
         &mut self.counter_pass_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::counter_pass_index`]
-    pub fn set_counter_pass_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::counter_pass_index`]
+    pub fn set_counter_pass_index(mut self, value: u32) -> Self {
         self.counter_pass_index = value;
         self
     }
@@ -2465,7 +2454,333 @@ impl Default for PerformanceCounterResultKHR {
         unsafe { std::mem::zeroed() }
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_performance_query
+impl PhysicalDevice {
+    ///[vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html) - Reports properties of the performance query counters available on a queue family of a device
+    ///# C Specifications
+    ///To enumerate the performance query counters available on a queue family of a
+    ///physical device, call:
+    ///```c
+    ///// Provided by VK_KHR_performance_query
+    ///VkResult vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t                                    queueFamilyIndex,
+    ///    uint32_t*                                   pCounterCount,
+    ///    VkPerformanceCounterKHR*                    pCounters,
+    ///    VkPerformanceCounterDescriptionKHR*         pCounterDescriptions);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the handle to the physical device whose queue family performance
+    ///   query counter properties will be queried.
+    /// - [`queue_family_index`] is the index into the queue family of the physical device we want
+    ///   to get properties for.
+    /// - [`p_counter_count`] is a pointer to an integer related to the number of counters available
+    ///   or queried, as described below.
+    /// - [`p_counters`] is either `NULL` or a pointer to an array of [`PerformanceCounterKHR`]
+    ///   structures.
+    /// - [`p_counter_descriptions`] is either `NULL` or a pointer to an array of
+    ///   [`PerformanceCounterDescriptionKHR`] structures.
+    ///# Description
+    ///If [`p_counters`] is `NULL` and [`p_counter_descriptions`] is `NULL`, then
+    ///the number of counters available is returned in [`p_counter_count`].
+    ///Otherwise, [`p_counter_count`] **must**  point to a variable set by the user to
+    ///the number of elements in the [`p_counters`], [`p_counter_descriptions`],
+    ///or both arrays and on return the variable is overwritten with the number of
+    ///structures actually written out.
+    ///If [`p_counter_count`] is less than the number of counters available, at
+    ///most [`p_counter_count`] structures will be written, and `VK_INCOMPLETE`
+    ///will be returned instead of `VK_SUCCESS`, to indicate that not all the
+    ///available counters were returned.
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_counter_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_counter_count`] is not `0`, and [`p_counters`] is not
+    ///   `NULL`, [`p_counters`] **must**  be a valid pointer to an array of
+    ///   [`p_counter_count`][`PerformanceCounterKHR`] structures
+    /// - If the value referenced by [`p_counter_count`] is not `0`, and [`p_counter_descriptions`]
+    ///   is not `NULL`, [`p_counter_descriptions`] **must**  be a valid pointer to an array of
+    ///   [`p_counter_count`][`PerformanceCounterDescriptionKHR`] structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_KHR_performance_query`]
+    /// - [`PerformanceCounterDescriptionKHR`]
+    /// - [`PerformanceCounterKHR`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        queue_family_index: Option<u32>,
+        p_counter_count: Option<usize>,
+    ) -> VulkanResult<(
+        SmallVec<PerformanceCounterKHR<'lt>>,
+        SmallVec<PerformanceCounterDescriptionKHR<'lt>>,
+    )> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_performance_query()
+            .expect("extension/version not loaded")
+            .enumerate_physical_device_queue_family_performance_query_counters_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_performance_query()
+            .unwrap_unchecked()
+            .enumerate_physical_device_queue_family_performance_query_counters_khr()
+            .unwrap_unchecked();
+        let mut p_counter_count = match p_counter_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    queue_family_index.unwrap_or_default() as _,
+                    &mut v,
+                    std::ptr::null_mut(),
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_counters =
+            SmallVec::<PerformanceCounterKHR<'lt>>::from_elem(Default::default(), p_counter_count as usize);
+        let mut p_counter_descriptions =
+            SmallVec::<PerformanceCounterDescriptionKHR<'lt>>::from_elem(Default::default(), p_counter_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            queue_family_index.unwrap_or_default() as _,
+            &mut p_counter_count,
+            p_counters.as_mut_ptr(),
+            p_counter_descriptions.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, (p_counters, p_counter_descriptions))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html) - Reports the number of passes require for a performance query pool type
+    ///# C Specifications
+    ///To query the number of passes required to query a performance query pool on
+    ///a physical device, call:
+    ///```c
+    ///// Provided by VK_KHR_performance_query
+    ///void vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    const VkQueryPoolPerformanceCreateInfoKHR*  pPerformanceQueryCreateInfo,
+    ///    uint32_t*                                   pNumPasses);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the handle to the physical device whose queue family performance
+    ///   query counter properties will be queried.
+    /// - [`p_performance_query_create_info`] is a pointer to a
+    ///   [`QueryPoolPerformanceCreateInfoKHR`] of the performance query that is to be created.
+    /// - [`p_num_passes`] is a pointer to an integer related to the number of passes required to
+    ///   query the performance query pool, as described below.
+    ///# Description
+    ///The [`p_performance_query_create_info`] member
+    ///[`QueryPoolPerformanceCreateInfoKHR::queue_family_index`] **must**  be a
+    ///queue family of [`physical_device`].
+    ///The number of passes required to capture the counters specified in the
+    ///[`p_performance_query_create_info`] member
+    ///[`QueryPoolPerformanceCreateInfoKHR`]`::pCounters` is returned in
+    ///[`p_num_passes`].
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_performance_query_create_info`] **must**  be a valid pointer to a valid
+    ///   [`QueryPoolPerformanceCreateInfoKHR`] structure
+    /// - [`p_num_passes`] **must**  be a valid pointer to a `uint32_t` value
+    ///# Related
+    /// - [`VK_KHR_performance_query`]
+    /// - [`PhysicalDevice`]
+    /// - [`QueryPoolPerformanceCreateInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_performance_query_create_info: &QueryPoolPerformanceCreateInfoKHR<'lt>,
+    ) -> u32 {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_performance_query()
+            .expect("extension/version not loaded")
+            .get_physical_device_queue_family_performance_query_passes_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_performance_query()
+            .unwrap_unchecked()
+            .get_physical_device_queue_family_performance_query_passes_khr()
+            .unwrap_unchecked();
+        let mut p_num_passes = Default::default();
+        let _return = _function(
+            self.as_raw(),
+            p_performance_query_create_info as *const QueryPoolPerformanceCreateInfoKHR<'lt>,
+            &mut p_num_passes,
+        );
+        p_num_passes
+    }
+}
+impl Device {
+    ///[vkAcquireProfilingLockKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireProfilingLockKHR.html) - Acquires the profiling lock
+    ///# C Specifications
+    ///To record and submit a command buffer containing a performance query pool
+    ///the profiling lock  **must**  be held.
+    ///The profiling lock  **must**  be acquired prior to any call to
+    ///[`begin_command_buffer`] that will be using a performance query pool.
+    ///The profiling lock  **must**  be held while any command buffer containing a
+    ///performance query pool is in the *recording*, *executable*, or *pending
+    ///state*.
+    ///To acquire the profiling lock, call:
+    ///```c
+    ///// Provided by VK_KHR_performance_query
+    ///VkResult vkAcquireProfilingLockKHR(
+    ///    VkDevice                                    device,
+    ///    const VkAcquireProfilingLockInfoKHR*        pInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device to profile.
+    /// - [`p_info`] is a pointer to a [`AcquireProfilingLockInfoKHR`] structure containing
+    ///   information about how the profiling is to be acquired.
+    ///# Description
+    ///Implementations **may**  allow multiple actors to hold the profiling lock
+    ///concurrently.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_info`] **must**  be a valid pointer to a valid [`AcquireProfilingLockInfoKHR`]
+    ///   structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_TIMEOUT`
+    ///# Related
+    /// - [`VK_KHR_performance_query`]
+    /// - [`AcquireProfilingLockInfoKHR`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkAcquireProfilingLockKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn acquire_profiling_lock_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_info: &AcquireProfilingLockInfoKHR<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_performance_query()
+            .expect("extension/version not loaded")
+            .acquire_profiling_lock_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_performance_query()
+            .unwrap_unchecked()
+            .acquire_profiling_lock_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_info as *const AcquireProfilingLockInfoKHR<'lt>);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkReleaseProfilingLockKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkReleaseProfilingLockKHR.html) - Releases the profiling lock
+    ///# C Specifications
+    ///To release the profiling lock, call:
+    ///```c
+    ///// Provided by VK_KHR_performance_query
+    ///void vkReleaseProfilingLockKHR(
+    ///    VkDevice                                    device);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device to cease profiling on.
+    ///# Description
+    ///## Valid Usage
+    /// - The profiling lock of [`device`] **must**  have been held via a previous successful call
+    ///   to [`acquire_profiling_lock_khr`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    ///# Related
+    /// - [`VK_KHR_performance_query`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkReleaseProfilingLockKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn release_profiling_lock_khr<'a: 'this, 'this>(self: &'this Unique<'a, Device>) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_performance_query()
+            .expect("extension/version not loaded")
+            .release_profiling_lock_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_performance_query()
+            .unwrap_unchecked()
+            .release_profiling_lock_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw());
+        ()
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_performance_query`
 pub struct InstanceKhrPerformanceQueryVTable {
     ///See [`FNEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKhr`] for more
     /// information.
@@ -2477,21 +2792,25 @@ pub struct InstanceKhrPerformanceQueryVTable {
 }
 impl InstanceKhrPerformanceQueryVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             enumerate_physical_device_queue_family_performance_query_counters_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR"),
+                    crate::cstr!("vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR").as_ptr(),
                 ))
             },
             get_physical_device_queue_family_performance_query_passes_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR").as_ptr(),
                 ))
             },
         }
@@ -2511,7 +2830,7 @@ impl InstanceKhrPerformanceQueryVTable {
         self.get_physical_device_queue_family_performance_query_passes_khr
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_performance_query
+///The V-table of [`Device`] for functions from `VK_KHR_performance_query`
 pub struct DeviceKhrPerformanceQueryVTable {
     ///See [`FNAcquireProfilingLockKhr`] for more information.
     pub acquire_profiling_lock_khr: FNAcquireProfilingLockKhr,
@@ -2520,16 +2839,20 @@ pub struct DeviceKhrPerformanceQueryVTable {
 }
 impl DeviceKhrPerformanceQueryVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             acquire_profiling_lock_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireProfilingLockKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireProfilingLockKHR").as_ptr()))
             },
             release_profiling_lock_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkReleaseProfilingLockKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkReleaseProfilingLockKHR").as_ptr()))
             },
         }
     }

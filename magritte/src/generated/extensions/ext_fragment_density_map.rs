@@ -125,7 +125,7 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
@@ -174,8 +174,8 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::fragment_density_map`]
     pub fn fragment_density_map_raw(&self) -> Bool32 {
@@ -190,22 +190,22 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
         self.fragment_density_map_non_subsampled_images
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map`]
-    pub fn set_fragment_density_map_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fragment_density_map_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_map = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map_dynamic`]
-    pub fn set_fragment_density_map_dynamic_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fragment_density_map_dynamic_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_map_dynamic = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
-    pub fn set_fragment_density_map_non_subsampled_images_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fragment_density_map_non_subsampled_images_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_map_non_subsampled_images = value;
         self
     }
@@ -298,28 +298,28 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_map`]
-    pub fn set_fragment_density_map(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_map`]
+    pub fn set_fragment_density_map(mut self, value: bool) -> Self {
         self.fragment_density_map = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_map_dynamic`]
-    pub fn set_fragment_density_map_dynamic(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_map_dynamic`]
+    pub fn set_fragment_density_map_dynamic(mut self, value: bool) -> Self {
         self.fragment_density_map_dynamic = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
-    pub fn set_fragment_density_map_non_subsampled_images(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn set_fragment_density_map_non_subsampled_images(mut self, value: bool) -> Self {
         self.fragment_density_map_non_subsampled_images = value as u8 as u32;
         self
     }
@@ -368,7 +368,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapPropertiesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
@@ -405,20 +405,20 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::fragment_density_invocations`]
     pub fn fragment_density_invocations_raw(&self) -> Bool32 {
         self.fragment_density_invocations
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_invocations`]
-    pub fn set_fragment_density_invocations_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_fragment_density_invocations_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_invocations = value;
         self
     }
@@ -482,28 +482,28 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::min_fragment_density_texel_size`]
-    pub fn set_min_fragment_density_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::min_fragment_density_texel_size`]
+    pub fn set_min_fragment_density_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.min_fragment_density_texel_size = value;
         self
     }
-    ///Sets the raw value of [`Self::max_fragment_density_texel_size`]
-    pub fn set_max_fragment_density_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::max_fragment_density_texel_size`]
+    pub fn set_max_fragment_density_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.max_fragment_density_texel_size = value;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_invocations`]
-    pub fn set_fragment_density_invocations(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_invocations`]
+    pub fn set_fragment_density_invocations(mut self, value: bool) -> Self {
         self.fragment_density_invocations = value as u8 as u32;
         self
     }
@@ -604,7 +604,7 @@ impl<'lt> RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -631,18 +631,18 @@ impl<'lt> RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
     pub fn fragment_density_map_attachment_mut(&mut self) -> &mut AttachmentReference {
         &mut self.fragment_density_map_attachment
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::fragment_density_map_attachment`]
-    pub fn set_fragment_density_map_attachment(&mut self, value: crate::vulkan1_0::AttachmentReference) -> &mut Self {
+    ///Sets the value of [`Self::fragment_density_map_attachment`]
+    pub fn set_fragment_density_map_attachment(mut self, value: crate::vulkan1_0::AttachmentReference) -> Self {
         self.fragment_density_map_attachment = value;
         self
     }

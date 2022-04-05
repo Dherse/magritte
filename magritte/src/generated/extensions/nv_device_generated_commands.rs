@@ -286,13 +286,15 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    entry::Entry,
     vulkan1_0::{
         AllocationCallbacks, BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, Device, DeviceAddress,
-        DeviceSize, IndexType, Pipeline, PipelineBindPoint, PipelineLayout, PipelineShaderStageCreateInfo,
-        PipelineTessellationStateCreateInfo, PipelineVertexInputStateCreateInfo, ShaderStageFlags, StructureType,
-        VulkanResultCodes,
+        DeviceSize, IndexType, Instance, PhysicalDevice, Pipeline, PipelineBindPoint, PipelineLayout,
+        PipelineShaderStageCreateInfo, PipelineTessellationStateCreateInfo, PipelineVertexInputStateCreateInfo,
+        ShaderStageFlags, StructureType, VulkanResultCodes,
     },
     vulkan1_1::MemoryRequirements2,
+    AsRaw, Handle, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -302,6 +304,7 @@ use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -447,8 +450,8 @@ pub type FNCreateIndirectCommandsLayoutNv = Option<
 ///
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
-/// - If [`indirect_commands_layout`] is not [`crate::utils::Handle::null`],
-///   [`indirect_commands_layout`] **must**  be a valid [`IndirectCommandsLayoutNV`] handle
+/// - If [`indirect_commands_layout`] is not [`crate::Handle::null`], [`indirect_commands_layout`]
+///   **must**  be a valid [`IndirectCommandsLayoutNV`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - If [`indirect_commands_layout`] is a valid handle, it  **must**  have been created, allocated,
@@ -716,28 +719,28 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
 ///   the same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
-///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
 ///   **must**  not write any values to the depth attachment
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
-///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
-///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
+///   member of `pStencilAttachment` is not [`crate::Handle::null`], and the `layout` member of
+///   `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
 ///   **must**  not write any values to the stencil attachment
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
-///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`, this
 ///   command  **must**  not write any values to the depth attachment
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
-///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
-///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, this
+///   member of `pStencilAttachment` is not [`crate::Handle::null`], and the `layout` member of
+///   `pStencilAttachment` is `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, this
 ///   command  **must**  not write any values to the stencil attachment
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
-///   member of `pDepthAttachment` is not [`crate::utils::Handle::null`], and the `layout` member of
+///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, this command  **must**  not
 ///   write any values to the depth attachment
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
-///   member of `pStencilAttachment` is not [`crate::utils::Handle::null`], and the `layout` member
-///   of `pStencilAttachment` is `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`, this command  **must**
+///   member of `pStencilAttachment` is not [`crate::Handle::null`], and the `layout` member of
+///   `pStencilAttachment` is `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`, this command  **must**
 ///   not write any values to the stencil attachment
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
 ///   bound graphics pipeline  **must**  have been created with a
@@ -749,7 +752,7 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
 ///   [`RenderingInfo::color_attachment_count`] greater than `0`, then each element of the
 ///   [`RenderingInfo::color_attachments`] array with a `imageView` not equal to
-///   [`crate::utils::Handle::null`] **must**  have been created with a [`Format`] equal to the
+///   [`crate::Handle::null`] **must**  have been created with a [`Format`] equal to the
 ///   corresponding element of [`PipelineRenderingCreateInfo::color_attachment_formats`] used to
 ///   create the currently bound graphics pipeline
 /// - If the bound graphics pipeline state was created with the
@@ -760,81 +763,77 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   [`PipelineColorBlendStateCreateInfo::attachment_count`] of the currently bound graphics
 ///   pipeline
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
-///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
-///   the value of [`PipelineRenderingCreateInfo::depth_attachment_format`] used to create the
-///   currently bound graphics pipeline  **must**  be equal to the [`Format`] used to create
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::Handle::null`], the
+///   value of [`PipelineRenderingCreateInfo::depth_attachment_format`] used to create the currently
+///   bound graphics pipeline  **must**  be equal to the [`Format`] used to create
 ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
-///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
-///   [`crate::utils::Handle::null`], the value of
-///   [`PipelineRenderingCreateInfo::stencil_attachment_format`] used to create the currently bound
-///   graphics pipeline  **must**  be equal to the [`Format`] used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not [`crate::Handle::null`], the
+///   value of [`PipelineRenderingCreateInfo::stencil_attachment_format`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the [`Format`] used to create
 ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR::image_view`] was not
-///   [`crate::utils::Handle::null`], the currently bound graphics pipeline  **must**  have been
-///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR::image_view`] was not [`crate::Handle::null`],
+///   the currently bound graphics pipeline  **must**  have been created with
+///   `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT::image_view`] was not
-///   [`crate::utils::Handle::null`], the currently bound graphics pipeline  **must**  have been
-///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT::image_view`] was not [`crate::Handle::null`],
+///   the currently bound graphics pipeline  **must**  have been created with
+///   `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
 /// - If the currently bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun with
 ///   [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter greater
 ///   than `0`, then each element of the [`RenderingInfo::color_attachments`] array with a
-///   `imageView` not equal to [`crate::utils::Handle::null`] **must**  have been created with a
-///   sample count equal to the corresponding element of the `pColorAttachmentSamples` member of
+///   `imageView` not equal to [`crate::Handle::null`] **must**  have been created with a sample
+///   count equal to the corresponding element of the `pColorAttachmentSamples` member of
 ///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
 ///   currently bound graphics pipeline
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
 ///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] structure, and
-///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
-///   the value of the `depthStencilAttachmentSamples` member of [`AttachmentSampleCountInfoAMD`] or
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::Handle::null`], the
+///   value of the `depthStencilAttachmentSamples` member of [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] used to create the currently bound graphics pipeline  **must**
 ///   be equal to the sample count used to create
 ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
 ///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] structure, and
-///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
-///   [`crate::utils::Handle::null`], the value of the `depthStencilAttachmentSamples` member of
-///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
-///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not [`crate::Handle::null`], the
+///   value of the `depthStencilAttachmentSamples` member of [`AttachmentSampleCountInfoAMD`] or
+///   [`AttachmentSampleCountInfoNV`] used to create the currently bound graphics pipeline  **must**
+///   be equal to the sample count used to create
 ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
 /// - If the currently bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun with
 ///   [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter greater
 ///   than `0`, then each element of the [`RenderingInfo::color_attachments`] array with a
-///   `imageView` not equal to [`crate::utils::Handle::null`] **must**  have been created with a
-///   sample count equal to the value of
-///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
-///   bound graphics pipeline
+///   `imageView` not equal to [`crate::Handle::null`] **must**  have been created with a sample
+///   count equal to the value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used
+///   to create the currently bound graphics pipeline
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
 ///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] structure, and
-///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::utils::Handle::null`],
-///   the value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the
+///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::Handle::null`], the
+///   value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the
 ///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
 ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
 ///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
 ///   [`AttachmentSampleCountInfoNV`] structure, and
-///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not
-///   [`crate::utils::Handle::null`], the value of
-///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
-///   bound graphics pipeline  **must**  be equal to the sample count used to create
+///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not [`crate::Handle::null`], the
+///   value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the
+///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
 ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
 ///   bound pipeline  **must**  have been created with a [`GraphicsPipelineCreateInfo::render_pass`]
-///   equal to [`crate::utils::Handle::null`]
+///   equal to [`crate::Handle::null`]
 ///
 /// - All vertex input bindings accessed via vertex input variables declared in the vertex shader
-///   entry point’s interface  **must**  have either valid or [`crate::utils::Handle::null`] buffers
-///   bound
+///   entry point’s interface  **must**  have either valid or [`crate::Handle::null`] buffers bound
 /// - If the [nullDescriptor]() feature is not enabled, all vertex input bindings accessed via
 ///   vertex input variables declared in the vertex shader entry point’s interface  **must**  not be
-///   [`crate::utils::Handle::null`]
+///   [`crate::Handle::null`]
 /// - For a given vertex buffer binding, any attribute data fetched  **must**  be entirely contained
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
@@ -1896,7 +1895,7 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
@@ -1925,20 +1924,20 @@ impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::device_generated_commands`]
     pub fn device_generated_commands_raw(&self) -> Bool32 {
         self.device_generated_commands
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_generated_commands`]
-    pub fn set_device_generated_commands_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_device_generated_commands_raw(mut self, value: Bool32) -> Self {
         self.device_generated_commands = value;
         self
     }
@@ -1986,18 +1985,18 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::device_generated_commands`]
-    pub fn set_device_generated_commands(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::device_generated_commands`]
+    pub fn set_device_generated_commands(mut self, value: bool) -> Self {
         self.device_generated_commands = value as u8 as u32;
         self
     }
@@ -2065,7 +2064,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
@@ -2128,11 +2127,11 @@ impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -2233,58 +2232,58 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     pub fn min_indirect_commands_buffer_offset_alignment_mut(&mut self) -> &mut u32 {
         &mut self.min_indirect_commands_buffer_offset_alignment
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::max_graphics_shader_group_count`]
-    pub fn set_max_graphics_shader_group_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_graphics_shader_group_count`]
+    pub fn set_max_graphics_shader_group_count(mut self, value: u32) -> Self {
         self.max_graphics_shader_group_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_indirect_sequence_count`]
-    pub fn set_max_indirect_sequence_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_indirect_sequence_count`]
+    pub fn set_max_indirect_sequence_count(mut self, value: u32) -> Self {
         self.max_indirect_sequence_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_indirect_commands_token_count`]
-    pub fn set_max_indirect_commands_token_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_indirect_commands_token_count`]
+    pub fn set_max_indirect_commands_token_count(mut self, value: u32) -> Self {
         self.max_indirect_commands_token_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_indirect_commands_stream_count`]
-    pub fn set_max_indirect_commands_stream_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_indirect_commands_stream_count`]
+    pub fn set_max_indirect_commands_stream_count(mut self, value: u32) -> Self {
         self.max_indirect_commands_stream_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_indirect_commands_token_offset`]
-    pub fn set_max_indirect_commands_token_offset(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_indirect_commands_token_offset`]
+    pub fn set_max_indirect_commands_token_offset(mut self, value: u32) -> Self {
         self.max_indirect_commands_token_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::max_indirect_commands_stream_stride`]
-    pub fn set_max_indirect_commands_stream_stride(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_indirect_commands_stream_stride`]
+    pub fn set_max_indirect_commands_stream_stride(mut self, value: u32) -> Self {
         self.max_indirect_commands_stream_stride = value;
         self
     }
-    ///Sets the raw value of [`Self::min_sequences_count_buffer_offset_alignment`]
-    pub fn set_min_sequences_count_buffer_offset_alignment(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_sequences_count_buffer_offset_alignment`]
+    pub fn set_min_sequences_count_buffer_offset_alignment(mut self, value: u32) -> Self {
         self.min_sequences_count_buffer_offset_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::min_sequences_index_buffer_offset_alignment`]
-    pub fn set_min_sequences_index_buffer_offset_alignment(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_sequences_index_buffer_offset_alignment`]
+    pub fn set_min_sequences_index_buffer_offset_alignment(mut self, value: u32) -> Self {
         self.min_sequences_index_buffer_offset_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::min_indirect_commands_buffer_offset_alignment`]
-    pub fn set_min_indirect_commands_buffer_offset_alignment(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::min_indirect_commands_buffer_offset_alignment`]
+    pub fn set_min_indirect_commands_buffer_offset_alignment(mut self, value: u32) -> Self {
         self.min_indirect_commands_buffer_offset_alignment = value;
         self
     }
@@ -2406,22 +2405,22 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
         self.tessellation_state
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::stages`]
-    pub fn set_stages_raw(&mut self, value: *const PipelineShaderStageCreateInfo<'lt>) -> &mut Self {
+    pub fn set_stages_raw(mut self, value: *const PipelineShaderStageCreateInfo<'lt>) -> Self {
         self.stages = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_input_state`]
-    pub fn set_vertex_input_state_raw(&mut self, value: *const PipelineVertexInputStateCreateInfo<'lt>) -> &mut Self {
+    pub fn set_vertex_input_state_raw(mut self, value: *const PipelineVertexInputStateCreateInfo<'lt>) -> Self {
         self.vertex_input_state = value;
         self
     }
     ///Sets the raw value of [`Self::tessellation_state`]
-    pub fn set_tessellation_state_raw(&mut self, value: *const PipelineTessellationStateCreateInfo<'lt>) -> &mut Self {
+    pub fn set_tessellation_state_raw(mut self, value: *const PipelineTessellationStateCreateInfo<'lt>) -> Self {
         self.tessellation_state = value;
         self
     }
@@ -2469,42 +2468,42 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
     pub fn stage_count_mut(&mut self) -> &mut u32 {
         &mut self.stage_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::stage_count`]
-    pub fn set_stage_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stage_count`]
+    pub fn set_stage_count(mut self, value: u32) -> Self {
         self.stage_count = value;
         self
     }
-    ///Sets the raw value of [`Self::stages`]
-    pub fn set_stages(&mut self, value: &'lt [crate::vulkan1_0::PipelineShaderStageCreateInfo<'lt>]) -> &mut Self {
+    ///Sets the value of [`Self::stages`]
+    pub fn set_stages(mut self, value: &'lt [crate::vulkan1_0::PipelineShaderStageCreateInfo<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.stages = value.as_ptr();
         self.stage_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::vertex_input_state`]
+    ///Sets the value of [`Self::vertex_input_state`]
     pub fn set_vertex_input_state(
-        &mut self,
+        mut self,
         value: &'lt crate::vulkan1_0::PipelineVertexInputStateCreateInfo<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.vertex_input_state = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::tessellation_state`]
+    ///Sets the value of [`Self::tessellation_state`]
     pub fn set_tessellation_state(
-        &mut self,
+        mut self,
         value: &'lt crate::vulkan1_0::PipelineTessellationStateCreateInfo<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.tessellation_state = value as *const _;
         self
     }
@@ -2635,17 +2634,17 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
         self.pipelines
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::groups`]
-    pub fn set_groups_raw(&mut self, value: *const GraphicsShaderGroupCreateInfoNV<'lt>) -> &mut Self {
+    pub fn set_groups_raw(mut self, value: *const GraphicsShaderGroupCreateInfoNV<'lt>) -> Self {
         self.groups = value;
         self
     }
     ///Sets the raw value of [`Self::pipelines`]
-    pub fn set_pipelines_raw(&mut self, value: *const Pipeline) -> &mut Self {
+    pub fn set_pipelines_raw(mut self, value: *const Pipeline) -> Self {
         self.pipelines = value;
         self
     }
@@ -2694,39 +2693,39 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     pub fn pipeline_count_mut(&mut self) -> &mut u32 {
         &mut self.pipeline_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::group_count`]
-    pub fn set_group_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::group_count`]
+    pub fn set_group_count(mut self, value: u32) -> Self {
         self.group_count = value;
         self
     }
-    ///Sets the raw value of [`Self::groups`]
+    ///Sets the value of [`Self::groups`]
     pub fn set_groups(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_device_generated_commands::GraphicsShaderGroupCreateInfoNV<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.groups = value.as_ptr();
         self.group_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_count`]
-    pub fn set_pipeline_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_count`]
+    pub fn set_pipeline_count(mut self, value: u32) -> Self {
         self.pipeline_count = value;
         self
     }
-    ///Sets the raw value of [`Self::pipelines`]
-    pub fn set_pipelines(&mut self, value: &'lt [crate::vulkan1_0::Pipeline]) -> &mut Self {
+    ///Sets the value of [`Self::pipelines`]
+    pub fn set_pipelines(mut self, value: &'lt [crate::vulkan1_0::Pipeline]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.pipelines = value.as_ptr();
@@ -2785,8 +2784,8 @@ impl BindShaderGroupIndirectCommandNV {
     pub fn group_index_mut(&mut self) -> &mut u32 {
         &mut self.group_index
     }
-    ///Sets the raw value of [`Self::group_index`]
-    pub fn set_group_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::group_index`]
+    pub fn set_group_index(mut self, value: u32) -> Self {
         self.group_index = value;
         self
     }
@@ -2887,18 +2886,18 @@ impl BindIndexBufferIndirectCommandNV {
     pub fn index_type_mut(&mut self) -> &mut IndexType {
         &mut self.index_type
     }
-    ///Sets the raw value of [`Self::buffer_address`]
-    pub fn set_buffer_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
+    ///Sets the value of [`Self::buffer_address`]
+    pub fn set_buffer_address(mut self, value: crate::vulkan1_0::DeviceAddress) -> Self {
         self.buffer_address = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: u32) -> Self {
         self.size = value;
         self
     }
-    ///Sets the raw value of [`Self::index_type`]
-    pub fn set_index_type(&mut self, value: crate::vulkan1_0::IndexType) -> &mut Self {
+    ///Sets the value of [`Self::index_type`]
+    pub fn set_index_type(mut self, value: crate::vulkan1_0::IndexType) -> Self {
         self.index_type = value;
         self
     }
@@ -2995,18 +2994,18 @@ impl BindVertexBufferIndirectCommandNV {
     pub fn stride_mut(&mut self) -> &mut u32 {
         &mut self.stride
     }
-    ///Sets the raw value of [`Self::buffer_address`]
-    pub fn set_buffer_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
+    ///Sets the value of [`Self::buffer_address`]
+    pub fn set_buffer_address(mut self, value: crate::vulkan1_0::DeviceAddress) -> Self {
         self.buffer_address = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: u32) -> Self {
         self.size = value;
         self
     }
-    ///Sets the raw value of [`Self::stride`]
-    pub fn set_stride(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stride`]
+    pub fn set_stride(mut self, value: u32) -> Self {
         self.stride = value;
         self
     }
@@ -3061,8 +3060,8 @@ impl SetStateFlagsIndirectCommandNV {
     pub fn data_mut(&mut self) -> &mut u32 {
         &mut self.data
     }
-    ///Sets the raw value of [`Self::data`]
-    pub fn set_data(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::data`]
+    pub fn set_data(mut self, value: u32) -> Self {
         self.data = value;
         self
     }
@@ -3144,13 +3143,13 @@ impl IndirectCommandsStreamNV {
     pub fn offset_mut(&mut self) -> &mut DeviceSize {
         &mut self.offset
     }
-    ///Sets the raw value of [`Self::buffer`]
-    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::buffer`]
+    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::offset`]
+    pub fn set_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.offset = value;
         self
     }
@@ -3235,7 +3234,7 @@ impl IndirectCommandsStreamNV {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`token_type`] **must**  be a valid [`IndirectCommandsTokenTypeNV`] value
-/// - If [`pushconstant_pipeline_layout`] is not [`crate::utils::Handle::null`],
+/// - If [`pushconstant_pipeline_layout`] is not [`crate::Handle::null`],
 ///   [`pushconstant_pipeline_layout`] **must**  be a valid [`PipelineLayout`] handle
 /// - [`pushconstant_shader_stage_flags`] **must**  be a valid combination of
 ///   [`ShaderStageFlagBits`] values
@@ -3354,22 +3353,22 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
         self.index_type_values
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::vertex_dynamic_stride`]
-    pub fn set_vertex_dynamic_stride_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_vertex_dynamic_stride_raw(mut self, value: Bool32) -> Self {
         self.vertex_dynamic_stride = value;
         self
     }
     ///Sets the raw value of [`Self::index_types`]
-    pub fn set_index_types_raw(&mut self, value: *const IndexType) -> &mut Self {
+    pub fn set_index_types_raw(mut self, value: *const IndexType) -> Self {
         self.index_types = value;
         self
     }
     ///Sets the raw value of [`Self::index_type_values`]
-    pub fn set_index_type_values_raw(&mut self, value: *const u32) -> &mut Self {
+    pub fn set_index_type_values_raw(mut self, value: *const u32) -> Self {
         self.index_type_values = value;
         self
     }
@@ -3504,87 +3503,87 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
     pub fn index_type_count_mut(&mut self) -> &mut u32 {
         &mut self.index_type_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::token_type`]
+    ///Sets the value of [`Self::token_type`]
     pub fn set_token_type(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_device_generated_commands::IndirectCommandsTokenTypeNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.token_type = value;
         self
     }
-    ///Sets the raw value of [`Self::stream`]
-    pub fn set_stream(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stream`]
+    pub fn set_stream(mut self, value: u32) -> Self {
         self.stream = value;
         self
     }
-    ///Sets the raw value of [`Self::offset`]
-    pub fn set_offset(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::offset`]
+    pub fn set_offset(mut self, value: u32) -> Self {
         self.offset = value;
         self
     }
-    ///Sets the raw value of [`Self::vertex_binding_unit`]
-    pub fn set_vertex_binding_unit(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::vertex_binding_unit`]
+    pub fn set_vertex_binding_unit(mut self, value: u32) -> Self {
         self.vertex_binding_unit = value;
         self
     }
-    ///Sets the raw value of [`Self::vertex_dynamic_stride`]
-    pub fn set_vertex_dynamic_stride(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::vertex_dynamic_stride`]
+    pub fn set_vertex_dynamic_stride(mut self, value: bool) -> Self {
         self.vertex_dynamic_stride = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::pushconstant_pipeline_layout`]
-    pub fn set_pushconstant_pipeline_layout(&mut self, value: crate::vulkan1_0::PipelineLayout) -> &mut Self {
+    ///Sets the value of [`Self::pushconstant_pipeline_layout`]
+    pub fn set_pushconstant_pipeline_layout(mut self, value: crate::vulkan1_0::PipelineLayout) -> Self {
         self.pushconstant_pipeline_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::pushconstant_shader_stage_flags`]
-    pub fn set_pushconstant_shader_stage_flags(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+    ///Sets the value of [`Self::pushconstant_shader_stage_flags`]
+    pub fn set_pushconstant_shader_stage_flags(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
         self.pushconstant_shader_stage_flags = value;
         self
     }
-    ///Sets the raw value of [`Self::pushconstant_offset`]
-    pub fn set_pushconstant_offset(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pushconstant_offset`]
+    pub fn set_pushconstant_offset(mut self, value: u32) -> Self {
         self.pushconstant_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::pushconstant_size`]
-    pub fn set_pushconstant_size(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::pushconstant_size`]
+    pub fn set_pushconstant_size(mut self, value: u32) -> Self {
         self.pushconstant_size = value;
         self
     }
-    ///Sets the raw value of [`Self::indirect_state_flags`]
+    ///Sets the value of [`Self::indirect_state_flags`]
     pub fn set_indirect_state_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_device_generated_commands::IndirectStateFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.indirect_state_flags = value;
         self
     }
-    ///Sets the raw value of [`Self::index_type_count`]
-    pub fn set_index_type_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::index_type_count`]
+    pub fn set_index_type_count(mut self, value: u32) -> Self {
         self.index_type_count = value;
         self
     }
-    ///Sets the raw value of [`Self::index_types`]
-    pub fn set_index_types(&mut self, value: &'lt [crate::vulkan1_0::IndexType]) -> &mut Self {
+    ///Sets the value of [`Self::index_types`]
+    pub fn set_index_types(mut self, value: &'lt [crate::vulkan1_0::IndexType]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.index_types = value.as_ptr();
         self.index_type_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::index_type_values`]
-    pub fn set_index_type_values(&mut self, value: &'lt [u32]) -> &mut Self {
+    ///Sets the value of [`Self::index_type_values`]
+    pub fn set_index_type_values(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.index_type_values = value.as_ptr();
@@ -3751,17 +3750,17 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
         self.stream_strides
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::tokens`]
-    pub fn set_tokens_raw(&mut self, value: *const IndirectCommandsLayoutTokenNV<'lt>) -> &mut Self {
+    pub fn set_tokens_raw(mut self, value: *const IndirectCommandsLayoutTokenNV<'lt>) -> Self {
         self.tokens = value;
         self
     }
     ///Sets the raw value of [`Self::stream_strides`]
-    pub fn set_stream_strides_raw(&mut self, value: *const u32) -> &mut Self {
+    pub fn set_stream_strides_raw(mut self, value: *const u32) -> Self {
         self.stream_strides = value;
         self
     }
@@ -3826,52 +3825,52 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
     pub fn stream_count_mut(&mut self) -> &mut u32 {
         &mut self.stream_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_device_generated_commands::IndirectCommandsLayoutUsageFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_bind_point`]
-    pub fn set_pipeline_bind_point(&mut self, value: crate::vulkan1_0::PipelineBindPoint) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_bind_point`]
+    pub fn set_pipeline_bind_point(mut self, value: crate::vulkan1_0::PipelineBindPoint) -> Self {
         self.pipeline_bind_point = value;
         self
     }
-    ///Sets the raw value of [`Self::token_count`]
-    pub fn set_token_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::token_count`]
+    pub fn set_token_count(mut self, value: u32) -> Self {
         self.token_count = value;
         self
     }
-    ///Sets the raw value of [`Self::tokens`]
+    ///Sets the value of [`Self::tokens`]
     pub fn set_tokens(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_device_generated_commands::IndirectCommandsLayoutTokenNV<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.tokens = value.as_ptr();
         self.token_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::stream_count`]
-    pub fn set_stream_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stream_count`]
+    pub fn set_stream_count(mut self, value: u32) -> Self {
         self.stream_count = value;
         self
     }
-    ///Sets the raw value of [`Self::stream_strides`]
-    pub fn set_stream_strides(&mut self, value: &'lt [u32]) -> &mut Self {
+    ///Sets the value of [`Self::stream_strides`]
+    pub fn set_stream_strides(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.stream_strides = value.as_ptr();
@@ -3912,8 +3911,8 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// - [`streams`] is a pointer to an array of [`stream_count`][`IndirectCommandsStreamNV`]
 ///   structures providing the input data for the tokens used in [`indirect_commands_layout`].
 /// - [`sequences_count`] is the maximum number of sequences to reserve. If
-///   [`sequences_count_buffer`] is [`crate::utils::Handle::null`], this is also the actual number
-///   of sequences generated.
+///   [`sequences_count_buffer`] is [`crate::Handle::null`], this is also the actual number of
+///   sequences generated.
 /// - [`preprocess_buffer`] is the [`Buffer`] that is used for preprocessing the input data for
 ///   execution. If this structure is used with [`cmd_execute_generated_commands_nv`] with its
 ///   `isPreprocessed` set to [`TRUE`], then the preprocessing step is skipped and data is only read
@@ -3960,24 +3959,24 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///   ([`indirect_commands_layout`], …​) as within this structure
 /// - [`sequences_count_buffer`] **can**  be set if the actual used count of sequences is sourced
 ///   from the provided buffer. In that case the [`sequences_count`] serves as upper bound
-/// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`], its usage flag  **must**
-///   have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
-/// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_count_offset`] **must**  be aligned to
+/// - If [`sequences_count_buffer`] is not [`crate::Handle::null`], its usage flag  **must**  have
+///   the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
+/// - If [`sequences_count_buffer`] is not [`crate::Handle::null`], [`sequences_count_offset`]
+///   **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
 ///   min_sequences_count_buffer_offset_alignment`]
-/// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`] and is non-sparse then it
+/// - If [`sequences_count_buffer`] is not [`crate::Handle::null`] and is non-sparse then it
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 /// - If [`indirect_commands_layout`]’s `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV`
 ///   is set, [`sequences_index_buffer`] **must**  be set otherwise it  **must**  be
-///   [`crate::utils::Handle::null`]
-/// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`], its usage flag  **must**
-///   have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
-/// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_index_offset`] **must**  be aligned to
+///   [`crate::Handle::null`]
+/// - If [`sequences_index_buffer`] is not [`crate::Handle::null`], its usage flag  **must**  have
+///   the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
+/// - If [`sequences_index_buffer`] is not [`crate::Handle::null`], [`sequences_index_offset`]
+///   **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
 ///   min_sequences_index_buffer_offset_alignment`]
-/// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`] and is non-sparse then it
+/// - If [`sequences_index_buffer`] is not [`crate::Handle::null`] and is non-sparse then it
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 ///
 ///## Valid Usage (Implicit)
@@ -3989,10 +3988,10 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// - [`streams`] **must**  be a valid pointer to an array of [`stream_count`] valid
 ///   [`IndirectCommandsStreamNV`] structures
 /// - [`preprocess_buffer`] **must**  be a valid [`Buffer`] handle
-/// - If [`sequences_count_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_count_buffer`] **must**  be a valid [`Buffer`] handle
-/// - If [`sequences_index_buffer`] is not [`crate::utils::Handle::null`],
-///   [`sequences_index_buffer`] **must**  be a valid [`Buffer`] handle
+/// - If [`sequences_count_buffer`] is not [`crate::Handle::null`], [`sequences_count_buffer`]
+///   **must**  be a valid [`Buffer`] handle
+/// - If [`sequences_index_buffer`] is not [`crate::Handle::null`], [`sequences_index_buffer`]
+///   **must**  be a valid [`Buffer`] handle
 /// - [`stream_count`] **must**  be greater than `0`
 /// - Each of [`indirect_commands_layout`], [`pipeline`], [`preprocess_buffer`],
 ///   [`sequences_count_buffer`], and [`sequences_index_buffer`] that are valid handles of
@@ -4044,7 +4043,7 @@ pub struct GeneratedCommandsInfoNV<'lt> {
     /// structures providing the input data for the tokens used in [`indirect_commands_layout`].
     pub streams: *const IndirectCommandsStreamNV,
     ///[`sequences_count`] is the maximum number of sequences to reserve.
-    ///If [`sequences_count_buffer`] is [`crate::utils::Handle::null`], this is also the
+    ///If [`sequences_count_buffer`] is [`crate::Handle::null`], this is also the
     ///actual number of sequences generated.
     pub sequences_count: u32,
     ///[`preprocess_buffer`] is the [`Buffer`] that is used for
@@ -4105,12 +4104,12 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
         self.streams
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::streams`]
-    pub fn set_streams_raw(&mut self, value: *const IndirectCommandsStreamNV) -> &mut Self {
+    pub fn set_streams_raw(mut self, value: *const IndirectCommandsStreamNV) -> Self {
         self.streams = value;
         self
     }
@@ -4232,87 +4231,87 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
     pub fn sequences_index_offset_mut(&mut self) -> &mut DeviceSize {
         &mut self.sequences_index_offset
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_bind_point`]
-    pub fn set_pipeline_bind_point(&mut self, value: crate::vulkan1_0::PipelineBindPoint) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_bind_point`]
+    pub fn set_pipeline_bind_point(mut self, value: crate::vulkan1_0::PipelineBindPoint) -> Self {
         self.pipeline_bind_point = value;
         self
     }
-    ///Sets the raw value of [`Self::pipeline`]
-    pub fn set_pipeline(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+    ///Sets the value of [`Self::pipeline`]
+    pub fn set_pipeline(mut self, value: crate::vulkan1_0::Pipeline) -> Self {
         self.pipeline = value;
         self
     }
-    ///Sets the raw value of [`Self::indirect_commands_layout`]
+    ///Sets the value of [`Self::indirect_commands_layout`]
     pub fn set_indirect_commands_layout(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_device_generated_commands::IndirectCommandsLayoutNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.indirect_commands_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::stream_count`]
-    pub fn set_stream_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::stream_count`]
+    pub fn set_stream_count(mut self, value: u32) -> Self {
         self.stream_count = value;
         self
     }
-    ///Sets the raw value of [`Self::streams`]
+    ///Sets the value of [`Self::streams`]
     pub fn set_streams(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_device_generated_commands::IndirectCommandsStreamNV],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.streams = value.as_ptr();
         self.stream_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::sequences_count`]
-    pub fn set_sequences_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::sequences_count`]
+    pub fn set_sequences_count(mut self, value: u32) -> Self {
         self.sequences_count = value;
         self
     }
-    ///Sets the raw value of [`Self::preprocess_buffer`]
-    pub fn set_preprocess_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::preprocess_buffer`]
+    pub fn set_preprocess_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.preprocess_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::preprocess_offset`]
-    pub fn set_preprocess_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::preprocess_offset`]
+    pub fn set_preprocess_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.preprocess_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::preprocess_size`]
-    pub fn set_preprocess_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::preprocess_size`]
+    pub fn set_preprocess_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.preprocess_size = value;
         self
     }
-    ///Sets the raw value of [`Self::sequences_count_buffer`]
-    pub fn set_sequences_count_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::sequences_count_buffer`]
+    pub fn set_sequences_count_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.sequences_count_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::sequences_count_offset`]
-    pub fn set_sequences_count_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::sequences_count_offset`]
+    pub fn set_sequences_count_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.sequences_count_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::sequences_index_buffer`]
-    pub fn set_sequences_index_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+    ///Sets the value of [`Self::sequences_index_buffer`]
+    pub fn set_sequences_index_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.sequences_index_buffer = value;
         self
     }
-    ///Sets the raw value of [`Self::sequences_index_offset`]
-    pub fn set_sequences_index_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::sequences_index_offset`]
+    pub fn set_sequences_index_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.sequences_index_offset = value;
         self
     }
@@ -4415,7 +4414,7 @@ impl<'lt> GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -4466,38 +4465,939 @@ impl<'lt> GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     pub fn max_sequences_count_mut(&mut self) -> &mut u32 {
         &mut self.max_sequences_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::pipeline_bind_point`]
-    pub fn set_pipeline_bind_point(&mut self, value: crate::vulkan1_0::PipelineBindPoint) -> &mut Self {
+    ///Sets the value of [`Self::pipeline_bind_point`]
+    pub fn set_pipeline_bind_point(mut self, value: crate::vulkan1_0::PipelineBindPoint) -> Self {
         self.pipeline_bind_point = value;
         self
     }
-    ///Sets the raw value of [`Self::pipeline`]
-    pub fn set_pipeline(&mut self, value: crate::vulkan1_0::Pipeline) -> &mut Self {
+    ///Sets the value of [`Self::pipeline`]
+    pub fn set_pipeline(mut self, value: crate::vulkan1_0::Pipeline) -> Self {
         self.pipeline = value;
         self
     }
-    ///Sets the raw value of [`Self::indirect_commands_layout`]
+    ///Sets the value of [`Self::indirect_commands_layout`]
     pub fn set_indirect_commands_layout(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_device_generated_commands::IndirectCommandsLayoutNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.indirect_commands_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::max_sequences_count`]
-    pub fn set_max_sequences_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_sequences_count`]
+    pub fn set_max_sequences_count(mut self, value: u32) -> Self {
         self.max_sequences_count = value;
         self
+    }
+}
+impl Device {
+    ///[vkGetGeneratedCommandsMemoryRequirementsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html) - Retrieve the buffer allocation requirements for generated commands
+    ///# C Specifications
+    ///The generation of commands on the device requires a `preprocess` buffer.
+    ///To retrieve the memory size and alignment requirements of a particular
+    ///execution state call:
+    ///```c
+    ///// Provided by VK_NV_device_generated_commands
+    ///void vkGetGeneratedCommandsMemoryRequirementsNV(
+    ///    VkDevice                                    device,
+    ///    const VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo,
+    ///    VkMemoryRequirements2*                      pMemoryRequirements);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the buffer.
+    /// - [`p_info`] is a pointer to a [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
+    ///   containing parameters required for the memory requirements query.
+    /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
+    ///   memory requirements of the buffer object are returned.
+    ///# Description
+    ///## Valid Usage
+    /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_info`] **must**  be a valid pointer to a valid
+    ///   [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
+    /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
+    ///   structure
+    ///# Related
+    /// - [`VK_NV_device_generated_commands`]
+    /// - [`Device`]
+    /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
+    /// - [`MemoryRequirements2`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetGeneratedCommandsMemoryRequirementsNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_generated_commands_memory_requirements_nv<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_info: &GeneratedCommandsMemoryRequirementsInfoNV<'lt>,
+    ) -> MemoryRequirements2<'lt> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nv_device_generated_commands()
+            .expect("extension/version not loaded")
+            .get_generated_commands_memory_requirements_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nv_device_generated_commands()
+            .unwrap_unchecked()
+            .get_generated_commands_memory_requirements_nv()
+            .unwrap_unchecked();
+        let mut p_memory_requirements = MaybeUninit::<MemoryRequirements2<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_info as *const GeneratedCommandsMemoryRequirementsInfoNV<'lt>,
+            p_memory_requirements.as_mut_ptr(),
+        );
+        p_memory_requirements.assume_init()
+    }
+}
+impl Device {
+    ///[vkCreateIndirectCommandsLayoutNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html) - Create an indirect command layout object
+    ///# C Specifications
+    ///Indirect command layouts are created by:
+    ///```c
+    ///// Provided by VK_NV_device_generated_commands
+    ///VkResult vkCreateIndirectCommandsLayoutNV(
+    ///    VkDevice                                    device,
+    ///    const VkIndirectCommandsLayoutCreateInfoNV* pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkIndirectCommandsLayoutNV*                 pIndirectCommandsLayout);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the indirect command layout.
+    /// - [`p_create_info`] is a pointer to a [`IndirectCommandsLayoutCreateInfoNV`] structure
+    ///   containing parameters affecting creation of the indirect command layout.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_indirect_commands_layout`] is a pointer to a [`IndirectCommandsLayoutNV`] handle in
+    ///   which the resulting indirect command layout is returned.
+    ///# Description
+    ///## Valid Usage
+    /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid
+    ///   [`IndirectCommandsLayoutCreateInfoNV`] structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_indirect_commands_layout`] **must**  be a valid pointer to a
+    ///   [`IndirectCommandsLayoutNV`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_NV_device_generated_commands`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`IndirectCommandsLayoutCreateInfoNV`]
+    /// - [`IndirectCommandsLayoutNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateIndirectCommandsLayoutNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_indirect_commands_layout_nv<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &IndirectCommandsLayoutCreateInfoNV<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, IndirectCommandsLayoutNV>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nv_device_generated_commands()
+            .expect("extension/version not loaded")
+            .create_indirect_commands_layout_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nv_device_generated_commands()
+            .unwrap_unchecked()
+            .create_indirect_commands_layout_nv()
+            .unwrap_unchecked();
+        let mut p_indirect_commands_layout = MaybeUninit::<IndirectCommandsLayoutNV>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const IndirectCommandsLayoutCreateInfoNV<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_indirect_commands_layout.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_indirect_commands_layout.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyIndirectCommandsLayoutNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html) - Destroy an indirect commands layout
+    ///# C Specifications
+    ///Indirect command layouts are destroyed by:
+    ///```c
+    ///// Provided by VK_NV_device_generated_commands
+    ///void vkDestroyIndirectCommandsLayoutNV(
+    ///    VkDevice                                    device,
+    ///    VkIndirectCommandsLayoutNV                  indirectCommandsLayout,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that destroys the layout.
+    /// - [`indirect_commands_layout`] is the layout to destroy.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    ///# Description
+    ///## Valid Usage
+    /// - All submitted commands that refer to [`indirect_commands_layout`] **must**  have completed
+    ///   execution
+    /// - If [`AllocationCallbacks`] were provided when [`indirect_commands_layout`] was created, a
+    ///   compatible set of callbacks  **must**  be provided here
+    /// - If no [`AllocationCallbacks`] were provided when [`indirect_commands_layout`] was created,
+    ///   [`p_allocator`] **must**  be `NULL`
+    /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - If [`indirect_commands_layout`] is not [`crate::Handle::null`],
+    ///   [`indirect_commands_layout`] **must**  be a valid [`IndirectCommandsLayoutNV`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - If [`indirect_commands_layout`] is a valid handle, it  **must**  have been created,
+    ///   allocated, or retrieved from [`device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`indirect_commands_layout`] **must**  be externally synchronized
+    ///# Related
+    /// - [`VK_NV_device_generated_commands`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`IndirectCommandsLayoutNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyIndirectCommandsLayoutNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_indirect_commands_layout_nv<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        indirect_commands_layout: Option<IndirectCommandsLayoutNV>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .nv_device_generated_commands()
+            .expect("extension/version not loaded")
+            .destroy_indirect_commands_layout_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .nv_device_generated_commands()
+            .unwrap_unchecked()
+            .destroy_indirect_commands_layout_nv()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            indirect_commands_layout.unwrap_or_default(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdExecuteGeneratedCommandsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html) - Generate and execute commands on the device
+    ///# C Specifications
+    ///The actual generation of commands as well as their execution on the device
+    ///is handled as single action with:
+    ///```c
+    ///// Provided by VK_NV_device_generated_commands
+    ///void vkCmdExecuteGeneratedCommandsNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkBool32                                    isPreprocessed,
+    ///    const VkGeneratedCommandsInfoNV*            pGeneratedCommandsInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`is_preprocessed`] represents whether the input data has already been preprocessed on the
+    ///   device. If it is [`FALSE`] this command will implicitly trigger the preprocessing step,
+    ///   otherwise not.
+    /// - [`p_generated_commands_info`] is a pointer to a [`GeneratedCommandsInfoNV`] structure
+    ///   containing parameters affecting the generation of commands.
+    ///# Description
+    ///## Valid Usage
+    /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
+    ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+    ///   command, then the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+    /// - If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and
+    ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
+    ///   command, then the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+    /// - If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format
+    ///   features]() **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
+    /// - If a [`ImageView`] is accessed using atomic operations as a result of this command, then
+    ///   the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
+    /// - If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then
+    ///   the image view’s [format features]() **must**  contain
+    ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
+    /// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` as a result of this command
+    ///   **must**  have a [`ImageViewType`] and format that supports cubic filtering, as specified
+    ///   by [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic`] returned by
+    ///   [`get_physical_device_image_format_properties2`]
+    /// - Any [`ImageView`] being sampled with `VK_FILTER_CUBIC_EXT` with a reduction mode of either
+    ///   `VK_SAMPLER_REDUCTION_MODE_MIN` or `VK_SAMPLER_REDUCTION_MODE_MAX` as a result of this
+    ///   command  **must**  have a [`ImageViewType`] and format that supports cubic filtering
+    ///   together with minmax filtering, as specified by
+    ///   [`FilterCubicImageViewImageFormatPropertiesEXT::filter_cubic_minmax`] returned by
+    ///   [`get_physical_device_image_format_properties2`]
+    /// - Any [`Image`] created with a [`ImageCreateInfo::flags`] containing
+    ///   `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` sampled as a result of this command  **must**
+    ///   only be sampled using a [`SamplerAddressMode`] of `VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE`
+    /// - Any [`ImageView`] or [`BufferView`] being written as a storage image or storage texel
+    ///   buffer where the image format field of the `OpTypeImage` is `Unknown` then the view’s
+    ///   format feature  **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT`
+    /// - Any [`ImageView`] or [`BufferView`] being read as a storage image or storage texel buffer
+    ///   where the image format field of the `OpTypeImage` is `Unknown` then the view’s format
+    ///   feature  **must**  contain `VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT`
+    /// - For each set *n* that is statically used by the [`Pipeline`] bound to the pipeline bind
+    ///   point used by this command, a descriptor set  **must**  have been bound to *n* at the same
+    ///   pipeline bind point, with a [`PipelineLayout`] that is compatible for set *n*, with the
+    ///   [`PipelineLayout`] used to create the current [`Pipeline`], as described in
+    ///   [[descriptorsets-compatibility]]()
+    /// - If the [`maintenance4`]() feature is not enabled, then for each push constant that is
+    ///   statically used by the [`Pipeline`] bound to the pipeline bind point used by this command,
+    ///   a push constant value  **must**  have been set for the same pipeline bind point, with a
+    ///   [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used
+    ///   to create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
+    /// - Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],
+    ///   **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline
+    ///   bind point used by this command
+    /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
+    ///   any dynamic state, that state  **must**  have been set or inherited (if the
+    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
+    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   dynamic
+    /// - There  **must**  not have been any calls to dynamic state setting commands for any state
+    ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
+    ///   by this command, since that pipeline was bound
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used to sample from any [`Image`] with a [`ImageView`] of the type
+    ///   `VK_IMAGE_VIEW_TYPE_3D`, `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`,
+    ///   `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with
+    ///   `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be
+    ///   used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions that
+    ///   includes a LOD bias or any offset values, in any shader stage
+    /// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object
+    ///   bound to the pipeline bind point used by this command accesses a uniform buffer, it
+    ///   **must**  not access values outside of the range of the buffer as specified in the
+    ///   descriptor set bound to the same pipeline bind point
+    /// - If the [robust buffer access]() feature is not enabled, and if the [`Pipeline`] object
+    ///   bound to the pipeline bind point used by this command accesses a storage buffer, it
+    ///   **must**  not access values outside of the range of the buffer as specified in the
+    ///   descriptor set bound to the same pipeline bind point
+    /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
+    ///   supported, any resource accessed by the [`Pipeline`] object bound to the pipeline bind
+    ///   point used by this command  **must**  not be a protected resource
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+    ///   conversion](), that object  **must**  only be used with `OpImageSample*` or
+    ///   `OpImageSparseSample*` instructions
+    /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses
+    ///   a [`Sampler`] or [`ImageView`] object that enables [sampler Y′C<sub>B</sub>C<sub>R</sub>
+    ///   conversion](), that object  **must**  not use the `ConstOffset` and `Offset` operands
+    /// - If a [`ImageView`] is accessed using `OpImageWrite` as a result of this command, then the
+    ///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many
+    ///   components as the image view’s format
+    /// - If a [`BufferView`] is accessed using `OpImageWrite` as a result of this command, then the
+    ///   `Type` of the `Texel` operand of that instruction  **must**  have at least as many
+    ///   components as the buffer view’s format
+    /// - If a [`ImageView`] with a [`Format`] that has a 64-bit component width is accessed as a
+    ///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+    ///   **must**  have a `Width` of 64
+    /// - If a [`ImageView`] with a [`Format`] that has a component width less than 64-bit is
+    ///   accessed as a result of this command, the `SampledType` of the `OpTypeImage` operand of
+    ///   that instruction  **must**  have a `Width` of 32
+    /// - If a [`BufferView`] with a [`Format`] that has a 64-bit component width is accessed as a
+    ///   result of this command, the `SampledType` of the `OpTypeImage` operand of that instruction
+    ///   **must**  have a `Width` of 64
+    /// - If a [`BufferView`] with a [`Format`] that has a component width less than 64-bit is
+    ///   accessed as a result of this command, the `SampledType` of the `OpTypeImage` operand of
+    ///   that instruction  **must**  have a `Width` of 32
+    /// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Image`] objects created
+    ///   with the `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+    ///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+    ///   command
+    /// - If the [`sparseImageInt64Atomics`]() feature is not enabled, [`Buffer`] objects created
+    ///   with the `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT` flag  **must**  not be accessed by atomic
+    ///   instructions through an `OpTypeImage` with a `SampledType` with a `Width` of 64 by this
+    ///   command
+    /// - The current render pass  **must**  be [compatible]() with the `renderPass` member of the
+    ///   [`GraphicsPipelineCreateInfo`] structure specified when creating the [`Pipeline`] bound to
+    ///   `VK_PIPELINE_BIND_POINT_GRAPHICS`
+    /// - The subpass index of the current render pass  **must**  be equal to the `subpass` member
+    ///   of the [`GraphicsPipelineCreateInfo`] structure specified when creating the [`Pipeline`]
+    ///   bound to `VK_PIPELINE_BIND_POINT_GRAPHICS`
+    /// - Every input attachment used by the current subpass  **must**  be bound to the pipeline via
+    ///   a descriptor set
+    /// - Memory backing image subresources used as attachments in the current render pass  **must**
+    ///   not be written in any way other than as an attachment by this command
+    /// - If any recorded command in the current subpass will write to an image subresource as an
+    ///   attachment, this command  **must**  not read from the memory backing that image
+    ///   subresource in any other way than as an attachment
+    /// - If any recorded command in the current subpass will read from an image subresource used as
+    ///   an attachment in any way other than as an attachment, this command  **must**  not write to
+    ///   that image subresource as an attachment
+    /// - If the draw is recorded in a render pass instance with multiview enabled, the maximum
+    ///   instance index  **must**  be less than or equal to
+    ///   [`PhysicalDeviceMultiviewProperties::max_multiview_instance_index`]
+    /// - If the bound graphics pipeline was created with
+    ///   [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_enable`] set to [`TRUE`] and
+    ///   the current subpass has a depth/stencil attachment, then that attachment  **must**  have
+    ///   been created with the `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` bit set
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT` dynamic state enabled then
+    ///   [`cmd_set_sample_locations_ext`] **must**  have been called in the current command buffer
+    ///   prior to this drawing command
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+    ///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` dynamic state enabled, then
+    ///   [`cmd_set_viewport_with_count`] **must**  have been called in the current command buffer
+    ///   prior to this drawing command, and the `viewportCount` parameter of
+    ///   [`cmd_set_viewport_with_count`] **must**  match the
+    ///   [`PipelineViewportStateCreateInfo::scissor_count`] of the pipeline
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` dynamic state enabled, but not the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, then
+    ///   [`cmd_set_scissor_with_count`] **must**  have been called in the current command buffer
+    ///   prior to this drawing command, and the `scissorCount` parameter of
+    ///   [`cmd_set_scissor_with_count`] **must**  match the
+    ///   [`PipelineViewportStateCreateInfo::viewport_count`] of the pipeline
+    /// - If the bound graphics pipeline state was created with both the
+    ///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic
+    ///   states enabled then both [`cmd_set_viewport_with_count`] and
+    ///   [`cmd_set_scissor_with_count`] **must**  have been called in the current command buffer
+    ///   prior to this drawing command, and the `viewportCount` parameter of
+    ///   [`cmd_set_viewport_with_count`] **must**  match the `scissorCount` parameter of
+    ///   [`cmd_set_scissor_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` dynamic state enabled, then the bound graphics
+    ///   pipeline  **must**  have been created with
+    ///   [`PipelineViewportWScalingStateCreateInfoNV::viewport_count`] greater or equal to the
+    ///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV`
+    ///   dynamic states enabled then the `viewportCount` parameter in the last call to
+    ///   [`cmd_set_viewport_w_scaling_nv`] **must**  be greater than or equal to the
+    ///   `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled, but not the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` dynamic state enabled, then the bound
+    ///   graphics pipeline  **must**  have been created with
+    ///   [`PipelineViewportShadingRateImageStateCreateInfoNV::viewport_count`] greater or equal to
+    ///   the `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` dynamic states enabled then the
+    ///   `viewportCount` parameter in the last call to [`cmd_set_viewport_shading_rate_palette_nv`]
+    ///   **must**  be greater than or equal to the `viewportCount` parameter in the last call to
+    ///   [`cmd_set_viewport_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled and a
+    ///   [`PipelineViewportSwizzleStateCreateInfoNV`] structure chained from
+    ///   `VkPipelineVieportCreateInfo`, then the bound graphics pipeline  **must**  have been
+    ///   created with [`PipelineViewportSwizzleStateCreateInfoNV::viewport_count`] greater or equal
+    ///   to the `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` dynamic state enabled and a
+    ///   [`PipelineViewportExclusiveScissorStateCreateInfoNV`] structure chained from
+    ///   `VkPipelineVieportCreateInfo`, then the bound graphics pipeline  **must**  have been
+    ///   created with
+    ///   [`PipelineViewportExclusiveScissorStateCreateInfoNV::exclusive_scissor_count`] greater or
+    ///   equal to the `viewportCount` parameter in the last call to [`cmd_set_viewport_with_count`]
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` dynamic state enabled then
+    ///   [`cmd_set_rasterizer_discard_enable`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE` dynamic state enabled then
+    ///   [`cmd_set_depth_bias_enable`] **must**  have been called in the current command buffer
+    ///   prior to this drawing command
+    /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_LOGIC_OP_EXT`
+    ///   dynamic state enabled then [`cmd_set_logic_op_ext`] **must**  have been called in the
+    ///   current command buffer prior to this drawing command and the `logicOp` **must**  be a
+    ///   valid [`LogicOp`] value
+    /// - If the [`primitiveFragmentShadingRateWithMultipleViewports`]() limit is not supported, the
+    ///   bound graphics pipeline was created with the `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`
+    ///   dynamic state enabled, and any of the shader stages of the bound graphics pipeline write
+    ///   to the `PrimitiveShadingRateKHR` built-in, then [`cmd_set_viewport_with_count`] **must**
+    ///   have been called in the current command buffer prior to this drawing command, and the
+    ///   `viewportCount` parameter of [`cmd_set_viewport_with_count`] **must**  be `1`
+    /// - If rasterization is not disabled in the bound graphics pipeline, then for each color
+    ///   attachment in the subpass, if the corresponding image view’s [format features]() do not
+    ///   contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT`, then the `blendEnable` member of
+    ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
+    ///   [`FALSE`]
+    /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
+    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
+    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
+    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
+    ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
+    ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
+    ///   command  **must**  not write any values to the depth attachment
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
+    ///   `imageView` member of `pStencilAttachment` is not [`crate::Handle::null`], and the
+    ///   `layout` member of `pStencilAttachment` is
+    ///   `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command  **must**  not write any
+    ///   values to the stencil attachment
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
+    ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
+    ///   member of `pDepthAttachment` is
+    ///   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`, this command  **must**  not
+    ///   write any values to the depth attachment
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
+    ///   `imageView` member of `pStencilAttachment` is not [`crate::Handle::null`], and the
+    ///   `layout` member of `pStencilAttachment` is
+    ///   `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`, this command  **must**  not
+    ///   write any values to the stencil attachment
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
+    ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
+    ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, this command
+    ///   **must**  not write any values to the depth attachment
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
+    ///   `imageView` member of `pStencilAttachment` is not [`crate::Handle::null`], and the
+    ///   `layout` member of `pStencilAttachment` is `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`,
+    ///   this command  **must**  not write any values to the stencil attachment
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound graphics pipeline  **must**  have been created with a
+    ///   [`PipelineRenderingCreateInfo::view_mask`] equal to [`RenderingInfo::view_mask`]
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound graphics pipeline  **must**  have been created with a
+    ///   [`PipelineRenderingCreateInfo::color_attachment_count`] equal to
+    ///   [`RenderingInfo::color_attachment_count`]
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+    ///   [`RenderingInfo::color_attachment_count`] greater than `0`, then each element of the
+    ///   [`RenderingInfo::color_attachments`] array with a `imageView` not equal to
+    ///   [`crate::Handle::null`] **must**  have been created with a [`Format`] equal to the
+    ///   corresponding element of [`PipelineRenderingCreateInfo::color_attachment_formats`] used to
+    ///   create the currently bound graphics pipeline
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT` dynamic state enabled then
+    ///   [`cmd_set_color_write_enable_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `attachmentCount` parameter of
+    ///   [`cmd_set_color_write_enable_ext`] **must**  be equal to the
+    ///   [`PipelineColorBlendStateCreateInfo::attachment_count`] of the currently bound graphics
+    ///   pipeline
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+    ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::Handle::null`],
+    ///   the value of [`PipelineRenderingCreateInfo::depth_attachment_format`] used to create the
+    ///   currently bound graphics pipeline  **must**  be equal to the [`Format`] used to create
+    ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+    ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not [`crate::Handle::null`],
+    ///   the value of [`PipelineRenderingCreateInfo::stencil_attachment_format`] used to create the
+    ///   currently bound graphics pipeline  **must**  be equal to the [`Format`] used to create
+    ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+    ///   [`RenderingFragmentShadingRateAttachmentInfoKHR::image_view`] was not
+    ///   [`crate::Handle::null`], the currently bound graphics pipeline  **must**  have been
+    ///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`] and
+    ///   [`RenderingFragmentDensityMapAttachmentInfoEXT::image_view`] was not
+    ///   [`crate::Handle::null`], the currently bound graphics pipeline  **must**  have been
+    ///   created with `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
+    /// - If the currently bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+    ///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun
+    ///   with [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter
+    ///   greater than `0`, then each element of the [`RenderingInfo::color_attachments`] array with
+    ///   a `imageView` not equal to [`crate::Handle::null`] **must**  have been created with a
+    ///   sample count equal to the corresponding element of the `pColorAttachmentSamples` member of
+    ///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+    ///   currently bound graphics pipeline
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+    ///   [`AttachmentSampleCountInfoNV`] structure, and
+    ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::Handle::null`],
+    ///   the value of the `depthStencilAttachmentSamples` member of
+    ///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+    ///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+    ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound pipeline was created with a [`AttachmentSampleCountInfoAMD`] or
+    ///   [`AttachmentSampleCountInfoNV`] structure, and
+    ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not [`crate::Handle::null`],
+    ///   the value of the `depthStencilAttachmentSamples` member of
+    ///   [`AttachmentSampleCountInfoAMD`] or [`AttachmentSampleCountInfoNV`] used to create the
+    ///   currently bound graphics pipeline  **must**  be equal to the sample count used to create
+    ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+    /// - If the currently bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+    ///   [`AttachmentSampleCountInfoNV`] structure, and the current render pass instance was begun
+    ///   with [`cmd_begin_rendering`] with a [`RenderingInfo::color_attachment_count`] parameter
+    ///   greater than `0`, then each element of the [`RenderingInfo::color_attachments`] array with
+    ///   a `imageView` not equal to [`crate::Handle::null`] **must**  have been created with a
+    ///   sample count equal to the value of
+    ///   [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create the currently
+    ///   bound graphics pipeline
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+    ///   [`AttachmentSampleCountInfoNV`] structure, and
+    ///   [`RenderingInfo`]::`pDepthAttachment->pname`:imageView was not [`crate::Handle::null`],
+    ///   the value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create
+    ///   the currently bound graphics pipeline  **must**  be equal to the sample count used to
+    ///   create [`RenderingInfo`]::`pDepthAttachment->pname`:imageView
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound pipeline was created without a [`AttachmentSampleCountInfoAMD`] or
+    ///   [`AttachmentSampleCountInfoNV`] structure, and
+    ///   [`RenderingInfo`]::`pStencilAttachment->pname`:imageView was not [`crate::Handle::null`],
+    ///   the value of [`PipelineMultisampleStateCreateInfo::rasterization_samples`] used to create
+    ///   the currently bound graphics pipeline  **must**  be equal to the sample count used to
+    ///   create [`RenderingInfo`]::`pStencilAttachment->pname`:imageView
+    /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the currently
+    ///   bound pipeline  **must**  have been created with a
+    ///   [`GraphicsPipelineCreateInfo::render_pass`] equal to [`crate::Handle::null`]
+    ///
+    /// - All vertex input bindings accessed via vertex input variables declared in the vertex
+    ///   shader entry point’s interface  **must**  have either valid or [`crate::Handle::null`]
+    ///   buffers bound
+    /// - If the [nullDescriptor]() feature is not enabled, all vertex input bindings accessed via
+    ///   vertex input variables declared in the vertex shader entry point’s interface  **must**
+    ///   not be [`crate::Handle::null`]
+    /// - For a given vertex buffer binding, any attribute data fetched  **must**  be entirely
+    ///   contained within the corresponding vertex buffer binding, as described in
+    ///   [[fxvertex-input]]()
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
+    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
+    ///   prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    /// - If the bound graphics pipeline was created with both the
+    ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
+    ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
+    ///   the current command buffer prior to this draw command
+    /// - If the bound graphics pipeline was created with the
+    ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
+    ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
+    ///   **must**  not be `NULL`
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+    ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT` dynamic state enabled then
+    ///   [`cmd_set_patch_control_points_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command
+    /// - If the bound graphics pipeline state was created with the
+    ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
+    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command
+    /// - The bound graphics pipeline  **must**  not have been created with the
+    ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
+    ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
+    ///   `VK_SHADER_STAGE_MESH_BIT_NV`
+    /// - [`command_buffer`] **must**  not be a protected command buffer
+    /// - If [`is_preprocessed`] is [`TRUE`] then [`cmd_preprocess_generated_commands_nv`] **must**
+    ///   have already been executed on the device, using the same [`p_generated_commands_info`]
+    ///   content as well as the content of the input buffers it references (all except
+    ///   [`GeneratedCommandsInfoNV::preprocess_buffer`]). Furthermore
+    ///   [`p_generated_commands_info`]`s `indirectCommandsLayout` **must**  have been created with
+    ///   the `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV` bit set
+    /// - [`GeneratedCommandsInfoNV::pipeline`] **must**  match the current bound pipeline at
+    ///   [`GeneratedCommandsInfoNV::pipeline_bind_point`]
+    /// - Transform feedback  **must**  not be active
+    /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_generated_commands_info`] **must**  be a valid pointer to a valid
+    ///   [`GeneratedCommandsInfoNV`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - This command  **must**  only be called inside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_device_generated_commands`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    /// - [`GeneratedCommandsInfoNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdExecuteGeneratedCommandsNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_execute_generated_commands_nv<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        is_preprocessed: bool,
+        p_generated_commands_info: &GeneratedCommandsInfoNV<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_generated_commands()
+            .expect("extension/version not loaded")
+            .cmd_execute_generated_commands_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_generated_commands()
+            .unwrap_unchecked()
+            .cmd_execute_generated_commands_nv()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            is_preprocessed as u8 as u32,
+            p_generated_commands_info as *const GeneratedCommandsInfoNV<'lt>,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdPreprocessGeneratedCommandsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html) - Performs preprocessing for generated commands
+    ///# C Specifications
+    ///Commands  **can**  be preprocessed prior execution using the following command:
+    ///```c
+    ///// Provided by VK_NV_device_generated_commands
+    ///void vkCmdPreprocessGeneratedCommandsNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkGeneratedCommandsInfoNV*            pGeneratedCommandsInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer which does the preprocessing.
+    /// - [`p_generated_commands_info`] is a pointer to a [`GeneratedCommandsInfoNV`] structure
+    ///   containing parameters affecting the preprocessing step.
+    ///# Description
+    ///## Valid Usage
+    /// - [`command_buffer`] **must**  not be a protected command buffer
+    /// - [`p_generated_commands_info`]`s `indirectCommandsLayout` **must**  have been created with
+    ///   the `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV` bit set
+    /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_generated_commands_info`] **must**  be a valid pointer to a valid
+    ///   [`GeneratedCommandsInfoNV`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_device_generated_commands`]
+    /// - [`CommandBuffer`]
+    /// - [`GeneratedCommandsInfoNV`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdPreprocessGeneratedCommandsNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_preprocess_generated_commands_nv<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_generated_commands_info: &GeneratedCommandsInfoNV<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_generated_commands()
+            .expect("extension/version not loaded")
+            .cmd_preprocess_generated_commands_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_generated_commands()
+            .unwrap_unchecked()
+            .cmd_preprocess_generated_commands_nv()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_generated_commands_info as *const GeneratedCommandsInfoNV<'lt>,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdBindPipelineShaderGroupNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html) - Bind a pipeline object
+    ///# C Specifications
+    ///For pipelines that were created with the support of multiple shader groups
+    ///(see [Graphics Pipeline Shader Groups](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#graphics-shadergroups)), the regular
+    ///[`cmd_bind_pipeline`] command will bind Shader Group `0`.
+    ///To explicitly bind a shader group use:
+    ///```c
+    ///// Provided by VK_NV_device_generated_commands
+    ///void vkCmdBindPipelineShaderGroupNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkPipelineBindPoint                         pipelineBindPoint,
+    ///    VkPipeline                                  pipeline,
+    ///    uint32_t                                    groupIndex);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer that the pipeline will be bound to.
+    /// - [`pipeline_bind_point`] is a [`PipelineBindPoint`] value specifying the bind point to
+    ///   which the pipeline will be bound.
+    /// - [`pipeline`] is the pipeline to be bound.
+    /// - [`group_index`] is the shader group to be bound.
+    ///# Description
+    ///## Valid Usage
+    /// - [`group_index`] **must**  be `0` or less than the effective
+    ///   [`GraphicsPipelineShaderGroupsCreateInfoNV::group_count`] including the referenced
+    ///   pipelines
+    /// - The [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS`
+    /// - The same restrictions as [`cmd_bind_pipeline`] apply as if the bound pipeline was created
+    ///   only with the Shader Group from the [`group_index`] information
+    /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
+    ///   feature  **must**  be enabled
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
+    /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    /// - Both of [`command_buffer`], and [`pipeline`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_device_generated_commands`]
+    /// - [`CommandBuffer`]
+    /// - [`Pipeline`]
+    /// - [`PipelineBindPoint`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBindPipelineShaderGroupNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_bind_pipeline_shader_group_nv<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        pipeline_bind_point: PipelineBindPoint,
+        pipeline: Pipeline,
+        group_index: Option<u32>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_generated_commands()
+            .expect("extension/version not loaded")
+            .cmd_bind_pipeline_shader_group_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_device_generated_commands()
+            .unwrap_unchecked()
+            .cmd_bind_pipeline_shader_group_nv()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            pipeline_bind_point,
+            pipeline,
+            group_index.unwrap_or_default() as _,
+        );
+        ()
     }
 }
 ///[VkIndirectCommandsLayoutNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutNV.html) - Opaque handle to an indirect commands layout object
@@ -4550,7 +5450,44 @@ impl Default for IndirectCommandsLayoutNV {
         Self::null()
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_device_generated_commands
+impl Handle for IndirectCommandsLayoutNV {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device()
+            .destroy_indirect_commands_layout_nv(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, IndirectCommandsLayoutNV> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_device_generated_commands`
 pub struct DeviceNvDeviceGeneratedCommandsVTable {
     ///See [`FNGetGeneratedCommandsMemoryRequirementsNv`] for more information.
     pub get_generated_commands_memory_requirements_nv: FNGetGeneratedCommandsMemoryRequirementsNv,
@@ -4567,31 +5504,50 @@ pub struct DeviceNvDeviceGeneratedCommandsVTable {
 }
 impl DeviceNvDeviceGeneratedCommandsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_generated_commands_memory_requirements_nv: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetGeneratedCommandsMemoryRequirementsNV"),
+                    crate::cstr!("vkGetGeneratedCommandsMemoryRequirementsNV").as_ptr(),
                 ))
             },
             create_indirect_commands_layout_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateIndirectCommandsLayoutNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateIndirectCommandsLayoutNV").as_ptr(),
+                ))
             },
             destroy_indirect_commands_layout_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyIndirectCommandsLayoutNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDestroyIndirectCommandsLayoutNV").as_ptr(),
+                ))
             },
             cmd_execute_generated_commands_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdExecuteGeneratedCommandsNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdExecuteGeneratedCommandsNV").as_ptr(),
+                ))
             },
             cmd_preprocess_generated_commands_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPreprocessGeneratedCommandsNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdPreprocessGeneratedCommandsNV").as_ptr(),
+                ))
             },
             cmd_bind_pipeline_shader_group_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindPipelineShaderGroupNV")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdBindPipelineShaderGroupNV").as_ptr(),
+                ))
             },
         }
     }

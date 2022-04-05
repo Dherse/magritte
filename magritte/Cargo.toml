@@ -25,6 +25,16 @@ version = '0.7.3'
 features = []
 optional = true
 
+[dependencies.parking_lot]
+version = '0.12.0'
+features = []
+optional = false
+
+[dependencies.raw-window-handle]
+version = '0.4.3'
+features = []
+optional = true
+
 [dependencies.smallvec]
 version = '1.8.0'
 features = [
@@ -33,6 +43,11 @@ features = [
     'union',
 ]
 optional = true
+
+[dependencies.tracing]
+version = '0.1.31'
+features = []
+optional = false
 [build-dependencies.bindgen]
 version = '0.59.2'
 features = []
@@ -335,7 +350,7 @@ VK_KHR_shared_presentable_image = [
 ]
 VK_KHR_spirv_1_4 = ['VK_KHR_shader_float_controls']
 VK_KHR_storage_buffer_storage_class = []
-VK_KHR_surface = []
+VK_KHR_surface = ['VK_KHR_display']
 VK_KHR_surface_protected_capabilities = ['VK_KHR_get_surface_capabilities2']
 VK_KHR_swapchain = ['VK_KHR_surface']
 VK_KHR_swapchain_mutable_format = [
@@ -711,5 +726,17 @@ all = [
 ]
 default = [
     'libloading',
-    'all',
+    'smallvec',
+    'window',
+]
+window = [
+    'raw-window-handle',
+    'VK_KHR_surface',
+    'VK_KHR_win32_surface',
+    'VK_KHR_wayland_surface',
+    'VK_KHR_xlib_surface',
+    'VK_KHR_xcb_surface',
+    'VK_KHR_android_surface',
+    'VK_MVK_macos_surface',
+    'VK_EXT_metal_surface',
 ]

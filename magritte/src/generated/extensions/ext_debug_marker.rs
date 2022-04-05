@@ -85,7 +85,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, CommandBuffer, Device, StructureType, VulkanResultCodes};
+use crate::{
+    vulkan1_0::{BaseInStructure, CommandBuffer, Device, StructureType, VulkanResultCodes},
+    AsRaw, Unique, VulkanResult,
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
@@ -640,7 +643,7 @@ impl DebugReportObjectTypeEXT {
 ///empty string.
 ///## Valid Usage
 /// - [`object_type`] **must**  not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
-/// - [`object`] **must**  not be [`crate::utils::Handle::null`]
+/// - [`object`] **must**  not be [`crate::Handle::null`]
 /// - [`object`] **must**  be a Vulkan object of the type associated with [`object_type`] as defined
 ///   in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
 ///
@@ -705,12 +708,12 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
         self.object_name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_object_name_raw(mut self, value: *const c_char) -> Self {
         self.object_name = value;
         self
     }
@@ -752,31 +755,28 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
     pub fn object_mut(&mut self) -> &mut u64 {
         &mut self.object
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::object_type`]
-    pub fn set_object_type(
-        &mut self,
-        value: crate::extensions::ext_debug_marker::DebugReportObjectTypeEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::object_type`]
+    pub fn set_object_type(mut self, value: crate::extensions::ext_debug_marker::DebugReportObjectTypeEXT) -> Self {
         self.object_type = value;
         self
     }
-    ///Sets the raw value of [`Self::object`]
-    pub fn set_object(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::object`]
+    pub fn set_object(mut self, value: u64) -> Self {
         self.object = value;
         self
     }
-    ///Sets the raw value of [`Self::object_name`]
-    pub fn set_object_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::object_name`]
+    pub fn set_object_name(mut self, value: *const std::os::raw::c_char) -> Self {
         self.object_name = value;
         self
     }
@@ -813,7 +813,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
 ///be used by that implementation.
 ///## Valid Usage
 /// - [`object_type`] **must**  not be `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT`
-/// - [`object`] **must**  not be [`crate::utils::Handle::null`]
+/// - [`object`] **must**  not be [`crate::Handle::null`]
 /// - [`object`] **must**  be a Vulkan object of the type associated with [`object_type`] as defined
 ///   in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
 ///
@@ -885,12 +885,12 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
         self.tag
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::tag`]
-    pub fn set_tag_raw(&mut self, value: *const c_void) -> &mut Self {
+    pub fn set_tag_raw(mut self, value: *const c_void) -> Self {
         self.tag = value;
         self
     }
@@ -948,41 +948,38 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
     pub fn tag_size_mut(&mut self) -> &mut usize {
         &mut self.tag_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::object_type`]
-    pub fn set_object_type(
-        &mut self,
-        value: crate::extensions::ext_debug_marker::DebugReportObjectTypeEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::object_type`]
+    pub fn set_object_type(mut self, value: crate::extensions::ext_debug_marker::DebugReportObjectTypeEXT) -> Self {
         self.object_type = value;
         self
     }
-    ///Sets the raw value of [`Self::object`]
-    pub fn set_object(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::object`]
+    pub fn set_object(mut self, value: u64) -> Self {
         self.object = value;
         self
     }
-    ///Sets the raw value of [`Self::tag_name`]
-    pub fn set_tag_name(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::tag_name`]
+    pub fn set_tag_name(mut self, value: u64) -> Self {
         self.tag_name = value;
         self
     }
-    ///Sets the raw value of [`Self::tag_size`]
-    pub fn set_tag_size(&mut self, value: usize) -> &mut Self {
+    ///Sets the value of [`Self::tag_size`]
+    pub fn set_tag_size(mut self, value: usize) -> Self {
         self.tag_size = value;
         self
     }
-    ///Sets the raw value of [`Self::tag`]
-    pub fn set_tag(&mut self, value: &'lt [std::ffi::c_void]) -> &mut Self {
+    ///Sets the value of [`Self::tag`]
+    pub fn set_tag(mut self, value: &'lt [std::ffi::c_void]) -> Self {
         let len_ = value.len() as usize;
         let len_ = len_;
         self.tag = value.as_ptr();
@@ -1072,12 +1069,12 @@ impl<'lt> DebugMarkerMarkerInfoEXT<'lt> {
         self.marker_name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::marker_name`]
-    pub fn set_marker_name_raw(&mut self, value: *const c_char) -> &mut Self {
+    pub fn set_marker_name_raw(mut self, value: *const c_char) -> Self {
         self.marker_name = value;
         self
     }
@@ -1111,28 +1108,378 @@ impl<'lt> DebugMarkerMarkerInfoEXT<'lt> {
     pub fn color_mut(&mut self) -> &mut [f32; 4 as usize] {
         &mut self.color
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::marker_name`]
-    pub fn set_marker_name(&mut self, value: *const std::os::raw::c_char) -> &mut Self {
+    ///Sets the value of [`Self::marker_name`]
+    pub fn set_marker_name(mut self, value: *const std::os::raw::c_char) -> Self {
         self.marker_name = value;
         self
     }
-    ///Sets the raw value of [`Self::color`]
-    pub fn set_color(&mut self, value: [f32; 4 as usize]) -> &mut Self {
+    ///Sets the value of [`Self::color`]
+    pub fn set_color(mut self, value: [f32; 4 as usize]) -> Self {
         self.color = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_debug_marker
+impl Device {
+    ///[vkDebugMarkerSetObjectNameEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html) - Give a user-friendly name to an object
+    ///# C Specifications
+    ///An object can be given a user-friendly name by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_marker
+    ///VkResult vkDebugMarkerSetObjectNameEXT(
+    ///    VkDevice                                    device,
+    ///    const VkDebugMarkerObjectNameInfoEXT*       pNameInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the object.
+    /// - [`p_name_info`] is a pointer to a [`DebugMarkerObjectNameInfoEXT`] structure specifying
+    ///   the parameters of the name to set on the object.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_name_info`] **must**  be a valid pointer to a valid [`DebugMarkerObjectNameInfoEXT`]
+    ///   structure
+    ///
+    ///## Host Synchronization
+    /// - Host access to `pNameInfo->object` **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_debug_marker`]
+    /// - [`DebugMarkerObjectNameInfoEXT`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDebugMarkerSetObjectNameEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn debug_marker_set_object_name_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_name_info: &DebugMarkerObjectNameInfoEXT<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_marker()
+            .expect("extension/version not loaded")
+            .debug_marker_set_object_name_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_marker()
+            .unwrap_unchecked()
+            .debug_marker_set_object_name_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_name_info as *const DebugMarkerObjectNameInfoEXT<'lt>);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDebugMarkerSetObjectTagEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html) - Attach arbitrary data to an object
+    ///# C Specifications
+    ///In addition to setting a name for an object, debugging and validation layers
+    ///may have uses for additional binary data on a per-object basis that has no
+    ///other place in the Vulkan API.
+    ///For example, a [`ShaderModule`] could have additional debugging data
+    ///attached to it to aid in offline shader tracing.
+    ///To attach data to an object, call:
+    ///```c
+    ///// Provided by VK_EXT_debug_marker
+    ///VkResult vkDebugMarkerSetObjectTagEXT(
+    ///    VkDevice                                    device,
+    ///    const VkDebugMarkerObjectTagInfoEXT*        pTagInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that created the object.
+    /// - [`p_tag_info`] is a pointer to a [`DebugMarkerObjectTagInfoEXT`] structure specifying the
+    ///   parameters of the tag to attach to the object.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_tag_info`] **must**  be a valid pointer to a valid [`DebugMarkerObjectTagInfoEXT`]
+    ///   structure
+    ///
+    ///## Host Synchronization
+    /// - Host access to `pTagInfo->object` **must**  be externally synchronized
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_debug_marker`]
+    /// - [`DebugMarkerObjectTagInfoEXT`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDebugMarkerSetObjectTagEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn debug_marker_set_object_tag_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_tag_info: &DebugMarkerObjectTagInfoEXT<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_marker()
+            .expect("extension/version not loaded")
+            .debug_marker_set_object_tag_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_marker()
+            .unwrap_unchecked()
+            .debug_marker_set_object_tag_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_tag_info as *const DebugMarkerObjectTagInfoEXT<'lt>);
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdDebugMarkerBeginEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDebugMarkerBeginEXT.html) - Open a command buffer marker region
+    ///# C Specifications
+    ///A marker region can be opened by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_marker
+    ///void vkCmdDebugMarkerBeginEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkDebugMarkerMarkerInfoEXT*           pMarkerInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`p_marker_info`] is a pointer to a [`DebugMarkerMarkerInfoEXT`] structure specifying the
+    ///   parameters of the marker region to open.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_marker_info`] **must**  be a valid pointer to a valid [`DebugMarkerMarkerInfoEXT`]
+    ///   structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_marker`]
+    /// - [`CommandBuffer`]
+    /// - [`DebugMarkerMarkerInfoEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdDebugMarkerBeginEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_debug_marker_begin_ext<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_marker_info: &DebugMarkerMarkerInfoEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_marker()
+            .expect("extension/version not loaded")
+            .cmd_debug_marker_begin_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_marker()
+            .unwrap_unchecked()
+            .cmd_debug_marker_begin_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_marker_info as *const DebugMarkerMarkerInfoEXT<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdDebugMarkerEndEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDebugMarkerEndEXT.html) - Close a command buffer marker region
+    ///# C Specifications
+    ///A marker region can be closed by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_marker
+    ///void vkCmdDebugMarkerEndEXT(
+    ///    VkCommandBuffer                             commandBuffer);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    ///# Description
+    ///An application  **may**  open a marker region in one command buffer and close it
+    ///in another, or otherwise split marker regions across multiple command
+    ///buffers or multiple queue submissions.
+    ///When viewed from the linear series of submissions to a single queue, the
+    ///calls to [`cmd_debug_marker_begin_ext`] and [`cmd_debug_marker_end_ext`] **must**  be
+    /// matched and balanced.
+    ///## Valid Usage
+    /// - There  **must**  be an outstanding [`cmd_debug_marker_begin_ext`] command prior to the
+    ///   [`cmd_debug_marker_end_ext`] on the queue that [`command_buffer`] is submitted to
+    /// - If [`command_buffer`] is a secondary command buffer, there  **must**  be an outstanding
+    ///   [`cmd_debug_marker_begin_ext`] command recorded to [`command_buffer`] that has not
+    ///   previously been ended by a call to [`cmd_debug_marker_end_ext`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_marker`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdDebugMarkerEndEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_debug_marker_end_ext<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_marker()
+            .expect("extension/version not loaded")
+            .cmd_debug_marker_end_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_marker()
+            .unwrap_unchecked()
+            .cmd_debug_marker_end_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw());
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdDebugMarkerInsertEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDebugMarkerInsertEXT.html) - Insert a marker label into a command buffer
+    ///# C Specifications
+    ///A single marker label can be inserted into a command buffer by calling:
+    ///```c
+    ///// Provided by VK_EXT_debug_marker
+    ///void vkCmdDebugMarkerInsertEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkDebugMarkerMarkerInfoEXT*           pMarkerInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command is recorded.
+    /// - [`p_marker_info`] is a pointer to a [`DebugMarkerMarkerInfoEXT`] structure specifying the
+    ///   parameters of the marker to insert.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_marker_info`] **must**  be a valid pointer to a valid [`DebugMarkerMarkerInfoEXT`]
+    ///   structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
+    ///   graphics, or compute operations
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_debug_marker`]
+    /// - [`CommandBuffer`]
+    /// - [`DebugMarkerMarkerInfoEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdDebugMarkerInsertEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_debug_marker_insert_ext<'a: 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_marker_info: &DebugMarkerMarkerInfoEXT<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_marker()
+            .expect("extension/version not loaded")
+            .cmd_debug_marker_insert_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_debug_marker()
+            .unwrap_unchecked()
+            .cmd_debug_marker_insert_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_marker_info as *const DebugMarkerMarkerInfoEXT<'lt>);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_debug_marker`
 pub struct DeviceExtDebugMarkerVTable {
     ///See [`FNDebugMarkerSetObjectNameExt`] for more information.
     pub debug_marker_set_object_name_ext: FNDebugMarkerSetObjectNameExt,
@@ -1147,25 +1494,32 @@ pub struct DeviceExtDebugMarkerVTable {
 }
 impl DeviceExtDebugMarkerVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             debug_marker_set_object_name_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDebugMarkerSetObjectNameEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDebugMarkerSetObjectNameEXT").as_ptr(),
+                ))
             },
             debug_marker_set_object_tag_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDebugMarkerSetObjectTagEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDebugMarkerSetObjectTagEXT").as_ptr()))
             },
             cmd_debug_marker_begin_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDebugMarkerBeginEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDebugMarkerBeginEXT").as_ptr()))
             },
             cmd_debug_marker_end_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDebugMarkerEndEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDebugMarkerEndEXT").as_ptr()))
             },
             cmd_debug_marker_insert_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDebugMarkerInsertEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDebugMarkerInsertEXT").as_ptr()))
             },
         }
     }

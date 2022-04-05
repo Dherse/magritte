@@ -139,22 +139,26 @@ pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME")]
 pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
     crate::cstr!("VK_KHR_external_memory_capabilities");
-///The V-table of [`Instance`] for functions from VK_KHR_external_memory_capabilities
+///The V-table of [`Instance`] for functions from `VK_KHR_external_memory_capabilities`
 pub struct InstanceKhrExternalMemoryCapabilitiesVTable {
     ///See [`FNGetPhysicalDeviceExternalBufferProperties`] for more information.
     pub get_physical_device_external_buffer_properties: FNGetPhysicalDeviceExternalBufferProperties,
 }
 impl InstanceKhrExternalMemoryCapabilitiesVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_external_buffer_properties: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceExternalBufferPropertiesKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceExternalBufferPropertiesKHR").as_ptr(),
                 ))
             },
         }

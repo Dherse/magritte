@@ -76,7 +76,7 @@ pub const KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME")]
 pub const KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_get_memory_requirements2");
-///The V-table of [`Device`] for functions from VK_KHR_get_memory_requirements2
+///The V-table of [`Device`] for functions from `VK_KHR_get_memory_requirements2`
 pub struct DeviceKhrGetMemoryRequirements2VTable {
     ///See [`FNGetBufferMemoryRequirements2`] for more information.
     pub get_buffer_memory_requirements2: FNGetBufferMemoryRequirements2,
@@ -87,21 +87,31 @@ pub struct DeviceKhrGetMemoryRequirements2VTable {
 }
 impl DeviceKhrGetMemoryRequirements2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_buffer_memory_requirements2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferMemoryRequirements2KHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetBufferMemoryRequirements2KHR").as_ptr(),
+                ))
             },
             get_image_memory_requirements2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetImageMemoryRequirements2KHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetImageMemoryRequirements2KHR").as_ptr(),
+                ))
             },
             get_image_sparse_memory_requirements2: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetImageSparseMemoryRequirements2KHR"),
+                    crate::cstr!("vkGetImageSparseMemoryRequirements2KHR").as_ptr(),
                 ))
             },
         }

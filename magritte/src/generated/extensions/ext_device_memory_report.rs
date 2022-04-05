@@ -105,7 +105,7 @@
 //!Some implementations will let multiple [`Pipeline`] objects share the
 //!same shader heap.
 //!We are not asking the implementation to report `VK_OBJECT_TYPE_PIPELINE`
-//!along with a [`crate::utils::Handle::null`] for this bulk allocation.
+//!along with a [`crate::Handle::null`] for this bulk allocation.
 //!Instead, this bulk allocation is considered as a layer below what this
 //!extension is interested in.
 //!Later, when the actual [`Pipeline`] objects are created by suballocating
@@ -366,7 +366,7 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
@@ -394,20 +394,20 @@ impl<'lt> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::device_memory_report`]
     pub fn device_memory_report_raw(&self) -> Bool32 {
         self.device_memory_report
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_memory_report`]
-    pub fn set_device_memory_report_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_device_memory_report_raw(mut self, value: Bool32) -> Self {
         self.device_memory_report = value;
         self
     }
@@ -455,18 +455,18 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::device_memory_report`]
-    pub fn set_device_memory_report(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::device_memory_report`]
+    pub fn set_device_memory_report(mut self, value: bool) -> Self {
         self.device_memory_report = value as u8 as u32;
         self
     }
@@ -516,6 +516,7 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
@@ -551,16 +552,16 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::user_data`]
-    pub fn user_data_raw(&self) -> &*mut c_void {
-        &self.user_data
+    pub fn user_data_raw(&self) -> *mut c_void {
+        self.user_data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_user_data_raw(mut self, value: *mut c_void) -> Self {
         self.user_data = value;
         self
     }
@@ -580,8 +581,8 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::pfn_user_callback`]
-    pub fn pfn_user_callback(&self) -> &PFNDeviceMemoryReportCallbackEXT {
-        &self.pfn_user_callback
+    pub fn pfn_user_callback(&self) -> PFNDeviceMemoryReportCallbackEXT {
+        self.pfn_user_callback
     }
     ///Gets the value of [`Self::user_data`]
     ///# Safety
@@ -609,34 +610,31 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     pub unsafe fn user_data_mut(&mut self) -> &mut c_void {
         &mut *self.user_data
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::pfn_user_callback`]
+    ///Sets the value of [`Self::pfn_user_callback`]
     pub fn set_pfn_user_callback(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_device_memory_report::PFNDeviceMemoryReportCallbackEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.pfn_user_callback = value;
         self
     }
-    ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::user_data`]
+    pub fn set_user_data(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.user_data = value as *mut _;
         self
     }
@@ -721,7 +719,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
@@ -795,11 +793,11 @@ impl<'lt> Default for DeviceMemoryReportCallbackDataEXT<'lt> {
 }
 impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -881,54 +879,51 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
     pub fn heap_index_mut(&mut self) -> &mut u32 {
         &mut self.heap_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::type_`]
+    ///Sets the value of [`Self::type_`]
     pub fn set_type_(
-        &mut self,
+        mut self,
         value: crate::extensions::ext_device_memory_report::DeviceMemoryReportEventTypeEXT,
-    ) -> &mut Self {
+    ) -> Self {
         self.type_ = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_object_id`]
-    pub fn set_memory_object_id(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::memory_object_id`]
+    pub fn set_memory_object_id(mut self, value: u64) -> Self {
         self.memory_object_id = value;
         self
     }
-    ///Sets the raw value of [`Self::size`]
-    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.size = value;
         self
     }
-    ///Sets the raw value of [`Self::object_type`]
-    pub fn set_object_type(&mut self, value: crate::vulkan1_0::ObjectType) -> &mut Self {
+    ///Sets the value of [`Self::object_type`]
+    pub fn set_object_type(mut self, value: crate::vulkan1_0::ObjectType) -> Self {
         self.object_type = value;
         self
     }
-    ///Sets the raw value of [`Self::object_handle`]
-    pub fn set_object_handle(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::object_handle`]
+    pub fn set_object_handle(mut self, value: u64) -> Self {
         self.object_handle = value;
         self
     }
-    ///Sets the raw value of [`Self::heap_index`]
-    pub fn set_heap_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::heap_index`]
+    pub fn set_heap_index(mut self, value: u32) -> Self {
         self.heap_index = value;
         self
     }

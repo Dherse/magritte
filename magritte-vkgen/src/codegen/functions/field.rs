@@ -90,7 +90,7 @@ impl<'a> Function<'a> {
 
         let init = quote! {
             unsafe {
-                std::mem::transmute(loader_fn(#owner, crate::cstr!(#name)))
+                std::mem::transmute(loader_fn(#owner, crate::cstr!(#name).as_ptr()))
             }
         };
 

@@ -52,6 +52,7 @@
 use crate::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Device, StructureType},
+    AsRaw, Unique,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -136,7 +137,7 @@ pub type FNSetLocalDimmingAmd =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayNativeHdrSurfaceCapabilitiesAMD")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
@@ -167,20 +168,20 @@ impl<'lt> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
 }
 impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::local_dimming_support`]
     pub fn local_dimming_support_raw(&self) -> Bool32 {
         self.local_dimming_support
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::local_dimming_support`]
-    pub fn set_local_dimming_support_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_local_dimming_support_raw(mut self, value: Bool32) -> Self {
         self.local_dimming_support = value;
         self
     }
@@ -228,18 +229,18 @@ impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::local_dimming_support`]
-    pub fn set_local_dimming_support(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::local_dimming_support`]
+    pub fn set_local_dimming_support(mut self, value: bool) -> Self {
         self.local_dimming_support = value as u8 as u32;
         self
     }
@@ -321,12 +322,12 @@ impl<'lt> SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
         self.local_dimming_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::local_dimming_enable`]
-    pub fn set_local_dimming_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_local_dimming_enable_raw(mut self, value: Bool32) -> Self {
         self.local_dimming_enable = value;
         self
     }
@@ -367,36 +368,105 @@ impl<'lt> SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::local_dimming_enable`]
-    pub fn set_local_dimming_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::local_dimming_enable`]
+    pub fn set_local_dimming_enable(mut self, value: bool) -> Self {
         self.local_dimming_enable = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_AMD_display_native_hdr
+impl Device {
+    ///[vkSetLocalDimmingAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetLocalDimmingAMD.html) - Set Local Dimming
+    ///# C Specifications
+    ///The local dimming HDR setting may also be changed over the life of a
+    ///swapchain by calling:
+    ///```c
+    ///// Provided by VK_AMD_display_native_hdr
+    ///void vkSetLocalDimmingAMD(
+    ///    VkDevice                                    device,
+    ///    VkSwapchainKHR                              swapChain,
+    ///    VkBool32                                    localDimmingEnable);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device associated with [`swap_chain`].
+    /// - [`swap_chain`] handle to enable local dimming.
+    /// - [`local_dimming_enable`] specifies whether local dimming is enabled for the swapchain.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`swap_chain`] **must**  be a valid [`SwapchainKHR`] handle
+    /// - Both of [`device`], and [`swap_chain`] **must**  have been created, allocated, or
+    ///   retrieved from the same [`Instance`]
+    ///
+    ///## Valid Usage
+    /// - [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
+    ///# Related
+    /// - [`VK_AMD_display_native_hdr`]
+    /// - [`Bool32`]
+    /// - [`Device`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetLocalDimmingAMD")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_local_dimming_amd<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        swap_chain: SwapchainKHR,
+        local_dimming_enable: bool,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .amd_display_native_hdr()
+            .expect("extension/version not loaded")
+            .set_local_dimming_amd()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .amd_display_native_hdr()
+            .unwrap_unchecked()
+            .set_local_dimming_amd()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), swap_chain, local_dimming_enable as u8 as u32);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_AMD_display_native_hdr`
 pub struct DeviceAmdDisplayNativeHdrVTable {
     ///See [`FNSetLocalDimmingAmd`] for more information.
     pub set_local_dimming_amd: FNSetLocalDimmingAmd,
 }
 impl DeviceAmdDisplayNativeHdrVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             set_local_dimming_amd: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetLocalDimmingAMD")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetLocalDimmingAMD").as_ptr()))
             },
         }
     }

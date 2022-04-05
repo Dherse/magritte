@@ -104,8 +104,9 @@ use crate::{
     vulkan1_0::{
         AllocationCallbacks, BaseInStructure, Bool32, Instance, PhysicalDevice, StructureType, VulkanResultCodes,
     },
+    AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_WIN32_SURFACE_SPEC_VERSION")]
@@ -323,17 +324,17 @@ impl<'lt> Win32SurfaceCreateInfoKHR<'lt> {
         &self.hwnd
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::hinstance`]
-    pub fn set_hinstance_raw(&mut self, value: HINSTANCE) -> &mut Self {
+    pub fn set_hinstance_raw(mut self, value: HINSTANCE) -> Self {
         self.hinstance = value;
         self
     }
     ///Sets the raw value of [`Self::hwnd`]
-    pub fn set_hwnd_raw(&mut self, value: HWND) -> &mut Self {
+    pub fn set_hwnd_raw(mut self, value: HWND) -> Self {
         self.hwnd = value;
         self
     }
@@ -353,12 +354,12 @@ impl<'lt> Win32SurfaceCreateInfoKHR<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::hinstance`]
-    pub fn hinstance(&self) -> &HINSTANCE {
-        &self.hinstance
+    pub fn hinstance(&self) -> HINSTANCE {
+        self.hinstance
     }
     ///Gets the value of [`Self::hwnd`]
-    pub fn hwnd(&self) -> &HWND {
-        &self.hwnd
+    pub fn hwnd(&self) -> HWND {
+        self.hwnd
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -376,33 +377,179 @@ impl<'lt> Win32SurfaceCreateInfoKHR<'lt> {
     pub fn hwnd_mut(&mut self) -> &mut HWND {
         &mut self.hwnd
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_win_32_surface::Win32SurfaceCreateFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_win_32_surface::Win32SurfaceCreateFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::hinstance`]
-    pub fn set_hinstance(&mut self, value: crate::native::HINSTANCE) -> &mut Self {
+    ///Sets the value of [`Self::hinstance`]
+    pub fn set_hinstance(mut self, value: crate::native::HINSTANCE) -> Self {
         self.hinstance = value;
         self
     }
-    ///Sets the raw value of [`Self::hwnd`]
-    pub fn set_hwnd(&mut self, value: crate::native::HWND) -> &mut Self {
+    ///Sets the value of [`Self::hwnd`]
+    pub fn set_hwnd(mut self, value: crate::native::HWND) -> Self {
         self.hwnd = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_win32_surface
+impl Instance {
+    ///[vkCreateWin32SurfaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateWin32SurfaceKHR.html) - Create a VkSurfaceKHR object for an Win32 native window
+    ///# C Specifications
+    ///To create a [`SurfaceKHR`] object for a Win32 window, call:
+    ///```c
+    ///// Provided by VK_KHR_win32_surface
+    ///VkResult vkCreateWin32SurfaceKHR(
+    ///    VkInstance                                  instance,
+    ///    const VkWin32SurfaceCreateInfoKHR*          pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkSurfaceKHR*                               pSurface);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance to associate the surface with.
+    /// - [`p_create_info`] is a pointer to a [`Win32SurfaceCreateInfoKHR`] structure containing
+    ///   parameters affecting the creation of the surface object.
+    /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
+    /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
+    ///   is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`Win32SurfaceCreateInfoKHR`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_win32_surface`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Instance`]
+    /// - [`SurfaceKHR`]
+    /// - [`Win32SurfaceCreateInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateWin32SurfaceKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_win32_surface_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &Win32SurfaceCreateInfoKHR<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_win_32_surface()
+            .expect("extension/version not loaded")
+            .create_win32_surface_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_win_32_surface()
+            .unwrap_unchecked()
+            .create_win32_surface_khr()
+            .unwrap_unchecked();
+        let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const Win32SurfaceCreateInfoKHR<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_surface.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceWin32PresentationSupportKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceWin32PresentationSupportKHR.html) - Query queue family support for presentation on a Win32 display
+    ///# C Specifications
+    ///To determine whether a queue family of a physical device supports
+    ///presentation to the Microsoft Windows desktop, call:
+    ///```c
+    ///// Provided by VK_KHR_win32_surface
+    ///VkBool32 vkGetPhysicalDeviceWin32PresentationSupportKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t                                    queueFamilyIndex);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device.
+    /// - [`queue_family_index`] is the queue family index.
+    ///# Description
+    ///This platform-specific function  **can**  be called prior to creating a surface.
+    ///## Valid Usage
+    /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
+    ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    ///# Related
+    /// - [`VK_KHR_win32_surface`]
+    /// - [`PhysicalDevice`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceWin32PresentationSupportKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_win32_presentation_support_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        queue_family_index: Option<u32>,
+    ) -> bool {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_win_32_surface()
+            .expect("extension/version not loaded")
+            .get_physical_device_win32_presentation_support_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_win_32_surface()
+            .unwrap_unchecked()
+            .get_physical_device_win32_presentation_support_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _);
+        unsafe { std::mem::transmute(_return as u8) }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_win32_surface`
 pub struct InstanceKhrWin32SurfaceVTable {
     ///See [`FNCreateWin32SurfaceKhr`] for more information.
     pub create_win32_surface_khr: FNCreateWin32SurfaceKhr,
@@ -411,18 +558,22 @@ pub struct InstanceKhrWin32SurfaceVTable {
 }
 impl InstanceKhrWin32SurfaceVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_win32_surface_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateWin32SurfaceKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateWin32SurfaceKHR").as_ptr()))
             },
             get_physical_device_win32_presentation_support_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceWin32PresentationSupportKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceWin32PresentationSupportKHR").as_ptr(),
                 ))
             },
         }

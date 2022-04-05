@@ -79,20 +79,27 @@ pub const EXT_TOOLING_INFO_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_TOOLING_INFO_EXTENSION_NAME")]
 pub const EXT_TOOLING_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_tooling_info");
-///The V-table of [`Instance`] for functions from VK_EXT_tooling_info
+///The V-table of [`Instance`] for functions from `VK_EXT_tooling_info`
 pub struct InstanceExtToolingInfoVTable {
     ///See [`FNGetPhysicalDeviceToolProperties`] for more information.
     pub get_physical_device_tool_properties: FNGetPhysicalDeviceToolProperties,
 }
 impl InstanceExtToolingInfoVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_tool_properties: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceToolPropertiesEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceToolPropertiesEXT").as_ptr(),
+                ))
             },
         }
     }

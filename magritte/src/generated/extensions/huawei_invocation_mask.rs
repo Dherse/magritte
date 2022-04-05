@@ -47,7 +47,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Device, ImageLayout, ImageView, StructureType};
+use crate::{
+    vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Device, ImageLayout, ImageView, StructureType},
+    AsRaw, Unique,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -72,21 +75,21 @@ pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded
 /// - [`image_view`] is an image view handle specifying the invocation mask image [`image_view`]
-///   **may**  be set to [`crate::utils::Handle::null`], which is equivalent to specifying a view of
-///   an image filled with ones value.
+///   **may**  be set to [`crate::Handle::null`], which is equivalent to specifying a view of an
+///   image filled with ones value.
 /// - [`image_layout`] is the layout that the image subresources accessible from [`image_view`] will
 ///   be in when the invocation mask image is accessed
 ///# Description
 ///## Valid Usage
 /// - The [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-invocationMask)
 ///   feature  **must**  be enabled
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  be a valid
-///   [`ImageView`] handle of type `VK_IMAGE_VIEW_TYPE_2D`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have a format of
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  be a valid [`ImageView`]
+///   handle of type `VK_IMAGE_VIEW_TYPE_2D`
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have a format of
 ///   `VK_FORMAT_R8_UINT`
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], it  **must**  have been created with
+/// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have been created with
 ///   `VK_IMAGE_USAGE_INVOCATION_MASK_BIT_HUAWEI` set
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_layout`] **must**  be
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_layout`] **must**  be
 ///   `VK_IMAGE_LAYOUT_GENERAL`
 /// - Thread mask image resolution must match the `width` and `height` in [`cmd_trace_rays_khr`]
 /// - Each element in the invocation mask image  **must**  have the value `0` or `1`. The value 1
@@ -95,7 +98,7 @@ pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
-/// - If [`image_view`] is not [`crate::utils::Handle::null`], [`image_view`] **must**  be a valid
+/// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
 ///   [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -168,7 +171,7 @@ pub type FNCmdBindInvocationMaskHuawei =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInvocationMaskFeaturesHUAWEI")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt> {
@@ -196,20 +199,20 @@ impl<'lt> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt> {
 }
 impl<'lt> PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::invocation_mask`]
     pub fn invocation_mask_raw(&self) -> Bool32 {
         self.invocation_mask
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::invocation_mask`]
-    pub fn set_invocation_mask_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_invocation_mask_raw(mut self, value: Bool32) -> Self {
         self.invocation_mask = value;
         self
     }
@@ -257,36 +260,140 @@ impl<'lt> PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::invocation_mask`]
-    pub fn set_invocation_mask(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::invocation_mask`]
+    pub fn set_invocation_mask(mut self, value: bool) -> Self {
         self.invocation_mask = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_HUAWEI_invocation_mask
+impl CommandBuffer {
+    ///[vkCmdBindInvocationMaskHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBindInvocationMaskHUAWEI.html) - Bind an invocation mask image on a command buffer
+    ///# C Specifications
+    ///When invocation mask image usage is enabled in the bound ray tracing
+    ///pipeline, the pipeline uses an invocation mask image specified by the
+    ///command:
+    ///```c
+    ///// Provided by VK_HUAWEI_invocation_mask
+    ///void vkCmdBindInvocationMaskHUAWEI(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    VkImageView                                 imageView,
+    ///    VkImageLayout                               imageLayout);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded
+    /// - [`image_view`] is an image view handle specifying the invocation mask image [`image_view`]
+    ///   **may**  be set to [`crate::Handle::null`], which is equivalent to specifying a view of an
+    ///   image filled with ones value.
+    /// - [`image_layout`] is the layout that the image subresources accessible from [`image_view`]
+    ///   will be in when the invocation mask image is accessed
+    ///# Description
+    ///## Valid Usage
+    /// - The [invocation mask image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-invocationMask)
+    ///   feature  **must**  be enabled
+    /// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  be a valid [`ImageView`]
+    ///   handle of type `VK_IMAGE_VIEW_TYPE_2D`
+    /// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have a format of
+    ///   `VK_FORMAT_R8_UINT`
+    /// - If [`image_view`] is not [`crate::Handle::null`], it  **must**  have been created with
+    ///   `VK_IMAGE_USAGE_INVOCATION_MASK_BIT_HUAWEI` set
+    /// - If [`image_view`] is not [`crate::Handle::null`], [`image_layout`] **must**  be
+    ///   `VK_IMAGE_LAYOUT_GENERAL`
+    /// - Thread mask image resolution must match the `width` and `height` in [`cmd_trace_rays_khr`]
+    /// - Each element in the invocation mask image  **must**  have the value `0` or `1`. The value
+    ///   1 means the invocation is active
+    /// - `width` in [`cmd_trace_rays_khr`] should be 1
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
+    ///   [`ImageView`] handle
+    /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
+    ///   operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - Both of [`command_buffer`], and [`image_view`] that are valid handles of non-ignored
+    ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_HUAWEI_invocation_mask`]
+    /// - [`CommandBuffer`]
+    /// - [`ImageLayout`]
+    /// - [`ImageView`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBindInvocationMaskHUAWEI")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_bind_invocation_mask_huawei<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        image_view: Option<ImageView>,
+        image_layout: ImageLayout,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .huawei_invocation_mask()
+            .expect("extension/version not loaded")
+            .cmd_bind_invocation_mask_huawei()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .huawei_invocation_mask()
+            .unwrap_unchecked()
+            .cmd_bind_invocation_mask_huawei()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), image_view.unwrap_or_default(), image_layout);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_HUAWEI_invocation_mask`
 pub struct DeviceHuaweiInvocationMaskVTable {
     ///See [`FNCmdBindInvocationMaskHuawei`] for more information.
     pub cmd_bind_invocation_mask_huawei: FNCmdBindInvocationMaskHuawei,
 }
 impl DeviceHuaweiInvocationMaskVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_bind_invocation_mask_huawei: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindInvocationMaskHUAWEI")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCmdBindInvocationMaskHUAWEI").as_ptr(),
+                ))
             },
         }
     }

@@ -97,7 +97,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, Device, Instance, PhysicalDevice, StructureType, VulkanResultCodes};
+use crate::{
+    vulkan1_0::{BaseInStructure, Device, Instance, PhysicalDevice, StructureType, VulkanResultCodes},
+    AsRaw, SmallVec, Unique, VulkanResult,
+};
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
@@ -426,7 +429,7 @@ impl<'lt> CalibratedTimestampInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -453,38 +456,234 @@ impl<'lt> CalibratedTimestampInfoEXT<'lt> {
     pub fn time_domain_mut(&mut self) -> &mut TimeDomainEXT {
         &mut self.time_domain
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::time_domain`]
-    pub fn set_time_domain(&mut self, value: crate::extensions::ext_calibrated_timestamps::TimeDomainEXT) -> &mut Self {
+    ///Sets the value of [`Self::time_domain`]
+    pub fn set_time_domain(mut self, value: crate::extensions::ext_calibrated_timestamps::TimeDomainEXT) -> Self {
         self.time_domain = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_EXT_calibrated_timestamps
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceCalibrateableTimeDomainsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html) - Query calibrateable time domains
+    ///# C Specifications
+    ///To query the set of time domains for which a physical device supports
+    ///timestamp calibration, call:
+    ///```c
+    ///// Provided by VK_EXT_calibrated_timestamps
+    ///VkResult vkGetPhysicalDeviceCalibrateableTimeDomainsEXT(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    uint32_t*                                   pTimeDomainCount,
+    ///    VkTimeDomainEXT*                            pTimeDomains);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device from which to query the set of calibrateable
+    ///   time domains.
+    /// - [`p_time_domain_count`] is a pointer to an integer related to the number of calibrateable
+    ///   time domains available or queried, as described below.
+    /// - [`p_time_domains`] is either `NULL` or a pointer to an array of [`TimeDomainEXT`] values,
+    ///   indicating the supported calibrateable time domains.
+    ///# Description
+    ///If [`p_time_domains`] is `NULL`, then the number of calibrateable time
+    ///domains supported for the given [`physical_device`] is returned in
+    ///[`p_time_domain_count`].
+    ///Otherwise, [`p_time_domain_count`] **must**  point to a variable set by the user
+    ///to the number of elements in the [`p_time_domains`] array, and on return the
+    ///variable is overwritten with the number of values actually written to
+    ///[`p_time_domains`].
+    ///If the value of [`p_time_domain_count`] is less than the number of
+    ///calibrateable time domains supported, at most [`p_time_domain_count`] values
+    ///will be written to [`p_time_domains`], and `VK_INCOMPLETE` will be
+    ///returned instead of `VK_SUCCESS`, to indicate that not all the available
+    ///time domains were returned.
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_time_domain_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_time_domain_count`] is not `0`, and [`p_time_domains`] is
+    ///   not `NULL`, [`p_time_domains`] **must**  be a valid pointer to an array of
+    ///   [`p_time_domain_count`][`TimeDomainEXT`] values
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_calibrated_timestamps`]
+    /// - [`PhysicalDevice`]
+    /// - [`TimeDomainEXT`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceCalibrateableTimeDomainsEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_calibrateable_time_domains_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_time_domain_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<TimeDomainEXT>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_calibrated_timestamps()
+            .expect("extension/version not loaded")
+            .get_physical_device_calibrateable_time_domains_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .ext_calibrated_timestamps()
+            .unwrap_unchecked()
+            .get_physical_device_calibrateable_time_domains_ext()
+            .unwrap_unchecked();
+        let mut p_time_domain_count = match p_time_domain_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_time_domains = SmallVec::<TimeDomainEXT>::from_elem(Default::default(), p_time_domain_count as usize);
+        let _return = _function(self.as_raw(), &mut p_time_domain_count, p_time_domains.as_mut_ptr());
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_time_domains)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkGetCalibratedTimestampsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetCalibratedTimestampsEXT.html) - Query calibrated timestamps
+    ///# C Specifications
+    ///In order to be able to correlate the time a particular operation took place
+    ///at on timelines of different time domains (e.g. a device operation vs a host
+    ///operation), Vulkan allows querying calibrated timestamps from multiple time
+    ///domains.To query calibrated timestamps from a set of time domains, call:
+    ///```c
+    ///// Provided by VK_EXT_calibrated_timestamps
+    ///VkResult vkGetCalibratedTimestampsEXT(
+    ///    VkDevice                                    device,
+    ///    uint32_t                                    timestampCount,
+    ///    const VkCalibratedTimestampInfoEXT*         pTimestampInfos,
+    ///    uint64_t*                                   pTimestamps,
+    ///    uint64_t*                                   pMaxDeviation);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device used to perform the query.
+    /// - [`timestamp_count`] is the number of timestamps to query.
+    /// - [`p_timestamp_infos`] is a pointer to an array of
+    ///   [`timestamp_count`][`CalibratedTimestampInfoEXT`] structures, describing the time domains
+    ///   the calibrated timestamps should be captured from.
+    /// - [`p_timestamps`] is a pointer to an array of [`timestamp_count`] 64-bit unsigned integer
+    ///   values in which the requested calibrated timestamp values are returned.
+    /// - [`p_max_deviation`] is a pointer to a 64-bit unsigned integer value in which the strictly
+    ///   positive maximum deviation, in nanoseconds, of the calibrated timestamp values is
+    ///   returned.
+    ///# Description
+    ///Calibrated timestamp values  **can**  be extrapolated to estimate future
+    ///coinciding timestamp values, however, depending on the nature of the time
+    ///domains and other properties of the platform extrapolating values over a
+    ///sufficiently long period of time  **may**  no longer be accurate enough to fit
+    ///any particular purpose, so applications are expected to re-calibrate the
+    ///timestamps on a regular basis.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_timestamp_infos`] **must**  be a valid pointer to an array of [`timestamp_count`]
+    ///   valid [`CalibratedTimestampInfoEXT`] structures
+    /// - [`p_timestamps`] **must**  be a valid pointer to an array of [`timestamp_count`]`uint64_t`
+    ///   values
+    /// - [`p_max_deviation`] **must**  be a valid pointer to a `uint64_t` value
+    /// - [`timestamp_count`] **must**  be greater than `0`
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_calibrated_timestamps`]
+    /// - [`CalibratedTimestampInfoEXT`]
+    /// - [`Device`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetCalibratedTimestampsEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_calibrated_timestamps_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_timestamp_infos: &[crate::extensions::ext_calibrated_timestamps::CalibratedTimestampInfoEXT<'lt>],
+    ) -> VulkanResult<(SmallVec<u64>, u64)> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_calibrated_timestamps()
+            .expect("extension/version not loaded")
+            .get_calibrated_timestamps_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_calibrated_timestamps()
+            .unwrap_unchecked()
+            .get_calibrated_timestamps_ext()
+            .unwrap_unchecked();
+        let timestamp_count = (|len: usize| len)(p_timestamp_infos.len()) as _;
+        let mut p_timestamps = SmallVec::<u64>::from_elem(Default::default(), timestamp_count as usize);
+        let mut p_max_deviation = Default::default();
+        let _return = _function(
+            self.as_raw(),
+            timestamp_count,
+            p_timestamp_infos.as_ptr(),
+            p_timestamps.as_mut_ptr(),
+            &mut p_max_deviation,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, (p_timestamps, p_max_deviation)),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_calibrated_timestamps`
 pub struct InstanceExtCalibratedTimestampsVTable {
     ///See [`FNGetPhysicalDeviceCalibrateableTimeDomainsExt`] for more information.
     pub get_physical_device_calibrateable_time_domains_ext: FNGetPhysicalDeviceCalibrateableTimeDomainsExt,
 }
 impl InstanceExtCalibratedTimestampsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_calibrateable_time_domains_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT"),
+                    crate::cstr!("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT").as_ptr(),
                 ))
             },
         }
@@ -495,20 +694,24 @@ impl InstanceExtCalibratedTimestampsVTable {
         self.get_physical_device_calibrateable_time_domains_ext
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_calibrated_timestamps
+///The V-table of [`Device`] for functions from `VK_EXT_calibrated_timestamps`
 pub struct DeviceExtCalibratedTimestampsVTable {
     ///See [`FNGetCalibratedTimestampsExt`] for more information.
     pub get_calibrated_timestamps_ext: FNGetCalibratedTimestampsExt,
 }
 impl DeviceExtCalibratedTimestampsVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_calibrated_timestamps_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetCalibratedTimestampsEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetCalibratedTimestampsEXT").as_ptr()))
             },
         }
     }

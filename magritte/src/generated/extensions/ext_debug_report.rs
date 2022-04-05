@@ -128,8 +128,10 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    entry::Entry,
     extensions::ext_debug_marker::DebugReportObjectTypeEXT,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Bool32, Instance, StructureType, VulkanResultCodes},
+    AsRaw, Handle, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -139,6 +141,7 @@ use std::{
     ffi::{c_void, CStr},
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
     os::raw::c_char,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -187,9 +190,9 @@ pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///layer-specified manner.
 ///The application  **should**  always return [`FALSE`].
 ///The [`TRUE`] value is reserved for use in layer development.[`object`] **must**  be a Vulkan
-/// object or [`crate::utils::Handle::null`].
+/// object or [`crate::Handle::null`].
 ///If [`object_type`] is not `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT` and
-///[`object`] is not [`crate::utils::Handle::null`], [`object`] **must**  be a Vulkan
+///[`object`] is not [`crate::Handle::null`], [`object`] **must**  be a Vulkan
 ///object of the corresponding type associated with [`object_type`] as defined
 ///in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types).
 ///# Related
@@ -299,7 +302,7 @@ pub type FNCreateDebugReportCallbackExt = Option<
 ///
 ///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
-/// - If [`callback`] is not [`crate::utils::Handle::null`], [`callback`] **must**  be a valid
+/// - If [`callback`] is not [`crate::Handle::null`], [`callback`] **must**  be a valid
 ///   [`DebugReportCallbackEXT`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
@@ -350,7 +353,7 @@ pub type FNDestroyDebugReportCallbackExt = Option<
 /// - [`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the type of object being used or
 ///   created at the time the event was triggered.
 /// - [`object`] is the object where the issue was detected. [`object`] **can**  be
-///   [`crate::utils::Handle::null`] if there is no object associated with the event.
+///   [`crate::Handle::null`] if there is no object associated with the event.
 /// - [`location`] is an application defined value.
 /// - [`message_code`] is an application defined value.
 /// - [`p_layer_prefix`] is the abbreviation of the component making this event/message.
@@ -362,8 +365,8 @@ pub type FNDestroyDebugReportCallbackExt = Option<
 ///`pUserData` value that was defined at the time the callback was
 ///registered.
 ///## Valid Usage
-/// - [`object`] **must**  be a Vulkan object or [`crate::utils::Handle::null`]
-/// -    If [`object_type`] is not `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT` and [`object`] is not [`crate::utils::Handle::null`], [`object`] **must**  be a Vulkan object of the corresponding type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
+/// - [`object`] **must**  be a Vulkan object or [`crate::Handle::null`]
+/// -    If [`object_type`] is not `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT` and [`object`] is not [`crate::Handle::null`], [`object`] **must**  be a Vulkan object of the corresponding type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
 ///
 ///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
@@ -904,6 +907,7 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportCallbackCreateInfoEXT")]
+#[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT<'lt> {
@@ -940,16 +944,16 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::user_data`]
-    pub fn user_data_raw(&self) -> &*mut c_void {
-        &self.user_data
+    pub fn user_data_raw(&self) -> *mut c_void {
+        self.user_data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+    pub fn set_user_data_raw(mut self, value: *mut c_void) -> Self {
         self.user_data = value;
         self
     }
@@ -969,8 +973,8 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
         self.flags
     }
     ///Gets the value of [`Self::pfn_callback`]
-    pub fn pfn_callback(&self) -> &PFNDebugReportCallbackEXT {
-        &self.pfn_callback
+    pub fn pfn_callback(&self) -> PFNDebugReportCallbackEXT {
+        self.pfn_callback
     }
     ///Gets the value of [`Self::user_data`]
     ///# Safety
@@ -998,33 +1002,300 @@ impl<'lt> DebugReportCallbackCreateInfoEXT<'lt> {
     pub unsafe fn user_data_mut(&mut self) -> &mut c_void {
         &mut *self.user_data
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::ext_debug_report::DebugReportFlagsEXT) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::ext_debug_report::DebugReportFlagsEXT) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::pfn_callback`]
-    pub fn set_pfn_callback(
-        &mut self,
-        value: crate::extensions::ext_debug_report::PFNDebugReportCallbackEXT,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::pfn_callback`]
+    pub fn set_pfn_callback(mut self, value: crate::extensions::ext_debug_report::PFNDebugReportCallbackEXT) -> Self {
         self.pfn_callback = value;
         self
     }
-    ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+    ///Sets the value of [`Self::user_data`]
+    pub fn set_user_data(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.user_data = value as *mut _;
         self
+    }
+}
+impl Instance {
+    ///[vkCreateDebugReportCallbackEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDebugReportCallbackEXT.html) - Create a debug report callback object
+    ///# C Specifications
+    ///Debug report callbacks give more detailed feedback on the application’s use
+    ///of Vulkan when events of interest occur.To register a debug report callback, an application
+    /// uses
+    ///[`create_debug_report_callback_ext`].
+    ///```c
+    ///// Provided by VK_EXT_debug_report
+    ///VkResult vkCreateDebugReportCallbackEXT(
+    ///    VkInstance                                  instance,
+    ///    const VkDebugReportCallbackCreateInfoEXT*   pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkDebugReportCallbackEXT*                   pCallback);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance the callback will be logged on.
+    /// - [`p_create_info`] is a pointer to a [`DebugReportCallbackCreateInfoEXT`] structure
+    ///   defining the conditions under which this callback will be called.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_callback`] is a pointer to a [`DebugReportCallbackEXT`] handle in which the created
+    ///   object is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid
+    ///   [`DebugReportCallbackCreateInfoEXT`] structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_callback`] **must**  be a valid pointer to a [`DebugReportCallbackEXT`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_EXT_debug_report`]
+    /// - [`AllocationCallbacks`]
+    /// - [`DebugReportCallbackCreateInfoEXT`]
+    /// - [`DebugReportCallbackEXT`]
+    /// - [`Instance`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateDebugReportCallbackEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_debug_report_callback_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        p_create_info: &DebugReportCallbackCreateInfoEXT<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, DebugReportCallbackEXT>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_report()
+            .expect("extension/version not loaded")
+            .create_debug_report_callback_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_report()
+            .unwrap_unchecked()
+            .create_debug_report_callback_ext()
+            .unwrap_unchecked();
+        let mut p_callback = MaybeUninit::<DebugReportCallbackEXT>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const DebugReportCallbackCreateInfoEXT<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_callback.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_callback.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Instance {
+    ///[vkDestroyDebugReportCallbackEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyDebugReportCallbackEXT.html) - Destroy a debug report callback object
+    ///# C Specifications
+    ///To destroy a [`DebugReportCallbackEXT`] object, call:
+    ///```c
+    ///// Provided by VK_EXT_debug_report
+    ///void vkDestroyDebugReportCallbackEXT(
+    ///    VkInstance                                  instance,
+    ///    VkDebugReportCallbackEXT                    callback,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the instance where the callback was created.
+    /// - [`callback`] is the [`DebugReportCallbackEXT`] object to destroy. [`callback`] is an
+    ///   externally synchronized object and  **must**  not be used on more than one thread at a
+    ///   time. This means that [`destroy_debug_report_callback_ext`] **must**  not be called when a
+    ///   callback is active.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    ///# Description
+    ///## Valid Usage
+    /// - If [`AllocationCallbacks`] were provided when [`callback`] was created, a compatible set
+    ///   of callbacks  **must**  be provided here
+    /// - If no [`AllocationCallbacks`] were provided when [`callback`] was created, [`p_allocator`]
+    ///   **must**  be `NULL`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - If [`callback`] is not [`crate::Handle::null`], [`callback`] **must**  be a valid
+    ///   [`DebugReportCallbackEXT`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - If [`callback`] is a valid handle, it  **must**  have been created, allocated, or
+    ///   retrieved from [`instance`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`callback`] **must**  be externally synchronized
+    ///# Related
+    /// - [`VK_EXT_debug_report`]
+    /// - [`AllocationCallbacks`]
+    /// - [`DebugReportCallbackEXT`]
+    /// - [`Instance`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyDebugReportCallbackEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_debug_report_callback_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Instance>,
+        callback: Option<DebugReportCallbackEXT>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_report()
+            .expect("extension/version not loaded")
+            .destroy_debug_report_callback_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_report()
+            .unwrap_unchecked()
+            .destroy_debug_report_callback_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            callback.unwrap_or_default(),
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Instance {
+    ///[vkDebugReportMessageEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDebugReportMessageEXT.html) - Inject a message into a debug stream
+    ///# C Specifications
+    ///To inject its own messages into the debug stream, call:
+    ///```c
+    ///// Provided by VK_EXT_debug_report
+    ///void vkDebugReportMessageEXT(
+    ///    VkInstance                                  instance,
+    ///    VkDebugReportFlagsEXT                       flags,
+    ///    VkDebugReportObjectTypeEXT                  objectType,
+    ///    uint64_t                                    object,
+    ///    size_t                                      location,
+    ///    int32_t                                     messageCode,
+    ///    const char*                                 pLayerPrefix,
+    ///    const char*                                 pMessage);
+    ///```
+    ///# Parameters
+    /// - [`instance`] is the debug stream’s [`Instance`].
+    /// - [`flags`] specifies the [`DebugReportFlagBitsEXT`] classification of this event/message.
+    /// - [`object_type`] is a [`DebugReportObjectTypeEXT`] specifying the type of object being used
+    ///   or created at the time the event was triggered.
+    /// - [`object`] is the object where the issue was detected. [`object`] **can**  be
+    ///   [`crate::Handle::null`] if there is no object associated with the event.
+    /// - [`location`] is an application defined value.
+    /// - [`message_code`] is an application defined value.
+    /// - [`p_layer_prefix`] is the abbreviation of the component making this event/message.
+    /// - [`p_message`] is a null-terminated string detailing the trigger conditions.
+    ///# Description
+    ///The call will propagate through the layers and generate callback(s) as
+    ///indicated by the message’s flags.
+    ///The parameters are passed on to the callback in addition to the
+    ///`pUserData` value that was defined at the time the callback was
+    ///registered.
+    ///## Valid Usage
+    /// - [`object`] **must**  be a Vulkan object or [`crate::Handle::null`]
+    /// -    If [`object_type`] is not `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT` and [`object`] is not [`crate::Handle::null`], [`object`] **must**  be a Vulkan object of the corresponding type associated with [`object_type`] as defined in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types)
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`instance`] **must**  be a valid [`Instance`] handle
+    /// - [`flags`] **must**  be a valid combination of [`DebugReportFlagBitsEXT`] values
+    /// - [`flags`] **must**  not be `0`
+    /// - [`object_type`] **must**  be a valid [`DebugReportObjectTypeEXT`] value
+    /// - [`p_layer_prefix`] **must**  be a null-terminated UTF-8 string
+    /// - [`p_message`] **must**  be a null-terminated UTF-8 string
+    ///# Related
+    /// - [`VK_EXT_debug_report`]
+    /// - [`DebugReportFlagsEXT`]
+    /// - [`DebugReportObjectTypeEXT`]
+    /// - [`Instance`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDebugReportMessageEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn debug_report_message_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Instance>,
+        flags: DebugReportFlagsEXT,
+        object_type: DebugReportObjectTypeEXT,
+        object: Option<u64>,
+        location: Option<usize>,
+        message_code: Option<i32>,
+        p_layer_prefix: &CStr,
+        p_message: &CStr,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_debug_report()
+            .expect("extension/version not loaded")
+            .debug_report_message_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_debug_report()
+            .unwrap_unchecked()
+            .debug_report_message_ext()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            flags,
+            object_type,
+            object.unwrap_or_default() as _,
+            location.unwrap_or_default() as _,
+            message_code.unwrap_or_default() as _,
+            p_layer_prefix.as_ptr(),
+            p_message.as_ptr(),
+        );
+        ()
     }
 }
 ///[VkDebugReportCallbackEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugReportCallbackEXT.html) - Opaque handle to a debug report callback object
@@ -1075,7 +1346,34 @@ impl Default for DebugReportCallbackEXT {
         Self::null()
     }
 }
-///The V-table of [`Instance`] for functions from VK_EXT_debug_report
+impl Handle for DebugReportCallbackEXT {
+    type Parent<'a> = Unique<'a, Instance>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.instance()
+            .destroy_debug_report_callback_ext(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, DebugReportCallbackEXT> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent()
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_EXT_debug_report`
 pub struct InstanceExtDebugReportVTable {
     ///See [`FNCreateDebugReportCallbackExt`] for more information.
     pub create_debug_report_callback_ext: FNCreateDebugReportCallbackExt,
@@ -1086,19 +1384,29 @@ pub struct InstanceExtDebugReportVTable {
 }
 impl InstanceExtDebugReportVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             create_debug_report_callback_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateDebugReportCallbackEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateDebugReportCallbackEXT").as_ptr(),
+                ))
             },
             destroy_debug_report_callback_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyDebugReportCallbackEXT")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDestroyDebugReportCallbackEXT").as_ptr(),
+                ))
             },
             debug_report_message_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDebugReportMessageEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDebugReportMessageEXT").as_ptr()))
             },
         }
     }

@@ -61,7 +61,7 @@ pub const KHR_BIND_MEMORY_2_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_BIND_MEMORY_2_EXTENSION_NAME")]
 pub const KHR_BIND_MEMORY_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_bind_memory2");
-///The V-table of [`Device`] for functions from VK_KHR_bind_memory2
+///The V-table of [`Device`] for functions from `VK_KHR_bind_memory2`
 pub struct DeviceKhrBindMemory2VTable {
     ///See [`FNBindBufferMemory2`] for more information.
     pub bind_buffer_memory2: FNBindBufferMemory2,
@@ -70,16 +70,20 @@ pub struct DeviceKhrBindMemory2VTable {
 }
 impl DeviceKhrBindMemory2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             bind_buffer_memory2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindBufferMemory2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindBufferMemory2KHR").as_ptr()))
             },
             bind_image_memory2: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindImageMemory2KHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindImageMemory2KHR").as_ptr()))
             },
         }
     }

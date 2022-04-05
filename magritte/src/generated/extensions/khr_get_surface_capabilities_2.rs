@@ -67,8 +67,9 @@
 use crate::{
     extensions::khr_surface::{SurfaceCapabilitiesKHR, SurfaceFormatKHR, SurfaceKHR},
     vulkan1_0::{BaseInStructure, BaseOutStructure, Instance, PhysicalDevice, StructureType, VulkanResultCodes},
+    AsRaw, SmallVec, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION")]
@@ -180,8 +181,8 @@ pub type FNGetPhysicalDeviceSurfaceCapabilities2Khr = Option<
 ///## Valid Usage
 /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
 ///   **must**  be a valid [`SurfaceKHR`] handle
-/// - If `pSurfaceInfo->surface` is not [`crate::utils::Handle::null`], it  **must**  be supported
-///   by [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+/// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
+///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
 ///   equivalent platform-specific mechanism
 ///
 ///## Valid Usage (Implicit)
@@ -260,16 +261,14 @@ pub type FNGetPhysicalDeviceSurfaceFormats2Khr = Option<
 /// - When passed as the `pSurfaceInfo` parameter of
 ///   [`get_physical_device_surface_capabilities2_khr`], if the `[`VK_GOOGLE_surfaceless_query`]`
 ///   extension is enabled and the [`p_next`] chain of the `pSurfaceCapabilities` parameter includes
-///   [`SurfaceProtectedCapabilitiesKHR`], then [`surface`] **can**  be
-///   [`crate::utils::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`]
-///   handle
+///   [`SurfaceProtectedCapabilitiesKHR`], then [`surface`] **can**  be [`crate::Handle::null`].
+///   Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_formats2_khr`],
 ///   if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be
-///   [`crate::utils::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`]
-///   handle
+///   [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - When passed as the `pSurfaceInfo` parameter of
 ///   [`get_physical_device_surface_present_modes2_ext`], if the `[`VK_GOOGLE_surfaceless_query`]`
-///   extension is enabled, then [`surface`] **can**  be [`crate::utils::Handle::null`]. Otherwise,
+///   extension is enabled, then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise,
 ///   [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 ///
 ///## Valid Usage (Implicit)
@@ -278,8 +277,8 @@ pub type FNGetPhysicalDeviceSurfaceFormats2Khr = Option<
 ///   be either `NULL` or a pointer to a valid instance of [`SurfaceFullScreenExclusiveInfoEXT`] or
 ///   [`SurfaceFullScreenExclusiveWin32InfoEXT`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// - If [`surface`] is not [`crate::utils::Handle::null`], [`surface`] **must**  be a valid
-///   [`SurfaceKHR`] handle
+/// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid [`SurfaceKHR`]
+///   handle
 ///# Related
 /// - [`VK_KHR_get_surface_capabilities2`]
 /// - [`StructureType`]
@@ -327,7 +326,7 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -354,18 +353,18 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
     pub fn surface_mut(&mut self) -> &mut SurfaceKHR {
         &mut self.surface
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::surface`]
-    pub fn set_surface(&mut self, value: crate::extensions::khr_surface::SurfaceKHR) -> &mut Self {
+    ///Sets the value of [`Self::surface`]
+    pub fn set_surface(mut self, value: crate::extensions::khr_surface::SurfaceKHR) -> Self {
         self.surface = value;
         self
     }
@@ -408,7 +407,7 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilities2KHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceCapabilities2KHR<'lt> {
@@ -435,11 +434,11 @@ impl<'lt> Default for SurfaceCapabilities2KHR<'lt> {
 }
 impl<'lt> SurfaceCapabilities2KHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -473,21 +472,18 @@ impl<'lt> SurfaceCapabilities2KHR<'lt> {
     pub fn surface_capabilities_mut(&mut self) -> &mut SurfaceCapabilitiesKHR {
         &mut self.surface_capabilities
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::surface_capabilities`]
-    pub fn set_surface_capabilities(
-        &mut self,
-        value: crate::extensions::khr_surface::SurfaceCapabilitiesKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::surface_capabilities`]
+    pub fn set_surface_capabilities(mut self, value: crate::extensions::khr_surface::SurfaceCapabilitiesKHR) -> Self {
         self.surface_capabilities = value;
         self
     }
@@ -526,7 +522,7 @@ impl<'lt> SurfaceCapabilities2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceFormat2KHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SurfaceFormat2KHR<'lt> {
@@ -553,11 +549,11 @@ impl<'lt> Default for SurfaceFormat2KHR<'lt> {
 }
 impl<'lt> SurfaceFormat2KHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -591,23 +587,241 @@ impl<'lt> SurfaceFormat2KHR<'lt> {
     pub fn surface_format_mut(&mut self) -> &mut SurfaceFormatKHR {
         &mut self.surface_format
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::surface_format`]
-    pub fn set_surface_format(&mut self, value: crate::extensions::khr_surface::SurfaceFormatKHR) -> &mut Self {
+    ///Sets the value of [`Self::surface_format`]
+    pub fn set_surface_format(mut self, value: crate::extensions::khr_surface::SurfaceFormatKHR) -> Self {
         self.surface_format = value;
         self
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_get_surface_capabilities2
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfaceCapabilities2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2KHR.html) - Reports capabilities of a surface on a physical device
+    ///# C Specifications
+    ///To query the basic capabilities of a surface defined by the core or
+    ///extensions, call:
+    ///```c
+    ///// Provided by VK_KHR_get_surface_capabilities2
+    ///VkResult vkGetPhysicalDeviceSurfaceCapabilities2KHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    const VkPhysicalDeviceSurfaceInfo2KHR*      pSurfaceInfo,
+    ///    VkSurfaceCapabilities2KHR*                  pSurfaceCapabilities);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`p_surface_info`] is a pointer to a [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    ///   describing the surface and other fixed parameters that would be consumed by
+    ///   [`create_swapchain_khr`].
+    /// - [`p_surface_capabilities`] is a pointer to a [`SurfaceCapabilities2KHR`] structure in
+    ///   which the capabilities are returned.
+    ///# Description
+    ///[`get_physical_device_surface_capabilities2_khr`] behaves similarly to
+    ///[`get_physical_device_surface_capabilities_khr`], with the ability to specify
+    ///extended inputs via chained input structures, and to return extended
+    ///information via chained output structures.
+    ///## Valid Usage
+    /// - `pSurfaceInfo->surface` **must**  be a valid [`SurfaceKHR`] handle
+    /// - `pSurfaceInfo->surface` **must**  be supported by [`physical_device`], as reported by
+    ///   [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
+    ///
+    /// - If a [`SurfaceCapabilitiesFullScreenExclusiveEXT`] structure is included in the `pNext`
+    ///   chain of [`p_surface_capabilities`], a [`SurfaceFullScreenExclusiveWin32InfoEXT`]
+    ///   structure  **must**  be included in the `pNext` chain of [`p_surface_info`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_surface_info`] **must**  be a valid pointer to a valid
+    ///   [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    /// - [`p_surface_capabilities`] **must**  be a valid pointer to a [`SurfaceCapabilities2KHR`]
+    ///   structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_get_surface_capabilities2`]
+    /// - [`PhysicalDevice`]
+    /// - [`PhysicalDeviceSurfaceInfo2KHR`]
+    /// - [`SurfaceCapabilities2KHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilities2KHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_capabilities2_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
+    ) -> VulkanResult<SurfaceCapabilities2KHR<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_get_surface_capabilities_2()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_capabilities2_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_get_surface_capabilities_2()
+            .unwrap_unchecked()
+            .get_physical_device_surface_capabilities2_khr()
+            .unwrap_unchecked();
+        let mut p_surface_capabilities = MaybeUninit::<SurfaceCapabilities2KHR<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
+            p_surface_capabilities.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_surface_capabilities.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceSurfaceFormats2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceFormats2KHR.html) - Query color formats supported by surface
+    ///# C Specifications
+    ///To query the supported swapchain format tuples for a surface, call:
+    ///```c
+    ///// Provided by VK_KHR_get_surface_capabilities2
+    ///VkResult vkGetPhysicalDeviceSurfaceFormats2KHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    const VkPhysicalDeviceSurfaceInfo2KHR*      pSurfaceInfo,
+    ///    uint32_t*                                   pSurfaceFormatCount,
+    ///    VkSurfaceFormat2KHR*                        pSurfaceFormats);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device that will be associated with the swapchain to
+    ///   be created, as described for [`create_swapchain_khr`].
+    /// - [`p_surface_info`] is a pointer to a [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    ///   describing the surface and other fixed parameters that would be consumed by
+    ///   [`create_swapchain_khr`].
+    /// - [`p_surface_format_count`] is a pointer to an integer related to the number of format
+    ///   tuples available or queried, as described below.
+    /// - [`p_surface_formats`] is either `NULL` or a pointer to an array of [`SurfaceFormat2KHR`]
+    ///   structures.
+    ///# Description
+    ///[`get_physical_device_surface_formats2_khr`] behaves similarly to
+    ///[`get_physical_device_surface_formats_khr`], with the ability to be extended
+    ///via `pNext` chains.If [`p_surface_formats`] is `NULL`, then the number of format tuples
+    ///supported for the given `surface` is returned in
+    ///[`p_surface_format_count`].
+    ///Otherwise, [`p_surface_format_count`] **must**  point to a variable set by the
+    ///user to the number of elements in the [`p_surface_formats`] array, and on
+    ///return the variable is overwritten with the number of structures actually
+    ///written to [`p_surface_formats`].
+    ///If the value of [`p_surface_format_count`] is less than the number of format
+    ///tuples supported, at most [`p_surface_format_count`] structures will be
+    ///written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available values were
+    ///returned.
+    ///## Valid Usage
+    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
+    ///   **must**  be a valid [`SurfaceKHR`] handle
+    /// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
+    ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
+    ///   equivalent platform-specific mechanism
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_surface_info`] **must**  be a valid pointer to a valid
+    ///   [`PhysicalDeviceSurfaceInfo2KHR`] structure
+    /// - [`p_surface_format_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_surface_format_count`] is not `0`, and
+    ///   [`p_surface_formats`] is not `NULL`, [`p_surface_formats`] **must**  be a valid pointer to
+    ///   an array of [`p_surface_format_count`][`SurfaceFormat2KHR`] structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_SURFACE_LOST_KHR`
+    ///# Related
+    /// - [`VK_KHR_get_surface_capabilities2`]
+    /// - [`PhysicalDevice`]
+    /// - [`PhysicalDeviceSurfaceInfo2KHR`]
+    /// - [`SurfaceFormat2KHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceSurfaceFormats2KHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_surface_formats2_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
+        p_surface_format_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<SurfaceFormat2KHR<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_get_surface_capabilities_2()
+            .expect("extension/version not loaded")
+            .get_physical_device_surface_formats2_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_get_surface_capabilities_2()
+            .unwrap_unchecked()
+            .get_physical_device_surface_formats2_khr()
+            .unwrap_unchecked();
+        let mut p_surface_format_count = match p_surface_format_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_surface_formats =
+            SmallVec::<SurfaceFormat2KHR<'lt>>::from_elem(Default::default(), p_surface_format_count as usize);
+        let _return = _function(
+            self.as_raw(),
+            p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
+            &mut p_surface_format_count,
+            p_surface_formats.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_surface_formats)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_get_surface_capabilities2`
 pub struct InstanceKhrGetSurfaceCapabilities2VTable {
     ///See [`FNGetPhysicalDeviceSurfaceCapabilities2Khr`] for more information.
     pub get_physical_device_surface_capabilities2_khr: FNGetPhysicalDeviceSurfaceCapabilities2Khr,
@@ -616,19 +830,26 @@ pub struct InstanceKhrGetSurfaceCapabilities2VTable {
 }
 impl InstanceKhrGetSurfaceCapabilities2VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_surface_capabilities2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilities2KHR"),
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceCapabilities2KHR").as_ptr(),
                 ))
             },
             get_physical_device_surface_formats2_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPhysicalDeviceSurfaceFormats2KHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetPhysicalDeviceSurfaceFormats2KHR").as_ptr(),
+                ))
             },
         }
     }

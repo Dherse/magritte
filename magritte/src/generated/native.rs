@@ -1,74 +1,73 @@
 #![allow(non_camel_case_types)]
-use std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type Display = c_void;
+pub type Display = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type VisualID = c_void;
+pub type VisualID = std::os::raw::c_ulong;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type Window = c_void;
+pub type Window = std::os::raw::c_ulong;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type RROutput = c_void;
+pub type RROutput = std::os::raw::c_ulong;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type wl_display = c_void;
+pub type wl_display = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type wl_surface = c_void;
+pub type wl_surface = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type HINSTANCE = c_void;
+pub type HINSTANCE = isize;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type HWND = c_void;
+pub type HWND = isize;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type HMONITOR = c_void;
+pub type HMONITOR = isize;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type HANDLE = c_void;
+pub type HANDLE = isize;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type SECURITY_ATTRIBUTES = c_void;
+pub type SECURITY_ATTRIBUTES = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type DWORD = c_void;
+pub type DWORD = u32;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type LPCWSTR = c_void;
+pub type LPCWSTR = *const u16;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type xcb_connection_t = c_void;
+pub type xcb_connection_t = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type xcb_visualid_t = c_void;
+pub type xcb_visualid_t = u32;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type xcb_window_t = c_void;
+pub type xcb_window_t = u32;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type IDirectFB = c_void;
+pub type IDirectFB = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type IDirectFBSurface = c_void;
+pub type IDirectFBSurface = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type zx_handle_t = c_void;
+pub type zx_handle_t = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type GgpStreamDescriptor = c_void;
+pub type GgpStreamDescriptor = u32;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type GgpFrameToken = c_void;
+pub type GgpFrameToken = u64;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type _screen_context = c_void;
+pub type _screen_context = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type _screen_window = c_void;
+pub type _screen_window = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 pub type StdVideoH264ProfileIdc = crate::video::StdVideoH264ProfileIdc;

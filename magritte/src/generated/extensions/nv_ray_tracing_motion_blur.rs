@@ -288,7 +288,7 @@ impl std::fmt::Debug for AccelerationStructureMotionInstanceFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingMotionBlurFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
@@ -320,8 +320,8 @@ impl<'lt> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::ray_tracing_motion_blur`]
     pub fn ray_tracing_motion_blur_raw(&self) -> Bool32 {
@@ -332,17 +332,17 @@ impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
         self.ray_tracing_motion_blur_pipeline_trace_rays_indirect
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::ray_tracing_motion_blur`]
-    pub fn set_ray_tracing_motion_blur_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ray_tracing_motion_blur_raw(mut self, value: Bool32) -> Self {
         self.ray_tracing_motion_blur = value;
         self
     }
     ///Sets the raw value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
-    pub fn set_ray_tracing_motion_blur_pipeline_trace_rays_indirect_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_ray_tracing_motion_blur_pipeline_trace_rays_indirect_raw(mut self, value: Bool32) -> Self {
         self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = value;
         self
     }
@@ -413,23 +413,23 @@ impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::ray_tracing_motion_blur`]
-    pub fn set_ray_tracing_motion_blur(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_tracing_motion_blur`]
+    pub fn set_ray_tracing_motion_blur(mut self, value: bool) -> Self {
         self.ray_tracing_motion_blur = value as u8 as u32;
         self
     }
-    ///Sets the raw value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
-    pub fn set_ray_tracing_motion_blur_pipeline_trace_rays_indirect(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::ray_tracing_motion_blur_pipeline_trace_rays_indirect`]
+    pub fn set_ray_tracing_motion_blur_pipeline_trace_rays_indirect(mut self, value: bool) -> Self {
         self.ray_tracing_motion_blur_pipeline_trace_rays_indirect = value as u8 as u32;
         self
     }
@@ -508,7 +508,7 @@ impl<'lt> AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -535,21 +535,21 @@ impl<'lt> AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
     pub fn vertex_data_mut(&mut self) -> &mut DeviceOrHostAddressConstKHR {
         &mut self.vertex_data
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::vertex_data`]
+    ///Sets the value of [`Self::vertex_data`]
     pub fn set_vertex_data(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_acceleration_structure::DeviceOrHostAddressConstKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.vertex_data = value;
         self
     }
@@ -623,7 +623,7 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -658,26 +658,26 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
     pub fn flags_mut(&mut self) -> &mut AccelerationStructureMotionInfoFlagsNV {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::max_instances`]
-    pub fn set_max_instances(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_instances`]
+    pub fn set_max_instances(mut self, value: u32) -> Self {
         self.max_instances = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInfoFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
@@ -728,30 +728,30 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///The first is a matrix S, consisting of a scale, shear, and translation,
 ///usually used to define the pivot point of the following rotation.
 ///This matrix is constructed from the parameters above by:<span class="katex"><span
-/// aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
-/// style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault"
-/// style="margin-right:0.05764em;">S</span><span style="margin-right:0.2777777777777778em;"
+/// class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+/// style="height:0.68333em;vertical-align:0em;"></span><span style="margin-right:0.05764em;"
+/// class="mord mathdefault">S</span><span style="margin-right:0.2777777777777778em;"
 /// class="mspace"></span><span class="mrel">=</span><span
 /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
-/// class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span
+/// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
 /// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
 /// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
 /// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">s</span><span class="mord mathdefault">x</span></span></span><span
 /// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
@@ -761,34 +761,35 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// style="margin-right:0.03588em;" class="mord mathdefault">y</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
 /// style="width:0.5em;"></span><span style="width:0.5em;" class="arraycolsep"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
 /// class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span style="width:0.5em;" class="arraycolsep"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span style="height:3em;"
-/// class="pstrut"></span><span class="mord"><span class="mord mathdefault">p</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord
-/// mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">v</span><span
-/// style="margin-right:0.03588em;" class="mord mathdefault">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
+/// style="width:0.5em;" class="arraycolsep"></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">p</span><span style="margin-right:0.03588em;" class="mord
+/// mathdefault">v</span><span class="mord mathdefault">x</span></span></span><span
+/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">v</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">v</span><span style="margin-right:0.03588em;" class="mord
+/// mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">p</span><span style="margin-right:0.03588em;" class="mord
+/// mathdefault">v</span><span class="mord mathdefault"
 /// style="margin-right:0.04398em;">z</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
@@ -797,13 +798,13 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
 /// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
-/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
-/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
-/// span></span>The rotation quaternion is defined as:
+/// class="vlist-r"><span style="height:1.55002em;"
+/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
+/// rotation quaternion is defined as:
 /// * `R` = [ [`qx`], [`qy`], [`qz`], [`qw`] ]
 ///This is a rotation around a conceptual normalized axis [ ax, ay, az ]
 ///of amount `theta` such that:
@@ -812,64 +813,65 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// * [`qw`] = cos(`theta`/2)
 ///Finally, the transform has a translation T constructed from the parameters
 ///above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
-/// class="base"><span style="height:0.68333em;vertical-align:0em;" class="strut"></span><span
-/// style="margin-right:0.13889em;" class="mord mathdefault">T</span><span class="mspace"
-/// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
+/// class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+/// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span
+/// style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+/// class="mrel">=</span><span class="mspace"
+/// style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
 /// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
 /// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
-/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
-/// class="pstrut"></span><span class="delimsizinginner
+/// style="top:-2.2500000000000004em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span
-/// class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
-/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span
-/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
 /// class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span
-/// class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span
+/// class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span style="width:0.5em;" class="arraycolsep"></span><span
+/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
+/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord">1</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord">0</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
+/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord">0</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord">1</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
 /// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span
+/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="mord"><span class="mord mathdefault">t</span><span
 /// class="mord mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">t</span><span class="mord mathdefault"
 /// style="margin-right:0.03588em;">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord mathdefault">t</span><span style="margin-right:0.04398em;"
-/// class="mord mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span class="vlist"
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord mathdefault">t</span><span class="mord mathdefault"
+/// style="margin-right:0.04398em;">z</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
 /// span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
@@ -880,9 +882,9 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
-/// effective derived transform is then given by
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
+/// span></span>The effective derived transform is then given by
 /// * `T` × `R` × `S`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
@@ -1085,83 +1087,83 @@ impl SrtDataNV {
     pub fn tz_mut(&mut self) -> &mut f32 {
         &mut self.tz
     }
-    ///Sets the raw value of [`Self::sx`]
-    pub fn set_sx(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::sx`]
+    pub fn set_sx(mut self, value: f32) -> Self {
         self.sx = value;
         self
     }
-    ///Sets the raw value of [`Self::a`]
-    pub fn set_a(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::a`]
+    pub fn set_a(mut self, value: f32) -> Self {
         self.a = value;
         self
     }
-    ///Sets the raw value of [`Self::b`]
-    pub fn set_b(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::b`]
+    pub fn set_b(mut self, value: f32) -> Self {
         self.b = value;
         self
     }
-    ///Sets the raw value of [`Self::pvx`]
-    pub fn set_pvx(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::pvx`]
+    pub fn set_pvx(mut self, value: f32) -> Self {
         self.pvx = value;
         self
     }
-    ///Sets the raw value of [`Self::sy`]
-    pub fn set_sy(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::sy`]
+    pub fn set_sy(mut self, value: f32) -> Self {
         self.sy = value;
         self
     }
-    ///Sets the raw value of [`Self::c`]
-    pub fn set_c(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::c`]
+    pub fn set_c(mut self, value: f32) -> Self {
         self.c = value;
         self
     }
-    ///Sets the raw value of [`Self::pvy`]
-    pub fn set_pvy(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::pvy`]
+    pub fn set_pvy(mut self, value: f32) -> Self {
         self.pvy = value;
         self
     }
-    ///Sets the raw value of [`Self::sz`]
-    pub fn set_sz(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::sz`]
+    pub fn set_sz(mut self, value: f32) -> Self {
         self.sz = value;
         self
     }
-    ///Sets the raw value of [`Self::pvz`]
-    pub fn set_pvz(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::pvz`]
+    pub fn set_pvz(mut self, value: f32) -> Self {
         self.pvz = value;
         self
     }
-    ///Sets the raw value of [`Self::qx`]
-    pub fn set_qx(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::qx`]
+    pub fn set_qx(mut self, value: f32) -> Self {
         self.qx = value;
         self
     }
-    ///Sets the raw value of [`Self::qy`]
-    pub fn set_qy(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::qy`]
+    pub fn set_qy(mut self, value: f32) -> Self {
         self.qy = value;
         self
     }
-    ///Sets the raw value of [`Self::qz`]
-    pub fn set_qz(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::qz`]
+    pub fn set_qz(mut self, value: f32) -> Self {
         self.qz = value;
         self
     }
-    ///Sets the raw value of [`Self::qw`]
-    pub fn set_qw(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::qw`]
+    pub fn set_qw(mut self, value: f32) -> Self {
         self.qw = value;
         self
     }
-    ///Sets the raw value of [`Self::tx`]
-    pub fn set_tx(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::tx`]
+    pub fn set_tx(mut self, value: f32) -> Self {
         self.tx = value;
         self
     }
-    ///Sets the raw value of [`Self::ty`]
-    pub fn set_ty(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::ty`]
+    pub fn set_ty(mut self, value: f32) -> Self {
         self.ty = value;
         self
     }
-    ///Sets the raw value of [`Self::tz`]
-    pub fn set_tz(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::tz`]
+    pub fn set_tz(mut self, value: f32) -> Self {
         self.tz = value;
         self
     }
@@ -1337,41 +1339,38 @@ impl AccelerationStructureSrtMotionInstanceNV {
     pub fn acceleration_structure_reference_mut(&mut self) -> &mut u64 {
         &mut self.acceleration_structure_reference
     }
-    ///Sets the raw value of [`Self::transform_t_0`]
-    pub fn set_transform_t_0(&mut self, value: crate::extensions::nv_ray_tracing_motion_blur::SrtDataNV) -> &mut Self {
+    ///Sets the value of [`Self::transform_t_0`]
+    pub fn set_transform_t_0(mut self, value: crate::extensions::nv_ray_tracing_motion_blur::SrtDataNV) -> Self {
         self.transform_t_0 = value;
         self
     }
-    ///Sets the raw value of [`Self::transform_t_1`]
-    pub fn set_transform_t_1(&mut self, value: crate::extensions::nv_ray_tracing_motion_blur::SrtDataNV) -> &mut Self {
+    ///Sets the value of [`Self::transform_t_1`]
+    pub fn set_transform_t_1(mut self, value: crate::extensions::nv_ray_tracing_motion_blur::SrtDataNV) -> Self {
         self.transform_t_1 = value;
         self
     }
-    ///Sets the raw value of [`Self::instance_custom_index`]
-    pub fn set_instance_custom_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::instance_custom_index`]
+    pub fn set_instance_custom_index(mut self, value: u32) -> Self {
         self.instance_custom_index = value;
         self
     }
-    ///Sets the raw value of [`Self::mask`]
-    pub fn set_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::mask`]
+    pub fn set_mask(mut self, value: u32) -> Self {
         self.mask = value;
         self
     }
-    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn set_instance_shader_binding_table_record_offset(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn set_instance_shader_binding_table_record_offset(mut self, value: u32) -> Self {
         self.instance_shader_binding_table_record_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn set_acceleration_structure_reference(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::acceleration_structure_reference`]
+    pub fn set_acceleration_structure_reference(mut self, value: u64) -> Self {
         self.acceleration_structure_reference = value;
         self
     }
@@ -1548,47 +1547,44 @@ impl AccelerationStructureMatrixMotionInstanceNV {
     pub fn acceleration_structure_reference_mut(&mut self) -> &mut u64 {
         &mut self.acceleration_structure_reference
     }
-    ///Sets the raw value of [`Self::transform_t_0`]
+    ///Sets the value of [`Self::transform_t_0`]
     pub fn set_transform_t_0(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_acceleration_structure::TransformMatrixKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.transform_t_0 = value;
         self
     }
-    ///Sets the raw value of [`Self::transform_t_1`]
+    ///Sets the value of [`Self::transform_t_1`]
     pub fn set_transform_t_1(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_acceleration_structure::TransformMatrixKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.transform_t_1 = value;
         self
     }
-    ///Sets the raw value of [`Self::instance_custom_index`]
-    pub fn set_instance_custom_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::instance_custom_index`]
+    pub fn set_instance_custom_index(mut self, value: u32) -> Self {
         self.instance_custom_index = value;
         self
     }
-    ///Sets the raw value of [`Self::mask`]
-    pub fn set_mask(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::mask`]
+    pub fn set_mask(mut self, value: u32) -> Self {
         self.mask = value;
         self
     }
-    ///Sets the raw value of [`Self::instance_shader_binding_table_record_offset`]
-    pub fn set_instance_shader_binding_table_record_offset(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::instance_shader_binding_table_record_offset`]
+    pub fn set_instance_shader_binding_table_record_offset(mut self, value: u32) -> Self {
         self.instance_shader_binding_table_record_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(
-        &mut self,
-        value: crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::acceleration_structure_reference`]
-    pub fn set_acceleration_structure_reference(&mut self, value: u64) -> &mut Self {
+    ///Sets the value of [`Self::acceleration_structure_reference`]
+    pub fn set_acceleration_structure_reference(mut self, value: u64) -> Self {
         self.acceleration_structure_reference = value;
         self
     }
@@ -1692,27 +1688,27 @@ impl AccelerationStructureMotionInstanceNV {
     pub fn data_mut(&mut self) -> &mut AccelerationStructureMotionInstanceDataNV {
         &mut self.data
     }
-    ///Sets the raw value of [`Self::type_`]
+    ///Sets the value of [`Self::type_`]
     pub fn set_type_(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInstanceTypeNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.type_ = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInstanceFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::data`]
+    ///Sets the value of [`Self::data`]
     pub fn set_data(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInstanceDataNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.data = value;
         self
     }

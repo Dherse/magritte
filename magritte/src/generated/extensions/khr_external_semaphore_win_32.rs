@@ -82,6 +82,7 @@ use crate::{
     native::{DWORD, HANDLE, LPCWSTR, SECURITY_ATTRIBUTES},
     vulkan1_0::{BaseInStructure, Device, Semaphore, StructureType, VulkanResultCodes},
     vulkan1_1::{ExternalSemaphoreHandleTypeFlagBits, SemaphoreImportFlags},
+    AsRaw, Unique, VulkanResult,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -323,17 +324,17 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
         &self.name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::handle`]
-    pub fn set_handle_raw(&mut self, value: HANDLE) -> &mut Self {
+    pub fn set_handle_raw(mut self, value: HANDLE) -> Self {
         self.handle = value;
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: LPCWSTR) -> &mut Self {
+    pub fn set_name_raw(mut self, value: LPCWSTR) -> Self {
         self.name = value;
         self
     }
@@ -361,12 +362,12 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
         self.handle_type
     }
     ///Gets the value of [`Self::handle`]
-    pub fn handle(&self) -> &HANDLE {
-        &self.handle
+    pub fn handle(&self) -> HANDLE {
+        self.handle
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &LPCWSTR {
-        &self.name
+    pub fn name(&self) -> LPCWSTR {
+        self.name
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -392,38 +393,38 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
     pub fn name_mut(&mut self) -> &mut LPCWSTR {
         &mut self.name
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::semaphore`]
-    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+    ///Sets the value of [`Self::semaphore`]
+    pub fn set_semaphore(mut self, value: crate::vulkan1_0::Semaphore) -> Self {
         self.semaphore = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::vulkan1_1::SemaphoreImportFlags) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::vulkan1_1::SemaphoreImportFlags) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
-    ///Sets the raw value of [`Self::handle`]
-    pub fn set_handle(&mut self, value: crate::native::HANDLE) -> &mut Self {
+    ///Sets the value of [`Self::handle`]
+    pub fn set_handle(mut self, value: crate::native::HANDLE) -> Self {
         self.handle = value;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: crate::native::LPCWSTR) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: crate::native::LPCWSTR) -> Self {
         self.name = value;
         self
     }
@@ -539,17 +540,17 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
         &self.name
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::dw_access`]
-    pub fn set_dw_access_raw(&mut self, value: DWORD) -> &mut Self {
+    pub fn set_dw_access_raw(mut self, value: DWORD) -> Self {
         self.dw_access = value;
         self
     }
     ///Sets the raw value of [`Self::name`]
-    pub fn set_name_raw(&mut self, value: LPCWSTR) -> &mut Self {
+    pub fn set_name_raw(mut self, value: LPCWSTR) -> Self {
         self.name = value;
         self
     }
@@ -565,19 +566,16 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::attributes`]
-    ///# Safety
-    ///This function converts a pointer into a value which may be invalid, make sure
-    ///that the pointer is valid before dereferencing.
-    pub unsafe fn attributes(&self) -> &SECURITY_ATTRIBUTES {
-        &*self.attributes
+    pub fn attributes(&self) -> *const SECURITY_ATTRIBUTES {
+        self.attributes
     }
     ///Gets the value of [`Self::dw_access`]
-    pub fn dw_access(&self) -> &DWORD {
-        &self.dw_access
+    pub fn dw_access(&self) -> DWORD {
+        self.dw_access
     }
     ///Gets the value of [`Self::name`]
-    pub fn name(&self) -> &LPCWSTR {
-        &self.name
+    pub fn name(&self) -> LPCWSTR {
+        self.name
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -591,28 +589,28 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
     pub fn name_mut(&mut self) -> &mut LPCWSTR {
         &mut self.name
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::attributes`]
-    pub fn set_attributes(&mut self, value: &'lt crate::native::SECURITY_ATTRIBUTES) -> &mut Self {
-        self.attributes = value as *const _;
+    ///Sets the value of [`Self::attributes`]
+    pub fn set_attributes(mut self, value: *const crate::native::SECURITY_ATTRIBUTES) -> Self {
+        self.attributes = value;
         self
     }
-    ///Sets the raw value of [`Self::dw_access`]
-    pub fn set_dw_access(&mut self, value: crate::native::DWORD) -> &mut Self {
+    ///Sets the value of [`Self::dw_access`]
+    pub fn set_dw_access(mut self, value: crate::native::DWORD) -> Self {
         self.dw_access = value;
         self
     }
-    ///Sets the raw value of [`Self::name`]
-    pub fn set_name(&mut self, value: crate::native::LPCWSTR) -> &mut Self {
+    ///Sets the value of [`Self::name`]
+    pub fn set_name(mut self, value: crate::native::LPCWSTR) -> Self {
         self.name = value;
         self
     }
@@ -735,17 +733,17 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
         self.signal_semaphore_values
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::wait_semaphore_values`]
-    pub fn set_wait_semaphore_values_raw(&mut self, value: *const u64) -> &mut Self {
+    pub fn set_wait_semaphore_values_raw(mut self, value: *const u64) -> Self {
         self.wait_semaphore_values = value;
         self
     }
     ///Sets the raw value of [`Self::signal_semaphore_values`]
-    pub fn set_signal_semaphore_values_raw(&mut self, value: *const u64) -> &mut Self {
+    pub fn set_signal_semaphore_values_raw(mut self, value: *const u64) -> Self {
         self.signal_semaphore_values = value;
         self
     }
@@ -797,36 +795,36 @@ impl<'lt> D3D12FenceSubmitInfoKHR<'lt> {
     pub fn signal_semaphore_values_count_mut(&mut self) -> &mut u32 {
         &mut self.signal_semaphore_values_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_values_count`]
-    pub fn set_wait_semaphore_values_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::wait_semaphore_values_count`]
+    pub fn set_wait_semaphore_values_count(mut self, value: u32) -> Self {
         self.wait_semaphore_values_count = value;
         self
     }
-    ///Sets the raw value of [`Self::wait_semaphore_values`]
-    pub fn set_wait_semaphore_values(&mut self, value: &'lt [u64]) -> &mut Self {
+    ///Sets the value of [`Self::wait_semaphore_values`]
+    pub fn set_wait_semaphore_values(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.wait_semaphore_values = value.as_ptr();
         self.wait_semaphore_values_count = len_;
         self
     }
-    ///Sets the raw value of [`Self::signal_semaphore_values_count`]
-    pub fn set_signal_semaphore_values_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::signal_semaphore_values_count`]
+    pub fn set_signal_semaphore_values_count(mut self, value: u32) -> Self {
         self.signal_semaphore_values_count = value;
         self
     }
-    ///Sets the raw value of [`Self::signal_semaphore_values`]
-    pub fn set_signal_semaphore_values(&mut self, value: &'lt [u64]) -> &mut Self {
+    ///Sets the value of [`Self::signal_semaphore_values`]
+    pub fn set_signal_semaphore_values(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.signal_semaphore_values = value.as_ptr();
@@ -922,7 +920,7 @@ impl<'lt> SemaphoreGetWin32HandleInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -957,28 +955,183 @@ impl<'lt> SemaphoreGetWin32HandleInfoKHR<'lt> {
     pub fn handle_type_mut(&mut self) -> &mut ExternalSemaphoreHandleTypeFlagBits {
         &mut self.handle_type
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::semaphore`]
-    pub fn set_semaphore(&mut self, value: crate::vulkan1_0::Semaphore) -> &mut Self {
+    ///Sets the value of [`Self::semaphore`]
+    pub fn set_semaphore(mut self, value: crate::vulkan1_0::Semaphore) -> Self {
         self.semaphore = value;
         self
     }
-    ///Sets the raw value of [`Self::handle_type`]
-    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+    ///Sets the value of [`Self::handle_type`]
+    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_external_semaphore_win32
+impl Device {
+    ///[vkGetSemaphoreWin32HandleKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSemaphoreWin32HandleKHR.html) - Get a Windows HANDLE for a semaphore
+    ///# C Specifications
+    ///To export a Windows handle representing the payload of a semaphore, call:
+    ///```c
+    ///// Provided by VK_KHR_external_semaphore_win32
+    ///VkResult vkGetSemaphoreWin32HandleKHR(
+    ///    VkDevice                                    device,
+    ///    const VkSemaphoreGetWin32HandleInfoKHR*     pGetWin32HandleInfo,
+    ///    HANDLE*                                     pHandle);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that created the semaphore being exported.
+    /// - [`p_get_win_32_handle_info`] is a pointer to a [`SemaphoreGetWin32HandleInfoKHR`]
+    ///   structure containing parameters of the export operation.
+    /// - [`p_handle`] will return the Windows handle representing the semaphore state.
+    ///# Description
+    ///For handle types defined as NT handles, the handles returned by
+    ///[`get_semaphore_win32_handle_khr`] are owned by the application.
+    ///To avoid leaking resources, the application  **must**  release ownership of them
+    ///using the `CloseHandle` system call when they are no longer needed.Exporting a Windows
+    /// handle from a semaphore  **may**  have side effects depending
+    ///on the transference of the specified handle type, as described in
+    ///[Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_get_win_32_handle_info`] **must**  be a valid pointer to a valid
+    ///   [`SemaphoreGetWin32HandleInfoKHR`] structure
+    /// - [`p_handle`] **must**  be a valid pointer to a [`HANDLE`] value
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
+    ///# Related
+    /// - [`VK_KHR_external_semaphore_win32`]
+    /// - [`Device`]
+    /// - [`SemaphoreGetWin32HandleInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetSemaphoreWin32HandleKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_semaphore_win32_handle_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_get_win_32_handle_info: &SemaphoreGetWin32HandleInfoKHR<'lt>,
+    ) -> VulkanResult<HANDLE> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_external_semaphore_win_32()
+            .expect("extension/version not loaded")
+            .get_semaphore_win32_handle_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_external_semaphore_win_32()
+            .unwrap_unchecked()
+            .get_semaphore_win32_handle_khr()
+            .unwrap_unchecked();
+        let mut p_handle = std::mem::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_get_win_32_handle_info as *const SemaphoreGetWin32HandleInfoKHR<'lt>,
+            &mut p_handle,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_handle),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkImportSemaphoreWin32HandleKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkImportSemaphoreWin32HandleKHR.html) - Import a semaphore from a Windows HANDLE
+    ///# C Specifications
+    ///To import a semaphore payload from a Windows handle, call:
+    ///```c
+    ///// Provided by VK_KHR_external_semaphore_win32
+    ///VkResult vkImportSemaphoreWin32HandleKHR(
+    ///    VkDevice                                    device,
+    ///    const VkImportSemaphoreWin32HandleInfoKHR*  pImportSemaphoreWin32HandleInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that created the semaphore.
+    /// - [`p_import_semaphore_win_32_handle_info`] is a pointer to a
+    ///   [`ImportSemaphoreWin32HandleInfoKHR`] structure specifying the semaphore and import
+    ///   parameters.
+    ///# Description
+    ///Importing a semaphore payload from Windows handles does not transfer
+    ///ownership of the handle to the Vulkan implementation.
+    ///For handle types defined as NT handles, the application  **must**  release
+    ///ownership using the `CloseHandle` system call when the handle is no
+    ///longer needed.Applications  **can**  import the same semaphore payload into multiple
+    /// instances
+    ///of Vulkan, into the same instance from which it was exported, and multiple
+    ///times into a given Vulkan instance.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_import_semaphore_win_32_handle_info`] **must**  be a valid pointer to a valid
+    ///   [`ImportSemaphoreWin32HandleInfoKHR`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
+    ///# Related
+    /// - [`VK_KHR_external_semaphore_win32`]
+    /// - [`Device`]
+    /// - [`ImportSemaphoreWin32HandleInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkImportSemaphoreWin32HandleKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn import_semaphore_win32_handle_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_import_semaphore_win_32_handle_info: &ImportSemaphoreWin32HandleInfoKHR<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_external_semaphore_win_32()
+            .expect("extension/version not loaded")
+            .import_semaphore_win32_handle_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_external_semaphore_win_32()
+            .unwrap_unchecked()
+            .import_semaphore_win32_handle_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_import_semaphore_win_32_handle_info as *const ImportSemaphoreWin32HandleInfoKHR<'lt>,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+///The V-table of [`Device`] for functions from `VK_KHR_external_semaphore_win32`
 pub struct DeviceKhrExternalSemaphoreWin32VTable {
     ///See [`FNGetSemaphoreWin32HandleKhr`] for more information.
     pub get_semaphore_win32_handle_khr: FNGetSemaphoreWin32HandleKhr,
@@ -987,16 +1140,23 @@ pub struct DeviceKhrExternalSemaphoreWin32VTable {
 }
 impl DeviceKhrExternalSemaphoreWin32VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_semaphore_win32_handle_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreWin32HandleKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetSemaphoreWin32HandleKHR").as_ptr()))
             },
             import_semaphore_win32_handle_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkImportSemaphoreWin32HandleKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkImportSemaphoreWin32HandleKHR").as_ptr(),
+                ))
             },
         }
     }

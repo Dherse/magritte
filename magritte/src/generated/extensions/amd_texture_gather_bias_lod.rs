@@ -88,7 +88,7 @@ pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &'static CStr = crate::cst
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTextureLODGatherFormatPropertiesAMD")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct TextureLodGatherFormatPropertiesAMD<'lt> {
@@ -118,20 +118,20 @@ impl<'lt> Default for TextureLodGatherFormatPropertiesAMD<'lt> {
 }
 impl<'lt> TextureLodGatherFormatPropertiesAMD<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::supports_texture_gather_lod_bias_amd`]
     pub fn supports_texture_gather_lod_bias_amd_raw(&self) -> Bool32 {
         self.supports_texture_gather_lod_bias_amd
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::supports_texture_gather_lod_bias_amd`]
-    pub fn set_supports_texture_gather_lod_bias_amd_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_supports_texture_gather_lod_bias_amd_raw(mut self, value: Bool32) -> Self {
         self.supports_texture_gather_lod_bias_amd = value;
         self
     }
@@ -179,18 +179,18 @@ impl<'lt> TextureLodGatherFormatPropertiesAMD<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::supports_texture_gather_lod_bias_amd`]
-    pub fn set_supports_texture_gather_lod_bias_amd(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::supports_texture_gather_lod_bias_amd`]
+    pub fn set_supports_texture_gather_lod_bias_amd(mut self, value: bool) -> Self {
         self.supports_texture_gather_lod_bias_amd = value as u8 as u32;
         self
     }

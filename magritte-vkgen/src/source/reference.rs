@@ -467,8 +467,8 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             | TypeRef::Basetype(_)
             | TypeRef::Bitmask(_)
             | TypeRef::BitFlag(_)
-            | TypeRef::Enum(_) => true,
-            TypeRef::FunctionPointer(_) => false,
+            | TypeRef::Enum(_)
+            | TypeRef::FunctionPointer(_) => true,
         }
     }
 

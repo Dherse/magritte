@@ -420,23 +420,23 @@ impl ViewportSwizzleNV {
     pub fn w_mut(&mut self) -> &mut ViewportCoordinateSwizzleNV {
         &mut self.w
     }
-    ///Sets the raw value of [`Self::x`]
-    pub fn set_x(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+    ///Sets the value of [`Self::x`]
+    pub fn set_x(mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> Self {
         self.x = value;
         self
     }
-    ///Sets the raw value of [`Self::y`]
-    pub fn set_y(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+    ///Sets the value of [`Self::y`]
+    pub fn set_y(mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> Self {
         self.y = value;
         self
     }
-    ///Sets the raw value of [`Self::z`]
-    pub fn set_z(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+    ///Sets the value of [`Self::z`]
+    pub fn set_z(mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> Self {
         self.z = value;
         self
     }
-    ///Sets the raw value of [`Self::w`]
-    pub fn set_w(&mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> &mut Self {
+    ///Sets the value of [`Self::w`]
+    pub fn set_w(mut self, value: crate::extensions::nv_viewport_swizzle::ViewportCoordinateSwizzleNV) -> Self {
         self.w = value;
         self
     }
@@ -531,12 +531,12 @@ impl<'lt> PipelineViewportSwizzleStateCreateInfoNV<'lt> {
         self.viewport_swizzles
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_swizzles`]
-    pub fn set_viewport_swizzles_raw(&mut self, value: *const ViewportSwizzleNV) -> &mut Self {
+    pub fn set_viewport_swizzles_raw(mut self, value: *const ViewportSwizzleNV) -> Self {
         self.viewport_swizzles = value;
         self
     }
@@ -578,34 +578,34 @@ impl<'lt> PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     pub fn viewport_count_mut(&mut self) -> &mut u32 {
         &mut self.viewport_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
+    ///Sets the value of [`Self::flags`]
     pub fn set_flags(
-        &mut self,
+        mut self,
         value: crate::extensions::nv_viewport_swizzle::PipelineViewportSwizzleStateCreateFlagsNV,
-    ) -> &mut Self {
+    ) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::viewport_count`]
-    pub fn set_viewport_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::viewport_count`]
+    pub fn set_viewport_count(mut self, value: u32) -> Self {
         self.viewport_count = value;
         self
     }
-    ///Sets the raw value of [`Self::viewport_swizzles`]
+    ///Sets the value of [`Self::viewport_swizzles`]
     pub fn set_viewport_swizzles(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::nv_viewport_swizzle::ViewportSwizzleNV],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.viewport_swizzles = value.as_ptr();

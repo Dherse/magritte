@@ -52,7 +52,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, StructureType};
+use crate::{
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, StructureType},
+    AsRaw, SmallVec, Unique,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -168,7 +171,7 @@ pub type FNCmdSetColorWriteEnableExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceColorWriteEnableFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
@@ -196,20 +199,20 @@ impl<'lt> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::color_write_enable`]
     pub fn color_write_enable_raw(&self) -> Bool32 {
         self.color_write_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_write_enable`]
-    pub fn set_color_write_enable_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_color_write_enable_raw(mut self, value: Bool32) -> Self {
         self.color_write_enable = value;
         self
     }
@@ -257,18 +260,18 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::color_write_enable`]
-    pub fn set_color_write_enable(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::color_write_enable`]
+    pub fn set_color_write_enable(mut self, value: bool) -> Self {
         self.color_write_enable = value as u8 as u32;
         self
     }
@@ -375,12 +378,12 @@ impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
         self.color_write_enables
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::color_write_enables`]
-    pub fn set_color_write_enables_raw(&mut self, value: *const Bool32) -> &mut Self {
+    pub fn set_color_write_enables_raw(mut self, value: *const Bool32) -> Self {
         self.color_write_enables = value;
         self
     }
@@ -414,23 +417,23 @@ impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
     pub fn attachment_count_mut(&mut self) -> &mut u32 {
         &mut self.attachment_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::attachment_count`]
-    pub fn set_attachment_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::attachment_count`]
+    pub fn set_attachment_count(mut self, value: u32) -> Self {
         self.attachment_count = value;
         self
     }
-    ///Sets the raw value of [`Self::color_write_enables`]
-    pub fn set_color_write_enables(&mut self, value: &'lt [crate::vulkan1_0::Bool32]) -> &mut Self {
+    ///Sets the value of [`Self::color_write_enables`]
+    pub fn set_color_write_enables(mut self, value: &'lt [crate::vulkan1_0::Bool32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.color_write_enables = value.as_ptr();
@@ -438,20 +441,111 @@ impl<'lt> PipelineColorWriteCreateInfoEXT<'lt> {
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_color_write_enable
+impl CommandBuffer {
+    ///[vkCmdSetColorWriteEnableEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetColorWriteEnableEXT.html) - Enable or disable writes to a color attachment dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically enable or disable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) writes to a
+    ///color attachment, call:
+    ///```c
+    ///// Provided by VK_EXT_color_write_enable
+    ///void                                    vkCmdSetColorWriteEnableEXT(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    attachmentCount,
+    ///    const VkBool32*                             pColorWriteEnables);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`attachment_count`] is the number of [`Bool32`] elements in [`p_color_write_enables`].
+    /// - [`p_color_write_enables`] is a pointer to an array of per target attachment boolean values
+    ///   specifying whether color writes are enabled for the given attachment.
+    ///# Description
+    ///This command sets the color write enables for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineColorWriteCreateInfoEXT`]::[`p_color_write_enables`] values
+    ///used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - The [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable)
+    ///   feature  **must**  be enabled
+    /// - [`attachment_count`] **must**  be less than or equal to the `maxColorAttachments` member
+    ///   of [`PhysicalDeviceLimits`]
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_color_write_enables`] **must**  be a valid pointer to an array of
+    ///   [`attachment_count`][`Bool32`] values
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`attachment_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_EXT_color_write_enable`]
+    /// - [`Bool32`]
+    /// - [`CommandBuffer`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetColorWriteEnableEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_color_write_enable_ext<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        p_color_write_enables: &[crate::vulkan1_0::Bool32],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_color_write_enable()
+            .expect("extension/version not loaded")
+            .cmd_set_color_write_enable_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .ext_color_write_enable()
+            .unwrap_unchecked()
+            .cmd_set_color_write_enable_ext()
+            .unwrap_unchecked();
+        let attachment_count = (|len: usize| len)(p_color_write_enables.len()) as _;
+        let _return = _function(self.as_raw(), attachment_count, p_color_write_enables.as_ptr());
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_color_write_enable`
 pub struct DeviceExtColorWriteEnableVTable {
     ///See [`FNCmdSetColorWriteEnableExt`] for more information.
     pub cmd_set_color_write_enable_ext: FNCmdSetColorWriteEnableExt,
 }
 impl DeviceExtColorWriteEnableVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_color_write_enable_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetColorWriteEnableEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetColorWriteEnableEXT").as_ptr()))
             },
         }
     }

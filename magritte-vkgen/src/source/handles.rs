@@ -51,6 +51,12 @@ impl<'a> Handle<'a> {
         dispatchable: bool,
         origin: Origin<'a>,
     ) -> Self {
+        let parent = if parent == Some(Cow::Borrowed("VkSurfaceKHR")) && original_name == "VkSwapchainKHR" {
+            Some(Cow::Borrowed("VkDevice"))
+        } else {
+            parent
+        };
+
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
@@ -155,6 +161,70 @@ impl<'a> Handle<'a> {
         }
 
         Some(parent.original_name.clone())
+    }
+
+    /// Find a given ancestor in this ancestor tree
+    pub fn find_ancestors(&self, source: &Source<'a>, ancestor: &str) -> Option<usize> {
+        let mut i = 0;
+        let mut parent = self
+            .parent()
+            .map(|parent| source.handles.get_by_either(parent).unwrap());
+        while let Some(p) = parent {
+            i += 1;
+            if p.original_name() == ancestor {
+                return Some(i);
+            }
+
+            parent = p.parent().map(|parent| source.handles.get_by_either(parent).unwrap());
+        }
+
+        None
+    }
+
+    /// Find the entry in thisd ancestry tree
+    pub fn find_entry_ancestors(&self, source: &Source) -> usize {
+        let mut i = 1;
+        let mut parent = self
+            .parent()
+            .map(|parent| source.handles.get_by_either(parent).unwrap());
+        while let Some(p) = parent {
+            i += 1;
+            parent = p.parent().map(|parent| source.handles.get_by_either(parent).unwrap());
+        }
+
+        i
+    }
+
+    pub(crate) fn find_instance_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkInstance")
+    }
+
+    pub(crate) fn find_physical_device_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkPhysicalDevice")
+    }
+
+    pub(crate) fn find_device_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkDevice")
+    }
+
+    pub(crate) fn find_command_pool_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkCommandPool")
+    }
+
+    pub(crate) fn find_descriptor_pool_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkDescriptorPool")
+    }
+
+    pub(crate) fn find_display_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkDisplayKHR")
+    }
+
+    pub(crate) fn find_surface_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkSurfaceKHR")
+    }
+
+    pub(crate) fn find_video_session_ancestors(&self, source: &Source<'a>) -> Option<usize> {
+        self.find_ancestors(source, "VkVideoSessionKHR")
     }
 }
 

@@ -12,17 +12,17 @@ use crate::{
         PFNVoidFunction, VulkanResultCodes,
     },
     vulkan1_1::FNEnumerateInstanceVersion,
-    Version,
+    Extensions, Unique, Version,
 };
 
 #[derive(Clone, Copy, Default)]
-pub struct Entry<T>(pub T, pub EntryVTable);
+pub struct Entry(pub EntryVTable);
 
-impl<T> Entry<T> {
+impl Entry {
     /// Gets the V-Table
     #[inline(always)]
     pub fn vtable(&self) -> &EntryVTable {
-        &self.1
+        &self.0
     }
 
     /// Creates a Vulkan instance.
@@ -31,7 +31,8 @@ impl<T> Entry<T> {
         &self,
         instance_create_info: &InstanceCreateInfo<'lt>,
         allocation_callback: Option<&AllocationCallbacks<'lt>>,
-    ) -> Result<Instance, VulkanResultCodes> {
+        extensions: Extensions,
+    ) -> Result<Unique<'_, Instance>, VulkanResultCodes> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let fn_ = self.vtable().create_instance().unwrap();
 
@@ -47,7 +48,7 @@ impl<T> Entry<T> {
                 .unwrap_or_else(std::ptr::null),
             &mut instance,
         ) {
-            VulkanResultCodes::Success => Ok(instance),
+            VulkanResultCodes::Success => Ok(Unique::new(self, instance, extensions)),
             other => Err(other),
         }
     }

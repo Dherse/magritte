@@ -58,7 +58,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Rect2D, StructureType};
+use crate::{
+    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Rect2D, StructureType},
+    AsRaw, SmallVec, Unique,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -193,7 +196,7 @@ pub type FNCmdSetExclusiveScissorNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExclusiveScissorFeaturesNV")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
@@ -220,20 +223,20 @@ impl<'lt> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 }
 impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::exclusive_scissor`]
     pub fn exclusive_scissor_raw(&self) -> Bool32 {
         self.exclusive_scissor
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::exclusive_scissor`]
-    pub fn set_exclusive_scissor_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_exclusive_scissor_raw(mut self, value: Bool32) -> Self {
         self.exclusive_scissor = value;
         self
     }
@@ -281,18 +284,18 @@ impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::exclusive_scissor`]
-    pub fn set_exclusive_scissor(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::exclusive_scissor`]
+    pub fn set_exclusive_scissor(mut self, value: bool) -> Self {
         self.exclusive_scissor = value as u8 as u32;
         self
     }
@@ -387,12 +390,12 @@ impl<'lt> PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
         self.exclusive_scissors
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::exclusive_scissors`]
-    pub fn set_exclusive_scissors_raw(&mut self, value: *const Rect2D) -> &mut Self {
+    pub fn set_exclusive_scissors_raw(mut self, value: *const Rect2D) -> Self {
         self.exclusive_scissors = value;
         self
     }
@@ -426,23 +429,23 @@ impl<'lt> PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     pub fn exclusive_scissor_count_mut(&mut self) -> &mut u32 {
         &mut self.exclusive_scissor_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::exclusive_scissor_count`]
-    pub fn set_exclusive_scissor_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::exclusive_scissor_count`]
+    pub fn set_exclusive_scissor_count(mut self, value: u32) -> Self {
         self.exclusive_scissor_count = value;
         self
     }
-    ///Sets the raw value of [`Self::exclusive_scissors`]
-    pub fn set_exclusive_scissors(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+    ///Sets the value of [`Self::exclusive_scissors`]
+    pub fn set_exclusive_scissors(mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.exclusive_scissors = value.as_ptr();
@@ -450,20 +453,135 @@ impl<'lt> PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_NV_scissor_exclusive
+impl CommandBuffer {
+    ///[vkCmdSetExclusiveScissorNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetExclusiveScissorNV.html) - Set exclusive scissor rectangles dynamically for a command buffer
+    ///# C Specifications
+    ///To [dynamically set](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the exclusive scissor
+    ///rectangles, call:
+    ///```c
+    ///// Provided by VK_NV_scissor_exclusive
+    ///void vkCmdSetExclusiveScissorNV(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    uint32_t                                    firstExclusiveScissor,
+    ///    uint32_t                                    exclusiveScissorCount,
+    ///    const VkRect2D*                             pExclusiveScissors);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer into which the command will be recorded.
+    /// - [`first_exclusive_scissor`] is the index of the first exclusive scissor rectangle whose
+    ///   state is updated by the command.
+    /// - [`exclusive_scissor_count`] is the number of exclusive scissor rectangles updated by the
+    ///   command.
+    /// - [`p_exclusive_scissors`] is a pointer to an array of [`Rect2D`] structures defining
+    ///   exclusive scissor rectangles.
+    ///# Description
+    ///The scissor rectangles taken from element i of
+    ///[`p_exclusive_scissors`] replace the current state for the scissor index
+    ///[`first_exclusive_scissor`] +  i, for i in [0,
+    ///[`exclusive_scissor_count`]).This command sets the exclusive scissor rectangles for
+    /// subsequent drawing
+    ///commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineViewportExclusiveScissorStateCreateInfoNV`]::[`p_exclusive_scissors`]
+    ///values used to create the currently active pipeline.
+    ///## Valid Usage
+    /// - The [exclusive scissor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-exclusiveScissor)
+    ///   feature  **must**  be enabled
+    /// - The sum of [`first_exclusive_scissor`] and [`exclusive_scissor_count`] **must**  be
+    ///   between `1` and [`PhysicalDeviceLimits::max_viewports`], inclusive
+    /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
+    ///   feature is not enabled, [`first_exclusive_scissor`] **must**  be `0`
+    /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
+    ///   feature is not enabled, [`exclusive_scissor_count`] **must**  be `1`
+    /// - The `x` and `y` members of `offset` in each member of [`p_exclusive_scissors`] **must**
+    ///   be greater than or equal to `0`
+    /// - Evaluation of (`offset.x` +  `extent.width`) for each member of [`p_exclusive_scissors`]
+    ///   **must**  not cause a signed integer addition overflow
+    /// - Evaluation of (`offset.y` +  `extent.height`) for each member of [`p_exclusive_scissors`]
+    ///   **must**  not cause a signed integer addition overflow
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_exclusive_scissors`] **must**  be a valid pointer to an array of
+    ///   [`exclusive_scissor_count`][`Rect2D`] structures
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
+    ///   operations
+    /// - [`exclusive_scissor_count`] **must**  be greater than `0`
+    ///
+    ///## Host Synchronization
+    /// - Host access to [`command_buffer`] **must**  be externally synchronized
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_NV_scissor_exclusive`]
+    /// - [`CommandBuffer`]
+    /// - [`Rect2D`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdSetExclusiveScissorNV")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_set_exclusive_scissor_nv<'a: 'this, 'this>(
+        self: &'this mut Unique<'a, CommandBuffer>,
+        first_exclusive_scissor: Option<u32>,
+        p_exclusive_scissors: &[crate::vulkan1_0::Rect2D],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_scissor_exclusive()
+            .expect("extension/version not loaded")
+            .cmd_set_exclusive_scissor_nv()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .nv_scissor_exclusive()
+            .unwrap_unchecked()
+            .cmd_set_exclusive_scissor_nv()
+            .unwrap_unchecked();
+        let exclusive_scissor_count = (|len: usize| len)(p_exclusive_scissors.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            first_exclusive_scissor.unwrap_or_default() as _,
+            exclusive_scissor_count,
+            p_exclusive_scissors.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_NV_scissor_exclusive`
 pub struct DeviceNvScissorExclusiveVTable {
     ///See [`FNCmdSetExclusiveScissorNv`] for more information.
     pub cmd_set_exclusive_scissor_nv: FNCmdSetExclusiveScissorNv,
 }
 impl DeviceNvScissorExclusiveVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             cmd_set_exclusive_scissor_nv: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetExclusiveScissorNV")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetExclusiveScissorNV").as_ptr()))
             },
         }
     }

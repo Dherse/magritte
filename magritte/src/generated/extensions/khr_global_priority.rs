@@ -288,7 +288,7 @@ impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -315,21 +315,21 @@ impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
     pub fn global_priority_mut(&mut self) -> &mut QueueGlobalPriorityKHR {
         &mut self.global_priority
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::global_priority`]
+    ///Sets the value of [`Self::global_priority`]
     pub fn set_global_priority(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_global_priority::QueueGlobalPriorityKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.global_priority = value;
         self
     }
@@ -383,7 +383,7 @@ impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
@@ -411,20 +411,20 @@ impl<'lt> Default for PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 }
 impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::global_priority_query`]
     pub fn global_priority_query_raw(&self) -> Bool32 {
         self.global_priority_query
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::global_priority_query`]
-    pub fn set_global_priority_query_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_global_priority_query_raw(mut self, value: Bool32) -> Self {
         self.global_priority_query = value;
         self
     }
@@ -472,18 +472,18 @@ impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::global_priority_query`]
-    pub fn set_global_priority_query(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::global_priority_query`]
+    pub fn set_global_priority_query(mut self, value: bool) -> Self {
         self.global_priority_query = value as u8 as u32;
         self
     }
@@ -537,7 +537,7 @@ impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyGlobalPriorityPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
@@ -569,11 +569,11 @@ impl<'lt> Default for QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
 }
 impl<'lt> QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -615,27 +615,27 @@ impl<'lt> QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     pub fn priorities_mut(&mut self) -> &mut [QueueGlobalPriorityKHR; MAX_GLOBAL_PRIORITY_SIZE_KHR as usize] {
         &mut self.priorities
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::priority_count`]
-    pub fn set_priority_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::priority_count`]
+    pub fn set_priority_count(mut self, value: u32) -> Self {
         self.priority_count = value;
         self
     }
-    ///Sets the raw value of [`Self::priorities`]
+    ///Sets the value of [`Self::priorities`]
     pub fn set_priorities(
-        &mut self,
+        mut self,
         value: [crate::extensions::khr_global_priority::QueueGlobalPriorityKHR;
             crate::extensions::khr_global_priority::MAX_GLOBAL_PRIORITY_SIZE_KHR as usize],
-    ) -> &mut Self {
+    ) -> Self {
         self.priorities = value;
         self
     }

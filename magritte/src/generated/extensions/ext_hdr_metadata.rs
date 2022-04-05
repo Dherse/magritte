@@ -67,6 +67,7 @@
 use crate::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseInStructure, Device, StructureType},
+    AsRaw, SmallVec, Unique,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
@@ -191,13 +192,13 @@ impl XyColorEXT {
     pub fn y_mut(&mut self) -> &mut f32 {
         &mut self.y
     }
-    ///Sets the raw value of [`Self::x`]
-    pub fn set_x(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::x`]
+    pub fn set_x(mut self, value: f32) -> Self {
         self.x = value;
         self
     }
-    ///Sets the raw value of [`Self::y`]
-    pub fn set_y(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::y`]
+    pub fn set_y(mut self, value: f32) -> Self {
         self.y = value;
         self
     }
@@ -311,7 +312,7 @@ impl<'lt> HdrMetadataEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -394,71 +395,154 @@ impl<'lt> HdrMetadataEXT<'lt> {
     pub fn max_frame_average_light_level_mut(&mut self) -> &mut f32 {
         &mut self.max_frame_average_light_level
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::display_primary_red`]
-    pub fn set_display_primary_red(&mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> &mut Self {
+    ///Sets the value of [`Self::display_primary_red`]
+    pub fn set_display_primary_red(mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> Self {
         self.display_primary_red = value;
         self
     }
-    ///Sets the raw value of [`Self::display_primary_green`]
-    pub fn set_display_primary_green(&mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> &mut Self {
+    ///Sets the value of [`Self::display_primary_green`]
+    pub fn set_display_primary_green(mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> Self {
         self.display_primary_green = value;
         self
     }
-    ///Sets the raw value of [`Self::display_primary_blue`]
-    pub fn set_display_primary_blue(&mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> &mut Self {
+    ///Sets the value of [`Self::display_primary_blue`]
+    pub fn set_display_primary_blue(mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> Self {
         self.display_primary_blue = value;
         self
     }
-    ///Sets the raw value of [`Self::white_point`]
-    pub fn set_white_point(&mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> &mut Self {
+    ///Sets the value of [`Self::white_point`]
+    pub fn set_white_point(mut self, value: crate::extensions::ext_hdr_metadata::XyColorEXT) -> Self {
         self.white_point = value;
         self
     }
-    ///Sets the raw value of [`Self::max_luminance`]
-    pub fn set_max_luminance(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::max_luminance`]
+    pub fn set_max_luminance(mut self, value: f32) -> Self {
         self.max_luminance = value;
         self
     }
-    ///Sets the raw value of [`Self::min_luminance`]
-    pub fn set_min_luminance(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::min_luminance`]
+    pub fn set_min_luminance(mut self, value: f32) -> Self {
         self.min_luminance = value;
         self
     }
-    ///Sets the raw value of [`Self::max_content_light_level`]
-    pub fn set_max_content_light_level(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::max_content_light_level`]
+    pub fn set_max_content_light_level(mut self, value: f32) -> Self {
         self.max_content_light_level = value;
         self
     }
-    ///Sets the raw value of [`Self::max_frame_average_light_level`]
-    pub fn set_max_frame_average_light_level(&mut self, value: f32) -> &mut Self {
+    ///Sets the value of [`Self::max_frame_average_light_level`]
+    pub fn set_max_frame_average_light_level(mut self, value: f32) -> Self {
         self.max_frame_average_light_level = value;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_hdr_metadata
+impl Device {
+    ///[vkSetHdrMetadataEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetHdrMetadataEXT.html) - Set Hdr metadata
+    ///# C Specifications
+    ///To provide Hdr metadata to an implementation, call:
+    ///```c
+    ///// Provided by VK_EXT_hdr_metadata
+    ///void vkSetHdrMetadataEXT(
+    ///    VkDevice                                    device,
+    ///    uint32_t                                    swapchainCount,
+    ///    const VkSwapchainKHR*                       pSwapchains,
+    ///    const VkHdrMetadataEXT*                     pMetadata);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device where the swapchain(s) were created.
+    /// - [`swapchain_count`] is the number of swapchains included in [`p_swapchains`].
+    /// - [`p_swapchains`] is a pointer to an array of [`swapchain_count`][`SwapchainKHR`] handles.
+    /// - [`p_metadata`] is a pointer to an array of [`swapchain_count`][`HdrMetadataEXT`]
+    ///   structures.
+    ///# Description
+    ///The metadata will be applied to the specified [`SwapchainKHR`] objects
+    ///at the next [`queue_present_khr`] call using that [`SwapchainKHR`]
+    ///object.
+    ///The metadata will persist until a subsequent [`set_hdr_metadata_ext`]
+    ///changes it.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_swapchains`] **must**  be a valid pointer to an array of [`swapchain_count`] valid
+    ///   [`SwapchainKHR`] handles
+    /// - [`p_metadata`] **must**  be a valid pointer to an array of [`swapchain_count`] valid
+    ///   [`HdrMetadataEXT`] structures
+    /// - [`swapchain_count`] **must**  be greater than `0`
+    /// - Both of [`device`], and the elements of [`p_swapchains`] **must**  have been created,
+    ///   allocated, or retrieved from the same [`Instance`]
+    ///# Related
+    /// - [`VK_EXT_hdr_metadata`]
+    /// - [`Device`]
+    /// - [`HdrMetadataEXT`]
+    /// - [`SwapchainKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetHdrMetadataEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_hdr_metadata_ext<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_swapchains: &[crate::extensions::khr_swapchain::SwapchainKHR],
+        p_metadata: &[crate::extensions::ext_hdr_metadata::HdrMetadataEXT<'lt>],
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_hdr_metadata()
+            .expect("extension/version not loaded")
+            .set_hdr_metadata_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_hdr_metadata()
+            .unwrap_unchecked()
+            .set_hdr_metadata_ext()
+            .unwrap_unchecked();
+        let swapchain_count = (|len: usize| len)(p_swapchains.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            swapchain_count,
+            p_swapchains.as_ptr(),
+            p_metadata.as_ptr(),
+        );
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_hdr_metadata`
 pub struct DeviceExtHdrMetadataVTable {
     ///See [`FNSetHdrMetadataExt`] for more information.
     pub set_hdr_metadata_ext: FNSetHdrMetadataExt,
 }
 impl DeviceExtHdrMetadataVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             set_hdr_metadata_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetHdrMetadataEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetHdrMetadataEXT").as_ptr()))
             },
         }
     }

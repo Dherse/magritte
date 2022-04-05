@@ -59,20 +59,27 @@ pub const KHR_MAINTENANCE_3_SPEC_VERSION: u32 = 1;
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_MAINTENANCE_3_EXTENSION_NAME")]
 pub const KHR_MAINTENANCE_3_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_maintenance3");
-///The V-table of [`Device`] for functions from VK_KHR_maintenance3
+///The V-table of [`Device`] for functions from `VK_KHR_maintenance3`
 pub struct DeviceKhrMaintenance3VTable {
     ///See [`FNGetDescriptorSetLayoutSupport`] for more information.
     pub get_descriptor_set_layout_support: FNGetDescriptorSetLayoutSupport,
 }
 impl DeviceKhrMaintenance3VTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             get_descriptor_set_layout_support: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetDescriptorSetLayoutSupportKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkGetDescriptorSetLayoutSupportKHR").as_ptr(),
+                ))
             },
         }
     }

@@ -8,7 +8,7 @@ use smallvec::SmallVec;
 use crate::{
     expr::Expr,
     imports::Imports,
-    source::{reference::TypeRef, ExternallySynced, Function, FunctionArgument, Handle, Optionality, Source},
+    source::{reference::TypeRef, ExternallySynced, Field, Function, FunctionArgument, Handle, Optionality, Source},
     symbols::SymbolTable,
     ty::{Mutability, Native, Ty},
 };
@@ -46,7 +46,10 @@ pub struct StatefulFunctionGeneratorState {
     /// Additional assertions.
     pub asserts: Vec<TokenStream>,
 
-    /// The index of the next generic iterator parameter
+    /// Additional state creation, should **not** allocate!
+    pub states: Vec<TokenStream>,
+
+    /*/// The index of the next generic iterator parameter
     pub generic_index_iter: usize,
 
     /// The index of the next generic value parameter
@@ -98,8 +101,7 @@ pub struct StatefulFunctionGeneratorState {
 
     pub state_reset: Vec<Box<dyn Fn(Option<TokenStream>) -> TokenStream>>,
 
-    pub state_set: Vec<Box<dyn Fn(Option<TokenStream>) -> TokenStream>>,
-
+    pub state_set: Vec<Box<dyn Fn(Option<TokenStream>) -> TokenStream>>,*/
     /// The return value initializers.
     pub return_initializations: Vec<TokenStream>,
 
@@ -119,6 +121,9 @@ impl StatefulFunctionGeneratorState {
         state_lifetime: Option<TokenStream>,
     ) -> Self {
         let mut this = Self::default();
+        this.lifetime = true;
+
+        let handle_ident = handle.as_ident();
 
         // We are collecting the argument kinds
         let kinds = ArgKind::from_slice(source, handle.original_name(), fun.arguments().clone());
@@ -131,17 +136,17 @@ impl StatefulFunctionGeneratorState {
                     this.push_regular(source, imports, arg, &state_lifetime)
                 },
                 ArgKind::Array(arg) => this.push_array(source, imports, arg, &state_lifetime),
-                ArgKind::This(arg) => this.push_this(arg),
+                ArgKind::This(arg) => this.push_this(arg, &handle_ident),
                 ArgKind::Passthrough(arg) => this.push_passthrough(source, imports, arg),
                 ArgKind::CStr(arg) => this.push_cstr(imports, arg, &state_lifetime),
-                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, arg, inner),
+                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, handle, arg, inner),
                 ArgKind::ValueWrittenToChained(arg, inner) => {
                     this.push_value_written_to_chained(source, imports, arg, inner)
                 },
                 ArgKind::ArrayWrittenTo(arg, inner, len) => {
-                    this.push_array_written_to(source, imports, arg, inner, len)
+                    this.push_array_written_to(source, imports, handle, &fun, arg, inner, len)
                 },
-                ArgKind::LenByArray(_, len_of) => this.push_len_by_array(source, imports, len_of),
+                ArgKind::LenByArray(arg, len_of) => this.push_len_by_array(source, imports, arg, len_of),
                 ArgKind::LenExtraCall(arg, len_of) => this.push_len_by_extra_call(i, arg, len_of),
             }
         }
@@ -152,17 +157,22 @@ impl StatefulFunctionGeneratorState {
                 Ty::Named(_) => {
                     this.return_types
                         .push(ret.as_ty(source, Some(imports)).0.to_token_stream());
+
+                    if fun.original_name() == "vkGetDeviceProcAddr" {
+                        println!("{:#?}", ret);
+                    }
+
                     this.return_values.push(
-                        match ret.c_to_rust_converter(source, Mutability::Const, quote! { _result }, None) {
+                        match ret.c_to_rust_converter(source, Mutability::Const, quote! { _return }, None) {
                             Some((v, _)) => v,
-                            None => quote! { _result },
+                            None => quote! { _return },
                         },
                     );
                 },
                 Ty::Native(Native::Void) => {},
                 Ty::Native(native) => {
                     this.return_types.push(native.to_token_stream());
-                    this.return_values.push(quote! { _result });
+                    this.return_values.push(quote! { _return });
                 },
                 _ => unreachable!("unsupported return type `{:?}` for {}", ret, fun.original_name()),
             }
@@ -202,6 +212,7 @@ impl StatefulFunctionGeneratorState {
         &mut self,
         source: &Source<'a>,
         imports: &Imports,
+        arg: FunctionArgument<'a>,
         len_of: SmallVec<[(usize, FunctionArgument<'a>); 1]>,
     ) {
         let mut fields = len_of.into_iter().map(|(_, a)| a).filter(|arg| match arg.ty() {
@@ -221,55 +232,114 @@ impl StatefulFunctionGeneratorState {
 
         self.asserts.extend(fields.map(|arg| {
             let other = arg.as_ident();
-            quote! {
-                debug_assert!((|len: usize| #expr)(#first_ident.len()) == #other.len());
+            if matches!(first.optionality(), Optionality::No) {
+                quote! {
+                    debug_assert!((|len: usize| #expr)(#first_ident.len()) == #other.len());
+                }
+            } else {
+                quote! {
+                    debug_assert!((|len: usize| #expr)(#first_ident.map_or(0, |i| i.len())) == #other.len());
+                }
             }
         }));
 
-        self.call_args.push(box move |_| {
+        let name = arg.as_ident();
+        self.states.push(if matches!(first.optionality(), Optionality::No) {
             quote! {
-                (|len: usize| #expr)(#first_ident.len()) as _
+                let #name = (|len: usize| #expr)(#first_ident.len()) as _;
+            }
+        } else {
+            quote! {
+                let #name = (|len: usize| #expr)(#first_ident.map_or(0, |i| i.len())) as _;
             }
         });
+
+        self.call_args.push(box move |_| name.to_token_stream());
     }
 
     fn push_array_written_to<'a>(
         &mut self,
         source: &Source<'a>,
         imports: &Imports,
+        handle: &Handle<'a>,
+        fun: &Function<'a>,
         arg: FunctionArgument<'a>,
         inner: Ty<'a>,
         len: Expr<'a>,
     ) {
         imports.smallvec();
 
-        let (ty, _) = inner.as_raw_ty(source, Some(imports), true);
+        let mut ty = inner.as_raw_ty(source, Some(imports), true).0.to_token_stream();
         let len = len.as_expr(
             source,
-            &|name| Ident::new(name, Span::call_site()).to_token_stream(),
+            &|name| {
+                if let Some(arg) = fun.arguments().get_by_either(name) {
+                    arg.as_ident().to_token_stream()
+                } else {
+                    fun.arguments()
+                        .iter()
+                        .map(FunctionArgument::ty)
+                        .filter_map(|ty| match ty {
+                            Ty::Named(name) | Ty::Pointer(_, box Ty::Named(name)) => Some(name),
+                            _ => None,
+                        })
+                        .filter_map(|name| source.resolve_type(name))
+                        .filter_map(TypeRef::as_struct)
+                        .find_map(|struct_| struct_.fields().get_by_either(name))
+                        .map(Field::as_ident)
+                        .unwrap()
+                        .to_token_stream()
+                }
+            },
             Some(imports),
         );
 
         let ret_ident = arg.as_ident();
 
-        self.return_types.push(quote! {
-            SmallVec<#ty>
+        self.return_initializations.push(quote! {
+            let mut #ret_ident = SmallVec::<#ty>::from_elem(Default::default(), #len as usize);
         });
 
         self.return_values.push(quote! {
             #ret_ident
         });
 
-        self.return_initializations.push(quote! {
-            let mut #ret_ident = SmallVec::from_elem(Default::default(), #len);
+        if let Ty::Named(name) = inner {
+            if let Some(out) = source.handles.get_by_either(&name) {
+                let parent = if out.parent() != Some(handle.original_name()) {
+                    self.lifetime = false;
+
+                    let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
+                    self.function_args.push(quote! {
+                        parent: &'parent Unique<'this, #hdl>
+                    });
+                    quote! { parent }
+                } else {
+                    quote! { self }
+                };
+
+                ty = if self.lifetime {
+                    quote! {
+                        Unique<'this, #ty>
+                    }
+                } else {
+                    quote! {
+                        Unique<'parent, #ty>
+                    }
+                };
+
+                *self.return_values.last_mut().unwrap() = quote! {
+                    #ret_ident.into_iter().map(|i| Unique::new(#parent, i, ())).collect()
+                };
+            }
+        }
+
+        self.return_types.push(quote! {
+            SmallVec<#ty>
         });
 
         self.call_args.push(box move |_| {
-            quote! {
-                unsafe {
-                    #ret_ident.as_mut_ptr()
-                }
-            }
+            quote! { #ret_ident.as_mut_ptr() }
         });
     }
 
@@ -304,24 +374,16 @@ impl StatefulFunctionGeneratorState {
                     });
 
                     self.return_values.push(quote! {
-                        unsafe {
-                            #ret_ident.p_next = std::ptr::#null ();
-                            #ret_ident
-                        }
+                        #ret_ident.p_next = std::ptr::#null ();
+                        #ret_ident
                     });
 
                     self.return_initializations.push(quote! {
-                        let mut #ret_ident = #ret_ident.unwrap_or_else(|| unsafe {
-                            MaybeUninit::<#ty>::zeroed().assume_init()
-                        });
+                        let mut #ret_ident = #ret_ident.unwrap_or_else(|| MaybeUninit::<#ty>::zeroed().assume_init());
                     });
 
                     self.call_args.push(box move |_| {
-                        quote! {
-                            unsafe {
-                                &mut #ret_ident
-                            }
-                        }
+                        quote! { &mut #ret_ident }
                     });
                 },
                 _ => unreachable!("Only structs can have a `p_next` field"),
@@ -334,6 +396,7 @@ impl StatefulFunctionGeneratorState {
         &mut self,
         source: &Source<'a>,
         imports: &Imports,
+        handle: &Handle<'a>,
         arg: FunctionArgument<'a>,
         inner: Ty<'a>,
     ) {
@@ -349,62 +412,63 @@ impl StatefulFunctionGeneratorState {
             Ty::Named(named) => match source.resolve_type(&named).expect("unknown type") {
                 TypeRef::Struct(s) => {
                     imports.push("std::mem::MaybeUninit");
-                    self.return_values.push(quote! {
-                        unsafe {
-                            #ret_ident.assume_init()
-                        }
-                    });
+                    self.return_values.push(quote! { #ret_ident.assume_init() });
 
                     if s.has_pointer() {
                         // If we have pointers, we initialize the return value as a set of zero.
                         // This avoids Vulkan following pointers to `p_next` chains and causing
                         // segfaults.
                         self.return_initializations.push(quote! {
-                            let mut #ret_ident = unsafe {
-                                MaybeUninit::<#ty>::zeroed()
-                            };
+                            let mut #ret_ident = MaybeUninit::<#ty>::zeroed();
                         });
                     } else {
                         // If we don't contain pointer, we can just use random uninitialized data.
                         self.return_initializations.push(quote! {
-                            let mut #ret_ident = unsafe {
-                                MaybeUninit::<#ty>::uninit()
-                            };
+                            let mut #ret_ident = MaybeUninit::<#ty>::uninit();
                         });
                     }
 
                     self.call_args.push(box move |_| {
-                        quote! {
-                            unsafe {
-                                #ret_ident.as_mut_ptr()
-                            }
-                        }
+                        quote! { #ret_ident.as_mut_ptr() }
                     });
                 },
-                TypeRef::Handle(_) => {
+                TypeRef::Handle(out) => {
                     imports.push("std::mem::MaybeUninit");
+
+                    let parent = if out.parent() != Some(handle.original_name()) {
+                        self.lifetime = false;
+                    
+                        let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
+                        self.function_args.push(quote! {
+                            parent: &'parent Unique<'this, #hdl>
+                        });
+                        quote! { parent }
+                    } else {
+                        quote! { self }
+                    };
+
+                    // set the output value to be a boolean
+                    let last = self.return_types.pop().unwrap();
+                    self.return_types.push(if self.lifetime {
+                        quote! {
+                            Unique<'this, #last>
+                        }
+                    } else {
+                        quote! {
+                            Unique<'parent, #last>
+                        }
+                    });
 
                     // For handle, we just contain a `u64` so we can just use uninitialized value, it
                     // doesn't matter.
                     self.return_initializations.push(quote! {
-                        let mut #ret_ident = unsafe {
-                            MaybeUninit::<#ty>::uninit()
-                        };
+                        let mut #ret_ident = MaybeUninit::<#ty>::uninit();
                     });
 
-                    self.return_values.push(quote! {
-                        unsafe {
-                            #ret_ident.assume_init()
-                        }
-                    });
+                    self.return_values
+                        .push(quote! { Unique::new(#parent, #ret_ident.assume_init(), ()) });
 
-                    self.call_args.push(box move |_| {
-                        quote! {
-                            unsafe {
-                                #ret_ident.as_mut_ptr()
-                            }
-                        }
-                    });
+                    self.call_args.push(box move |_| quote! { #ret_ident.as_mut_ptr() });
                 },
                 // Special case of boolean values
                 TypeRef::Basetype(b) if b.original_name() == "VkBool32" => {
@@ -417,31 +481,21 @@ impl StatefulFunctionGeneratorState {
                         bool
                     };
 
-                    self.return_values.push(quote! { unsafe { #ret_ident != 0 } });
+                    self.return_values.push(quote! { #ret_ident != 0 });
 
                     self.call_args.push(box move |_| {
-                        quote! {
-                            unsafe {
-                                &mut #ret_ident
-                            }
-                        }
+                        quote! {  &mut #ret_ident }
                     });
                 },
                 TypeRef::Union(_) | TypeRef::Basetype(_) | TypeRef::OpaqueType(_) | TypeRef::FunctionPointer(_) => {
                     self.return_initializations.push(quote! {
-                        let mut #ret_ident = unsafe {
-                            std::mem::zeroed()
-                        };
+                        let mut #ret_ident = std::mem::zeroed();
                     });
 
                     self.return_values.push(quote! { #ret_ident });
 
                     self.call_args.push(box move |_| {
-                        quote! {
-                            unsafe {
-                                &mut #ret_ident
-                            }
-                        }
+                        quote! { &mut #ret_ident }
                     });
                 },
                 TypeRef::Enum(_) | TypeRef::Bitmask(_) | TypeRef::BitFlag(_) => {
@@ -452,11 +506,7 @@ impl StatefulFunctionGeneratorState {
                     self.return_values.push(quote! { #ret_ident });
 
                     self.call_args.push(box move |_| {
-                        quote! {
-                            unsafe {
-                                &mut #ret_ident
-                            }
-                        }
+                        quote! { &mut #ret_ident }
                     });
                 },
                 _ => unreachable!("resolve type should not be an alias"),
@@ -470,11 +520,7 @@ impl StatefulFunctionGeneratorState {
                 self.return_values.push(quote! { #ret_ident });
 
                 self.call_args.push(box move |_| {
-                    quote! {
-                        unsafe {
-                            &mut #ret_ident
-                        }
-                    }
+                    quote! { &mut #ret_ident }
                 });
             },
         }
@@ -501,20 +547,31 @@ impl StatefulFunctionGeneratorState {
 
         if matches!(arg.optionality(), Optionality::Yes) {
             self.function_args.push(quote! { #name: Option<#ty> });
-            self.call_args.push(box move |_| quote! { #name.unwrap_or_default() });
+
+            match arg.ty().is_void_ptr_mut() {
+                Some(Mutability::Const) => self
+                    .call_args
+                    .push(box move |_| quote! { #name.unwrap_or_else(std::ptr::null) }),
+                Some(Mutability::Mutable) => self
+                    .call_args
+                    .push(box move |_| quote! { #name.unwrap_or_else(std::ptr::null_mut) }),
+                None => self.call_args.push(box move |_| quote! { #name.unwrap_or_default() }),
+            }
         } else {
             self.function_args.push(quote! { #name: #ty });
             self.call_args.push(box move |_| quote! { #name });
         }
     }
 
-    fn push_this<'a>(&mut self, arg: FunctionArgument<'a>) {
+    fn push_this<'a>(&mut self, arg: FunctionArgument<'a>, handle_ident: &Ident) {
         self.this = true;
         if matches!(arg.externally_synced(), ExternallySynced::Yes) {
-            self.function_args.push(quote! { &mut self });
+            self.function_args
+                .push(quote! { self: &'this mut Unique<'a, #handle_ident> });
             self.call_args.push(box move |_| quote! { self.as_raw() });
         } else {
-            self.function_args.push(quote! { &self });
+            self.function_args
+                .push(quote! { self: &'this Unique<'a, #handle_ident>  });
             self.call_args.push(box move |_| quote! { self.as_raw() });
         }
     }
@@ -526,7 +583,6 @@ impl StatefulFunctionGeneratorState {
         arg: FunctionArgument<'a>,
         state_lifetime: &Option<TokenStream>,
     ) {
-        let lifetime_bound = state_lifetime.as_ref().map(|lifetime| quote! { + #lifetime });
         let name = arg.as_ident();
 
         match arg.ty() {
@@ -549,54 +605,36 @@ impl StatefulFunctionGeneratorState {
                             self.call_args.push(box move |_| quote! { #name });
                         }
                     },
-                    Ty::Named(named) => match source.resolve_type(named).expect("missing type") {
-                        ty @ TypeRef::Handle(_) => {
-                            ty.import(imports);
-                            let ty = ty.as_ident();
+                    Ty::Named(named) => {
+                        let ty = source.resolve_type(named).expect("missing type");
+                        ty.import(imports);
 
-                            let generic_ident =
-                                Ident::new(&format!("V{}", self.generic_index_value), Span::call_site());
-                            self.generic_index_value += 1;
-
-                            self.generic_bounds.push(quote! { AsRaw<Raw = #ty> #lifetime_bound });
-
-                            if matches!(arg.optionality(), Optionality::Sometimes | Optionality::Yes) {
-                                self.function_args
-                                    .push(quote! { #name: Option<[#generic_ident; #len]> });
-                                self.call_args
-                                    .push(box move |_| quote! { #name.map(AsRaw::as_raw).unwrap_or_default() });
-                            } else {
-                                self.function_args.push(quote! { #name: [#generic_ident; #len] });
-                                self.call_args.push(box move |_| quote! { #name.map(AsRaw::as_raw) });
-                            }
-
-                            self.generic_idents.push(generic_ident);
-                        },
-                        ty => {
-                            ty.import(imports);
-
-                            let ty = ty.as_ident();
-                            if matches!(arg.optionality(), Optionality::Sometimes | Optionality::Yes) {
-                                self.function_args.push(quote! { #name: Option<[#ty; #len]> });
-                                self.call_args.push(box move |_| quote! { #name.unwrap_or_default() });
-                            } else {
-                                self.function_args.push(quote! { #name: [#ty; #len] });
-                                self.call_args.push(box move |_| quote! { #name });
-                            }
-                        },
+                        let ty = ty.as_ident();
+                        if matches!(arg.optionality(), Optionality::Sometimes | Optionality::Yes) {
+                            self.function_args.push(quote! { #name: Option<[#ty; #len]> });
+                            self.call_args.push(box move |_| quote! { #name.unwrap_or_default() });
+                        } else {
+                            self.function_args.push(quote! { #name: [#ty; #len] });
+                            self.call_args.push(box move |_| quote! { #name });
+                        }
                     },
                     other => unimplemented!("only native and named types are supported in arrays, for: {:?}", other),
                 }
             },
-            Ty::Slice(Mutability::Const, inner, len) => {
+            Ty::Slice(Mutability::Const, inner, _) => {
                 imports.push("crate::SmallVec");
 
-                let len = len.as_expr(
-                    source,
-                    &|name| Ident::new(name, Span::call_site()).to_token_stream(),
-                    Some(imports),
-                );
-
+                let (ty, _) = inner.as_raw_ty(source, None, false);
+                if matches!(arg.optionality(), Optionality::Sometimes | Optionality::Yes) {
+                    self.function_args
+                        .push(quote! { #name: Option<&#state_lifetime [#ty]> });
+                    self.call_args
+                        .push(box move |_| quote! { #name.map(|slice| slice.as_ptr()).unwrap_or_else(std::ptr::null) });
+                } else {
+                    self.function_args.push(quote! { #name: &#state_lifetime [#ty] });
+                    self.call_args.push(box move |_| quote! { #name.as_ptr() });
+                }
+                /*
                 match &**inner {
                     Ty::Native(native) => {
                         let ty = native.to_token_stream();
@@ -611,6 +649,7 @@ impl StatefulFunctionGeneratorState {
                         }
                     },
                     Ty::Pointer(Mutability::Const, box Ty::Named(named)) => {
+                        // TODO: yeet this
                         match source.resolve_type(named).expect("missing type") {
                             ty @ TypeRef::Struct(_) => {
                                 ty.import(imports);
@@ -646,88 +685,25 @@ impl StatefulFunctionGeneratorState {
                             ty.import(imports);
                             let ty = ty.as_ident();
 
-                            let state_name = name;
-                            let name = Ident::new(&format!("arg_{}", arg.name()), Span::call_site());
-
-                            // Create the value's generic type
-                            let value_generic_ident =
-                                Ident::new(&format!("V{}", self.generic_index_value), Span::call_site());
-                            self.generic_index_value += 1;
-
-                            self.generic_bounds.push(quote! { AsRaw<Raw = #ty> #lifetime_bound });
-
-                            // Create the iterator's generic type
-                            let iter_generic_ident =
-                                Ident::new(&format!("I{}", self.generic_index_iter), Span::call_site());
-                            self.generic_index_iter += 1;
-
-                            self.generic_bounds
-                                .push(quote! { Iterator<Item = #value_generic_ident> #lifetime_bound });
-
-                            // Create the state
-                            self.state_idents.push(state_name.clone());
-
-                            self.state_initializations.push(quote! { SmallVec::new() });
-
-                            self.state_types.push(quote! { SmallVec<#ty>});
-
-                            // Set the reset function for the state (only used when we have persistent state, i.e in
-                            // command buffers)
-                            let state_name_clone = state_name.clone();
-                            self.state_reset.push(box move |state| {
-                                state
-                                    .map(|state| quote! { #state.#state_name_clone.clear() })
-                                    .unwrap_or_else(|| quote! { #state_name_clone.clear() })
-                            });
-
                             if matches!(arg.optionality(), Optionality::Sometimes | Optionality::Yes) {
-                                self.function_args.push(quote! { #name: Option<#iter_generic_ident> });
+                                self.function_args.push(quote! { #name: Option<&[#ty]> });
 
                                 let name_clone = name.clone();
-                                let state_name_clone = state_name.clone();
-                                self.state_set.push(box move |state| {
-                                    let iterator_transform = quote! {
-                                        iter.map(AsRaw::as_raw)
-                                    };
-
-                                    let state_set = state
-                                        .map(|state| quote! { #state.#state_name_clone.extend(#iterator_transform) })
-                                        .unwrap_or_else(|| quote! { #state_name_clone.extend(#iterator_transform) });
-
+                                self.call_args.push(box move |state| {
                                     quote! {
-                                        match #name_clone {
-                                            None => {},
-                                            Some(iter) => #state_set,
-                                        }
+                                        #name_clone.map_or_else(|| std::ptr::null(), |v| v.as_ptr())
                                     }
                                 });
-
-                                self.call_args.push(box move |state| {
-                                    state
-                                        .map(|state| quote! { #state.#name.as_ptr() })
-                                        .unwrap_or_else(|| quote! { #name.as_ptr() })
-                                });
                             } else {
-                                self.function_args.push(quote! { #name: #iter_generic_ident });
+                                self.function_args.push(quote! { #name: #ty });
 
                                 let name_clone = name.clone();
-                                let state_name_clone = state_name.clone();
-                                self.state_set.push(box move |state| {
-                                    state
-                                        .map(|state| quote! { #state.#state_name_clone.extend(#name_clone.map(AsRaw::as_raw)); })
-                                        .unwrap_or_else(|| quote! { #state_name_clone.extend(#name_clone.map(AsRaw::as_raw)); })
-                                });
-
-                                let state_name_clone = state_name.clone();
                                 self.call_args.push(box move |state| {
-                                    state
-                                        .map(|state| quote! { #state.#state_name_clone.as_ptr() })
-                                        .unwrap_or_else(|| quote! { #state_name_clone.as_ptr() })
+                                    quote! {
+                                        #name_clone.as_ptr()
+                                    }
                                 });
                             }
-
-                            self.generic_idents.push(value_generic_ident);
-                            self.generic_idents.push(iter_generic_ident);
                         },
                         ty => {
                             ty.import(imports);
@@ -741,7 +717,7 @@ impl StatefulFunctionGeneratorState {
                         },
                     },
                     other => unimplemented!("only native and named types are supported in arrays, for: {:?}", other),
-                }
+                } */
             },
             other => unimplemented!("arrays should only be slices or fixed-sized arrays, for: {:?}", other),
         }
@@ -754,7 +730,6 @@ impl StatefulFunctionGeneratorState {
         arg: FunctionArgument<'a>,
         state_lifetime: &Option<TokenStream>,
     ) {
-        let lifetime_bound = state_lifetime.as_ref().map(|lifetime| quote! { + #lifetime });
         let name = arg.as_ident();
         match arg.ty() {
             Ty::Pointer(mut_, ty) => {
@@ -793,32 +768,19 @@ impl StatefulFunctionGeneratorState {
 
                 match type_ {
                     TypeRef::Handle(_) => {
-                        imports.push("crate::utils::raw::AsRaw");
-
-                        // Create the generic identifier
-                        let generic_ident = Ident::new(&format!("V{}", self.generic_index_value), Span::call_site());
-                        self.generic_index_value += 1;
-
-                        // The bound of the generic argument
-                        self.generic_bounds.push(quote! { AsRaw<Raw = #ident> #lifetime_bound });
-
                         if matches!(arg.optionality(), Optionality::Yes) {
                             // The argument
-                            self.function_args.push(quote! { #name: Option<#generic_ident> });
+                            self.function_args.push(quote! { #name: Option<#ident> });
 
                             // The call to `as_raw`
-                            self.call_args
-                                .push(box move |_| quote! { #name.map(AsRaw::as_raw).unwrap_or_default() });
+                            self.call_args.push(box move |_| quote! { #name.unwrap_or_default() });
                         } else {
                             // The argument
-                            self.function_args.push(quote! { #name: #generic_ident });
+                            self.function_args.push(quote! { #name: #ident });
 
                             // The call to `as_raw`
-                            self.call_args.push(box move |_| quote! { #name.as_raw() });
+                            self.call_args.push(box move |_| quote! { #name });
                         }
-
-                        // The generic argument
-                        self.generic_idents.push(generic_ident);
                     },
                     TypeRef::Struct(struct_) => {
                         let (rustified, _) = arg.ty().as_ty(source, Some(imports));
@@ -847,17 +809,7 @@ impl StatefulFunctionGeneratorState {
                         let (rustified, _) = arg.ty().as_ty(source, Some(imports));
                         self.function_args.push(quote! { #name: #rustified });
 
-                        let rust_to_c = if let Some((_, rust_to_c)) = arg.ty().rust_to_c_converter(
-                            source,
-                            &|_, ident| ident,
-                            &|_| arg.ty().clone(),
-                            arg.name(),
-                            None,
-                        ) {
-                            rust_to_c
-                        } else {
-                            arg.as_ident().to_token_stream()
-                        };
+                        let rust_to_c = arg.ty().rust_to_c_converter_inline(source, arg.name());
 
                         self.call_args.push(box move |_| quote! { #rust_to_c });
                     },
@@ -1001,9 +953,7 @@ impl<'a> ArgKind<'a> {
                 .iter()
                 .cloned()
                 .enumerate()
-                .filter(|(_, a)| {
-                    a.len().map_or(false, |a| a == arg.original_name())
-                })
+                .filter(|(_, a)| a.len().map_or(false, |a| a == arg.original_name()))
                 .collect::<SmallVec<[_; 1]>>();
 
             // If we are the length of a void pointer argument, the length becomes a passthrough
@@ -1013,9 +963,8 @@ impl<'a> ArgKind<'a> {
             }
 
             if !length_of.is_empty() {
-                let has_slice = length_of
-                    .iter()
-                    .find(|(_, arg)| matches!(arg.ty(), Ty::Slice(Mutability::Mutable, _, _)));
+                // TODO: Ty::Slice was mutable, check if both mutable and const are valid!
+                let has_slice = length_of.iter().find(|(_, arg)| matches!(arg.ty(), Ty::Slice(_, _, _)));
                 match (arg.optionality(), has_slice) {
                     (Optionality::Sometimes, Some((_, _))) => {
                         out.push(ArgKind::LenExtraCall(arg.clone(), length_of));

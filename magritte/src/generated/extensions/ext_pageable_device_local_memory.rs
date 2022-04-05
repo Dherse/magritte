@@ -78,7 +78,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
-use crate::vulkan1_0::{BaseOutStructure, Bool32, Device, DeviceMemory, StructureType};
+use crate::{
+    vulkan1_0::{BaseOutStructure, Bool32, Device, DeviceMemory, StructureType},
+    AsRaw, Unique,
+};
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -174,7 +177,7 @@ pub type FNSetDeviceMemoryPriorityExt =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt> {
@@ -204,20 +207,20 @@ impl<'lt> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt> {
 }
 impl<'lt> PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::pageable_device_local_memory`]
     pub fn pageable_device_local_memory_raw(&self) -> Bool32 {
         self.pageable_device_local_memory
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::pageable_device_local_memory`]
-    pub fn set_pageable_device_local_memory_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_pageable_device_local_memory_raw(mut self, value: Bool32) -> Self {
         self.pageable_device_local_memory = value;
         self
     }
@@ -265,36 +268,106 @@ impl<'lt> PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::pageable_device_local_memory`]
-    pub fn set_pageable_device_local_memory(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::pageable_device_local_memory`]
+    pub fn set_pageable_device_local_memory(mut self, value: bool) -> Self {
         self.pageable_device_local_memory = value as u8 as u32;
         self
     }
 }
-///The V-table of [`Device`] for functions from VK_EXT_pageable_device_local_memory
+impl Device {
+    ///[vkSetDeviceMemoryPriorityEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSetDeviceMemoryPriorityEXT.html) - Change a memory allocation priority
+    ///# C Specifications
+    ///To modify the priority of an existing memory allocation, call:
+    ///```c
+    ///// Provided by VK_EXT_pageable_device_local_memory
+    ///void vkSetDeviceMemoryPriorityEXT(
+    ///    VkDevice                                    device,
+    ///    VkDeviceMemory                              memory,
+    ///    float                                       priority);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the memory.
+    /// - [`memory`] is the [`DeviceMemory`] object to which the new priority will be applied.
+    /// - [`priority`] is a floating-point value between `0` and `1`, indicating the priority of the
+    ///   allocation relative to other memory allocations. Larger values are higher priority. The
+    ///   granularity of the priorities is implementation-dependent.
+    ///# Description
+    ///Memory allocations with higher priority  **may**  be more likely to stay in
+    ///device-local memory when the system is under memory pressure.
+    ///## Valid Usage
+    /// - [`priority`] **must**  be between `0` and `1`, inclusive
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
+    /// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_EXT_pageable_device_local_memory`]
+    /// - [`Device`]
+    /// - [`DeviceMemory`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkSetDeviceMemoryPriorityEXT")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn set_device_memory_priority_ext<'a: 'this, 'this>(
+        self: &'this Unique<'a, Device>,
+        memory: DeviceMemory,
+        priority: Option<f32>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .ext_pageable_device_local_memory()
+            .expect("extension/version not loaded")
+            .set_device_memory_priority_ext()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .ext_pageable_device_local_memory()
+            .unwrap_unchecked()
+            .set_device_memory_priority_ext()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), memory, priority.unwrap_or_default() as _);
+        ()
+    }
+}
+///The V-table of [`Device`] for functions from `VK_EXT_pageable_device_local_memory`
 pub struct DeviceExtPageableDeviceLocalMemoryVTable {
     ///See [`FNSetDeviceMemoryPriorityExt`] for more information.
     pub set_device_memory_priority_ext: FNSetDeviceMemoryPriorityExt,
 }
 impl DeviceExtPageableDeviceLocalMemoryVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             set_device_memory_priority_ext: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetDeviceMemoryPriorityEXT")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetDeviceMemoryPriorityEXT").as_ptr()))
             },
         }
     }

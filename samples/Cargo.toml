@@ -8,8 +8,9 @@ name = "simple"
 path = "src/simple.rs"
 
 [dependencies]
+winit = "0.26.1"
 
 [dependencies.magritte]
 path = "../magritte"
-features = [ "libloading", "VK_KHR_swapchain", "VK_KHR_surface", "VK_KHR_xlib_surface" ]
+features = [ "libloading", "smallvec", "window", "VK_KHR_swapchain", "VK_KHR_surface", "VK_KHR_xlib_surface", "VK_EXT_debug_utils" ]
 default-features = false

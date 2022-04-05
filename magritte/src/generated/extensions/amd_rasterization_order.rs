@@ -229,7 +229,7 @@ impl<'lt> PipelineRasterizationStateRasterizationOrderAMD<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -256,21 +256,21 @@ impl<'lt> PipelineRasterizationStateRasterizationOrderAMD<'lt> {
     pub fn rasterization_order_mut(&mut self) -> &mut RasterizationOrderAMD {
         &mut self.rasterization_order
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::rasterization_order`]
+    ///Sets the value of [`Self::rasterization_order`]
     pub fn set_rasterization_order(
-        &mut self,
+        mut self,
         value: crate::extensions::amd_rasterization_order::RasterizationOrderAMD,
-    ) -> &mut Self {
+    ) -> Self {
         self.rasterization_order = value;
         self
     }

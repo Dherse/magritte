@@ -163,12 +163,14 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
+    entry::Entry,
     vulkan1_0::{
         AllocationCallbacks, BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, DeviceMemory,
         DeviceSize, ExtensionProperties, Extent2D, Format, ImageUsageFlags, ImageView, Instance, Offset2D,
         PhysicalDevice, StructureType, VulkanResultCodes,
     },
     vulkan1_1::MemoryRequirements2,
+    AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -178,6 +180,7 @@ use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
+    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -3819,7 +3822,7 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoQueueFamilyProperties2KHR<'lt> {
@@ -3847,11 +3850,11 @@ impl<'lt> Default for VideoQueueFamilyProperties2KHR<'lt> {
 }
 impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -3885,21 +3888,21 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
     pub fn video_codec_operations_mut(&mut self) -> &mut VideoCodecOperationFlagsKHR {
         &mut self.video_codec_operations
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::video_codec_operations`]
+    ///Sets the value of [`Self::video_codec_operations`]
     pub fn set_video_codec_operations(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoCodecOperationFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.video_codec_operations = value;
         self
     }
@@ -3937,7 +3940,7 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusProperties2KHR<'lt> {
@@ -3965,20 +3968,20 @@ impl<'lt> Default for QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 }
 impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::supported`]
     pub fn supported_raw(&self) -> Bool32 {
         self.supported
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::supported`]
-    pub fn set_supported_raw(&mut self, value: Bool32) -> &mut Self {
+    pub fn set_supported_raw(mut self, value: Bool32) -> Self {
         self.supported = value;
         self
     }
@@ -4026,18 +4029,18 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
             }
         }
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::supported`]
-    pub fn set_supported(&mut self, value: bool) -> &mut Self {
+    ///Sets the value of [`Self::supported`]
+    pub fn set_supported(mut self, value: bool) -> Self {
         self.supported = value as u8 as u32;
         self
     }
@@ -4082,7 +4085,7 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfilesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoProfilesKHR<'lt> {
@@ -4115,20 +4118,20 @@ impl<'lt> Default for VideoProfilesKHR<'lt> {
 }
 impl<'lt> VideoProfilesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::profiles`]
     pub fn profiles_raw(&self) -> *const VideoProfileKHR<'lt> {
         self.profiles
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::profiles`]
-    pub fn set_profiles_raw(&mut self, value: *const VideoProfileKHR<'lt>) -> &mut Self {
+    pub fn set_profiles_raw(mut self, value: *const VideoProfileKHR<'lt>) -> Self {
         self.profiles = value;
         self
     }
@@ -4169,26 +4172,23 @@ impl<'lt> VideoProfilesKHR<'lt> {
     pub fn profile_count_mut(&mut self) -> &mut u32 {
         &mut self.profile_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::profile_count`]
-    pub fn set_profile_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::profile_count`]
+    pub fn set_profile_count(mut self, value: u32) -> Self {
         self.profile_count = value;
         self
     }
-    ///Sets the raw value of [`Self::profiles`]
-    pub fn set_profiles(
-        &mut self,
-        value: &'lt [crate::extensions::khr_video_queue::VideoProfileKHR<'lt>],
-    ) -> &mut Self {
+    ///Sets the value of [`Self::profiles`]
+    pub fn set_profiles(mut self, value: &'lt [crate::extensions::khr_video_queue::VideoProfileKHR<'lt>]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.profiles = value.as_ptr();
@@ -4237,7 +4237,7 @@ impl<'lt> VideoProfilesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
@@ -4275,20 +4275,20 @@ impl<'lt> Default for PhysicalDeviceVideoFormatInfoKHR<'lt> {
 }
 impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Gets the raw value of [`Self::video_profiles`]
     pub fn video_profiles_raw(&self) -> *const VideoProfilesKHR<'lt> {
         self.video_profiles
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::video_profiles`]
-    pub fn set_video_profiles_raw(&mut self, value: *const VideoProfilesKHR<'lt>) -> &mut Self {
+    pub fn set_video_profiles_raw(mut self, value: *const VideoProfilesKHR<'lt>) -> Self {
         self.video_profiles = value;
         self
     }
@@ -4329,26 +4329,23 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
     pub fn image_usage_mut(&mut self) -> &mut ImageUsageFlags {
         &mut self.image_usage
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::image_usage`]
-    pub fn set_image_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+    ///Sets the value of [`Self::image_usage`]
+    pub fn set_image_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
         self.image_usage = value;
         self
     }
-    ///Sets the raw value of [`Self::video_profiles`]
-    pub fn set_video_profiles(
-        &mut self,
-        value: &'lt crate::extensions::khr_video_queue::VideoProfilesKHR<'lt>,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::video_profiles`]
+    pub fn set_video_profiles(mut self, value: &'lt crate::extensions::khr_video_queue::VideoProfilesKHR<'lt>) -> Self {
         self.video_profiles = value as *const _;
         self
     }
@@ -4390,7 +4387,7 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoFormatPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR<'lt> {
@@ -4417,11 +4414,11 @@ impl<'lt> Default for VideoFormatPropertiesKHR<'lt> {
 }
 impl<'lt> VideoFormatPropertiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -4455,18 +4452,18 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
     pub fn format_mut(&mut self) -> &mut Format {
         &mut self.format
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::format`]
-    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::format`]
+    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.format = value;
         self
     }
@@ -4527,7 +4524,7 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfileKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoProfileKHR<'lt> {
@@ -4569,11 +4566,11 @@ impl<'lt> Default for VideoProfileKHR<'lt> {
 }
 impl<'lt> VideoProfileKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -4631,45 +4628,45 @@ impl<'lt> VideoProfileKHR<'lt> {
     pub fn chroma_bit_depth_mut(&mut self) -> &mut VideoComponentBitDepthFlagsKHR {
         &mut self.chroma_bit_depth
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::video_codec_operation`]
+    ///Sets the value of [`Self::video_codec_operation`]
     pub fn set_video_codec_operation(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoCodecOperationFlagBitsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.video_codec_operation = value;
         self
     }
-    ///Sets the raw value of [`Self::chroma_subsampling`]
+    ///Sets the value of [`Self::chroma_subsampling`]
     pub fn set_chroma_subsampling(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoChromaSubsamplingFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.chroma_subsampling = value;
         self
     }
-    ///Sets the raw value of [`Self::luma_bit_depth`]
+    ///Sets the value of [`Self::luma_bit_depth`]
     pub fn set_luma_bit_depth(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoComponentBitDepthFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.luma_bit_depth = value;
         self
     }
-    ///Sets the raw value of [`Self::chroma_bit_depth`]
+    ///Sets the value of [`Self::chroma_bit_depth`]
     pub fn set_chroma_bit_depth(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoComponentBitDepthFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.chroma_bit_depth = value;
         self
     }
@@ -4737,7 +4734,7 @@ impl<'lt> VideoProfileKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilitiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoCapabilitiesKHR<'lt> {
@@ -4800,11 +4797,11 @@ impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
 }
 impl<'lt> VideoCapabilitiesKHR<'lt> {
     ///Gets the raw value of [`Self::p_next`]
-    pub fn p_next_raw(&self) -> &*mut BaseOutStructure<'lt> {
-        &self.p_next
+    pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
+        self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -4902,61 +4899,58 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
     pub fn std_header_version_mut(&mut self) -> &mut ExtensionProperties {
         &mut self.std_header_version
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the raw value of [`Self::capability_flags`]
-    pub fn set_capability_flags(
-        &mut self,
-        value: crate::extensions::khr_video_queue::VideoCapabilityFlagsKHR,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::capability_flags`]
+    pub fn set_capability_flags(mut self, value: crate::extensions::khr_video_queue::VideoCapabilityFlagsKHR) -> Self {
         self.capability_flags = value;
         self
     }
-    ///Sets the raw value of [`Self::min_bitstream_buffer_offset_alignment`]
-    pub fn set_min_bitstream_buffer_offset_alignment(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::min_bitstream_buffer_offset_alignment`]
+    pub fn set_min_bitstream_buffer_offset_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.min_bitstream_buffer_offset_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::min_bitstream_buffer_size_alignment`]
-    pub fn set_min_bitstream_buffer_size_alignment(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::min_bitstream_buffer_size_alignment`]
+    pub fn set_min_bitstream_buffer_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.min_bitstream_buffer_size_alignment = value;
         self
     }
-    ///Sets the raw value of [`Self::video_picture_extent_granularity`]
-    pub fn set_video_picture_extent_granularity(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::video_picture_extent_granularity`]
+    pub fn set_video_picture_extent_granularity(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.video_picture_extent_granularity = value;
         self
     }
-    ///Sets the raw value of [`Self::min_extent`]
-    pub fn set_min_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::min_extent`]
+    pub fn set_min_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.min_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::max_extent`]
-    pub fn set_max_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::max_extent`]
+    pub fn set_max_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.max_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::max_reference_pictures_slots_count`]
-    pub fn set_max_reference_pictures_slots_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_reference_pictures_slots_count`]
+    pub fn set_max_reference_pictures_slots_count(mut self, value: u32) -> Self {
         self.max_reference_pictures_slots_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_reference_pictures_active_count`]
-    pub fn set_max_reference_pictures_active_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_reference_pictures_active_count`]
+    pub fn set_max_reference_pictures_active_count(mut self, value: u32) -> Self {
         self.max_reference_pictures_active_count = value;
         self
     }
-    ///Sets the raw value of [`Self::std_header_version`]
-    pub fn set_std_header_version(&mut self, value: crate::vulkan1_0::ExtensionProperties) -> &mut Self {
+    ///Sets the value of [`Self::std_header_version`]
+    pub fn set_std_header_version(mut self, value: crate::vulkan1_0::ExtensionProperties) -> Self {
         self.std_header_version = value;
         self
     }
@@ -4999,7 +4993,7 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
-#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoGetMemoryPropertiesKHR<'lt> {
@@ -5035,16 +5029,16 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
         self.p_next
     }
     ///Gets the raw value of [`Self::memory_requirements`]
-    pub fn memory_requirements_raw(&self) -> &*mut MemoryRequirements2<'lt> {
-        &self.memory_requirements
+    pub fn memory_requirements_raw(&self) -> *mut MemoryRequirements2<'lt> {
+        self.memory_requirements
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::memory_requirements`]
-    pub fn set_memory_requirements_raw(&mut self, value: *mut MemoryRequirements2<'lt>) -> &mut Self {
+    pub fn set_memory_requirements_raw(mut self, value: *mut MemoryRequirements2<'lt>) -> Self {
         self.memory_requirements = value;
         self
     }
@@ -5085,23 +5079,23 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
     pub unsafe fn memory_requirements_mut(&mut self) -> &mut MemoryRequirements2<'lt> {
         &mut *self.memory_requirements
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::memory_bind_index`]
-    pub fn set_memory_bind_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::memory_bind_index`]
+    pub fn set_memory_bind_index(mut self, value: u32) -> Self {
         self.memory_bind_index = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_requirements`]
-    pub fn set_memory_requirements(&mut self, value: &'lt mut crate::vulkan1_1::MemoryRequirements2<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::memory_requirements`]
+    pub fn set_memory_requirements(mut self, value: &'lt mut crate::vulkan1_1::MemoryRequirements2<'lt>) -> Self {
         self.memory_requirements = value as *mut _;
         self
     }
@@ -5195,7 +5189,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -5246,33 +5240,33 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
     pub fn memory_size_mut(&mut self) -> &mut DeviceSize {
         &mut self.memory_size
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::memory_bind_index`]
-    pub fn set_memory_bind_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::memory_bind_index`]
+    pub fn set_memory_bind_index(mut self, value: u32) -> Self {
         self.memory_bind_index = value;
         self
     }
-    ///Sets the raw value of [`Self::memory`]
-    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+    ///Sets the value of [`Self::memory`]
+    pub fn set_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
         self.memory = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_offset`]
-    pub fn set_memory_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::memory_offset`]
+    pub fn set_memory_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.memory_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::memory_size`]
-    pub fn set_memory_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+    ///Sets the value of [`Self::memory_size`]
+    pub fn set_memory_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.memory_size = value;
         self
     }
@@ -5363,7 +5357,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -5414,33 +5408,33 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
     pub fn image_view_binding_mut(&mut self) -> &mut ImageView {
         &mut self.image_view_binding
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::coded_offset`]
-    pub fn set_coded_offset(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {
+    ///Sets the value of [`Self::coded_offset`]
+    pub fn set_coded_offset(mut self, value: crate::vulkan1_0::Offset2D) -> Self {
         self.coded_offset = value;
         self
     }
-    ///Sets the raw value of [`Self::coded_extent`]
-    pub fn set_coded_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::coded_extent`]
+    pub fn set_coded_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.coded_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::base_array_layer`]
-    pub fn set_base_array_layer(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::base_array_layer`]
+    pub fn set_base_array_layer(mut self, value: u32) -> Self {
         self.base_array_layer = value;
         self
     }
-    ///Sets the raw value of [`Self::image_view_binding`]
-    pub fn set_image_view_binding(&mut self, value: crate::vulkan1_0::ImageView) -> &mut Self {
+    ///Sets the value of [`Self::image_view_binding`]
+    pub fn set_image_view_binding(mut self, value: crate::vulkan1_0::ImageView) -> Self {
         self.image_view_binding = value;
         self
     }
@@ -5527,12 +5521,12 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
         self.picture_resource
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::picture_resource`]
-    pub fn set_picture_resource_raw(&mut self, value: *const VideoPictureResourceKHR<'lt>) -> &mut Self {
+    pub fn set_picture_resource_raw(mut self, value: *const VideoPictureResourceKHR<'lt>) -> Self {
         self.picture_resource = value;
         self
     }
@@ -5566,26 +5560,26 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
     pub fn slot_index_mut(&mut self) -> &mut i8 {
         &mut self.slot_index
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::slot_index`]
-    pub fn set_slot_index(&mut self, value: i8) -> &mut Self {
+    ///Sets the value of [`Self::slot_index`]
+    pub fn set_slot_index(mut self, value: i8) -> Self {
         self.slot_index = value;
         self
     }
-    ///Sets the raw value of [`Self::picture_resource`]
+    ///Sets the value of [`Self::picture_resource`]
     pub fn set_picture_resource(
-        &mut self,
+        mut self,
         value: &'lt crate::extensions::khr_video_queue::VideoPictureResourceKHR<'lt>,
-    ) -> &mut Self {
+    ) -> Self {
         self.picture_resource = value as *const _;
         self
     }
@@ -5768,17 +5762,17 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
         self.std_header_version
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::video_profile`]
-    pub fn set_video_profile_raw(&mut self, value: *const VideoProfileKHR<'lt>) -> &mut Self {
+    pub fn set_video_profile_raw(mut self, value: *const VideoProfileKHR<'lt>) -> Self {
         self.video_profile = value;
         self
     }
     ///Sets the raw value of [`Self::std_header_version`]
-    pub fn set_std_header_version_raw(&mut self, value: *const ExtensionProperties) -> &mut Self {
+    pub fn set_std_header_version_raw(mut self, value: *const ExtensionProperties) -> Self {
         self.std_header_version = value;
         self
     }
@@ -5867,61 +5861,58 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
     pub fn max_reference_pictures_active_count_mut(&mut self) -> &mut u32 {
         &mut self.max_reference_pictures_active_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::queue_family_index`]
-    pub fn set_queue_family_index(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::queue_family_index`]
+    pub fn set_queue_family_index(mut self, value: u32) -> Self {
         self.queue_family_index = value;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_video_queue::VideoSessionCreateFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_video_queue::VideoSessionCreateFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::video_profile`]
-    pub fn set_video_profile(
-        &mut self,
-        value: &'lt crate::extensions::khr_video_queue::VideoProfileKHR<'lt>,
-    ) -> &mut Self {
+    ///Sets the value of [`Self::video_profile`]
+    pub fn set_video_profile(mut self, value: &'lt crate::extensions::khr_video_queue::VideoProfileKHR<'lt>) -> Self {
         self.video_profile = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::picture_format`]
-    pub fn set_picture_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::picture_format`]
+    pub fn set_picture_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.picture_format = value;
         self
     }
-    ///Sets the raw value of [`Self::max_coded_extent`]
-    pub fn set_max_coded_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
+    ///Sets the value of [`Self::max_coded_extent`]
+    pub fn set_max_coded_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
         self.max_coded_extent = value;
         self
     }
-    ///Sets the raw value of [`Self::reference_pictures_format`]
-    pub fn set_reference_pictures_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
+    ///Sets the value of [`Self::reference_pictures_format`]
+    pub fn set_reference_pictures_format(mut self, value: crate::vulkan1_0::Format) -> Self {
         self.reference_pictures_format = value;
         self
     }
-    ///Sets the raw value of [`Self::max_reference_pictures_slots_count`]
-    pub fn set_max_reference_pictures_slots_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_reference_pictures_slots_count`]
+    pub fn set_max_reference_pictures_slots_count(mut self, value: u32) -> Self {
         self.max_reference_pictures_slots_count = value;
         self
     }
-    ///Sets the raw value of [`Self::max_reference_pictures_active_count`]
-    pub fn set_max_reference_pictures_active_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::max_reference_pictures_active_count`]
+    pub fn set_max_reference_pictures_active_count(mut self, value: u32) -> Self {
         self.max_reference_pictures_active_count = value;
         self
     }
-    ///Sets the raw value of [`Self::std_header_version`]
-    pub fn set_std_header_version(&mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> &mut Self {
+    ///Sets the value of [`Self::std_header_version`]
+    pub fn set_std_header_version(mut self, value: &'lt crate::vulkan1_0::ExtensionProperties) -> Self {
         self.std_header_version = value as *const _;
         self
     }
@@ -5941,7 +5932,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 ///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`video_session_parameters_template`] is [`crate::utils::Handle::null`] or a valid handle to a
+/// - [`video_session_parameters_template`] is [`crate::Handle::null`] or a valid handle to a
 ///   [`VideoSessionParametersKHR`] object. If this parameter represents a valid handle, then the
 ///   underlying Video Session Parameters object will be used as a template for constructing the new
 ///   video session parameters object. All of the template object’s current parameters will be
@@ -5964,7 +5955,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 ///   [`VideoEncodeH264SessionParametersCreateInfoEXT`], or
 ///   [`VideoEncodeH265SessionParametersCreateInfoEXT`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// - If [`video_session_parameters_template`] is not [`crate::utils::Handle::null`],
+/// - If [`video_session_parameters_template`] is not [`crate::Handle::null`],
 ///   [`video_session_parameters_template`] **must**  be a valid [`VideoSessionParametersKHR`]
 ///   handle
 /// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
@@ -5999,7 +5990,7 @@ pub struct VideoSessionParametersCreateInfoKHR<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *const BaseInStructure<'lt>,
-    ///[`video_session_parameters_template`] is [`crate::utils::Handle::null`] or a valid
+    ///[`video_session_parameters_template`] is [`crate::Handle::null`] or a valid
     ///handle to a [`VideoSessionParametersKHR`] object.
     ///If this parameter represents a valid handle, then the underlying Video
     ///Session Parameters object will be used as a template for constructing
@@ -6031,7 +6022,7 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -6066,26 +6057,26 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
     pub fn video_session_mut(&mut self) -> &mut VideoSessionKHR {
         &mut self.video_session
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::video_session_parameters_template`]
+    ///Sets the value of [`Self::video_session_parameters_template`]
     pub fn set_video_session_parameters_template(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoSessionParametersKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.video_session_parameters_template = value;
         self
     }
-    ///Sets the raw value of [`Self::video_session`]
-    pub fn set_video_session(&mut self, value: crate::extensions::khr_video_queue::VideoSessionKHR) -> &mut Self {
+    ///Sets the value of [`Self::video_session`]
+    pub fn set_video_session(mut self, value: crate::extensions::khr_video_queue::VideoSessionKHR) -> Self {
         self.video_session = value;
         self
     }
@@ -6161,7 +6152,7 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -6188,18 +6179,18 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
     pub fn update_sequence_count_mut(&mut self) -> &mut u32 {
         &mut self.update_sequence_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::update_sequence_count`]
-    pub fn set_update_sequence_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::update_sequence_count`]
+    pub fn set_update_sequence_count(mut self, value: u32) -> Self {
         self.update_sequence_count = value;
         self
     }
@@ -6228,9 +6219,9 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 ///   the Video Decode or Encode quality preset.
 /// - [`video_session`] is the video session object to be bound for the processing of the video
 ///   commands.
-/// - [`video_session_parameters`] is [`crate::utils::Handle::null`] or a handle of a
+/// - [`video_session_parameters`] is [`crate::Handle::null`] or a handle of a
 ///   [`VideoSessionParametersKHR`] object to be used for the processing of the video commands. If
-///   [`crate::utils::Handle::null`], then no video session parameters apply to this command buffer
+///   [`crate::Handle::null`], then no video session parameters apply to this command buffer
 ///   context.
 /// - [`reference_slot_count`] is the number of reference slot entries provided in
 ///   [`reference_slots`].
@@ -6245,7 +6236,7 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 /// - [`VideoBeginCodingInfoKHR`]::[`reference_slot_count`] **must**  not exceed the value specified
 ///   in [`VideoSessionCreateInfoKHR::max_reference_pictures_slots_count`] when creating the video
 ///   session object that is being provided in [`video_session`]
-/// - If [`video_session_parameters`] is not [`crate::utils::Handle::null`], it  **must**  have been
+/// - If [`video_session_parameters`] is not [`crate::Handle::null`], it  **must**  have been
 ///   created using [`video_session`] as a parent object
 ///
 ///## Valid Usage (Implicit)
@@ -6256,8 +6247,8 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
 ///   [`VideoCodingQualityPresetFlagBitsKHR`] values
 /// - [`codec_quality_preset`] **must**  not be `0`
 /// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
-/// - If [`video_session_parameters`] is not [`crate::utils::Handle::null`],
-///   [`video_session_parameters`] **must**  be a valid [`VideoSessionParametersKHR`] handle
+/// - If [`video_session_parameters`] is not [`crate::Handle::null`], [`video_session_parameters`]
+///   **must**  be a valid [`VideoSessionParametersKHR`] handle
 /// - If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an
 ///   array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
 /// - If [`video_session_parameters`] is a valid handle, it  **must**  have been created, allocated,
@@ -6303,10 +6294,10 @@ pub struct VideoBeginCodingInfoKHR<'lt> {
     ///[`video_session`] is the video session object to be bound for the
     ///processing of the video commands.
     pub video_session: VideoSessionKHR,
-    ///[`video_session_parameters`] is [`crate::utils::Handle::null`] or a handle of a
+    ///[`video_session_parameters`] is [`crate::Handle::null`] or a handle of a
     ///[`VideoSessionParametersKHR`] object to be used for the processing
     ///of the video commands.
-    ///If [`crate::utils::Handle::null`], then no video session parameters apply to this
+    ///If [`crate::Handle::null`], then no video session parameters apply to this
     ///command buffer context.
     pub video_session_parameters: VideoSessionParametersKHR,
     ///[`reference_slot_count`] is the number of reference slot entries
@@ -6349,12 +6340,12 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
         self.reference_slots
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::reference_slots`]
-    pub fn set_reference_slots_raw(&mut self, value: *const VideoReferenceSlotKHR<'lt>) -> &mut Self {
+    pub fn set_reference_slots_raw(mut self, value: *const VideoReferenceSlotKHR<'lt>) -> Self {
         self.reference_slots = value;
         self
     }
@@ -6420,52 +6411,52 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
     pub fn reference_slot_count_mut(&mut self) -> &mut u32 {
         &mut self.reference_slot_count
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_video_queue::VideoBeginCodingFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_video_queue::VideoBeginCodingFlagsKHR) -> Self {
         self.flags = value;
         self
     }
-    ///Sets the raw value of [`Self::codec_quality_preset`]
+    ///Sets the value of [`Self::codec_quality_preset`]
     pub fn set_codec_quality_preset(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoCodingQualityPresetFlagsKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.codec_quality_preset = value;
         self
     }
-    ///Sets the raw value of [`Self::video_session`]
-    pub fn set_video_session(&mut self, value: crate::extensions::khr_video_queue::VideoSessionKHR) -> &mut Self {
+    ///Sets the value of [`Self::video_session`]
+    pub fn set_video_session(mut self, value: crate::extensions::khr_video_queue::VideoSessionKHR) -> Self {
         self.video_session = value;
         self
     }
-    ///Sets the raw value of [`Self::video_session_parameters`]
+    ///Sets the value of [`Self::video_session_parameters`]
     pub fn set_video_session_parameters(
-        &mut self,
+        mut self,
         value: crate::extensions::khr_video_queue::VideoSessionParametersKHR,
-    ) -> &mut Self {
+    ) -> Self {
         self.video_session_parameters = value;
         self
     }
-    ///Sets the raw value of [`Self::reference_slot_count`]
-    pub fn set_reference_slot_count(&mut self, value: u32) -> &mut Self {
+    ///Sets the value of [`Self::reference_slot_count`]
+    pub fn set_reference_slot_count(mut self, value: u32) -> Self {
         self.reference_slot_count = value;
         self
     }
-    ///Sets the raw value of [`Self::reference_slots`]
+    ///Sets the value of [`Self::reference_slots`]
     pub fn set_reference_slots(
-        &mut self,
+        mut self,
         value: &'lt [crate::extensions::khr_video_queue::VideoReferenceSlotKHR<'lt>],
-    ) -> &mut Self {
+    ) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.reference_slots = value.as_ptr();
@@ -6537,7 +6528,7 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -6564,18 +6555,18 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
     pub fn flags_mut(&mut self) -> &mut VideoEndCodingFlagsKHR {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_video_queue::VideoEndCodingFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_video_queue::VideoEndCodingFlagsKHR) -> Self {
         self.flags = value;
         self
     }
@@ -6654,7 +6645,7 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -6681,20 +6672,1035 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
     pub fn flags_mut(&mut self) -> &mut VideoCodingControlFlagsKHR {
         &mut self.flags
     }
-    ///Sets the raw value of [`Self::s_type`]
-    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
+    ///Sets the value of [`Self::s_type`]
+    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
         self.s_type = value;
         self
     }
-    ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
+    ///Sets the value of [`Self::p_next`]
+    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
         self.p_next = value as *const _;
         self
     }
-    ///Sets the raw value of [`Self::flags`]
-    pub fn set_flags(&mut self, value: crate::extensions::khr_video_queue::VideoCodingControlFlagsKHR) -> &mut Self {
+    ///Sets the value of [`Self::flags`]
+    pub fn set_flags(mut self, value: crate::extensions::khr_video_queue::VideoCodingControlFlagsKHR) -> Self {
         self.flags = value;
         self
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceVideoCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoCapabilitiesKHR.html) - Query video decode or encode capabilities
+    ///# C Specifications
+    ///To query video decode or encode capabilities for a specific codec, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkGetPhysicalDeviceVideoCapabilitiesKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    const VkVideoProfileKHR*                    pVideoProfile,
+    ///    VkVideoCapabilitiesKHR*                     pCapabilities);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device whose video decode or encode capabilities will
+    ///   be queried.
+    /// - [`p_video_profile`] is a pointer to a [`VideoProfileKHR`] structure with a chained
+    ///   codec-operation specific video profile structure.
+    /// - [`p_capabilities`] is a pointer to a [`VideoCapabilitiesKHR`] structure in which the
+    ///   capabilities are returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_video_profile`] **must**  be a valid pointer to a valid [`VideoProfileKHR`] structure
+    /// - [`p_capabilities`] **must**  be a valid pointer to a [`VideoCapabilitiesKHR`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
+    ///   `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`PhysicalDevice`]
+    /// - [`VideoCapabilitiesKHR`]
+    /// - [`VideoProfileKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceVideoCapabilitiesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_video_capabilities_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_video_profile: &VideoProfileKHR<'lt>,
+    ) -> VulkanResult<VideoCapabilitiesKHR<'lt>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .get_physical_device_video_capabilities_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .get_physical_device_video_capabilities_khr()
+            .unwrap_unchecked();
+        let mut p_capabilities = MaybeUninit::<VideoCapabilitiesKHR<'lt>>::zeroed();
+        let _return = _function(
+            self.as_raw(),
+            p_video_profile as *const VideoProfileKHR<'lt>,
+            p_capabilities.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, p_capabilities.assume_init()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl PhysicalDevice {
+    ///[vkGetPhysicalDeviceVideoFormatPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoFormatPropertiesKHR.html) - Query supported Video Decode and Encode image formats
+    ///# C Specifications
+    ///To enumerate the supported output, input and DPB image formats for a
+    ///specific codec operation and video profile, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkGetPhysicalDeviceVideoFormatPropertiesKHR(
+    ///    VkPhysicalDevice                            physicalDevice,
+    ///    const VkPhysicalDeviceVideoFormatInfoKHR*   pVideoFormatInfo,
+    ///    uint32_t*                                   pVideoFormatPropertyCount,
+    ///    VkVideoFormatPropertiesKHR*                 pVideoFormatProperties);
+    ///```
+    ///# Parameters
+    /// - [`physical_device`] is the physical device being queried.
+    /// - [`p_video_format_info`] is a pointer to a [`PhysicalDeviceVideoFormatInfoKHR`] structure
+    ///   specifying the codec and video profile for which information is returned.
+    /// - [`p_video_format_property_count`] is a pointer to an integer related to the number of
+    ///   video format properties available or queried, as described below.
+    /// - [`p_video_format_properties`] is a pointer to an array of [`VideoFormatPropertiesKHR`]
+    ///   structures in which supported formats are returned.
+    ///# Description
+    ///If [`p_video_format_properties`] is `NULL`, then the number of video format
+    ///properties supported for the given [`physical_device`] is returned in
+    ///[`p_video_format_property_count`].
+    ///Otherwise, [`p_video_format_property_count`] **must**  point to a variable set by
+    ///the user to the number of elements in the [`p_video_format_properties`]
+    ///array, and on return the variable is overwritten with the number of values
+    ///actually written to [`p_video_format_properties`].
+    ///If the value of [`p_video_format_property_count`] is less than the number of
+    ///video format properties supported, at most [`p_video_format_property_count`]
+    ///values will be written to [`p_video_format_properties`], and
+    ///`VK_INCOMPLETE` will be returned instead of `VK_SUCCESS`, to
+    ///indicate that not all the available values were returned.If an implementation reports
+    ///`VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR` is
+    ///supported but
+    ///`VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR` is not
+    ///supported in [`VideoDecodeCapabilitiesKHR::flags`], then to query
+    ///for video format properties for decode DPB or output, `imageUsage` **must**
+    ///have both `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` and
+    ///`VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR` set.
+    ///Otherwise, the call will fail with `VK_ERROR_FORMAT_NOT_SUPPORTED`.If an implementation
+    /// reports
+    ///`VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR` is
+    ///supported but
+    ///`VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR` is not
+    ///supported in [`VideoDecodeCapabilitiesKHR::flags`], then to query
+    ///for video format properties for decode DPB, `imageUsage` **must**  have
+    ///`VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` set and
+    ///`VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR` not set.
+    ///Otherwise, the call will fail with `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+    ///Similarly, to query for video format properties for decode output,
+    ///`imageUsage` **must**  have `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`
+    ///set and `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR` not set.
+    ///Otherwise, the call will fail with `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+    ///## Valid Usage
+    /// - The `imageUsage` enum of [`PhysicalDeviceVideoFormatInfoKHR`] **must**  contain at least
+    ///   one of the following video image usage bit(s): `VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR`,
+    ///   `VK_IMAGE_USAGE_VIDEO_DECODE_DPB_BIT_KHR`, `VK_IMAGE_USAGE_VIDEO_ENCODE_SRC_BIT_KHR`, or
+    ///   `VK_IMAGE_USAGE_VIDEO_ENCODE_DPB_BIT_KHR`
+    ///
+    ///## Valid Usage (Implicit)
+    /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
+    /// - [`p_video_format_info`] **must**  be a valid pointer to a valid
+    ///   [`PhysicalDeviceVideoFormatInfoKHR`] structure
+    /// - [`p_video_format_property_count`] **must**  be a valid pointer to a `uint32_t` value
+    /// - If the value referenced by [`p_video_format_property_count`] is not `0`, and
+    ///   [`p_video_format_properties`] is not `NULL`, [`p_video_format_properties`] **must**  be a
+    ///   valid pointer to an array of [`p_video_format_property_count`][`VideoFormatPropertiesKHR`]
+    ///   structures
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
+    ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`PhysicalDevice`]
+    /// - [`PhysicalDeviceVideoFormatInfoKHR`]
+    /// - [`VideoFormatPropertiesKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetPhysicalDeviceVideoFormatPropertiesKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_physical_device_video_format_properties_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, PhysicalDevice>,
+        p_video_format_info: &PhysicalDeviceVideoFormatInfoKHR<'lt>,
+        p_video_format_property_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<VideoFormatPropertiesKHR<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .get_physical_device_video_format_properties_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .instance()
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .get_physical_device_video_format_properties_khr()
+            .unwrap_unchecked();
+        let mut p_video_format_property_count = match p_video_format_property_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(
+                    self.as_raw(),
+                    p_video_format_info as *const PhysicalDeviceVideoFormatInfoKHR<'lt>,
+                    &mut v,
+                    std::ptr::null_mut(),
+                );
+                v
+            },
+        };
+        let mut p_video_format_properties = SmallVec::<VideoFormatPropertiesKHR<'lt>>::from_elem(
+            Default::default(),
+            p_video_format_property_count as usize,
+        );
+        let _return = _function(
+            self.as_raw(),
+            p_video_format_info as *const PhysicalDeviceVideoFormatInfoKHR<'lt>,
+            &mut p_video_format_property_count,
+            p_video_format_properties.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_video_format_properties)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkCreateVideoSessionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionKHR.html) - Creates a video session object
+    ///# C Specifications
+    ///To create a video session object, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkCreateVideoSessionKHR(
+    ///    VkDevice                                    device,
+    ///    const VkVideoSessionCreateInfoKHR*          pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkVideoSessionKHR*                          pVideoSession);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the decode or encode session object.
+    /// - [`p_create_info`] is a pointer to a [`VideoSessionCreateInfoKHR`] structure containing
+    ///   parameters specifying the creation of the decode or encode session.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_video_session`] is a pointer to a [`VideoSessionKHR`] structure specifying the decode
+    ///   or encode video session object which will be created by this function when it returns
+    ///   `VK_SUCCESS`
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`VideoSessionCreateInfoKHR`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_video_session`] **must**  be a valid pointer to a [`VideoSessionKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_INCOMPATIBLE_DRIVER`  -
+    ///   `VK_ERROR_FEATURE_NOT_PRESENT`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`VideoSessionCreateInfoKHR`]
+    /// - [`VideoSessionKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateVideoSessionKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_video_session_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &VideoSessionCreateInfoKHR<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, VideoSessionKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .create_video_session_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .create_video_session_khr()
+            .unwrap_unchecked();
+        let mut p_video_session = MaybeUninit::<VideoSessionKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const VideoSessionCreateInfoKHR<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_video_session.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => {
+                VulkanResult::Success(_return, Unique::new(self, p_video_session.assume_init(), ()))
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyVideoSessionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyVideoSessionKHR.html) - Destroy decode session object
+    ///# C Specifications
+    ///To destroy a decode session object, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///void vkDestroyVideoSessionKHR(
+    ///    VkDevice                                    device,
+    ///    VkVideoSessionKHR                           videoSession,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device that was used for the creation of the video session.
+    /// - [`video_session`] is the decode or encode video session to be destroyed.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`VideoSessionKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyVideoSessionKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_video_session_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        video_session: VideoSessionKHR,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .destroy_video_session_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .destroy_video_session_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            video_session,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkCreateVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionParametersKHR.html) - Creates video session video session parameter object
+    ///# C Specifications
+    ///To create a video session parameters object, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkCreateVideoSessionParametersKHR(
+    ///    VkDevice                                    device,
+    ///    const VkVideoSessionParametersCreateInfoKHR* pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkVideoSessionParametersKHR*                pVideoSessionParameters);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that was used for the creation of the video session
+    ///   object.
+    /// - [`p_create_info`] is a pointer to [`VideoSessionParametersCreateInfoKHR`] structure
+    ///   specifying the video session parameters.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_video_session_parameters`] is a pointer to a [`VideoSessionParametersKHR`] handle in
+    ///   which the video session parameters object is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid
+    ///   [`VideoSessionParametersCreateInfoKHR`] structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_video_session_parameters`] **must**  be a valid pointer to a
+    ///   [`VideoSessionParametersKHR`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
+    ///   `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_TOO_MANY_OBJECTS`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`VideoSessionParametersCreateInfoKHR`]
+    /// - [`VideoSessionParametersKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateVideoSessionParametersKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'parent, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        p_create_info: &VideoSessionParametersCreateInfoKHR<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+        parent: &'parent Unique<'this, VideoSessionKHR>,
+    ) -> VulkanResult<Unique<'parent, VideoSessionParametersKHR>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .create_video_session_parameters_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .create_video_session_parameters_khr()
+            .unwrap_unchecked();
+        let mut p_video_session_parameters = MaybeUninit::<VideoSessionParametersKHR>::uninit();
+        let _return = _function(
+            self.as_raw(),
+            p_create_info as *const VideoSessionParametersCreateInfoKHR<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_video_session_parameters.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(
+                _return,
+                Unique::new(parent, p_video_session_parameters.assume_init(), ()),
+            ),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkUpdateVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkUpdateVideoSessionParametersKHR.html) - Update video session video session parameter object
+    ///# C Specifications
+    ///To update, add, or remove video session parameters state, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkUpdateVideoSessionParametersKHR(
+    ///    VkDevice                                    device,
+    ///    VkVideoSessionParametersKHR                 videoSessionParameters,
+    ///    const VkVideoSessionParametersUpdateInfoKHR* pUpdateInfo);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that was used for the creation of the video session
+    ///   object.
+    /// - [`video_session_parameters`] is the video session object that is going to be updated.
+    /// - [`p_update_info`] is a pointer to a [`VideoSessionParametersUpdateInfoKHR`] structure
+    ///   containing the session parameters update information.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`video_session_parameters`] **must**  be a valid [`VideoSessionParametersKHR`] handle
+    /// - [`p_update_info`] **must**  be a valid pointer to a valid
+    ///   [`VideoSessionParametersUpdateInfoKHR`] structure
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_TOO_MANY_OBJECTS`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`Device`]
+    /// - [`VideoSessionParametersKHR`]
+    /// - [`VideoSessionParametersUpdateInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkUpdateVideoSessionParametersKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn update_video_session_parameters_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        video_session_parameters: VideoSessionParametersKHR,
+        p_update_info: &VideoSessionParametersUpdateInfoKHR<'lt>,
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .update_video_session_parameters_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .update_video_session_parameters_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            video_session_parameters,
+            p_update_info as *const VideoSessionParametersUpdateInfoKHR<'lt>,
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkDestroyVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkDestroyVideoSessionParametersKHR.html) - Destroy video session parameters object
+    ///# C Specifications
+    ///To destroy a video session object, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///void vkDestroyVideoSessionParametersKHR(
+    ///    VkDevice                                    device,
+    ///    VkVideoSessionParametersKHR                 videoSessionParameters,
+    ///    const VkAllocationCallbacks*                pAllocator);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the device the video session was created with.
+    /// - [`video_session_parameters`] is the video session parameters object to be destroyed.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`video_session_parameters`] **must**  be a valid [`VideoSessionParametersKHR`] handle
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`VideoSessionParametersKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkDestroyVideoSessionParametersKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn destroy_video_session_parameters_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        video_session_parameters: VideoSessionParametersKHR,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .destroy_video_session_parameters_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .destroy_video_session_parameters_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            video_session_parameters,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+        );
+        ()
+    }
+}
+impl Device {
+    ///[vkGetVideoSessionMemoryRequirementsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetVideoSessionMemoryRequirementsKHR.html) - Get Memory Requirements
+    ///# C Specifications
+    ///To get memory requirements for a video session, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkGetVideoSessionMemoryRequirementsKHR(
+    ///    VkDevice                                    device,
+    ///    VkVideoSessionKHR                           videoSession,
+    ///    uint32_t*                                   pVideoSessionMemoryRequirementsCount,
+    ///    VkVideoGetMemoryPropertiesKHR*              pVideoSessionMemoryRequirements);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the video session.
+    /// - [`video_session`] is the video session to query.
+    /// - [`p_video_session_memory_requirements_count`] is a pointer to an integer related to the
+    ///   number of memory heap requirements available or queried, as described below.
+    /// - [`p_video_session_memory_requirements`] is `NULL` or a pointer to an array of
+    ///   [`VideoGetMemoryPropertiesKHR`] structures in which the memory heap requirements of the
+    ///   video session are returned.
+    ///# Description
+    ///If [`p_video_session_memory_requirements`] is `NULL`, then the number of
+    ///memory heap types required for the video session is returned in
+    ///[`p_video_session_memory_requirements_count`].
+    ///Otherwise, [`p_video_session_memory_requirements_count`] **must**  point to a
+    ///variable set by the user with the number of elements in the
+    ///[`p_video_session_memory_requirements`] array, and on return the variable is
+    ///overwritten with the number of formats actually written to
+    ///[`p_video_session_memory_requirements`].
+    ///If [`p_video_session_memory_requirements_count`] is less than the number of
+    ///memory heap types required for the video session, then at most
+    ///[`p_video_session_memory_requirements_count`] elements will be written to
+    ///[`p_video_session_memory_requirements`], and `VK_INCOMPLETE` will be
+    ///returned, instead of `VK_SUCCESS`, to indicate that not all required
+    ///memory heap types were returned.
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+    /// - [`p_video_session_memory_requirements_count`] **must**  be a valid pointer to a `uint32_t`
+    ///   value
+    /// - If the value referenced by [`p_video_session_memory_requirements_count`] is not `0`, and
+    ///   [`p_video_session_memory_requirements`] is not `NULL`,
+    ///   [`p_video_session_memory_requirements`] **must**  be a valid pointer to an array of
+    ///   [`p_video_session_memory_requirements_count`][`VideoGetMemoryPropertiesKHR`] structures
+    /// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
+    /// * - `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`Device`]
+    /// - [`VideoGetMemoryPropertiesKHR`]
+    /// - [`VideoSessionKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkGetVideoSessionMemoryRequirementsKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn get_video_session_memory_requirements_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        video_session: VideoSessionKHR,
+        p_video_session_memory_requirements_count: Option<usize>,
+    ) -> VulkanResult<SmallVec<VideoGetMemoryPropertiesKHR<'lt>>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .get_video_session_memory_requirements_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .get_video_session_memory_requirements_khr()
+            .unwrap_unchecked();
+        let mut p_video_session_memory_requirements_count = match p_video_session_memory_requirements_count {
+            Some(v) => v as _,
+            None => {
+                let mut v = 0;
+                _function(self.as_raw(), video_session, &mut v, std::ptr::null_mut());
+                v
+            },
+        };
+        let mut p_video_session_memory_requirements = SmallVec::<VideoGetMemoryPropertiesKHR<'lt>>::from_elem(
+            Default::default(),
+            p_video_session_memory_requirements_count as usize,
+        );
+        let _return = _function(
+            self.as_raw(),
+            video_session,
+            &mut p_video_session_memory_requirements_count,
+            p_video_session_memory_requirements.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+                VulkanResult::Success(_return, p_video_session_memory_requirements)
+            },
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl Device {
+    ///[vkBindVideoSessionMemoryKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkBindVideoSessionMemoryKHR.html) - Bind Video Memory
+    ///# C Specifications
+    ///To attach memory to a video session object, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///VkResult vkBindVideoSessionMemoryKHR(
+    ///    VkDevice                                    device,
+    ///    VkVideoSessionKHR                           videoSession,
+    ///    uint32_t                                    videoSessionBindMemoryCount,
+    ///    const VkVideoBindMemoryKHR*                 pVideoSessionBindMemories);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that owns the video session’s memory.
+    /// - [`video_session`] is the video session to be bound with device memory.
+    /// - [`video_session_bind_memory_count`] is the number of [`p_video_session_bind_memories`] to
+    ///   be bound.
+    /// - [`p_video_session_bind_memories`] is a pointer to an array of [`VideoBindMemoryKHR`]
+    ///   structures specifying memory regions to be bound to a device memory heap.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`video_session`] **must**  be a valid [`VideoSessionKHR`] handle
+    /// - [`p_video_session_bind_memories`] **must**  be a valid pointer to an array of
+    ///   [`video_session_bind_memory_count`] valid [`VideoBindMemoryKHR`] structures
+    /// - [`video_session_bind_memory_count`] **must**  be greater than `0`
+    /// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
+    ///   `VK_ERROR_INITIALIZATION_FAILED`
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`Device`]
+    /// - [`VideoBindMemoryKHR`]
+    /// - [`VideoSessionKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkBindVideoSessionMemoryKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn bind_video_session_memory_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, Device>,
+        video_session: VideoSessionKHR,
+        p_video_session_bind_memories: &[crate::extensions::khr_video_queue::VideoBindMemoryKHR<'lt>],
+    ) -> VulkanResult<()> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .bind_video_session_memory_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .bind_video_session_memory_khr()
+            .unwrap_unchecked();
+        let video_session_bind_memory_count = (|len: usize| len)(p_video_session_bind_memories.len()) as _;
+        let _return = _function(
+            self.as_raw(),
+            video_session,
+            video_session_bind_memory_count,
+            p_video_session_bind_memories.as_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdBeginVideoCodingKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdBeginVideoCodingKHR.html) - Start decode jobs
+    ///# C Specifications
+    ///To start video decode or encode operations, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///void vkCmdBeginVideoCodingKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkVideoBeginCodingInfoKHR*            pBeginInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer to be used when recording commands for the video
+    ///   decode or encode operations.
+    /// - [`p_begin_info`] is a pointer to a [`VideoBeginCodingInfoKHR`] structure.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_begin_info`] **must**  be a valid pointer to a valid [`VideoBeginCodingInfoKHR`]
+    ///   structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode,
+    ///   or encode operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`CommandBuffer`]
+    /// - [`VideoBeginCodingInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdBeginVideoCodingKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_begin_video_coding_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, CommandBuffer>,
+        p_begin_info: &VideoBeginCodingInfoKHR<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .cmd_begin_video_coding_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .cmd_begin_video_coding_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_begin_info as *const VideoBeginCodingInfoKHR<'lt>);
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdControlVideoCodingKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdControlVideoCodingKHR.html) - Set encode rate control parameters
+    ///# C Specifications
+    ///To apply dynamic controls to video decode or video encode operations, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///void vkCmdControlVideoCodingKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkVideoCodingControlInfoKHR*          pCodingControlInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer to be filled by this function.
+    /// - [`p_coding_control_info`] is a pointer to a [`VideoCodingControlInfoKHR`] structure.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_coding_control_info`] **must**  be a valid pointer to a valid
+    ///   [`VideoCodingControlInfoKHR`] structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode,
+    ///   or encode operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`CommandBuffer`]
+    /// - [`VideoCodingControlInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdControlVideoCodingKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_control_video_coding_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, CommandBuffer>,
+        p_coding_control_info: &VideoCodingControlInfoKHR<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .cmd_control_video_coding_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .cmd_control_video_coding_khr()
+            .unwrap_unchecked();
+        let _return = _function(
+            self.as_raw(),
+            p_coding_control_info as *const VideoCodingControlInfoKHR<'lt>,
+        );
+        ()
+    }
+}
+impl CommandBuffer {
+    ///[vkCmdEndVideoCodingKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdEndVideoCodingKHR.html) - End decode jobs
+    ///# C Specifications
+    ///To end video decode or encode operations, call:
+    ///```c
+    ///// Provided by VK_KHR_video_queue
+    ///void vkCmdEndVideoCodingKHR(
+    ///    VkCommandBuffer                             commandBuffer,
+    ///    const VkVideoEndCodingInfoKHR*              pEndCodingInfo);
+    ///```
+    ///# Parameters
+    /// - [`command_buffer`] is the command buffer to be filled by this function.
+    /// - [`p_end_coding_info`] is a pointer to a [`VideoEndCodingInfoKHR`] structure.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
+    /// - [`p_end_coding_info`] **must**  be a valid pointer to a valid [`VideoEndCodingInfoKHR`]
+    ///   structure
+    /// - [`command_buffer`] **must**  be in the [recording state]()
+    /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support decode,
+    ///   or encode operations
+    /// - This command  **must**  only be called outside of a render pass instance
+    /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
+    ///
+    ///## Host Synchronization
+    /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
+    ///   be externally synchronized
+    ///
+    ///## Command Properties
+    ///# Related
+    /// - [`VK_KHR_video_queue`]
+    /// - [`CommandBuffer`]
+    /// - [`VideoEndCodingInfoKHR`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCmdEndVideoCodingKHR")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn cmd_end_video_coding_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, CommandBuffer>,
+        p_end_coding_info: &VideoEndCodingInfoKHR<'lt>,
+    ) -> () {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_queue()
+            .expect("extension/version not loaded")
+            .cmd_end_video_coding_khr()
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_video_queue()
+            .unwrap_unchecked()
+            .cmd_end_video_coding_khr()
+            .unwrap_unchecked();
+        let _return = _function(self.as_raw(), p_end_coding_info as *const VideoEndCodingInfoKHR<'lt>);
+        ()
     }
 }
 ///[VkVideoSessionKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionKHR.html) - Opaque handle to a video session object
@@ -6749,6 +7755,42 @@ impl Default for VideoSessionKHR {
         Self::null()
     }
 }
+impl Handle for VideoSessionKHR {
+    type Parent<'a> = Unique<'a, Device>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device().destroy_video_session_khr(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, VideoSessionKHR> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent()
+    }
+}
 ///[VkVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersKHR.html) - Opaque handle to a video video session parameters object
 ///# C Specifications
 ///Video session parameter objects are represented by
@@ -6800,7 +7842,49 @@ impl Default for VideoSessionParametersKHR {
         Self::null()
     }
 }
-///The V-table of [`Instance`] for functions from VK_KHR_video_queue
+impl Handle for VideoSessionParametersKHR {
+    type Parent<'a> = Unique<'a, VideoSessionKHR>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        self.device()
+            .destroy_video_session_parameters_khr(Some(self.as_raw()), None);
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, VideoSessionParametersKHR> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent().parent()
+    }
+    ///Gets the reference to the [`VideoSessionKHR`]
+    #[inline]
+    pub fn video_session_khr(&self) -> &'a Unique<'a, VideoSessionKHR> {
+        self.parent()
+    }
+}
+///The V-table of [`Instance`] for functions from `VK_KHR_video_queue`
 pub struct InstanceKhrVideoQueueVTable {
     ///See [`FNGetPhysicalDeviceVideoCapabilitiesKhr`] for more information.
     pub get_physical_device_video_capabilities_khr: FNGetPhysicalDeviceVideoCapabilitiesKhr,
@@ -6809,21 +7893,25 @@ pub struct InstanceKhrVideoQueueVTable {
 }
 impl InstanceKhrVideoQueueVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Instance) -> Self
-    where
-        F: Fn(Instance, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Instance,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Instance,
+    ) -> Self {
         Self {
             get_physical_device_video_capabilities_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceVideoCapabilitiesKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceVideoCapabilitiesKHR").as_ptr(),
                 ))
             },
             get_physical_device_video_format_properties_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetPhysicalDeviceVideoFormatPropertiesKHR"),
+                    crate::cstr!("vkGetPhysicalDeviceVideoFormatPropertiesKHR").as_ptr(),
                 ))
             },
         }
@@ -6839,7 +7927,7 @@ impl InstanceKhrVideoQueueVTable {
         self.get_physical_device_video_format_properties_khr
     }
 }
-///The V-table of [`Device`] for functions from VK_KHR_video_queue
+///The V-table of [`Device`] for functions from `VK_KHR_video_queue`
 pub struct DeviceKhrVideoQueueVTable {
     ///See [`FNCreateVideoSessionKhr`] for more information.
     pub create_video_session_khr: FNCreateVideoSessionKhr,
@@ -6864,43 +7952,56 @@ pub struct DeviceKhrVideoQueueVTable {
 }
 impl DeviceKhrVideoQueueVTable {
     ///Loads the VTable from the owner and the names
-    pub fn load<F>(loader_fn: F, loader: Device) -> Self
-    where
-        F: Fn(Device, &'static CStr) -> Option<extern "system" fn()>,
-    {
+    #[track_caller]
+    pub fn load(
+        loader_fn: unsafe extern "system" fn(
+            Device,
+            *const std::os::raw::c_char,
+        ) -> Option<unsafe extern "system" fn()>,
+        loader: Device,
+    ) -> Self {
         Self {
             create_video_session_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateVideoSessionKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateVideoSessionKHR").as_ptr()))
             },
             destroy_video_session_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyVideoSessionKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyVideoSessionKHR").as_ptr()))
             },
             create_video_session_parameters_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateVideoSessionParametersKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkCreateVideoSessionParametersKHR").as_ptr(),
+                ))
             },
             update_video_session_parameters_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkUpdateVideoSessionParametersKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkUpdateVideoSessionParametersKHR").as_ptr(),
+                ))
             },
             destroy_video_session_parameters_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyVideoSessionParametersKHR")))
+                std::mem::transmute(loader_fn(
+                    loader,
+                    crate::cstr!("vkDestroyVideoSessionParametersKHR").as_ptr(),
+                ))
             },
             get_video_session_memory_requirements_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
-                    crate::cstr!("vkGetVideoSessionMemoryRequirementsKHR"),
+                    crate::cstr!("vkGetVideoSessionMemoryRequirementsKHR").as_ptr(),
                 ))
             },
             bind_video_session_memory_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindVideoSessionMemoryKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindVideoSessionMemoryKHR").as_ptr()))
             },
             cmd_begin_video_coding_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginVideoCodingKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginVideoCodingKHR").as_ptr()))
             },
             cmd_control_video_coding_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdControlVideoCodingKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdControlVideoCodingKHR").as_ptr()))
             },
             cmd_end_video_coding_khr: unsafe {
-                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndVideoCodingKHR")))
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndVideoCodingKHR").as_ptr()))
             },
         }
     }
