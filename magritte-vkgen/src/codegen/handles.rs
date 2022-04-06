@@ -340,8 +340,8 @@ impl<'a> Handle<'a> {
                 }
             }
 
-            impl<'a> Handle<'a> for #name {
-                type Parent = #parent;
+            impl Handle for #name {
+                type Parent<'a> = #parent;
 
                 type VTable = #vtable;
 
@@ -361,12 +361,12 @@ impl<'a> Handle<'a> {
 
                 #[inline]
                 #[track_caller]
-                unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+                unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
                     #destroy
                 }
 
                 #[inline]
-                unsafe fn load_vtable(&self, #parent_ident: &Self::Parent, #metadata_ident: &Self::Metadata) -> Self::VTable {
+                unsafe fn load_vtable<'a>(&self, #parent_ident: &Self::Parent<'a>, #metadata_ident: &Self::Metadata) -> Self::VTable {
                     #load_vtable
                 }
             }

@@ -497,7 +497,10 @@ impl Device {
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
-                p_swapchains.into_iter().map(|i| Unique::new(self, i, true)).collect(),
+                p_swapchains
+                    .into_iter()
+                    .map(|i| Unique::new(std::mem::transmute(self), i, true))
+                    .collect(),
             ),
             e => VulkanResult::Err(e),
         }

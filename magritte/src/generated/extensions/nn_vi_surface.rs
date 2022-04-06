@@ -410,9 +410,10 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_surface.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }

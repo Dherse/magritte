@@ -324,9 +324,10 @@ impl PhysicalDevice {
             display.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, display.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), display.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }

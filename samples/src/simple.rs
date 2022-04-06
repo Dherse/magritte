@@ -248,26 +248,31 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         device.create_semaphore(&semaphore_create_info, None)?
     };
 
+    let state = State::new(event_loop, &entry, &instance, &pdevice);
+
 
     Ok(())
 }
 
-pub struct State<'a> {
+pub struct State<'a, 'b> {
     event_loop: EventLoop<()>,
     entry: &'a Entry,
     instance: &'a Unique<'a, 'static, Instance>,
+    physical_device: &'b Unique<'a, 'a, PhysicalDevice>,
 }
 
-impl<'state> State<'state> {
-    pub fn new<'a>(
+impl<'a, 'b> State<'a, 'b> {
+    pub fn new(
         event_loop: EventLoop<()>,
         entry: &'a Entry,
         instance: &'a Unique<'a, 'static, Instance>,
-    ) -> State<'a> {
-        State::<'a> {
+        physical_device: &'b Unique<'a, 'a, PhysicalDevice>,
+    ) -> Self {
+        Self {
             event_loop,
             entry,
             instance,
+            physical_device,
         }
     }
 }

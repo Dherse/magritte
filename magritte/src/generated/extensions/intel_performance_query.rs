@@ -1892,9 +1892,10 @@ impl Device {
             p_configuration.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_configuration.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_configuration.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -2384,8 +2385,8 @@ impl Default for PerformanceConfigurationINTEL {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for PerformanceConfigurationINTEL {
-    type Parent = Unique<'a, 'a, Device>;
+impl Handle for PerformanceConfigurationINTEL {
+    type Parent<'a> = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -2399,14 +2400,14 @@ impl<'a> Handle<'a> for PerformanceConfigurationINTEL {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .release_performance_configuration_intel(Some(self.as_raw().coerce()));
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, PerformanceConfigurationINTEL> {
     ///Gets the reference to the [`Entry`]

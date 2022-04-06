@@ -2498,9 +2498,10 @@ impl Device {
             p_swapchain.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_swapchain.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_swapchain.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -2703,7 +2704,7 @@ impl SwapchainKHR {
                 _return,
                 p_swapchain_images
                     .into_iter()
-                    .map(|i| Unique::new(self, i, true))
+                    .map(|i| Unique::new(std::mem::transmute(self), i, true))
                     .collect(),
             ),
             e => VulkanResult::Err(e),
@@ -2911,7 +2912,10 @@ impl SwapchainImage {
             p_view.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_view.assume_init(), true)),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_view.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -3105,8 +3109,8 @@ impl Default for SwapchainKHR {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for SwapchainKHR {
-    type Parent = Unique<'a, 'a, Device>;
+impl Handle for SwapchainKHR {
+    type Parent<'a> = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3120,13 +3124,13 @@ impl<'a> Handle<'a> for SwapchainKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_swapchain_khr(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, SwapchainKHR> {
     ///Gets the reference to the [`Entry`]
@@ -3234,8 +3238,8 @@ impl Default for SwapchainImage {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for SwapchainImage {
-    type Parent = Unique<'a, 'a, SwapchainKHR>;
+impl Handle for SwapchainImage {
+    type Parent<'a> = Unique<'a, 'a, SwapchainKHR>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3249,9 +3253,9 @@ impl<'a> Handle<'a> for SwapchainImage {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {}
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {}
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, SwapchainImage> {
     ///Gets the reference to the [`Entry`]
@@ -3344,8 +3348,8 @@ impl Default for SwapchainImageView {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for SwapchainImageView {
-    type Parent = Unique<'a, 'a, SwapchainImage>;
+impl Handle for SwapchainImageView {
+    type Parent<'a> = Unique<'a, 'a, SwapchainImage>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3359,13 +3363,13 @@ impl<'a> Handle<'a> for SwapchainImageView {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_image_view(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, SwapchainImageView> {
     ///Gets the reference to the [`Entry`]

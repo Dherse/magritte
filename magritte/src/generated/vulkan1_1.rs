@@ -20924,7 +20924,11 @@ impl Device {
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
-                Unique::new(self, p_descriptor_update_template.assume_init(), true),
+                Unique::new(
+                    std::mem::transmute(self),
+                    p_descriptor_update_template.assume_init(),
+                    true,
+                ),
             ),
             e => VulkanResult::Err(e),
         }
@@ -21651,9 +21655,10 @@ impl Device {
             p_ycbcr_conversion.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_ycbcr_conversion.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_ycbcr_conversion.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -21820,7 +21825,7 @@ impl Device {
             p_queue_info as *const DeviceQueueInfo2<'lt>,
             p_queue.as_mut_ptr(),
         );
-        Unique::new(self, p_queue.assume_init(), true)
+        Unique::new(std::mem::transmute(self), p_queue.assume_init(), true)
     }
 }
 impl Device {
@@ -22382,8 +22387,8 @@ impl Default for DescriptorUpdateTemplate {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for DescriptorUpdateTemplate {
-    type Parent = Unique<'a, 'a, Device>;
+impl Handle for DescriptorUpdateTemplate {
+    type Parent<'a> = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -22397,14 +22402,14 @@ impl<'a> Handle<'a> for DescriptorUpdateTemplate {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_descriptor_update_template(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, DescriptorUpdateTemplate> {
     ///Gets the reference to the [`Entry`]
@@ -22491,8 +22496,8 @@ impl Default for SamplerYcbcrConversion {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for SamplerYcbcrConversion {
-    type Parent = Unique<'a, 'a, Device>;
+impl Handle for SamplerYcbcrConversion {
+    type Parent<'a> = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -22506,14 +22511,14 @@ impl<'a> Handle<'a> for SamplerYcbcrConversion {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_sampler_ycbcr_conversion(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, SamplerYcbcrConversion> {
     ///Gets the reference to the [`Entry`]

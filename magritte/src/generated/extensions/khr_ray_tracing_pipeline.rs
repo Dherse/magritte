@@ -3485,7 +3485,10 @@ impl Device {
             | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR
             | VulkanResultCodes::PIPELINE_COMPILE_REQUIRED => VulkanResult::Success(
                 _return,
-                p_pipelines.into_iter().map(|i| Unique::new(self, i, true)).collect(),
+                p_pipelines
+                    .into_iter()
+                    .map(|i| Unique::new(std::mem::transmute(self), i, true))
+                    .collect(),
             ),
             e => VulkanResult::Err(e),
         }

@@ -319,7 +319,7 @@ impl StatefulFunctionGeneratorState {
                 };
 
                 *self.return_values.last_mut().unwrap() = quote! {
-                    #ret_ident.into_iter().map(|i| Unique::new(self, i, true)).collect()
+                    #ret_ident.into_iter().map(|i| Unique::new(std::mem::transmute(self), i, true)).collect()
                 };
             }
         }
@@ -455,7 +455,7 @@ impl StatefulFunctionGeneratorState {
                     });
 
                     self.return_values
-                        .push(quote! { Unique::new(self, #ret_ident.assume_init(), true) });
+                        .push(quote! { Unique::new(std::mem::transmute(self), #ret_ident.assume_init(), true) });
 
                     self.call_args.push(box move |_| quote! { #ret_ident.as_mut_ptr() });
                 },

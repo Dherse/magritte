@@ -2846,9 +2846,10 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_surface.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -3144,7 +3145,10 @@ impl PhysicalDevice {
         match _return {
             VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
                 _return,
-                p_displays.into_iter().map(|i| Unique::new(self, i, true)).collect(),
+                p_displays
+                    .into_iter()
+                    .map(|i| Unique::new(std::mem::transmute(self), i, true))
+                    .collect(),
             ),
             e => VulkanResult::Err(e),
         }
@@ -3337,7 +3341,10 @@ impl DisplayKHR {
             p_mode.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_mode.assume_init(), true)),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_mode.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -3490,8 +3497,8 @@ impl Default for DisplayKHR {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for DisplayKHR {
-    type Parent = Unique<'a, 'a, PhysicalDevice>;
+impl Handle for DisplayKHR {
+    type Parent<'a> = Unique<'a, 'a, PhysicalDevice>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3505,14 +3512,14 @@ impl<'a> Handle<'a> for DisplayKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         #[cfg(feature = "VK_EXT_direct_mode_display")]
         if *self.metadata() {
             self.parent().release_display_ext(self.as_raw().coerce());
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, DisplayKHR> {
     ///Gets the reference to the [`Entry`]
@@ -3587,8 +3594,8 @@ impl Default for DisplayModeKHR {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for DisplayModeKHR {
-    type Parent = Unique<'a, 'a, DisplayKHR>;
+impl Handle for DisplayModeKHR {
+    type Parent<'a> = Unique<'a, 'a, DisplayKHR>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3602,9 +3609,9 @@ impl<'a> Handle<'a> for DisplayModeKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {}
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {}
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, DisplayModeKHR> {
     ///Gets the reference to the [`Entry`]

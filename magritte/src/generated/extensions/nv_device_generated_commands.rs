@@ -4651,7 +4651,11 @@ impl Device {
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
-                Unique::new(self, p_indirect_commands_layout.assume_init(), true),
+                Unique::new(
+                    std::mem::transmute(self),
+                    p_indirect_commands_layout.assume_init(),
+                    true,
+                ),
             ),
             e => VulkanResult::Err(e),
         }
@@ -5435,8 +5439,8 @@ impl Default for IndirectCommandsLayoutNV {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for IndirectCommandsLayoutNV {
-    type Parent = Unique<'a, 'a, Device>;
+impl Handle for IndirectCommandsLayoutNV {
+    type Parent<'a> = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -5450,14 +5454,14 @@ impl<'a> Handle<'a> for IndirectCommandsLayoutNV {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_indirect_commands_layout_nv(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, IndirectCommandsLayoutNV> {
     ///Gets the reference to the [`Entry`]

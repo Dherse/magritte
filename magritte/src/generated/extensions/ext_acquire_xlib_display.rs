@@ -325,9 +325,13 @@ impl PhysicalDevice {
         let mut p_display = MaybeUninit::<DisplayKHR>::uninit();
         let _return = _function(self.as_raw(), &mut dpy, rr_output, p_display.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, (dpy, Unique::new(self, p_display.assume_init(), true)))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                (
+                    dpy,
+                    Unique::new(std::mem::transmute(self), p_display.assume_init(), true),
+                ),
+            ),
             e => VulkanResult::Err(e),
         }
     }

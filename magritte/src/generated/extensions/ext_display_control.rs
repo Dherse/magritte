@@ -1104,9 +1104,10 @@ impl Device {
             p_fence.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_fence.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -1196,9 +1197,10 @@ impl Device {
             p_fence.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_fence.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }

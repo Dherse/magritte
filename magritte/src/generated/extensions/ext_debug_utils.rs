@@ -2845,9 +2845,10 @@ impl Instance {
             p_messenger.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_messenger.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(std::mem::transmute(self), p_messenger.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -3590,8 +3591,8 @@ impl Default for DebugUtilsMessengerEXT {
         Self::null()
     }
 }
-impl<'a> Handle<'a> for DebugUtilsMessengerEXT {
-    type Parent = Unique<'a, 'a, Instance>;
+impl Handle for DebugUtilsMessengerEXT {
+    type Parent<'a> = Unique<'a, 'a, Instance>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3605,14 +3606,14 @@ impl<'a> Handle<'a> for DebugUtilsMessengerEXT {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
+    unsafe fn destroy<'a, 'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.instance()
                 .destroy_debug_utils_messenger_ext(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a, 'b> Unique<'a, 'b, DebugUtilsMessengerEXT> {
     ///Gets the reference to the [`Entry`]
