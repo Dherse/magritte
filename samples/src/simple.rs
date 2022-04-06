@@ -16,9 +16,9 @@ use magritte::{
     vulkan1_0::{
         ApplicationInfo, Bool32, CommandBufferAllocateInfo, CommandBufferLevel, CommandPoolCreateFlags,
         CommandPoolCreateInfo, DeviceCreateInfo, DeviceQueueCreateInfo, Extent2D, ImageUsageFlags, InstanceCreateInfo,
-        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags,
+        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags, Instance,
     },
-    AsRaw, Extensions, Version, SmallVec,
+    AsRaw, Extensions, Version, SmallVec, Unique,
 };
 
 use winit::{event_loop::EventLoop, window::WindowBuilder};
@@ -227,6 +227,11 @@ pub fn main() -> Result<(), Box<dyn Error>> {
             }
         })
         .collect::<Result<SmallVec<_>, _>>()?;
+
+    let simple = Simple {
+        entry: &entry,
+        instance: &instance
+    };
     /*let present_image_views = present_images
     .iter()
     .map(|image| {
@@ -234,6 +239,11 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     })*/
 
     Ok(())
+}
+
+pub struct Simple<'a> {
+    entry: &'a Entry,
+    instance: &'a Unique<'a, Instance>,
 }
 
 unsafe extern "system" fn vulkan_debug_callback<'lt>(
