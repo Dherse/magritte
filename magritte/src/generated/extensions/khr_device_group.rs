@@ -137,7 +137,6 @@ use std::{
     ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
-    mem::MaybeUninit,
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -440,7 +439,6 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DeviceGroupPresentModeFlagBitsKHR(u32);
 impl const Default for DeviceGroupPresentModeFlagBitsKHR {

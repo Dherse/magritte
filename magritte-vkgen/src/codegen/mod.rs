@@ -169,18 +169,18 @@ impl<'a> Source<'a> {
 
             handle.generate_code(self, imports, doc, out);
 
+            println!("{:#?}", handle.functions());
+
             handle
                 .functions()
                 .iter()
-                .filter_map(|fn_| self.find(fn_))
+                .map(|fn_| self.find(fn_).expect("unknown function"))
                 .filter_map(|ref_| ref_.as_function())
                 .filter(|fn_| !fn_.origin().is_disabled())
                 .for_each(|fn_| {
                     let (imports, _, out) = per_origin.get_mut(fn_.origin()).unwrap();
 
                     handle.generate_fn_code(self, imports, doc, fn_, out);
-
-                    // fn_.generate_code(source, imports, doc, self, &mut fns)
                 });
         }
 

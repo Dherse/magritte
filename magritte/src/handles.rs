@@ -12,10 +12,10 @@ use crate::entry::{Entry, EntryVTable};
 
 #[derive(Debug)]
 pub struct Unique<'a, T: Handle> {
-    parent: &'a T::Parent<'a>,
-    vtable: T::VTable,
-    metadata: T::Metadata,
-    this: T,
+    pub(crate) parent: &'a T::Parent<'a>,
+    pub(crate) vtable: T::VTable,
+    pub(crate) metadata: T::Metadata,
+    pub(crate) this: T,
 }
 
 impl<'a, T: Handle> Deref for Unique<'a, T> {
@@ -104,13 +104,28 @@ pub trait Handle: Copy {
     /// The metadata of this handle
     type Metadata: Send + Sync;
 
+    /// The raw contained type
+    type Raw;
+
     /// Destroy tha handle, only called on `drop`
     /// The function is unsafe because it cannot be proven
     /// it has only be called once.
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>);
 
+    #[doc(hidden)]
+    fn as_raw(self) -> Self::Raw;
+
+    #[doc(hidden)]
+    unsafe fn from_raw(this: Self::Raw) -> Self;
+
     /// Loads the V-Table of this handle.
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable;
+
+    #[inline]
+    #[doc(hidden)]
+    unsafe fn coerce<T: Handle<Raw = Self::Raw>>(self) -> T {
+        T::from_raw(self.as_raw())
+    }
 }
 
 impl Handle for () {
@@ -120,11 +135,22 @@ impl Handle for () {
 
     type Metadata = ();
 
+    type Raw = ();
+
+
     #[inline]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
 
     #[inline]
     unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+
+    fn as_raw(self) -> Self::Raw {
+        ()
+    }
+
+    unsafe fn from_raw(_: Self::Raw) -> Self {
         ()
     }
 }
@@ -136,12 +162,22 @@ impl Handle for Entry {
 
     type Metadata = ();
 
+    type Raw = ();
+
     #[inline]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
 
     #[inline]
     unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {
         self.0
+    }
+
+    fn as_raw(self) -> Self::Raw {
+        ()
+    }
+
+    unsafe fn from_raw(_: Self::Raw) -> Self {
+        unimplemented!();
     }
 }
 

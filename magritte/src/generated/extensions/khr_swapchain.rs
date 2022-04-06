@@ -543,8 +543,8 @@ use crate::{
         ColorSpaceKHR, CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR,
     },
     vulkan1_0::{
-        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, ImageUsageFlags, Instance,
-        PhysicalDevice, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
+        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, ImageUsageFlags,
+        ImageViewCreateInfo, Instance, PhysicalDevice, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
     },
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
@@ -984,6 +984,59 @@ pub type FNAcquireNextImageKhr = Option<
 pub type FNQueuePresentKhr = Option<
     for<'lt> unsafe extern "system" fn(queue: Queue, p_present_info: *const PresentInfoKHR<'lt>) -> VulkanResultCodes,
 >;
+///[vkCreateImageView](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateImageView.html) - Create an image view from an existing image
+///# C Specifications
+///To create an image view, call:
+///```c
+///// Provided by VK_VERSION_1_0
+///VkResult vkCreateImageView(
+///    VkDevice                                    device,
+///    const VkImageViewCreateInfo*                pCreateInfo,
+///    const VkAllocationCallbacks*                pAllocator,
+///    VkImageView*                                pView);
+///```
+///# Parameters
+/// - [`device`] is the logical device that creates the image view.
+/// - [`p_create_info`] is a pointer to a [`ImageViewCreateInfo`] structure containing parameters to
+///   be used to create the image view.
+/// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+///   chapter.
+/// - [`p_view`] is a pointer to a [`ImageView`] handle in which the resulting image view object is
+///   returned.
+///# Description
+///## Valid Usage (Implicit)
+/// - [`device`] **must**  be a valid [`Device`] handle
+/// - [`p_create_info`] **must**  be a valid pointer to a valid [`ImageViewCreateInfo`] structure
+/// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+///   [`AllocationCallbacks`] structure
+/// - [`p_view`] **must**  be a valid pointer to a [`ImageView`] handle
+///
+///## Return Codes
+/// * - `VK_SUCCESS`
+/// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+///# Related
+/// - [`crate::vulkan1_0`]
+/// - [`AllocationCallbacks`]
+/// - [`Device`]
+/// - [`ImageView`]
+/// - [`ImageViewCreateInfo`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "vkCreateImageView")]
+pub type FNCreateSwapchainImageView = Option<
+    for<'lt> unsafe extern "system" fn(
+        device: Device,
+        p_create_info: *const ImageViewCreateInfo<'lt>,
+        p_allocator: *const AllocationCallbacks<'lt>,
+        p_view: *mut SwapchainImageView,
+    ) -> VulkanResultCodes,
+>;
 ///[VkSwapchainCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html) - Bitmask controlling swapchain creation
 ///# C Specifications
 ///Bits which  **can**  be set in [`SwapchainCreateInfoKHR::flags`],
@@ -1026,7 +1079,6 @@ pub type FNQueuePresentKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct SwapchainCreateFlagBitsKHR(u32);
 impl const Default for SwapchainCreateFlagBitsKHR {
@@ -2447,7 +2499,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_swapchain.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_swapchain.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -2551,7 +2603,7 @@ impl Device {
         ()
     }
 }
-impl Device {
+impl SwapchainKHR {
     ///[vkGetSwapchainImagesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainImagesKHR.html) - Obtain the array of presentable images associated with a swapchain
     ///# C Specifications
     ///To obtain the array of presentable images associated with a swapchain, call:
@@ -2611,20 +2663,21 @@ impl Device {
     #[doc(alias = "vkGetSwapchainImagesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_swapchain_images_khr<'a: 'this, 'this: 'parent, 'parent>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_swapchain_images_khr<'a: 'this, 'this>(
+        self: &'this Unique<'a, SwapchainKHR>,
         swapchain: SwapchainKHR,
         p_swapchain_image_count: Option<usize>,
-        parent: &'parent Unique<'this, SwapchainKHR>,
-    ) -> VulkanResult<SmallVec<Unique<'parent, SwapchainImage>>> {
+    ) -> VulkanResult<SmallVec<Unique<'this, SwapchainImage>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
+            .device()
             .vtable()
             .khr_swapchain()
             .and_then(|vtable| vtable.get_swapchain_images_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
+            .device()
             .vtable()
             .khr_swapchain()
             .and_then(|vtable| vtable.get_swapchain_images_khr())
@@ -2633,14 +2686,14 @@ impl Device {
             Some(v) => v as _,
             None => {
                 let mut v = 0;
-                _function(self.as_raw(), swapchain, &mut v, std::ptr::null_mut());
+                _function(self.device().as_raw(), swapchain, &mut v, std::ptr::null_mut());
                 v
             },
         };
         let mut p_swapchain_images =
             SmallVec::<SwapchainImage>::from_elem(Default::default(), p_swapchain_image_count as usize);
         let _return = _function(
-            self.as_raw(),
+            self.device().as_raw(),
             swapchain,
             &mut p_swapchain_image_count,
             p_swapchain_images.as_mut_ptr(),
@@ -2650,7 +2703,7 @@ impl Device {
                 _return,
                 p_swapchain_images
                     .into_iter()
-                    .map(|i| Unique::new(parent, i, ()))
+                    .map(|i| Unique::new(self, i, true))
                     .collect(),
             ),
             e => VulkanResult::Err(e),
@@ -2775,6 +2828,90 @@ impl Device {
             | VulkanResultCodes::TIMEOUT
             | VulkanResultCodes::NOT_READY
             | VulkanResultCodes::SUBOPTIMAL_KHR => VulkanResult::Success(_return, p_image_index),
+            e => VulkanResult::Err(e),
+        }
+    }
+}
+impl SwapchainImage {
+    ///[vkCreateImageView](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateImageView.html) - Create an image view from an existing image
+    ///# C Specifications
+    ///To create an image view, call:
+    ///```c
+    ///// Provided by VK_VERSION_1_0
+    ///VkResult vkCreateImageView(
+    ///    VkDevice                                    device,
+    ///    const VkImageViewCreateInfo*                pCreateInfo,
+    ///    const VkAllocationCallbacks*                pAllocator,
+    ///    VkImageView*                                pView);
+    ///```
+    ///# Parameters
+    /// - [`device`] is the logical device that creates the image view.
+    /// - [`p_create_info`] is a pointer to a [`ImageViewCreateInfo`] structure containing
+    ///   parameters to be used to create the image view.
+    /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
+    ///   chapter.
+    /// - [`p_view`] is a pointer to a [`ImageView`] handle in which the resulting image view object
+    ///   is returned.
+    ///# Description
+    ///## Valid Usage (Implicit)
+    /// - [`device`] **must**  be a valid [`Device`] handle
+    /// - [`p_create_info`] **must**  be a valid pointer to a valid [`ImageViewCreateInfo`]
+    ///   structure
+    /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
+    ///   [`AllocationCallbacks`] structure
+    /// - [`p_view`] **must**  be a valid pointer to a [`ImageView`] handle
+    ///
+    ///## Return Codes
+    /// * - `VK_SUCCESS`
+    /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
+    ///# Related
+    /// - [`crate::vulkan1_0`]
+    /// - [`AllocationCallbacks`]
+    /// - [`Device`]
+    /// - [`ImageView`]
+    /// - [`ImageViewCreateInfo`]
+    ///
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// Commons Attribution 4.0 International*.
+    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// given.
+    #[doc(alias = "vkCreateImageView")]
+    #[track_caller]
+    #[inline]
+    pub unsafe fn create_swapchain_image_view<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, SwapchainImage>,
+        p_create_info: &ImageViewCreateInfo<'lt>,
+        p_allocator: Option<&AllocationCallbacks<'lt>>,
+    ) -> VulkanResult<Unique<'this, SwapchainImageView>> {
+        #[cfg(any(debug_assertions, feature = "assertions"))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_swapchain()
+            .and_then(|vtable| vtable.create_swapchain_image_view())
+            .expect("function not loaded");
+        #[cfg(not(any(debug_assertions, feature = "assertions")))]
+        let _function = self
+            .device()
+            .vtable()
+            .khr_swapchain()
+            .and_then(|vtable| vtable.create_swapchain_image_view())
+            .unwrap_unchecked();
+        let mut p_view = MaybeUninit::<SwapchainImageView>::uninit();
+        let _return = _function(
+            self.device().as_raw(),
+            p_create_info as *const ImageViewCreateInfo<'lt>,
+            p_allocator
+                .map(|v| v as *const AllocationCallbacks<'lt>)
+                .unwrap_or_else(std::ptr::null),
+            p_view.as_mut_ptr(),
+        );
+        match _return {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_view.assume_init(), true)),
             e => VulkanResult::Err(e),
         }
     }
@@ -2971,16 +3108,25 @@ impl Default for SwapchainKHR {
 impl Handle for SwapchainKHR {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_swapchain_khr(Some(self.as_raw()), None);
+        if *self.metadata() {
+            self.device().destroy_swapchain_khr(Some(self.as_raw().coerce()), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, SwapchainKHR> {
     ///Gets the reference to the [`Entry`]
@@ -3002,6 +3148,12 @@ impl<'a> Unique<'a, SwapchainKHR> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///[VkImage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImage.html) - Opaque handle to an image object
@@ -3085,14 +3237,21 @@ impl Default for SwapchainImage {
 impl Handle for SwapchainImage {
     type Parent<'a> = Unique<'a, SwapchainKHR>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, SwapchainImage> {
     ///Gets the reference to the [`Entry`]
@@ -3115,6 +3274,126 @@ impl<'a> Unique<'a, SwapchainImage> {
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent().parent()
     }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
+    }
+}
+///[VkImageView](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageView.html) - Opaque handle to an image view object
+///# C Specifications
+///Image objects are not directly accessed by pipeline shaders for reading or
+///writing image data.
+///Instead, *image views* representing contiguous ranges of the image
+///subresources and containing additional metadata are used for that purpose.
+///Views  **must**  be created on images of compatible types, and  **must**  represent a
+///valid subset of image subresources.Image views are represented by [`ImageView`] handles:
+///```c
+///// Provided by VK_VERSION_1_0
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkImageView)
+///```
+///# Related
+/// - [`crate::vulkan1_0`]
+/// - [`DescriptorImageInfo`]
+/// - [`FramebufferCreateInfo`]
+/// - [`ImageViewHandleInfoNVX`]
+/// - [`RenderPassAttachmentBeginInfo`]
+/// - [`RenderingAttachmentInfo`]
+/// - [`RenderingFragmentDensityMapAttachmentInfoEXT`]
+/// - [`RenderingFragmentShadingRateAttachmentInfoKHR`]
+/// - [`VideoPictureResourceKHR`]
+/// - [`cmd_bind_invocation_mask_huawei`]
+/// - [`cmd_bind_shading_rate_image_nv`]
+/// - [`create_image_view`]
+/// - [`destroy_image_view`]
+/// - [`get_image_view_address_nvx`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImageView")]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct SwapchainImageView(pub u64);
+impl SwapchainImageView {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for SwapchainImageView {}
+impl Default for SwapchainImageView {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl Handle for SwapchainImageView {
+    type Parent<'a> = Unique<'a, SwapchainImage>;
+    type VTable = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+        if *self.metadata() {
+            self.device().destroy_image_view(Some(self.as_raw().coerce()), None);
+        }
+    }
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+}
+impl<'a> Unique<'a, SwapchainImageView> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent().parent().parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
+    }
 }
 ///The V-table of [`Device`] for functions from `VK_KHR_swapchain`
 pub struct DeviceKhrSwapchainVTable {
@@ -3128,6 +3407,8 @@ pub struct DeviceKhrSwapchainVTable {
     pub acquire_next_image_khr: FNAcquireNextImageKhr,
     ///See [`FNQueuePresentKhr`] for more information.
     pub queue_present_khr: FNQueuePresentKhr,
+    ///See [`FNCreateSwapchainImageView`] for more information.
+    pub create_swapchain_image_view: FNCreateSwapchainImageView,
 }
 impl DeviceKhrSwapchainVTable {
     ///Loads the VTable from the owner and the names
@@ -3155,6 +3436,9 @@ impl DeviceKhrSwapchainVTable {
             queue_present_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueuePresentKHR").as_ptr()))
             },
+            create_swapchain_image_view: unsafe {
+                std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateImageView").as_ptr()))
+            },
         }
     }
     ///Gets [`Self::create_swapchain_khr`]. See [`FNCreateSwapchainKhr`] for more information.
@@ -3177,5 +3461,10 @@ impl DeviceKhrSwapchainVTable {
     ///Gets [`Self::queue_present_khr`]. See [`FNQueuePresentKhr`] for more information.
     pub fn queue_present_khr(&self) -> FNQueuePresentKhr {
         self.queue_present_khr
+    }
+    ///Gets [`Self::create_swapchain_image_view`]. See [`FNCreateSwapchainImageView`] for more
+    /// information.
+    pub fn create_swapchain_image_view(&self) -> FNCreateSwapchainImageView {
+        self.create_swapchain_image_view
     }
 }

@@ -348,15 +348,78 @@ impl<'a> Source<'a> {
             )
         }));
 
+        this.handles.push(Handle {
+            original_name: Cow::Borrowed("VkImage"),
+            rename: Some(Cow::Borrowed("VkSwapchainImage")),
+            name: "SwapchainImage".to_string(),
+            parent: Some(Cow::Borrowed("VkSwapchainKHR")),
+            dispatchable: false,
+            origin: this.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone(),
+            functions: SymbolTable::default(),
+            destroyer: None,
+        });
+
+        this.global.push((
+            Cow::Borrowed("VkSwapchainImage"),
+            "SwapchainImage".to_string(),
+            SourceType::Handle,
+            this.handles.len() - 1,
+        ));
+
+        *this
+            .functions
+            .get_by_name_mut("vkGetSwapchainImagesKHR")
+            .unwrap()
+            .arguments_mut()
+            .last_mut()
+            .unwrap()
+            .ty_mut()
+            .as_slice_mut()
+            .1
+            .as_named_mut() = Cow::Borrowed("VkSwapchainImage");
+
+        this.handles.push(Handle {
+            original_name: Cow::Borrowed("VkImageView"),
+            rename: Some(Cow::Borrowed("VkSwapchainImageView")),
+            name: "SwapchainImageView".to_string(),
+            parent: Some(Cow::Borrowed("VkSwapchainImage")),
+            dispatchable: false,
+            origin: this.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone(),
+            functions: SymbolTable::default(),
+            destroyer: Some(Cow::Borrowed("vkDestroyImageView")),
+        });
+
+        this.global.push((
+            Cow::Borrowed("VkSwapchainImageView"),
+            "SwapchainImageView".to_string(),
+            SourceType::Handle,
+            this.handles.len() - 1,
+        ));
+
+        let mut func = this.functions.get_by_name("vkCreateImageView").unwrap().clone();
+        func.rename = Some(Cow::Borrowed("vkCreateSwapchainImageView"));
+        func.name = "create_swapchain_image_view".to_string();
+        func.origin = this.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone();
+        *func.arguments_mut().last_mut().unwrap().ty_mut().as_ptr_mut().1.as_named_mut() = Cow::Borrowed("VkSwapchainImageView");
+
+        this.functions.push(func);
+
+        this.global.push((
+            Cow::Borrowed("vkCreateSwapchainImageView"),
+            "create_swapchain_image_view".to_string(),
+            SourceType::Function,
+            this.functions.len() - 1,
+        ));
+
         for function in this.functions.iter().chain(this.commands.iter().map(Deref::deref)) {
             let first_arg = &function.arguments()[0];
 
             match first_arg.ty() {
                 Ty::Named(name) => {
                     if let Some(handle) = this.handles.get_by_name_mut(name) {
-                        handle.add_function(function.original_name.clone());
+                        handle.add_function(<Function<'a> as SymbolName<'a>>::name(function));
                     } else {
-                        this.loader_functions.push(function.original_name.clone());
+                        this.loader_functions.push(<Function<'a> as SymbolName<'a>>::name(function));
                     }
                 },
                 other => {
@@ -366,7 +429,7 @@ impl<'a> Source<'a> {
                         function.original_name()
                     );
 
-                    this.loader_functions.push(function.original_name.clone());
+                    this.loader_functions.push(<Function<'a> as SymbolName<'a>>::name(function));
                 },
             }
 
@@ -437,36 +500,6 @@ impl<'a> Source<'a> {
                 error!("unknwon alias: {} of {}", alias.original_name(), alias.of());
             }
         }
-
-        this.handles.push(Handle {
-            original_name: Cow::Borrowed("VkImage"),
-            rename: Some(Cow::Borrowed("VkSwapchainImage")),
-            name: "SwapchainImage".to_string(),
-            parent: Some(Cow::Borrowed("VkSwapchainKHR")),
-            dispatchable: false,
-            origin: this.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone(),
-            functions: SymbolTable::default(),
-            destroyer: None,
-        });
-
-        this.global.push((
-            Cow::Borrowed("VkSwapchainImage"),
-            "SwapchainImage".to_string(),
-            SourceType::Handle,
-            this.handles.len() - 1,
-        ));
-
-        *this
-            .functions
-            .get_by_name_mut("vkGetSwapchainImagesKHR")
-            .unwrap()
-            .arguments_mut()
-            .last_mut()
-            .unwrap()
-            .ty_mut()
-            .as_slice_mut()
-            .1
-            .as_named_mut() = Cow::Borrowed("VkSwapchainImage");
 
         this
     }

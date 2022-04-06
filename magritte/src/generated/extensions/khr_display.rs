@@ -755,7 +755,6 @@ pub type FNCreateDisplayPlaneSurfaceKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DisplayPlaneAlphaFlagBitsKHR(u32);
 impl const Default for DisplayPlaneAlphaFlagBitsKHR {
@@ -2848,7 +2847,7 @@ impl Instance {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -3145,7 +3144,7 @@ impl PhysicalDevice {
         match _return {
             VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
                 _return,
-                p_displays.into_iter().map(|i| Unique::new(self, i, ())).collect(),
+                p_displays.into_iter().map(|i| Unique::new(self, i, true)).collect(),
             ),
             e => VulkanResult::Err(e),
         }
@@ -3249,7 +3248,7 @@ impl PhysicalDevice {
         }
     }
 }
-impl PhysicalDevice {
+impl DisplayKHR {
     ///[vkCreateDisplayModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayModeKHR.html) - Create a display mode
     ///# C Specifications
     ///Additional modes  **may**  also be created by calling:
@@ -3307,13 +3306,12 @@ impl PhysicalDevice {
     #[doc(alias = "vkCreateDisplayModeKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_display_mode_khr<'a: 'this, 'this: 'parent, 'parent, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn create_display_mode_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, DisplayKHR>,
         display: DisplayKHR,
         p_create_info: &DisplayModeCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-        parent: &'parent Unique<'this, DisplayKHR>,
-    ) -> VulkanResult<Unique<'parent, DisplayModeKHR>> {
+    ) -> VulkanResult<Unique<'this, DisplayModeKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -3330,7 +3328,7 @@ impl PhysicalDevice {
             .unwrap_unchecked();
         let mut p_mode = MaybeUninit::<DisplayModeKHR>::uninit();
         let _return = _function(
-            self.as_raw(),
+            self.physical_device().as_raw(),
             display,
             p_create_info as *const DisplayModeCreateInfoKHR<'lt>,
             p_allocator
@@ -3339,7 +3337,7 @@ impl PhysicalDevice {
             p_mode.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(parent, p_mode.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_mode.assume_init(), true)),
             e => VulkanResult::Err(e),
         }
     }
@@ -3495,17 +3493,26 @@ impl Default for DisplayKHR {
 impl Handle for DisplayKHR {
     type Parent<'a> = Unique<'a, PhysicalDevice>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
         #[cfg(feature = "VK_EXT_direct_mode_display")]
-        self.parent().release_display_ext(self.as_raw());
+        if *self.metadata() {
+            self.parent().release_display_ext(self.as_raw().coerce());
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, DisplayKHR> {
     ///Gets the reference to the [`Entry`]
@@ -3522,6 +3529,12 @@ impl<'a> Unique<'a, DisplayKHR> {
     #[inline]
     pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///[VkDisplayModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayModeKHR.html) - Opaque handle to a display mode object
@@ -3577,14 +3590,21 @@ impl Default for DisplayModeKHR {
 impl Handle for DisplayModeKHR {
     type Parent<'a> = Unique<'a, DisplayKHR>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, DisplayModeKHR> {
     ///Gets the reference to the [`Entry`]
@@ -3606,6 +3626,12 @@ impl<'a> Unique<'a, DisplayModeKHR> {
     #[inline]
     pub fn display_khr(&self) -> &'a Unique<'a, DisplayKHR> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_KHR_display`

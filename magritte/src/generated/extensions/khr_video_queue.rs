@@ -871,7 +871,6 @@ pub type FNCmdEndVideoCodingKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct QueryResultStatusKHR(i32);
 impl const Default for QueryResultStatusKHR {
@@ -957,7 +956,6 @@ impl QueryResultStatusKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoCodecOperationFlagBitsKHR(u32);
 impl const Default for VideoCodecOperationFlagBitsKHR {
@@ -1047,7 +1045,6 @@ impl VideoCodecOperationFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoChromaSubsamplingFlagBitsKHR(u32);
 impl const Default for VideoChromaSubsamplingFlagBitsKHR {
@@ -1126,7 +1123,6 @@ impl VideoChromaSubsamplingFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoComponentBitDepthFlagBitsKHR(u32);
 impl const Default for VideoComponentBitDepthFlagBitsKHR {
@@ -1197,7 +1193,6 @@ impl VideoComponentBitDepthFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoCapabilityFlagBitsKHR(u32);
 impl const Default for VideoCapabilityFlagBitsKHR {
@@ -1262,7 +1257,6 @@ impl VideoCapabilityFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoSessionCreateFlagBitsKHR(u32);
 impl const Default for VideoSessionCreateFlagBitsKHR {
@@ -1325,7 +1319,6 @@ impl VideoSessionCreateFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoCodingQualityPresetFlagBitsKHR(u32);
 impl const Default for VideoCodingQualityPresetFlagBitsKHR {
@@ -1404,7 +1397,6 @@ impl VideoCodingQualityPresetFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoCodingControlFlagBitsKHR(u32);
 impl const Default for VideoCodingControlFlagBitsKHR {
@@ -6930,7 +6922,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_video_session.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_video_session.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -7003,7 +6995,7 @@ impl Device {
         ()
     }
 }
-impl Device {
+impl VideoSessionKHR {
     ///[vkCreateVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionParametersKHR.html) - Creates video session video session parameter object
     ///# C Specifications
     ///To create a video session parameters object, call:
@@ -7056,27 +7048,28 @@ impl Device {
     #[doc(alias = "vkCreateVideoSessionParametersKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'this: 'parent, 'parent, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'this, 'lt>(
+        self: &'this Unique<'a, VideoSessionKHR>,
         p_create_info: &VideoSessionParametersCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-        parent: &'parent Unique<'this, VideoSessionKHR>,
-    ) -> VulkanResult<Unique<'parent, VideoSessionParametersKHR>> {
+    ) -> VulkanResult<Unique<'this, VideoSessionParametersKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
+            .device()
             .vtable()
             .khr_video_queue()
             .and_then(|vtable| vtable.create_video_session_parameters_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
+            .device()
             .vtable()
             .khr_video_queue()
             .and_then(|vtable| vtable.create_video_session_parameters_khr())
             .unwrap_unchecked();
         let mut p_video_session_parameters = MaybeUninit::<VideoSessionParametersKHR>::uninit();
         let _return = _function(
-            self.as_raw(),
+            self.device().as_raw(),
             p_create_info as *const VideoSessionParametersCreateInfoKHR<'lt>,
             p_allocator
                 .map(|v| v as *const AllocationCallbacks<'lt>)
@@ -7086,7 +7079,7 @@ impl Device {
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
-                Unique::new(parent, p_video_session_parameters.assume_init(), ()),
+                Unique::new(self, p_video_session_parameters.assume_init(), true),
             ),
             e => VulkanResult::Err(e),
         }
@@ -7678,16 +7671,25 @@ impl Default for VideoSessionKHR {
 impl Handle for VideoSessionKHR {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_video_session_khr(self.as_raw(), None);
+        if *self.metadata() {
+            self.device().destroy_video_session_khr(self.as_raw().coerce(), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, VideoSessionKHR> {
     ///Gets the reference to the [`Entry`]
@@ -7709,6 +7711,12 @@ impl<'a> Unique<'a, VideoSessionKHR> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///[VkVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersKHR.html) - Opaque handle to a video video session parameters object
@@ -7765,16 +7773,26 @@ impl Default for VideoSessionParametersKHR {
 impl Handle for VideoSessionParametersKHR {
     type Parent<'a> = Unique<'a, VideoSessionKHR>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_video_session_parameters_khr(self.as_raw(), None);
+        if *self.metadata() {
+            self.device()
+                .destroy_video_session_parameters_khr(self.as_raw().coerce(), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, VideoSessionParametersKHR> {
     ///Gets the reference to the [`Entry`]
@@ -7801,6 +7819,12 @@ impl<'a> Unique<'a, VideoSessionParametersKHR> {
     #[inline]
     pub fn video_session_khr(&self) -> &'a Unique<'a, VideoSessionKHR> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_KHR_video_queue`

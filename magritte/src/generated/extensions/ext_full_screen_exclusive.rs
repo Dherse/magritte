@@ -401,7 +401,6 @@ pub type FNReleaseFullScreenExclusiveModeExt =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct FullScreenExclusiveEXT(i32);
 impl const Default for FullScreenExclusiveEXT {

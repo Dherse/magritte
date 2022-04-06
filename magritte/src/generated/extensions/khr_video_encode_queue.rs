@@ -182,7 +182,6 @@ pub type FNCmdEncodeVideoKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeFlagBitsKHR(u32);
 impl const Default for VideoEncodeFlagBitsKHR {
@@ -244,7 +243,6 @@ impl VideoEncodeFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeCapabilityFlagBitsKHR(u32);
 impl const Default for VideoEncodeCapabilityFlagBitsKHR {
@@ -305,7 +303,6 @@ impl VideoEncodeCapabilityFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeRateControlFlagBitsKHR(u32);
 impl const Default for VideoEncodeRateControlFlagBitsKHR {
@@ -368,7 +365,6 @@ impl VideoEncodeRateControlFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeRateControlModeFlagBitsKHR(u32);
 impl const Default for VideoEncodeRateControlModeFlagBitsKHR {

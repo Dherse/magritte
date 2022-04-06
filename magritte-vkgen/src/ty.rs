@@ -183,6 +183,17 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Decomposes self into a pointer's components
+    ///
+    /// # Panics
+    /// If `self` is not a pointer.
+    pub fn as_ptr_mut(&mut self) -> (&'_ mut Mutability, &'_ mut Ty<'a>) {
+        match self {
+            Ty::Pointer(a, b) => (a, &mut **b),
+            _ => panic!("not a pointer: {:?}", self),
+        }
+    }
+
     /// Decomposes self into a native type
     ///
     /// # Panics
@@ -365,6 +376,12 @@ pub enum Mutability {
 
     /// Is not mutable
     Const,
+}
+
+impl Default for Mutability {
+    fn default() -> Self {
+        Self::Const
+    }
 }
 
 impl Mutability {

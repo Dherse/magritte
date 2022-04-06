@@ -80,7 +80,7 @@ use crate::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, Instance, PhysicalDevice, StructureType, VulkanResultCodes},
     AsRaw, SmallVec, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
+use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION")]

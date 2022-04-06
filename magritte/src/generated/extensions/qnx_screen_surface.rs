@@ -422,7 +422,7 @@ impl Instance {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }

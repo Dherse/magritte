@@ -63,7 +63,7 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, CommandBuffer, Device, Rect2D, StructureType},
-    AsRaw, SmallVec, Unique,
+    AsRaw, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -187,7 +187,6 @@ pub type FNCmdSetDiscardRectangleExt = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DiscardRectangleModeEXT(i32);
 impl const Default for DiscardRectangleModeEXT {

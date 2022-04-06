@@ -112,7 +112,6 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ValidationFeatureEnableEXT(i32);
 impl const Default for ValidationFeatureEnableEXT {
@@ -225,7 +224,6 @@ impl ValidationFeatureEnableEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ValidationFeatureDisableEXT(i32);
 impl const Default for ValidationFeatureDisableEXT {

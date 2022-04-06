@@ -1072,7 +1072,6 @@ pub type FNCmdBindPipelineShaderGroupNv = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct IndirectCommandsTokenTypeNV(i32);
 impl const Default for IndirectCommandsTokenTypeNV {
@@ -1153,7 +1152,6 @@ impl IndirectCommandsTokenTypeNV {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct IndirectCommandsLayoutUsageFlagBitsNV(u32);
 impl const Default for IndirectCommandsLayoutUsageFlagBitsNV {
@@ -1225,7 +1223,6 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct IndirectStateFlagBitsNV(u32);
 impl const Default for IndirectStateFlagBitsNV {
@@ -4652,9 +4649,10 @@ impl Device {
             p_indirect_commands_layout.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_indirect_commands_layout.assume_init(), ()))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(self, p_indirect_commands_layout.assume_init(), true),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -5440,17 +5438,26 @@ impl Default for IndirectCommandsLayoutNV {
 impl Handle for IndirectCommandsLayoutNV {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .destroy_indirect_commands_layout_nv(Some(self.as_raw()), None);
+        if *self.metadata() {
+            self.device()
+                .destroy_indirect_commands_layout_nv(Some(self.as_raw().coerce()), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, IndirectCommandsLayoutNV> {
     ///Gets the reference to the [`Entry`]
@@ -5472,6 +5479,12 @@ impl<'a> Unique<'a, IndirectCommandsLayoutNV> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Device`] for functions from `VK_NV_device_generated_commands`

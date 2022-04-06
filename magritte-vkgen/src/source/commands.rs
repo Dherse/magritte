@@ -27,6 +27,9 @@ pub struct Function<'a> {
     /// The original name of the alias
     pub original_name: Cow<'a, str>,
 
+    /// A rename
+    pub rename: Option<Cow<'a, str>>,
+
     /// The cleaned up and "rust-ified" name
     pub name: String,
 
@@ -67,6 +70,7 @@ impl<'a> Function<'a> {
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
+            rename: None,
             origin,
             return_type,
             success_codes,
@@ -169,7 +173,7 @@ impl<'a> Function<'a> {
 
 impl<'a> SymbolName<'a> for Function<'a> {
     fn name(&self) -> Cow<'a, str> {
-        self.original_name.clone()
+        self.rename.clone().unwrap_or_else(|| self.original_name.clone())
     }
 
     fn pretty_name(&self) -> String {

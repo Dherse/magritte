@@ -507,7 +507,7 @@ use crate::{
         DeviceSize, Format, IndexType, Instance, PhysicalDevice, QueryPool, QueryType, StructureType,
         VulkanResultCodes,
     },
-    AsRaw, Handle, SmallVec, Unique, VulkanResult,
+    AsRaw, Handle, Unique, VulkanResult,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -2518,7 +2518,6 @@ pub type FNCmdBuildAccelerationStructuresIndirectKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct CopyAccelerationStructureModeKHR(i32);
 impl const Default for CopyAccelerationStructureModeKHR {
@@ -2602,7 +2601,6 @@ impl CopyAccelerationStructureModeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct BuildAccelerationStructureModeKHR(i32);
 impl const Default for BuildAccelerationStructureModeKHR {
@@ -2688,7 +2686,6 @@ impl BuildAccelerationStructureModeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct AccelerationStructureTypeKHR(i32);
 impl const Default for AccelerationStructureTypeKHR {
@@ -2769,7 +2766,6 @@ impl AccelerationStructureTypeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct GeometryTypeKHR(i32);
 impl const Default for GeometryTypeKHR {
@@ -2838,7 +2834,6 @@ impl GeometryTypeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct AccelerationStructureBuildTypeKHR(i32);
 impl const Default for AccelerationStructureBuildTypeKHR {
@@ -2907,7 +2902,6 @@ impl AccelerationStructureBuildTypeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct AccelerationStructureCompatibilityKHR(i32);
 impl const Default for AccelerationStructureCompatibilityKHR {
@@ -3003,7 +2997,6 @@ impl AccelerationStructureCompatibilityKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct GeometryInstanceFlagBitsKHR(u32);
 impl const Default for GeometryInstanceFlagBitsKHR {
@@ -3094,7 +3087,6 @@ impl GeometryInstanceFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct GeometryFlagBitsKHR(u32);
 impl const Default for GeometryFlagBitsKHR {
@@ -3202,7 +3194,6 @@ impl GeometryFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct BuildAccelerationStructureFlagBitsKHR(u32);
 impl const Default for BuildAccelerationStructureFlagBitsKHR {
@@ -3294,7 +3285,6 @@ impl BuildAccelerationStructureFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct AccelerationStructureCreateFlagBitsKHR(u32);
 impl const Default for AccelerationStructureCreateFlagBitsKHR {
@@ -9156,7 +9146,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_acceleration_structure.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_acceleration_structure.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -10931,17 +10921,26 @@ impl Default for AccelerationStructureKHR {
 impl Handle for AccelerationStructureKHR {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .destroy_acceleration_structure_khr(Some(self.as_raw()), None);
+        if *self.metadata() {
+            self.device()
+                .destroy_acceleration_structure_khr(Some(self.as_raw().coerce()), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, AccelerationStructureKHR> {
     ///Gets the reference to the [`Entry`]
@@ -10963,6 +10962,12 @@ impl<'a> Unique<'a, AccelerationStructureKHR> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Device`] for functions from `VK_KHR_acceleration_structure`

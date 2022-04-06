@@ -1262,7 +1262,6 @@ pub type FNCmdSetRayTracingPipelineStackSizeKhr =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct RayTracingShaderGroupTypeKHR(i32);
 impl const Default for RayTracingShaderGroupTypeKHR {
@@ -1341,7 +1340,6 @@ impl RayTracingShaderGroupTypeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ShaderGroupShaderKHR(i32);
 impl const Default for ShaderGroupShaderKHR {
@@ -3487,7 +3485,7 @@ impl Device {
             | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR
             | VulkanResultCodes::PIPELINE_COMPILE_REQUIRED => VulkanResult::Success(
                 _return,
-                p_pipelines.into_iter().map(|i| Unique::new(self, i, ())).collect(),
+                p_pipelines.into_iter().map(|i| Unique::new(self, i, true)).collect(),
             ),
             e => VulkanResult::Err(e),
         }

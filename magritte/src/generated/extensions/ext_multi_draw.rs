@@ -55,7 +55,7 @@
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::{
     vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Device, StructureType},
-    AsRaw, SmallVec, Unique,
+    AsRaw, Unique,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).

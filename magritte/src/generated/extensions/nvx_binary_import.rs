@@ -948,7 +948,9 @@ impl Device {
             p_module.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_module.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => {
+                VulkanResult::Success(_return, Unique::new(self, p_module.assume_init(), true))
+            },
             e => VulkanResult::Err(e),
         }
     }
@@ -1025,7 +1027,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_function.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_function.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -1275,16 +1277,25 @@ impl Default for CuModuleNVX {
 impl Handle for CuModuleNVX {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_cu_module_nvx(self.as_raw(), None);
+        if *self.metadata() {
+            self.device().destroy_cu_module_nvx(self.as_raw().coerce(), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, CuModuleNVX> {
     ///Gets the reference to the [`Entry`]
@@ -1306,6 +1317,12 @@ impl<'a> Unique<'a, CuModuleNVX> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///[VkCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionNVX.html) - Stub description of VkCuFunctionNVX
@@ -1361,16 +1378,25 @@ impl Default for CuFunctionNVX {
 impl Handle for CuFunctionNVX {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_cu_function_nvx(self.as_raw(), None);
+        if *self.metadata() {
+            self.device().destroy_cu_function_nvx(self.as_raw().coerce(), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, CuFunctionNVX> {
     ///Gets the reference to the [`Entry`]
@@ -1392,6 +1418,12 @@ impl<'a> Unique<'a, CuFunctionNVX> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Device`] for functions from `VK_NVX_binary_import`

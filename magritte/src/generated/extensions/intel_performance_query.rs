@@ -546,7 +546,6 @@ pub type FNCmdSetPerformanceOverrideIntel = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceConfigurationTypeINTEL(i32);
 impl const Default for PerformanceConfigurationTypeINTEL {
@@ -605,7 +604,6 @@ impl PerformanceConfigurationTypeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct QueryPoolSamplingModeINTEL(i32);
 impl const Default for QueryPoolSamplingModeINTEL {
@@ -667,7 +665,6 @@ impl QueryPoolSamplingModeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceOverrideTypeINTEL(i32);
 impl const Default for PerformanceOverrideTypeINTEL {
@@ -733,7 +730,6 @@ impl PerformanceOverrideTypeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceParameterTypeINTEL(i32);
 impl const Default for PerformanceParameterTypeINTEL {
@@ -805,7 +801,6 @@ impl PerformanceParameterTypeINTEL {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceValueTypeINTEL(i32);
 impl const Default for PerformanceValueTypeINTEL {
@@ -1896,7 +1891,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_configuration.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_configuration.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -2390,17 +2385,26 @@ impl Default for PerformanceConfigurationINTEL {
 impl Handle for PerformanceConfigurationINTEL {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .release_performance_configuration_intel(Some(self.as_raw()));
+        if *self.metadata() {
+            self.device()
+                .release_performance_configuration_intel(Some(self.as_raw().coerce()));
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, PerformanceConfigurationINTEL> {
     ///Gets the reference to the [`Entry`]
@@ -2422,6 +2426,12 @@ impl<'a> Unique<'a, PerformanceConfigurationINTEL> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Device`] for functions from `VK_INTEL_performance_query`

@@ -253,7 +253,6 @@ pub const EXT_VIDEO_ENCODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeH265CapabilityFlagBitsEXT(u32);
 impl const Default for VideoEncodeH265CapabilityFlagBitsEXT {
@@ -450,7 +449,6 @@ impl VideoEncodeH265CapabilityFlagBitsEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeH265InputModeFlagBitsEXT(u32);
 impl const Default for VideoEncodeH265InputModeFlagBitsEXT {
@@ -552,7 +550,6 @@ impl VideoEncodeH265InputModeFlagBitsEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeH265OutputModeFlagBitsEXT(u32);
 impl const Default for VideoEncodeH265OutputModeFlagBitsEXT {
@@ -633,7 +630,6 @@ impl VideoEncodeH265OutputModeFlagBitsEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeH265RateControlStructureFlagBitsEXT(u32);
 impl const Default for VideoEncodeH265RateControlStructureFlagBitsEXT {
@@ -703,7 +699,6 @@ impl VideoEncodeH265RateControlStructureFlagBitsEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeH265CtbSizeFlagBitsEXT(u32);
 impl const Default for VideoEncodeH265CtbSizeFlagBitsEXT {
@@ -774,7 +769,6 @@ impl VideoEncodeH265CtbSizeFlagBitsEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoEncodeH265TransformBlockSizeFlagBitsEXT(u32);
 impl const Default for VideoEncodeH265TransformBlockSizeFlagBitsEXT {

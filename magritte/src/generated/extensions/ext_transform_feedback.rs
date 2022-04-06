@@ -120,7 +120,7 @@ use crate::{
         BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, Device, DeviceSize, QueryControlFlags,
         QueryPool, StructureType,
     },
-    AsRaw, SmallVec, Unique,
+    AsRaw, Unique,
 };
 use std::{ffi::CStr, marker::PhantomData};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).

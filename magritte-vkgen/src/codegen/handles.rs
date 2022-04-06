@@ -142,7 +142,7 @@ impl<'a> Handle<'a> {
             imports.push("crate::extensions::Extensions");
             quote! { Extensions }
         } else {
-            quote! { () }
+            quote! { bool }
         };
 
         let load_vtable = if self.is_loader() {
@@ -160,15 +160,15 @@ impl<'a> Handle<'a> {
                 _ => unreachable!(),
             };
 
-            quote! {
+            Some(quote! {
                 #ident::load(
                     #loader_fn,
                     *self,
                     #extensions,
                 )
-            }
+            })
         } else {
-            quote! { () }
+            None
         };
 
         let destroy = self
@@ -209,21 +209,27 @@ impl<'a> Handle<'a> {
                         if func.original_name() == "vkReleaseDisplayEXT" {
                             quote! {
                                 #[cfg(feature = "VK_EXT_direct_mode_display")]
-                                self.parent().#destroyer(
-                                    self.as_raw()
-                                );
+                                if *self.metadata() {
+                                    self.parent().#destroyer(
+                                        self.as_raw().coerce()
+                                    );
+                                }
                             }
                         } else if self.original_name() == "VkPerformanceConfigurationINTEL" {
                             quote! {
-                                self.device().#destroyer(
-                                    Some(self.as_raw())
-                                );
+                                if *self.metadata() {
+                                    self.device().#destroyer(
+                                        Some(self.as_raw().coerce())
+                                    );
+                                }
                             }
                         } else {
                             quote! {
-                                self.#destroyer(
-                                    None
-                                );
+                                if *self.metadata() {
+                                    self.#destroyer(
+                                        None
+                                    );
+                                }
                             }
                         }
                     },
@@ -238,34 +244,64 @@ impl<'a> Handle<'a> {
                         .contains(&self.original_name())
                         {
                             quote! {
-                                self.#owner_getter().#destroyer(
-                                    self.as_raw(),
-                                    None
-                                );
+                                if *self.metadata() {
+                                    self.#owner_getter().#destroyer(
+                                        self.as_raw().coerce(),
+                                        None
+                                    );
+                                }
                             }
                         } else {
                             quote! {
-                                self.#owner_getter().#destroyer(
-                                    Some(self.as_raw()),
-                                    None
-                                );
+                                if *self.metadata() {
+                                    self.#owner_getter().#destroyer(
+                                        Some(self.as_raw().coerce()),
+                                        None
+                                    );
+                                }
                             }
                         }
                     },
                     4 => {
                         quote! {
-                            self.#owner_getter().#destroyer(
-                                self.parent().as_raw(),
-                                &[
-                                    self.as_raw()
-                                ],
-                            );
+                            if *self.metadata() {
+                                self.#owner_getter().#destroyer(
+                                    self.parent().as_raw(),
+                                    &[
+                                        self.as_raw().coerce()
+                                    ],
+                                );
+                            }
                         }
                     },
                     len => unreachable!("unsupported number of arguments: {}", len),
                 }
             });
 
+        let parent_ident = if load_vtable.is_some() {
+            quote! { parent }
+        } else {
+            quote! { _ }
+        };
+
+        let metadata_ident = if load_vtable.is_some() && self.name() == "Instance" {
+            quote! { metadata }
+        } else {
+            quote! { _ }
+        };
+
+        if self.name() != "Instance" {
+            ancestors.push(quote! {
+                #[doc = "Disables the base dropping behaviour of this handle"]
+                #[inline]
+                pub fn disable_drop(mut self) -> Self {
+                    self.metadata = false;
+    
+                    self
+                }
+            });
+        }
+        
         quote_each_token! {
             out
 
@@ -311,6 +347,18 @@ impl<'a> Handle<'a> {
 
                 type Metadata = #metadata;
 
+                type Raw = #ty;
+
+                #[inline]
+                fn as_raw(self) -> Self::Raw {
+                    self.0
+                }
+            
+                #[inline]
+                unsafe fn from_raw(this: Self::Raw) -> Self {
+                    Self(this)
+                }
+
                 #[inline]
                 #[track_caller]
                 unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
@@ -318,7 +366,7 @@ impl<'a> Handle<'a> {
                 }
 
                 #[inline]
-                unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+                unsafe fn load_vtable<'a>(&self, #parent_ident: &Self::Parent<'a>, #metadata_ident: &Self::Metadata) -> Self::VTable {
                     #load_vtable
                 }
             }
@@ -364,14 +412,23 @@ impl<'a> Handle<'a> {
         fn_: &Function<'a>,
         mut out: &mut TokenStream,
     ) {
-        imports.push_origin(self.origin(), self.name());
         imports.push("crate::Unique");
         imports.push("crate::AsRaw");
 
-        let handle_ident = self.as_ident();
+        let mut handle_ident = self.as_ident();
 
         let mut function_code = TokenStream::default();
-        fn_.generate_code(source, imports, doc, self, &mut function_code);
+        
+        // this is a dirty hack, but it really makes my life a lot easier, sorry
+        // TODO: improve this
+        if let Some(change) = fn_.generate_code(source, imports, doc, self, &mut function_code) {
+            let handle = source.handles.get_by_name(&change).unwrap();
+            handle_ident = handle.as_ident();
+
+            imports.push_origin(handle.origin(), handle.name());
+        } else {
+            imports.push_origin(self.origin(), self.name());
+        }
 
         quote_each_token! {
             out
@@ -380,5 +437,6 @@ impl<'a> Handle<'a> {
                 #function_code
             }
         }
+
     }
 }

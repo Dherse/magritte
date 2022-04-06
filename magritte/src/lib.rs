@@ -26,6 +26,7 @@ pub mod loading;
 pub mod results;
 #[cfg(feature = "window")]
 pub mod window;
+pub mod helpers;
 
 use generated::vulkan1_0::VulkanResultCodes;
 pub use generated::{extensions::Extensions, *};

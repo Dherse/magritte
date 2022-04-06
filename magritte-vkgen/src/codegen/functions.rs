@@ -1,4 +1,4 @@
-use std::{borrow::Cow, ops::Not};
+use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token};
@@ -9,7 +9,7 @@ use crate::{
     imports::Imports,
     origin::Origin,
     source::{Function, Handle, Source, CommandAlias},
-    ty::Ty,
+    ty::{Ty, Mutability},
 };
 
 pub mod field;
@@ -128,15 +128,24 @@ impl<'a> Function<'a> {
     }
 
     /// generates the code for the function
-    pub fn generate_code(
+    pub fn generate_code<'b>(
         &self,
-        source: &Source<'a>,
+        source: &'b Source<'a>,
         imports: &Imports,
         doc: &mut Documentation,
-        handle: &Handle<'a>,
+        mut handle: &'b Handle<'a>,
         mut out: &mut TokenStream,
-    ) {
+    ) -> Option<String> {
         let mut gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), None);
+
+        let mut change = None;
+        if let Some(new_handle) = gen.change_handle {
+            handle = source.handles.get_by_name(&new_handle).unwrap();
+            // gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), None);
+
+            change = Some(new_handle);
+        }
+
 
         let name = self.as_ident();
 
@@ -249,10 +258,14 @@ impl<'a> Function<'a> {
         // let unsafe_ = if gen.unsafe_ { Some(quote! { unsafe }) } else { None };
         let function_getter = self.function_getter(handle.origin(), source, handle);
 
-        let lifetime = gen.lifetime.not().then(|| quote! { : 'parent, 'parent });
-
         let mut aliases = vec![ self.original_name() ];
         aliases.extend(self.aliases().iter().map(|s| &**s));
+
+        let ident = handle.as_ident();
+        let this = match gen.this {
+            Mutability::Mutable => quote! { self: &'this mut Unique<'a, #ident> },
+            Mutability::Const => quote! { self: &'this Unique<'a, #ident> },
+        };
 
         quote_each_token! {
             out
@@ -262,10 +275,10 @@ impl<'a> Function<'a> {
             )*
             #[track_caller]
             #[inline]
-            pub unsafe fn #name <'a: 'this, 'this #lifetime, #generics>(
+            pub unsafe fn #name <'a: 'this, 'this, #generics>(
+                #this,
                 #(#params),*
             ) -> #return_ty {
-                // let _function = self #loader .vtable() #origin #origin_and_then
                 #[cfg(any(debug_assertions, feature = "assertions"))]
                 let _function = #function_getter.expect("function not loaded");
 
@@ -287,5 +300,7 @@ impl<'a> Function<'a> {
                 #return_expr
             }
         }
+
+        change
     }
 }

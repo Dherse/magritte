@@ -326,7 +326,7 @@ impl PhysicalDevice {
         let _return = _function(self.as_raw(), &mut dpy, rr_output, p_display.as_mut_ptr());
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, (dpy, Unique::new(self, p_display.assume_init(), ())))
+                VulkanResult::Success(_return, (dpy, Unique::new(self, p_display.assume_init(), true)))
             },
             e => VulkanResult::Err(e),
         }

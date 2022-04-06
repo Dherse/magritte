@@ -385,7 +385,6 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceCounterScopeKHR(i32);
 impl const Default for PerformanceCounterScopeKHR {
@@ -473,7 +472,6 @@ impl PerformanceCounterScopeKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceCounterUnitKHR(i32);
 impl const Default for PerformanceCounterUnitKHR {
@@ -573,7 +571,6 @@ impl PerformanceCounterUnitKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceCounterStorageKHR(i32);
 impl const Default for PerformanceCounterStorageKHR {
@@ -655,7 +652,6 @@ impl PerformanceCounterStorageKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PerformanceCounterDescriptionFlagBitsKHR(u32);
 impl const Default for PerformanceCounterDescriptionFlagBitsKHR {
@@ -713,7 +709,6 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct AcquireProfilingLockFlagBitsKHR(u32);
 impl const Default for AcquireProfilingLockFlagBitsKHR {

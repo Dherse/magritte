@@ -194,3 +194,4 @@ Here are the following families that need to be implemented in the code generato
 - [x] ~Remove `khr` in function name~
 - [x] Function alias flattening (**huge milestone**)
 - [ ] Refactor the code generator to group all edge-cases into one easily accessible module, currently edge cases are spread throughout the project.
+- [ ] Refactor function generation to make it cleaner and integrated within `Function`,  `FunctionArgument`.

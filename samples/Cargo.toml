@@ -19,7 +19,6 @@ features = [
     "smallvec", 
     "window", 
     "VK_KHR_swapchain",
-    "VK_EXT_debug_utils", 
-    "VK_KHR_get_physical_device_properties2"
+    "VK_EXT_debug_utils"
 ]
 default-features = false

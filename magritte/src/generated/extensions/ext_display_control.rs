@@ -352,7 +352,6 @@ pub type FNGetSwapchainCounterExt = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DisplayPowerStateEXT(i32);
 impl const Default for DisplayPowerStateEXT {
@@ -421,7 +420,6 @@ impl DisplayPowerStateEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DeviceEventTypeEXT(i32);
 impl const Default for DeviceEventTypeEXT {
@@ -483,7 +481,6 @@ impl DeviceEventTypeEXT {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DisplayEventTypeEXT(i32);
 impl const Default for DisplayEventTypeEXT {
@@ -1107,7 +1104,9 @@ impl Device {
             p_fence.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => {
+                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), true))
+            },
             e => VulkanResult::Err(e),
         }
     }
@@ -1197,7 +1196,9 @@ impl Device {
             p_fence.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => {
+                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), true))
+            },
             e => VulkanResult::Err(e),
         }
     }

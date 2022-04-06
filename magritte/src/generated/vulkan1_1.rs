@@ -2010,7 +2010,6 @@ pub type FNCmdDispatchBase = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DescriptorUpdateTemplateType(i32);
 impl const Default for DescriptorUpdateTemplateType {
@@ -2093,7 +2092,6 @@ impl DescriptorUpdateTemplateType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PointClippingBehavior(i32);
 impl const Default for PointClippingBehavior {
@@ -2170,7 +2168,6 @@ impl PointClippingBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct TessellationDomainOrigin(i32);
 impl const Default for TessellationDomainOrigin {
@@ -2279,7 +2276,6 @@ impl TessellationDomainOrigin {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct SamplerYcbcrModelConversion(i32);
 impl const Default for SamplerYcbcrModelConversion {
@@ -2379,7 +2375,6 @@ impl SamplerYcbcrModelConversion {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct SamplerYcbcrRange(i32);
 impl const Default for SamplerYcbcrRange {
@@ -2459,7 +2454,6 @@ impl SamplerYcbcrRange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ChromaLocation(i32);
 impl const Default for ChromaLocation {
@@ -2522,7 +2516,6 @@ impl ChromaLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct DeviceQueueCreateFlagBits(u32);
 impl const Default for DeviceQueueCreateFlagBits {
@@ -2610,7 +2603,6 @@ impl DeviceQueueCreateFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct SubgroupFeatureFlagBits(u32);
 impl const Default for SubgroupFeatureFlagBits {
@@ -2803,7 +2795,6 @@ impl SubgroupFeatureFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalMemoryHandleTypeFlagBits(u32);
 impl const Default for ExternalMemoryHandleTypeFlagBits {
@@ -2993,7 +2984,6 @@ impl ExternalMemoryHandleTypeFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalMemoryFeatureFlagBits(u32);
 impl const Default for ExternalMemoryFeatureFlagBits {
@@ -3129,7 +3119,6 @@ impl ExternalMemoryFeatureFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalSemaphoreHandleTypeFlagBits(u32);
 impl const Default for ExternalSemaphoreHandleTypeFlagBits {
@@ -3256,7 +3245,6 @@ impl ExternalSemaphoreHandleTypeFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalSemaphoreFeatureFlagBits(u32);
 impl const Default for ExternalSemaphoreFeatureFlagBits {
@@ -3328,7 +3316,6 @@ impl ExternalSemaphoreFeatureFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct SemaphoreImportFlagBits(u32);
 impl const Default for SemaphoreImportFlagBits {
@@ -3437,7 +3424,6 @@ impl SemaphoreImportFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalFenceHandleTypeFlagBits(u32);
 impl const Default for ExternalFenceHandleTypeFlagBits {
@@ -3541,7 +3527,6 @@ impl ExternalFenceHandleTypeFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalFenceFeatureFlagBits(u32);
 impl const Default for ExternalFenceFeatureFlagBits {
@@ -3613,7 +3598,6 @@ impl ExternalFenceFeatureFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct FenceImportFlagBits(u32);
 impl const Default for FenceImportFlagBits {
@@ -3705,7 +3689,6 @@ impl FenceImportFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PeerMemoryFeatureFlagBits(u32);
 impl const Default for PeerMemoryFeatureFlagBits {
@@ -3797,7 +3780,6 @@ impl PeerMemoryFeatureFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct MemoryAllocateFlagBits(u32);
 impl const Default for MemoryAllocateFlagBits {
@@ -20942,7 +20924,7 @@ impl Device {
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
-                Unique::new(self, p_descriptor_update_template.assume_init(), ()),
+                Unique::new(self, p_descriptor_update_template.assume_init(), true),
             ),
             e => VulkanResult::Err(e),
         }
@@ -21670,7 +21652,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_ycbcr_conversion.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_ycbcr_conversion.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -21838,7 +21820,7 @@ impl Device {
             p_queue_info as *const DeviceQueueInfo2<'lt>,
             p_queue.as_mut_ptr(),
         );
-        Unique::new(self, p_queue.assume_init(), ())
+        Unique::new(self, p_queue.assume_init(), true)
     }
 }
 impl Device {
@@ -22403,17 +22385,26 @@ impl Default for DescriptorUpdateTemplate {
 impl Handle for DescriptorUpdateTemplate {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .destroy_descriptor_update_template(Some(self.as_raw()), None);
+        if *self.metadata() {
+            self.device()
+                .destroy_descriptor_update_template(Some(self.as_raw().coerce()), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, DescriptorUpdateTemplate> {
     ///Gets the reference to the [`Entry`]
@@ -22435,6 +22426,12 @@ impl<'a> Unique<'a, DescriptorUpdateTemplate> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///[VkSamplerYcbcrConversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrConversion.html) - Opaque handle to a device-specific sampler Y′C<sub>B</sub>C<sub>R</sub> conversion description
@@ -22497,17 +22494,26 @@ impl Default for SamplerYcbcrConversion {
 impl Handle for SamplerYcbcrConversion {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .destroy_sampler_ycbcr_conversion(Some(self.as_raw()), None);
+        if *self.metadata() {
+            self.device()
+                .destroy_sampler_ycbcr_conversion(Some(self.as_raw().coerce()), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, SamplerYcbcrConversion> {
     ///Gets the reference to the [`Entry`]
@@ -22529,6 +22535,12 @@ impl<'a> Unique<'a, SamplerYcbcrConversion> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Instance`] for functions from `VULKAN_1_1`

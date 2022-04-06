@@ -173,7 +173,6 @@ pub type FNCmdDecodeVideoKhr = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(u32);
 impl const Default for VideoDecodeCapabilityFlagBitsKHR {
@@ -241,7 +240,6 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoDecodeFlagBitsKHR(u32);
 impl const Default for VideoDecodeFlagBitsKHR {

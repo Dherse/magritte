@@ -56,6 +56,8 @@ impl<'a> Handle<'a> {
     ) -> Self {
         let parent = if parent == Some(Cow::Borrowed("VkSurfaceKHR")) && original_name == "VkSwapchainKHR" {
             Some(Cow::Borrowed("VkDevice"))
+        } else if parent == Some(Cow::Borrowed("VkDevice")) && original_name == "VkImageView" {
+            Some(Cow::Borrowed("VkImage"))
         } else {
             parent
         };

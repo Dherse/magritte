@@ -16,9 +16,9 @@ use magritte::{
     vulkan1_0::{
         ApplicationInfo, Bool32, CommandBufferAllocateInfo, CommandBufferLevel, CommandPoolCreateFlags,
         CommandPoolCreateInfo, DeviceCreateInfo, DeviceQueueCreateInfo, Extent2D, ImageUsageFlags, InstanceCreateInfo,
-        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE,
+        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags,
     },
-    AsRaw, Extensions, vulkan1_1::PhysicalDeviceFeatures2, Version,
+    AsRaw, Extensions, Version, SmallVec,
 };
 
 use winit::{event_loop::EventLoop, window::WindowBuilder};
@@ -40,8 +40,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let extensions = magritte::window::enable_required_extensions(&window, Extensions::from_version(Version::VULKAN1_0))?
         .enable_ext_debug_utils()
-        .enable_khr_swapchain()
-        .enable_khr_get_physical_device_properties_2();
+        .enable_khr_swapchain();
 
     let ext_list = extensions
         .instance_extension_names()
@@ -77,7 +76,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         )
         .set_pfn_user_callback(Some(vulkan_debug_callback));
 
-    let debug_utils = unsafe { instance.create_debug_utils_messenger_ext(&debug_info, None)?.0 };
+    let _debug_utils = unsafe { instance.create_debug_utils_messenger_ext(&debug_info, None)?.0 };
 
     let (pdevice, queue_family_index) = physical_devices
         .into_iter()
@@ -103,13 +102,6 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     let queue_info = DeviceQueueCreateInfo::default()
         .set_queue_family_index(queue_family_index as u32)
         .set_queue_priorities(&[1.0]);
-
-    let features2 = unsafe {
-        pdevice.get_physical_device_features2(None)
-    };
-
-    println!("{:#?}", features2);
-
 
     let device_extensions = extensions
         .device_extension_names()
@@ -199,13 +191,42 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         .set_command_pool(pool.as_raw())
         .set_level(CommandBufferLevel::PRIMARY);
 
-    let (mut command_buffers, _) = unsafe { device.allocate_command_buffers(&command_buffer_allocate_info, &pool)? };
+    let (mut command_buffers, _) = unsafe { pool.allocate_command_buffers(&command_buffer_allocate_info)? };
 
     let setup_command_buffer = command_buffers.pop().unwrap();
     let draw_command_buffer = command_buffers.pop().unwrap();
 
-    let (present_images, _) = unsafe { device.get_swapchain_images_khr(swapchain.as_raw(), None, &swapchain)? };
+    let (present_images, _) = unsafe { swapchain.get_swapchain_images_khr(swapchain.as_raw(), None)? };
 
+    let present_image_views = present_images
+        .iter()
+        .map(|image| {
+            let create_view_info = ImageViewCreateInfo::default()
+                .set_view_type(ImageViewType::_2_D)
+                .set_format(surface_format.format)
+                .set_components(ComponentMapping {
+                    r: ComponentSwizzle::R,
+                    g: ComponentSwizzle::G,
+                    b: ComponentSwizzle::B,
+                    a: ComponentSwizzle::A,
+                })
+                .set_subresource_range(ImageSubresourceRange {
+                    aspect_mask: ImageAspectFlags::COLOR,
+                    base_mip_level: 0,
+                    level_count: 1,
+                    base_array_layer: 0,
+                    layer_count: 1,
+                })
+                .set_image(image.as_raw_image());
+
+            unsafe {
+                image.create_swapchain_image_view(
+                    &create_view_info,
+                    None,
+                ).result()
+            }
+        })
+        .collect::<Result<SmallVec<_>, _>>()?;
     /*let present_image_views = present_images
     .iter()
     .map(|image| {

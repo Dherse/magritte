@@ -268,7 +268,6 @@ pub type FNCmdSetFragmentShadingRateEnumNv = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct FragmentShadingRateNV(i32);
 impl const Default for FragmentShadingRateNV {
@@ -374,7 +373,6 @@ impl FragmentShadingRateNV {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct FragmentShadingRateTypeNV(i32);
 impl const Default for FragmentShadingRateTypeNV {

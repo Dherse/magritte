@@ -371,7 +371,7 @@ impl PhysicalDevice {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_display.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_display.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }

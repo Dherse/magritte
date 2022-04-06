@@ -130,7 +130,6 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsEXT(u32);
 impl const Default for VideoDecodeH264PictureLayoutFlagBitsEXT {

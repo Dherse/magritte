@@ -484,7 +484,6 @@ pub type FNGetBufferCollectionPropertiesFuchsia = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(u32);
 impl const Default for ImageConstraintsInfoFlagBitsFUCHSIA {
@@ -2764,7 +2763,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_collection.assume_init(), ()))
+                VulkanResult::Success(_return, Unique::new(self, p_collection.assume_init(), true))
             },
             e => VulkanResult::Err(e),
         }
@@ -3180,16 +3179,26 @@ impl Default for BufferCollectionFUCHSIA {
 impl Handle for BufferCollectionFUCHSIA {
     type Parent<'a> = Unique<'a, Device>;
     type VTable = ();
-    type Metadata = ();
+    type Metadata = bool;
+    type Raw = u64;
+    #[inline]
+    fn as_raw(self) -> Self::Raw {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_raw(this: Self::Raw) -> Self {
+        Self(this)
+    }
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_buffer_collection_fuchsia(self.as_raw(), None);
+        if *self.metadata() {
+            self.device()
+                .destroy_buffer_collection_fuchsia(self.as_raw().coerce(), None);
+        }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
-        ()
-    }
+    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
 }
 impl<'a> Unique<'a, BufferCollectionFUCHSIA> {
     ///Gets the reference to the [`Entry`]
@@ -3211,6 +3220,12 @@ impl<'a> Unique<'a, BufferCollectionFUCHSIA> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+    ///Disables the base dropping behaviour of this handle
+    #[inline]
+    pub fn disable_drop(mut self) -> Self {
+        self.metadata = false;
+        self
     }
 }
 ///The V-table of [`Device`] for functions from `VK_FUCHSIA_buffer_collection`

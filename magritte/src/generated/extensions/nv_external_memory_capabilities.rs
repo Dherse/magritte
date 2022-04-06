@@ -219,7 +219,6 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalMemoryHandleTypeFlagBitsNV(u32);
 impl const Default for ExternalMemoryHandleTypeFlagBitsNV {
@@ -299,7 +298,6 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ExternalMemoryFeatureFlagBitsNV(u32);
 impl const Default for ExternalMemoryFeatureFlagBitsNV {

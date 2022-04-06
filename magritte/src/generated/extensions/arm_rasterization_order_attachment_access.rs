@@ -110,7 +110,6 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PipelineColorBlendStateCreateFlagBits(u32);
 impl const Default for PipelineColorBlendStateCreateFlagBits {
@@ -181,7 +180,6 @@ impl PipelineColorBlendStateCreateFlagBits {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct PipelineDepthStencilStateCreateFlagBits(u32);
 impl const Default for PipelineDepthStencilStateCreateFlagBits {

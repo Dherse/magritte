@@ -175,7 +175,6 @@ pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ScopeNV(i32);
 impl const Default for ScopeNV {
@@ -258,7 +257,6 @@ impl ScopeNV {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ComponentTypeNV(i32);
 impl const Default for ComponentTypeNV {

@@ -172,7 +172,7 @@ use crate::{
         BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, Device, Extent2D, ImageLayout, ImageView,
         StructureType,
     },
-    AsRaw, SmallVec, Unique,
+    AsRaw, Unique,
 };
 #[cfg(feature = "bytemuck")]
 use bytemuck::{Pod, Zeroable};
@@ -449,7 +449,6 @@ pub type FNCmdSetCoarseSampleOrderNv = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct ShadingRatePaletteEntryNV(i32);
 impl const Default for ShadingRatePaletteEntryNV {
@@ -542,7 +541,6 @@ impl ShadingRatePaletteEntryNV {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
 #[repr(transparent)]
 pub struct CoarseSampleOrderTypeNV(i32);
 impl const Default for CoarseSampleOrderTypeNV {
