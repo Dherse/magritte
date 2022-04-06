@@ -55,7 +55,7 @@ pub type IDirectFB = std::ffi::c_void;
 pub type IDirectFBSurface = std::ffi::c_void;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
-pub type zx_handle_t = std::ffi::c_void;
+pub type zx_handle_t = u32;
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 pub type GgpStreamDescriptor = u32;

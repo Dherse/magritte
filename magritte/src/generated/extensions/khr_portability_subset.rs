@@ -249,7 +249,7 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePortabilitySubsetFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             constant_alpha_color_blend_factors: 0,
             events: 0,
@@ -910,7 +910,7 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePortabilitySubsetPropertiesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             min_vertex_input_binding_stride_alignment: 0,
         }

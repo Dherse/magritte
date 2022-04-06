@@ -262,7 +262,7 @@ impl<'lt> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportSemaphoreZirconHandleInfoFuchsia,
+            s_type: StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             flags: Default::default(),
@@ -442,7 +442,7 @@ impl<'lt> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SemaphoreGetZirconHandleInfoFuchsia,
+            s_type: StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             handle_type: Default::default(),
@@ -587,7 +587,7 @@ impl Device {
             &mut p_zircon_handle,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_zircon_handle),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_zircon_handle),
             e => VulkanResult::Err(e),
         }
     }
@@ -666,7 +666,7 @@ impl Device {
             p_import_semaphore_zircon_handle_info as *const ImportSemaphoreZirconHandleInfoFUCHSIA<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

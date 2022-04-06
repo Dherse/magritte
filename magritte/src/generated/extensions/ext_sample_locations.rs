@@ -389,7 +389,7 @@ impl<'lt> Default for SampleLocationsInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SampleLocationsInfoExt,
+            s_type: StructureType::SAMPLE_LOCATIONS_INFO_EXT,
             p_next: std::ptr::null(),
             sample_locations_per_pixel: Default::default(),
             sample_location_grid_size: Default::default(),
@@ -819,7 +819,7 @@ impl<'lt> Default for RenderPassSampleLocationsBeginInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RenderPassSampleLocationsBeginInfoExt,
+            s_type: StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT,
             p_next: std::ptr::null(),
             attachment_initial_sample_locations_count: 0,
             attachment_initial_sample_locations: std::ptr::null(),
@@ -1025,7 +1025,7 @@ impl<'lt> Default for PipelineSampleLocationsStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineSampleLocationsStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             sample_locations_enable: 0,
             sample_locations_info: Default::default(),
@@ -1213,7 +1213,7 @@ impl<'lt> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceSampleLocationsPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             sample_location_sample_counts: Default::default(),
             max_sample_location_grid_size: Default::default(),
@@ -1407,7 +1407,7 @@ impl<'lt> Default for MultisamplePropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MultisamplePropertiesExt,
+            s_type: StructureType::MULTISAMPLE_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             max_sample_location_grid_size: Default::default(),
         }

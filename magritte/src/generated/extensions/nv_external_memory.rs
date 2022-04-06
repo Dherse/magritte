@@ -136,7 +136,7 @@ impl<'lt> Default for ExternalMemoryImageCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExternalMemoryImageCreateInfoNv,
+            s_type: StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }
@@ -253,7 +253,7 @@ impl<'lt> Default for ExportMemoryAllocateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExportMemoryAllocateInfoNv,
+            s_type: StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV,
             p_next: std::ptr::null(),
             handle_types: Default::default(),
         }

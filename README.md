@@ -193,3 +193,4 @@ Here are the following families that need to be implemented in the code generato
 - [ ] Dedicated `VkImage` for `VkSwapchainKHR`
 - [ ] Remove `khr` in function name
 - [ ] Function alias flattening
+- [ ] Refactor the code generator to group all edge-cases into one easily accessible module, currently edge cases are spread throughout the project.

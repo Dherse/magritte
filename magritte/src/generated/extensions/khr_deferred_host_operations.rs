@@ -415,7 +415,7 @@ impl Device {
             p_deferred_operation.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_deferred_operation.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -648,7 +648,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), operation);
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::NotReady => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::NOT_READY => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -737,7 +737,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), operation);
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::ThreadDoneKhr | VulkanResultCodes::ThreadIdleKhr => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::THREAD_DONE_KHR | VulkanResultCodes::THREAD_IDLE_KHR => {
                 VulkanResult::Success(_return, ())
             },
             e => VulkanResult::Err(e),

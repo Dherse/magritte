@@ -170,7 +170,7 @@ impl<'lt> Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceExtendedDynamicStateFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             extended_dynamic_state: 0,
         }

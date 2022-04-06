@@ -1000,18 +1000,17 @@ pub type FNQueuePresentKhr = Option<
 ///} VkSwapchainCreateFlagBitsKHR;
 ///```
 ///# Description
-/// - [`SwapchainCreateSplitInstanceBindRegionsKhr`] specifies that images created from the
-///   swapchain (i.e. with the `swapchain` member of [`ImageSwapchainCreateInfoKHR`] set to this
-///   swapchain’s handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
-/// - [`SwapchainCreateProtectedKhr`] specifies that images created from the swapchain are protected
-///   images.
-/// - [`SwapchainCreateMutableFormatKhr`] specifies that the images of the swapchain  **can**  be
-///   used to create a [`ImageView`] with a different format than what the swapchain was created
-///   with. The list of allowed image view formats is specified by adding a
-///   [`ImageFormatListCreateInfo`] structure to the `pNext` chain of [`SwapchainCreateInfoKHR`]. In
-///   addition, this flag also specifies that the swapchain  **can**  be created with usage flags
-///   that are not supported for the format the swapchain is created with but are supported for at
-///   least one of the allowed image view formats.
+/// - [`SPLIT_INSTANCE_BIND_REGIONS`] specifies that images created from the swapchain (i.e. with
+///   the `swapchain` member of [`ImageSwapchainCreateInfoKHR`] set to this swapchain’s handle)
+///   **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
+/// - [`PROTECTED`] specifies that images created from the swapchain are protected images.
+/// - [`MUTABLE_FORMAT`] specifies that the images of the swapchain  **can**  be used to create a
+///   [`ImageView`] with a different format than what the swapchain was created with. The list of
+///   allowed image view formats is specified by adding a [`ImageFormatListCreateInfo`] structure to
+///   the `pNext` chain of [`SwapchainCreateInfoKHR`]. In addition, this flag also specifies that
+///   the swapchain  **can**  be created with usage flags that are not supported for the format the
+///   swapchain is created with but are supported for at least one of the allowed image view
+///   formats.
 ///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`SwapchainCreateFlagsKHR`]
@@ -1028,22 +1027,26 @@ pub type FNQueuePresentKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum SwapchainCreateFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`SwapchainCreateSplitInstanceBindRegionsKhr`] specifies
+#[repr(transparent)]
+pub struct SwapchainCreateFlagBitsKHR(u32);
+impl const Default for SwapchainCreateFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl SwapchainCreateFlagBitsKHR {
+    ///[`SPLIT_INSTANCE_BIND_REGIONS`] specifies
     ///that images created from the swapchain (i.e. with the `swapchain`
     ///member of [`ImageSwapchainCreateInfoKHR`] set to this swapchain’s
     ///handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
     ///
     ///Provided by [`crate::extensions::khr_device_group`]
     #[cfg(feature = "VK_KHR_device_group")]
-    SwapchainCreateSplitInstanceBindRegionsKhr = 1,
-    ///[`SwapchainCreateProtectedKhr`] specifies that images
+    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1);
+    ///[`PROTECTED`] specifies that images
     ///created from the swapchain are protected images.
-    SwapchainCreateProtectedKhr = 2,
-    ///[`SwapchainCreateMutableFormatKhr`] specifies that the
+    pub const PROTECTED: Self = Self(2);
+    ///[`MUTABLE_FORMAT`] specifies that the
     ///images of the swapchain  **can**  be used to create a [`ImageView`] with
     ///a different format than what the swapchain was created with.
     ///The list of allowed image view formats is specified by adding a
@@ -1056,14 +1059,7 @@ pub enum SwapchainCreateFlagBitsKHR {
     ///
     ///Provided by [`crate::extensions::khr_swapchain_mutable_format`]
     #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-    SwapchainCreateMutableFormatKhr = 4,
-}
-impl const Default for SwapchainCreateFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl SwapchainCreateFlagBitsKHR {
+    pub const MUTABLE_FORMAT: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1072,12 +1068,15 @@ impl SwapchainCreateFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSwapchainCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html) - Bitmask controlling swapchain creation
@@ -1096,18 +1095,17 @@ impl SwapchainCreateFlagBitsKHR {
 ///} VkSwapchainCreateFlagBitsKHR;
 ///```
 ///# Description
-/// - [`SwapchainCreateSplitInstanceBindRegionsKhr`] specifies that images created from the
-///   swapchain (i.e. with the `swapchain` member of [`ImageSwapchainCreateInfoKHR`] set to this
-///   swapchain’s handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
-/// - [`SwapchainCreateProtectedKhr`] specifies that images created from the swapchain are protected
-///   images.
-/// - [`SwapchainCreateMutableFormatKhr`] specifies that the images of the swapchain  **can**  be
-///   used to create a [`ImageView`] with a different format than what the swapchain was created
-///   with. The list of allowed image view formats is specified by adding a
-///   [`ImageFormatListCreateInfo`] structure to the `pNext` chain of [`SwapchainCreateInfoKHR`]. In
-///   addition, this flag also specifies that the swapchain  **can**  be created with usage flags
-///   that are not supported for the format the swapchain is created with but are supported for at
-///   least one of the allowed image view formats.
+/// - [`SPLIT_INSTANCE_BIND_REGIONS`] specifies that images created from the swapchain (i.e. with
+///   the `swapchain` member of [`ImageSwapchainCreateInfoKHR`] set to this swapchain’s handle)
+///   **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
+/// - [`PROTECTED`] specifies that images created from the swapchain are protected images.
+/// - [`MUTABLE_FORMAT`] specifies that the images of the swapchain  **can**  be used to create a
+///   [`ImageView`] with a different format than what the swapchain was created with. The list of
+///   allowed image view formats is specified by adding a [`ImageFormatListCreateInfo`] structure to
+///   the `pNext` chain of [`SwapchainCreateInfoKHR`]. In addition, this flag also specifies that
+///   the swapchain  **can**  be created with usage flags that are not supported for the format the
+///   swapchain is created with but are supported for at least one of the allowed image view
+///   formats.
 ///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`SwapchainCreateFlagsKHR`]
@@ -1132,22 +1130,22 @@ impl const Default for SwapchainCreateFlagsKHR {
 }
 impl From<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
     fn from(from: SwapchainCreateFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl SwapchainCreateFlagsKHR {
-    ///[`SwapchainCreateSplitInstanceBindRegionsKhr`] specifies
+    ///[`SPLIT_INSTANCE_BIND_REGIONS`] specifies
     ///that images created from the swapchain (i.e. with the `swapchain`
     ///member of [`ImageSwapchainCreateInfoKHR`] set to this swapchain’s
     ///handle)  **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
     ///
     ///Provided by [`crate::extensions::khr_device_group`]
     #[cfg(feature = "VK_KHR_device_group")]
-    pub const SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR: Self = Self(1);
-    ///[`SwapchainCreateProtectedKhr`] specifies that images
+    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1);
+    ///[`PROTECTED`] specifies that images
     ///created from the swapchain are protected images.
-    pub const SWAPCHAIN_CREATE_PROTECTED_KHR: Self = Self(2);
-    ///[`SwapchainCreateMutableFormatKhr`] specifies that the
+    pub const PROTECTED: Self = Self(2);
+    ///[`MUTABLE_FORMAT`] specifies that the
     ///images of the swapchain  **can**  be used to create a [`ImageView`] with
     ///a different format than what the swapchain was created with.
     ///The list of allowed image view formats is specified by adding a
@@ -1160,7 +1158,7 @@ impl SwapchainCreateFlagsKHR {
     ///
     ///Provided by [`crate::extensions::khr_swapchain_mutable_format`]
     #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-    pub const SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR: Self = Self(4);
+    pub const MUTABLE_FORMAT: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1173,14 +1171,14 @@ impl SwapchainCreateFlagsKHR {
         let mut all = Self::empty();
         #[cfg(feature = "VK_KHR_device_group")]
         {
-            all |= Self::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR;
+            all |= Self::SPLIT_INSTANCE_BIND_REGIONS;
         }
         {
-            all |= Self::SWAPCHAIN_CREATE_PROTECTED_KHR;
+            all |= Self::PROTECTED;
         }
         #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
         {
-            all |= Self::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR;
+            all |= Self::MUTABLE_FORMAT;
         }
         all
     }
@@ -1383,33 +1381,27 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
                 } else {
                     let mut first = true;
                     #[cfg(feature = "VK_KHR_device_group")]
-                    if self
-                        .0
-                        .contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR)
-                    {
+                    if self.0.contains(SwapchainCreateFlagsKHR::SPLIT_INSTANCE_BIND_REGIONS) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_KHR))?;
+                        f.write_str(stringify!(SPLIT_INSTANCE_BIND_REGIONS))?;
                     }
-                    if self.0.contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_PROTECTED_KHR) {
+                    if self.0.contains(SwapchainCreateFlagsKHR::PROTECTED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SWAPCHAIN_CREATE_PROTECTED_KHR))?;
+                        f.write_str(stringify!(PROTECTED))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-                    if self
-                        .0
-                        .contains(SwapchainCreateFlagsKHR::SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR)
-                    {
+                    if self.0.contains(SwapchainCreateFlagsKHR::MUTABLE_FORMAT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SWAPCHAIN_CREATE_MUTABLE_FORMAT_KHR))?;
+                        f.write_str(stringify!(MUTABLE_FORMAT))?;
                     }
                 }
                 Ok(())
@@ -1726,7 +1718,7 @@ impl<'lt> Default for SwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SwapchainCreateInfoKhr,
+            s_type: StructureType::SWAPCHAIN_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             surface: Default::default(),
@@ -2152,7 +2144,7 @@ impl<'lt> Default for PresentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PresentInfoKhr,
+            s_type: StructureType::PRESENT_INFO_KHR,
             p_next: std::ptr::null(),
             wait_semaphore_count: 0,
             wait_semaphores: std::ptr::null(),
@@ -2456,7 +2448,7 @@ impl Device {
             p_swapchain.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_swapchain.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -2660,7 +2652,7 @@ impl Device {
             p_swapchain_images.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
                 _return,
                 p_swapchain_images
                     .into_iter()
@@ -2787,10 +2779,10 @@ impl Device {
             &mut p_image_index,
         );
         match _return {
-            VulkanResultCodes::Success
-            | VulkanResultCodes::Timeout
-            | VulkanResultCodes::NotReady
-            | VulkanResultCodes::SuboptimalKhr => VulkanResult::Success(_return, p_image_index),
+            VulkanResultCodes::SUCCESS
+            | VulkanResultCodes::TIMEOUT
+            | VulkanResultCodes::NOT_READY
+            | VulkanResultCodes::SUBOPTIMAL_KHR => VulkanResult::Success(_return, p_image_index),
             e => VulkanResult::Err(e),
         }
     }
@@ -2914,7 +2906,7 @@ impl Queue {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_present_info as *const PresentInfoKHR<'lt>);
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::SuboptimalKhr => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::SUBOPTIMAL_KHR => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

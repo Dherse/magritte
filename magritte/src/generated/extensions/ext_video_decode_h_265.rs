@@ -121,7 +121,7 @@ impl<'lt> Default for VideoDecodeH265ProfileEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265ProfileExt,
+            s_type: StructureType::VIDEO_DECODE_H265_PROFILE_EXT,
             p_next: std::ptr::null(),
             std_profile_idc: unsafe { std::mem::zeroed() },
         }
@@ -240,7 +240,7 @@ impl<'lt> Default for VideoDecodeH265CapabilitiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265CapabilitiesExt,
+            s_type: StructureType::VIDEO_DECODE_H265_CAPABILITIES_EXT,
             p_next: std::ptr::null_mut(),
             max_level: 0,
         }
@@ -426,7 +426,7 @@ impl<'lt> Default for VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265SessionParametersAddInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT,
             p_next: std::ptr::null(),
             vps_std_count: 0,
             vps_std: std::ptr::null(),
@@ -632,7 +632,7 @@ impl<'lt> Default for VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265SessionParametersCreateInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             max_vps_std_count: 0,
             max_sps_std_count: 0,
@@ -809,7 +809,7 @@ impl<'lt> Default for VideoDecodeH265PictureInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265PictureInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H265_PICTURE_INFO_EXT,
             p_next: std::ptr::null(),
             std_picture_info: std::ptr::null_mut(),
             slices_count: 0,
@@ -961,7 +961,7 @@ impl<'lt> Default for VideoDecodeH265DpbSlotInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH265DpbSlotInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT,
             p_next: std::ptr::null(),
             std_reference_info: std::ptr::null(),
         }

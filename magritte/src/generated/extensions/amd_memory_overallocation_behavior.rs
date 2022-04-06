@@ -68,14 +68,11 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
 ///} VkMemoryOverallocationBehaviorAMD;
 ///```
 ///# Description
-/// - [`MemoryOverallocationBehaviorDefaultAmd`] lets the implementation decide if overallocation is
-///   allowed.
-/// - [`MemoryOverallocationBehaviorAllowedAmd`] specifies overallocation is allowed if platform
-///   permits.
-/// - [`MemoryOverallocationBehaviorDisallowedAmd`] specifies the application is not allowed to
-///   allocate device memory beyond the heap sizes reported by [`PhysicalDeviceMemoryProperties`].
-///   Allocations that are not explicitly made by the application within the scope of the Vulkan
-///   instance are not accounted for.
+/// - [`DEFAULT`] lets the implementation decide if overallocation is allowed.
+/// - [`ALLOWED`] specifies overallocation is allowed if platform permits.
+/// - [`DISALLOWED`] specifies the application is not allowed to allocate device memory beyond the
+///   heap sizes reported by [`PhysicalDeviceMemoryProperties`]. Allocations that are not explicitly
+///   made by the application within the scope of the Vulkan instance are not accounted for.
 ///# Related
 /// - [`VK_AMD_memory_overallocation_behavior`]
 /// - [`DeviceMemoryOverallocationCreateInfoAMD`]
@@ -92,27 +89,26 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum MemoryOverallocationBehaviorAMD {
-    ///[`MemoryOverallocationBehaviorDefaultAmd`] lets the
+#[repr(transparent)]
+pub struct MemoryOverallocationBehaviorAMD(i32);
+impl const Default for MemoryOverallocationBehaviorAMD {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl MemoryOverallocationBehaviorAMD {
+    ///[`DEFAULT`] lets the
     ///implementation decide if overallocation is allowed.
-    MemoryOverallocationBehaviorDefaultAmd = 0,
-    ///[`MemoryOverallocationBehaviorAllowedAmd`] specifies
+    pub const DEFAULT: Self = Self(0);
+    ///[`ALLOWED`] specifies
     ///overallocation is allowed if platform permits.
-    MemoryOverallocationBehaviorAllowedAmd = 1,
-    ///[`MemoryOverallocationBehaviorDisallowedAmd`] specifies the
+    pub const ALLOWED: Self = Self(1);
+    ///[`DISALLOWED`] specifies the
     ///application is not allowed to allocate device memory beyond the heap
     ///sizes reported by [`PhysicalDeviceMemoryProperties`].
     ///Allocations that are not explicitly made by the application within the
     ///scope of the Vulkan instance are not accounted for.
-    MemoryOverallocationBehaviorDisallowedAmd = 2,
-}
-impl const Default for MemoryOverallocationBehaviorAMD {
-    fn default() -> Self {
-        Self::MemoryOverallocationBehaviorDefaultAmd
-    }
-}
-impl MemoryOverallocationBehaviorAMD {
+    pub const DISALLOWED: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -121,12 +117,15 @@ impl MemoryOverallocationBehaviorAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDeviceMemoryOverallocationCreateInfoAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html) - Specify memory overallocation behavior for a Vulkan device
@@ -184,7 +183,7 @@ impl<'lt> Default for DeviceMemoryOverallocationCreateInfoAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceMemoryOverallocationCreateInfoAmd,
+            s_type: StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD,
             p_next: std::ptr::null(),
             overallocation_behavior: Default::default(),
         }

@@ -1191,12 +1191,9 @@ pub type FNCmdTraceRaysNv = Option<
 ///} VkAccelerationStructureMemoryRequirementsTypeNV;
 ///```
 ///# Description
-/// - [`AccelerationStructureMemoryRequirementsTypeObjectNv`] requests the memory requirement for
-///   the [`AccelerationStructureNV`] backing store.
-/// - [`AccelerationStructureMemoryRequirementsTypeBuildScratchNv`] requests the memory requirement
-///   for scratch space during the initial build.
-/// - [`AccelerationStructureMemoryRequirementsTypeUpdateScratchNv`] requests the memory requirement
-///   for scratch space during an update.
+/// - [`OBJECT`] requests the memory requirement for the [`AccelerationStructureNV`] backing store.
+/// - [`BUILD_SCRATCH`] requests the memory requirement for scratch space during the initial build.
+/// - [`UPDATE_SCRATCH`] requests the memory requirement for scratch space during an update.
 ///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
@@ -1213,26 +1210,25 @@ pub type FNCmdTraceRaysNv = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum AccelerationStructureMemoryRequirementsTypeNV {
-    ///[`AccelerationStructureMemoryRequirementsTypeObjectNv`]
-    ///requests the memory requirement for the [`AccelerationStructureNV`]
-    ///backing store.
-    AccelerationStructureMemoryRequirementsTypeObjectNv = 0,
-    ///[`AccelerationStructureMemoryRequirementsTypeBuildScratchNv`]
-    ///requests the memory requirement for scratch space during the initial
-    ///build.
-    AccelerationStructureMemoryRequirementsTypeBuildScratchNv = 1,
-    ///[`AccelerationStructureMemoryRequirementsTypeUpdateScratchNv`]
-    ///requests the memory requirement for scratch space during an update.
-    AccelerationStructureMemoryRequirementsTypeUpdateScratchNv = 2,
-}
+#[repr(transparent)]
+pub struct AccelerationStructureMemoryRequirementsTypeNV(i32);
 impl const Default for AccelerationStructureMemoryRequirementsTypeNV {
     fn default() -> Self {
-        Self::AccelerationStructureMemoryRequirementsTypeObjectNv
+        Self(0)
     }
 }
 impl AccelerationStructureMemoryRequirementsTypeNV {
+    ///[`OBJECT`]
+    ///requests the memory requirement for the [`AccelerationStructureNV`]
+    ///backing store.
+    pub const OBJECT: Self = Self(0);
+    ///[`BUILD_SCRATCH`]
+    ///requests the memory requirement for scratch space during the initial
+    ///build.
+    pub const BUILD_SCRATCH: Self = Self(1);
+    ///[`UPDATE_SCRATCH`]
+    ///requests the memory requirement for scratch space during an update.
+    pub const UPDATE_SCRATCH: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1241,12 +1237,15 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkRayTracingShaderGroupCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html) - Structure specifying shaders in a shader group
@@ -1369,7 +1368,7 @@ impl<'lt> Default for RayTracingShaderGroupCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RayTracingShaderGroupCreateInfoNv,
+            s_type: StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             type_: Default::default(),
             general_shader: 0,
@@ -1644,7 +1643,7 @@ impl<'lt> Default for RayTracingPipelineCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RayTracingPipelineCreateInfoNv,
+            s_type: StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             flags: Default::default(),
             stage_count: 0,
@@ -1976,7 +1975,7 @@ impl<'lt> Default for GeometryTrianglesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GeometryTrianglesNv,
+            s_type: StructureType::GEOMETRY_TRIANGLES_NV,
             p_next: std::ptr::null(),
             vertex_data: Default::default(),
             vertex_offset: Default::default(),
@@ -2245,7 +2244,7 @@ impl<'lt> Default for GeometryAabbNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GeometryAabbNv,
+            s_type: StructureType::GEOMETRY_AABB_NV,
             p_next: std::ptr::null(),
             aabb_data: Default::default(),
             num_aab_bs: 0,
@@ -2499,7 +2498,7 @@ impl<'lt> Default for GeometryNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GeometryNv,
+            s_type: StructureType::GEOMETRY_NV,
             p_next: std::ptr::null(),
             geometry_type: Default::default(),
             geometry: Default::default(),
@@ -2691,7 +2690,7 @@ impl<'lt> Default for AccelerationStructureInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureInfoNv,
+            s_type: StructureType::ACCELERATION_STRUCTURE_INFO_NV,
             p_next: std::ptr::null(),
             type_: Default::default(),
             flags: Default::default(),
@@ -2886,7 +2885,7 @@ impl<'lt> Default for AccelerationStructureCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureCreateInfoNv,
+            s_type: StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             compacted_size: Default::default(),
             info: Default::default(),
@@ -3057,7 +3056,7 @@ impl<'lt> Default for BindAccelerationStructureMemoryInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BindAccelerationStructureMemoryInfoNv,
+            s_type: StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV,
             p_next: std::ptr::null(),
             acceleration_structure: Default::default(),
             memory: Default::default(),
@@ -3253,7 +3252,7 @@ impl<'lt> Default for WriteDescriptorSetAccelerationStructureNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::WriteDescriptorSetAccelerationStructureNv,
+            s_type: StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV,
             p_next: std::ptr::null(),
             acceleration_structure_count: 0,
             acceleration_structures: std::ptr::null(),
@@ -3410,7 +3409,7 @@ impl<'lt> Default for AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureMemoryRequirementsInfoNv,
+            s_type: StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV,
             p_next: std::ptr::null(),
             type_: Default::default(),
             acceleration_structure: Default::default(),
@@ -3586,7 +3585,7 @@ impl<'lt> Default for PhysicalDeviceRayTracingPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceRayTracingPropertiesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             shader_group_handle_size: 0,
             max_recursion_depth: 0,
@@ -3813,7 +3812,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), pipeline, shader.unwrap_or_default() as _);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -3907,7 +3906,7 @@ impl Device {
             p_acceleration_structure.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_acceleration_structure.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -4141,7 +4140,7 @@ impl Device {
         let bind_info_count = (|len: usize| len)(p_bind_infos.len()) as _;
         let _return = _function(self.as_raw(), bind_info_count, p_bind_infos.as_ptr());
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -4222,7 +4221,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), acceleration_structure, data_size, p_data);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -4333,7 +4332,7 @@ impl Device {
             p_pipelines.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::PipelineCompileRequired => VulkanResult::Success(
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::PIPELINE_COMPILE_REQUIRED => VulkanResult::Success(
                 _return,
                 p_pipelines.into_iter().map(|i| Unique::new(self, i, ())).collect(),
             ),

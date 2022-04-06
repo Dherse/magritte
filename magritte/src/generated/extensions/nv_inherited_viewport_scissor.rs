@@ -166,7 +166,7 @@ impl<'lt> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceInheritedViewportScissorFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             inherited_viewport_scissor_2_d: 0,
         }
@@ -372,7 +372,7 @@ impl<'lt> Default for CommandBufferInheritanceViewportScissorInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CommandBufferInheritanceViewportScissorInfoNv,
+            s_type: StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV,
             p_next: std::ptr::null(),
             viewport_scissor_2_d: 0,
             viewport_depth_count: 0,

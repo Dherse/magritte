@@ -135,7 +135,7 @@ impl<'lt> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'lt>
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceMultiviewPerViewAttributesPropertiesNvx,
+            s_type: StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX,
             p_next: std::ptr::null_mut(),
             per_view_position_all_components: 0,
         }

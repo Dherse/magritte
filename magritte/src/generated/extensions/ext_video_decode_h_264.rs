@@ -107,16 +107,14 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///} VkVideoDecodeH264PictureLayoutFlagBitsEXT;
 ///```
 ///# Description
-/// - [`VideoDecodeH264PictureLayoutProgressiveExt`] specifies support for progressive content. This
-///   flag has the value `0`.
-/// - [`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`] specifies support for or use of
-///   a picture layout for interlaced content where all lines belonging to the first field are
-///   decoded to the even-numbered lines within the picture resource, and all lines belonging to the
-///   second field are decoded to the odd-numbered lines within the picture resource.
-/// - [`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`] specifies support for or use of a
-///   picture layout for interlaced content where all lines belonging to the first field are grouped
-///   together in a single plane, followed by another plane containing all lines belonging to the
-///   second field.
+/// - [`PROGRESSIVE`] specifies support for progressive content. This flag has the value `0`.
+/// - [`INTERLACED_INTERLEAVED_LINES`] specifies support for or use of a picture layout for
+///   interlaced content where all lines belonging to the first field are decoded to the
+///   even-numbered lines within the picture resource, and all lines belonging to the second field
+///   are decoded to the odd-numbered lines within the picture resource.
+/// - [`INTERLACED_SEPARATE_PLANES`] specifies support for or use of a picture layout for interlaced
+///   content where all lines belonging to the first field are grouped together in a single plane,
+///   followed by another plane containing all lines belonging to the second field.
 ///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
@@ -133,32 +131,31 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoDecodeH264PictureLayoutFlagBitsEXT {
-    ///[`VideoDecodeH264PictureLayoutProgressiveExt`] specifies
+#[repr(transparent)]
+pub struct VideoDecodeH264PictureLayoutFlagBitsEXT(u32);
+impl const Default for VideoDecodeH264PictureLayoutFlagBitsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl VideoDecodeH264PictureLayoutFlagBitsEXT {
+    ///[`PROGRESSIVE`] specifies
     ///support for progressive content.
     ///This flag has the value `0`.
-    VideoDecodeH264PictureLayoutProgressiveExt = 0,
-    ///[`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`]
+    pub const PROGRESSIVE: Self = Self(0);
+    ///[`INTERLACED_INTERLEAVED_LINES`]
     ///specifies support for or use of a picture layout for interlaced content
     ///where all lines belonging to the first field are decoded to the
     ///even-numbered lines within the picture resource, and all lines belonging
     ///to the second field are decoded to the odd-numbered lines within the
     ///picture resource.
-    VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt = 1,
-    ///[`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`]
+    pub const INTERLACED_INTERLEAVED_LINES: Self = Self(1);
+    ///[`INTERLACED_SEPARATE_PLANES`]
     ///specifies support for or use of a picture layout for interlaced content
     ///where all lines belonging to the first field are grouped together in a
     ///single plane, followed by another plane containing all lines belonging
     ///to the second field.
-    VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt = 2,
-}
-impl const Default for VideoDecodeH264PictureLayoutFlagBitsEXT {
-    fn default() -> Self {
-        Self::VideoDecodeH264PictureLayoutProgressiveExt
-    }
-}
-impl VideoDecodeH264PictureLayoutFlagBitsEXT {
+    pub const INTERLACED_SEPARATE_PLANES: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -167,12 +164,15 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoDecodeH264PictureLayoutFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264PictureLayoutFlagBitsEXT.html) - H.264 video decode picture layout flags
@@ -188,16 +188,14 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
 ///} VkVideoDecodeH264PictureLayoutFlagBitsEXT;
 ///```
 ///# Description
-/// - [`VideoDecodeH264PictureLayoutProgressiveExt`] specifies support for progressive content. This
-///   flag has the value `0`.
-/// - [`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`] specifies support for or use of
-///   a picture layout for interlaced content where all lines belonging to the first field are
-///   decoded to the even-numbered lines within the picture resource, and all lines belonging to the
-///   second field are decoded to the odd-numbered lines within the picture resource.
-/// - [`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`] specifies support for or use of a
-///   picture layout for interlaced content where all lines belonging to the first field are grouped
-///   together in a single plane, followed by another plane containing all lines belonging to the
-///   second field.
+/// - [`PROGRESSIVE`] specifies support for progressive content. This flag has the value `0`.
+/// - [`INTERLACED_INTERLEAVED_LINES`] specifies support for or use of a picture layout for
+///   interlaced content where all lines belonging to the first field are decoded to the
+///   even-numbered lines within the picture resource, and all lines belonging to the second field
+///   are decoded to the odd-numbered lines within the picture resource.
+/// - [`INTERLACED_SEPARATE_PLANES`] specifies support for or use of a picture layout for interlaced
+///   content where all lines belonging to the first field are grouped together in a single plane,
+///   followed by another plane containing all lines belonging to the second field.
 ///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
@@ -222,27 +220,27 @@ impl const Default for VideoDecodeH264PictureLayoutFlagsEXT {
 }
 impl From<VideoDecodeH264PictureLayoutFlagBitsEXT> for VideoDecodeH264PictureLayoutFlagsEXT {
     fn from(from: VideoDecodeH264PictureLayoutFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoDecodeH264PictureLayoutFlagsEXT {
-    ///[`VideoDecodeH264PictureLayoutProgressiveExt`] specifies
+    ///[`PROGRESSIVE`] specifies
     ///support for progressive content.
     ///This flag has the value `0`.
-    pub const VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT: Self = Self(0);
-    ///[`VideoDecodeH264PictureLayoutInterlacedInterleavedLinesExt`]
+    pub const PROGRESSIVE: Self = Self(0);
+    ///[`INTERLACED_INTERLEAVED_LINES`]
     ///specifies support for or use of a picture layout for interlaced content
     ///where all lines belonging to the first field are decoded to the
     ///even-numbered lines within the picture resource, and all lines belonging
     ///to the second field are decoded to the odd-numbered lines within the
     ///picture resource.
-    pub const VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT: Self = Self(1);
-    ///[`VideoDecodeH264PictureLayoutInterlacedSeparatePlanesExt`]
+    pub const INTERLACED_INTERLEAVED_LINES: Self = Self(1);
+    ///[`INTERLACED_SEPARATE_PLANES`]
     ///specifies support for or use of a picture layout for interlaced content
     ///where all lines belonging to the first field are grouped together in a
     ///single plane, followed by another plane containing all lines belonging
     ///to the second field.
-    pub const VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT: Self = Self(2);
+    pub const INTERLACED_SEPARATE_PLANES: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -254,13 +252,13 @@ impl VideoDecodeH264PictureLayoutFlagsEXT {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT;
+            all |= Self::PROGRESSIVE;
         }
         {
-            all |= Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT;
+            all |= Self::INTERLACED_INTERLEAVED_LINES;
         }
         {
-            all |= Self::VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT;
+            all |= Self::INTERLACED_SEPARATE_PLANES;
         }
         all
     }
@@ -466,17 +464,33 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(
-                        VideoDecodeH264PictureLayoutFlagsEXT::VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT,
-                    ) {
+                    if self.0.contains(VideoDecodeH264PictureLayoutFlagsEXT::PROGRESSIVE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_DECODE_H_264_PICTURE_LAYOUT_PROGRESSIVE_EXT))?;
+                        f.write_str(stringify!(PROGRESSIVE))?;
                     }
-                    if self . 0 . contains (VideoDecodeH264PictureLayoutFlagsEXT :: VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_EXT)) ? ; }
-                    if self . 0 . contains (VideoDecodeH264PictureLayoutFlagsEXT :: VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (VIDEO_DECODE_H_264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_EXT)) ? ; }
+                    if self
+                        .0
+                        .contains(VideoDecodeH264PictureLayoutFlagsEXT::INTERLACED_INTERLEAVED_LINES)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(INTERLACED_INTERLEAVED_LINES))?;
+                    }
+                    if self
+                        .0
+                        .contains(VideoDecodeH264PictureLayoutFlagsEXT::INTERLACED_SEPARATE_PLANES)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(INTERLACED_SEPARATE_PLANES))?;
+                    }
                 }
                 Ok(())
             }
@@ -558,7 +572,7 @@ impl<'lt> Default for VideoDecodeH264ProfileEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264ProfileExt,
+            s_type: StructureType::VIDEO_DECODE_H264_PROFILE_EXT,
             p_next: std::ptr::null(),
             std_profile_idc: unsafe { std::mem::zeroed() },
             picture_layout: Default::default(),
@@ -702,7 +716,7 @@ impl<'lt> Default for VideoDecodeH264CapabilitiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264CapabilitiesExt,
+            s_type: StructureType::VIDEO_DECODE_H264_CAPABILITIES_EXT,
             p_next: std::ptr::null_mut(),
             max_level: 0,
             field_offset_granularity: Default::default(),
@@ -883,7 +897,7 @@ impl<'lt> Default for VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264SessionParametersAddInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT,
             p_next: std::ptr::null(),
             sps_std_count: 0,
             sps_std: std::ptr::null(),
@@ -1050,7 +1064,7 @@ impl<'lt> Default for VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264SessionParametersCreateInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             max_sps_std_count: 0,
             max_pps_std_count: 0,
@@ -1215,7 +1229,7 @@ impl<'lt> Default for VideoDecodeH264PictureInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264PictureInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H264_PICTURE_INFO_EXT,
             p_next: std::ptr::null(),
             std_picture_info: std::ptr::null(),
             slices_count: 0,
@@ -1359,7 +1373,7 @@ impl<'lt> Default for VideoDecodeH264DpbSlotInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264DpbSlotInfoExt,
+            s_type: StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_EXT,
             p_next: std::ptr::null(),
             std_reference_info: std::ptr::null(),
         }
@@ -1463,7 +1477,7 @@ impl<'lt> Default for VideoDecodeH264MvcEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeH264MvcExt,
+            s_type: StructureType::VIDEO_DECODE_H264_MVC_EXT,
             p_next: std::ptr::null(),
             std_mvc: std::ptr::null(),
         }

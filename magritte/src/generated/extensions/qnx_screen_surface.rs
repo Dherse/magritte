@@ -256,7 +256,7 @@ impl<'lt> Default for ScreenSurfaceCreateInfoQNX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ScreenSurfaceCreateInfoQnx,
+            s_type: StructureType::SCREEN_SURFACE_CREATE_INFO_QNX,
             p_next: std::ptr::null(),
             flags: Default::default(),
             context: std::ptr::null_mut(),
@@ -423,7 +423,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -492,7 +492,7 @@ impl PhysicalDevice {
             .unwrap_unchecked();
         let mut window = std::mem::zeroed();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _, &mut window);
-        (window, unsafe { std::mem::transmute(_return as u8) })
+        (window, std::mem::transmute(_return as u8))
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_QNX_screen_surface`

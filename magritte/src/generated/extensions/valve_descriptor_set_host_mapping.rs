@@ -185,7 +185,7 @@ impl<'lt> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDescriptorSetHostMappingFeaturesValve,
+            s_type: StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE,
             p_next: std::ptr::null_mut(),
             descriptor_set_host_mapping: 0,
         }
@@ -322,7 +322,7 @@ impl<'lt> Default for DescriptorSetBindingReferenceVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DescriptorSetBindingReferenceValve,
+            s_type: StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE,
             p_next: std::ptr::null(),
             descriptor_set_layout: Default::default(),
             binding: 0,
@@ -441,7 +441,7 @@ impl<'lt> Default for DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DescriptorSetLayoutHostMappingInfoValve,
+            s_type: StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE,
             p_next: std::ptr::null_mut(),
             descriptor_offset: 0,
             descriptor_size: 0,
@@ -638,7 +638,7 @@ impl Device {
             .unwrap_unchecked()
             .get_descriptor_set_host_mapping_valve()
             .unwrap_unchecked();
-        let mut pp_data = Default::default();
+        let mut pp_data = std::ptr::null_mut();
         let _return = _function(self.as_raw(), descriptor_set, &mut pp_data);
         pp_data
     }

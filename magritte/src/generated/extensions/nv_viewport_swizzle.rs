@@ -244,31 +244,30 @@ pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_N
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ViewportCoordinateSwizzleNV {
-    ///No documentation found
-    ViewportCoordinateSwizzlePositiveXNv = 0,
-    ///No documentation found
-    ViewportCoordinateSwizzleNegativeXNv = 1,
-    ///No documentation found
-    ViewportCoordinateSwizzlePositiveYNv = 2,
-    ///No documentation found
-    ViewportCoordinateSwizzleNegativeYNv = 3,
-    ///No documentation found
-    ViewportCoordinateSwizzlePositiveZNv = 4,
-    ///No documentation found
-    ViewportCoordinateSwizzleNegativeZNv = 5,
-    ///No documentation found
-    ViewportCoordinateSwizzlePositiveWNv = 6,
-    ///No documentation found
-    ViewportCoordinateSwizzleNegativeWNv = 7,
-}
+#[repr(transparent)]
+pub struct ViewportCoordinateSwizzleNV(i32);
 impl const Default for ViewportCoordinateSwizzleNV {
     fn default() -> Self {
-        Self::ViewportCoordinateSwizzlePositiveXNv
+        Self(0)
     }
 }
 impl ViewportCoordinateSwizzleNV {
+    ///No documentation found
+    pub const POSITIVE_X: Self = Self(0);
+    ///No documentation found
+    pub const NEGATIVE_X: Self = Self(1);
+    ///No documentation found
+    pub const POSITIVE_Y: Self = Self(2);
+    ///No documentation found
+    pub const NEGATIVE_Y: Self = Self(3);
+    ///No documentation found
+    pub const POSITIVE_Z: Self = Self(4);
+    ///No documentation found
+    pub const NEGATIVE_Z: Self = Self(5);
+    ///No documentation found
+    pub const POSITIVE_W: Self = Self(6);
+    ///No documentation found
+    pub const NEGATIVE_W: Self = Self(7);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -277,12 +276,15 @@ impl ViewportCoordinateSwizzleNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineViewportSwizzleStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportSwizzleStateCreateFlagsNV.html) - Reserved for future use
@@ -513,7 +515,7 @@ impl<'lt> Default for PipelineViewportSwizzleStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineViewportSwizzleStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             flags: Default::default(),
             viewport_count: 0,

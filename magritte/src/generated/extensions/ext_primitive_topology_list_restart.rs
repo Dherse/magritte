@@ -129,7 +129,7 @@ impl<'lt> Default for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'lt>
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePrimitiveTopologyListRestartFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             primitive_topology_list_restart: 0,
             primitive_topology_patch_list_restart: 0,

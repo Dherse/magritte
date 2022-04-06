@@ -225,31 +225,31 @@ pub type FNCmdSetFragmentShadingRateEnumNv = Option<
 ///} VkFragmentShadingRateNV;
 ///```
 ///# Description
-/// - [`FragmentShadingRate1InvocationPerPixelNv`] specifies a fragment size of 1x1 pixels.
-/// - [`FragmentShadingRate1InvocationPer1X2PixelsNv`] specifies a fragment size of 1x2 pixels.
-/// - [`FragmentShadingRate1InvocationPer2X1PixelsNv`] specifies a fragment size of 2x1 pixels.
-/// - [`FragmentShadingRate1InvocationPer2X2PixelsNv`] specifies a fragment size of 2x2 pixels.
-/// - [`FragmentShadingRate1InvocationPer2X4PixelsNv`] specifies a fragment size of 2x4 pixels.
-/// - [`FragmentShadingRate1InvocationPer4X2PixelsNv`] specifies a fragment size of 4x2 pixels.
-/// - [`FragmentShadingRate1InvocationPer4X4PixelsNv`] specifies a fragment size of 4x4 pixels.
-/// - [`FragmentShadingRate2InvocationsPerPixelNv`] specifies a fragment size of 1x1 pixels, with
-///   two fragment shader invocations per fragment.
-/// - [`FragmentShadingRate4InvocationsPerPixelNv`] specifies a fragment size of 1x1 pixels, with
-///   four fragment shader invocations per fragment.
-/// - [`FragmentShadingRate8InvocationsPerPixelNv`] specifies a fragment size of 1x1 pixels, with
-///   eight fragment shader invocations per fragment.
-/// - [`FragmentShadingRate16InvocationsPerPixelNv`] specifies a fragment size of 1x1 pixels, with
-///   sixteen fragment shader invocations per fragment.
-/// - [`FragmentShadingRateNoInvocationsNv`] specifies that any portions of a primitive that use
-///   that shading rate should be discarded without invoking any fragment shader.
+/// - [`1_INVOCATION_PER_PIXEL`] specifies a fragment size of 1x1 pixels.
+/// - [`1_INVOCATION_PER1_X_2_PIXELS`] specifies a fragment size of 1x2 pixels.
+/// - [`1_INVOCATION_PER2_X_1_PIXELS`] specifies a fragment size of 2x1 pixels.
+/// - [`1_INVOCATION_PER2_X_2_PIXELS`] specifies a fragment size of 2x2 pixels.
+/// - [`1_INVOCATION_PER2_X_4_PIXELS`] specifies a fragment size of 2x4 pixels.
+/// - [`1_INVOCATION_PER4_X_2_PIXELS`] specifies a fragment size of 4x2 pixels.
+/// - [`1_INVOCATION_PER4_X_4_PIXELS`] specifies a fragment size of 4x4 pixels.
+/// - [`2_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with two fragment shader
+///   invocations per fragment.
+/// - [`4_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with four fragment shader
+///   invocations per fragment.
+/// - [`8_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with eight fragment
+///   shader invocations per fragment.
+/// - [`16_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with sixteen fragment
+///   shader invocations per fragment.
+/// - [`NO_INVOCATIONS`] specifies that any portions of a primitive that use that shading rate
+///   should be discarded without invoking any fragment shader.
 ///To use the shading rates
-///[`FragmentShadingRate2InvocationsPerPixelNv`],
-///[`FragmentShadingRate4InvocationsPerPixelNv`],
-///[`FragmentShadingRate8InvocationsPerPixelNv`], and
-///[`FragmentShadingRate16InvocationsPerPixelNv`] as a pipeline,
+///[`2_INVOCATIONS_PER_PIXEL`],
+///[`4_INVOCATIONS_PER_PIXEL`],
+///[`8_INVOCATIONS_PER_PIXEL`], and
+///[`16_INVOCATIONS_PER_PIXEL`] as a pipeline,
 ///primitive, or attachment shading rate, the
 ///`supersampleFragmentShadingRates` feature  **must**  be enabled.
-///To use the shading rate [`FragmentShadingRateNoInvocationsNv`] as
+///To use the shading rate [`NO_INVOCATIONS`] as
 ///a pipeline, primitive, or attachment shading rate, the
 ///`noInvocationFragmentShadingRates` feature  **must**  be enabled.
 ///# Related
@@ -269,56 +269,55 @@ pub type FNCmdSetFragmentShadingRateEnumNv = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum FragmentShadingRateNV {
-    ///[`FragmentShadingRate1InvocationPerPixelNv`] specifies a
-    ///fragment size of 1x1 pixels.
-    FragmentShadingRate1InvocationPerPixelNv = 0,
-    ///[`FragmentShadingRate1InvocationPer1X2PixelsNv`] specifies
-    ///a fragment size of 1x2 pixels.
-    FragmentShadingRate1InvocationPer1X2PixelsNv = 1,
-    ///[`FragmentShadingRate1InvocationPer2X1PixelsNv`] specifies
-    ///a fragment size of 2x1 pixels.
-    FragmentShadingRate1InvocationPer2X1PixelsNv = 4,
-    ///[`FragmentShadingRate1InvocationPer2X2PixelsNv`] specifies
-    ///a fragment size of 2x2 pixels.
-    FragmentShadingRate1InvocationPer2X2PixelsNv = 5,
-    ///[`FragmentShadingRate1InvocationPer2X4PixelsNv`] specifies
-    ///a fragment size of 2x4 pixels.
-    FragmentShadingRate1InvocationPer2X4PixelsNv = 6,
-    ///[`FragmentShadingRate1InvocationPer4X2PixelsNv`] specifies
-    ///a fragment size of 4x2 pixels.
-    FragmentShadingRate1InvocationPer4X2PixelsNv = 9,
-    ///[`FragmentShadingRate1InvocationPer4X4PixelsNv`] specifies
-    ///a fragment size of 4x4 pixels.
-    FragmentShadingRate1InvocationPer4X4PixelsNv = 10,
-    ///[`FragmentShadingRate2InvocationsPerPixelNv`] specifies a
-    ///fragment size of 1x1 pixels, with two fragment shader invocations per
-    ///fragment.
-    FragmentShadingRate2InvocationsPerPixelNv = 11,
-    ///[`FragmentShadingRate4InvocationsPerPixelNv`] specifies a
-    ///fragment size of 1x1 pixels, with four fragment shader invocations per
-    ///fragment.
-    FragmentShadingRate4InvocationsPerPixelNv = 12,
-    ///[`FragmentShadingRate8InvocationsPerPixelNv`] specifies a
-    ///fragment size of 1x1 pixels, with eight fragment shader invocations per
-    ///fragment.
-    FragmentShadingRate8InvocationsPerPixelNv = 13,
-    ///[`FragmentShadingRate16InvocationsPerPixelNv`] specifies a
-    ///fragment size of 1x1 pixels, with sixteen fragment shader invocations
-    ///per fragment.
-    FragmentShadingRate16InvocationsPerPixelNv = 14,
-    ///[`FragmentShadingRateNoInvocationsNv`] specifies that any
-    ///portions of a primitive that use that shading rate should be discarded
-    ///without invoking any fragment shader.
-    FragmentShadingRateNoInvocationsNv = 15,
-}
+#[repr(transparent)]
+pub struct FragmentShadingRateNV(i32);
 impl const Default for FragmentShadingRateNV {
     fn default() -> Self {
-        Self::FragmentShadingRate1InvocationPerPixelNv
+        Self(0)
     }
 }
 impl FragmentShadingRateNV {
+    ///[`1_INVOCATION_PER_PIXEL`] specifies a
+    ///fragment size of 1x1 pixels.
+    pub const _1_INVOCATION_PER_PIXEL: Self = Self(0);
+    ///[`1_INVOCATION_PER1_X_2_PIXELS`] specifies
+    ///a fragment size of 1x2 pixels.
+    pub const _1_INVOCATION_PER1_X_2_PIXELS: Self = Self(1);
+    ///[`1_INVOCATION_PER2_X_1_PIXELS`] specifies
+    ///a fragment size of 2x1 pixels.
+    pub const _1_INVOCATION_PER2_X_1_PIXELS: Self = Self(4);
+    ///[`1_INVOCATION_PER2_X_2_PIXELS`] specifies
+    ///a fragment size of 2x2 pixels.
+    pub const _1_INVOCATION_PER2_X_2_PIXELS: Self = Self(5);
+    ///[`1_INVOCATION_PER2_X_4_PIXELS`] specifies
+    ///a fragment size of 2x4 pixels.
+    pub const _1_INVOCATION_PER2_X_4_PIXELS: Self = Self(6);
+    ///[`1_INVOCATION_PER4_X_2_PIXELS`] specifies
+    ///a fragment size of 4x2 pixels.
+    pub const _1_INVOCATION_PER4_X_2_PIXELS: Self = Self(9);
+    ///[`1_INVOCATION_PER4_X_4_PIXELS`] specifies
+    ///a fragment size of 4x4 pixels.
+    pub const _1_INVOCATION_PER4_X_4_PIXELS: Self = Self(10);
+    ///[`2_INVOCATIONS_PER_PIXEL`] specifies a
+    ///fragment size of 1x1 pixels, with two fragment shader invocations per
+    ///fragment.
+    pub const _2_INVOCATIONS_PER_PIXEL: Self = Self(11);
+    ///[`4_INVOCATIONS_PER_PIXEL`] specifies a
+    ///fragment size of 1x1 pixels, with four fragment shader invocations per
+    ///fragment.
+    pub const _4_INVOCATIONS_PER_PIXEL: Self = Self(12);
+    ///[`8_INVOCATIONS_PER_PIXEL`] specifies a
+    ///fragment size of 1x1 pixels, with eight fragment shader invocations per
+    ///fragment.
+    pub const _8_INVOCATIONS_PER_PIXEL: Self = Self(13);
+    ///[`16_INVOCATIONS_PER_PIXEL`] specifies a
+    ///fragment size of 1x1 pixels, with sixteen fragment shader invocations
+    ///per fragment.
+    pub const _16_INVOCATIONS_PER_PIXEL: Self = Self(14);
+    ///[`NO_INVOCATIONS`] specifies that any
+    ///portions of a primitive that use that shading rate should be discarded
+    ///without invoking any fragment shader.
+    pub const NO_INVOCATIONS: Self = Self(15);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -327,12 +326,15 @@ impl FragmentShadingRateNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkFragmentShadingRateTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateTypeNV.html) - Enumeration with fragment shading rate types
@@ -349,14 +351,14 @@ impl FragmentShadingRateNV {
 ///} VkFragmentShadingRateTypeNV;
 ///```
 ///# Description
-/// - [`FragmentShadingRateTypeFragmentSizeNv`] specifies that a graphics pipeline should obtain its
-///   pipeline fragment shading rate and shading rate combiner state from the
+/// - [`FRAGMENT_SIZE`] specifies that a graphics pipeline should obtain its pipeline fragment
+///   shading rate and shading rate combiner state from the
 ///   [`PipelineFragmentShadingRateStateCreateInfoKHR`] structure and that any state specified by
 ///   the [`PipelineFragmentShadingRateEnumStateCreateInfoNV`] structure should be ignored.
-/// - [`FragmentShadingRateTypeEnumsNv`] specifies that a graphics pipeline should obtain its
-///   pipeline fragment shading rate and shading rate combiner state from the
-///   [`PipelineFragmentShadingRateEnumStateCreateInfoNV`] structure and that any state specified by
-///   the [`PipelineFragmentShadingRateStateCreateInfoKHR`] structure should be ignored.
+/// - [`ENUMS`] specifies that a graphics pipeline should obtain its pipeline fragment shading rate
+///   and shading rate combiner state from the [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
+///   structure and that any state specified by the
+///   [`PipelineFragmentShadingRateStateCreateInfoKHR`] structure should be ignored.
 ///# Related
 /// - [`VK_NV_fragment_shading_rate_enums`]
 /// - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
@@ -373,31 +375,30 @@ impl FragmentShadingRateNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum FragmentShadingRateTypeNV {
-    ///[`FragmentShadingRateTypeFragmentSizeNv`] specifies that a
+#[repr(transparent)]
+pub struct FragmentShadingRateTypeNV(i32);
+impl const Default for FragmentShadingRateTypeNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl FragmentShadingRateTypeNV {
+    ///[`FRAGMENT_SIZE`] specifies that a
     ///graphics pipeline should obtain its pipeline fragment shading rate and
     ///shading rate combiner state from the
     ///[`PipelineFragmentShadingRateStateCreateInfoKHR`] structure and that
     ///any state specified by the
     ///[`PipelineFragmentShadingRateEnumStateCreateInfoNV`] structure
     ///should be ignored.
-    FragmentShadingRateTypeFragmentSizeNv = 0,
-    ///[`FragmentShadingRateTypeEnumsNv`] specifies that a graphics
+    pub const FRAGMENT_SIZE: Self = Self(0);
+    ///[`ENUMS`] specifies that a graphics
     ///pipeline should obtain its pipeline fragment shading rate and shading
     ///rate combiner state from the
     ///[`PipelineFragmentShadingRateEnumStateCreateInfoNV`] structure and
     ///that any state specified by the
     ///[`PipelineFragmentShadingRateStateCreateInfoKHR`] structure should
     ///be ignored.
-    FragmentShadingRateTypeEnumsNv = 1,
-}
-impl const Default for FragmentShadingRateTypeNV {
-    fn default() -> Self {
-        Self::FragmentShadingRateTypeFragmentSizeNv
-    }
-}
-impl FragmentShadingRateTypeNV {
+    pub const ENUMS: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -406,12 +407,15 @@ impl FragmentShadingRateTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html) - Structure indicating support for fragment shading rate enums
@@ -492,7 +496,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceFragmentShadingRateEnumsFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             fragment_shading_rate_enums: 0,
             supersample_fragment_shading_rates: 0,
@@ -715,7 +719,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceFragmentShadingRateEnumsPropertiesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             max_fragment_shading_rate_invocation_count: Default::default(),
         }
@@ -870,7 +874,7 @@ impl<'lt> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineFragmentShadingRateEnumStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             shading_rate_type: Default::default(),
             shading_rate: Default::default(),

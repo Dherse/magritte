@@ -1205,7 +1205,7 @@ impl<'lt> Default for PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceMultiDrawPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             max_multi_draw_count: 0,
         }
@@ -1327,7 +1327,7 @@ impl<'lt> Default for PhysicalDeviceMultiDrawFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceMultiDrawFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             multi_draw: 0,
         }

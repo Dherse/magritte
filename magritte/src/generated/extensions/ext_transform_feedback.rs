@@ -1185,7 +1185,7 @@ impl<'lt> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceTransformFeedbackFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             transform_feedback: 0,
             geometry_streams: 0,
@@ -1453,7 +1453,7 @@ impl<'lt> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceTransformFeedbackPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             max_transform_feedback_streams: 0,
             max_transform_feedback_buffers: 0,
@@ -1805,7 +1805,7 @@ impl<'lt> Default for PipelineRasterizationStateStreamCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRasterizationStateStreamCreateInfoExt,
+            s_type: StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             rasterization_stream: 0,

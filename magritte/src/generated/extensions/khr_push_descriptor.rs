@@ -242,7 +242,7 @@ impl<'lt> Default for PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePushDescriptorPropertiesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             max_push_descriptors: 0,
         }

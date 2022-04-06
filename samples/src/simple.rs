@@ -1,6 +1,6 @@
 use std::{borrow::Cow, error::Error, ffi::CStr};
 
-use log::{error, warn, debug, trace, info};
+use log::{debug, error, info, trace, warn};
 use magritte::{
     cstr,
     entry::Entry,
@@ -9,13 +9,16 @@ use magritte::{
             DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageSeverityFlagsEXT, DebugUtilsMessageTypeFlagsEXT,
             DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT,
         },
-        khr_display::SurfaceTransformFlagsKHR, khr_surface::{PresentModeKHR, CompositeAlphaFlagsKHR, SurfaceTransformFlagBitsKHR, CompositeAlphaFlagBitsKHR}, khr_swapchain::SwapchainCreateInfoKHR,
+        khr_display::SurfaceTransformFlagsKHR,
+        khr_surface::{CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceTransformFlagBitsKHR},
+        khr_swapchain::SwapchainCreateInfoKHR,
     },
     vulkan1_0::{
-        ApplicationInfo, Bool32, DeviceCreateInfo, DeviceQueueCreateInfo, Extent2D, InstanceCreateInfo,
-        PhysicalDeviceFeatures, QueueFlags, FALSE, ImageUsageFlags, SharingMode, CommandPoolCreateInfo, CommandPoolCreateFlags, CommandBufferAllocateInfo, CommandBufferLevel,
+        ApplicationInfo, Bool32, CommandBufferAllocateInfo, CommandBufferLevel, CommandPoolCreateFlags,
+        CommandPoolCreateInfo, DeviceCreateInfo, DeviceQueueCreateInfo, Extent2D, ImageUsageFlags, InstanceCreateInfo,
+        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE,
     },
-    AsRaw, Extensions, SmallVec, Unique, Version,
+    AsRaw, Extensions,
 };
 
 use winit::{event_loop::EventLoop, window::WindowBuilder};
@@ -39,7 +42,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         .enable_ext_debug_utils()
         .enable_khr_swapchain();
 
-    let mut ext_list = extensions
+    let ext_list = extensions
         .instance_extension_names()
         .into_iter()
         .map(CStr::as_ptr)
@@ -62,14 +65,14 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let debug_info = DebugUtilsMessengerCreateInfoEXT::default()
         .set_message_severity(
-            DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT
-                | DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT
-                | DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT,
+            DebugUtilsMessageSeverityFlagsEXT::ERROR
+                | DebugUtilsMessageSeverityFlagsEXT::WARNING
+                | DebugUtilsMessageSeverityFlagsEXT::INFO,
         )
         .set_message_type(
-            DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT
-                | DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT
-                | DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT,
+            DebugUtilsMessageTypeFlagsEXT::GENERAL
+                | DebugUtilsMessageTypeFlagsEXT::VALIDATION
+                | DebugUtilsMessageTypeFlagsEXT::PERFORMANCE,
         )
         .set_pfn_user_callback(Some(vulkan_debug_callback));
 
@@ -83,7 +86,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
                 .iter()
                 .enumerate()
                 .find_map(|(index, info)| {
-                    let supports_graphics_and_surface = info.queue_flags().contains(QueueFlags::QUEUE_GRAPHICS)
+                    let supports_graphics_and_surface = info.queue_flags().contains(QueueFlags::GRAPHICS)
                         && pdevice
                             .get_physical_device_surface_support_khr(Some(index as u32), surface.as_raw())
                             .unwrap();
@@ -94,7 +97,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         })
         .expect("couldn't find a device");
 
-        info!("Found device: {:?}", pdevice.as_raw());
+    info!("Found device: {:?}", pdevice.as_raw());
 
     let queue_info = DeviceQueueCreateInfo::default()
         .set_queue_family_index(queue_family_index as u32)
@@ -141,22 +144,21 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let pre_transform = if surface_capabilities
         .supported_transforms()
-        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_IDENTITY_KHR)
+        .contains(SurfaceTransformFlagsKHR::IDENTITY)
     {
-        SurfaceTransformFlagBitsKHR::SurfaceTransformIdentityKhr
+        SurfaceTransformFlagBitsKHR::IDENTITY
     } else {
         surface_capabilities.current_transform()
     };
 
-    let (present_modes, _) = unsafe {
-        pdevice.get_physical_device_surface_present_modes_khr(Some(surface.as_raw()), None)?
-    };
+    let (present_modes, _) =
+        unsafe { pdevice.get_physical_device_surface_present_modes_khr(Some(surface.as_raw()), None)? };
 
     let present_mode = present_modes
         .iter()
         .cloned()
-        .find(|&mode| mode == PresentModeKHR::PresentModeMailboxKhr)
-        .unwrap_or(PresentModeKHR::PresentModeFifoKhr);
+        .find(|&mode| mode == PresentModeKHR::MAILBOX)
+        .unwrap_or(PresentModeKHR::FIFO);
 
     let swapchain_create_info = SwapchainCreateInfoKHR::default()
         .set_surface(surface.as_raw())
@@ -164,10 +166,10 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         .set_image_color_space(surface_format.color_space())
         .set_image_format(surface_format.format())
         .set_image_extent(surface_resolution)
-        .set_image_usage(ImageUsageFlags::IMAGE_USAGE_COLOR_ATTACHMENT)
-        .set_image_sharing_mode(SharingMode::Exclusive)
+        .set_image_usage(ImageUsageFlags::COLOR_ATTACHMENT)
+        .set_image_sharing_mode(SharingMode::EXCLUSIVE)
         .set_pre_transform(pre_transform)
-        .set_composite_alpha(CompositeAlphaFlagBitsKHR::CompositeAlphaOpaqueKhr)
+        .set_composite_alpha(CompositeAlphaFlagBitsKHR::OPAQUE)
         .set_present_mode(present_mode)
         .set_clipped(true)
         .set_image_array_layers(1);
@@ -177,36 +179,30 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     info!("Created swapchain: {:?}", swapchain.as_raw());
 
     let pool_create_info = CommandPoolCreateInfo::default()
-        .set_flags(CommandPoolCreateFlags::COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER)
+        .set_flags(CommandPoolCreateFlags::RESET_COMMAND_BUFFER)
         .set_queue_family_index(queue_family_index as u32);
 
-    let (pool, _) = unsafe {
-        device.create_command_pool(&pool_create_info, None)?
-    };
+    let (pool, _) = unsafe { device.create_command_pool(&pool_create_info, None)? };
 
     info!("Created command pool: {:?}", pool.as_raw());
 
     let command_buffer_allocate_info = CommandBufferAllocateInfo::default()
         .set_command_buffer_count(2)
         .set_command_pool(pool.as_raw())
-        .set_level(CommandBufferLevel::Primary);
+        .set_level(CommandBufferLevel::PRIMARY);
 
-    let (mut command_buffers, _) = unsafe {
-        device.allocate_command_buffers(&command_buffer_allocate_info, &pool)?
-    };
+    let (mut command_buffers, _) = unsafe { device.allocate_command_buffers(&command_buffer_allocate_info, &pool)? };
 
     let setup_command_buffer = command_buffers.pop().unwrap();
     let draw_command_buffer = command_buffers.pop().unwrap();
 
-    let (present_images, _) = unsafe {
-        device.get_swapchain_images_khr(swapchain.as_raw(), None, &swapchain)?
-    };
+    let (present_images, _) = unsafe { device.get_swapchain_images_khr(swapchain.as_raw(), None, &swapchain)? };
 
     /*let present_image_views = present_images
-        .iter()
-        .map(|image| {
+    .iter()
+    .map(|image| {
 
-        })*/
+    })*/
 
     Ok(())
 }
@@ -233,35 +229,42 @@ unsafe extern "system" fn vulkan_debug_callback<'lt>(
     };
 
     match message_severity {
-        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityVerboseExt => trace!(
+        DebugUtilsMessageSeverityFlagBitsEXT::VERBOSE => trace!(
             "{:?} [{} ({})] : {}",
             message_type,
             message_id_name,
             &message_id_number.to_string(),
             message,
         ),
-        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityInfoExt => debug!(
+        DebugUtilsMessageSeverityFlagBitsEXT::INFO => debug!(
             "{:?} [{} ({})] : {}",
             message_type,
             message_id_name,
             &message_id_number.to_string(),
             message,
         ),
-        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityWarningExt => warn!(
+        DebugUtilsMessageSeverityFlagBitsEXT::WARNING => warn!(
             "{:?} [{} ({})] : {}",
             message_type,
             message_id_name,
             &message_id_number.to_string(),
             message,
         ),
-        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityErrorExt => error!(
+        DebugUtilsMessageSeverityFlagBitsEXT::ERROR => error!(
             "{:?} [{} ({})] : {}",
             message_type,
             message_id_name,
             &message_id_number.to_string(),
             message,
         ),
-        _ => {},
+        other => error!(
+            "[UNKNOWN: {:0X}] {:?} [{} ({})] : {}",
+            other.bits(),
+            message_type,
+            message_id_name,
+            &message_id_number.to_string(),
+            message,
+        ),
     }
 
     FALSE

@@ -219,7 +219,7 @@ impl<'lt> Default for ImportMemoryWin32HandleInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportMemoryWin32HandleInfoNv,
+            s_type: StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
             handle: unsafe { std::mem::zeroed() },
@@ -368,7 +368,7 @@ impl<'lt> Default for ExportMemoryWin32HandleInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExportMemoryWin32HandleInfoNv,
+            s_type: StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
             dw_access: unsafe { std::mem::zeroed() },
@@ -519,7 +519,7 @@ impl Device {
         let mut p_handle = std::mem::zeroed();
         let _return = _function(self.as_raw(), memory, handle_type, &mut p_handle);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_handle),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_handle),
             e => VulkanResult::Err(e),
         }
     }

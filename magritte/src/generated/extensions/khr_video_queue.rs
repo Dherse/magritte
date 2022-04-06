@@ -853,10 +853,10 @@ pub type FNCmdEndVideoCodingKhr = Option<
 ///} VkQueryResultStatusKHR;
 ///```
 ///# Description
-/// - [`QueryResultStatusNotReadyKhr`] specifies that the query result is not yet available.
-/// - [`QueryResultStatusErrorKhr`] specifies that operations did not complete successfully.
-/// - [`QueryResultStatusCompleteKhr`] specifies that operations completed successfully and the
-///   query result is available.
+/// - [`NOT_READY`] specifies that the query result is not yet available.
+/// - [`ERROR`] specifies that operations did not complete successfully.
+/// - [`COMPLETE`] specifies that operations completed successfully and the query result is
+///   available.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 ///
@@ -872,24 +872,23 @@ pub type FNCmdEndVideoCodingKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum QueryResultStatusKHR {
-    ///[`QueryResultStatusErrorKhr`] specifies that operations did not
-    ///complete successfully.
-    QueryResultStatusErrorKhr = -1,
-    ///[`QueryResultStatusNotReadyKhr`] specifies that the query
-    ///result is not yet available.
-    QueryResultStatusNotReadyKhr = 0,
-    ///[`QueryResultStatusCompleteKhr`] specifies that operations
-    ///completed successfully and the query result is available.
-    QueryResultStatusCompleteKhr = 1,
-}
+#[repr(transparent)]
+pub struct QueryResultStatusKHR(i32);
 impl const Default for QueryResultStatusKHR {
     fn default() -> Self {
-        Self::QueryResultStatusNotReadyKhr
+        Self(0)
     }
 }
 impl QueryResultStatusKHR {
+    ///[`ERROR`] specifies that operations did not
+    ///complete successfully.
+    pub const ERROR: Self = Self(-1);
+    ///[`NOT_READY`] specifies that the query
+    ///result is not yet available.
+    pub const NOT_READY: Self = Self(0);
+    ///[`COMPLETE`] specifies that operations
+    ///completed successfully and the query result is available.
+    pub const COMPLETE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -898,12 +897,15 @@ impl QueryResultStatusKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoCodecOperationFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html) - Video codec operation types
@@ -935,13 +937,10 @@ impl QueryResultStatusKHR {
 ///# Description
 ///Each decode or encode codec-specific extension extends this enumeration with
 ///the appropriate bit corresponding to the extension’s codec operation:
-/// - [`VideoCodecOperationInvalidKhr`] - No video operations are supported for this queue family.
-/// - [`VideoCodecOperationEncodeH264Ext`] - H.264 video encode operations are supported by this
-///   queue family.
-/// - [`VideoCodecOperationDecodeH264Ext`] - H.264 video decode operations are supported by this
-///   queue family.
-/// - [`VideoCodecOperationDecodeH265Ext`] - H.265 video decode operations are supported by this
-///   queue family.
+/// - [`INVALID`] - No video operations are supported for this queue family.
+/// - [`ENCODE_H264_EXT`] - H.264 video encode operations are supported by this queue family.
+/// - [`DECODE_H264_EXT`] - H.264 video decode operations are supported by this queue family.
+/// - [`DECODE_H265_EXT`] - H.265 video decode operations are supported by this queue family.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodecOperationFlagsKHR`]
@@ -959,41 +958,40 @@ impl QueryResultStatusKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoCodecOperationFlagBitsKHR {
-    ///[`VideoCodecOperationInvalidKhr`] - No video operations are
+#[repr(transparent)]
+pub struct VideoCodecOperationFlagBitsKHR(u32);
+impl const Default for VideoCodecOperationFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl VideoCodecOperationFlagBitsKHR {
+    ///[`INVALID`] - No video operations are
     ///supported for this queue family.
-    VideoCodecOperationInvalidKhr = 0,
-    ///[`VideoCodecOperationEncodeH264Ext`] - H.264 video encode
+    pub const INVALID: Self = Self(0);
+    ///[`ENCODE_H264_EXT`] - H.264 video encode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_encode_h_264`]
     #[cfg(feature = "VK_EXT_video_encode_h264")]
-    VideoCodecOperationEncodeH264Ext = 65536,
+    pub const ENCODE_H264_EXT: Self = Self(65536);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_video_encode_h_265`]
     #[cfg(feature = "VK_EXT_video_encode_h265")]
-    VideoCodecOperationEncodeH265Ext = 131072,
-    ///[`VideoCodecOperationDecodeH264Ext`] - H.264 video decode
+    pub const ENCODE_H265_EXT: Self = Self(131072);
+    ///[`DECODE_H264_EXT`] - H.264 video decode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_decode_h_264`]
     #[cfg(feature = "VK_EXT_video_decode_h264")]
-    VideoCodecOperationDecodeH264Ext = 1,
-    ///[`VideoCodecOperationDecodeH265Ext`] - H.265 video decode
+    pub const DECODE_H264_EXT: Self = Self(1);
+    ///[`DECODE_H265_EXT`] - H.265 video decode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_decode_h_265`]
     #[cfg(feature = "VK_EXT_video_decode_h265")]
-    VideoCodecOperationDecodeH265Ext = 2,
-}
-impl const Default for VideoCodecOperationFlagBitsKHR {
-    fn default() -> Self {
-        Self::VideoCodecOperationInvalidKhr
-    }
-}
-impl VideoCodecOperationFlagBitsKHR {
+    pub const DECODE_H265_EXT: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1002,12 +1000,15 @@ impl VideoCodecOperationFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoChromaSubsamplingFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoChromaSubsamplingFlagBitsKHR.html) - Video chroma subsampling
@@ -1024,14 +1025,13 @@ impl VideoCodecOperationFlagBitsKHR {
 ///} VkVideoChromaSubsamplingFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoChromaSubsamplingMonochromeKhr`] - the format is monochrome.
-/// - [`VideoChromaSubsampling420Khr`] - the format is 4:2:0 chroma subsampled. The two chroma
-///   components are each subsampled at a factor of 2 both horizontally and vertically.
-/// - [`VideoChromaSubsampling422Khr`] - the format is 4:2:2 chroma subsampled. The two chroma
-///   components are sampled at half the sample rate of luma. The horizontal chroma resolution is
-///   halved.
-/// - [`VideoChromaSubsampling444Khr`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr
-///   components have the same sample rate, thus there is no chroma subsampling.
+/// - [`MONOCHROME`] - the format is monochrome.
+/// - [`420`] - the format is 4:2:0 chroma subsampled. The two chroma components are each subsampled
+///   at a factor of 2 both horizontally and vertically.
+/// - [`422`] - the format is 4:2:2 chroma subsampled. The two chroma components are sampled at half
+///   the sample rate of luma. The horizontal chroma resolution is halved.
+/// - [`444`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr components have the same
+///   sample rate, thus there is no chroma subsampling.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
@@ -1048,35 +1048,34 @@ impl VideoCodecOperationFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoChromaSubsamplingFlagBitsKHR {
-    ///No documentation found
-    VideoChromaSubsamplingInvalidKhr = 0,
-    ///[`VideoChromaSubsamplingMonochromeKhr`] - the format is
-    ///monochrome.
-    VideoChromaSubsamplingMonochromeKhr = 1,
-    ///[`VideoChromaSubsampling420Khr`] - the format is 4:2:0
-    ///chroma subsampled.
-    ///The two chroma components are each subsampled at a factor of 2 both
-    ///horizontally and vertically.
-    VideoChromaSubsampling420Khr = 2,
-    ///[`VideoChromaSubsampling422Khr`] - the format is 4:2:2
-    ///chroma subsampled.
-    ///The two chroma components are sampled at half the sample rate of luma.
-    ///The horizontal chroma resolution is halved.
-    VideoChromaSubsampling422Khr = 4,
-    ///[`VideoChromaSubsampling444Khr`] - the format is 4:4:4
-    ///chroma sampled.
-    ///Each of the three YCbCr components have the same sample rate, thus there
-    ///is no chroma subsampling.
-    VideoChromaSubsampling444Khr = 8,
-}
+#[repr(transparent)]
+pub struct VideoChromaSubsamplingFlagBitsKHR(u32);
 impl const Default for VideoChromaSubsamplingFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoChromaSubsamplingInvalidKhr
+        Self(0)
     }
 }
 impl VideoChromaSubsamplingFlagBitsKHR {
+    ///No documentation found
+    pub const INVALID: Self = Self(0);
+    ///[`MONOCHROME`] - the format is
+    ///monochrome.
+    pub const MONOCHROME: Self = Self(1);
+    ///[`420`] - the format is 4:2:0
+    ///chroma subsampled.
+    ///The two chroma components are each subsampled at a factor of 2 both
+    ///horizontally and vertically.
+    pub const _420: Self = Self(2);
+    ///[`422`] - the format is 4:2:2
+    ///chroma subsampled.
+    ///The two chroma components are sampled at half the sample rate of luma.
+    ///The horizontal chroma resolution is halved.
+    pub const _422: Self = Self(4);
+    ///[`444`] - the format is 4:4:4
+    ///chroma sampled.
+    ///Each of the three YCbCr components have the same sample rate, thus there
+    ///is no chroma subsampling.
+    pub const _444: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1085,12 +1084,15 @@ impl VideoChromaSubsamplingFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoComponentBitDepthFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoComponentBitDepthFlagBitsKHR.html) - Video component bit depth
@@ -1106,9 +1108,9 @@ impl VideoChromaSubsamplingFlagBitsKHR {
 ///} VkVideoComponentBitDepthFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoComponentDepth8Khr`] - the format component bit depth is 8 bits.
-/// - [`VideoComponentDepth10Khr`] - the format component bit depth is 10 bits.
-/// - [`VideoComponentDepth12Khr`] - the format component bit depth is 12 bits.
+/// - [`VIDEO_COMPONENT_DEPTH8`] - the format component bit depth is 8 bits.
+/// - [`VIDEO_COMPONENT_DEPTH10`] - the format component bit depth is 10 bits.
+/// - [`VIDEO_COMPONENT_DEPTH12`] - the format component bit depth is 12 bits.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoComponentBitDepthFlagsKHR`]
@@ -1125,26 +1127,25 @@ impl VideoChromaSubsamplingFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoComponentBitDepthFlagBitsKHR {
-    ///No documentation found
-    VideoComponentDepthInvalidKhr = 0,
-    ///[`VideoComponentDepth8Khr`] - the format component bit
-    ///depth is 8 bits.
-    VideoComponentDepth8Khr = 1,
-    ///[`VideoComponentDepth10Khr`] - the format component bit
-    ///depth is 10 bits.
-    VideoComponentDepth10Khr = 4,
-    ///[`VideoComponentDepth12Khr`] - the format component bit
-    ///depth is 12 bits.
-    VideoComponentDepth12Khr = 16,
-}
+#[repr(transparent)]
+pub struct VideoComponentBitDepthFlagBitsKHR(u32);
 impl const Default for VideoComponentBitDepthFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoComponentDepthInvalidKhr
+        Self(0)
     }
 }
 impl VideoComponentBitDepthFlagBitsKHR {
+    ///No documentation found
+    pub const VIDEO_COMPONENT_DEPTH_INVALID: Self = Self(0);
+    ///[`VIDEO_COMPONENT_DEPTH8`] - the format component bit
+    ///depth is 8 bits.
+    pub const VIDEO_COMPONENT_DEPTH8: Self = Self(1);
+    ///[`VIDEO_COMPONENT_DEPTH10`] - the format component bit
+    ///depth is 10 bits.
+    pub const VIDEO_COMPONENT_DEPTH10: Self = Self(4);
+    ///[`VIDEO_COMPONENT_DEPTH12`] - the format component bit
+    ///depth is 12 bits.
+    pub const VIDEO_COMPONENT_DEPTH12: Self = Self(16);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1153,12 +1154,15 @@ impl VideoComponentBitDepthFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilityFlagBitsKHR.html) - Video Decode and Encode Capability Flags
@@ -1173,12 +1177,11 @@ impl VideoComponentBitDepthFlagBitsKHR {
 ///} VkVideoCapabilityFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoCapabilityProtectedContentKhr`] - the decode or encode session supports protected
-///   content.
-/// - [`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or Reconstructed Video Picture
-///   Resources for the video session  **may**  be created as a separate [`Image`] for each DPB
-///   picture. If not supported, the DPB  **must**  be created as single multi-layered image where
-///   each layer represents one of the DPB Video Picture Resources.
+/// - [`PROTECTED_CONTENT`] - the decode or encode session supports protected content.
+/// - [`SEPARATE_REFERENCE_IMAGES`] - the DPB or Reconstructed Video Picture Resources for the video
+///   session  **may**  be created as a separate [`Image`] for each DPB picture. If not supported,
+///   the DPB  **must**  be created as single multi-layered image where each layer represents one of
+///   the DPB Video Picture Resources.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCapabilityFlagsKHR`]
@@ -1195,26 +1198,23 @@ impl VideoComponentBitDepthFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoCapabilityFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`VideoCapabilityProtectedContentKhr`] - the decode or
+#[repr(transparent)]
+pub struct VideoCapabilityFlagBitsKHR(u32);
+impl const Default for VideoCapabilityFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl VideoCapabilityFlagBitsKHR {
+    ///[`PROTECTED_CONTENT`] - the decode or
     ///encode session supports protected content.
-    VideoCapabilityProtectedContentKhr = 1,
-    ///[`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or
+    pub const PROTECTED_CONTENT: Self = Self(1);
+    ///[`SEPARATE_REFERENCE_IMAGES`] - the DPB or
     ///Reconstructed Video Picture Resources for the video session  **may**  be
     ///created as a separate [`Image`] for each DPB picture.
     ///If not supported, the DPB  **must**  be created as single multi-layered image
     ///where each layer represents one of the DPB Video Picture Resources.
-    VideoCapabilitySeparateReferenceImagesKhr = 2,
-}
-impl const Default for VideoCapabilityFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl VideoCapabilityFlagBitsKHR {
+    pub const SEPARATE_REFERENCE_IMAGES: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1223,12 +1223,15 @@ impl VideoCapabilityFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoSessionCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateFlagBitsKHR.html) - Video decode or encode video session creation flags
@@ -1243,8 +1246,7 @@ impl VideoCapabilityFlagBitsKHR {
 ///} VkVideoSessionCreateFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoSessionCreateProtectedContentKhr`] - create the video session for use with protected
-///   video content
+/// - [`PROTECTED_CONTENT`] - create the video session for use with protected video content
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoSessionCreateFlagsKHR`]
@@ -1261,20 +1263,19 @@ impl VideoCapabilityFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoSessionCreateFlagBitsKHR {
-    ///No documentation found
-    VideoSessionCreateDefaultKhr = 0,
-    ///[`VideoSessionCreateProtectedContentKhr`] - create the
-    ///video session for use with protected video content
-    VideoSessionCreateProtectedContentKhr = 1,
-}
+#[repr(transparent)]
+pub struct VideoSessionCreateFlagBitsKHR(u32);
 impl const Default for VideoSessionCreateFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoSessionCreateDefaultKhr
+        Self(0)
     }
 }
 impl VideoSessionCreateFlagBitsKHR {
+    ///No documentation found
+    pub const DEFAULT: Self = Self(0);
+    ///[`PROTECTED_CONTENT`] - create the
+    ///video session for use with protected video content
+    pub const PROTECTED_CONTENT: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1283,12 +1284,15 @@ impl VideoSessionCreateFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoCodingQualityPresetFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingQualityPresetFlagBitsKHR.html) - Video codec profile types
@@ -1303,9 +1307,9 @@ impl VideoSessionCreateFlagBitsKHR {
 ///} VkVideoCodingQualityPresetFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoCodingQualityPresetNormalKhr`] defines normal decode case.
-/// - [`VideoCodingQualityPresetPowerKhr`] defines power efficient case.
-/// - [`VideoCodingQualityPresetQualityKhr`] defines quality focus case.
+/// - [`NORMAL`] defines normal decode case.
+/// - [`POWER`] defines power efficient case.
+/// - [`QUALITY`] defines quality focus case.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
@@ -1322,26 +1326,23 @@ impl VideoSessionCreateFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoCodingQualityPresetFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`VideoCodingQualityPresetNormalKhr`] defines normal
-    ///decode case.
-    VideoCodingQualityPresetNormalKhr = 1,
-    ///[`VideoCodingQualityPresetPowerKhr`] defines power
-    ///efficient case.
-    VideoCodingQualityPresetPowerKhr = 2,
-    ///[`VideoCodingQualityPresetQualityKhr`] defines quality
-    ///focus case.
-    VideoCodingQualityPresetQualityKhr = 4,
-}
+#[repr(transparent)]
+pub struct VideoCodingQualityPresetFlagBitsKHR(u32);
 impl const Default for VideoCodingQualityPresetFlagBitsKHR {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl VideoCodingQualityPresetFlagBitsKHR {
+    ///[`NORMAL`] defines normal
+    ///decode case.
+    pub const NORMAL: Self = Self(1);
+    ///[`POWER`] defines power
+    ///efficient case.
+    pub const POWER: Self = Self(2);
+    ///[`QUALITY`] defines quality
+    ///focus case.
+    pub const QUALITY: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1350,12 +1351,15 @@ impl VideoCodingQualityPresetFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoCodingControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html) - Video Coding Control Command Flags
@@ -1370,10 +1374,10 @@ impl VideoCodingQualityPresetFlagBitsKHR {
 ///} VkVideoCodingControlFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoCodingControlDefaultKhr`] indicates a request for the coding control paramaters to be
-///   applied to the current state of the bound video session.
-/// - [`VideoCodingControlResetKhr`] indicates a request for the bound video session device context
-///   to be reset before the coding control parameters are applied.
+/// - [`DEFAULT`] indicates a request for the coding control paramaters to be applied to the current
+///   state of the bound video session.
+/// - [`RESET`] indicates a request for the bound video session device context to be reset before
+///   the coding control parameters are applied.
 ///A newly created video session  **must**  be reset before use for video decode or
 ///encode operations.
 ///The reset operation returns all session DPB slots to the unused state (see
@@ -1401,23 +1405,22 @@ impl VideoCodingQualityPresetFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoCodingControlFlagBitsKHR {
-    ///[`VideoCodingControlDefaultKhr`] indicates a request for the
-    ///coding control paramaters to be applied to the current state of the
-    ///bound video session.
-    VideoCodingControlDefaultKhr = 0,
-    ///[`VideoCodingControlResetKhr`] indicates a request for the
-    ///bound video session device context to be reset before the coding control
-    ///parameters are applied.
-    VideoCodingControlResetKhr = 1,
-}
+#[repr(transparent)]
+pub struct VideoCodingControlFlagBitsKHR(u32);
 impl const Default for VideoCodingControlFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoCodingControlDefaultKhr
+        Self(0)
     }
 }
 impl VideoCodingControlFlagBitsKHR {
+    ///[`DEFAULT`] indicates a request for the
+    ///coding control paramaters to be applied to the current state of the
+    ///bound video session.
+    pub const DEFAULT: Self = Self(0);
+    ///[`RESET`] indicates a request for the
+    ///bound video session device context to be reset before the coding control
+    ///parameters are applied.
+    pub const RESET: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1426,12 +1429,15 @@ impl VideoCodingControlFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoCodecOperationFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html) - Video codec operation types
@@ -1463,13 +1469,10 @@ impl VideoCodingControlFlagBitsKHR {
 ///# Description
 ///Each decode or encode codec-specific extension extends this enumeration with
 ///the appropriate bit corresponding to the extension’s codec operation:
-/// - [`VideoCodecOperationInvalidKhr`] - No video operations are supported for this queue family.
-/// - [`VideoCodecOperationEncodeH264Ext`] - H.264 video encode operations are supported by this
-///   queue family.
-/// - [`VideoCodecOperationDecodeH264Ext`] - H.264 video decode operations are supported by this
-///   queue family.
-/// - [`VideoCodecOperationDecodeH265Ext`] - H.265 video decode operations are supported by this
-///   queue family.
+/// - [`INVALID`] - No video operations are supported for this queue family.
+/// - [`ENCODE_H264_EXT`] - H.264 video encode operations are supported by this queue family.
+/// - [`DECODE_H264_EXT`] - H.264 video decode operations are supported by this queue family.
+/// - [`DECODE_H265_EXT`] - H.265 video decode operations are supported by this queue family.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodecOperationFlagsKHR`]
@@ -1495,36 +1498,36 @@ impl const Default for VideoCodecOperationFlagsKHR {
 }
 impl From<VideoCodecOperationFlagBitsKHR> for VideoCodecOperationFlagsKHR {
     fn from(from: VideoCodecOperationFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoCodecOperationFlagsKHR {
-    ///[`VideoCodecOperationInvalidKhr`] - No video operations are
+    ///[`INVALID`] - No video operations are
     ///supported for this queue family.
-    pub const VIDEO_CODEC_OPERATION_INVALID_KHR: Self = Self(0);
-    ///[`VideoCodecOperationEncodeH264Ext`] - H.264 video encode
+    pub const INVALID: Self = Self(0);
+    ///[`ENCODE_H264_EXT`] - H.264 video encode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_encode_h_264`]
     #[cfg(feature = "VK_EXT_video_encode_h264")]
-    pub const VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT: Self = Self(65536);
+    pub const ENCODE_H_264_EXT: Self = Self(65536);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_video_encode_h_265`]
     #[cfg(feature = "VK_EXT_video_encode_h265")]
-    pub const VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT: Self = Self(131072);
-    ///[`VideoCodecOperationDecodeH264Ext`] - H.264 video decode
+    pub const ENCODE_H_265_EXT: Self = Self(131072);
+    ///[`DECODE_H264_EXT`] - H.264 video decode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_decode_h_264`]
     #[cfg(feature = "VK_EXT_video_decode_h264")]
-    pub const VIDEO_CODEC_OPERATION_DECODE_H_264_EXT: Self = Self(1);
-    ///[`VideoCodecOperationDecodeH265Ext`] - H.265 video decode
+    pub const DECODE_H_264_EXT: Self = Self(1);
+    ///[`DECODE_H265_EXT`] - H.265 video decode
     ///operations are supported by this queue family.
     ///
     ///Provided by [`crate::extensions::ext_video_decode_h_265`]
     #[cfg(feature = "VK_EXT_video_decode_h265")]
-    pub const VIDEO_CODEC_OPERATION_DECODE_H_265_EXT: Self = Self(2);
+    pub const DECODE_H_265_EXT: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1536,23 +1539,23 @@ impl VideoCodecOperationFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_CODEC_OPERATION_INVALID_KHR;
+            all |= Self::INVALID;
         }
         #[cfg(feature = "VK_EXT_video_encode_h264")]
         {
-            all |= Self::VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT;
+            all |= Self::ENCODE_H_264_EXT;
         }
         #[cfg(feature = "VK_EXT_video_encode_h265")]
         {
-            all |= Self::VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT;
+            all |= Self::ENCODE_H_265_EXT;
         }
         #[cfg(feature = "VK_EXT_video_decode_h264")]
         {
-            all |= Self::VIDEO_CODEC_OPERATION_DECODE_H_264_EXT;
+            all |= Self::DECODE_H_264_EXT;
         }
         #[cfg(feature = "VK_EXT_video_decode_h265")]
         {
-            all |= Self::VIDEO_CODEC_OPERATION_DECODE_H_265_EXT;
+            all |= Self::DECODE_H_265_EXT;
         }
         all
     }
@@ -1754,59 +1757,44 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_INVALID_KHR)
-                    {
+                    if self.0.contains(VideoCodecOperationFlagsKHR::INVALID) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_INVALID_KHR))?;
+                        f.write_str(stringify!(INVALID))?;
                     }
                     #[cfg(feature = "VK_EXT_video_encode_h264")]
-                    if self
-                        .0
-                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT)
-                    {
+                    if self.0.contains(VideoCodecOperationFlagsKHR::ENCODE_H_264_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_ENCODE_H_264_EXT))?;
+                        f.write_str(stringify!(ENCODE_H_264_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_video_encode_h265")]
-                    if self
-                        .0
-                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT)
-                    {
+                    if self.0.contains(VideoCodecOperationFlagsKHR::ENCODE_H_265_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_ENCODE_H_265_EXT))?;
+                        f.write_str(stringify!(ENCODE_H_265_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_video_decode_h264")]
-                    if self
-                        .0
-                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_DECODE_H_264_EXT)
-                    {
+                    if self.0.contains(VideoCodecOperationFlagsKHR::DECODE_H_264_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_DECODE_H_264_EXT))?;
+                        f.write_str(stringify!(DECODE_H_264_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_video_decode_h265")]
-                    if self
-                        .0
-                        .contains(VideoCodecOperationFlagsKHR::VIDEO_CODEC_OPERATION_DECODE_H_265_EXT)
-                    {
+                    if self.0.contains(VideoCodecOperationFlagsKHR::DECODE_H_265_EXT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODEC_OPERATION_DECODE_H_265_EXT))?;
+                        f.write_str(stringify!(DECODE_H_265_EXT))?;
                     }
                 }
                 Ok(())
@@ -1829,12 +1817,11 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
 ///} VkVideoCapabilityFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoCapabilityProtectedContentKhr`] - the decode or encode session supports protected
-///   content.
-/// - [`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or Reconstructed Video Picture
-///   Resources for the video session  **may**  be created as a separate [`Image`] for each DPB
-///   picture. If not supported, the DPB  **must**  be created as single multi-layered image where
-///   each layer represents one of the DPB Video Picture Resources.
+/// - [`PROTECTED_CONTENT`] - the decode or encode session supports protected content.
+/// - [`SEPARATE_REFERENCE_IMAGES`] - the DPB or Reconstructed Video Picture Resources for the video
+///   session  **may**  be created as a separate [`Image`] for each DPB picture. If not supported,
+///   the DPB  **must**  be created as single multi-layered image where each layer represents one of
+///   the DPB Video Picture Resources.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCapabilityFlagsKHR`]
@@ -1859,19 +1846,19 @@ impl const Default for VideoCapabilityFlagsKHR {
 }
 impl From<VideoCapabilityFlagBitsKHR> for VideoCapabilityFlagsKHR {
     fn from(from: VideoCapabilityFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoCapabilityFlagsKHR {
-    ///[`VideoCapabilityProtectedContentKhr`] - the decode or
+    ///[`PROTECTED_CONTENT`] - the decode or
     ///encode session supports protected content.
-    pub const VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR: Self = Self(1);
-    ///[`VideoCapabilitySeparateReferenceImagesKhr`] - the DPB or
+    pub const PROTECTED_CONTENT: Self = Self(1);
+    ///[`SEPARATE_REFERENCE_IMAGES`] - the DPB or
     ///Reconstructed Video Picture Resources for the video session  **may**  be
     ///created as a separate [`Image`] for each DPB picture.
     ///If not supported, the DPB  **must**  be created as single multi-layered image
     ///where each layer represents one of the DPB Video Picture Resources.
-    pub const VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR: Self = Self(2);
+    pub const SEPARATE_REFERENCE_IMAGES: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1883,10 +1870,10 @@ impl VideoCapabilityFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR;
+            all |= Self::PROTECTED_CONTENT;
         }
         {
-            all |= Self::VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR;
+            all |= Self::SEPARATE_REFERENCE_IMAGES;
         }
         all
     }
@@ -2088,25 +2075,19 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoCapabilityFlagsKHR::VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR)
-                    {
+                    if self.0.contains(VideoCapabilityFlagsKHR::PROTECTED_CONTENT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CAPABILITY_PROTECTED_CONTENT_KHR))?;
+                        f.write_str(stringify!(PROTECTED_CONTENT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoCapabilityFlagsKHR::VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR)
-                    {
+                    if self.0.contains(VideoCapabilityFlagsKHR::SEPARATE_REFERENCE_IMAGES) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_KHR))?;
+                        f.write_str(stringify!(SEPARATE_REFERENCE_IMAGES))?;
                     }
                 }
                 Ok(())
@@ -2129,8 +2110,7 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
 ///} VkVideoSessionCreateFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoSessionCreateProtectedContentKhr`] - create the video session for use with protected
-///   video content
+/// - [`PROTECTED_CONTENT`] - create the video session for use with protected video content
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoSessionCreateFlagsKHR`]
@@ -2155,15 +2135,15 @@ impl const Default for VideoSessionCreateFlagsKHR {
 }
 impl From<VideoSessionCreateFlagBitsKHR> for VideoSessionCreateFlagsKHR {
     fn from(from: VideoSessionCreateFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoSessionCreateFlagsKHR {
     ///No documentation found
-    pub const VIDEO_SESSION_CREATE_DEFAULT_KHR: Self = Self(0);
-    ///[`VideoSessionCreateProtectedContentKhr`] - create the
+    pub const DEFAULT: Self = Self(0);
+    ///[`PROTECTED_CONTENT`] - create the
     ///video session for use with protected video content
-    pub const VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR: Self = Self(1);
+    pub const PROTECTED_CONTENT: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2175,10 +2155,10 @@ impl VideoSessionCreateFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_SESSION_CREATE_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR;
+            all |= Self::PROTECTED_CONTENT;
         }
         all
     }
@@ -2380,25 +2360,19 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoSessionCreateFlagsKHR::VIDEO_SESSION_CREATE_DEFAULT_KHR)
-                    {
+                    if self.0.contains(VideoSessionCreateFlagsKHR::DEFAULT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_SESSION_CREATE_DEFAULT_KHR))?;
+                        f.write_str(stringify!(DEFAULT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoSessionCreateFlagsKHR::VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR)
-                    {
+                    if self.0.contains(VideoSessionCreateFlagsKHR::PROTECTED_CONTENT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_SESSION_CREATE_PROTECTED_CONTENT_KHR))?;
+                        f.write_str(stringify!(PROTECTED_CONTENT))?;
                     }
                 }
                 Ok(())
@@ -2489,9 +2463,9 @@ impl std::fmt::Debug for VideoEndCodingFlagsKHR {
 ///} VkVideoCodingQualityPresetFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoCodingQualityPresetNormalKhr`] defines normal decode case.
-/// - [`VideoCodingQualityPresetPowerKhr`] defines power efficient case.
-/// - [`VideoCodingQualityPresetQualityKhr`] defines quality focus case.
+/// - [`NORMAL`] defines normal decode case.
+/// - [`POWER`] defines power efficient case.
+/// - [`QUALITY`] defines quality focus case.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
@@ -2516,19 +2490,19 @@ impl const Default for VideoCodingQualityPresetFlagsKHR {
 }
 impl From<VideoCodingQualityPresetFlagBitsKHR> for VideoCodingQualityPresetFlagsKHR {
     fn from(from: VideoCodingQualityPresetFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoCodingQualityPresetFlagsKHR {
-    ///[`VideoCodingQualityPresetNormalKhr`] defines normal
+    ///[`NORMAL`] defines normal
     ///decode case.
-    pub const VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR: Self = Self(1);
-    ///[`VideoCodingQualityPresetPowerKhr`] defines power
+    pub const NORMAL: Self = Self(1);
+    ///[`POWER`] defines power
     ///efficient case.
-    pub const VIDEO_CODING_QUALITY_PRESET_POWER_KHR: Self = Self(2);
-    ///[`VideoCodingQualityPresetQualityKhr`] defines quality
+    pub const POWER: Self = Self(2);
+    ///[`QUALITY`] defines quality
     ///focus case.
-    pub const VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR: Self = Self(4);
+    pub const QUALITY: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2540,13 +2514,13 @@ impl VideoCodingQualityPresetFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR;
+            all |= Self::NORMAL;
         }
         {
-            all |= Self::VIDEO_CODING_QUALITY_PRESET_POWER_KHR;
+            all |= Self::POWER;
         }
         {
-            all |= Self::VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR;
+            all |= Self::QUALITY;
         }
         all
     }
@@ -2752,35 +2726,26 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoCodingQualityPresetFlagsKHR::VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR)
-                    {
+                    if self.0.contains(VideoCodingQualityPresetFlagsKHR::NORMAL) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODING_QUALITY_PRESET_NORMAL_KHR))?;
+                        f.write_str(stringify!(NORMAL))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoCodingQualityPresetFlagsKHR::VIDEO_CODING_QUALITY_PRESET_POWER_KHR)
-                    {
+                    if self.0.contains(VideoCodingQualityPresetFlagsKHR::POWER) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODING_QUALITY_PRESET_POWER_KHR))?;
+                        f.write_str(stringify!(POWER))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoCodingQualityPresetFlagsKHR::VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR)
-                    {
+                    if self.0.contains(VideoCodingQualityPresetFlagsKHR::QUALITY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODING_QUALITY_PRESET_QUALITY_KHR))?;
+                        f.write_str(stringify!(QUALITY))?;
                     }
                 }
                 Ok(())
@@ -2803,10 +2768,10 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
 ///} VkVideoCodingControlFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoCodingControlDefaultKhr`] indicates a request for the coding control paramaters to be
-///   applied to the current state of the bound video session.
-/// - [`VideoCodingControlResetKhr`] indicates a request for the bound video session device context
-///   to be reset before the coding control parameters are applied.
+/// - [`DEFAULT`] indicates a request for the coding control paramaters to be applied to the current
+///   state of the bound video session.
+/// - [`RESET`] indicates a request for the bound video session device context to be reset before
+///   the coding control parameters are applied.
 ///A newly created video session  **must**  be reset before use for video decode or
 ///encode operations.
 ///The reset operation returns all session DPB slots to the unused state (see
@@ -2842,18 +2807,18 @@ impl const Default for VideoCodingControlFlagsKHR {
 }
 impl From<VideoCodingControlFlagBitsKHR> for VideoCodingControlFlagsKHR {
     fn from(from: VideoCodingControlFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoCodingControlFlagsKHR {
-    ///[`VideoCodingControlDefaultKhr`] indicates a request for the
+    ///[`DEFAULT`] indicates a request for the
     ///coding control paramaters to be applied to the current state of the
     ///bound video session.
-    pub const VIDEO_CODING_CONTROL_DEFAULT_KHR: Self = Self(0);
-    ///[`VideoCodingControlResetKhr`] indicates a request for the
+    pub const DEFAULT: Self = Self(0);
+    ///[`RESET`] indicates a request for the
     ///bound video session device context to be reset before the coding control
     ///parameters are applied.
-    pub const VIDEO_CODING_CONTROL_RESET_KHR: Self = Self(1);
+    pub const RESET: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2865,10 +2830,10 @@ impl VideoCodingControlFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_CODING_CONTROL_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_CODING_CONTROL_RESET_KHR;
+            all |= Self::RESET;
         }
         all
     }
@@ -3070,25 +3035,19 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoCodingControlFlagsKHR::VIDEO_CODING_CONTROL_DEFAULT_KHR)
-                    {
+                    if self.0.contains(VideoCodingControlFlagsKHR::DEFAULT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODING_CONTROL_DEFAULT_KHR))?;
+                        f.write_str(stringify!(DEFAULT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoCodingControlFlagsKHR::VIDEO_CODING_CONTROL_RESET_KHR)
-                    {
+                    if self.0.contains(VideoCodingControlFlagsKHR::RESET) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CODING_CONTROL_RESET_KHR))?;
+                        f.write_str(stringify!(RESET))?;
                     }
                 }
                 Ok(())
@@ -3113,14 +3072,13 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
 ///} VkVideoChromaSubsamplingFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoChromaSubsamplingMonochromeKhr`] - the format is monochrome.
-/// - [`VideoChromaSubsampling420Khr`] - the format is 4:2:0 chroma subsampled. The two chroma
-///   components are each subsampled at a factor of 2 both horizontally and vertically.
-/// - [`VideoChromaSubsampling422Khr`] - the format is 4:2:2 chroma subsampled. The two chroma
-///   components are sampled at half the sample rate of luma. The horizontal chroma resolution is
-///   halved.
-/// - [`VideoChromaSubsampling444Khr`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr
-///   components have the same sample rate, thus there is no chroma subsampling.
+/// - [`MONOCHROME`] - the format is monochrome.
+/// - [`420`] - the format is 4:2:0 chroma subsampled. The two chroma components are each subsampled
+///   at a factor of 2 both horizontally and vertically.
+/// - [`422`] - the format is 4:2:2 chroma subsampled. The two chroma components are sampled at half
+///   the sample rate of luma. The horizontal chroma resolution is halved.
+/// - [`444`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr components have the same
+///   sample rate, thus there is no chroma subsampling.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
@@ -3145,30 +3103,30 @@ impl const Default for VideoChromaSubsamplingFlagsKHR {
 }
 impl From<VideoChromaSubsamplingFlagBitsKHR> for VideoChromaSubsamplingFlagsKHR {
     fn from(from: VideoChromaSubsamplingFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoChromaSubsamplingFlagsKHR {
     ///No documentation found
-    pub const VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR: Self = Self(0);
-    ///[`VideoChromaSubsamplingMonochromeKhr`] - the format is
+    pub const INVALID: Self = Self(0);
+    ///[`MONOCHROME`] - the format is
     ///monochrome.
-    pub const VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR: Self = Self(1);
-    ///[`VideoChromaSubsampling420Khr`] - the format is 4:2:0
+    pub const MONOCHROME: Self = Self(1);
+    ///[`420`] - the format is 4:2:0
     ///chroma subsampled.
     ///The two chroma components are each subsampled at a factor of 2 both
     ///horizontally and vertically.
-    pub const VIDEO_CHROMA_SUBSAMPLING_420_KHR: Self = Self(2);
-    ///[`VideoChromaSubsampling422Khr`] - the format is 4:2:2
+    pub const _420: Self = Self(2);
+    ///[`422`] - the format is 4:2:2
     ///chroma subsampled.
     ///The two chroma components are sampled at half the sample rate of luma.
     ///The horizontal chroma resolution is halved.
-    pub const VIDEO_CHROMA_SUBSAMPLING_422_KHR: Self = Self(4);
-    ///[`VideoChromaSubsampling444Khr`] - the format is 4:4:4
+    pub const _422: Self = Self(4);
+    ///[`444`] - the format is 4:4:4
     ///chroma sampled.
     ///Each of the three YCbCr components have the same sample rate, thus there
     ///is no chroma subsampling.
-    pub const VIDEO_CHROMA_SUBSAMPLING_444_KHR: Self = Self(8);
+    pub const _444: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3180,19 +3138,19 @@ impl VideoChromaSubsamplingFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR;
+            all |= Self::INVALID;
         }
         {
-            all |= Self::VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR;
+            all |= Self::MONOCHROME;
         }
         {
-            all |= Self::VIDEO_CHROMA_SUBSAMPLING_420_KHR;
+            all |= Self::_420;
         }
         {
-            all |= Self::VIDEO_CHROMA_SUBSAMPLING_422_KHR;
+            all |= Self::_422;
         }
         {
-            all |= Self::VIDEO_CHROMA_SUBSAMPLING_444_KHR;
+            all |= Self::_444;
         }
         all
     }
@@ -3398,55 +3356,40 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR)
-                    {
+                    if self.0.contains(VideoChromaSubsamplingFlagsKHR::INVALID) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR))?;
+                        f.write_str(stringify!(INVALID))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR)
-                    {
+                    if self.0.contains(VideoChromaSubsamplingFlagsKHR::MONOCHROME) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_KHR))?;
+                        f.write_str(stringify!(MONOCHROME))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_420_KHR)
-                    {
+                    if self.0.contains(VideoChromaSubsamplingFlagsKHR::_420) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_420_KHR))?;
+                        f.write_str(stringify!(_420))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_422_KHR)
-                    {
+                    if self.0.contains(VideoChromaSubsamplingFlagsKHR::_422) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_422_KHR))?;
+                        f.write_str(stringify!(_422))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoChromaSubsamplingFlagsKHR::VIDEO_CHROMA_SUBSAMPLING_444_KHR)
-                    {
+                    if self.0.contains(VideoChromaSubsamplingFlagsKHR::_444) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_CHROMA_SUBSAMPLING_444_KHR))?;
+                        f.write_str(stringify!(_444))?;
                     }
                 }
                 Ok(())
@@ -3470,9 +3413,9 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
 ///} VkVideoComponentBitDepthFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoComponentDepth8Khr`] - the format component bit depth is 8 bits.
-/// - [`VideoComponentDepth10Khr`] - the format component bit depth is 10 bits.
-/// - [`VideoComponentDepth12Khr`] - the format component bit depth is 12 bits.
+/// - [`VIDEO_COMPONENT_DEPTH8`] - the format component bit depth is 8 bits.
+/// - [`VIDEO_COMPONENT_DEPTH10`] - the format component bit depth is 10 bits.
+/// - [`VIDEO_COMPONENT_DEPTH12`] - the format component bit depth is 12 bits.
 ///# Related
 /// - [`VK_KHR_video_queue`]
 /// - [`VideoComponentBitDepthFlagsKHR`]
@@ -3497,21 +3440,21 @@ impl const Default for VideoComponentBitDepthFlagsKHR {
 }
 impl From<VideoComponentBitDepthFlagBitsKHR> for VideoComponentBitDepthFlagsKHR {
     fn from(from: VideoComponentBitDepthFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoComponentBitDepthFlagsKHR {
     ///No documentation found
-    pub const VIDEO_COMPONENT_DEPTH_INVALID_KHR: Self = Self(0);
-    ///[`VideoComponentDepth8Khr`] - the format component bit
+    pub const VIDEO_COMPONENT_DEPTH_INVALID: Self = Self(0);
+    ///[`VIDEO_COMPONENT_DEPTH8`] - the format component bit
     ///depth is 8 bits.
-    pub const VIDEO_COMPONENT_DEPTH_8_KHR: Self = Self(1);
-    ///[`VideoComponentDepth10Khr`] - the format component bit
+    pub const VIDEO_COMPONENT_DEPTH_8: Self = Self(1);
+    ///[`VIDEO_COMPONENT_DEPTH10`] - the format component bit
     ///depth is 10 bits.
-    pub const VIDEO_COMPONENT_DEPTH_10_KHR: Self = Self(4);
-    ///[`VideoComponentDepth12Khr`] - the format component bit
+    pub const VIDEO_COMPONENT_DEPTH_10: Self = Self(4);
+    ///[`VIDEO_COMPONENT_DEPTH12`] - the format component bit
     ///depth is 12 bits.
-    pub const VIDEO_COMPONENT_DEPTH_12_KHR: Self = Self(16);
+    pub const VIDEO_COMPONENT_DEPTH_12: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3523,16 +3466,16 @@ impl VideoComponentBitDepthFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_COMPONENT_DEPTH_INVALID_KHR;
+            all |= Self::VIDEO_COMPONENT_DEPTH_INVALID;
         }
         {
-            all |= Self::VIDEO_COMPONENT_DEPTH_8_KHR;
+            all |= Self::VIDEO_COMPONENT_DEPTH_8;
         }
         {
-            all |= Self::VIDEO_COMPONENT_DEPTH_10_KHR;
+            all |= Self::VIDEO_COMPONENT_DEPTH_10;
         }
         {
-            all |= Self::VIDEO_COMPONENT_DEPTH_12_KHR;
+            all |= Self::VIDEO_COMPONENT_DEPTH_12;
         }
         all
     }
@@ -3740,43 +3683,40 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
                     let mut first = true;
                     if self
                         .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_INVALID_KHR)
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_INVALID)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_INVALID_KHR))?;
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_INVALID))?;
+                    }
+                    if self.0.contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_8) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_8))?;
                     }
                     if self
                         .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_8_KHR)
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_10)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_8_KHR))?;
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_10))?;
                     }
                     if self
                         .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_10_KHR)
+                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_12)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_10_KHR))?;
-                    }
-                    if self
-                        .0
-                        .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_12_KHR)
-                    {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_12_KHR))?;
+                        f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_12))?;
                     }
                 }
                 Ok(())
@@ -3842,7 +3782,7 @@ impl<'lt> Default for VideoQueueFamilyProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoQueueFamilyProperties2Khr,
+            s_type: StructureType::VIDEO_QUEUE_FAMILY_PROPERTIES2_KHR,
             p_next: std::ptr::null_mut(),
             video_codec_operations: Default::default(),
         }
@@ -3960,7 +3900,7 @@ impl<'lt> Default for QueueFamilyQueryResultStatusProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::QueueFamilyQueryResultStatusProperties2Khr,
+            s_type: StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES2_KHR,
             p_next: std::ptr::null_mut(),
             supported: 0,
         }
@@ -4109,7 +4049,7 @@ impl<'lt> Default for VideoProfilesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoProfilesKhr,
+            s_type: StructureType::VIDEO_PROFILES_KHR,
             p_next: std::ptr::null_mut(),
             profile_count: 0,
             profiles: std::ptr::null(),
@@ -4266,7 +4206,7 @@ impl<'lt> Default for PhysicalDeviceVideoFormatInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVideoFormatInfoKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR,
             p_next: std::ptr::null_mut(),
             image_usage: Default::default(),
             video_profiles: std::ptr::null(),
@@ -4406,7 +4346,7 @@ impl<'lt> Default for VideoFormatPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoFormatPropertiesKhr,
+            s_type: StructureType::VIDEO_FORMAT_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             format: Default::default(),
         }
@@ -4555,7 +4495,7 @@ impl<'lt> Default for VideoProfileKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoProfileKhr,
+            s_type: StructureType::VIDEO_PROFILE_KHR,
             p_next: std::ptr::null_mut(),
             video_codec_operation: Default::default(),
             chroma_subsampling: Default::default(),
@@ -4781,7 +4721,7 @@ impl<'lt> Default for VideoCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoCapabilitiesKhr,
+            s_type: StructureType::VIDEO_CAPABILITIES_KHR,
             p_next: std::ptr::null_mut(),
             capability_flags: Default::default(),
             min_bitstream_buffer_offset_alignment: Default::default(),
@@ -5016,7 +4956,7 @@ impl<'lt> Default for VideoGetMemoryPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoGetMemoryPropertiesKhr,
+            s_type: StructureType::VIDEO_GET_MEMORY_PROPERTIES_KHR,
             p_next: std::ptr::null(),
             memory_bind_index: 0,
             memory_requirements: std::ptr::null_mut(),
@@ -5174,7 +5114,7 @@ impl<'lt> Default for VideoBindMemoryKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoBindMemoryKhr,
+            s_type: StructureType::VIDEO_BIND_MEMORY_KHR,
             p_next: std::ptr::null(),
             memory_bind_index: 0,
             memory: Default::default(),
@@ -5342,7 +5282,7 @@ impl<'lt> Default for VideoPictureResourceKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoPictureResourceKhr,
+            s_type: StructureType::VIDEO_PICTURE_RESOURCE_KHR,
             p_next: std::ptr::null(),
             coded_offset: Default::default(),
             coded_extent: Default::default(),
@@ -5504,7 +5444,7 @@ impl<'lt> Default for VideoReferenceSlotKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoReferenceSlotKhr,
+            s_type: StructureType::VIDEO_REFERENCE_SLOT_KHR,
             p_next: std::ptr::null(),
             slot_index: 0,
             picture_resource: std::ptr::null(),
@@ -5734,7 +5674,7 @@ impl<'lt> Default for VideoSessionCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoSessionCreateInfoKhr,
+            s_type: StructureType::VIDEO_SESSION_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             queue_family_index: 0,
             flags: Default::default(),
@@ -6009,7 +5949,7 @@ impl<'lt> Default for VideoSessionParametersCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoSessionParametersCreateInfoKhr,
+            s_type: StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             video_session_parameters_template: Default::default(),
             video_session: Default::default(),
@@ -6140,7 +6080,7 @@ impl<'lt> Default for VideoSessionParametersUpdateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoSessionParametersUpdateInfoKhr,
+            s_type: StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR,
             p_next: std::ptr::null(),
             update_sequence_count: 0,
         }
@@ -6319,7 +6259,7 @@ impl<'lt> Default for VideoBeginCodingInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoBeginCodingInfoKhr,
+            s_type: StructureType::VIDEO_BEGIN_CODING_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             codec_quality_preset: Default::default(),
@@ -6516,7 +6456,7 @@ impl<'lt> Default for VideoEndCodingInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoEndCodingInfoKhr,
+            s_type: StructureType::VIDEO_END_CODING_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }
@@ -6633,7 +6573,7 @@ impl<'lt> Default for VideoCodingControlInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoCodingControlInfoKhr,
+            s_type: StructureType::VIDEO_CODING_CONTROL_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }
@@ -6762,7 +6702,7 @@ impl PhysicalDevice {
             &mut p_capabilities,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_capabilities.p_next = std::ptr::null_mut();
                 p_capabilities
             }),
@@ -6907,7 +6847,7 @@ impl PhysicalDevice {
             p_video_format_properties.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_video_format_properties)
             },
             e => VulkanResult::Err(e),
@@ -6996,7 +6936,7 @@ impl Device {
             p_video_session.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_video_session.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -7155,7 +7095,7 @@ impl Device {
             p_video_session_parameters.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
                 Unique::new(parent, p_video_session_parameters.assume_init(), ()),
             ),
@@ -7232,7 +7172,7 @@ impl Device {
             p_update_info as *const VideoSessionParametersUpdateInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -7409,7 +7349,7 @@ impl Device {
             p_video_session_memory_requirements.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_video_session_memory_requirements)
             },
             e => VulkanResult::Err(e),
@@ -7492,7 +7432,7 @@ impl Device {
             p_video_session_bind_memories.as_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -7767,7 +7707,7 @@ impl Handle for VideoSessionKHR {
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_video_session_khr(Some(self.as_raw()), None);
+        self.device().destroy_video_session_khr(self.as_raw(), None);
     }
     #[inline]
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
@@ -7854,8 +7794,7 @@ impl Handle for VideoSessionParametersKHR {
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .destroy_video_session_parameters_khr(Some(self.as_raw()), None);
+        self.device().destroy_video_session_parameters_khr(self.as_raw(), None);
     }
     #[inline]
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {

@@ -250,6 +250,16 @@ where
         }
     }
 
+    /// Gets a reference to the first element
+    pub fn first(&self) -> Option<&'_ T> {
+        self.values.first()
+    }
+
+    /// Gets a mutable reference to the first element
+    pub fn first_mut(&mut self) -> Option<&'_ mut T> {
+        self.values.first_mut()
+    }
+
     /// Gets a reference to the last element
     pub fn last(&self) -> Option<&'_ T> {
         self.values.last()

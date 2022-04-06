@@ -98,12 +98,11 @@ pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr =
 ///} VkConservativeRasterizationModeEXT;
 ///```
 ///# Description
-/// - [`ConservativeRasterizationModeDisabledExt`] specifies that conservative rasterization is
-///   disabled and rasterization proceeds as normal.
-/// - [`ConservativeRasterizationModeOverestimateExt`] specifies that conservative rasterization is
-///   enabled in overestimation mode.
-/// - [`ConservativeRasterizationModeUnderestimateExt`] specifies that conservative rasterization is
-///   enabled in underestimation mode.
+/// - [`DISABLED`] specifies that conservative rasterization is disabled and rasterization proceeds
+///   as normal.
+/// - [`OVERESTIMATE`] specifies that conservative rasterization is enabled in overestimation mode.
+/// - [`UNDERESTIMATE`] specifies that conservative rasterization is enabled in underestimation
+///   mode.
 ///# Related
 /// - [`VK_EXT_conservative_rasterization`]
 /// - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
@@ -120,25 +119,24 @@ pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr =
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ConservativeRasterizationModeEXT {
-    ///[`ConservativeRasterizationModeDisabledExt`] specifies that
-    ///conservative rasterization is disabled and rasterization proceeds as
-    ///normal.
-    ConservativeRasterizationModeDisabledExt = 0,
-    ///[`ConservativeRasterizationModeOverestimateExt`] specifies that
-    ///conservative rasterization is enabled in overestimation mode.
-    ConservativeRasterizationModeOverestimateExt = 1,
-    ///[`ConservativeRasterizationModeUnderestimateExt`] specifies
-    ///that conservative rasterization is enabled in underestimation mode.
-    ConservativeRasterizationModeUnderestimateExt = 2,
-}
+#[repr(transparent)]
+pub struct ConservativeRasterizationModeEXT(i32);
 impl const Default for ConservativeRasterizationModeEXT {
     fn default() -> Self {
-        Self::ConservativeRasterizationModeDisabledExt
+        Self(0)
     }
 }
 impl ConservativeRasterizationModeEXT {
+    ///[`DISABLED`] specifies that
+    ///conservative rasterization is disabled and rasterization proceeds as
+    ///normal.
+    pub const DISABLED: Self = Self(0);
+    ///[`OVERESTIMATE`] specifies that
+    ///conservative rasterization is enabled in overestimation mode.
+    pub const OVERESTIMATE: Self = Self(1);
+    ///[`UNDERESTIMATE`] specifies
+    ///that conservative rasterization is enabled in underestimation mode.
+    pub const UNDERESTIMATE: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -147,12 +145,15 @@ impl ConservativeRasterizationModeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineRasterizationConservativeStateCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationConservativeStateCreateFlagsEXT.html) - Reserved for future use
@@ -361,7 +362,7 @@ impl<'lt> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> 
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceConservativeRasterizationPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             primitive_overestimation_size: 0.0,
             max_extra_primitive_overestimation_size: 0.0,
@@ -764,7 +765,7 @@ impl<'lt> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRasterizationConservativeStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             conservative_rasterization_mode: Default::default(),

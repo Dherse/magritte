@@ -160,7 +160,7 @@ impl<'lt> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayNativeHdrSurfaceCapabilitiesAmd,
+            s_type: StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD,
             p_next: std::ptr::null_mut(),
             local_dimming_support: 0,
         }
@@ -306,7 +306,7 @@ impl<'lt> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SwapchainDisplayNativeHdrCreateInfoAmd,
+            s_type: StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD,
             p_next: std::ptr::null(),
             local_dimming_enable: 0,
         }

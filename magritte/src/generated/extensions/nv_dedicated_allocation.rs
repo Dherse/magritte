@@ -121,7 +121,7 @@ impl<'lt> Default for DedicatedAllocationImageCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DedicatedAllocationImageCreateInfoNv,
+            s_type: StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             dedicated_allocation: 0,
         }
@@ -254,7 +254,7 @@ impl<'lt> Default for DedicatedAllocationBufferCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DedicatedAllocationBufferCreateInfoNv,
+            s_type: StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             dedicated_allocation: 0,
         }
@@ -416,7 +416,7 @@ impl<'lt> Default for DedicatedAllocationMemoryAllocateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DedicatedAllocationMemoryAllocateInfoNv,
+            s_type: StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV,
             p_next: std::ptr::null(),
             image: Default::default(),
             buffer: Default::default(),

@@ -191,7 +191,7 @@ impl<'lt> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceColorWriteEnableFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             color_write_enable: 0,
         }
@@ -361,7 +361,7 @@ impl<'lt> Default for PipelineColorWriteCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineColorWriteCreateInfoExt,
+            s_type: StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             attachment_count: 0,
             color_write_enables: std::ptr::null(),

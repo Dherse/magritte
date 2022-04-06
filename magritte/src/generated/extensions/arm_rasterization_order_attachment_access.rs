@@ -94,10 +94,7 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 ///} VkPipelineColorBlendStateCreateFlagBits;
 ///```
 ///# Description
-/// - [`RasterizationOrderAttachmentAccessArm`] indicates that access to color and input attachments
-///   will have implicit framebuffer-local memory dependencies, allowing applications to express custom
-///   blending operations in a fragment shader. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop)
-///   for more information.
+/// - [`RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM`] indicates that access to color and input attachments will have implicit framebuffer-local memory dependencies, allowing applications to express custom blending operations in a fragment shader. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
 ///# Related
 /// - [`VK_ARM_rasterization_order_attachment_access`]
 /// - [`PipelineColorBlendStateCreateFlags`]
@@ -114,24 +111,21 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum PipelineColorBlendStateCreateFlagBits {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`RasterizationOrderAttachmentAccessArm`]
+#[repr(transparent)]
+pub struct PipelineColorBlendStateCreateFlagBits(u32);
+impl const Default for PipelineColorBlendStateCreateFlagBits {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl PipelineColorBlendStateCreateFlagBits {
+    ///[`RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM`]
     ///indicates that access to color and input attachments will have implicit
     ///framebuffer-local memory dependencies, allowing applications to express
     ///custom blending operations in a fragment shader.
     ///See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more
     ///information.
-    RasterizationOrderAttachmentAccessArm = 1,
-}
-impl const Default for PipelineColorBlendStateCreateFlagBits {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl PipelineColorBlendStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -140,12 +134,15 @@ impl PipelineColorBlendStateCreateFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineDepthStencilStateCreateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineDepthStencilStateCreateFlagBits.html) - Bitmask specifying additional depth/stencil state information.
@@ -164,8 +161,11 @@ impl PipelineColorBlendStateCreateFlagBits {
 ///} VkPipelineDepthStencilStateCreateFlagBits;
 ///```
 ///# Description
-/// - [`RasterizationOrderAttachmentDepthAccessArm`] indicates that access to the depth aspects of depth/stencil and input attachments will have implicit framebuffer-local memory dependencies. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
-/// - [`RasterizationOrderAttachmentStencilAccessArm`] indicates that access to the stencil aspects of depth/stencil and input attachments will have implicit framebuffer-local memory dependencies. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
+/// - [`RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM`] indicates that access to the depth aspects
+///   of depth/stencil and input attachments will have implicit framebuffer-local memory dependencies.
+///   See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop)
+///   for more information.
+/// - [`RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM`] indicates that access to the stencil aspects of depth/stencil and input attachments will have implicit framebuffer-local memory dependencies. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
 ///# Related
 /// - [`VK_ARM_rasterization_order_attachment_access`]
 /// - [`PipelineDepthStencilStateCreateFlags`]
@@ -182,29 +182,26 @@ impl PipelineColorBlendStateCreateFlagBits {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum PipelineDepthStencilStateCreateFlagBits {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`RasterizationOrderAttachmentDepthAccessArm`]
+#[repr(transparent)]
+pub struct PipelineDepthStencilStateCreateFlagBits(u32);
+impl const Default for PipelineDepthStencilStateCreateFlagBits {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl PipelineDepthStencilStateCreateFlagBits {
+    ///[`RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM`]
     ///indicates that access to the depth aspects of depth/stencil and input
     ///attachments will have implicit framebuffer-local memory dependencies.
     ///See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more
     ///information.
-    RasterizationOrderAttachmentDepthAccessArm = 1,
-    ///[`RasterizationOrderAttachmentStencilAccessArm`]
+    pub const RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM: Self = Self(1);
+    ///[`RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM`]
     ///indicates that access to the stencil aspects of depth/stencil and input
     ///attachments will have implicit framebuffer-local memory dependencies.
     ///See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more
     ///information.
-    RasterizationOrderAttachmentStencilAccessArm = 2,
-}
-impl const Default for PipelineDepthStencilStateCreateFlagBits {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl PipelineDepthStencilStateCreateFlagBits {
+    pub const RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -213,12 +210,15 @@ impl PipelineDepthStencilStateCreateFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.html) - Structure describing whether rasterization order attachment access can be supported by an implementation
@@ -297,7 +297,7 @@ impl<'lt> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesAR
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesArm,
+            s_type: StructureType::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM,
             p_next: std::ptr::null_mut(),
             rasterization_order_color_attachment_access: 0,
             rasterization_order_depth_attachment_access: 0,

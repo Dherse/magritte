@@ -759,18 +759,17 @@ pub type FNCmdInsertDebugUtilsLabelExt = Option<
 ///} VkDebugUtilsMessageSeverityFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DebugUtilsMessageSeverityVerboseExt`] specifies the most verbose output indicating all
-///   diagnostic messages from the Vulkan loader, layers, and drivers should be captured.
-/// - [`DebugUtilsMessageSeverityInfoExt`] specifies an informational message such as resource
-///   details that may be handy when debugging an application.
-/// - [`DebugUtilsMessageSeverityWarningExt`] specifies use of Vulkan that  **may**  expose an app
-///   bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a
-///   location with no attachment. Other cases  **may**  point to behavior that is almost certainly
-///   bad when unintended such as using an image whose memory has not been filled. In general if you
-///   see a warning but you know that the behavior is intended/desired, then simply ignore the
-///   warning.
-/// - [`DebugUtilsMessageSeverityErrorExt`] specifies that the application has violated a valid
-///   usage condition of the specification.
+/// - [`VERBOSE`] specifies the most verbose output indicating all diagnostic messages from the
+///   Vulkan loader, layers, and drivers should be captured.
+/// - [`INFO`] specifies an informational message such as resource details that may be handy when
+///   debugging an application.
+/// - [`WARNING`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be
+///   immediately harmful, such as a fragment shader outputting to a location with no attachment.
+///   Other cases  **may**  point to behavior that is almost certainly bad when unintended such as
+///   using an image whose memory has not been filled. In general if you see a warning but you know
+///   that the behavior is intended/desired, then simply ignore the warning.
+/// - [`ERROR`] specifies that the application has violated a valid usage condition of the
+///   specification.
 ///# Related
 /// - [`VK_EXT_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
@@ -788,19 +787,23 @@ pub type FNCmdInsertDebugUtilsLabelExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DebugUtilsMessageSeverityFlagBitsEXT {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DebugUtilsMessageSeverityVerboseExt`] specifies the most
+#[repr(transparent)]
+pub struct DebugUtilsMessageSeverityFlagBitsEXT(u32);
+impl const Default for DebugUtilsMessageSeverityFlagBitsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DebugUtilsMessageSeverityFlagBitsEXT {
+    ///[`VERBOSE`] specifies the most
     ///verbose output indicating all diagnostic messages from the Vulkan
     ///loader, layers, and drivers should be captured.
-    DebugUtilsMessageSeverityVerboseExt = 1,
-    ///[`DebugUtilsMessageSeverityInfoExt`] specifies an
+    pub const VERBOSE: Self = Self(1);
+    ///[`INFO`] specifies an
     ///informational message such as resource details that may be handy when
     ///debugging an application.
-    DebugUtilsMessageSeverityInfoExt = 16,
-    ///[`DebugUtilsMessageSeverityWarningExt`] specifies use of
+    pub const INFO: Self = Self(16);
+    ///[`WARNING`] specifies use of
     ///Vulkan that  **may**  expose an app bug.
     ///Such cases may not be immediately harmful, such as a fragment shader
     ///outputting to a location with no attachment.
@@ -808,17 +811,10 @@ pub enum DebugUtilsMessageSeverityFlagBitsEXT {
     ///unintended such as using an image whose memory has not been filled.
     ///In general if you see a warning but you know that the behavior is
     ///intended/desired, then simply ignore the warning.
-    DebugUtilsMessageSeverityWarningExt = 256,
-    ///[`DebugUtilsMessageSeverityErrorExt`] specifies that the
+    pub const WARNING: Self = Self(256);
+    ///[`ERROR`] specifies that the
     ///application has violated a valid usage condition of the specification.
-    DebugUtilsMessageSeverityErrorExt = 4096,
-}
-impl const Default for DebugUtilsMessageSeverityFlagBitsEXT {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DebugUtilsMessageSeverityFlagBitsEXT {
+    pub const ERROR: Self = Self(4096);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -827,12 +823,15 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDebugUtilsMessageTypeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageTypeFlagBitsEXT.html) - Bitmask specifying which types of events cause a debug messenger callback
@@ -849,12 +848,12 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
 ///} VkDebugUtilsMessageTypeFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DebugUtilsMessageTypeGeneralExt`] specifies that some general event has occurred. This is
-///   typically a non-specification, non-performance event.
-/// - [`DebugUtilsMessageTypeValidationExt`] specifies that something has occurred during validation
-///   against the Vulkan specification that may indicate invalid behavior.
-/// - [`DebugUtilsMessageTypePerformanceExt`] specifies a potentially non-optimal use of Vulkan,
-///   e.g. using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
+/// - [`GENERAL`] specifies that some general event has occurred. This is typically a
+///   non-specification, non-performance event.
+/// - [`VALIDATION`] specifies that something has occurred during validation against the Vulkan
+///   specification that may indicate invalid behavior.
+/// - [`PERFORMANCE`] specifies a potentially non-optimal use of Vulkan, e.g. using
+///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
 ///# Related
 /// - [`VK_EXT_debug_utils`]
@@ -872,31 +871,28 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DebugUtilsMessageTypeFlagBitsEXT {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DebugUtilsMessageTypeGeneralExt`] specifies that some
+#[repr(transparent)]
+pub struct DebugUtilsMessageTypeFlagBitsEXT(u32);
+impl const Default for DebugUtilsMessageTypeFlagBitsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DebugUtilsMessageTypeFlagBitsEXT {
+    ///[`GENERAL`] specifies that some
     ///general event has occurred.
     ///This is typically a non-specification, non-performance event.
-    DebugUtilsMessageTypeGeneralExt = 1,
-    ///[`DebugUtilsMessageTypeValidationExt`] specifies that
+    pub const GENERAL: Self = Self(1);
+    ///[`VALIDATION`] specifies that
     ///something has occurred during validation against the Vulkan
     ///specification that may indicate invalid behavior.
-    DebugUtilsMessageTypeValidationExt = 2,
-    ///[`DebugUtilsMessageTypePerformanceExt`] specifies a
+    pub const VALIDATION: Self = Self(2);
+    ///[`PERFORMANCE`] specifies a
     ///potentially non-optimal use of Vulkan, e.g. using
     ///[`cmd_clear_color_image`] when setting
     ///[`AttachmentDescription`]::`loadOp` to
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-    DebugUtilsMessageTypePerformanceExt = 4,
-}
-impl const Default for DebugUtilsMessageTypeFlagBitsEXT {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DebugUtilsMessageTypeFlagBitsEXT {
+    pub const PERFORMANCE: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -905,12 +901,15 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDebugUtilsMessageSeverityFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageSeverityFlagBitsEXT.html) - Bitmask specifying which severities of events cause a debug messenger callback
@@ -928,18 +927,17 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
 ///} VkDebugUtilsMessageSeverityFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DebugUtilsMessageSeverityVerboseExt`] specifies the most verbose output indicating all
-///   diagnostic messages from the Vulkan loader, layers, and drivers should be captured.
-/// - [`DebugUtilsMessageSeverityInfoExt`] specifies an informational message such as resource
-///   details that may be handy when debugging an application.
-/// - [`DebugUtilsMessageSeverityWarningExt`] specifies use of Vulkan that  **may**  expose an app
-///   bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a
-///   location with no attachment. Other cases  **may**  point to behavior that is almost certainly
-///   bad when unintended such as using an image whose memory has not been filled. In general if you
-///   see a warning but you know that the behavior is intended/desired, then simply ignore the
-///   warning.
-/// - [`DebugUtilsMessageSeverityErrorExt`] specifies that the application has violated a valid
-///   usage condition of the specification.
+/// - [`VERBOSE`] specifies the most verbose output indicating all diagnostic messages from the
+///   Vulkan loader, layers, and drivers should be captured.
+/// - [`INFO`] specifies an informational message such as resource details that may be handy when
+///   debugging an application.
+/// - [`WARNING`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be
+///   immediately harmful, such as a fragment shader outputting to a location with no attachment.
+///   Other cases  **may**  point to behavior that is almost certainly bad when unintended such as
+///   using an image whose memory has not been filled. In general if you see a warning but you know
+///   that the behavior is intended/desired, then simply ignore the warning.
+/// - [`ERROR`] specifies that the application has violated a valid usage condition of the
+///   specification.
 ///# Related
 /// - [`VK_EXT_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
@@ -965,19 +963,19 @@ impl const Default for DebugUtilsMessageSeverityFlagsEXT {
 }
 impl From<DebugUtilsMessageSeverityFlagBitsEXT> for DebugUtilsMessageSeverityFlagsEXT {
     fn from(from: DebugUtilsMessageSeverityFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DebugUtilsMessageSeverityFlagsEXT {
-    ///[`DebugUtilsMessageSeverityVerboseExt`] specifies the most
+    ///[`VERBOSE`] specifies the most
     ///verbose output indicating all diagnostic messages from the Vulkan
     ///loader, layers, and drivers should be captured.
-    pub const DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT: Self = Self(1);
-    ///[`DebugUtilsMessageSeverityInfoExt`] specifies an
+    pub const VERBOSE: Self = Self(1);
+    ///[`INFO`] specifies an
     ///informational message such as resource details that may be handy when
     ///debugging an application.
-    pub const DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT: Self = Self(16);
-    ///[`DebugUtilsMessageSeverityWarningExt`] specifies use of
+    pub const INFO: Self = Self(16);
+    ///[`WARNING`] specifies use of
     ///Vulkan that  **may**  expose an app bug.
     ///Such cases may not be immediately harmful, such as a fragment shader
     ///outputting to a location with no attachment.
@@ -985,10 +983,10 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     ///unintended such as using an image whose memory has not been filled.
     ///In general if you see a warning but you know that the behavior is
     ///intended/desired, then simply ignore the warning.
-    pub const DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT: Self = Self(256);
-    ///[`DebugUtilsMessageSeverityErrorExt`] specifies that the
+    pub const WARNING: Self = Self(256);
+    ///[`ERROR`] specifies that the
     ///application has violated a valid usage condition of the specification.
-    pub const DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT: Self = Self(4096);
+    pub const ERROR: Self = Self(4096);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1000,16 +998,16 @@ impl DebugUtilsMessageSeverityFlagsEXT {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT;
+            all |= Self::VERBOSE;
         }
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT;
+            all |= Self::INFO;
         }
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT;
+            all |= Self::WARNING;
         }
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT;
+            all |= Self::ERROR;
         }
         all
     }
@@ -1215,45 +1213,33 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::VERBOSE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_EXT))?;
+                        f.write_str(stringify!(VERBOSE))?;
                     }
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::INFO) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_INFO_EXT))?;
+                        f.write_str(stringify!(INFO))?;
                     }
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::WARNING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT))?;
+                        f.write_str(stringify!(WARNING))?;
                     }
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageSeverityFlagsEXT::DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::ERROR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_EXT))?;
+                        f.write_str(stringify!(ERROR))?;
                     }
                 }
                 Ok(())
@@ -1278,12 +1264,12 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
 ///} VkDebugUtilsMessageTypeFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DebugUtilsMessageTypeGeneralExt`] specifies that some general event has occurred. This is
-///   typically a non-specification, non-performance event.
-/// - [`DebugUtilsMessageTypeValidationExt`] specifies that something has occurred during validation
-///   against the Vulkan specification that may indicate invalid behavior.
-/// - [`DebugUtilsMessageTypePerformanceExt`] specifies a potentially non-optimal use of Vulkan,
-///   e.g. using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
+/// - [`GENERAL`] specifies that some general event has occurred. This is typically a
+///   non-specification, non-performance event.
+/// - [`VALIDATION`] specifies that something has occurred during validation against the Vulkan
+///   specification that may indicate invalid behavior.
+/// - [`PERFORMANCE`] specifies a potentially non-optimal use of Vulkan, e.g. using
+///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
 ///# Related
 /// - [`VK_EXT_debug_utils`]
@@ -1309,24 +1295,24 @@ impl const Default for DebugUtilsMessageTypeFlagsEXT {
 }
 impl From<DebugUtilsMessageTypeFlagBitsEXT> for DebugUtilsMessageTypeFlagsEXT {
     fn from(from: DebugUtilsMessageTypeFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DebugUtilsMessageTypeFlagsEXT {
-    ///[`DebugUtilsMessageTypeGeneralExt`] specifies that some
+    ///[`GENERAL`] specifies that some
     ///general event has occurred.
     ///This is typically a non-specification, non-performance event.
-    pub const DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT: Self = Self(1);
-    ///[`DebugUtilsMessageTypeValidationExt`] specifies that
+    pub const GENERAL: Self = Self(1);
+    ///[`VALIDATION`] specifies that
     ///something has occurred during validation against the Vulkan
     ///specification that may indicate invalid behavior.
-    pub const DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT: Self = Self(2);
-    ///[`DebugUtilsMessageTypePerformanceExt`] specifies a
+    pub const VALIDATION: Self = Self(2);
+    ///[`PERFORMANCE`] specifies a
     ///potentially non-optimal use of Vulkan, e.g. using
     ///[`cmd_clear_color_image`] when setting
     ///[`AttachmentDescription`]::`loadOp` to
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-    pub const DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT: Self = Self(4);
+    pub const PERFORMANCE: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1338,13 +1324,13 @@ impl DebugUtilsMessageTypeFlagsEXT {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT;
+            all |= Self::GENERAL;
         }
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT;
+            all |= Self::VALIDATION;
         }
         {
-            all |= Self::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT;
+            all |= Self::PERFORMANCE;
         }
         all
     }
@@ -1548,35 +1534,26 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageTypeFlagsEXT::GENERAL) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_TYPE_GENERAL_EXT))?;
+                        f.write_str(stringify!(GENERAL))?;
                     }
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageTypeFlagsEXT::VALIDATION) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_EXT))?;
+                        f.write_str(stringify!(VALIDATION))?;
                     }
-                    if self
-                        .0
-                        .contains(DebugUtilsMessageTypeFlagsEXT::DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT)
-                    {
+                    if self.0.contains(DebugUtilsMessageTypeFlagsEXT::PERFORMANCE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_EXT))?;
+                        f.write_str(stringify!(PERFORMANCE))?;
                     }
                 }
                 Ok(())
@@ -1729,7 +1706,7 @@ impl<'lt> Default for DebugUtilsObjectNameInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugUtilsObjectNameInfoExt,
+            s_type: StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object_handle: 0,
@@ -1901,7 +1878,7 @@ impl<'lt> Default for DebugUtilsObjectTagInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugUtilsObjectTagInfoExt,
+            s_type: StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object_handle: 0,
@@ -2091,7 +2068,7 @@ impl<'lt> Default for DebugUtilsLabelEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugUtilsLabelExt,
+            s_type: StructureType::DEBUG_UTILS_LABEL_EXT,
             p_next: std::ptr::null(),
             label_name: std::ptr::null(),
             color: [0.0; 4 as usize],
@@ -2276,7 +2253,7 @@ impl<'lt> Default for DebugUtilsMessengerCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugUtilsMessengerCreateInfoExt,
+            s_type: StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             message_severity: Default::default(),
@@ -2545,7 +2522,7 @@ impl<'lt> Default for DebugUtilsMessengerCallbackDataEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugUtilsMessengerCallbackDataExt,
+            s_type: StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             message_id_name: std::ptr::null(),
@@ -2872,7 +2849,7 @@ impl Instance {
             p_messenger.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_messenger.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -3117,7 +3094,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_name_info as *const DebugUtilsObjectNameInfoEXT<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -3183,7 +3160,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_tag_info as *const DebugUtilsObjectTagInfoEXT<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

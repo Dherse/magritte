@@ -162,10 +162,12 @@ pub type FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv = Opt
 ///} VkCoverageReductionModeNV;
 ///```
 ///# Description
-/// - [`CoverageReductionModeMergeNv`] specifies that each color sample will be associated with an
-///   implementation-dependent subset of samples in the pixel coverage. If any of those associated
-///   samples are covered, the color sample is covered.
-/// - [`CoverageReductionModeTruncateNv`] specifies that for color samples present in the color attachments, a color sample is covered if the pixel coverage sample with the same [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)i is covered; other pixel coverage samples are discarded.
+/// - [`MERGE`] specifies that each color sample will be associated with an implementation-dependent
+///   subset of samples in the pixel coverage. If any of those associated samples are covered, the
+///   color sample is covered.
+/// - [`TRUNCATE`] specifies that for color samples present in the color attachments, a color sample
+///   is covered if the pixel coverage sample with the same [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)i
+///   is covered; other pixel coverage samples are discarded.
 ///# Related
 /// - [`VK_NV_coverage_reduction_mode`]
 /// - [`FramebufferMixedSamplesCombinationNV`]
@@ -183,27 +185,26 @@ pub type FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv = Opt
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum CoverageReductionModeNV {
-    ///[`CoverageReductionModeMergeNv`] specifies that each color
+#[repr(transparent)]
+pub struct CoverageReductionModeNV(i32);
+impl const Default for CoverageReductionModeNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl CoverageReductionModeNV {
+    ///[`MERGE`] specifies that each color
     ///sample will be associated with an implementation-dependent subset of
     ///samples in the pixel coverage.
     ///If any of those associated samples are covered, the color sample is
     ///covered.
-    CoverageReductionModeMergeNv = 0,
-    ///[`CoverageReductionModeTruncateNv`] specifies that for color
+    pub const MERGE: Self = Self(0);
+    ///[`TRUNCATE`] specifies that for color
     ///samples present in the color attachments, a color sample is covered if
     ///the pixel coverage sample with the same
     ///[sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)i is
     ///covered; other pixel coverage samples are discarded.
-    CoverageReductionModeTruncateNv = 1,
-}
-impl const Default for CoverageReductionModeNV {
-    fn default() -> Self {
-        Self::CoverageReductionModeMergeNv
-    }
-}
-impl CoverageReductionModeNV {
+    pub const TRUNCATE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -212,12 +213,15 @@ impl CoverageReductionModeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineCoverageReductionStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageReductionStateCreateFlagsNV.html) - Reserved for future use
@@ -316,7 +320,7 @@ impl<'lt> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCoverageReductionModeFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             coverage_reduction_mode: 0,
         }
@@ -470,7 +474,7 @@ impl<'lt> Default for PipelineCoverageReductionStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineCoverageReductionStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             flags: Default::default(),
             coverage_reduction_mode: Default::default(),
@@ -622,7 +626,7 @@ impl<'lt> Default for FramebufferMixedSamplesCombinationNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::FramebufferMixedSamplesCombinationNv,
+            s_type: StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV,
             p_next: std::ptr::null_mut(),
             coverage_reduction_mode: Default::default(),
             rasterization_samples: Default::default(),
@@ -822,7 +826,7 @@ impl PhysicalDevice {
         );
         let _return = _function(self.as_raw(), &mut p_combination_count, p_combinations.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_combinations)
             },
             e => VulkanResult::Err(e),

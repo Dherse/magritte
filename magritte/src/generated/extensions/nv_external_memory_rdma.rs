@@ -180,7 +180,7 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceExternalMemoryRdmaFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             external_memory_rdma: 0,
         }
@@ -328,7 +328,7 @@ impl<'lt> Default for MemoryGetRemoteAddressInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryGetRemoteAddressInfoNv,
+            s_type: StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),
@@ -471,7 +471,7 @@ impl Device {
             &mut p_address,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_address),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_address),
             e => VulkanResult::Err(e),
         }
     }

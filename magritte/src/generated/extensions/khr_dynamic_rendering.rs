@@ -207,7 +207,7 @@ impl<'lt> Default for RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RenderingFragmentShadingRateAttachmentInfoKhr,
+            s_type: StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR,
             p_next: std::ptr::null(),
             image_view: Default::default(),
             image_layout: Default::default(),
@@ -362,7 +362,7 @@ impl<'lt> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RenderingFragmentDensityMapAttachmentInfoExt,
+            s_type: StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT,
             p_next: std::ptr::null(),
             image_view: Default::default(),
             image_layout: Default::default(),
@@ -535,7 +535,7 @@ impl<'lt> Default for AttachmentSampleCountInfoAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AttachmentSampleCountInfoAmd,
+            s_type: StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD,
             p_next: std::ptr::null(),
             color_attachment_count: 0,
             color_attachment_samples: std::ptr::null(),
@@ -711,7 +711,7 @@ impl<'lt> Default for MultiviewPerViewAttributesInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MultiviewPerViewAttributesInfoNvx,
+            s_type: StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX,
             p_next: std::ptr::null(),
             per_view_attributes: 0,
             per_view_attributes_position_x_only: 0,

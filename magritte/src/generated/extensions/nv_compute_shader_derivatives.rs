@@ -130,7 +130,7 @@ impl<'lt> Default for PhysicalDeviceComputeShaderDerivativesFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceComputeShaderDerivativesFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             compute_derivative_group_quads: 0,
             compute_derivative_group_linear: 0,

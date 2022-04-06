@@ -128,7 +128,7 @@ impl<'lt> Default for SurfaceProtectedCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceProtectedCapabilitiesKhr,
+            s_type: StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR,
             p_next: std::ptr::null(),
             supports_protected: 0,
         }

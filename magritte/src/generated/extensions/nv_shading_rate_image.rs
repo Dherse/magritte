@@ -431,7 +431,7 @@ pub type FNCmdSetCoarseSampleOrderNv = Option<
 ///fragment generated using the indicated shading rate, as well as the maximum
 ///number of fragment shader invocations launched for each fragment.
 ///When processing regions of a primitive that have a shading rate of
-///[`ShadingRatePaletteEntryNoInvocationsNv`], no fragments will be
+///[`NO_INVOCATIONS`], no fragments will be
 ///generated in that region.
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
@@ -450,39 +450,38 @@ pub type FNCmdSetCoarseSampleOrderNv = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ShadingRatePaletteEntryNV {
-    ///No documentation found
-    ShadingRatePaletteEntryNoInvocationsNv = 0,
-    ///No documentation found
-    ShadingRatePaletteEntry16InvocationsPerPixelNv = 1,
-    ///No documentation found
-    ShadingRatePaletteEntry8InvocationsPerPixelNv = 2,
-    ///No documentation found
-    ShadingRatePaletteEntry4InvocationsPerPixelNv = 3,
-    ///No documentation found
-    ShadingRatePaletteEntry2InvocationsPerPixelNv = 4,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPerPixelNv = 5,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPer2X1PixelsNv = 6,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPer1X2PixelsNv = 7,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPer2X2PixelsNv = 8,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPer4X2PixelsNv = 9,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPer2X4PixelsNv = 10,
-    ///No documentation found
-    ShadingRatePaletteEntry1InvocationPer4X4PixelsNv = 11,
-}
+#[repr(transparent)]
+pub struct ShadingRatePaletteEntryNV(i32);
 impl const Default for ShadingRatePaletteEntryNV {
     fn default() -> Self {
-        Self::ShadingRatePaletteEntryNoInvocationsNv
+        Self(0)
     }
 }
 impl ShadingRatePaletteEntryNV {
+    ///No documentation found
+    pub const NO_INVOCATIONS: Self = Self(0);
+    ///No documentation found
+    pub const _16_INVOCATIONS_PER_PIXEL: Self = Self(1);
+    ///No documentation found
+    pub const _8_INVOCATIONS_PER_PIXEL: Self = Self(2);
+    ///No documentation found
+    pub const _4_INVOCATIONS_PER_PIXEL: Self = Self(3);
+    ///No documentation found
+    pub const _2_INVOCATIONS_PER_PIXEL: Self = Self(4);
+    ///No documentation found
+    pub const _1_INVOCATION_PER_PIXEL: Self = Self(5);
+    ///No documentation found
+    pub const _1_INVOCATION_PER2_X_1_PIXELS: Self = Self(6);
+    ///No documentation found
+    pub const _1_INVOCATION_PER1_X_2_PIXELS: Self = Self(7);
+    ///No documentation found
+    pub const _1_INVOCATION_PER2_X_2_PIXELS: Self = Self(8);
+    ///No documentation found
+    pub const _1_INVOCATION_PER4_X_2_PIXELS: Self = Self(9);
+    ///No documentation found
+    pub const _1_INVOCATION_PER2_X_4_PIXELS: Self = Self(10);
+    ///No documentation found
+    pub const _1_INVOCATION_PER4_X_4_PIXELS: Self = Self(11);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -491,12 +490,15 @@ impl ShadingRatePaletteEntryNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkCoarseSampleOrderTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleOrderTypeNV.html) - Shading rate image sample ordering types
@@ -514,14 +516,16 @@ impl ShadingRatePaletteEntryNV {
 ///} VkCoarseSampleOrderTypeNV;
 ///```
 ///# Description
-/// - [`CoarseSampleOrderTypeDefaultNv`] specifies that coverage samples will be ordered in an
-///   implementation-dependent manner.
-/// - [`CoarseSampleOrderTypeCustomNv`] specifies that coverage samples will be ordered according to
-///   the array of custom orderings provided in either the `pCustomSampleOrders` member of
+/// - [`DEFAULT`] specifies that coverage samples will be ordered in an implementation-dependent
+///   manner.
+/// - [`CUSTOM`] specifies that coverage samples will be ordered according to the array of custom
+///   orderings provided in either the `pCustomSampleOrders` member of
 ///   [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`] or the `pCustomSampleOrders` member of
 ///   [`cmd_set_coarse_sample_order_nv`].
-/// - [`CoarseSampleOrderTypePixelMajorNv`] specifies that coverage samples will be ordered sequentially, sorted first by pixel coordinate (in row-major order) and then by [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask).
-/// - [`CoarseSampleOrderTypeSampleMajorNv`] specifies that coverage samples will be ordered sequentially, sorted first by [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) and then by pixel coordinate (in row-major order).
+/// - [`PIXEL_MAJOR`] specifies that coverage samples will be ordered sequentially, sorted first by pixel coordinate (in row-major order) and then by [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask).
+/// - [`SAMPLE_MAJOR`] specifies that coverage samples will be ordered sequentially, sorted first by
+///   [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)
+///   and then by pixel coordinate (in row-major order).
 ///# Related
 /// - [`VK_NV_shading_rate_image`]
 /// - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
@@ -539,34 +543,33 @@ impl ShadingRatePaletteEntryNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum CoarseSampleOrderTypeNV {
-    ///[`CoarseSampleOrderTypeDefaultNv`] specifies that coverage
+#[repr(transparent)]
+pub struct CoarseSampleOrderTypeNV(i32);
+impl const Default for CoarseSampleOrderTypeNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl CoarseSampleOrderTypeNV {
+    ///[`DEFAULT`] specifies that coverage
     ///samples will be ordered in an implementation-dependent manner.
-    CoarseSampleOrderTypeDefaultNv = 0,
-    ///[`CoarseSampleOrderTypeCustomNv`] specifies that coverage
+    pub const DEFAULT: Self = Self(0);
+    ///[`CUSTOM`] specifies that coverage
     ///samples will be ordered according to the array of custom orderings
     ///provided in either the `pCustomSampleOrders` member of
     ///[`PipelineViewportCoarseSampleOrderStateCreateInfoNV`] or the
     ///`pCustomSampleOrders` member of [`cmd_set_coarse_sample_order_nv`].
-    CoarseSampleOrderTypeCustomNv = 1,
-    ///[`CoarseSampleOrderTypePixelMajorNv`] specifies that coverage
+    pub const CUSTOM: Self = Self(1);
+    ///[`PIXEL_MAJOR`] specifies that coverage
     ///samples will be ordered sequentially, sorted first by pixel coordinate
     ///(in row-major order) and then by
     ///[sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask).
-    CoarseSampleOrderTypePixelMajorNv = 2,
-    ///[`CoarseSampleOrderTypeSampleMajorNv`] specifies that
+    pub const PIXEL_MAJOR: Self = Self(2);
+    ///[`SAMPLE_MAJOR`] specifies that
     ///coverage samples will be ordered sequentially, sorted first by
     ///[sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) and then by
     ///pixel coordinate (in row-major order).
-    CoarseSampleOrderTypeSampleMajorNv = 3,
-}
-impl const Default for CoarseSampleOrderTypeNV {
-    fn default() -> Self {
-        Self::CoarseSampleOrderTypeDefaultNv
-    }
-}
-impl CoarseSampleOrderTypeNV {
+    pub const SAMPLE_MAJOR: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -575,12 +578,15 @@ impl CoarseSampleOrderTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkShadingRatePaletteNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShadingRatePaletteNV.html) - Structure specifying a single shading rate palette
@@ -771,7 +777,7 @@ impl<'lt> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineViewportShadingRateImageStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             shading_rate_image_enable: 0,
             viewport_count: 0,
@@ -963,7 +969,7 @@ impl<'lt> Default for PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShadingRateImageFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             shading_rate_image: 0,
             shading_rate_coarse_sample_order: 0,
@@ -1164,7 +1170,7 @@ impl<'lt> Default for PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShadingRateImagePropertiesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             shading_rate_texel_size: Default::default(),
             shading_rate_palette_size: 0,
@@ -1617,7 +1623,7 @@ impl<'lt> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineViewportCoarseSampleOrderStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             sample_order_type: Default::default(),
             custom_sample_order_count: 0,

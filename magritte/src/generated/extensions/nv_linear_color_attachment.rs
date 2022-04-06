@@ -121,7 +121,7 @@ impl<'lt> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceLinearColorAttachmentFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             linear_color_attachment: 0,
         }

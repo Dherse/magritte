@@ -85,17 +85,34 @@ pub fn enum_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option
     let cases = if let Some(parent_tag) = parent_tag {
         let with_underscore = parent_tag.with_underscore();
 
-        trimmed.trim_start_matches(&with_underscore)
+        trimmed.trim_end_matches(&with_underscore)
     } else {
         &trimmed
     }
-    .to_case(Case::UpperCamel);
+    .to_case(Case::ScreamingSnake);
 
-    if let Some(parent) = parent {
-        cases.trim_start_matches(parent.trim_start_matches("Vk")).to_string()
+    let mut out = if let Some(parent) = parent {
+        let mut parent = parent
+            .trim_start_matches("Vk")
+            .replace("FlagBits", "")
+            .replace("Flags", "");
+
+        if let Some(tag) = parent_tag {
+            parent = parent.trim_end_matches(&***tag).to_string();
+        }
+
+        cases
+            .trim_start_matches(
+                &parent.to_case(Case::ScreamingSnake),
+            )
+            .to_string()
     } else {
         cases
-    }
+    }.trim_start_matches('_').to_string();
+
+    deal_with_numbers(&mut out);
+
+    out
 }
 
 /// Converts a Vulkan enum name into a rustified bit name
@@ -105,19 +122,34 @@ pub fn bit_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<
     let cases = if let Some(parent_tag) = parent_tag {
         let with_underscore = parent_tag.with_underscore();
 
-        trimmed.trim_start_matches(&with_underscore)
+        trimmed.trim_end_matches(&with_underscore)
     } else {
         &trimmed
     }
-    .to_case(Case::UpperCamel);
+    .to_case(Case::ScreamingSnake);
 
-    if let Some(parent) = parent {
+    let mut out = if let Some(parent) = parent {
+        let mut parent = parent
+            .trim_start_matches("Vk")
+            .replace("FlagBits", "")
+            .replace("Flags", "");
+
+        if let Some(tag) = parent_tag {
+            parent = parent.trim_end_matches(&***tag).to_string();
+        }
+
         cases
-            .trim_start_matches(&parent.trim_start_matches("Vk").replace("FlagBits", ""))
+            .trim_start_matches(
+                &parent.to_case(Case::ScreamingSnake),
+            )
             .to_string()
     } else {
         cases
-    }
+    }.trim_start_matches('_').to_string();
+
+    deal_with_numbers(&mut out);
+
+    out
 }
 
 /// Converts a Vulkan function pointer name into a rustified function pointer name

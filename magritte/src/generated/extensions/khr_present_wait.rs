@@ -234,7 +234,7 @@ impl<'lt> Default for PhysicalDevicePresentWaitFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePresentWaitFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             present_wait: 0,
         }
@@ -432,7 +432,7 @@ impl Device {
             timeout.unwrap_or_default() as _,
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Timeout => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::TIMEOUT => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

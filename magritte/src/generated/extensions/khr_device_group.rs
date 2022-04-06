@@ -413,14 +413,14 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 ///} VkDeviceGroupPresentModeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`DeviceGroupPresentModeLocalKhr`] specifies that any physical device with a presentation
-///   engine  **can**  present its own swapchain images.
-/// - [`DeviceGroupPresentModeRemoteKhr`] specifies that any physical device with a presentation
-///   engine  **can**  present swapchain images from any physical device in its `presentMask`.
-/// - [`DeviceGroupPresentModeSumKhr`] specifies that any physical device with a presentation engine
-///   **can**  present the sum of swapchain images from any physical devices in its `presentMask`.
-/// - [`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies that multiple physical devices with a
-///   presentation engine  **can**  each present their own swapchain images.
+/// - [`LOCAL`] specifies that any physical device with a presentation engine  **can**  present its
+///   own swapchain images.
+/// - [`REMOTE`] specifies that any physical device with a presentation engine  **can**  present
+///   swapchain images from any physical device in its `presentMask`.
+/// - [`SUM`] specifies that any physical device with a presentation engine  **can**  present the
+///   sum of swapchain images from any physical devices in its `presentMask`.
+/// - [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine
+///   **can**  each present their own swapchain images.
 ///# Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
@@ -441,45 +441,42 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DeviceGroupPresentModeFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DeviceGroupPresentModeLocalKhr`] specifies that any
+#[repr(transparent)]
+pub struct DeviceGroupPresentModeFlagBitsKHR(u32);
+impl const Default for DeviceGroupPresentModeFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DeviceGroupPresentModeFlagBitsKHR {
+    ///[`LOCAL`] specifies that any
     ///physical device with a presentation engine  **can**  present its own
     ///swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    DeviceGroupPresentModeLocalKhr = 1,
-    ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
+    pub const LOCAL: Self = Self(1);
+    ///[`REMOTE`] specifies that any
     ///physical device with a presentation engine  **can**  present swapchain images
     ///from any physical device in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    DeviceGroupPresentModeRemoteKhr = 2,
-    ///[`DeviceGroupPresentModeSumKhr`] specifies that any
+    pub const REMOTE: Self = Self(2);
+    ///[`SUM`] specifies that any
     ///physical device with a presentation engine  **can**  present the sum of
     ///swapchain images from any physical devices in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    DeviceGroupPresentModeSumKhr = 4,
-    ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
+    pub const SUM: Self = Self(4);
+    ///[`LOCAL_MULTI_DEVICE`] specifies
     ///that multiple physical devices with a presentation engine  **can**  each
     ///present their own swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    DeviceGroupPresentModeLocalMultiDeviceKhr = 8,
-}
-impl const Default for DeviceGroupPresentModeFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DeviceGroupPresentModeFlagBitsKHR {
+    pub const LOCAL_MULTI_DEVICE: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -488,12 +485,15 @@ impl DeviceGroupPresentModeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDeviceGroupPresentModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentModeFlagBitsKHR.html) - Bitmask specifying supported device group present modes
@@ -511,14 +511,14 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 ///} VkDeviceGroupPresentModeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`DeviceGroupPresentModeLocalKhr`] specifies that any physical device with a presentation
-///   engine  **can**  present its own swapchain images.
-/// - [`DeviceGroupPresentModeRemoteKhr`] specifies that any physical device with a presentation
-///   engine  **can**  present swapchain images from any physical device in its `presentMask`.
-/// - [`DeviceGroupPresentModeSumKhr`] specifies that any physical device with a presentation engine
-///   **can**  present the sum of swapchain images from any physical devices in its `presentMask`.
-/// - [`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies that multiple physical devices with a
-///   presentation engine  **can**  each present their own swapchain images.
+/// - [`LOCAL`] specifies that any physical device with a presentation engine  **can**  present its
+///   own swapchain images.
+/// - [`REMOTE`] specifies that any physical device with a presentation engine  **can**  present
+///   swapchain images from any physical device in its `presentMask`.
+/// - [`SUM`] specifies that any physical device with a presentation engine  **can**  present the
+///   sum of swapchain images from any physical devices in its `presentMask`.
+/// - [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine
+///   **can**  each present their own swapchain images.
 ///# Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
@@ -547,38 +547,38 @@ impl const Default for DeviceGroupPresentModeFlagsKHR {
 }
 impl From<DeviceGroupPresentModeFlagBitsKHR> for DeviceGroupPresentModeFlagsKHR {
     fn from(from: DeviceGroupPresentModeFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DeviceGroupPresentModeFlagsKHR {
-    ///[`DeviceGroupPresentModeLocalKhr`] specifies that any
+    ///[`LOCAL`] specifies that any
     ///physical device with a presentation engine  **can**  present its own
     ///swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    pub const DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR: Self = Self(1);
-    ///[`DeviceGroupPresentModeRemoteKhr`] specifies that any
+    pub const LOCAL: Self = Self(1);
+    ///[`REMOTE`] specifies that any
     ///physical device with a presentation engine  **can**  present swapchain images
     ///from any physical device in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    pub const DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR: Self = Self(2);
-    ///[`DeviceGroupPresentModeSumKhr`] specifies that any
+    pub const REMOTE: Self = Self(2);
+    ///[`SUM`] specifies that any
     ///physical device with a presentation engine  **can**  present the sum of
     ///swapchain images from any physical devices in its `presentMask`.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    pub const DEVICE_GROUP_PRESENT_MODE_SUM_KHR: Self = Self(4);
-    ///[`DeviceGroupPresentModeLocalMultiDeviceKhr`] specifies
+    pub const SUM: Self = Self(4);
+    ///[`LOCAL_MULTI_DEVICE`] specifies
     ///that multiple physical devices with a presentation engine  **can**  each
     ///present their own swapchain images.
     ///
     ///Provided by [`crate::extensions::khr_swapchain`]
     #[cfg(feature = "VK_KHR_swapchain")]
-    pub const DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR: Self = Self(8);
+    pub const LOCAL_MULTI_DEVICE: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -591,19 +591,19 @@ impl DeviceGroupPresentModeFlagsKHR {
         let mut all = Self::empty();
         #[cfg(feature = "VK_KHR_swapchain")]
         {
-            all |= Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR;
+            all |= Self::LOCAL;
         }
         #[cfg(feature = "VK_KHR_swapchain")]
         {
-            all |= Self::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR;
+            all |= Self::REMOTE;
         }
         #[cfg(feature = "VK_KHR_swapchain")]
         {
-            all |= Self::DEVICE_GROUP_PRESENT_MODE_SUM_KHR;
+            all |= Self::SUM;
         }
         #[cfg(feature = "VK_KHR_swapchain")]
         {
-            all |= Self::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR;
+            all |= Self::LOCAL_MULTI_DEVICE;
         }
         all
     }
@@ -810,48 +810,36 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
                 } else {
                     let mut first = true;
                     #[cfg(feature = "VK_KHR_swapchain")]
-                    if self
-                        .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR)
-                    {
+                    if self.0.contains(DeviceGroupPresentModeFlagsKHR::LOCAL) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_LOCAL_KHR))?;
+                        f.write_str(stringify!(LOCAL))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain")]
-                    if self
-                        .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR)
-                    {
+                    if self.0.contains(DeviceGroupPresentModeFlagsKHR::REMOTE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_REMOTE_KHR))?;
+                        f.write_str(stringify!(REMOTE))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain")]
-                    if self
-                        .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_SUM_KHR)
-                    {
+                    if self.0.contains(DeviceGroupPresentModeFlagsKHR::SUM) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_SUM_KHR))?;
+                        f.write_str(stringify!(SUM))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain")]
-                    if self
-                        .0
-                        .contains(DeviceGroupPresentModeFlagsKHR::DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR)
-                    {
+                    if self.0.contains(DeviceGroupPresentModeFlagsKHR::LOCAL_MULTI_DEVICE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_KHR))?;
+                        f.write_str(stringify!(LOCAL_MULTI_DEVICE))?;
                     }
                 }
                 Ok(())
@@ -933,7 +921,7 @@ impl<'lt> Default for DeviceGroupPresentCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceGroupPresentCapabilitiesKhr,
+            s_type: StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR,
             p_next: std::ptr::null_mut(),
             present_mask: [0; MAX_DEVICE_GROUP_SIZE as usize],
             modes: Default::default(),
@@ -1070,7 +1058,7 @@ impl<'lt> Default for ImageSwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageSwapchainCreateInfoKhr,
+            s_type: StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             swapchain: Default::default(),
         }
@@ -1197,7 +1185,7 @@ impl<'lt> Default for BindImageMemorySwapchainInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BindImageMemorySwapchainInfoKhr,
+            s_type: StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR,
             p_next: std::ptr::null(),
             swapchain: Default::default(),
             image_index: 0,
@@ -1366,7 +1354,7 @@ impl<'lt> Default for AcquireNextImageInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AcquireNextImageInfoKhr,
+            s_type: StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR,
             p_next: std::ptr::null(),
             swapchain: Default::default(),
             timeout: 0,
@@ -1597,7 +1585,7 @@ impl<'lt> Default for DeviceGroupPresentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceGroupPresentInfoKhr,
+            s_type: StructureType::DEVICE_GROUP_PRESENT_INFO_KHR,
             p_next: std::ptr::null(),
             swapchain_count: 0,
             device_masks: std::ptr::null(),
@@ -1749,7 +1737,7 @@ impl<'lt> Default for DeviceGroupSwapchainCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceGroupSwapchainCreateInfoKhr,
+            s_type: StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             modes: Default::default(),
         }
@@ -1914,7 +1902,7 @@ impl PhysicalDevice {
         let mut p_rects = SmallVec::<Rect2D>::from_elem(Default::default(), p_rect_count as usize);
         let _return = _function(self.as_raw(), surface, &mut p_rect_count, p_rects.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_rects),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_rects),
             e => VulkanResult::Err(e),
         }
     }
@@ -1986,7 +1974,7 @@ impl Device {
             .unwrap_or_else(|| MaybeUninit::<DeviceGroupPresentCapabilitiesKHR<'lt>>::zeroed().assume_init());
         let _return = _function(self.as_raw(), &mut p_device_group_present_capabilities);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_device_group_present_capabilities.p_next = std::ptr::null_mut();
                 p_device_group_present_capabilities
             }),
@@ -2077,7 +2065,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), surface, p_modes as *mut DeviceGroupPresentModeFlagsKHR);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2163,10 +2151,10 @@ impl Device {
             &mut p_image_index,
         );
         match _return {
-            VulkanResultCodes::Success
-            | VulkanResultCodes::Timeout
-            | VulkanResultCodes::NotReady
-            | VulkanResultCodes::SuboptimalKhr => VulkanResult::Success(_return, p_image_index),
+            VulkanResultCodes::SUCCESS
+            | VulkanResultCodes::TIMEOUT
+            | VulkanResultCodes::NOT_READY
+            | VulkanResultCodes::SUBOPTIMAL_KHR => VulkanResult::Success(_return, p_image_index),
             e => VulkanResult::Err(e),
         }
     }

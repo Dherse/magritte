@@ -148,8 +148,8 @@ pub type FNGetPhysicalDeviceSurfaceCapabilities2Ext = Option<
 ///} VkSurfaceCounterFlagBitsEXT;
 ///```
 ///# Description
-/// - [`SurfaceCounterVblankExt`] specifies a counter incrementing once every time a vertical
-///   blanking period occurs on the display associated with the surface.
+/// - [`VBLANK`] specifies a counter incrementing once every time a vertical blanking period occurs
+///   on the display associated with the surface.
 ///# Related
 /// - [`VK_EXT_display_surface_counter`]
 /// - [`SurfaceCounterFlagsEXT`]
@@ -167,21 +167,18 @@ pub type FNGetPhysicalDeviceSurfaceCapabilities2Ext = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum SurfaceCounterFlagBitsEXT {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`SurfaceCounterVblankExt`] specifies a counter incrementing
-    ///once every time a vertical blanking period occurs on the display
-    ///associated with the surface.
-    SurfaceCounterVblankExt = 1,
-}
+#[repr(transparent)]
+pub struct SurfaceCounterFlagBitsEXT(u32);
 impl const Default for SurfaceCounterFlagBitsEXT {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl SurfaceCounterFlagBitsEXT {
+    ///[`VBLANK`] specifies a counter incrementing
+    ///once every time a vertical blanking period occurs on the display
+    ///associated with the surface.
+    pub const VBLANK: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -190,12 +187,15 @@ impl SurfaceCounterFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSurfaceCounterFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCounterFlagBitsEXT.html) - Surface-relative counter types
@@ -211,8 +211,8 @@ impl SurfaceCounterFlagBitsEXT {
 ///} VkSurfaceCounterFlagBitsEXT;
 ///```
 ///# Description
-/// - [`SurfaceCounterVblankExt`] specifies a counter incrementing once every time a vertical
-///   blanking period occurs on the display associated with the surface.
+/// - [`VBLANK`] specifies a counter incrementing once every time a vertical blanking period occurs
+///   on the display associated with the surface.
 ///# Related
 /// - [`VK_EXT_display_surface_counter`]
 /// - [`SurfaceCounterFlagsEXT`]
@@ -238,14 +238,14 @@ impl const Default for SurfaceCounterFlagsEXT {
 }
 impl From<SurfaceCounterFlagBitsEXT> for SurfaceCounterFlagsEXT {
     fn from(from: SurfaceCounterFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl SurfaceCounterFlagsEXT {
-    ///[`SurfaceCounterVblankExt`] specifies a counter incrementing
+    ///[`VBLANK`] specifies a counter incrementing
     ///once every time a vertical blanking period occurs on the display
     ///associated with the surface.
-    pub const SURFACE_COUNTER_VBLANK_EXT: Self = Self(1);
+    pub const VBLANK: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -257,7 +257,7 @@ impl SurfaceCounterFlagsEXT {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::SURFACE_COUNTER_VBLANK_EXT;
+            all |= Self::VBLANK;
         }
         all
     }
@@ -459,12 +459,12 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SurfaceCounterFlagsEXT::SURFACE_COUNTER_VBLANK_EXT) {
+                    if self.0.contains(SurfaceCounterFlagsEXT::VBLANK) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_COUNTER_VBLANK_EXT))?;
+                        f.write_str(stringify!(VBLANK))?;
                     }
                 }
                 Ok(())
@@ -647,7 +647,7 @@ impl<'lt> Default for SurfaceCapabilities2EXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceCapabilities2Ext,
+            s_type: StructureType::SURFACE_CAPABILITIES2_EXT,
             p_next: std::ptr::null_mut(),
             min_image_count: 0,
             max_image_count: 0,
@@ -938,7 +938,7 @@ impl PhysicalDevice {
             .unwrap_or_else(|| MaybeUninit::<SurfaceCapabilities2EXT<'lt>>::zeroed().assume_init());
         let _return = _function(self.as_raw(), surface, &mut p_surface_capabilities);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_surface_capabilities.p_next = std::ptr::null_mut();
                 p_surface_capabilities
             }),

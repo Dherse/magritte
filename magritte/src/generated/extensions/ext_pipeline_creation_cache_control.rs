@@ -86,7 +86,7 @@ pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static CStr =
 ///} VkPipelineCacheCreateFlagBits;
 ///```
 ///# Description
-/// - [`ExternallySynchronized`] specifies that all commands that modify the created [`PipelineCache`] will be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fundamentals-threadingbehavior). When set, the implementation  **may**  skip any unnecessary processing needed to support simultaneous modification from multiple threads where allowed.
+/// - [`EXTERNALLY_SYNCHRONIZED`] specifies that all commands that modify the created [`PipelineCache`] will be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fundamentals-threadingbehavior). When set, the implementation  **may**  skip any unnecessary processing needed to support simultaneous modification from multiple threads where allowed.
 ///# Related
 /// - [`VK_EXT_pipeline_creation_cache_control`]
 /// - [`PipelineCacheCreateFlags`]
@@ -103,11 +103,15 @@ pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static CStr =
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum PipelineCacheCreateFlagBits {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ExternallySynchronized`] specifies
+#[repr(transparent)]
+pub struct PipelineCacheCreateFlagBits(u32);
+impl const Default for PipelineCacheCreateFlagBits {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl PipelineCacheCreateFlagBits {
+    ///[`EXTERNALLY_SYNCHRONIZED`] specifies
     ///that all commands that modify the created [`PipelineCache`] will be
     ///[externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fundamentals-threadingbehavior).
     ///When set, the implementation  **may**  skip any unnecessary processing needed
@@ -115,14 +119,7 @@ pub enum PipelineCacheCreateFlagBits {
     ///allowed.
     ///
     ///Provided by [`crate::vulkan1_3`]
-    ExternallySynchronized = 1,
-}
-impl const Default for PipelineCacheCreateFlagBits {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl PipelineCacheCreateFlagBits {
+    pub const EXTERNALLY_SYNCHRONIZED: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -131,11 +128,14 @@ impl PipelineCacheCreateFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }

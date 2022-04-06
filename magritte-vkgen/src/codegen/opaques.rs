@@ -4,19 +4,12 @@ use tracing::warn;
 
 use crate::{
     doc::{Documentation, Queryable},
-    imports::Imports,
     source::{OpaqueType, Source},
 };
 
 impl<'a> OpaqueType<'a> {
     /// Generates the code for an opaque type
-    pub(super) fn generate_code(
-        &self,
-        source: &Source<'a>,
-        doc: &mut Documentation,
-        imports: &Imports,
-        mut out: &mut TokenStream,
-    ) {
+    pub(super) fn generate_code(&self, source: &Source<'a>, doc: &mut Documentation, mut out: &mut TokenStream) {
         // the name as an identifier
         let name = self.as_ident();
 
@@ -49,7 +42,7 @@ impl<'a> OpaqueType<'a> {
                 "xcb_window_t" => quote! { u32 },
                 "IDirectFB" => quote! { std::ffi::c_void },
                 "IDirectFBSurface" => quote! { std::ffi::c_void },
-                "zx_handle_t" => quote! { std::ffi::c_void },
+                "zx_handle_t" => quote! { u32 },
                 "GgpStreamDescriptor" => quote! { u32 },
                 "GgpFrameToken" => quote! { u64 },
                 "_screen_context" => quote! { std::ffi::c_void },

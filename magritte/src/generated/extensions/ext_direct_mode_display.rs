@@ -159,7 +159,7 @@ impl PhysicalDevice {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), display);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

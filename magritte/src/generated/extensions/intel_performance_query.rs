@@ -547,17 +547,16 @@ pub type FNCmdSetPerformanceOverrideIntel = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceConfigurationTypeINTEL {
-    ///No documentation found
-    PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel = 0,
-}
+#[repr(transparent)]
+pub struct PerformanceConfigurationTypeINTEL(i32);
 impl const Default for PerformanceConfigurationTypeINTEL {
     fn default() -> Self {
-        Self::PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel
+        Self(0)
     }
 }
 impl PerformanceConfigurationTypeINTEL {
+    ///No documentation found
+    pub const COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED: Self = Self(0);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -566,12 +565,15 @@ impl PerformanceConfigurationTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkQueryPoolSamplingModeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolSamplingModeINTEL.html) - Enum specifying how performance queries should be captured
@@ -586,8 +588,8 @@ impl PerformanceConfigurationTypeINTEL {
 ///} VkQueryPoolSamplingModeINTEL;
 ///```
 ///# Description
-/// - [`QueryPoolSamplingModeManualIntel`] is the default mode in which the application calls
-///   [`cmd_begin_query`] and [`cmd_end_query`] to record performance data.
+/// - [`MANUAL`] is the default mode in which the application calls [`cmd_begin_query`] and
+///   [`cmd_end_query`] to record performance data.
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
@@ -604,19 +606,18 @@ impl PerformanceConfigurationTypeINTEL {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum QueryPoolSamplingModeINTEL {
-    ///[`QueryPoolSamplingModeManualIntel`] is the default mode in
-    ///which the application calls [`cmd_begin_query`] and
-    ///[`cmd_end_query`] to record performance data.
-    QueryPoolSamplingModeManualIntel = 0,
-}
+#[repr(transparent)]
+pub struct QueryPoolSamplingModeINTEL(i32);
 impl const Default for QueryPoolSamplingModeINTEL {
     fn default() -> Self {
-        Self::QueryPoolSamplingModeManualIntel
+        Self(0)
     }
 }
 impl QueryPoolSamplingModeINTEL {
+    ///[`MANUAL`] is the default mode in
+    ///which the application calls [`cmd_begin_query`] and
+    ///[`cmd_end_query`] to record performance data.
+    pub const MANUAL: Self = Self(0);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -625,12 +626,15 @@ impl QueryPoolSamplingModeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceOverrideTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceOverrideTypeINTEL.html) - Performance override type
@@ -645,9 +649,9 @@ impl QueryPoolSamplingModeINTEL {
 ///} VkPerformanceOverrideTypeINTEL;
 ///```
 ///# Description
-/// - [`PerformanceOverrideTypeNullHardwareIntel`] turns all rendering operations into noop.
-/// - [`PerformanceOverrideTypeFlushGpuCachesIntel`] stalls the stream of commands until all
-///   previously emitted commands have completed and all caches been flushed and invalidated.
+/// - [`NULL_HARDWARE`] turns all rendering operations into noop.
+/// - [`FLUSH_GPU_CACHES`] stalls the stream of commands until all previously emitted commands have
+///   completed and all caches been flushed and invalidated.
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceOverrideInfoINTEL`]
@@ -664,22 +668,21 @@ impl QueryPoolSamplingModeINTEL {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceOverrideTypeINTEL {
-    ///[`PerformanceOverrideTypeNullHardwareIntel`] turns all
-    ///rendering operations into noop.
-    PerformanceOverrideTypeNullHardwareIntel = 0,
-    ///[`PerformanceOverrideTypeFlushGpuCachesIntel`] stalls the
-    ///stream of commands until all previously emitted commands have completed
-    ///and all caches been flushed and invalidated.
-    PerformanceOverrideTypeFlushGpuCachesIntel = 1,
-}
+#[repr(transparent)]
+pub struct PerformanceOverrideTypeINTEL(i32);
 impl const Default for PerformanceOverrideTypeINTEL {
     fn default() -> Self {
-        Self::PerformanceOverrideTypeNullHardwareIntel
+        Self(0)
     }
 }
 impl PerformanceOverrideTypeINTEL {
+    ///[`NULL_HARDWARE`] turns all
+    ///rendering operations into noop.
+    pub const NULL_HARDWARE: Self = Self(0);
+    ///[`FLUSH_GPU_CACHES`] stalls the
+    ///stream of commands until all previously emitted commands have completed
+    ///and all caches been flushed and invalidated.
+    pub const FLUSH_GPU_CACHES: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -688,12 +691,15 @@ impl PerformanceOverrideTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceParameterTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceParameterTypeINTEL.html) - Parameters that can be queried
@@ -708,10 +714,10 @@ impl PerformanceOverrideTypeINTEL {
 ///} VkPerformanceParameterTypeINTEL;
 ///```
 ///# Description
-/// - [`PerformanceParameterTypeHwCountersSupportedIntel`] has a boolean result which tells whether
-///   hardware counters can be captured.
-/// - [`PerformanceParameterTypeStreamMarkerValidBitsIntel`] has a 32 bits integer result which
-///   tells how many bits can be written into the [`PerformanceValueINTEL`] value.
+/// - [`HW_COUNTERS_SUPPORTED`] has a boolean result which tells whether hardware counters can be
+///   captured.
+/// - [`STREAM_MARKER_VALID_BITS`] has a 32 bits integer result which tells how many bits can be
+///   written into the [`PerformanceValueINTEL`] value.
 ///# Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`get_performance_parameter_intel`]
@@ -728,22 +734,21 @@ impl PerformanceOverrideTypeINTEL {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceParameterTypeINTEL {
-    ///[`PerformanceParameterTypeHwCountersSupportedIntel`] has a
-    ///boolean result which tells whether hardware counters can be captured.
-    PerformanceParameterTypeHwCountersSupportedIntel = 0,
-    ///[`PerformanceParameterTypeStreamMarkerValidBitsIntel`] has a
-    ///32 bits integer result which tells how many bits can be written into the
-    ///[`PerformanceValueINTEL`] value.
-    PerformanceParameterTypeStreamMarkerValidBitsIntel = 1,
-}
+#[repr(transparent)]
+pub struct PerformanceParameterTypeINTEL(i32);
 impl const Default for PerformanceParameterTypeINTEL {
     fn default() -> Self {
-        Self::PerformanceParameterTypeHwCountersSupportedIntel
+        Self(0)
     }
 }
 impl PerformanceParameterTypeINTEL {
+    ///[`HW_COUNTERS_SUPPORTED`] has a
+    ///boolean result which tells whether hardware counters can be captured.
+    pub const HW_COUNTERS_SUPPORTED: Self = Self(0);
+    ///[`STREAM_MARKER_VALID_BITS`] has a
+    ///32 bits integer result which tells how many bits can be written into the
+    ///[`PerformanceValueINTEL`] value.
+    pub const STREAM_MARKER_VALID_BITS: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -752,29 +757,28 @@ impl PerformanceParameterTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceValueTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueTypeINTEL.html) - Type of the parameters that can be queried
 ///# C Specifications
 ///Possible values of [`PerformanceValueINTEL::type_`], specifying the
 ///type of the data returned in [`PerformanceValueINTEL::data`], are:
-/// - [`PerformanceValueTypeUint32Intel`] specifies that unsigned 32-bit integer data is returned in
-///   `data.value32`.
-/// - [`PerformanceValueTypeUint64Intel`] specifies that unsigned 64-bit integer data is returned in
-///   `data.value64`.
-/// - [`PerformanceValueTypeFloatIntel`] specifies that floating-point data is returned in
-///   `data.valueFloat`.
-/// - [`PerformanceValueTypeBoolIntel`] specifies that [`Bool32`] data is returned in
-///   `data.valueBool`.
-/// - [`PerformanceValueTypeStringIntel`] specifies that a pointer to a null-terminated UTF-8 string
-///   is returned in `data.valueString`. The pointer is valid for the lifetime of the `device`
-///   parameter passed to [`get_performance_parameter_intel`].
+/// - [`UINT32`] specifies that unsigned 32-bit integer data is returned in `data.value32`.
+/// - [`UINT64`] specifies that unsigned 64-bit integer data is returned in `data.value64`.
+/// - [`FLOAT`] specifies that floating-point data is returned in `data.valueFloat`.
+/// - [`BOOL`] specifies that [`Bool32`] data is returned in `data.valueBool`.
+/// - [`STRING`] specifies that a pointer to a null-terminated UTF-8 string is returned in
+///   `data.valueString`. The pointer is valid for the lifetime of the `device` parameter passed to
+///   [`get_performance_parameter_intel`].
 ///
 ///```c
 ///// Provided by VK_INTEL_performance_query
@@ -802,25 +806,24 @@ impl PerformanceParameterTypeINTEL {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceValueTypeINTEL {
-    ///No documentation found
-    PerformanceValueTypeUint32Intel = 0,
-    ///No documentation found
-    PerformanceValueTypeUint64Intel = 1,
-    ///No documentation found
-    PerformanceValueTypeFloatIntel = 2,
-    ///No documentation found
-    PerformanceValueTypeBoolIntel = 3,
-    ///No documentation found
-    PerformanceValueTypeStringIntel = 4,
-}
+#[repr(transparent)]
+pub struct PerformanceValueTypeINTEL(i32);
 impl const Default for PerformanceValueTypeINTEL {
     fn default() -> Self {
-        Self::PerformanceValueTypeUint32Intel
+        Self(0)
     }
 }
 impl PerformanceValueTypeINTEL {
+    ///No documentation found
+    pub const UINT32: Self = Self(0);
+    ///No documentation found
+    pub const UINT64: Self = Self(1);
+    ///No documentation found
+    pub const FLOAT: Self = Self(2);
+    ///No documentation found
+    pub const BOOL: Self = Self(3);
+    ///No documentation found
+    pub const STRING: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -829,12 +832,15 @@ impl PerformanceValueTypeINTEL {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceValueINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueINTEL.html) - Container for value and types of parameters that can be queried
@@ -966,7 +972,7 @@ impl<'lt> Default for InitializePerformanceApiInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::InitializePerformanceApiInfoIntel,
+            s_type: StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL,
             p_next: std::ptr::null(),
             user_data: std::ptr::null_mut(),
         }
@@ -1099,7 +1105,7 @@ impl<'lt> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::QueryPoolPerformanceQueryCreateInfoIntel,
+            s_type: StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL,
             p_next: std::ptr::null(),
             performance_counters_sampling: Default::default(),
         }
@@ -1208,7 +1214,7 @@ impl<'lt> Default for PerformanceMarkerInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceMarkerInfoIntel,
+            s_type: StructureType::PERFORMANCE_MARKER_INFO_INTEL,
             p_next: std::ptr::null(),
             marker: 0,
         }
@@ -1320,7 +1326,7 @@ impl<'lt> Default for PerformanceStreamMarkerInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceStreamMarkerInfoIntel,
+            s_type: StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL,
             p_next: std::ptr::null(),
             marker: 0,
         }
@@ -1434,7 +1440,7 @@ impl<'lt> Default for PerformanceOverrideInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceOverrideInfoIntel,
+            s_type: StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL,
             p_next: std::ptr::null(),
             type_: Default::default(),
             enable: 0,
@@ -1595,7 +1601,7 @@ impl<'lt> Default for PerformanceConfigurationAcquireInfoINTEL<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceConfigurationAcquireInfoIntel,
+            s_type: StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL,
             p_next: std::ptr::null(),
             type_: Default::default(),
         }
@@ -1771,7 +1777,7 @@ impl Device {
             p_initialize_info as *const InitializePerformanceApiInfoINTEL<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -1895,7 +1901,7 @@ impl Device {
             p_configuration.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_configuration.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -1969,7 +1975,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), configuration.unwrap_or_default());
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2037,7 +2043,7 @@ impl Device {
         let mut p_value = MaybeUninit::<PerformanceValueINTEL>::uninit();
         let _return = _function(self.as_raw(), parameter, p_value.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_value.assume_init()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_value.assume_init()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2104,7 +2110,7 @@ impl Queue {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), configuration);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2180,7 +2186,7 @@ impl CommandBuffer {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_marker_info as *const PerformanceMarkerInfoINTEL<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2258,7 +2264,7 @@ impl CommandBuffer {
             p_marker_info as *const PerformanceStreamMarkerInfoINTEL<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2342,7 +2348,7 @@ impl CommandBuffer {
             p_override_info as *const PerformanceOverrideInfoINTEL<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2406,7 +2412,8 @@ impl Handle for PerformanceConfigurationINTEL {
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.release_performance_configuration_intel(None);
+        self.device()
+            .release_performance_configuration_intel(Some(self.as_raw()));
     }
     #[inline]
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {

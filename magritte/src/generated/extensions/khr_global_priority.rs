@@ -152,10 +152,10 @@ pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 ///Priority values are sorted in ascending order.
 ///A comparison operation on the enum values can be used to determine the
 ///priority order.
-/// - [`QueueGlobalPriorityLowKhr`] is below the system default. Useful for non-interactive tasks.
-/// - [`QueueGlobalPriorityMediumKhr`] is the system default priority.
-/// - [`QueueGlobalPriorityHighKhr`] is above the system default.
-/// - [`QueueGlobalPriorityRealtimeKhr`] is the highest priority. Useful for critical tasks.
+/// - [`LOW`] is below the system default. Useful for non-interactive tasks.
+/// - [`MEDIUM`] is the system default priority.
+/// - [`HIGH`] is above the system default.
+/// - [`REALTIME`] is the highest priority. Useful for critical tasks.
 ///# Related
 /// - [`VK_EXT_global_priority`]
 /// - [`VK_KHR_global_priority`]
@@ -174,28 +174,25 @@ pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum QueueGlobalPriorityKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`QueueGlobalPriorityLowKhr`] is below the system default.
-    ///Useful for non-interactive tasks.
-    QueueGlobalPriorityLowKhr = 128,
-    ///[`QueueGlobalPriorityMediumKhr`] is the system default
-    ///priority.
-    QueueGlobalPriorityMediumKhr = 256,
-    ///[`QueueGlobalPriorityHighKhr`] is above the system default.
-    QueueGlobalPriorityHighKhr = 512,
-    ///[`QueueGlobalPriorityRealtimeKhr`] is the highest priority.
-    ///Useful for critical tasks.
-    QueueGlobalPriorityRealtimeKhr = 1024,
-}
+#[repr(transparent)]
+pub struct QueueGlobalPriorityKHR(i32);
 impl const Default for QueueGlobalPriorityKHR {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl QueueGlobalPriorityKHR {
+    ///[`LOW`] is below the system default.
+    ///Useful for non-interactive tasks.
+    pub const LOW: Self = Self(128);
+    ///[`MEDIUM`] is the system default
+    ///priority.
+    pub const MEDIUM: Self = Self(256);
+    ///[`HIGH`] is above the system default.
+    pub const HIGH: Self = Self(512);
+    ///[`REALTIME`] is the highest priority.
+    ///Useful for critical tasks.
+    pub const REALTIME: Self = Self(1024);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -204,12 +201,15 @@ impl QueueGlobalPriorityKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDeviceQueueGlobalPriorityCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoKHR.html) - Specify a system wide priority
@@ -276,7 +276,7 @@ impl<'lt> Default for DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceQueueGlobalPriorityCreateInfoKhr,
+            s_type: StructureType::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             global_priority: Default::default(),
         }
@@ -403,7 +403,7 @@ impl<'lt> Default for PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceGlobalPriorityQueryFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             global_priority_query: 0,
         }
@@ -560,7 +560,7 @@ impl<'lt> Default for QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::QueueFamilyGlobalPriorityPropertiesKhr,
+            s_type: StructureType::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             priority_count: 0,
             priorities: [Default::default(); MAX_GLOBAL_PRIORITY_SIZE_KHR as usize],

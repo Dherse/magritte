@@ -166,8 +166,7 @@ pub type FNCmdEncodeVideoKhr = Option<
 ///} VkVideoEncodeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoEncodeReserved0Khr`] The current version of the specification has reserved this value
-///   for future use.
+/// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
 ///# Related
 /// - [`VK_KHR_video_encode_queue`]
 /// - [`VideoEncodeFlagsKHR`]
@@ -184,20 +183,19 @@ pub type FNCmdEncodeVideoKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoEncodeFlagBitsKHR {
-    ///No documentation found
-    VideoEncodeDefaultKhr = 0,
-    ///[`VideoEncodeReserved0Khr`] The current version of the
-    ///specification has reserved this value for future use.
-    VideoEncodeReserved0Khr = 1,
-}
+#[repr(transparent)]
+pub struct VideoEncodeFlagBitsKHR(u32);
 impl const Default for VideoEncodeFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoEncodeDefaultKhr
+        Self(0)
     }
 }
 impl VideoEncodeFlagBitsKHR {
+    ///No documentation found
+    pub const DEFAULT: Self = Self(0);
+    ///[`RESERVED0`] The current version of the
+    ///specification has reserved this value for future use.
+    pub const RESERVED0: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -206,12 +204,15 @@ impl VideoEncodeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoEncodeCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilityFlagBitsKHR.html) - Video encode capability flags
@@ -226,8 +227,8 @@ impl VideoEncodeFlagBitsKHR {
 ///} VkVideoEncodeCapabilityFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`] reports that the implementation
-///   supports use of [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
+/// - [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of
+///   [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
 ///# Related
 /// - [`VK_KHR_video_encode_queue`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
@@ -244,21 +245,20 @@ impl VideoEncodeFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoEncodeCapabilityFlagBitsKHR {
-    ///No documentation found
-    VideoEncodeCapabilityDefaultKhr = 0,
-    ///[`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`]
-    ///reports that the implementation supports use of
-    ///[`VideoEncodeInfoKHR`]::`precedingExternallyEncodedBytes`.
-    VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr = 1,
-}
+#[repr(transparent)]
+pub struct VideoEncodeCapabilityFlagBitsKHR(u32);
 impl const Default for VideoEncodeCapabilityFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoEncodeCapabilityDefaultKhr
+        Self(0)
     }
 }
 impl VideoEncodeCapabilityFlagBitsKHR {
+    ///No documentation found
+    pub const DEFAULT: Self = Self(0);
+    ///[`PRECEDING_EXTERNALLY_ENCODED_BYTES`]
+    ///reports that the implementation supports use of
+    ///[`VideoEncodeInfoKHR`]::`precedingExternallyEncodedBytes`.
+    pub const PRECEDING_EXTERNALLY_ENCODED_BYTES: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -267,12 +267,15 @@ impl VideoEncodeCapabilityFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoEncodeRateControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlFlagBitsKHR.html) - Reserved for future use
@@ -303,19 +306,18 @@ impl VideoEncodeCapabilityFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoEncodeRateControlFlagBitsKHR {
-    ///No documentation found
-    VideoEncodeRateControlDefaultKhr = 0,
-    ///No documentation found
-    VideoEncodeRateControlReserved0Khr = 1,
-}
+#[repr(transparent)]
+pub struct VideoEncodeRateControlFlagBitsKHR(u32);
 impl const Default for VideoEncodeRateControlFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoEncodeRateControlDefaultKhr
+        Self(0)
     }
 }
 impl VideoEncodeRateControlFlagBitsKHR {
+    ///No documentation found
+    pub const DEFAULT: Self = Self(0);
+    ///No documentation found
+    pub const RESERVED0: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -324,12 +326,15 @@ impl VideoEncodeRateControlFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoEncodeRateControlModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlModeFlagBitsKHR.html) - Video encode rate control modes
@@ -344,9 +349,9 @@ impl VideoEncodeRateControlFlagBitsKHR {
 ///} VkVideoEncodeRateControlModeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoEncodeRateControlModeNoneKhr`] for disabling rate control.
-/// - [`VideoEncodeRateControlModeCbrKhr`] for constant bitrate rate control mode.
-/// - [`VideoEncodeRateControlModeVbrKhr`] for variable bitrate rate control mode.
+/// - [`NONE`] for disabling rate control.
+/// - [`CBR`] for constant bitrate rate control mode.
+/// - [`VBR`] for variable bitrate rate control mode.
 ///# Related
 /// - [`VK_KHR_video_encode_queue`]
 /// - [`VideoEncodeRateControlInfoKHR`]
@@ -364,24 +369,23 @@ impl VideoEncodeRateControlFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoEncodeRateControlModeFlagBitsKHR {
-    ///[`VideoEncodeRateControlModeNoneKhr`] for disabling rate
-    ///control.
-    VideoEncodeRateControlModeNoneKhr = 0,
-    ///[`VideoEncodeRateControlModeCbrKhr`] for constant bitrate
-    ///rate control mode.
-    VideoEncodeRateControlModeCbrKhr = 1,
-    ///[`VideoEncodeRateControlModeVbrKhr`] for variable bitrate
-    ///rate control mode.
-    VideoEncodeRateControlModeVbrKhr = 2,
-}
+#[repr(transparent)]
+pub struct VideoEncodeRateControlModeFlagBitsKHR(u32);
 impl const Default for VideoEncodeRateControlModeFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoEncodeRateControlModeNoneKhr
+        Self(0)
     }
 }
 impl VideoEncodeRateControlModeFlagBitsKHR {
+    ///[`NONE`] for disabling rate
+    ///control.
+    pub const NONE: Self = Self(0);
+    ///[`CBR`] for constant bitrate
+    ///rate control mode.
+    pub const CBR: Self = Self(1);
+    ///[`VBR`] for variable bitrate
+    ///rate control mode.
+    pub const VBR: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -390,12 +394,15 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoEncodeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeFlagBitsKHR.html) - Video Encode Command Flags
@@ -410,8 +417,7 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
 ///} VkVideoEncodeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoEncodeReserved0Khr`] The current version of the specification has reserved this value
-///   for future use.
+/// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
 ///# Related
 /// - [`VK_KHR_video_encode_queue`]
 /// - [`VideoEncodeFlagsKHR`]
@@ -436,15 +442,15 @@ impl const Default for VideoEncodeFlagsKHR {
 }
 impl From<VideoEncodeFlagBitsKHR> for VideoEncodeFlagsKHR {
     fn from(from: VideoEncodeFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoEncodeFlagsKHR {
     ///No documentation found
-    pub const VIDEO_ENCODE_DEFAULT_KHR: Self = Self(0);
-    ///[`VideoEncodeReserved0Khr`] The current version of the
+    pub const DEFAULT: Self = Self(0);
+    ///[`RESERVED0`] The current version of the
     ///specification has reserved this value for future use.
-    pub const VIDEO_ENCODE_RESERVED_0_KHR: Self = Self(1);
+    pub const RESERVED_0: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -456,10 +462,10 @@ impl VideoEncodeFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_ENCODE_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_ENCODE_RESERVED_0_KHR;
+            all |= Self::RESERVED_0;
         }
         all
     }
@@ -661,19 +667,19 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(VideoEncodeFlagsKHR::VIDEO_ENCODE_DEFAULT_KHR) {
+                    if self.0.contains(VideoEncodeFlagsKHR::DEFAULT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_DEFAULT_KHR))?;
+                        f.write_str(stringify!(DEFAULT))?;
                     }
-                    if self.0.contains(VideoEncodeFlagsKHR::VIDEO_ENCODE_RESERVED_0_KHR) {
+                    if self.0.contains(VideoEncodeFlagsKHR::RESERVED_0) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_RESERVED_0_KHR))?;
+                        f.write_str(stringify!(RESERVED_0))?;
                     }
                 }
                 Ok(())
@@ -696,8 +702,8 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
 ///} VkVideoEncodeCapabilityFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`] reports that the implementation
-///   supports use of [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
+/// - [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of
+///   [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
 ///# Related
 /// - [`VK_KHR_video_encode_queue`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
@@ -722,16 +728,16 @@ impl const Default for VideoEncodeCapabilityFlagsKHR {
 }
 impl From<VideoEncodeCapabilityFlagBitsKHR> for VideoEncodeCapabilityFlagsKHR {
     fn from(from: VideoEncodeCapabilityFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoEncodeCapabilityFlagsKHR {
     ///No documentation found
-    pub const VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR: Self = Self(0);
-    ///[`VideoEncodeCapabilityPrecedingExternallyEncodedBytesKhr`]
+    pub const DEFAULT: Self = Self(0);
+    ///[`PRECEDING_EXTERNALLY_ENCODED_BYTES`]
     ///reports that the implementation supports use of
     ///[`VideoEncodeInfoKHR`]::`precedingExternallyEncodedBytes`.
-    pub const VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR: Self = Self(1);
+    pub const PRECEDING_EXTERNALLY_ENCODED_BYTES: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -743,10 +749,10 @@ impl VideoEncodeCapabilityFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR;
+            all |= Self::PRECEDING_EXTERNALLY_ENCODED_BYTES;
         }
         all
     }
@@ -950,26 +956,22 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
+                    if self.0.contains(VideoEncodeCapabilityFlagsKHR::DEFAULT) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(DEFAULT))?;
+                    }
                     if self
                         .0
-                        .contains(VideoEncodeCapabilityFlagsKHR::VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR)
+                        .contains(VideoEncodeCapabilityFlagsKHR::PRECEDING_EXTERNALLY_ENCODED_BYTES)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_CAPABILITY_DEFAULT_KHR))?;
-                    }
-                    if self.0.contains(
-                        VideoEncodeCapabilityFlagsKHR::VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR,
-                    ) {
-                        if !first {
-                            first = false;
-                            f.write_str(" | ")?;
-                        }
-                        f.write_str(stringify!(
-                            VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_KHR
-                        ))?;
+                        f.write_str(stringify!(PRECEDING_EXTERNALLY_ENCODED_BYTES))?;
                     }
                 }
                 Ok(())
@@ -1016,14 +1018,14 @@ impl const Default for VideoEncodeRateControlFlagsKHR {
 }
 impl From<VideoEncodeRateControlFlagBitsKHR> for VideoEncodeRateControlFlagsKHR {
     fn from(from: VideoEncodeRateControlFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoEncodeRateControlFlagsKHR {
     ///No documentation found
-    pub const VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR: Self = Self(0);
+    pub const DEFAULT: Self = Self(0);
     ///No documentation found
-    pub const VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR: Self = Self(1);
+    pub const RESERVED_0: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1035,10 +1037,10 @@ impl VideoEncodeRateControlFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR;
+            all |= Self::RESERVED_0;
         }
         all
     }
@@ -1244,25 +1246,19 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoEncodeRateControlFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR)
-                    {
+                    if self.0.contains(VideoEncodeRateControlFlagsKHR::DEFAULT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_DEFAULT_KHR))?;
+                        f.write_str(stringify!(DEFAULT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeRateControlFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR)
-                    {
+                    if self.0.contains(VideoEncodeRateControlFlagsKHR::RESERVED_0) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_KHR))?;
+                        f.write_str(stringify!(RESERVED_0))?;
                     }
                 }
                 Ok(())
@@ -1285,9 +1281,9 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
 ///} VkVideoEncodeRateControlModeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoEncodeRateControlModeNoneKhr`] for disabling rate control.
-/// - [`VideoEncodeRateControlModeCbrKhr`] for constant bitrate rate control mode.
-/// - [`VideoEncodeRateControlModeVbrKhr`] for variable bitrate rate control mode.
+/// - [`NONE`] for disabling rate control.
+/// - [`CBR`] for constant bitrate rate control mode.
+/// - [`VBR`] for variable bitrate rate control mode.
 ///# Related
 /// - [`VK_KHR_video_encode_queue`]
 /// - [`VideoEncodeRateControlInfoKHR`]
@@ -1313,19 +1309,19 @@ impl const Default for VideoEncodeRateControlModeFlagsKHR {
 }
 impl From<VideoEncodeRateControlModeFlagBitsKHR> for VideoEncodeRateControlModeFlagsKHR {
     fn from(from: VideoEncodeRateControlModeFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoEncodeRateControlModeFlagsKHR {
-    ///[`VideoEncodeRateControlModeNoneKhr`] for disabling rate
+    ///[`NONE`] for disabling rate
     ///control.
-    pub const VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR: Self = Self(0);
-    ///[`VideoEncodeRateControlModeCbrKhr`] for constant bitrate
+    pub const NONE: Self = Self(0);
+    ///[`CBR`] for constant bitrate
     ///rate control mode.
-    pub const VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR: Self = Self(1);
-    ///[`VideoEncodeRateControlModeVbrKhr`] for variable bitrate
+    pub const CBR: Self = Self(1);
+    ///[`VBR`] for variable bitrate
     ///rate control mode.
-    pub const VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR: Self = Self(2);
+    pub const VBR: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1337,13 +1333,13 @@ impl VideoEncodeRateControlModeFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR;
+            all |= Self::NONE;
         }
         {
-            all |= Self::VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR;
+            all |= Self::CBR;
         }
         {
-            all |= Self::VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR;
+            all |= Self::VBR;
         }
         all
     }
@@ -1549,35 +1545,26 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoEncodeRateControlModeFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR)
-                    {
+                    if self.0.contains(VideoEncodeRateControlModeFlagsKHR::NONE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_KHR))?;
+                        f.write_str(stringify!(NONE))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeRateControlModeFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR)
-                    {
+                    if self.0.contains(VideoEncodeRateControlModeFlagsKHR::CBR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_KHR))?;
+                        f.write_str(stringify!(CBR))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoEncodeRateControlModeFlagsKHR::VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR)
-                    {
+                    if self.0.contains(VideoEncodeRateControlModeFlagsKHR::VBR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_KHR))?;
+                        f.write_str(stringify!(VBR))?;
                     }
                 }
                 Ok(())
@@ -1781,7 +1768,7 @@ impl<'lt> Default for VideoEncodeInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoEncodeInfoKhr,
+            s_type: StructureType::VIDEO_ENCODE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             quality_level: 0,
@@ -2118,7 +2105,7 @@ impl<'lt> Default for VideoEncodeRateControlInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoEncodeRateControlInfoKhr,
+            s_type: StructureType::VIDEO_ENCODE_RATE_CONTROL_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             rate_control_mode: Default::default(),
@@ -2365,7 +2352,7 @@ impl<'lt> Default for VideoEncodeRateControlLayerInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoEncodeRateControlLayerInfoKhr,
+            s_type: StructureType::VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR,
             p_next: std::ptr::null(),
             average_bitrate: 0,
             max_bitrate: 0,
@@ -2617,7 +2604,7 @@ impl<'lt> Default for VideoEncodeCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoEncodeCapabilitiesKhr,
+            s_type: StructureType::VIDEO_ENCODE_CAPABILITIES_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             rate_control_modes: Default::default(),

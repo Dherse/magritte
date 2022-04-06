@@ -103,7 +103,7 @@ impl<'lt> Default for PresentFrameTokenGGP<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PresentFrameTokenGgp,
+            s_type: StructureType::PRESENT_FRAME_TOKEN_GGP,
             p_next: std::ptr::null(),
             frame_token: unsafe { std::mem::zeroed() },
         }

@@ -122,7 +122,7 @@ impl<'lt> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceYcbcr2Plane444FormatsFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_YCBCR2_PLANE_444_FORMATS_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             ycbcr_2_plane_444_formats: 0,
         }

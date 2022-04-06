@@ -87,14 +87,11 @@ pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static CStr =
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum PipelineCompilerControlFlagBitsAMD {
-    #[doc(hidden)]
-    Empty = 0,
-}
+#[repr(transparent)]
+pub struct PipelineCompilerControlFlagBitsAMD(u32);
 impl const Default for PipelineCompilerControlFlagBitsAMD {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl PipelineCompilerControlFlagBitsAMD {
@@ -106,12 +103,15 @@ impl PipelineCompilerControlFlagBitsAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineCompilerControlFlagBitsAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCompilerControlFlagBitsAMD.html) - Enum specifying available compilation control flags
@@ -147,7 +147,7 @@ impl const Default for PipelineCompilerControlFlagsAMD {
 }
 impl From<PipelineCompilerControlFlagBitsAMD> for PipelineCompilerControlFlagsAMD {
     fn from(from: PipelineCompilerControlFlagBitsAMD) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl PipelineCompilerControlFlagsAMD {
@@ -429,7 +429,7 @@ impl<'lt> Default for PipelineCompilerControlCreateInfoAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineCompilerControlCreateInfoAmd,
+            s_type: StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD,
             p_next: std::ptr::null(),
             compiler_control_flags: Default::default(),
         }

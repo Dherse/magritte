@@ -221,7 +221,7 @@ impl<'lt> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVertexInputDynamicStateFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             vertex_input_dynamic_state: 0,
         }
@@ -400,7 +400,7 @@ impl<'lt> Default for VertexInputBindingDescription2EXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VertexInputBindingDescription2Ext,
+            s_type: StructureType::VERTEX_INPUT_BINDING_DESCRIPTION2_EXT,
             p_next: std::ptr::null_mut(),
             binding: 0,
             stride: 0,
@@ -584,7 +584,7 @@ impl<'lt> Default for VertexInputAttributeDescription2EXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VertexInputAttributeDescription2Ext,
+            s_type: StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION2_EXT,
             p_next: std::ptr::null_mut(),
             location: 0,
             binding: 0,

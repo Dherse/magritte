@@ -429,177 +429,176 @@ pub type FNCmdDebugMarkerInsertExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DebugReportObjectTypeEXT {
+#[repr(transparent)]
+pub struct DebugReportObjectTypeEXT(i32);
+impl const Default for DebugReportObjectTypeEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DebugReportObjectTypeEXT {
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeUnknownExt = 0,
+    pub const UNKNOWN: Self = Self(0);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeInstanceExt = 1,
+    pub const INSTANCE: Self = Self(1);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypePhysicalDeviceExt = 2,
+    pub const PHYSICAL_DEVICE: Self = Self(2);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDeviceExt = 3,
+    pub const DEVICE: Self = Self(3);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeQueueExt = 4,
+    pub const QUEUE: Self = Self(4);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeSemaphoreExt = 5,
+    pub const SEMAPHORE: Self = Self(5);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeCommandBufferExt = 6,
+    pub const COMMAND_BUFFER: Self = Self(6);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeFenceExt = 7,
+    pub const FENCE: Self = Self(7);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDeviceMemoryExt = 8,
+    pub const DEVICE_MEMORY: Self = Self(8);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeBufferExt = 9,
+    pub const BUFFER: Self = Self(9);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeImageExt = 10,
+    pub const IMAGE: Self = Self(10);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeEventExt = 11,
+    pub const EVENT: Self = Self(11);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeQueryPoolExt = 12,
+    pub const QUERY_POOL: Self = Self(12);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeBufferViewExt = 13,
+    pub const BUFFER_VIEW: Self = Self(13);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeImageViewExt = 14,
+    pub const IMAGE_VIEW: Self = Self(14);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeShaderModuleExt = 15,
+    pub const SHADER_MODULE: Self = Self(15);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypePipelineCacheExt = 16,
+    pub const PIPELINE_CACHE: Self = Self(16);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypePipelineLayoutExt = 17,
+    pub const PIPELINE_LAYOUT: Self = Self(17);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeRenderPassExt = 18,
+    pub const RENDER_PASS: Self = Self(18);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypePipelineExt = 19,
+    pub const PIPELINE: Self = Self(19);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDescriptorSetLayoutExt = 20,
+    pub const DESCRIPTOR_SET_LAYOUT: Self = Self(20);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeSamplerExt = 21,
+    pub const SAMPLER: Self = Self(21);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDescriptorPoolExt = 22,
+    pub const DESCRIPTOR_POOL: Self = Self(22);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDescriptorSetExt = 23,
+    pub const DESCRIPTOR_SET: Self = Self(23);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeFramebufferExt = 24,
+    pub const FRAMEBUFFER: Self = Self(24);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeCommandPoolExt = 25,
+    pub const COMMAND_POOL: Self = Self(25);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeSurfaceKhrExt = 26,
+    pub const SURFACE_KHR: Self = Self(26);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeSwapchainKhrExt = 27,
+    pub const SWAPCHAIN_KHR: Self = Self(27);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDebugReportCallbackExtExt = 28,
+    pub const DEBUG_REPORT_CALLBACK: Self = Self(28);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDisplayKhrExt = 29,
+    pub const DISPLAY_KHR: Self = Self(29);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDisplayModeKhrExt = 30,
+    pub const DISPLAY_MODE_KHR: Self = Self(30);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeValidationCacheExtExt = 33,
+    pub const VALIDATION_CACHE: Self = Self(33);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_sampler_ycbcr_conversion`]
     #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
-    DebugReportObjectTypeSamplerYcbcrConversionExt = 1000156000,
+    pub const SAMPLER_YCBCR_CONVERSION: Self = Self(1000156000);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::ext_debug_report`]
-    DebugReportObjectTypeDescriptorUpdateTemplateExt = 1000085000,
+    pub const DESCRIPTOR_UPDATE_TEMPLATE: Self = Self(1000085000);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nvx_binary_import`]
     #[cfg(feature = "VK_NVX_binary_import")]
-    DebugReportObjectTypeCuModuleNvxExt = 1000029000,
+    pub const CU_MODULE_NVX: Self = Self(1000029000);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nvx_binary_import`]
     #[cfg(feature = "VK_NVX_binary_import")]
-    DebugReportObjectTypeCuFunctionNvxExt = 1000029001,
+    pub const CU_FUNCTION_NVX: Self = Self(1000029001);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::khr_acceleration_structure`]
     #[cfg(feature = "VK_KHR_acceleration_structure")]
-    DebugReportObjectTypeAccelerationStructureKhrExt = 1000150000,
+    pub const ACCELERATION_STRUCTURE_KHR: Self = Self(1000150000);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing`]
     #[cfg(feature = "VK_NV_ray_tracing")]
-    DebugReportObjectTypeAccelerationStructureNvExt = 1000165000,
+    pub const ACCELERATION_STRUCTURE_NV: Self = Self(1000165000);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::fuchsia_buffer_collection`]
     #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
-    DebugReportObjectTypeBufferCollectionFuchsiaExt = 1000366000,
-}
-impl const Default for DebugReportObjectTypeEXT {
-    fn default() -> Self {
-        Self::DebugReportObjectTypeUnknownExt
-    }
-}
-impl DebugReportObjectTypeEXT {
+    pub const BUFFER_COLLECTION_FUCHSIA: Self = Self(1000366000);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -608,12 +607,15 @@ impl DebugReportObjectTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDebugMarkerObjectNameInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html) - Specify parameters of a name to give to an object
@@ -690,7 +692,7 @@ impl<'lt> Default for DebugMarkerObjectNameInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugMarkerObjectNameInfoExt,
+            s_type: StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object: 0,
@@ -865,7 +867,7 @@ impl<'lt> Default for DebugMarkerObjectTagInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugMarkerObjectTagInfoExt,
+            s_type: StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT,
             p_next: std::ptr::null(),
             object_type: Default::default(),
             object: 0,
@@ -1052,7 +1054,7 @@ impl<'lt> Default for DebugMarkerMarkerInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugMarkerMarkerInfoExt,
+            s_type: StructureType::DEBUG_MARKER_MARKER_INFO_EXT,
             p_next: std::ptr::null(),
             marker_name: std::ptr::null(),
             color: [0.0; 4 as usize],
@@ -1191,7 +1193,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_name_info as *const DebugMarkerObjectNameInfoEXT<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -1263,7 +1265,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_tag_info as *const DebugMarkerObjectTagInfoEXT<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

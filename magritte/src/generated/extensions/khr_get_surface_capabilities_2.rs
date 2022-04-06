@@ -314,7 +314,7 @@ impl<'lt> Default for PhysicalDeviceSurfaceInfo2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceSurfaceInfo2Khr,
+            s_type: StructureType::PHYSICAL_DEVICE_SURFACE_INFO2_KHR,
             p_next: std::ptr::null(),
             surface: Default::default(),
         }
@@ -426,7 +426,7 @@ impl<'lt> Default for SurfaceCapabilities2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceCapabilities2Khr,
+            s_type: StructureType::SURFACE_CAPABILITIES2_KHR,
             p_next: std::ptr::null_mut(),
             surface_capabilities: Default::default(),
         }
@@ -541,7 +541,7 @@ impl<'lt> Default for SurfaceFormat2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceFormat2Khr,
+            s_type: StructureType::SURFACE_FORMAT2_KHR,
             p_next: std::ptr::null_mut(),
             surface_format: Default::default(),
         }
@@ -694,7 +694,7 @@ impl PhysicalDevice {
             &mut p_surface_capabilities,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_surface_capabilities.p_next = std::ptr::null_mut();
                 p_surface_capabilities
             }),
@@ -819,7 +819,7 @@ impl PhysicalDevice {
             p_surface_formats.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_surface_formats)
             },
             e => VulkanResult::Err(e),

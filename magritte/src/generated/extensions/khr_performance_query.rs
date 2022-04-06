@@ -365,13 +365,11 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 ///} VkPerformanceCounterScopeKHR;
 ///```
 ///# Description
-/// - [`PerformanceCounterScopeCommandBufferKhr`] - the performance counter scope is a single
-///   complete command buffer.
-/// - [`PerformanceCounterScopeRenderPassKhr`] - the performance counter scope is zero or more
-///   complete render passes. The performance query containing the performance counter  **must**
-///   begin and end outside a render pass instance.
-/// - [`PerformanceCounterScopeCommandKhr`] - the performance counter scope is zero or more
-///   commands.
+/// - [`COMMAND_BUFFER`] - the performance counter scope is a single complete command buffer.
+/// - [`RENDER_PASS`] - the performance counter scope is zero or more complete render passes. The
+///   performance query containing the performance counter  **must**  begin and end outside a render
+///   pass instance.
+/// - [`COMMAND`] - the performance counter scope is zero or more commands.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
@@ -388,26 +386,25 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceCounterScopeKHR {
-    ///[`PerformanceCounterScopeCommandBufferKhr`] - the performance
-    ///counter scope is a single complete command buffer.
-    PerformanceCounterScopeCommandBufferKhr = 0,
-    ///[`PerformanceCounterScopeRenderPassKhr`] - the performance
-    ///counter scope is zero or more complete render passes.
-    ///The performance query containing the performance counter  **must**  begin and
-    ///end outside a render pass instance.
-    PerformanceCounterScopeRenderPassKhr = 1,
-    ///[`PerformanceCounterScopeCommandKhr`] - the performance counter
-    ///scope is zero or more commands.
-    PerformanceCounterScopeCommandKhr = 2,
-}
+#[repr(transparent)]
+pub struct PerformanceCounterScopeKHR(i32);
 impl const Default for PerformanceCounterScopeKHR {
     fn default() -> Self {
-        Self::PerformanceCounterScopeCommandBufferKhr
+        Self(0)
     }
 }
 impl PerformanceCounterScopeKHR {
+    ///[`COMMAND_BUFFER`] - the performance
+    ///counter scope is a single complete command buffer.
+    pub const COMMAND_BUFFER: Self = Self(0);
+    ///[`RENDER_PASS`] - the performance
+    ///counter scope is zero or more complete render passes.
+    ///The performance query containing the performance counter  **must**  begin and
+    ///end outside a render pass instance.
+    pub const RENDER_PASS: Self = Self(1);
+    ///[`COMMAND`] - the performance counter
+    ///scope is zero or more commands.
+    pub const COMMAND: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -416,12 +413,15 @@ impl PerformanceCounterScopeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceCounterUnitKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterUnitKHR.html) - Supported counter unit types
@@ -447,20 +447,17 @@ impl PerformanceCounterScopeKHR {
 ///} VkPerformanceCounterUnitKHR;
 ///```
 ///# Description
-/// - [`PerformanceCounterUnitGenericKhr`] - the performance counter unit is a generic data point.
-/// - [`PerformanceCounterUnitPercentageKhr`] - the performance counter unit is a percentage (%).
-/// - [`PerformanceCounterUnitNanosecondsKhr`] - the performance counter unit is a value of
-///   nanoseconds (ns).
-/// - [`PerformanceCounterUnitBytesKhr`] - the performance counter unit is a value of bytes.
-/// - [`PerformanceCounterUnitBytesPerSecondKhr`] - the performance counter unit is a value of
-///   bytes/s.
-/// - [`PerformanceCounterUnitKelvinKhr`] - the performance counter unit is a temperature reported
-///   in Kelvin.
-/// - [`PerformanceCounterUnitWattsKhr`] - the performance counter unit is a value of watts (W).
-/// - [`PerformanceCounterUnitVoltsKhr`] - the performance counter unit is a value of volts (V).
-/// - [`PerformanceCounterUnitAmpsKhr`] - the performance counter unit is a value of amps (A).
-/// - [`PerformanceCounterUnitHertzKhr`] - the performance counter unit is a value of hertz (Hz).
-/// - [`PerformanceCounterUnitCyclesKhr`] - the performance counter unit is a value of cycles.
+/// - [`GENERIC`] - the performance counter unit is a generic data point.
+/// - [`PERCENTAGE`] - the performance counter unit is a percentage (%).
+/// - [`NANOSECONDS`] - the performance counter unit is a value of nanoseconds (ns).
+/// - [`BYTES`] - the performance counter unit is a value of bytes.
+/// - [`BYTES_PER_SECOND`] - the performance counter unit is a value of bytes/s.
+/// - [`KELVIN`] - the performance counter unit is a temperature reported in Kelvin.
+/// - [`WATTS`] - the performance counter unit is a value of watts (W).
+/// - [`VOLTS`] - the performance counter unit is a value of volts (V).
+/// - [`AMPS`] - the performance counter unit is a value of amps (A).
+/// - [`HERTZ`] - the performance counter unit is a value of hertz (Hz).
+/// - [`CYCLES`] - the performance counter unit is a value of cycles.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
@@ -477,48 +474,47 @@ impl PerformanceCounterScopeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceCounterUnitKHR {
-    ///[`PerformanceCounterUnitGenericKhr`] - the performance counter
-    ///unit is a generic data point.
-    PerformanceCounterUnitGenericKhr = 0,
-    ///[`PerformanceCounterUnitPercentageKhr`] - the performance
-    ///counter unit is a percentage (%).
-    PerformanceCounterUnitPercentageKhr = 1,
-    ///[`PerformanceCounterUnitNanosecondsKhr`] - the performance
-    ///counter unit is a value of nanoseconds (ns).
-    PerformanceCounterUnitNanosecondsKhr = 2,
-    ///[`PerformanceCounterUnitBytesKhr`] - the performance counter
-    ///unit is a value of bytes.
-    PerformanceCounterUnitBytesKhr = 3,
-    ///[`PerformanceCounterUnitBytesPerSecondKhr`] - the performance
-    ///counter unit is a value of bytes/s.
-    PerformanceCounterUnitBytesPerSecondKhr = 4,
-    ///[`PerformanceCounterUnitKelvinKhr`] - the performance counter
-    ///unit is a temperature reported in Kelvin.
-    PerformanceCounterUnitKelvinKhr = 5,
-    ///[`PerformanceCounterUnitWattsKhr`] - the performance counter
-    ///unit is a value of watts (W).
-    PerformanceCounterUnitWattsKhr = 6,
-    ///[`PerformanceCounterUnitVoltsKhr`] - the performance counter
-    ///unit is a value of volts (V).
-    PerformanceCounterUnitVoltsKhr = 7,
-    ///[`PerformanceCounterUnitAmpsKhr`] - the performance counter
-    ///unit is a value of amps (A).
-    PerformanceCounterUnitAmpsKhr = 8,
-    ///[`PerformanceCounterUnitHertzKhr`] - the performance counter
-    ///unit is a value of hertz (Hz).
-    PerformanceCounterUnitHertzKhr = 9,
-    ///[`PerformanceCounterUnitCyclesKhr`] - the performance counter
-    ///unit is a value of cycles.
-    PerformanceCounterUnitCyclesKhr = 10,
-}
+#[repr(transparent)]
+pub struct PerformanceCounterUnitKHR(i32);
 impl const Default for PerformanceCounterUnitKHR {
     fn default() -> Self {
-        Self::PerformanceCounterUnitGenericKhr
+        Self(0)
     }
 }
 impl PerformanceCounterUnitKHR {
+    ///[`GENERIC`] - the performance counter
+    ///unit is a generic data point.
+    pub const GENERIC: Self = Self(0);
+    ///[`PERCENTAGE`] - the performance
+    ///counter unit is a percentage (%).
+    pub const PERCENTAGE: Self = Self(1);
+    ///[`NANOSECONDS`] - the performance
+    ///counter unit is a value of nanoseconds (ns).
+    pub const NANOSECONDS: Self = Self(2);
+    ///[`BYTES`] - the performance counter
+    ///unit is a value of bytes.
+    pub const BYTES: Self = Self(3);
+    ///[`BYTES_PER_SECOND`] - the performance
+    ///counter unit is a value of bytes/s.
+    pub const BYTES_PER_SECOND: Self = Self(4);
+    ///[`KELVIN`] - the performance counter
+    ///unit is a temperature reported in Kelvin.
+    pub const KELVIN: Self = Self(5);
+    ///[`WATTS`] - the performance counter
+    ///unit is a value of watts (W).
+    pub const WATTS: Self = Self(6);
+    ///[`VOLTS`] - the performance counter
+    ///unit is a value of volts (V).
+    pub const VOLTS: Self = Self(7);
+    ///[`AMPS`] - the performance counter
+    ///unit is a value of amps (A).
+    pub const AMPS: Self = Self(8);
+    ///[`HERTZ`] - the performance counter
+    ///unit is a value of hertz (Hz).
+    pub const HERTZ: Self = Self(9);
+    ///[`CYCLES`] - the performance counter
+    ///unit is a value of cycles.
+    pub const CYCLES: Self = Self(10);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -527,12 +523,15 @@ impl PerformanceCounterUnitKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceCounterStorageKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterStorageKHR.html) - Supported counter storage types
@@ -553,18 +552,12 @@ impl PerformanceCounterUnitKHR {
 ///} VkPerformanceCounterStorageKHR;
 ///```
 ///# Description
-/// - [`PerformanceCounterStorageInt32Khr`] - the performance counter storage is a 32-bit signed
-///   integer.
-/// - [`PerformanceCounterStorageInt64Khr`] - the performance counter storage is a 64-bit signed
-///   integer.
-/// - [`PerformanceCounterStorageUint32Khr`] - the performance counter storage is a 32-bit unsigned
-///   integer.
-/// - [`PerformanceCounterStorageUint64Khr`] - the performance counter storage is a 64-bit unsigned
-///   integer.
-/// - [`PerformanceCounterStorageFloat32Khr`] - the performance counter storage is a 32-bit
-///   floating-point.
-/// - [`PerformanceCounterStorageFloat64Khr`] - the performance counter storage is a 64-bit
-///   floating-point.
+/// - [`INT32`] - the performance counter storage is a 32-bit signed integer.
+/// - [`INT64`] - the performance counter storage is a 64-bit signed integer.
+/// - [`UINT32`] - the performance counter storage is a 32-bit unsigned integer.
+/// - [`UINT64`] - the performance counter storage is a 64-bit unsigned integer.
+/// - [`FLOAT32`] - the performance counter storage is a 32-bit floating-point.
+/// - [`FLOAT64`] - the performance counter storage is a 64-bit floating-point.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterKHR`]
@@ -581,33 +574,32 @@ impl PerformanceCounterUnitKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PerformanceCounterStorageKHR {
-    ///[`PerformanceCounterStorageInt32Khr`] - the performance counter
-    ///storage is a 32-bit signed integer.
-    PerformanceCounterStorageInt32Khr = 0,
-    ///[`PerformanceCounterStorageInt64Khr`] - the performance counter
-    ///storage is a 64-bit signed integer.
-    PerformanceCounterStorageInt64Khr = 1,
-    ///[`PerformanceCounterStorageUint32Khr`] - the performance
-    ///counter storage is a 32-bit unsigned integer.
-    PerformanceCounterStorageUint32Khr = 2,
-    ///[`PerformanceCounterStorageUint64Khr`] - the performance
-    ///counter storage is a 64-bit unsigned integer.
-    PerformanceCounterStorageUint64Khr = 3,
-    ///[`PerformanceCounterStorageFloat32Khr`] - the performance
-    ///counter storage is a 32-bit floating-point.
-    PerformanceCounterStorageFloat32Khr = 4,
-    ///[`PerformanceCounterStorageFloat64Khr`] - the performance
-    ///counter storage is a 64-bit floating-point.
-    PerformanceCounterStorageFloat64Khr = 5,
-}
+#[repr(transparent)]
+pub struct PerformanceCounterStorageKHR(i32);
 impl const Default for PerformanceCounterStorageKHR {
     fn default() -> Self {
-        Self::PerformanceCounterStorageInt32Khr
+        Self(0)
     }
 }
 impl PerformanceCounterStorageKHR {
+    ///[`INT32`] - the performance counter
+    ///storage is a 32-bit signed integer.
+    pub const INT32: Self = Self(0);
+    ///[`INT64`] - the performance counter
+    ///storage is a 64-bit signed integer.
+    pub const INT64: Self = Self(1);
+    ///[`UINT32`] - the performance
+    ///counter storage is a 32-bit unsigned integer.
+    pub const UINT32: Self = Self(2);
+    ///[`UINT64`] - the performance
+    ///counter storage is a 64-bit unsigned integer.
+    pub const UINT64: Self = Self(3);
+    ///[`FLOAT32`] - the performance
+    ///counter storage is a 32-bit floating-point.
+    pub const FLOAT32: Self = Self(4);
+    ///[`FLOAT64`] - the performance
+    ///counter storage is a 64-bit floating-point.
+    pub const FLOAT64: Self = Self(5);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -616,12 +608,15 @@ impl PerformanceCounterStorageKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceCounterDescriptionFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html) - Bitmask specifying usage behavior for a counter
@@ -641,11 +636,10 @@ impl PerformanceCounterStorageKHR {
 ///} VkPerformanceCounterDescriptionFlagBitsKHR;
 ///```
 ///# Description
-/// - [`PerformanceCounterDescriptionPerformanceImpactingKhr`] specifies that recording the counter
-///   **may**  have a noticeable performance impact.
-/// - [`PerformanceCounterDescriptionConcurrentlyImpactedKhr`] specifies that concurrently recording
-///   the counter while other submitted command buffers are running  **may**  impact the accuracy of
-///   the recording.
+/// - [`PERFORMANCE_IMPACTING`] specifies that recording the counter  **may**  have a noticeable
+///   performance impact.
+/// - [`CONCURRENTLY_IMPACTED`] specifies that concurrently recording the counter while other
+///   submitted command buffers are running  **may**  impact the accuracy of the recording.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
@@ -662,25 +656,22 @@ impl PerformanceCounterStorageKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum PerformanceCounterDescriptionFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`PerformanceCounterDescriptionPerformanceImpactingKhr`]
-    ///specifies that recording the counter  **may**  have a noticeable performance
-    ///impact.
-    PerformanceCounterDescriptionPerformanceImpactingKhr = 1,
-    ///[`PerformanceCounterDescriptionConcurrentlyImpactedKhr`]
-    ///specifies that concurrently recording the counter while other submitted
-    ///command buffers are running  **may**  impact the accuracy of the recording.
-    PerformanceCounterDescriptionConcurrentlyImpactedKhr = 2,
-}
+#[repr(transparent)]
+pub struct PerformanceCounterDescriptionFlagBitsKHR(u32);
 impl const Default for PerformanceCounterDescriptionFlagBitsKHR {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl PerformanceCounterDescriptionFlagBitsKHR {
+    ///[`PERFORMANCE_IMPACTING`]
+    ///specifies that recording the counter  **may**  have a noticeable performance
+    ///impact.
+    pub const PERFORMANCE_IMPACTING: Self = Self(1);
+    ///[`CONCURRENTLY_IMPACTED`]
+    ///specifies that concurrently recording the counter while other submitted
+    ///command buffers are running  **may**  impact the accuracy of the recording.
+    pub const CONCURRENTLY_IMPACTED: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -689,12 +680,15 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkAcquireProfilingLockFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockFlagBitsKHR.html) - Reserved for future use
@@ -720,14 +714,11 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum AcquireProfilingLockFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-}
+#[repr(transparent)]
+pub struct AcquireProfilingLockFlagBitsKHR(u32);
 impl const Default for AcquireProfilingLockFlagBitsKHR {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl AcquireProfilingLockFlagBitsKHR {
@@ -739,12 +730,15 @@ impl AcquireProfilingLockFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPerformanceCounterDescriptionFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html) - Bitmask specifying usage behavior for a counter
@@ -764,11 +758,10 @@ impl AcquireProfilingLockFlagBitsKHR {
 ///} VkPerformanceCounterDescriptionFlagBitsKHR;
 ///```
 ///# Description
-/// - [`PerformanceCounterDescriptionPerformanceImpactingKhr`] specifies that recording the counter
-///   **may**  have a noticeable performance impact.
-/// - [`PerformanceCounterDescriptionConcurrentlyImpactedKhr`] specifies that concurrently recording
-///   the counter while other submitted command buffers are running  **may**  impact the accuracy of
-///   the recording.
+/// - [`PERFORMANCE_IMPACTING`] specifies that recording the counter  **may**  have a noticeable
+///   performance impact.
+/// - [`CONCURRENTLY_IMPACTED`] specifies that concurrently recording the counter while other
+///   submitted command buffers are running  **may**  impact the accuracy of the recording.
 ///# Related
 /// - [`VK_KHR_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
@@ -793,18 +786,18 @@ impl const Default for PerformanceCounterDescriptionFlagsKHR {
 }
 impl From<PerformanceCounterDescriptionFlagBitsKHR> for PerformanceCounterDescriptionFlagsKHR {
     fn from(from: PerformanceCounterDescriptionFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl PerformanceCounterDescriptionFlagsKHR {
-    ///[`PerformanceCounterDescriptionPerformanceImpactingKhr`]
+    ///[`PERFORMANCE_IMPACTING`]
     ///specifies that recording the counter  **may**  have a noticeable performance
     ///impact.
-    pub const PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR: Self = Self(1);
-    ///[`PerformanceCounterDescriptionConcurrentlyImpactedKhr`]
+    pub const PERFORMANCE_IMPACTING: Self = Self(1);
+    ///[`CONCURRENTLY_IMPACTED`]
     ///specifies that concurrently recording the counter while other submitted
     ///command buffers are running  **may**  impact the accuracy of the recording.
-    pub const PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR: Self = Self(2);
+    pub const CONCURRENTLY_IMPACTED: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -816,10 +809,10 @@ impl PerformanceCounterDescriptionFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR;
+            all |= Self::PERFORMANCE_IMPACTING;
         }
         {
-            all |= Self::PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR;
+            all |= Self::CONCURRENTLY_IMPACTED;
         }
         all
     }
@@ -1025,8 +1018,26 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self . 0 . contains (PerformanceCounterDescriptionFlagsKHR :: PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_KHR)) ? ; }
-                    if self . 0 . contains (PerformanceCounterDescriptionFlagsKHR :: PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_KHR)) ? ; }
+                    if self
+                        .0
+                        .contains(PerformanceCounterDescriptionFlagsKHR::PERFORMANCE_IMPACTING)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(PERFORMANCE_IMPACTING))?;
+                    }
+                    if self
+                        .0
+                        .contains(PerformanceCounterDescriptionFlagsKHR::CONCURRENTLY_IMPACTED)
+                    {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(CONCURRENTLY_IMPACTED))?;
+                    }
                 }
                 Ok(())
             }
@@ -1067,7 +1078,7 @@ impl const Default for AcquireProfilingLockFlagsKHR {
 }
 impl From<AcquireProfilingLockFlagBitsKHR> for AcquireProfilingLockFlagsKHR {
     fn from(from: AcquireProfilingLockFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl AcquireProfilingLockFlagsKHR {
@@ -1357,7 +1368,7 @@ impl<'lt> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePerformanceQueryFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             performance_counter_query_pools: 0,
             performance_counter_multiple_query_pools: 0,
@@ -1536,7 +1547,7 @@ impl<'lt> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePerformanceQueryPropertiesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             allow_command_buffer_query_copies: 0,
         }
@@ -1695,7 +1706,7 @@ impl<'lt> Default for PerformanceCounterKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceCounterKhr,
+            s_type: StructureType::PERFORMANCE_COUNTER_KHR,
             p_next: std::ptr::null_mut(),
             unit: Default::default(),
             scope: Default::default(),
@@ -1876,7 +1887,7 @@ impl<'lt> Default for PerformanceCounterDescriptionKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceCounterDescriptionKhr,
+            s_type: StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR,
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
@@ -2060,7 +2071,7 @@ impl<'lt> Default for QueryPoolPerformanceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::QueryPoolPerformanceCreateInfoKhr,
+            s_type: StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             queue_family_index: 0,
             counter_index_count: 0,
@@ -2216,7 +2227,7 @@ impl<'lt> Default for AcquireProfilingLockInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AcquireProfilingLockInfoKhr,
+            s_type: StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             timeout: 0,
@@ -2340,7 +2351,7 @@ impl<'lt> Default for PerformanceQuerySubmitInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PerformanceQuerySubmitInfoKhr,
+            s_type: StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR,
             p_next: std::ptr::null(),
             counter_pass_index: 0,
         }
@@ -2571,7 +2582,7 @@ impl PhysicalDevice {
             p_counter_descriptions.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, (p_counters, p_counter_descriptions))
             },
             e => VulkanResult::Err(e),
@@ -2723,7 +2734,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_info as *const AcquireProfilingLockInfoKHR<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

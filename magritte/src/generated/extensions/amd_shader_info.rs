@@ -167,11 +167,9 @@ pub type FNGetShaderInfoAmd = Option<
 ///} VkShaderInfoTypeAMD;
 ///```
 ///# Description
-/// - [`ShaderInfoTypeStatisticsAmd`] specifies that device resources used by a shader will be
-///   queried.
-/// - [`ShaderInfoTypeBinaryAmd`] specifies that implementation-specific information will be
-///   queried.
-/// - [`ShaderInfoTypeDisassemblyAmd`] specifies that human-readable dissassembly of a shader.
+/// - [`STATISTICS`] specifies that device resources used by a shader will be queried.
+/// - [`BINARY`] specifies that implementation-specific information will be queried.
+/// - [`DISASSEMBLY`] specifies that human-readable dissassembly of a shader.
 ///# Related
 /// - [`VK_AMD_shader_info`]
 /// - [`get_shader_info_amd`]
@@ -188,24 +186,23 @@ pub type FNGetShaderInfoAmd = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ShaderInfoTypeAMD {
-    ///[`ShaderInfoTypeStatisticsAmd`] specifies that device resources
-    ///used by a shader will be queried.
-    ShaderInfoTypeStatisticsAmd = 0,
-    ///[`ShaderInfoTypeBinaryAmd`] specifies that
-    ///implementation-specific information will be queried.
-    ShaderInfoTypeBinaryAmd = 1,
-    ///[`ShaderInfoTypeDisassemblyAmd`] specifies that human-readable
-    ///dissassembly of a shader.
-    ShaderInfoTypeDisassemblyAmd = 2,
-}
+#[repr(transparent)]
+pub struct ShaderInfoTypeAMD(i32);
 impl const Default for ShaderInfoTypeAMD {
     fn default() -> Self {
-        Self::ShaderInfoTypeStatisticsAmd
+        Self(0)
     }
 }
 impl ShaderInfoTypeAMD {
+    ///[`STATISTICS`] specifies that device resources
+    ///used by a shader will be queried.
+    pub const STATISTICS: Self = Self(0);
+    ///[`BINARY`] specifies that
+    ///implementation-specific information will be queried.
+    pub const BINARY: Self = Self(1);
+    ///[`DISASSEMBLY`] specifies that human-readable
+    ///dissassembly of a shader.
+    pub const DISASSEMBLY: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -214,12 +211,15 @@ impl ShaderInfoTypeAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkShaderResourceUsageAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderResourceUsageAMD.html) - Resource usage information about a particular shader within a pipeline
@@ -658,7 +658,7 @@ impl Device {
             p_info.unwrap_or_else(std::ptr::null_mut),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

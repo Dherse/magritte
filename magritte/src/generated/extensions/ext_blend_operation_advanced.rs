@@ -170,12 +170,12 @@ pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = crate::cs
 ///} VkBlendOverlapEXT;
 ///```
 ///# Description
-/// - [`BlendOverlapUncorrelatedExt`] specifies that there is no correlation between the source and
-///   destination coverage.
-/// - [`BlendOverlapConjointExt`] specifies that the source and destination coverage are considered
-///   to have maximal overlap.
-/// - [`BlendOverlapDisjointExt`] specifies that the source and destination coverage are considered
-///   to have minimal overlap.
+/// - [`UNCORRELATED`] specifies that there is no correlation between the source and destination
+///   coverage.
+/// - [`CONJOINT`] specifies that the source and destination coverage are considered to have maximal
+///   overlap.
+/// - [`DISJOINT`] specifies that the source and destination coverage are considered to have minimal
+///   overlap.
 ///# Related
 /// - [`VK_EXT_blend_operation_advanced`]
 /// - [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
@@ -192,24 +192,23 @@ pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = crate::cs
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum BlendOverlapEXT {
-    ///[`BlendOverlapUncorrelatedExt`] specifies that there is no
-    ///correlation between the source and destination coverage.
-    BlendOverlapUncorrelatedExt = 0,
-    ///[`BlendOverlapDisjointExt`] specifies that the source and
-    ///destination coverage are considered to have minimal overlap.
-    BlendOverlapDisjointExt = 1,
-    ///[`BlendOverlapConjointExt`] specifies that the source and
-    ///destination coverage are considered to have maximal overlap.
-    BlendOverlapConjointExt = 2,
-}
+#[repr(transparent)]
+pub struct BlendOverlapEXT(i32);
 impl const Default for BlendOverlapEXT {
     fn default() -> Self {
-        Self::BlendOverlapUncorrelatedExt
+        Self(0)
     }
 }
 impl BlendOverlapEXT {
+    ///[`UNCORRELATED`] specifies that there is no
+    ///correlation between the source and destination coverage.
+    pub const UNCORRELATED: Self = Self(0);
+    ///[`DISJOINT`] specifies that the source and
+    ///destination coverage are considered to have minimal overlap.
+    pub const DISJOINT: Self = Self(1);
+    ///[`CONJOINT`] specifies that the source and
+    ///destination coverage are considered to have maximal overlap.
+    pub const CONJOINT: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -218,12 +217,15 @@ impl BlendOverlapEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html) - Structure describing advanced blending features that can be supported by an implementation
@@ -302,7 +304,7 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceBlendOperationAdvancedFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             advanced_blend_coherent_operations: 0,
         }
@@ -486,7 +488,7 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceBlendOperationAdvancedPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             advanced_blend_max_color_attachments: 0,
             advanced_blend_independent_blend: 0,
@@ -817,7 +819,7 @@ impl<'lt> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineColorBlendAdvancedStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             src_premultiplied: 0,
             dst_premultiplied: 0,

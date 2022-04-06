@@ -158,7 +158,7 @@ impl<'lt> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDepthClipEnableFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             depth_clip_enable: 0,
         }
@@ -304,7 +304,7 @@ impl<'lt> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRasterizationDepthClipStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             depth_clip_enable: 0,

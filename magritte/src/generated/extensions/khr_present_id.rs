@@ -112,7 +112,7 @@ impl<'lt> Default for PhysicalDevicePresentIdFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePresentIdFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             present_id: 0,
         }
@@ -290,7 +290,7 @@ impl<'lt> Default for PresentIdKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PresentIdKhr,
+            s_type: StructureType::PRESENT_ID_KHR,
             p_next: std::ptr::null(),
             swapchain_count: 0,
             present_ids: std::ptr::null(),

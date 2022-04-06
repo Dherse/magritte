@@ -161,7 +161,7 @@ impl<'lt> Default for PhysicalDeviceRobustness2FeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceRobustness2FeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_ROBUSTNESS2_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             robust_buffer_access_2: 0,
             robust_image_access_2: 0,
@@ -386,7 +386,7 @@ impl<'lt> Default for PhysicalDeviceRobustness2PropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceRobustness2PropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_ROBUSTNESS2_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             robust_storage_buffer_access_size_alignment: Default::default(),
             robust_uniform_buffer_access_size_alignment: Default::default(),

@@ -1072,31 +1072,30 @@ pub type FNCmdBindPipelineShaderGroupNv = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum IndirectCommandsTokenTypeNV {
-    ///No documentation found
-    IndirectCommandsTokenTypeShaderGroupNv = 0,
-    ///No documentation found
-    IndirectCommandsTokenTypeStateFlagsNv = 1,
-    ///No documentation found
-    IndirectCommandsTokenTypeIndexBufferNv = 2,
-    ///No documentation found
-    IndirectCommandsTokenTypeVertexBufferNv = 3,
-    ///No documentation found
-    IndirectCommandsTokenTypePushConstantNv = 4,
-    ///No documentation found
-    IndirectCommandsTokenTypeDrawIndexedNv = 5,
-    ///No documentation found
-    IndirectCommandsTokenTypeDrawNv = 6,
-    ///No documentation found
-    IndirectCommandsTokenTypeDrawTasksNv = 7,
-}
+#[repr(transparent)]
+pub struct IndirectCommandsTokenTypeNV(i32);
 impl const Default for IndirectCommandsTokenTypeNV {
     fn default() -> Self {
-        Self::IndirectCommandsTokenTypeShaderGroupNv
+        Self(0)
     }
 }
 impl IndirectCommandsTokenTypeNV {
+    ///No documentation found
+    pub const SHADER_GROUP: Self = Self(0);
+    ///No documentation found
+    pub const STATE_FLAGS: Self = Self(1);
+    ///No documentation found
+    pub const INDEX_BUFFER: Self = Self(2);
+    ///No documentation found
+    pub const VERTEX_BUFFER: Self = Self(3);
+    ///No documentation found
+    pub const PUSH_CONSTANT: Self = Self(4);
+    ///No documentation found
+    pub const DRAW_INDEXED: Self = Self(5);
+    ///No documentation found
+    pub const DRAW: Self = Self(6);
+    ///No documentation found
+    pub const DRAW_TASKS: Self = Self(7);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1105,12 +1104,15 @@ impl IndirectCommandsTokenTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkIndirectCommandsLayoutUsageFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutUsageFlagBitsNV.html) - Bitmask specifying allowed usage of an indirect commands layout
@@ -1127,15 +1129,14 @@ impl IndirectCommandsTokenTypeNV {
 ///} VkIndirectCommandsLayoutUsageFlagBitsNV;
 ///```
 ///# Description
-/// - [`IndirectCommandsLayoutUsageExplicitPreprocessNv`] specifies that the layout is always used
-///   with the manual preprocessing step through calling [`cmd_preprocess_generated_commands_nv`]
-///   and executed by [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
-/// - [`IndirectCommandsLayoutUsageIndexedSequencesNv`] specifies that the input data for the
-///   sequences is not implicitly indexed from 0..sequencesUsed but a user provided [`Buffer`]
-///   encoding the index is provided.
-/// - [`IndirectCommandsLayoutUsageUnorderedSequencesNv`] specifies that the processing of sequences
-///   **can**  happen at an implementation-dependent order, which is not: guaranteed to be coherent
-///   using the same input data.
+/// - [`EXPLICIT_PREPROCESS`] specifies that the layout is always used with the manual preprocessing
+///   step through calling [`cmd_preprocess_generated_commands_nv`] and executed by
+///   [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
+/// - [`INDEXED_SEQUENCES`] specifies that the input data for the sequences is not implicitly
+///   indexed from 0..sequencesUsed but a user provided [`Buffer`] encoding the index is provided.
+/// - [`UNORDERED_SEQUENCES`] specifies that the processing of sequences  **can**  happen at an
+///   implementation-dependent order, which is not: guaranteed to be coherent using the same input
+///   data.
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
@@ -1152,33 +1153,30 @@ impl IndirectCommandsTokenTypeNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum IndirectCommandsLayoutUsageFlagBitsNV {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`IndirectCommandsLayoutUsageExplicitPreprocessNv`]
+#[repr(transparent)]
+pub struct IndirectCommandsLayoutUsageFlagBitsNV(u32);
+impl const Default for IndirectCommandsLayoutUsageFlagBitsNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl IndirectCommandsLayoutUsageFlagBitsNV {
+    ///[`EXPLICIT_PREPROCESS`]
     ///specifies that the layout is always used with the manual preprocessing
     ///step through calling [`cmd_preprocess_generated_commands_nv`] and
     ///executed by [`cmd_execute_generated_commands_nv`] with `isPreprocessed`
     ///set to [`TRUE`].
-    IndirectCommandsLayoutUsageExplicitPreprocessNv = 1,
-    ///[`IndirectCommandsLayoutUsageIndexedSequencesNv`]
+    pub const EXPLICIT_PREPROCESS: Self = Self(1);
+    ///[`INDEXED_SEQUENCES`]
     ///specifies that the input data for the sequences is not implicitly
     ///indexed from 0..sequencesUsed but a user provided [`Buffer`]
     ///encoding the index is provided.
-    IndirectCommandsLayoutUsageIndexedSequencesNv = 2,
-    ///[`IndirectCommandsLayoutUsageUnorderedSequencesNv`]
+    pub const INDEXED_SEQUENCES: Self = Self(2);
+    ///[`UNORDERED_SEQUENCES`]
     ///specifies that the processing of sequences  **can**  happen at an
     ///implementation-dependent order, which is not: guaranteed to be coherent
     ///using the same input data.
-    IndirectCommandsLayoutUsageUnorderedSequencesNv = 4,
-}
-impl const Default for IndirectCommandsLayoutUsageFlagBitsNV {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl IndirectCommandsLayoutUsageFlagBitsNV {
+    pub const UNORDERED_SEQUENCES: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1187,12 +1185,15 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkIndirectStateFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectStateFlagBitsNV.html) - Bitmask specifiying state that can be altered on the device
@@ -1206,8 +1207,8 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
 ///} VkIndirectStateFlagBitsNV;
 ///```
 ///# Description
-/// - [`IndirectStateFlagFrontfaceNv`] allows to toggle the [`FrontFace`] rasterization state for
-///   subsequent draw operations.
+/// - [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw
+///   operations.
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectStateFlagsNV`]
@@ -1224,20 +1225,17 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum IndirectStateFlagBitsNV {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`IndirectStateFlagFrontfaceNv`] allows to toggle the
-    ///[`FrontFace`] rasterization state for subsequent draw operations.
-    IndirectStateFlagFrontfaceNv = 1,
-}
+#[repr(transparent)]
+pub struct IndirectStateFlagBitsNV(u32);
 impl const Default for IndirectStateFlagBitsNV {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl IndirectStateFlagBitsNV {
+    ///[`FLAG_FRONTFACE`] allows to toggle the
+    ///[`FrontFace`] rasterization state for subsequent draw operations.
+    pub const FLAG_FRONTFACE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1246,12 +1244,15 @@ impl IndirectStateFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkIndirectCommandsLayoutUsageFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutUsageFlagBitsNV.html) - Bitmask specifying allowed usage of an indirect commands layout
@@ -1268,15 +1269,14 @@ impl IndirectStateFlagBitsNV {
 ///} VkIndirectCommandsLayoutUsageFlagBitsNV;
 ///```
 ///# Description
-/// - [`IndirectCommandsLayoutUsageExplicitPreprocessNv`] specifies that the layout is always used
-///   with the manual preprocessing step through calling [`cmd_preprocess_generated_commands_nv`]
-///   and executed by [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
-/// - [`IndirectCommandsLayoutUsageIndexedSequencesNv`] specifies that the input data for the
-///   sequences is not implicitly indexed from 0..sequencesUsed but a user provided [`Buffer`]
-///   encoding the index is provided.
-/// - [`IndirectCommandsLayoutUsageUnorderedSequencesNv`] specifies that the processing of sequences
-///   **can**  happen at an implementation-dependent order, which is not: guaranteed to be coherent
-///   using the same input data.
+/// - [`EXPLICIT_PREPROCESS`] specifies that the layout is always used with the manual preprocessing
+///   step through calling [`cmd_preprocess_generated_commands_nv`] and executed by
+///   [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
+/// - [`INDEXED_SEQUENCES`] specifies that the input data for the sequences is not implicitly
+///   indexed from 0..sequencesUsed but a user provided [`Buffer`] encoding the index is provided.
+/// - [`UNORDERED_SEQUENCES`] specifies that the processing of sequences  **can**  happen at an
+///   implementation-dependent order, which is not: guaranteed to be coherent using the same input
+///   data.
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
@@ -1301,26 +1301,26 @@ impl const Default for IndirectCommandsLayoutUsageFlagsNV {
 }
 impl From<IndirectCommandsLayoutUsageFlagBitsNV> for IndirectCommandsLayoutUsageFlagsNV {
     fn from(from: IndirectCommandsLayoutUsageFlagBitsNV) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl IndirectCommandsLayoutUsageFlagsNV {
-    ///[`IndirectCommandsLayoutUsageExplicitPreprocessNv`]
+    ///[`EXPLICIT_PREPROCESS`]
     ///specifies that the layout is always used with the manual preprocessing
     ///step through calling [`cmd_preprocess_generated_commands_nv`] and
     ///executed by [`cmd_execute_generated_commands_nv`] with `isPreprocessed`
     ///set to [`TRUE`].
-    pub const INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV: Self = Self(1);
-    ///[`IndirectCommandsLayoutUsageIndexedSequencesNv`]
+    pub const EXPLICIT_PREPROCESS: Self = Self(1);
+    ///[`INDEXED_SEQUENCES`]
     ///specifies that the input data for the sequences is not implicitly
     ///indexed from 0..sequencesUsed but a user provided [`Buffer`]
     ///encoding the index is provided.
-    pub const INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV: Self = Self(2);
-    ///[`IndirectCommandsLayoutUsageUnorderedSequencesNv`]
+    pub const INDEXED_SEQUENCES: Self = Self(2);
+    ///[`UNORDERED_SEQUENCES`]
     ///specifies that the processing of sequences  **can**  happen at an
     ///implementation-dependent order, which is not: guaranteed to be coherent
     ///using the same input data.
-    pub const INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV: Self = Self(4);
+    pub const UNORDERED_SEQUENCES: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1332,13 +1332,13 @@ impl IndirectCommandsLayoutUsageFlagsNV {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV;
+            all |= Self::EXPLICIT_PREPROCESS;
         }
         {
-            all |= Self::INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV;
+            all |= Self::INDEXED_SEQUENCES;
         }
         {
-            all |= Self::INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV;
+            all |= Self::UNORDERED_SEQUENCES;
         }
         all
     }
@@ -1544,32 +1544,26 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(
-                        IndirectCommandsLayoutUsageFlagsNV::INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV,
-                    ) {
+                    if self.0.contains(IndirectCommandsLayoutUsageFlagsNV::EXPLICIT_PREPROCESS) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_NV))?;
+                        f.write_str(stringify!(EXPLICIT_PREPROCESS))?;
                     }
-                    if self.0.contains(
-                        IndirectCommandsLayoutUsageFlagsNV::INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV,
-                    ) {
+                    if self.0.contains(IndirectCommandsLayoutUsageFlagsNV::INDEXED_SEQUENCES) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_NV))?;
+                        f.write_str(stringify!(INDEXED_SEQUENCES))?;
                     }
-                    if self.0.contains(
-                        IndirectCommandsLayoutUsageFlagsNV::INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV,
-                    ) {
+                    if self.0.contains(IndirectCommandsLayoutUsageFlagsNV::UNORDERED_SEQUENCES) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_NV))?;
+                        f.write_str(stringify!(UNORDERED_SEQUENCES))?;
                     }
                 }
                 Ok(())
@@ -1591,8 +1585,8 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
 ///} VkIndirectStateFlagBitsNV;
 ///```
 ///# Description
-/// - [`IndirectStateFlagFrontfaceNv`] allows to toggle the [`FrontFace`] rasterization state for
-///   subsequent draw operations.
+/// - [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw
+///   operations.
 ///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectStateFlagsNV`]
@@ -1617,13 +1611,13 @@ impl const Default for IndirectStateFlagsNV {
 }
 impl From<IndirectStateFlagBitsNV> for IndirectStateFlagsNV {
     fn from(from: IndirectStateFlagBitsNV) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl IndirectStateFlagsNV {
-    ///[`IndirectStateFlagFrontfaceNv`] allows to toggle the
+    ///[`FLAG_FRONTFACE`] allows to toggle the
     ///[`FrontFace`] rasterization state for subsequent draw operations.
-    pub const INDIRECT_STATE_FLAG_FRONTFACE_NV: Self = Self(1);
+    pub const FLAG_FRONTFACE: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1635,7 +1629,7 @@ impl IndirectStateFlagsNV {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::INDIRECT_STATE_FLAG_FRONTFACE_NV;
+            all |= Self::FLAG_FRONTFACE;
         }
         all
     }
@@ -1837,12 +1831,12 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(IndirectStateFlagsNV::INDIRECT_STATE_FLAG_FRONTFACE_NV) {
+                    if self.0.contains(IndirectStateFlagsNV::FLAG_FRONTFACE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(INDIRECT_STATE_FLAG_FRONTFACE_NV))?;
+                        f.write_str(stringify!(FLAG_FRONTFACE))?;
                     }
                 }
                 Ok(())
@@ -1916,7 +1910,7 @@ impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDeviceGeneratedCommandsFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             device_generated_commands: 0,
         }
@@ -2111,7 +2105,7 @@ impl<'lt> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDeviceGeneratedCommandsPropertiesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             max_graphics_shader_group_count: 0,
             max_indirect_sequence_count: 0,
@@ -2378,7 +2372,7 @@ impl<'lt> Default for GraphicsShaderGroupCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GraphicsShaderGroupCreateInfoNv,
+            s_type: StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             stage_count: 0,
             stages: std::ptr::null(),
@@ -2611,7 +2605,7 @@ impl<'lt> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GraphicsPipelineShaderGroupsCreateInfoNv,
+            s_type: StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             group_count: 0,
             groups: std::ptr::null(),
@@ -3317,7 +3311,7 @@ impl<'lt> Default for IndirectCommandsLayoutTokenNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::IndirectCommandsLayoutTokenNv,
+            s_type: StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV,
             p_next: std::ptr::null(),
             token_type: Default::default(),
             stream: 0,
@@ -3725,7 +3719,7 @@ impl<'lt> Default for IndirectCommandsLayoutCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::IndirectCommandsLayoutCreateInfoNv,
+            s_type: StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             flags: Default::default(),
             pipeline_bind_point: Default::default(),
@@ -4076,7 +4070,7 @@ impl<'lt> Default for GeneratedCommandsInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GeneratedCommandsInfoNv,
+            s_type: StructureType::GENERATED_COMMANDS_INFO_NV,
             p_next: std::ptr::null(),
             pipeline_bind_point: Default::default(),
             pipeline: Default::default(),
@@ -4399,7 +4393,7 @@ impl<'lt> Default for GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::GeneratedCommandsMemoryRequirementsInfoNv,
+            s_type: StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV,
             p_next: std::ptr::null(),
             pipeline_bind_point: Default::default(),
             pipeline: Default::default(),
@@ -4662,7 +4656,7 @@ impl Device {
             p_indirect_commands_layout.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_indirect_commands_layout.assume_init(), ()))
             },
             e => VulkanResult::Err(e),

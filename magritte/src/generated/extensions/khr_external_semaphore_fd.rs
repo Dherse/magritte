@@ -269,7 +269,7 @@ impl<'lt> Default for ImportSemaphoreFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportSemaphoreFdInfoKhr,
+            s_type: StructureType::IMPORT_SEMAPHORE_FD_INFO_KHR,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             flags: Default::default(),
@@ -445,7 +445,7 @@ impl<'lt> Default for SemaphoreGetFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SemaphoreGetFdInfoKhr,
+            s_type: StructureType::SEMAPHORE_GET_FD_INFO_KHR,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             handle_type: Default::default(),
@@ -591,7 +591,7 @@ impl Device {
             &mut p_fd,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_fd),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_fd),
             e => VulkanResult::Err(e),
         }
     }
@@ -669,7 +669,7 @@ impl Device {
             p_import_semaphore_fd_info as *const ImportSemaphoreFdInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

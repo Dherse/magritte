@@ -166,7 +166,7 @@ impl<'lt> Default for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceRepresentativeFragmentTestFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             representative_fragment_test: 0,
         }
@@ -313,7 +313,7 @@ impl<'lt> Default for PipelineRepresentativeFragmentTestStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRepresentativeFragmentTestStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             representative_fragment_test_enable: 0,
         }

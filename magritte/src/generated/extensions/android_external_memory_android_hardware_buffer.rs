@@ -379,7 +379,7 @@ impl<'lt> Default for ImportAndroidHardwareBufferInfoANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportAndroidHardwareBufferInfoAndroid,
+            s_type: StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID,
             p_next: std::ptr::null(),
             buffer: std::ptr::null_mut(),
         }
@@ -514,7 +514,7 @@ impl<'lt> Default for AndroidHardwareBufferUsageANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AndroidHardwareBufferUsageAndroid,
+            s_type: StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID,
             p_next: std::ptr::null_mut(),
             android_hardware_buffer_usage: 0,
         }
@@ -639,7 +639,7 @@ impl<'lt> Default for AndroidHardwareBufferPropertiesANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AndroidHardwareBufferPropertiesAndroid,
+            s_type: StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID,
             p_next: std::ptr::null_mut(),
             allocation_size: Default::default(),
             memory_type_bits: 0,
@@ -776,7 +776,7 @@ impl<'lt> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryGetAndroidHardwareBufferInfoAndroid,
+            s_type: StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID,
             p_next: std::ptr::null(),
             memory: Default::default(),
         }
@@ -978,7 +978,7 @@ impl<'lt> Default for AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AndroidHardwareBufferFormatPropertiesAndroid,
+            s_type: StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID,
             p_next: std::ptr::null_mut(),
             format: Default::default(),
             external_format: 0,
@@ -1199,7 +1199,7 @@ impl<'lt> Default for ExternalFormatANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExternalFormatAndroid,
+            s_type: StructureType::EXTERNAL_FORMAT_ANDROID,
             p_next: std::ptr::null_mut(),
             external_format: 0,
         }
@@ -1372,7 +1372,7 @@ impl<'lt> Default for AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AndroidHardwareBufferFormatProperties2Android,
+            s_type: StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES2_ANDROID,
             p_next: std::ptr::null_mut(),
             format: Default::default(),
             external_format: 0,
@@ -1602,7 +1602,7 @@ impl Device {
             .unwrap_or_else(|| MaybeUninit::<AndroidHardwareBufferPropertiesANDROID<'lt>>::zeroed().assume_init());
         let _return = _function(self.as_raw(), buffer as *const AHardwareBuffer, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_properties.p_next = std::ptr::null_mut();
                 p_properties
             }),
@@ -1685,14 +1685,14 @@ impl Device {
             .unwrap_unchecked()
             .get_memory_android_hardware_buffer_android()
             .unwrap_unchecked();
-        let mut p_buffer = Default::default();
+        let mut p_buffer = std::ptr::null_mut();
         let _return = _function(
             self.as_raw(),
             p_info as *const MemoryGetAndroidHardwareBufferInfoANDROID<'lt>,
             &mut p_buffer,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_buffer),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_buffer),
             e => VulkanResult::Err(e),
         }
     }

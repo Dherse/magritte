@@ -332,12 +332,11 @@ pub type FNGetSwapchainCounterExt = Option<
 ///} VkDisplayPowerStateEXT;
 ///```
 ///# Description
-/// - [`DisplayPowerStateOffExt`] specifies that the display is powered down.
-/// - [`DisplayPowerStateSuspendExt`] specifies that the display is put into a low power mode, from
-///   which it  **may**  be able to transition back to [`DisplayPowerStateOnExt`] more quickly than
-///   if it were in [`DisplayPowerStateOffExt`]. This state  **may**  be the same as
-///   [`DisplayPowerStateOffExt`].
-/// - [`DisplayPowerStateOnExt`] specifies that the display is powered on.
+/// - [`OFF`] specifies that the display is powered down.
+/// - [`SUSPEND`] specifies that the display is put into a low power mode, from which it  **may**
+///   be able to transition back to [`ON`] more quickly than if it were in [`OFF`]. This state
+///   **may**  be the same as [`OFF`].
+/// - [`ON`] specifies that the display is powered on.
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayPowerInfoEXT`]
@@ -354,27 +353,26 @@ pub type FNGetSwapchainCounterExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DisplayPowerStateEXT {
-    ///[`DisplayPowerStateOffExt`] specifies that the display is
-    ///powered down.
-    DisplayPowerStateOffExt = 0,
-    ///[`DisplayPowerStateSuspendExt`] specifies that the display is
-    ///put into a low power mode, from which it  **may**  be able to transition back
-    ///to [`DisplayPowerStateOnExt`] more quickly than if it were in
-    ///[`DisplayPowerStateOffExt`].
-    ///This state  **may**  be the same as [`DisplayPowerStateOffExt`].
-    DisplayPowerStateSuspendExt = 1,
-    ///[`DisplayPowerStateOnExt`] specifies that the display is
-    ///powered on.
-    DisplayPowerStateOnExt = 2,
-}
+#[repr(transparent)]
+pub struct DisplayPowerStateEXT(i32);
 impl const Default for DisplayPowerStateEXT {
     fn default() -> Self {
-        Self::DisplayPowerStateOffExt
+        Self(0)
     }
 }
 impl DisplayPowerStateEXT {
+    ///[`OFF`] specifies that the display is
+    ///powered down.
+    pub const OFF: Self = Self(0);
+    ///[`SUSPEND`] specifies that the display is
+    ///put into a low power mode, from which it  **may**  be able to transition back
+    ///to [`ON`] more quickly than if it were in
+    ///[`OFF`].
+    ///This state  **may**  be the same as [`OFF`].
+    pub const SUSPEND: Self = Self(1);
+    ///[`ON`] specifies that the display is
+    ///powered on.
+    pub const ON: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -383,12 +381,15 @@ impl DisplayPowerStateEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDeviceEventTypeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceEventTypeEXT.html) - Events that can occur on a device object
@@ -402,9 +403,9 @@ impl DisplayPowerStateEXT {
 ///} VkDeviceEventTypeEXT;
 ///```
 ///# Description
-/// - [`DeviceEventTypeDisplayHotplugExt`] specifies that the fence is signaled when a display is
-///   plugged into or unplugged from the specified device. Applications  **can**  use this
-///   notification to determine when they need to re-enumerate the available displays on a device.
+/// - [`DISPLAY_HOTPLUG`] specifies that the fence is signaled when a display is plugged into or
+///   unplugged from the specified device. Applications  **can**  use this notification to determine
+///   when they need to re-enumerate the available displays on a device.
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`DeviceEventInfoEXT`]
@@ -421,21 +422,20 @@ impl DisplayPowerStateEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DeviceEventTypeEXT {
-    ///[`DeviceEventTypeDisplayHotplugExt`] specifies that the fence
+#[repr(transparent)]
+pub struct DeviceEventTypeEXT(i32);
+impl const Default for DeviceEventTypeEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DeviceEventTypeEXT {
+    ///[`DISPLAY_HOTPLUG`] specifies that the fence
     ///is signaled when a display is plugged into or unplugged from the
     ///specified device.
     ///Applications  **can**  use this notification to determine when they need to
     ///re-enumerate the available displays on a device.
-    DeviceEventTypeDisplayHotplugExt = 0,
-}
-impl const Default for DeviceEventTypeEXT {
-    fn default() -> Self {
-        Self::DeviceEventTypeDisplayHotplugExt
-    }
-}
-impl DeviceEventTypeEXT {
+    pub const DISPLAY_HOTPLUG: Self = Self(0);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -444,12 +444,15 @@ impl DeviceEventTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDisplayEventTypeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayEventTypeEXT.html) - Events that can occur on a display object
@@ -463,8 +466,8 @@ impl DeviceEventTypeEXT {
 ///} VkDisplayEventTypeEXT;
 ///```
 ///# Description
-/// - [`DisplayEventTypeFirstPixelOutExt`] specifies that the fence is signaled when the first pixel
-///   of the next display refresh cycle leaves the display engine for the display.
+/// - [`FIRST_PIXEL_OUT`] specifies that the fence is signaled when the first pixel of the next
+///   display refresh cycle leaves the display engine for the display.
 ///# Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayEventInfoEXT`]
@@ -481,19 +484,18 @@ impl DeviceEventTypeEXT {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DisplayEventTypeEXT {
-    ///[`DisplayEventTypeFirstPixelOutExt`] specifies that the fence
-    ///is signaled when the first pixel of the next display refresh cycle
-    ///leaves the display engine for the display.
-    DisplayEventTypeFirstPixelOutExt = 0,
-}
+#[repr(transparent)]
+pub struct DisplayEventTypeEXT(i32);
 impl const Default for DisplayEventTypeEXT {
     fn default() -> Self {
-        Self::DisplayEventTypeFirstPixelOutExt
+        Self(0)
     }
 }
 impl DisplayEventTypeEXT {
+    ///[`FIRST_PIXEL_OUT`] specifies that the fence
+    ///is signaled when the first pixel of the next display refresh cycle
+    ///leaves the display engine for the display.
+    pub const FIRST_PIXEL_OUT: Self = Self(0);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -502,12 +504,15 @@ impl DisplayEventTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDisplayPowerInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPowerInfoEXT.html) - Describe the power state of a display
@@ -564,7 +569,7 @@ impl<'lt> Default for DisplayPowerInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayPowerInfoExt,
+            s_type: StructureType::DISPLAY_POWER_INFO_EXT,
             p_next: std::ptr::null(),
             power_state: Default::default(),
         }
@@ -671,7 +676,7 @@ impl<'lt> Default for DeviceEventInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceEventInfoExt,
+            s_type: StructureType::DEVICE_EVENT_INFO_EXT,
             p_next: std::ptr::null(),
             device_event: Default::default(),
         }
@@ -779,7 +784,7 @@ impl<'lt> Default for DisplayEventInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayEventInfoExt,
+            s_type: StructureType::DISPLAY_EVENT_INFO_EXT,
             p_next: std::ptr::null(),
             display_event: Default::default(),
         }
@@ -894,7 +899,7 @@ impl<'lt> Default for SwapchainCounterCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SwapchainCounterCreateInfoExt,
+            s_type: StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             surface_counters: Default::default(),
         }
@@ -1022,7 +1027,7 @@ impl Device {
             p_display_power_info as *const DisplayPowerInfoEXT<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -1106,7 +1111,7 @@ impl Device {
             p_fence.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
             e => VulkanResult::Err(e),
         }
     }
@@ -1198,7 +1203,7 @@ impl Device {
             p_fence.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), ())),
             e => VulkanResult::Err(e),
         }
     }
@@ -1279,7 +1284,7 @@ impl Device {
         let mut p_counter_value = Default::default();
         let _return = _function(self.as_raw(), swapchain, counter, &mut p_counter_value);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_counter_value),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_counter_value),
             e => VulkanResult::Err(e),
         }
     }

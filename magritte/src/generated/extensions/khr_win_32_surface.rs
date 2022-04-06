@@ -302,7 +302,7 @@ impl<'lt> Default for Win32SurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::Win32SurfaceCreateInfoKhr,
+            s_type: StructureType::WIN32_SURFACE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             hinstance: unsafe { std::mem::zeroed() },
@@ -481,7 +481,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -546,7 +546,7 @@ impl PhysicalDevice {
             .get_physical_device_win32_presentation_support_khr()
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _);
-        unsafe { std::mem::transmute(_return as u8) }
+        std::mem::transmute(_return as u8)
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_KHR_win32_surface`

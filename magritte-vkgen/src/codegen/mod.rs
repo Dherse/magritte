@@ -241,9 +241,9 @@ impl<'a> Source<'a> {
                 continue;
             }
 
-            let (imports, _, out) = per_origin.get_mut(opaque.origin()).unwrap();
+            let (_, _, out) = per_origin.get_mut(opaque.origin()).unwrap();
 
-            opaque.generate_code(self, doc, imports, out);
+            opaque.generate_code(self, doc, out);
         }
 
         per_origin

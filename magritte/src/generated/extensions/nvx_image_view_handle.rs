@@ -213,7 +213,7 @@ impl<'lt> Default for ImageViewHandleInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageViewHandleInfoNvx,
+            s_type: StructureType::IMAGE_VIEW_HANDLE_INFO_NVX,
             p_next: std::ptr::null(),
             image_view: Default::default(),
             descriptor_type: Default::default(),
@@ -352,7 +352,7 @@ impl<'lt> Default for ImageViewAddressPropertiesNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageViewAddressPropertiesNvx,
+            s_type: StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX,
             p_next: std::ptr::null_mut(),
             device_address: Default::default(),
             size: Default::default(),
@@ -549,7 +549,7 @@ impl Device {
             p_properties.unwrap_or_else(|| MaybeUninit::<ImageViewAddressPropertiesNVX<'lt>>::zeroed().assume_init());
         let _return = _function(self.as_raw(), image_view, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_properties.p_next = std::ptr::null_mut();
                 p_properties
             }),

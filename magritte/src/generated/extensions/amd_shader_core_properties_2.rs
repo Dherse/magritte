@@ -87,14 +87,11 @@ pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum ShaderCorePropertiesFlagBitsAMD {
-    #[doc(hidden)]
-    Empty = 0,
-}
+#[repr(transparent)]
+pub struct ShaderCorePropertiesFlagBitsAMD(u32);
 impl const Default for ShaderCorePropertiesFlagBitsAMD {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl ShaderCorePropertiesFlagBitsAMD {
@@ -106,12 +103,15 @@ impl ShaderCorePropertiesFlagBitsAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkShaderCorePropertiesFlagBitsAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderCorePropertiesFlagBitsAMD.html) - Bitmask specifying shader core properties
@@ -150,7 +150,7 @@ impl const Default for ShaderCorePropertiesFlagsAMD {
 }
 impl From<ShaderCorePropertiesFlagBitsAMD> for ShaderCorePropertiesFlagsAMD {
     fn from(from: ShaderCorePropertiesFlagBitsAMD) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl ShaderCorePropertiesFlagsAMD {
@@ -436,7 +436,7 @@ impl<'lt> Default for PhysicalDeviceShaderCoreProperties2AMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShaderCoreProperties2Amd,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES2_AMD,
             p_next: std::ptr::null_mut(),
             shader_core_features: Default::default(),
             active_compute_unit_count: 0,

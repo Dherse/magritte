@@ -286,7 +286,7 @@ impl<'lt> Default for DisplayPresentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayPresentInfoKhr,
+            s_type: StructureType::DISPLAY_PRESENT_INFO_KHR,
             p_next: std::ptr::null(),
             src_rect: Default::default(),
             dst_rect: Default::default(),
@@ -497,7 +497,7 @@ impl Device {
             p_swapchains.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
                 _return,
                 p_swapchains.into_iter().map(|i| Unique::new(self, i, ())).collect(),
             ),

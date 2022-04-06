@@ -111,7 +111,7 @@ impl<'lt> Default for PipelineLibraryCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineLibraryCreateInfoKhr,
+            s_type: StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             library_count: 0,
             libraries: std::ptr::null(),

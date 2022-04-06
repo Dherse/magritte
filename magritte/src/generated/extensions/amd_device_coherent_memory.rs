@@ -110,7 +110,7 @@ impl<'lt> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCoherentMemoryFeaturesAmd,
+            s_type: StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD,
             p_next: std::ptr::null_mut(),
             device_coherent_memory: 0,
         }

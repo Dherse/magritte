@@ -195,7 +195,7 @@ impl<'a> Bitmask<'a> {
             impl From<#bits_name> for #name {
                 fn from(from: #bits_name) -> Self {
                     unsafe {
-                        Self::from_bits_unchecked(from as #ty)
+                        Self::from_bits_unchecked(from.bits())
                     }
                 }
             }

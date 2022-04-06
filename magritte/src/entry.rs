@@ -48,7 +48,7 @@ impl Entry {
                 .unwrap_or_else(std::ptr::null),
             &mut instance,
         ) {
-            VulkanResultCodes::Success => Ok(Unique::new(self, instance, extensions)),
+            VulkanResultCodes::SUCCESS => Ok(Unique::new(self, instance, extensions)),
             other => Err(other),
         }
     }
@@ -76,7 +76,7 @@ impl Entry {
             let mut out: u32 = 0;
 
             match fn_(&mut out) {
-                VulkanResultCodes::Success => Ok(Version::from(out)),
+                VulkanResultCodes::SUCCESS => Ok(Version::from(out)),
                 other => Err(other),
             }
         } else {
@@ -102,7 +102,7 @@ impl Entry {
         } else {
             let mut len = 0;
             match fn_(&mut len, std::ptr::null_mut()) {
-                VulkanResultCodes::Success => len,
+                VulkanResultCodes::SUCCESS => len,
                 other => return Err(other),
             }
         };
@@ -110,7 +110,7 @@ impl Entry {
         let mut out = vec![Default::default(); len as usize];
 
         match fn_(&mut len, out.as_mut_ptr()) {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 out.truncate(len as usize);
                 Ok(out)
             },
@@ -145,7 +145,7 @@ impl Entry {
                 &mut len,
                 std::ptr::null_mut(),
             ) {
-                VulkanResultCodes::Success => len,
+                VulkanResultCodes::SUCCESS => len,
                 other => return Err(other),
             }
         };
@@ -157,7 +157,7 @@ impl Entry {
             &mut len,
             out.as_mut_ptr(),
         ) {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 out.truncate(len as usize);
                 Ok(out)
             },

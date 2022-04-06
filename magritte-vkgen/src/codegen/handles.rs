@@ -6,7 +6,7 @@ use quote::{quote, quote_each_token, ToTokens};
 use tracing::warn;
 
 use crate::{
-    codegen::{alias_of, functions::wrapped::StatefulFunctionGeneratorState},
+    codegen::alias_of,
     doc::Documentation,
     imports::Imports,
     source::{Function, Handle, Source},
@@ -213,6 +213,12 @@ impl<'a> Handle<'a> {
                                     self.as_raw()
                                 );
                             }
+                        } else if self.original_name() == "VkPerformanceConfigurationINTEL" {
+                            quote! {
+                                self.device().#destroyer(
+                                    Some(self.as_raw())
+                                );
+                            }
                         } else {
                             quote! {
                                 self.#destroyer(
@@ -222,11 +228,28 @@ impl<'a> Handle<'a> {
                         }
                     },
                     3 => {
-                        quote! {
-                            self.#owner_getter().#destroyer(
-                                Some(self.as_raw()),
-                                None
-                            );
+                        if [
+                            "VkCuModuleNVX",
+                            "VkCuFunctionNVX",
+                            "VkVideoSessionParametersKHR",
+                            "VkVideoSessionKHR",
+                            "VkBufferCollectionFUCHSIA",
+                        ]
+                        .contains(&self.original_name())
+                        {
+                            quote! {
+                                self.#owner_getter().#destroyer(
+                                    self.as_raw(),
+                                    None
+                                );
+                            }
+                        } else {
+                            quote! {
+                                self.#owner_getter().#destroyer(
+                                    Some(self.as_raw()),
+                                    None
+                                );
+                            }
                         }
                     },
                     4 => {

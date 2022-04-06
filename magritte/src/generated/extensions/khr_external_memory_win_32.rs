@@ -293,7 +293,7 @@ impl<'lt> Default for ImportMemoryWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportMemoryWin32HandleInfoKhr,
+            s_type: StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
             handle: unsafe { std::mem::zeroed() },
@@ -479,7 +479,7 @@ impl<'lt> Default for ExportMemoryWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExportMemoryWin32HandleInfoKhr,
+            s_type: StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
             dw_access: unsafe { std::mem::zeroed() },
@@ -628,7 +628,7 @@ impl<'lt> Default for MemoryWin32HandlePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryWin32HandlePropertiesKhr,
+            s_type: StructureType::MEMORY_WIN32_HANDLE_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -762,7 +762,7 @@ impl<'lt> Default for MemoryGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryGetWin32HandleInfoKhr,
+            s_type: StructureType::MEMORY_GET_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),
@@ -905,7 +905,7 @@ impl Device {
             &mut p_handle,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_handle),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_handle),
             e => VulkanResult::Err(e),
         }
     }
@@ -992,7 +992,7 @@ impl Device {
             &mut p_memory_win_32_handle_properties,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_memory_win_32_handle_properties.p_next = std::ptr::null_mut();
                 p_memory_win_32_handle_properties
             }),

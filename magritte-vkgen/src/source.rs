@@ -18,7 +18,10 @@ mod tag;
 mod unions;
 mod vendors;
 
-use std::{borrow::Cow, ops::Not};
+use std::{
+    borrow::Cow,
+    ops::{Deref, Not},
+};
 
 use ahash::AHashSet;
 use convert_case::{Case, Casing};
@@ -345,30 +348,16 @@ impl<'a> Source<'a> {
             )
         }));
 
-        for function in this
-            .functions
-            .iter()
-            .chain(this.commands.iter().map(std::ops::Deref::deref))
-        {
+        for function in this.functions.iter().chain(this.commands.iter().map(Deref::deref)) {
             let first_arg = &function.arguments()[0];
 
             match first_arg.ty() {
-                Ty::Named(name) => match this.resolve_type(name).expect("unknown type") {
-                    TypeRef::Handle(_) => {
-                        this.handles
-                            .get_by_name_mut(name)
-                            .unwrap()
-                            .add_function(function.original_name.clone());
-                    },
-                    other => {
-                        info!(
-                            "First argument of type: {:?}, makes `{}` a global function",
-                            other.name(),
-                            function.original_name()
-                        );
-
+                Ty::Named(name) => {
+                    if let Some(handle) = this.handles.get_by_name_mut(name) {
+                        handle.add_function(function.original_name.clone());
+                    } else {
                         this.loader_functions.push(function.original_name.clone());
-                    },
+                    }
                 },
                 other => {
                     info!(
@@ -396,22 +385,18 @@ impl<'a> Source<'a> {
                         Ty::Named(name)
                         | Ty::Slice(_, box Ty::Named(name), _)
                         | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
-                            match this.resolve_type(name).expect("unknown type") {
-                                TypeRef::Handle(_) => {
-                                    let handle = this.handles.get_by_name_mut(name).unwrap();
-                                    if let Some(name) = handle.destroyer() {
-                                        warn!(
-                                            "More than one destroyer for {}, was {} became {}",
-                                            handle.original_name(),
-                                            name,
-                                            function.original_name()
-                                        );
-                                        continue;
-                                    }
+                            if let Some(handle) = this.handles.get_by_name_mut(name) {
+                                if let Some(name) = handle.destroyer() {
+                                    warn!(
+                                        "More than one destroyer for {}, was {} became {}",
+                                        handle.original_name(),
+                                        name,
+                                        function.original_name()
+                                    );
+                                    continue;
+                                }
 
-                                    handle.set_destroyer(function.original_name.clone());
-                                },
-                                _ => {},
+                                handle.set_destroyer(function.original_name.clone());
                             }
                         },
                         _ => {},
@@ -420,22 +405,18 @@ impl<'a> Source<'a> {
                 Ty::Named(name)
                 | Ty::Slice(_, box Ty::Named(name), _)
                 | Ty::Pointer(Mutability::Const, box Ty::Named(name)) => {
-                    match this.resolve_type(name).expect("unknown type") {
-                        TypeRef::Handle(_) => {
-                            let handle = this.handles.get_by_name_mut(name).unwrap();
-                            if let Some(name) = handle.destroyer() {
-                                warn!(
-                                    "More than one destroyer for {}, was {} became {}",
-                                    handle.original_name(),
-                                    name,
-                                    function.original_name()
-                                );
-                                continue;
-                            }
+                    if let Some(handle) = this.handles.get_by_name_mut(name) {
+                        if let Some(name) = handle.destroyer() {
+                            warn!(
+                                "More than one destroyer for {}, was {} became {}",
+                                handle.original_name(),
+                                name,
+                                function.original_name()
+                            );
+                            continue;
+                        }
 
-                            handle.set_destroyer(function.original_name.clone());
-                        },
-                        _ => {},
+                        handle.set_destroyer(function.original_name.clone());
                     }
                 },
                 _ => {},
@@ -468,16 +449,15 @@ impl<'a> Source<'a> {
             destroyer: None,
         });
 
-        this.global.push(
-            (
-                Cow::Borrowed("VkSwapchainImage"),
-                "SwapchainImage".to_string(),
-                SourceType::Handle,
-                this.handles.len() - 1,
-            )
-        );
+        this.global.push((
+            Cow::Borrowed("VkSwapchainImage"),
+            "SwapchainImage".to_string(),
+            SourceType::Handle,
+            this.handles.len() - 1,
+        ));
 
-        *this.functions
+        *this
+            .functions
             .get_by_name_mut("vkGetSwapchainImagesKHR")
             .unwrap()
             .arguments_mut()
@@ -487,7 +467,6 @@ impl<'a> Source<'a> {
             .as_slice_mut()
             .1
             .as_named_mut() = Cow::Borrowed("VkSwapchainImage");
-        
 
         this
     }
@@ -697,7 +676,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = bit_name(original_name, tag, Some(extends));
+                                let name = bit_name(original_name, tag, Some(item.name()));
 
                                 item.aliases_mut().push(Alias::new(original_name, name, alias, origin));
                             } else if let Some(item) = self.enums.get_by_name_mut(extends) {
@@ -706,7 +685,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = enum_name(original_name, tag, Some(extends));
+                                let name = enum_name(original_name, tag, Some(item.name()));
 
                                 item.aliases_mut().push(Alias::new(original_name, name, alias, origin));
                             } else {
@@ -737,7 +716,7 @@ impl<'a> Source<'a> {
                             let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                             let original_name = name;
-                            let name = bit_name(original_name, tag, Some(extends));
+                            let name = bit_name(original_name, tag, Some(item.name()));
 
                             item.bits_mut().push(Bit::new(original_name, name, value, origin));
                         } else if let Some(item) = self.enums.get_by_name_mut(extends) {
@@ -746,7 +725,7 @@ impl<'a> Source<'a> {
                             let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                             let original_name = name;
-                            let name = enum_name(original_name, tag, Some(extends));
+                            let name = enum_name(original_name, tag, Some(item.name()));
 
                             item.variants_mut().push(Bit::new(original_name, name, value, origin));
                         } else {
@@ -763,7 +742,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = bit_name(original_name, tag, Some(extends));
+                                let name = bit_name(original_name, tag, Some(item.name()));
 
                                 item.bits_mut().push(Bit::new(original_name, name, value, origin));
                             } else if let Some(item) = self.enums.get_by_name_mut(extends) {
@@ -772,7 +751,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = enum_name(original_name, tag, Some(extends));
+                                let name = enum_name(original_name, tag, Some(item.name()));
 
                                 item.variants_mut().push(Bit::new(original_name, name, value, origin));
                             } else {
@@ -802,7 +781,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = bit_name(original_name, tag, Some(extends));
+                                let name = bit_name(original_name, tag, Some(item.name()));
 
                                 item.bits_mut()
                                     .push(Bit::new(original_name, name, value.compute(), origin));
@@ -812,7 +791,7 @@ impl<'a> Source<'a> {
                                 let tag = tag_of_type(item.original_name(), &self.tags[..]);
 
                                 let original_name = name;
-                                let name = enum_name(original_name, tag, Some(extends));
+                                let name = enum_name(original_name, tag, Some(item.name()));
 
                                 item.variants_mut()
                                     .push(Bit::new(original_name, name, value.compute(), origin));
@@ -1095,7 +1074,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = bit_name(original_name, tag, Some(original_name));
+                    let name = bit_name(original_name, tag, Some(&name));
                     info!(?name, "computed rustified name");
 
                     bits.push(Bit::new_no_origin(original_name, name, 1 << *bitpos));
@@ -1105,7 +1084,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = bit_name(original_name, tag, Some(original_name));
+                    let name = bit_name(original_name, tag, Some(&name));
                     info!(?name, "computed rustified name");
 
                     aliases.push(Alias::new_no_origin(original_name, name, alias));
@@ -1115,7 +1094,7 @@ impl<'a> Source<'a> {
                     let _guard = span.enter();
 
                     let original_name = &en.name;
-                    let name = bit_name(original_name, tag, Some(original_name));
+                    let name = bit_name(original_name, tag, Some(&name));
                     info!(?name, "computed rustified name");
 
                     let expr = Expr::new(value);

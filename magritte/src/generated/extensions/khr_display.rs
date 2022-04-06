@@ -730,16 +730,15 @@ pub type FNCreateDisplayPlaneSurfaceKhr = Option<
 ///} VkDisplayPlaneAlphaFlagBitsKHR;
 ///```
 ///# Description
-/// - [`DisplayPlaneAlphaOpaqueKhr`] specifies that the source image will be treated as opaque.
-/// - [`DisplayPlaneAlphaGlobalKhr`] specifies that a global alpha value  **must**  be specified
-///   that will be applied to all pixels in the source image.
-/// - [`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha value will be determined by the
-///   alpha component of the source image’s pixels. If the source format contains no alpha values,
-///   no blending will be applied. The source alpha values are not premultiplied into the source
-///   image’s other color components.
-/// - [`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is equivalent to
-///   [`DisplayPlaneAlphaPerPixelKhr`], except the source alpha values are assumed to be
-///   premultiplied into the source image’s other color components.
+/// - [`OPAQUE`] specifies that the source image will be treated as opaque.
+/// - [`GLOBAL`] specifies that a global alpha value  **must**  be specified that will be applied to
+///   all pixels in the source image.
+/// - [`PER_PIXEL`] specifies that the alpha value will be determined by the alpha component of the
+///   source image’s pixels. If the source format contains no alpha values, no blending will be
+///   applied. The source alpha values are not premultiplied into the source image’s other color
+///   components.
+/// - [`PER_PIXEL_PREMULTIPLIED`] is equivalent to [`PER_PIXEL`], except the source alpha values are
+///   assumed to be premultiplied into the source image’s other color components.
 ///# Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
@@ -757,37 +756,34 @@ pub type FNCreateDisplayPlaneSurfaceKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DisplayPlaneAlphaFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DisplayPlaneAlphaOpaqueKhr`] specifies that the source
+#[repr(transparent)]
+pub struct DisplayPlaneAlphaFlagBitsKHR(u32);
+impl const Default for DisplayPlaneAlphaFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DisplayPlaneAlphaFlagBitsKHR {
+    ///[`OPAQUE`] specifies that the source
     ///image will be treated as opaque.
-    DisplayPlaneAlphaOpaqueKhr = 1,
-    ///[`DisplayPlaneAlphaGlobalKhr`] specifies that a global
+    pub const OPAQUE: Self = Self(1);
+    ///[`GLOBAL`] specifies that a global
     ///alpha value  **must**  be specified that will be applied to all pixels in the
     ///source image.
-    DisplayPlaneAlphaGlobalKhr = 2,
-    ///[`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha
+    pub const GLOBAL: Self = Self(2);
+    ///[`PER_PIXEL`] specifies that the alpha
     ///value will be determined by the alpha component of the source image’s
     ///pixels.
     ///If the source format contains no alpha values, no blending will be
     ///applied.
     ///The source alpha values are not premultiplied into the source image’s
     ///other color components.
-    DisplayPlaneAlphaPerPixelKhr = 4,
-    ///[`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is
-    ///equivalent to [`DisplayPlaneAlphaPerPixelKhr`], except the
+    pub const PER_PIXEL: Self = Self(4);
+    ///[`PER_PIXEL_PREMULTIPLIED`] is
+    ///equivalent to [`PER_PIXEL`], except the
     ///source alpha values are assumed to be premultiplied into the source
     ///image’s other color components.
-    DisplayPlaneAlphaPerPixelPremultipliedKhr = 8,
-}
-impl const Default for DisplayPlaneAlphaFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DisplayPlaneAlphaFlagBitsKHR {
+    pub const PER_PIXEL_PREMULTIPLIED: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -796,12 +792,15 @@ impl DisplayPlaneAlphaFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDisplayPlaneAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneAlphaFlagBitsKHR.html) - Alpha blending type
@@ -819,16 +818,15 @@ impl DisplayPlaneAlphaFlagBitsKHR {
 ///} VkDisplayPlaneAlphaFlagBitsKHR;
 ///```
 ///# Description
-/// - [`DisplayPlaneAlphaOpaqueKhr`] specifies that the source image will be treated as opaque.
-/// - [`DisplayPlaneAlphaGlobalKhr`] specifies that a global alpha value  **must**  be specified
-///   that will be applied to all pixels in the source image.
-/// - [`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha value will be determined by the
-///   alpha component of the source image’s pixels. If the source format contains no alpha values,
-///   no blending will be applied. The source alpha values are not premultiplied into the source
-///   image’s other color components.
-/// - [`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is equivalent to
-///   [`DisplayPlaneAlphaPerPixelKhr`], except the source alpha values are assumed to be
-///   premultiplied into the source image’s other color components.
+/// - [`OPAQUE`] specifies that the source image will be treated as opaque.
+/// - [`GLOBAL`] specifies that a global alpha value  **must**  be specified that will be applied to
+///   all pixels in the source image.
+/// - [`PER_PIXEL`] specifies that the alpha value will be determined by the alpha component of the
+///   source image’s pixels. If the source format contains no alpha values, no blending will be
+///   applied. The source alpha values are not premultiplied into the source image’s other color
+///   components.
+/// - [`PER_PIXEL_PREMULTIPLIED`] is equivalent to [`PER_PIXEL`], except the source alpha values are
+///   assumed to be premultiplied into the source image’s other color components.
 ///# Related
 /// - [`VK_KHR_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
@@ -854,30 +852,30 @@ impl const Default for DisplayPlaneAlphaFlagsKHR {
 }
 impl From<DisplayPlaneAlphaFlagBitsKHR> for DisplayPlaneAlphaFlagsKHR {
     fn from(from: DisplayPlaneAlphaFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DisplayPlaneAlphaFlagsKHR {
-    ///[`DisplayPlaneAlphaOpaqueKhr`] specifies that the source
+    ///[`OPAQUE`] specifies that the source
     ///image will be treated as opaque.
-    pub const DISPLAY_PLANE_ALPHA_OPAQUE_KHR: Self = Self(1);
-    ///[`DisplayPlaneAlphaGlobalKhr`] specifies that a global
+    pub const OPAQUE: Self = Self(1);
+    ///[`GLOBAL`] specifies that a global
     ///alpha value  **must**  be specified that will be applied to all pixels in the
     ///source image.
-    pub const DISPLAY_PLANE_ALPHA_GLOBAL_KHR: Self = Self(2);
-    ///[`DisplayPlaneAlphaPerPixelKhr`] specifies that the alpha
+    pub const GLOBAL: Self = Self(2);
+    ///[`PER_PIXEL`] specifies that the alpha
     ///value will be determined by the alpha component of the source image’s
     ///pixels.
     ///If the source format contains no alpha values, no blending will be
     ///applied.
     ///The source alpha values are not premultiplied into the source image’s
     ///other color components.
-    pub const DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR: Self = Self(4);
-    ///[`DisplayPlaneAlphaPerPixelPremultipliedKhr`] is
-    ///equivalent to [`DisplayPlaneAlphaPerPixelKhr`], except the
+    pub const PER_PIXEL: Self = Self(4);
+    ///[`PER_PIXEL_PREMULTIPLIED`] is
+    ///equivalent to [`PER_PIXEL`], except the
     ///source alpha values are assumed to be premultiplied into the source
     ///image’s other color components.
-    pub const DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR: Self = Self(8);
+    pub const PER_PIXEL_PREMULTIPLIED: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -889,16 +887,16 @@ impl DisplayPlaneAlphaFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::DISPLAY_PLANE_ALPHA_OPAQUE_KHR;
+            all |= Self::OPAQUE;
         }
         {
-            all |= Self::DISPLAY_PLANE_ALPHA_GLOBAL_KHR;
+            all |= Self::GLOBAL;
         }
         {
-            all |= Self::DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR;
+            all |= Self::PER_PIXEL;
         }
         {
-            all |= Self::DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR;
+            all |= Self::PER_PIXEL_PREMULTIPLIED;
         }
         all
     }
@@ -1100,45 +1098,33 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_OPAQUE_KHR)
-                    {
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::OPAQUE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_OPAQUE_KHR))?;
+                        f.write_str(stringify!(OPAQUE))?;
                     }
-                    if self
-                        .0
-                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_GLOBAL_KHR)
-                    {
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::GLOBAL) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_GLOBAL_KHR))?;
+                        f.write_str(stringify!(GLOBAL))?;
                     }
-                    if self
-                        .0
-                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR)
-                    {
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::PER_PIXEL) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_PER_PIXEL_KHR))?;
+                        f.write_str(stringify!(PER_PIXEL))?;
                     }
-                    if self
-                        .0
-                        .contains(DisplayPlaneAlphaFlagsKHR::DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR)
-                    {
+                    if self.0.contains(DisplayPlaneAlphaFlagsKHR::PER_PIXEL_PREMULTIPLIED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_KHR))?;
+                        f.write_str(stringify!(PER_PIXEL_PREMULTIPLIED))?;
                     }
                 }
                 Ok(())
@@ -1173,22 +1159,19 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 ///} VkSurfaceTransformFlagBitsKHR;
 ///```
 ///# Description
-/// - [`SurfaceTransformIdentityKhr`] specifies that image content is presented without being
-///   transformed.
-/// - [`SurfaceTransformRotate90Khr`] specifies that image content is rotated 90 degrees clockwise.
-/// - [`SurfaceTransformRotate180Khr`] specifies that image content is rotated 180 degrees
-///   clockwise.
-/// - [`SurfaceTransformRotate270Khr`] specifies that image content is rotated 270 degrees
-///   clockwise.
-/// - [`SurfaceTransformHorizontalMirrorKhr`] specifies that image content is mirrored horizontally.
-/// - [`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies that image content is mirrored
-///   horizontally, then rotated 90 degrees clockwise.
-/// - [`SurfaceTransformHorizontalMirrorRotate180Khr`] specifies that image content is mirrored
-///   horizontally, then rotated 180 degrees clockwise.
-/// - [`SurfaceTransformHorizontalMirrorRotate270Khr`] specifies that image content is mirrored
-///   horizontally, then rotated 270 degrees clockwise.
-/// - [`SurfaceTransformInheritKhr`] specifies that the presentation transform is not specified, and
-///   is instead determined by platform-specific considerations and mechanisms outside Vulkan.
+/// - [`IDENTITY`] specifies that image content is presented without being transformed.
+/// - [`ROTATE90`] specifies that image content is rotated 90 degrees clockwise.
+/// - [`ROTATE180`] specifies that image content is rotated 180 degrees clockwise.
+/// - [`ROTATE270`] specifies that image content is rotated 270 degrees clockwise.
+/// - [`HORIZONTAL_MIRROR`] specifies that image content is mirrored horizontally.
+/// - [`HORIZONTAL_MIRROR_ROTATE90`] specifies that image content is mirrored horizontally, then
+///   rotated 90 degrees clockwise.
+/// - [`HORIZONTAL_MIRROR_ROTATE180`] specifies that image content is mirrored horizontally, then
+///   rotated 180 degrees clockwise.
+/// - [`HORIZONTAL_MIRROR_ROTATE270`] specifies that image content is mirrored horizontally, then
+///   rotated 270 degrees clockwise.
+/// - [`INHERIT`] specifies that the presentation transform is not specified, and is instead
+///   determined by platform-specific considerations and mechanisms outside Vulkan.
 ///# Related
 /// - [`VK_KHR_surface`]
 /// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
@@ -1220,59 +1203,59 @@ impl const Default for SurfaceTransformFlagsKHR {
 }
 impl From<SurfaceTransformFlagBitsKHR> for SurfaceTransformFlagsKHR {
     fn from(from: SurfaceTransformFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl SurfaceTransformFlagsKHR {
-    ///[`SurfaceTransformIdentityKhr`] specifies that image content
+    ///[`IDENTITY`] specifies that image content
     ///is presented without being transformed.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_IDENTITY_KHR: Self = Self(1);
-    ///[`SurfaceTransformRotate90Khr`] specifies that image
+    pub const IDENTITY: Self = Self(1);
+    ///[`ROTATE90`] specifies that image
     ///content is rotated 90 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_ROTATE_90_KHR: Self = Self(2);
-    ///[`SurfaceTransformRotate180Khr`] specifies that image
+    pub const ROTATE_90: Self = Self(2);
+    ///[`ROTATE180`] specifies that image
     ///content is rotated 180 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_ROTATE_180_KHR: Self = Self(4);
-    ///[`SurfaceTransformRotate270Khr`] specifies that image
+    pub const ROTATE_180: Self = Self(4);
+    ///[`ROTATE270`] specifies that image
     ///content is rotated 270 degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_ROTATE_270_KHR: Self = Self(8);
-    ///[`SurfaceTransformHorizontalMirrorKhr`] specifies that
+    pub const ROTATE_270: Self = Self(8);
+    ///[`HORIZONTAL_MIRROR`] specifies that
     ///image content is mirrored horizontally.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR: Self = Self(16);
-    ///[`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies
+    pub const HORIZONTAL_MIRROR: Self = Self(16);
+    ///[`HORIZONTAL_MIRROR_ROTATE90`] specifies
     ///that image content is mirrored horizontally, then rotated 90 degrees
     ///clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR: Self = Self(32);
-    ///[`SurfaceTransformHorizontalMirrorRotate180Khr`]
+    pub const HORIZONTAL_MIRROR_ROTATE_90: Self = Self(32);
+    ///[`HORIZONTAL_MIRROR_ROTATE180`]
     ///specifies that image content is mirrored horizontally, then rotated 180
     ///degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR: Self = Self(64);
-    ///[`SurfaceTransformHorizontalMirrorRotate270Khr`]
+    pub const HORIZONTAL_MIRROR_ROTATE_180: Self = Self(64);
+    ///[`HORIZONTAL_MIRROR_ROTATE270`]
     ///specifies that image content is mirrored horizontally, then rotated 270
     ///degrees clockwise.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR: Self = Self(128);
-    ///[`SurfaceTransformInheritKhr`] specifies that the
+    pub const HORIZONTAL_MIRROR_ROTATE_270: Self = Self(128);
+    ///[`INHERIT`] specifies that the
     ///presentation transform is not specified, and is instead determined by
     ///platform-specific considerations and mechanisms outside Vulkan.
     ///
     ///Provided by [`crate::extensions::khr_surface`]
-    pub const SURFACE_TRANSFORM_INHERIT_KHR: Self = Self(256);
+    pub const INHERIT: Self = Self(256);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1284,31 +1267,31 @@ impl SurfaceTransformFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::SURFACE_TRANSFORM_IDENTITY_KHR;
+            all |= Self::IDENTITY;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_ROTATE_90_KHR;
+            all |= Self::ROTATE_90;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_ROTATE_180_KHR;
+            all |= Self::ROTATE_180;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_ROTATE_270_KHR;
+            all |= Self::ROTATE_270;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR;
+            all |= Self::HORIZONTAL_MIRROR;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR;
+            all |= Self::HORIZONTAL_MIRROR_ROTATE_90;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR;
+            all |= Self::HORIZONTAL_MIRROR_ROTATE_180;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR;
+            all |= Self::HORIZONTAL_MIRROR_ROTATE_270;
         }
         {
-            all |= Self::SURFACE_TRANSFORM_INHERIT_KHR;
+            all |= Self::INHERIT;
         }
         all
     }
@@ -1510,92 +1493,68 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_IDENTITY_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::IDENTITY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_IDENTITY_KHR))?;
+                        f.write_str(stringify!(IDENTITY))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_90_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::ROTATE_90) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_90_KHR))?;
+                        f.write_str(stringify!(ROTATE_90))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_180_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::ROTATE_180) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_180_KHR))?;
+                        f.write_str(stringify!(ROTATE_180))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_ROTATE_270_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::ROTATE_270) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_ROTATE_270_KHR))?;
+                        f.write_str(stringify!(ROTATE_270))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_KHR))?;
+                        f.write_str(stringify!(HORIZONTAL_MIRROR))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR_ROTATE_90) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_KHR))?;
+                        f.write_str(stringify!(HORIZONTAL_MIRROR_ROTATE_90))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR_ROTATE_180) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_KHR))?;
+                        f.write_str(stringify!(HORIZONTAL_MIRROR_ROTATE_180))?;
                     }
-                    if self
-                        .0
-                        .contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR)
-                    {
+                    if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR_ROTATE_270) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_KHR))?;
+                        f.write_str(stringify!(HORIZONTAL_MIRROR_ROTATE_270))?;
                     }
-                    if self.0.contains(SurfaceTransformFlagsKHR::SURFACE_TRANSFORM_INHERIT_KHR) {
+                    if self.0.contains(SurfaceTransformFlagsKHR::INHERIT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SURFACE_TRANSFORM_INHERIT_KHR))?;
+                        f.write_str(stringify!(INHERIT))?;
                     }
                 }
                 Ok(())
@@ -2218,7 +2177,7 @@ impl<'lt> Default for DisplayModeCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayModeCreateInfoKhr,
+            s_type: StructureType::DISPLAY_MODE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             parameters: Default::default(),
@@ -2653,7 +2612,7 @@ impl<'lt> Default for DisplaySurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplaySurfaceCreateInfoKhr,
+            s_type: StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             display_mode: Default::default(),
@@ -2890,7 +2849,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -2986,7 +2945,7 @@ impl PhysicalDevice {
             SmallVec::<DisplayPropertiesKHR<'lt>>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -3083,7 +3042,7 @@ impl PhysicalDevice {
             SmallVec::<DisplayPlanePropertiesKHR>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -3192,7 +3151,7 @@ impl PhysicalDevice {
             p_displays.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
                 _return,
                 p_displays.into_iter().map(|i| Unique::new(self, i, ())).collect(),
             ),
@@ -3295,7 +3254,7 @@ impl PhysicalDevice {
             SmallVec::<DisplayModePropertiesKHR>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), display, &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -3392,7 +3351,7 @@ impl PhysicalDevice {
             p_mode.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(parent, p_mode.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(parent, p_mode.assume_init(), ())),
             e => VulkanResult::Err(e),
         }
     }
@@ -3482,7 +3441,7 @@ impl PhysicalDevice {
             p_capabilities.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_capabilities.assume_init()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_capabilities.assume_init()),
             e => VulkanResult::Err(e),
         }
     }

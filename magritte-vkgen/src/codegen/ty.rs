@@ -227,7 +227,7 @@ impl<'a> Ty<'a> {
 
     /// Creates a converter from the "raw" type to its "rustified type" as an inline call, only one
     /// layer deep so as to not allocate.
-    pub fn rust_to_c_converter_inline(&self, source: &Source<'a>, value: &str) -> TokenStream {
+    pub fn rust_to_c_converter_inline(&self, value: &str) -> TokenStream {
         let value_ident = Ident::new(value, Span::call_site());
         match self {
             Ty::Named(Cow::Borrowed("VkBool32")) => quote! { #value_ident as u8 as u32 },
@@ -363,6 +363,7 @@ impl<'a> Ty<'a> {
         mutability: Mutability,
         getter: TokenStream,
         len: Option<TokenStream>,
+        unsafe_: bool,
     ) -> Option<(TokenStream, bool)> {
         let mut_ = mutability.as_mutability_token();
 
@@ -376,23 +377,48 @@ impl<'a> Ty<'a> {
             },
             Ty::Named(Cow::Borrowed("VkBool32")) => {
                 match mutability {
-                    Mutability::Mutable => Some((
-                        quote! {
-                            unsafe {
-                                if cfg!(target_endian = "little") {
-                                    &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().cast::<bool>()
+                    Mutability::Mutable => {
+                        if unsafe_ {
+                            Some((
+                                quote! {
+                                    if cfg!(target_endian = "little") {
+                                        &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().cast::<bool>()
 
-                                } else {
-                                    // TODO: check that this is actually correct on a big endian system
-                                    // don't even know if those exist in the wild, a problem for a future me
-                                    eprintln!("Big-endianess has not been tested!");
-                                    &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().add(3).cast::<bool>()
-                                }
-                            }
-                        },
-                        true,
-                    )),
-                    Mutability::Const => Some((quote! { unsafe { std::mem::transmute(#getter as u8) }}, false)),
+                                    } else {
+                                        // TODO: check that this is actually correct on a big endian system
+                                        // don't even know if those exist in the wild, a problem for a future me
+                                        eprintln!("Big-endianess has not been tested!");
+                                        &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().add(3).cast::<bool>()
+                                    }
+                                },
+                                true,
+                            ))
+                        } else {
+                            Some((
+                                quote! {
+                                    unsafe {
+                                        if cfg!(target_endian = "little") {
+                                            &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().cast::<bool>()
+
+                                        } else {
+                                            // TODO: check that this is actually correct on a big endian system
+                                            // don't even know if those exist in the wild, a problem for a future me
+                                            eprintln!("Big-endianess has not been tested!");
+                                            &mut *(#getter as *mut Bool32).cast::<u32>().cast::<u8>().add(3).cast::<bool>()
+                                        }
+                                    }
+                                },
+                                true,
+                            ))
+                        }
+                    },
+                    Mutability::Const => {
+                        if unsafe_ {
+                            Some((quote! { std::mem::transmute(#getter as u8)}, false))
+                        } else {
+                            Some((quote! { unsafe { std::mem::transmute(#getter as u8) }}, false))
+                        }
+                    },
                 }
             },
             Ty::Named(_) => Some(if self.is_copy(source) && mutability.is_const() {

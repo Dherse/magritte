@@ -300,7 +300,7 @@ impl<'lt> Default for ImportSemaphoreWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportSemaphoreWin32HandleInfoKhr,
+            s_type: StructureType::IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             flags: Default::default(),
@@ -518,7 +518,7 @@ impl<'lt> Default for ExportSemaphoreWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExportSemaphoreWin32HandleInfoKhr,
+            s_type: StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
             dw_access: unsafe { std::mem::zeroed() },
@@ -710,7 +710,7 @@ impl<'lt> Default for D3D12FenceSubmitInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::D3D12FenceSubmitInfoKhr,
+            s_type: StructureType::D3_D_12_FENCE_SUBMIT_INFO_KHR,
             p_next: std::ptr::null(),
             wait_semaphore_values_count: 0,
             wait_semaphore_values: std::ptr::null(),
@@ -907,7 +907,7 @@ impl<'lt> Default for SemaphoreGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SemaphoreGetWin32HandleInfoKhr,
+            s_type: StructureType::SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             handle_type: Default::default(),
@@ -1050,7 +1050,7 @@ impl Device {
             &mut p_handle,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_handle),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_handle),
             e => VulkanResult::Err(e),
         }
     }
@@ -1126,7 +1126,7 @@ impl Device {
             p_import_semaphore_win_32_handle_info as *const ImportSemaphoreWin32HandleInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

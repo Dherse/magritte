@@ -97,14 +97,11 @@ pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = crate::cs
 ///} VkCoverageModulationModeNV;
 ///```
 ///# Description
-/// - [`CoverageModulationModeNoneNv`] specifies that no components are multiplied by the modulation
+/// - [`NONE`] specifies that no components are multiplied by the modulation factor.
+/// - [`RGB`] specifies that the red, green, and blue components are multiplied by the modulation
 ///   factor.
-/// - [`CoverageModulationModeRgbNv`] specifies that the red, green, and blue components are
-///   multiplied by the modulation factor.
-/// - [`CoverageModulationModeAlphaNv`] specifies that the alpha component is multiplied by the
-///   modulation factor.
-/// - [`CoverageModulationModeRgbaNv`] specifies that all components are multiplied by the
-///   modulation factor.
+/// - [`ALPHA`] specifies that the alpha component is multiplied by the modulation factor.
+/// - [`RGBA`] specifies that all components are multiplied by the modulation factor.
 ///# Related
 /// - [`VK_NV_framebuffer_mixed_samples`]
 /// - [`PipelineCoverageModulationStateCreateInfoNV`]
@@ -121,27 +118,26 @@ pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = crate::cs
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum CoverageModulationModeNV {
-    ///[`CoverageModulationModeNoneNv`] specifies that no components
-    ///are multiplied by the modulation factor.
-    CoverageModulationModeNoneNv = 0,
-    ///[`CoverageModulationModeRgbNv`] specifies that the red, green,
-    ///and blue components are multiplied by the modulation factor.
-    CoverageModulationModeRgbNv = 1,
-    ///[`CoverageModulationModeAlphaNv`] specifies that the alpha
-    ///component is multiplied by the modulation factor.
-    CoverageModulationModeAlphaNv = 2,
-    ///[`CoverageModulationModeRgbaNv`] specifies that all components
-    ///are multiplied by the modulation factor.
-    CoverageModulationModeRgbaNv = 3,
-}
+#[repr(transparent)]
+pub struct CoverageModulationModeNV(i32);
 impl const Default for CoverageModulationModeNV {
     fn default() -> Self {
-        Self::CoverageModulationModeNoneNv
+        Self(0)
     }
 }
 impl CoverageModulationModeNV {
+    ///[`NONE`] specifies that no components
+    ///are multiplied by the modulation factor.
+    pub const NONE: Self = Self(0);
+    ///[`RGB`] specifies that the red, green,
+    ///and blue components are multiplied by the modulation factor.
+    pub const RGB: Self = Self(1);
+    ///[`ALPHA`] specifies that the alpha
+    ///component is multiplied by the modulation factor.
+    pub const ALPHA: Self = Self(2);
+    ///[`RGBA`] specifies that all components
+    ///are multiplied by the modulation factor.
+    pub const RGBA: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -150,12 +146,15 @@ impl CoverageModulationModeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineCoverageModulationStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageModulationStateCreateFlagsNV.html) - Reserved for future use
@@ -311,7 +310,7 @@ impl<'lt> Default for PipelineCoverageModulationStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineCoverageModulationStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             flags: Default::default(),
             coverage_modulation_mode: Default::default(),

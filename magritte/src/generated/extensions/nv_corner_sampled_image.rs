@@ -139,7 +139,7 @@ impl<'lt> Default for PhysicalDeviceCornerSampledImageFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCornerSampledImageFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             corner_sampled_image: 0,
         }

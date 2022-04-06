@@ -417,19 +417,19 @@ pub type FNDebugReportMessageExt = Option<
 ///} VkDebugReportFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DebugReportErrorExt`] specifies that the application has violated a valid usage condition of
-///   the specification.
-/// - [`DebugReportWarningExt`] specifies use of Vulkan that  **may**  expose an app bug. Such cases
-///   may not be immediately harmful, such as a fragment shader outputting to a location with no
-///   attachment. Other cases  **may**  point to behavior that is almost certainly bad when
-///   unintended such as using an image whose memory has not been filled. In general if you see a
-///   warning but you know that the behavior is intended/desired, then simply ignore the warning.
-/// - [`DebugReportPerformanceWarningExt`] specifies a potentially non-optimal use of Vulkan, e.g.
-///   using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
+/// - [`ERROR`] specifies that the application has violated a valid usage condition of the
+///   specification.
+/// - [`WARNING`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be
+///   immediately harmful, such as a fragment shader outputting to a location with no attachment.
+///   Other cases  **may**  point to behavior that is almost certainly bad when unintended such as
+///   using an image whose memory has not been filled. In general if you see a warning but you know
+///   that the behavior is intended/desired, then simply ignore the warning.
+/// - [`PERFORMANCE_WARNING`] specifies a potentially non-optimal use of Vulkan, e.g. using
+///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-/// - [`DebugReportInformationExt`] specifies an informational message such as resource details that
-///   may be handy when debugging an application.
-/// - [`DebugReportDebugExt`] specifies diagnostic information from the implementation and layers.
+/// - [`INFORMATION`] specifies an informational message such as resource details that may be handy
+///   when debugging an application.
+/// - [`DEBUG`] specifies diagnostic information from the implementation and layers.
 ///# Related
 /// - [`VK_EXT_debug_report`]
 /// - [`DebugReportFlagsEXT`]
@@ -446,15 +446,19 @@ pub type FNDebugReportMessageExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DebugReportFlagBitsEXT {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DebugReportInformationExt`] specifies an informational
+#[repr(transparent)]
+pub struct DebugReportFlagBitsEXT(u32);
+impl const Default for DebugReportFlagBitsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DebugReportFlagBitsEXT {
+    ///[`INFORMATION`] specifies an informational
     ///message such as resource details that may be handy when debugging an
     ///application.
-    DebugReportInformationExt = 1,
-    ///[`DebugReportWarningExt`] specifies use of Vulkan that  **may**
+    pub const INFORMATION: Self = Self(1);
+    ///[`WARNING`] specifies use of Vulkan that  **may**
     ///expose an app bug.
     ///Such cases may not be immediately harmful, such as a fragment shader
     ///outputting to a location with no attachment.
@@ -462,26 +466,19 @@ pub enum DebugReportFlagBitsEXT {
     ///unintended such as using an image whose memory has not been filled.
     ///In general if you see a warning but you know that the behavior is
     ///intended/desired, then simply ignore the warning.
-    DebugReportWarningExt = 2,
-    ///[`DebugReportPerformanceWarningExt`] specifies a
+    pub const WARNING: Self = Self(2);
+    ///[`PERFORMANCE_WARNING`] specifies a
     ///potentially non-optimal use of Vulkan, e.g. using
     ///[`cmd_clear_color_image`] when setting
     ///[`AttachmentDescription`]::`loadOp` to
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-    DebugReportPerformanceWarningExt = 4,
-    ///[`DebugReportErrorExt`] specifies that the application has
+    pub const PERFORMANCE_WARNING: Self = Self(4);
+    ///[`ERROR`] specifies that the application has
     ///violated a valid usage condition of the specification.
-    DebugReportErrorExt = 8,
-    ///[`DebugReportDebugExt`] specifies diagnostic information
+    pub const ERROR: Self = Self(8);
+    ///[`DEBUG`] specifies diagnostic information
     ///from the implementation and layers.
-    DebugReportDebugExt = 16,
-}
-impl const Default for DebugReportFlagBitsEXT {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DebugReportFlagBitsEXT {
+    pub const DEBUG: Self = Self(16);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -490,12 +487,15 @@ impl DebugReportFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDebugReportFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugReportFlagBitsEXT.html) - Bitmask specifying events which cause a debug report callback
@@ -514,19 +514,19 @@ impl DebugReportFlagBitsEXT {
 ///} VkDebugReportFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DebugReportErrorExt`] specifies that the application has violated a valid usage condition of
-///   the specification.
-/// - [`DebugReportWarningExt`] specifies use of Vulkan that  **may**  expose an app bug. Such cases
-///   may not be immediately harmful, such as a fragment shader outputting to a location with no
-///   attachment. Other cases  **may**  point to behavior that is almost certainly bad when
-///   unintended such as using an image whose memory has not been filled. In general if you see a
-///   warning but you know that the behavior is intended/desired, then simply ignore the warning.
-/// - [`DebugReportPerformanceWarningExt`] specifies a potentially non-optimal use of Vulkan, e.g.
-///   using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
+/// - [`ERROR`] specifies that the application has violated a valid usage condition of the
+///   specification.
+/// - [`WARNING`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be
+///   immediately harmful, such as a fragment shader outputting to a location with no attachment.
+///   Other cases  **may**  point to behavior that is almost certainly bad when unintended such as
+///   using an image whose memory has not been filled. In general if you see a warning but you know
+///   that the behavior is intended/desired, then simply ignore the warning.
+/// - [`PERFORMANCE_WARNING`] specifies a potentially non-optimal use of Vulkan, e.g. using
+///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-/// - [`DebugReportInformationExt`] specifies an informational message such as resource details that
-///   may be handy when debugging an application.
-/// - [`DebugReportDebugExt`] specifies diagnostic information from the implementation and layers.
+/// - [`INFORMATION`] specifies an informational message such as resource details that may be handy
+///   when debugging an application.
+/// - [`DEBUG`] specifies diagnostic information from the implementation and layers.
 ///# Related
 /// - [`VK_EXT_debug_report`]
 /// - [`DebugReportFlagsEXT`]
@@ -551,15 +551,15 @@ impl const Default for DebugReportFlagsEXT {
 }
 impl From<DebugReportFlagBitsEXT> for DebugReportFlagsEXT {
     fn from(from: DebugReportFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DebugReportFlagsEXT {
-    ///[`DebugReportInformationExt`] specifies an informational
+    ///[`INFORMATION`] specifies an informational
     ///message such as resource details that may be handy when debugging an
     ///application.
-    pub const DEBUG_REPORT_INFORMATION_EXT: Self = Self(1);
-    ///[`DebugReportWarningExt`] specifies use of Vulkan that  **may**
+    pub const INFORMATION: Self = Self(1);
+    ///[`WARNING`] specifies use of Vulkan that  **may**
     ///expose an app bug.
     ///Such cases may not be immediately harmful, such as a fragment shader
     ///outputting to a location with no attachment.
@@ -567,19 +567,19 @@ impl DebugReportFlagsEXT {
     ///unintended such as using an image whose memory has not been filled.
     ///In general if you see a warning but you know that the behavior is
     ///intended/desired, then simply ignore the warning.
-    pub const DEBUG_REPORT_WARNING_EXT: Self = Self(2);
-    ///[`DebugReportPerformanceWarningExt`] specifies a
+    pub const WARNING: Self = Self(2);
+    ///[`PERFORMANCE_WARNING`] specifies a
     ///potentially non-optimal use of Vulkan, e.g. using
     ///[`cmd_clear_color_image`] when setting
     ///[`AttachmentDescription`]::`loadOp` to
     ///`VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-    pub const DEBUG_REPORT_PERFORMANCE_WARNING_EXT: Self = Self(4);
-    ///[`DebugReportErrorExt`] specifies that the application has
+    pub const PERFORMANCE_WARNING: Self = Self(4);
+    ///[`ERROR`] specifies that the application has
     ///violated a valid usage condition of the specification.
-    pub const DEBUG_REPORT_ERROR_EXT: Self = Self(8);
-    ///[`DebugReportDebugExt`] specifies diagnostic information
+    pub const ERROR: Self = Self(8);
+    ///[`DEBUG`] specifies diagnostic information
     ///from the implementation and layers.
-    pub const DEBUG_REPORT_DEBUG_EXT: Self = Self(16);
+    pub const DEBUG: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -591,19 +591,19 @@ impl DebugReportFlagsEXT {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::DEBUG_REPORT_INFORMATION_EXT;
+            all |= Self::INFORMATION;
         }
         {
-            all |= Self::DEBUG_REPORT_WARNING_EXT;
+            all |= Self::WARNING;
         }
         {
-            all |= Self::DEBUG_REPORT_PERFORMANCE_WARNING_EXT;
+            all |= Self::PERFORMANCE_WARNING;
         }
         {
-            all |= Self::DEBUG_REPORT_ERROR_EXT;
+            all |= Self::ERROR;
         }
         {
-            all |= Self::DEBUG_REPORT_DEBUG_EXT;
+            all |= Self::DEBUG;
         }
         all
     }
@@ -805,43 +805,40 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_INFORMATION_EXT) {
+                    if self.0.contains(DebugReportFlagsEXT::INFORMATION) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_REPORT_INFORMATION_EXT))?;
+                        f.write_str(stringify!(INFORMATION))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_WARNING_EXT) {
+                    if self.0.contains(DebugReportFlagsEXT::WARNING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_REPORT_WARNING_EXT))?;
+                        f.write_str(stringify!(WARNING))?;
                     }
-                    if self
-                        .0
-                        .contains(DebugReportFlagsEXT::DEBUG_REPORT_PERFORMANCE_WARNING_EXT)
-                    {
+                    if self.0.contains(DebugReportFlagsEXT::PERFORMANCE_WARNING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_REPORT_PERFORMANCE_WARNING_EXT))?;
+                        f.write_str(stringify!(PERFORMANCE_WARNING))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_ERROR_EXT) {
+                    if self.0.contains(DebugReportFlagsEXT::ERROR) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_REPORT_ERROR_EXT))?;
+                        f.write_str(stringify!(ERROR))?;
                     }
-                    if self.0.contains(DebugReportFlagsEXT::DEBUG_REPORT_DEBUG_EXT) {
+                    if self.0.contains(DebugReportFlagsEXT::DEBUG) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEBUG_REPORT_DEBUG_EXT))?;
+                        f.write_str(stringify!(DEBUG))?;
                     }
                 }
                 Ok(())
@@ -930,7 +927,7 @@ impl<'lt> Default for DebugReportCallbackCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DebugReportCallbackCreateInfoExt,
+            s_type: StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             pfn_callback: None,
@@ -1110,7 +1107,7 @@ impl Instance {
             p_callback.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_callback.assume_init(), ()))
             },
             e => VulkanResult::Err(e),

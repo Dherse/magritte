@@ -152,11 +152,11 @@ pub type FNCmdDecodeVideoKhr = Option<
 ///} VkVideoDecodeCapabilityFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoDecodeCapabilityDpbAndOutputCoincideKhr`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
-/// - [`VideoDecodeCapabilityDpbAndOutputDistinctKhr`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
+/// - [`DPB_AND_OUTPUT_COINCIDE`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
+/// - [`DPB_AND_OUTPUT_DISTINCT`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
 ///An implementation  **must**  report at least one of
-///[`VideoDecodeCapabilityDpbAndOutputCoincideKhr`] or
-///[`VideoDecodeCapabilityDpbAndOutputDistinctKhr`] as
+///[`DPB_AND_OUTPUT_COINCIDE`] or
+///[`DPB_AND_OUTPUT_DISTINCT`] as
 ///supported.
 ///# Related
 /// - [`VK_KHR_video_decode_queue`]
@@ -174,27 +174,26 @@ pub type FNCmdDecodeVideoKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoDecodeCapabilityFlagBitsKHR {
-    ///No documentation found
-    VideoDecodeCapabilityDefaultKhr = 0,
-    ///[`VideoDecodeCapabilityDpbAndOutputCoincideKhr`] -
-    ///reports the implementation supports using the same
-    ///[Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and
-    ///decode output.
-    VideoDecodeCapabilityDpbAndOutputCoincideKhr = 1,
-    ///[`VideoDecodeCapabilityDpbAndOutputDistinctKhr`] -
-    ///reports the implementation supports using distinct
-    ///[Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and
-    ///decode output.
-    VideoDecodeCapabilityDpbAndOutputDistinctKhr = 2,
-}
+#[repr(transparent)]
+pub struct VideoDecodeCapabilityFlagBitsKHR(u32);
 impl const Default for VideoDecodeCapabilityFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoDecodeCapabilityDefaultKhr
+        Self(0)
     }
 }
 impl VideoDecodeCapabilityFlagBitsKHR {
+    ///No documentation found
+    pub const DEFAULT: Self = Self(0);
+    ///[`DPB_AND_OUTPUT_COINCIDE`] -
+    ///reports the implementation supports using the same
+    ///[Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and
+    ///decode output.
+    pub const DPB_AND_OUTPUT_COINCIDE: Self = Self(1);
+    ///[`DPB_AND_OUTPUT_DISTINCT`] -
+    ///reports the implementation supports using distinct
+    ///[Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and
+    ///decode output.
+    pub const DPB_AND_OUTPUT_DISTINCT: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -203,12 +202,15 @@ impl VideoDecodeCapabilityFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoDecodeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeFlagBitsKHR.html) - Video Decode Command Flags
@@ -223,8 +225,7 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 ///} VkVideoDecodeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoDecodeReserved0Khr`] The current version of the specification has reserved this value
-///   for future use.
+/// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
 ///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`VideoDecodeFlagsKHR`]
@@ -241,20 +242,19 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum VideoDecodeFlagBitsKHR {
-    ///No documentation found
-    VideoDecodeDefaultKhr = 0,
-    ///[`VideoDecodeReserved0Khr`] The current version of the
-    ///specification has reserved this value for future use.
-    VideoDecodeReserved0Khr = 1,
-}
+#[repr(transparent)]
+pub struct VideoDecodeFlagBitsKHR(u32);
 impl const Default for VideoDecodeFlagBitsKHR {
     fn default() -> Self {
-        Self::VideoDecodeDefaultKhr
+        Self(0)
     }
 }
 impl VideoDecodeFlagBitsKHR {
+    ///No documentation found
+    pub const DEFAULT: Self = Self(0);
+    ///[`RESERVED0`] The current version of the
+    ///specification has reserved this value for future use.
+    pub const RESERVED0: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -263,12 +263,15 @@ impl VideoDecodeFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkVideoDecodeCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeCapabilityFlagBitsKHR.html) - Video decode capability flags
@@ -284,11 +287,11 @@ impl VideoDecodeFlagBitsKHR {
 ///} VkVideoDecodeCapabilityFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoDecodeCapabilityDpbAndOutputCoincideKhr`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
-/// - [`VideoDecodeCapabilityDpbAndOutputDistinctKhr`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
+/// - [`DPB_AND_OUTPUT_COINCIDE`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
+/// - [`DPB_AND_OUTPUT_DISTINCT`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
 ///An implementation  **must**  report at least one of
-///[`VideoDecodeCapabilityDpbAndOutputCoincideKhr`] or
-///[`VideoDecodeCapabilityDpbAndOutputDistinctKhr`] as
+///[`DPB_AND_OUTPUT_COINCIDE`] or
+///[`DPB_AND_OUTPUT_DISTINCT`] as
 ///supported.
 ///# Related
 /// - [`VK_KHR_video_decode_queue`]
@@ -314,22 +317,22 @@ impl const Default for VideoDecodeCapabilityFlagsKHR {
 }
 impl From<VideoDecodeCapabilityFlagBitsKHR> for VideoDecodeCapabilityFlagsKHR {
     fn from(from: VideoDecodeCapabilityFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoDecodeCapabilityFlagsKHR {
     ///No documentation found
-    pub const VIDEO_DECODE_CAPABILITY_DEFAULT_KHR: Self = Self(0);
-    ///[`VideoDecodeCapabilityDpbAndOutputCoincideKhr`] -
+    pub const DEFAULT: Self = Self(0);
+    ///[`DPB_AND_OUTPUT_COINCIDE`] -
     ///reports the implementation supports using the same
     ///[Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and
     ///decode output.
-    pub const VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_KHR: Self = Self(1);
-    ///[`VideoDecodeCapabilityDpbAndOutputDistinctKhr`] -
+    pub const DPB_AND_OUTPUT_COINCIDE: Self = Self(1);
+    ///[`DPB_AND_OUTPUT_DISTINCT`] -
     ///reports the implementation supports using distinct
     ///[Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and
     ///decode output.
-    pub const VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_KHR: Self = Self(2);
+    pub const DPB_AND_OUTPUT_DISTINCT: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -341,13 +344,13 @@ impl VideoDecodeCapabilityFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_DECODE_CAPABILITY_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_KHR;
+            all |= Self::DPB_AND_OUTPUT_COINCIDE;
         }
         {
-            all |= Self::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_KHR;
+            all |= Self::DPB_AND_OUTPUT_DISTINCT;
         }
         all
     }
@@ -551,35 +554,26 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(VideoDecodeCapabilityFlagsKHR::VIDEO_DECODE_CAPABILITY_DEFAULT_KHR)
-                    {
+                    if self.0.contains(VideoDecodeCapabilityFlagsKHR::DEFAULT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_DECODE_CAPABILITY_DEFAULT_KHR))?;
+                        f.write_str(stringify!(DEFAULT))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoDecodeCapabilityFlagsKHR::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_KHR)
-                    {
+                    if self.0.contains(VideoDecodeCapabilityFlagsKHR::DPB_AND_OUTPUT_COINCIDE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_KHR))?;
+                        f.write_str(stringify!(DPB_AND_OUTPUT_COINCIDE))?;
                     }
-                    if self
-                        .0
-                        .contains(VideoDecodeCapabilityFlagsKHR::VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_KHR)
-                    {
+                    if self.0.contains(VideoDecodeCapabilityFlagsKHR::DPB_AND_OUTPUT_DISTINCT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_KHR))?;
+                        f.write_str(stringify!(DPB_AND_OUTPUT_DISTINCT))?;
                     }
                 }
                 Ok(())
@@ -602,8 +596,7 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
 ///} VkVideoDecodeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`VideoDecodeReserved0Khr`] The current version of the specification has reserved this value
-///   for future use.
+/// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
 ///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`VideoDecodeFlagsKHR`]
@@ -628,15 +621,15 @@ impl const Default for VideoDecodeFlagsKHR {
 }
 impl From<VideoDecodeFlagBitsKHR> for VideoDecodeFlagsKHR {
     fn from(from: VideoDecodeFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl VideoDecodeFlagsKHR {
     ///No documentation found
-    pub const VIDEO_DECODE_DEFAULT_KHR: Self = Self(0);
-    ///[`VideoDecodeReserved0Khr`] The current version of the
+    pub const DEFAULT: Self = Self(0);
+    ///[`RESERVED0`] The current version of the
     ///specification has reserved this value for future use.
-    pub const VIDEO_DECODE_RESERVED_0_KHR: Self = Self(1);
+    pub const RESERVED_0: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -648,10 +641,10 @@ impl VideoDecodeFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::VIDEO_DECODE_DEFAULT_KHR;
+            all |= Self::DEFAULT;
         }
         {
-            all |= Self::VIDEO_DECODE_RESERVED_0_KHR;
+            all |= Self::RESERVED_0;
         }
         all
     }
@@ -853,19 +846,19 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(VideoDecodeFlagsKHR::VIDEO_DECODE_DEFAULT_KHR) {
+                    if self.0.contains(VideoDecodeFlagsKHR::DEFAULT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_DECODE_DEFAULT_KHR))?;
+                        f.write_str(stringify!(DEFAULT))?;
                     }
-                    if self.0.contains(VideoDecodeFlagsKHR::VIDEO_DECODE_RESERVED_0_KHR) {
+                    if self.0.contains(VideoDecodeFlagsKHR::RESERVED_0) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(VIDEO_DECODE_RESERVED_0_KHR))?;
+                        f.write_str(stringify!(RESERVED_0))?;
                     }
                 }
                 Ok(())
@@ -932,7 +925,7 @@ impl<'lt> Default for VideoDecodeCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeCapabilitiesKhr,
+            s_type: StructureType::VIDEO_DECODE_CAPABILITIES_KHR,
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
         }
@@ -1150,7 +1143,7 @@ impl<'lt> Default for VideoDecodeInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::VideoDecodeInfoKhr,
+            s_type: StructureType::VIDEO_DECODE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             coded_offset: Default::default(),

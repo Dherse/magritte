@@ -106,8 +106,8 @@ pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///} VkRasterizationOrderAMD;
 ///```
 ///# Description
-/// - [`RasterizationOrderStrictAmd`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
-/// - [`RasterizationOrderRelaxedAmd`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
+/// - [`STRICT`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
+/// - [`RELAXED`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
 ///# Related
 /// - [`VK_AMD_rasterization_order`]
 /// - [`PipelineRasterizationStateRasterizationOrderAMD`]
@@ -124,21 +124,20 @@ pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &'static CStr = crate::cstr!("
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum RasterizationOrderAMD {
-    ///[`RasterizationOrderStrictAmd`] specifies that operations for
-    ///each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
-    RasterizationOrderStrictAmd = 0,
-    ///[`RasterizationOrderRelaxedAmd`] specifies that operations for
-    ///each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
-    RasterizationOrderRelaxedAmd = 1,
-}
+#[repr(transparent)]
+pub struct RasterizationOrderAMD(i32);
 impl const Default for RasterizationOrderAMD {
     fn default() -> Self {
-        Self::RasterizationOrderStrictAmd
+        Self(0)
     }
 }
 impl RasterizationOrderAMD {
+    ///[`STRICT`] specifies that operations for
+    ///each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
+    pub const STRICT: Self = Self(0);
+    ///[`RELAXED`] specifies that operations for
+    ///each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
+    pub const RELAXED: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -147,12 +146,15 @@ impl RasterizationOrderAMD {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineRasterizationStateRasterizationOrderAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html) - Structure defining rasterization order for a graphics pipeline
@@ -217,7 +219,7 @@ impl<'lt> Default for PipelineRasterizationStateRasterizationOrderAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRasterizationStateRasterizationOrderAmd,
+            s_type: StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD,
             p_next: std::ptr::null(),
             rasterization_order: Default::default(),
         }

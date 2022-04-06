@@ -348,7 +348,7 @@ impl<'lt> Default for CuModuleCreateInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CuModuleCreateInfoNvx,
+            s_type: StructureType::CU_MODULE_CREATE_INFO_NVX,
             p_next: std::ptr::null(),
             data_size: 0,
             data: std::ptr::null(),
@@ -481,7 +481,7 @@ impl<'lt> Default for CuFunctionCreateInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CuFunctionCreateInfoNvx,
+            s_type: StructureType::CU_FUNCTION_CREATE_INFO_NVX,
             p_next: std::ptr::null(),
             module: Default::default(),
             name: std::ptr::null(),
@@ -646,7 +646,7 @@ impl<'lt> Default for CuLaunchInfoNVX<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CuLaunchInfoNvx,
+            s_type: StructureType::CU_LAUNCH_INFO_NVX,
             p_next: std::ptr::null(),
             function: Default::default(),
             grid_dim_x: 0,
@@ -950,7 +950,7 @@ impl Device {
             p_module.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, Unique::new(self, p_module.assume_init(), ())),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, Unique::new(self, p_module.assume_init(), ())),
             e => VulkanResult::Err(e),
         }
     }
@@ -1028,7 +1028,7 @@ impl Device {
             p_function.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_function.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -1289,7 +1289,7 @@ impl Handle for CuModuleNVX {
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_cu_module_nvx(Some(self.as_raw()), None);
+        self.device().destroy_cu_module_nvx(self.as_raw(), None);
     }
     #[inline]
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
@@ -1375,7 +1375,7 @@ impl Handle for CuFunctionNVX {
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device().destroy_cu_function_nvx(Some(self.as_raw()), None);
+        self.device().destroy_cu_function_nvx(self.as_raw(), None);
     }
     #[inline]
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {

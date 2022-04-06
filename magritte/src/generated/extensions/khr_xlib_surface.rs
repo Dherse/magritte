@@ -288,7 +288,7 @@ impl<'lt> Default for XlibSurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::XlibSurfaceCreateInfoKhr,
+            s_type: StructureType::XLIB_SURFACE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             dpy: std::ptr::null_mut(),
@@ -462,7 +462,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -539,7 +539,7 @@ impl PhysicalDevice {
             &mut dpy,
             visual_id,
         );
-        (dpy, unsafe { std::mem::transmute(_return as u8) })
+        (dpy, std::mem::transmute(_return as u8))
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_KHR_xlib_surface`

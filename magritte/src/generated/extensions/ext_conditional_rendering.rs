@@ -199,10 +199,9 @@ pub type FNCmdEndConditionalRenderingExt = Option<unsafe extern "system" fn(comm
 ///} VkConditionalRenderingFlagBitsEXT;
 ///```
 ///# Description
-/// - [`ConditionalRenderingInvertedExt`] specifies the condition used to determine whether to
-///   discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory
-///   at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are
-///   discarded.
+/// - [`INVERTED`] specifies the condition used to determine whether to discard rendering commands
+///   or not. That is, if the 32-bit predicate read from `buffer` memory at `offset` is zero, the
+///   rendering commands are not discarded, and if non zero, then they are discarded.
 ///# Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`ConditionalRenderingFlagsEXT`]
@@ -219,23 +218,20 @@ pub type FNCmdEndConditionalRenderingExt = Option<unsafe extern "system" fn(comm
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum ConditionalRenderingFlagBitsEXT {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ConditionalRenderingInvertedExt`] specifies the condition
+#[repr(transparent)]
+pub struct ConditionalRenderingFlagBitsEXT(u32);
+impl const Default for ConditionalRenderingFlagBitsEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl ConditionalRenderingFlagBitsEXT {
+    ///[`INVERTED`] specifies the condition
     ///used to determine whether to discard rendering commands or not.
     ///That is, if the 32-bit predicate read from `buffer` memory at
     ///`offset` is zero, the rendering commands are not discarded, and if
     ///non zero, then they are discarded.
-    ConditionalRenderingInvertedExt = 1,
-}
-impl const Default for ConditionalRenderingFlagBitsEXT {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl ConditionalRenderingFlagBitsEXT {
+    pub const INVERTED: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -244,12 +240,15 @@ impl ConditionalRenderingFlagBitsEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkConditionalRenderingFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingFlagBitsEXT.html) - Specify the behavior of conditional rendering
@@ -264,10 +263,9 @@ impl ConditionalRenderingFlagBitsEXT {
 ///} VkConditionalRenderingFlagBitsEXT;
 ///```
 ///# Description
-/// - [`ConditionalRenderingInvertedExt`] specifies the condition used to determine whether to
-///   discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory
-///   at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are
-///   discarded.
+/// - [`INVERTED`] specifies the condition used to determine whether to discard rendering commands
+///   or not. That is, if the 32-bit predicate read from `buffer` memory at `offset` is zero, the
+///   rendering commands are not discarded, and if non zero, then they are discarded.
 ///# Related
 /// - [`VK_EXT_conditional_rendering`]
 /// - [`ConditionalRenderingFlagsEXT`]
@@ -292,16 +290,16 @@ impl const Default for ConditionalRenderingFlagsEXT {
 }
 impl From<ConditionalRenderingFlagBitsEXT> for ConditionalRenderingFlagsEXT {
     fn from(from: ConditionalRenderingFlagBitsEXT) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl ConditionalRenderingFlagsEXT {
-    ///[`ConditionalRenderingInvertedExt`] specifies the condition
+    ///[`INVERTED`] specifies the condition
     ///used to determine whether to discard rendering commands or not.
     ///That is, if the 32-bit predicate read from `buffer` memory at
     ///`offset` is zero, the rendering commands are not discarded, and if
     ///non zero, then they are discarded.
-    pub const CONDITIONAL_RENDERING_INVERTED_EXT: Self = Self(1);
+    pub const INVERTED: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -313,7 +311,7 @@ impl ConditionalRenderingFlagsEXT {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::CONDITIONAL_RENDERING_INVERTED_EXT;
+            all |= Self::INVERTED;
         }
         all
     }
@@ -515,15 +513,12 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(ConditionalRenderingFlagsEXT::CONDITIONAL_RENDERING_INVERTED_EXT)
-                    {
+                    if self.0.contains(ConditionalRenderingFlagsEXT::INVERTED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(CONDITIONAL_RENDERING_INVERTED_EXT))?;
+                        f.write_str(stringify!(INVERTED))?;
                     }
                 }
                 Ok(())
@@ -617,7 +612,7 @@ impl<'lt> Default for ConditionalRenderingBeginInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ConditionalRenderingBeginInfoExt,
+            s_type: StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_EXT,
             p_next: std::ptr::null(),
             buffer: Default::default(),
             offset: Default::default(),
@@ -775,7 +770,7 @@ impl<'lt> Default for CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CommandBufferInheritanceConditionalRenderingInfoExt,
+            s_type: StructureType::COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT,
             p_next: std::ptr::null(),
             conditional_rendering_enable: 0,
         }
@@ -920,7 +915,7 @@ impl<'lt> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceConditionalRenderingFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             conditional_rendering: 0,
             inherited_conditional_rendering: 0,

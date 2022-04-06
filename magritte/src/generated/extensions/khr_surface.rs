@@ -551,48 +551,47 @@ pub type FNGetPhysicalDeviceSurfacePresentModesKhr = Option<
 ///} VkPresentModeKHR;
 ///```
 ///# Description
-/// - [`PresentModeImmediateKhr`] specifies that the presentation engine does not wait for a
-///   vertical blanking period to update the current image, meaning this mode  **may**  result in
-///   visible tearing. No internal queuing of presentation requests is needed, as the requests are
-///   applied immediately.
-/// - [`PresentModeMailboxKhr`] specifies that the presentation engine waits for the next vertical
-///   blanking period to update the current image. Tearing  **cannot**  be observed. An internal
-///   single-entry queue is used to hold pending presentation requests. If the queue is full when a
-///   new presentation request is received, the new request replaces the existing entry, and any
-///   images associated with the prior entry become available for re-use by the application. One
-///   request is removed from the queue and processed during each vertical blanking period in which
-///   the queue is non-empty.
-/// - [`PresentModeFifoKhr`] specifies that the presentation engine waits for the next vertical
-///   blanking period to update the current image. Tearing  **cannot**  be observed. An internal
+/// - [`IMMEDIATE`] specifies that the presentation engine does not wait for a vertical blanking
+///   period to update the current image, meaning this mode  **may**  result in visible tearing. No
+///   internal queuing of presentation requests is needed, as the requests are applied immediately.
+/// - [`MAILBOX`] specifies that the presentation engine waits for the next vertical blanking period
+///   to update the current image. Tearing  **cannot**  be observed. An internal single-entry queue
+///   is used to hold pending presentation requests. If the queue is full when a new presentation
+///   request is received, the new request replaces the existing entry, and any images associated
+///   with the prior entry become available for re-use by the application. One request is removed
+///   from the queue and processed during each vertical blanking period in which the queue is
+///   non-empty.
+/// - [`FIFO`] specifies that the presentation engine waits for the next vertical blanking period to
+///   update the current image. Tearing  **cannot**  be observed. An internal queue is used to hold
+///   pending presentation requests. New requests are appended to the end of the queue, and one
+///   request is removed from the beginning of the queue and processed during each vertical blanking
+///   period in which the queue is non-empty. This is the only value of `presentMode` that is
+///   **required**  to be supported.
+/// - [`FIFO_RELAXED`] specifies that the presentation engine generally waits for the next vertical
+///   blanking period to update the current image. If a vertical blanking period has already passed
+///   since the last update of the current image then the presentation engine does not wait for
+///   another vertical blanking period for the update, meaning this mode  **may**  result in visible
+///   tearing in this case. This mode is useful for reducing visual stutter with an application that
+///   will mostly present a new image before the next vertical blanking period, but may occasionally
+///   be late, and present a new image just after the next vertical blanking period. An internal
 ///   queue is used to hold pending presentation requests. New requests are appended to the end of
-///   the queue, and one request is removed from the beginning of the queue and processed during
-///   each vertical blanking period in which the queue is non-empty. This is the only value of
-///   `presentMode` that is  **required**  to be supported.
-/// - [`PresentModeFifoRelaxedKhr`] specifies that the presentation engine generally waits for the
-///   next vertical blanking period to update the current image. If a vertical blanking period has
-///   already passed since the last update of the current image then the presentation engine does
-///   not wait for another vertical blanking period for the update, meaning this mode  **may**
-///   result in visible tearing in this case. This mode is useful for reducing visual stutter with
-///   an application that will mostly present a new image before the next vertical blanking period,
-///   but may occasionally be late, and present a new image just after the next vertical blanking
-///   period. An internal queue is used to hold pending presentation requests. New requests are
-///   appended to the end of the queue, and one request is removed from the beginning of the queue
-///   and processed during or after each vertical blanking period in which the queue is non-empty.
-/// - [`PresentModeSharedDemandRefreshKhr`] specifies that the presentation engine and application
-///   have concurrent access to a single image, which is referred to as a *shared presentable
-///   image*. The presentation engine is only required to update the current image after a new
-///   presentation request is received. Therefore the application  **must**  make a presentation
-///   request whenever an update is required. However, the presentation engine  **may**  update the
-///   current image at any point, meaning this mode  **may**  result in visible tearing.
-/// - [`PresentModeSharedContinuousRefreshKhr`] specifies that the presentation engine and
-///   application have concurrent access to a single image, which is referred to as a *shared
-///   presentable image*. The presentation engine periodically updates the current image on its
-///   regular refresh cycle. The application is only required to make one initial presentation
-///   request, after which the presentation engine  **must**  update the current image without any
-///   need for further presentation requests. The application  **can**  indicate the image contents
-///   have been updated by making a presentation request, but this does not guarantee the timing of
-///   when it will be updated. This mode  **may**  result in visible tearing if rendering to the
-///   image is not timed correctly.
+///   the queue, and one request is removed from the beginning of the queue and processed during or
+///   after each vertical blanking period in which the queue is non-empty.
+/// - [`SHARED_DEMAND_REFRESH`] specifies that the presentation engine and application have
+///   concurrent access to a single image, which is referred to as a *shared presentable image*. The
+///   presentation engine is only required to update the current image after a new presentation
+///   request is received. Therefore the application  **must**  make a presentation request whenever
+///   an update is required. However, the presentation engine  **may**  update the current image at
+///   any point, meaning this mode  **may**  result in visible tearing.
+/// - [`SHARED_CONTINUOUS_REFRESH`] specifies that the presentation engine and application have
+///   concurrent access to a single image, which is referred to as a *shared presentable image*. The
+///   presentation engine periodically updates the current image on its regular refresh cycle. The
+///   application is only required to make one initial presentation request, after which the
+///   presentation engine  **must**  update the current image without any need for further
+///   presentation requests. The application  **can**  indicate the image contents have been updated
+///   by making a presentation request, but this does not guarantee the timing of when it will be
+///   updated. This mode  **may**  result in visible tearing if rendering to the image is not timed
+///   correctly.
 ///The supported [`ImageUsageFlagBits`] of the presentable images of a
 ///swapchain created for a surface  **may**  differ depending on the presentation
 ///mode, and can be determined as per the table below:
@@ -614,15 +613,21 @@ pub type FNGetPhysicalDeviceSurfacePresentModesKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PresentModeKHR {
-    ///[`PresentModeImmediateKhr`] specifies that the presentation
+#[repr(transparent)]
+pub struct PresentModeKHR(i32);
+impl const Default for PresentModeKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl PresentModeKHR {
+    ///[`IMMEDIATE`] specifies that the presentation
     ///engine does not wait for a vertical blanking period to update the
     ///current image, meaning this mode  **may**  result in visible tearing.
     ///No internal queuing of presentation requests is needed, as the requests
     ///are applied immediately.
-    PresentModeImmediateKhr = 0,
-    ///[`PresentModeMailboxKhr`] specifies that the presentation engine
+    pub const IMMEDIATE: Self = Self(0);
+    ///[`MAILBOX`] specifies that the presentation engine
     ///waits for the next vertical blanking period to update the current image.
     ///Tearing  **cannot**  be observed.
     ///An internal single-entry queue is used to hold pending presentation
@@ -632,8 +637,8 @@ pub enum PresentModeKHR {
     ///the prior entry become available for re-use by the application.
     ///One request is removed from the queue and processed during each vertical
     ///blanking period in which the queue is non-empty.
-    PresentModeMailboxKhr = 1,
-    ///[`PresentModeFifoKhr`] specifies that the presentation engine
+    pub const MAILBOX: Self = Self(1);
+    ///[`FIFO`] specifies that the presentation engine
     ///waits for the next vertical blanking period to update the current image.
     ///Tearing  **cannot**  be observed.
     ///An internal queue is used to hold pending presentation requests.
@@ -642,8 +647,8 @@ pub enum PresentModeKHR {
     ///vertical blanking period in which the queue is non-empty.
     ///This is the only value of `presentMode` that is  **required**  to be
     ///supported.
-    PresentModeFifoKhr = 2,
-    ///[`PresentModeFifoRelaxedKhr`] specifies that the presentation
+    pub const FIFO: Self = Self(2);
+    ///[`FIFO_RELAXED`] specifies that the presentation
     ///engine generally waits for the next vertical blanking period to update
     ///the current image.
     ///If a vertical blanking period has already passed since the last update
@@ -658,8 +663,8 @@ pub enum PresentModeKHR {
     ///New requests are appended to the end of the queue, and one request is
     ///removed from the beginning of the queue and processed during or after
     ///each vertical blanking period in which the queue is non-empty.
-    PresentModeFifoRelaxedKhr = 3,
-    ///[`PresentModeSharedDemandRefreshKhr`] specifies that the
+    pub const FIFO_RELAXED: Self = Self(3);
+    ///[`SHARED_DEMAND_REFRESH`] specifies that the
     ///presentation engine and application have concurrent access to a single
     ///image, which is referred to as a *shared presentable image*.
     ///The presentation engine is only required to update the current image
@@ -671,8 +676,8 @@ pub enum PresentModeKHR {
     ///
     ///Provided by [`crate::extensions::khr_shared_presentable_image`]
     #[cfg(feature = "VK_KHR_shared_presentable_image")]
-    PresentModeSharedDemandRefreshKhr = 1000111000,
-    ///[`PresentModeSharedContinuousRefreshKhr`] specifies that the
+    pub const SHARED_DEMAND_REFRESH: Self = Self(1000111000);
+    ///[`SHARED_CONTINUOUS_REFRESH`] specifies that the
     ///presentation engine and application have concurrent access to a single
     ///image, which is referred to as a *shared presentable image*.
     ///The presentation engine periodically updates the current image on its
@@ -688,14 +693,7 @@ pub enum PresentModeKHR {
     ///
     ///Provided by [`crate::extensions::khr_shared_presentable_image`]
     #[cfg(feature = "VK_KHR_shared_presentable_image")]
-    PresentModeSharedContinuousRefreshKhr = 1000111001,
-}
-impl const Default for PresentModeKHR {
-    fn default() -> Self {
-        Self::PresentModeImmediateKhr
-    }
-}
-impl PresentModeKHR {
+    pub const SHARED_CONTINUOUS_REFRESH: Self = Self(1000111001);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -704,12 +702,15 @@ impl PresentModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkColorSpaceKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkColorSpaceKHR.html) - Supported color space of the presentation engine
@@ -756,38 +757,38 @@ impl PresentModeKHR {
 ///} VkColorSpaceKHR;
 ///```
 ///# Description
-/// - [`ColorSpaceSrgbNonlinearKhr`] specifies support for the sRGB color space.
-/// - [`ColorSpaceDisplayP3NonlinearExt`] specifies support for the Display-P3 color space to be
-///   displayed using an sRGB-like EOTF (defined below).
-/// - [`ColorSpaceExtendedSrgbLinearExt`] specifies support for the extended sRGB color space to be
+/// - [`SRGB_NONLINEAR`] specifies support for the sRGB color space.
+/// - [`DISPLAY_P3_NONLINEAR_EXT`] specifies support for the Display-P3 color space to be displayed
+///   using an sRGB-like EOTF (defined below).
+/// - [`EXTENDED_SRGB_LINEAR_EXT`] specifies support for the extended sRGB color space to be
 ///   displayed using a linear EOTF.
-/// - [`ColorSpaceExtendedSrgbNonlinearExt`] specifies support for the extended sRGB color space to
-///   be displayed using an sRGB EOTF.
-/// - [`ColorSpaceDisplayP3LinearExt`] specifies support for the Display-P3 color space to be
-///   displayed using a linear EOTF.
-/// - [`ColorSpaceDciP3NonlinearExt`] specifies support for the DCI-P3 color space to be displayed
-///   using the DCI-P3 EOTF. Note that values in such an image are interpreted as XYZ encoded color
-///   data by the presentation engine.
-/// - [`ColorSpaceBt709LinearExt`] specifies support for the BT709 color space to be displayed using
-///   a linear EOTF.
-/// - [`ColorSpaceBt709NonlinearExt`] specifies support for the BT709 color space to be displayed
-///   using the SMPTE 170M EOTF.
-/// - [`ColorSpaceBt2020LinearExt`] specifies support for the BT2020 color space to be displayed
+/// - [`EXTENDED_SRGB_NONLINEAR_EXT`] specifies support for the extended sRGB color space to be
+///   displayed using an sRGB EOTF.
+/// - [`DISPLAY_P3_LINEAR_EXT`] specifies support for the Display-P3 color space to be displayed
 ///   using a linear EOTF.
-/// - [`ColorSpaceHdr10St2084Ext`] specifies support for the HDR10 (BT2020 color) space to be
-///   displayed using the SMPTE ST2084 Perceptual Quantizer (PQ) EOTF.
-/// - [`ColorSpaceDolbyvisionExt`] specifies support for the Dolby Vision (BT2020 color space),
-///   proprietary encoding, to be displayed using the SMPTE ST2084 EOTF.
-/// - [`ColorSpaceHdr10HlgExt`] specifies support for the HDR10 (BT2020 color space) to be displayed
-///   using the Hybrid Log Gamma (HLG) EOTF.
-/// - [`ColorSpaceAdobergbLinearExt`] specifies support for the AdobeRGB color space to be displayed
-///   using a linear EOTF.
-/// - [`ColorSpaceAdobergbNonlinearExt`] specifies support for the AdobeRGB color space to be
-///   displayed using the Gamma 2.2 EOTF.
-/// - [`ColorSpacePassThroughExt`] specifies that color components are used “as is”. This is
-///   intended to allow applications to supply data for color spaces not described here.
-/// - [`ColorSpaceDisplayNativeAmd`] specifies support for the display’s native color space. This
-///   matches the color space expectations of AMD’s FreeSync2 standard, for displays supporting it.
+/// - [`DCI_P3_NONLINEAR_EXT`] specifies support for the DCI-P3 color space to be displayed using
+///   the DCI-P3 EOTF. Note that values in such an image are interpreted as XYZ encoded color data
+///   by the presentation engine.
+/// - [`BT709_LINEAR_EXT`] specifies support for the BT709 color space to be displayed using a
+///   linear EOTF.
+/// - [`BT709_NONLINEAR_EXT`] specifies support for the BT709 color space to be displayed using the
+///   SMPTE 170M EOTF.
+/// - [`BT2020_LINEAR_EXT`] specifies support for the BT2020 color space to be displayed using a
+///   linear EOTF.
+/// - [`HDR10_ST_2084_EXT`] specifies support for the HDR10 (BT2020 color) space to be displayed
+///   using the SMPTE ST2084 Perceptual Quantizer (PQ) EOTF.
+/// - [`DOLBYVISION_EXT`] specifies support for the Dolby Vision (BT2020 color space), proprietary
+///   encoding, to be displayed using the SMPTE ST2084 EOTF.
+/// - [`HDR10_HLG_EXT`] specifies support for the HDR10 (BT2020 color space) to be displayed using
+///   the Hybrid Log Gamma (HLG) EOTF.
+/// - [`ADOBERGB_LINEAR_EXT`] specifies support for the AdobeRGB color space to be displayed using a
+///   linear EOTF.
+/// - [`ADOBERGB_NONLINEAR_EXT`] specifies support for the AdobeRGB color space to be displayed
+///   using the Gamma 2.2 EOTF.
+/// - [`PASS_THROUGH_EXT`] specifies that color components are used “as is”. This is intended to
+///   allow applications to supply data for color spaces not described here.
+/// - [`DISPLAY_NATIVE_AMD`] specifies support for the display’s native color space. This matches
+///   the color space expectations of AMD’s FreeSync2 standard, for displays supporting it.
 ///The color components of non-linear color space swap chain images  **must**  have
 ///had the appropriate transfer function applied.
 ///The color space selected for the swap chain image will not affect the
@@ -799,7 +800,7 @@ impl PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.9540200000000001em;" class="vlist"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.344em;" class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.69em;" class="vlist"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
 /// - [`VK_KHR_surface`]
@@ -818,118 +819,117 @@ impl PresentModeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ColorSpaceKHR {
-    ///[`ColorSpaceSrgbNonlinearKhr`] specifies support for the sRGB
+#[repr(transparent)]
+pub struct ColorSpaceKHR(i32);
+impl const Default for ColorSpaceKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl ColorSpaceKHR {
+    ///[`SRGB_NONLINEAR`] specifies support for the sRGB
     ///color space.
-    ColorSpaceSrgbNonlinearKhr = 0,
-    ///[`ColorSpaceDisplayP3NonlinearExt`] specifies support for the
+    pub const SRGB_NONLINEAR: Self = Self(0);
+    ///[`DISPLAY_P3_NONLINEAR_EXT`] specifies support for the
     ///Display-P3 color space to be displayed using an sRGB-like EOTF (defined
     ///below).
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceDisplayP3NonlinearExt = 1000104001,
-    ///[`ColorSpaceExtendedSrgbLinearExt`] specifies support for the
+    pub const DISPLAY_P3_NONLINEAR_EXT: Self = Self(1000104001);
+    ///[`EXTENDED_SRGB_LINEAR_EXT`] specifies support for the
     ///extended sRGB color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceExtendedSrgbLinearExt = 1000104002,
-    ///[`ColorSpaceDisplayP3LinearExt`] specifies support for the
+    pub const EXTENDED_SRGB_LINEAR_EXT: Self = Self(1000104002);
+    ///[`DISPLAY_P3_LINEAR_EXT`] specifies support for the
     ///Display-P3 color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceDisplayP3LinearExt = 1000104003,
-    ///[`ColorSpaceDciP3NonlinearExt`] specifies support for the
+    pub const DISPLAY_P3_LINEAR_EXT: Self = Self(1000104003);
+    ///[`DCI_P3_NONLINEAR_EXT`] specifies support for the
     ///DCI-P3 color space to be displayed using the DCI-P3 EOTF.
     ///Note that values in such an image are interpreted as XYZ encoded color
     ///data by the presentation engine.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceDciP3NonlinearExt = 1000104004,
-    ///[`ColorSpaceBt709LinearExt`] specifies support for the BT709
+    pub const DCI_P3_NONLINEAR_EXT: Self = Self(1000104004);
+    ///[`BT709_LINEAR_EXT`] specifies support for the BT709
     ///color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceBt709LinearExt = 1000104005,
-    ///[`ColorSpaceBt709NonlinearExt`] specifies support for the BT709
+    pub const BT709_LINEAR_EXT: Self = Self(1000104005);
+    ///[`BT709_NONLINEAR_EXT`] specifies support for the BT709
     ///color space to be displayed using the SMPTE 170M EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceBt709NonlinearExt = 1000104006,
-    ///[`ColorSpaceBt2020LinearExt`] specifies support for the BT2020
+    pub const BT709_NONLINEAR_EXT: Self = Self(1000104006);
+    ///[`BT2020_LINEAR_EXT`] specifies support for the BT2020
     ///color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceBt2020LinearExt = 1000104007,
-    ///[`ColorSpaceHdr10St2084Ext`] specifies support for the HDR10
+    pub const BT2020_LINEAR_EXT: Self = Self(1000104007);
+    ///[`HDR10_ST_2084_EXT`] specifies support for the HDR10
     ///(BT2020 color) space to be displayed using the SMPTE ST2084 Perceptual
     ///Quantizer (PQ) EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceHdr10St2084Ext = 1000104008,
-    ///[`ColorSpaceDolbyvisionExt`] specifies support for the Dolby
+    pub const HDR10_ST_2084_EXT: Self = Self(1000104008);
+    ///[`DOLBYVISION_EXT`] specifies support for the Dolby
     ///Vision (BT2020 color space), proprietary encoding, to be displayed using
     ///the SMPTE ST2084 EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceDolbyvisionExt = 1000104009,
-    ///[`ColorSpaceHdr10HlgExt`] specifies support for the HDR10
+    pub const DOLBYVISION_EXT: Self = Self(1000104009);
+    ///[`HDR10_HLG_EXT`] specifies support for the HDR10
     ///(BT2020 color space) to be displayed using the Hybrid Log Gamma (HLG)
     ///EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceHdr10HlgExt = 1000104010,
-    ///[`ColorSpaceAdobergbLinearExt`] specifies support for the
+    pub const HDR10_HLG_EXT: Self = Self(1000104010);
+    ///[`ADOBERGB_LINEAR_EXT`] specifies support for the
     ///AdobeRGB color space to be displayed using a linear EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceAdobergbLinearExt = 1000104011,
-    ///[`ColorSpaceAdobergbNonlinearExt`] specifies support for the
+    pub const ADOBERGB_LINEAR_EXT: Self = Self(1000104011);
+    ///[`ADOBERGB_NONLINEAR_EXT`] specifies support for the
     ///AdobeRGB color space to be displayed using the Gamma 2.2 EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceAdobergbNonlinearExt = 1000104012,
-    ///[`ColorSpacePassThroughExt`] specifies that color components
+    pub const ADOBERGB_NONLINEAR_EXT: Self = Self(1000104012);
+    ///[`PASS_THROUGH_EXT`] specifies that color components
     ///are used “as is”.
     ///This is intended to allow applications to supply data for color spaces
     ///not described here.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpacePassThroughExt = 1000104013,
-    ///[`ColorSpaceExtendedSrgbNonlinearExt`] specifies support for
+    pub const PASS_THROUGH_EXT: Self = Self(1000104013);
+    ///[`EXTENDED_SRGB_NONLINEAR_EXT`] specifies support for
     ///the extended sRGB color space to be displayed using an sRGB EOTF.
     ///
     ///Provided by [`crate::extensions::ext_swapchain_colorspace`]
     #[cfg(feature = "VK_EXT_swapchain_colorspace")]
-    ColorSpaceExtendedSrgbNonlinearExt = 1000104014,
-    ///[`ColorSpaceDisplayNativeAmd`] specifies support for the
+    pub const EXTENDED_SRGB_NONLINEAR_EXT: Self = Self(1000104014);
+    ///[`DISPLAY_NATIVE_AMD`] specifies support for the
     ///display’s native color space.
     ///This matches the color space expectations of AMD’s FreeSync2 standard,
     ///for displays supporting it.
     ///
     ///Provided by [`crate::extensions::amd_display_native_hdr`]
     #[cfg(feature = "VK_AMD_display_native_hdr")]
-    ColorSpaceDisplayNativeAmd = 1000213000,
-}
-impl const Default for ColorSpaceKHR {
-    fn default() -> Self {
-        Self::ColorSpaceSrgbNonlinearKhr
-    }
-}
-impl ColorSpaceKHR {
+    pub const DISPLAY_NATIVE_AMD: Self = Self(1000213000);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -938,12 +938,15 @@ impl ColorSpaceKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkCompositeAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCompositeAlphaFlagBitsKHR.html) - Alpha compositing modes supported on a device
@@ -961,20 +964,20 @@ impl ColorSpaceKHR {
 ///```
 ///# Description
 ///These values are described as follows:
-/// - [`CompositeAlphaOpaqueKhr`]: The alpha component, if it exists, of the images is ignored in
-///   the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
-/// - [`CompositeAlphaPreMultipliedKhr`]: The alpha component, if it exists, of the images is
-///   respected in the compositing process. The non-alpha components of the image are expected to
-///   already be multiplied by the alpha component by the application.
-/// - [`CompositeAlphaPostMultipliedKhr`]: The alpha component, if it exists, of the images is
-///   respected in the compositing process. The non-alpha components of the image are not expected
-///   to already be multiplied by the alpha component by the application; instead, the compositor
-///   will multiply the non-alpha components of the image by the alpha component during compositing.
-/// - [`CompositeAlphaInheritKhr`]: The way in which the presentation engine treats the alpha
-///   component in the images is unknown to the Vulkan API. Instead, the application is responsible
-///   for setting the composite alpha blending mode using native window system commands. If the
-///   application does not set the blending mode using native window system commands, then a
-///   platform-specific default will be used.
+/// - [`OPAQUE`]: The alpha component, if it exists, of the images is ignored in the compositing
+///   process. Instead, the image is treated as if it has a constant alpha of 1.0.
+/// - [`PRE_MULTIPLIED`]: The alpha component, if it exists, of the images is respected in the
+///   compositing process. The non-alpha components of the image are expected to already be
+///   multiplied by the alpha component by the application.
+/// - [`POST_MULTIPLIED`]: The alpha component, if it exists, of the images is respected in the
+///   compositing process. The non-alpha components of the image are not expected to already be
+///   multiplied by the alpha component by the application; instead, the compositor will multiply
+///   the non-alpha components of the image by the alpha component during compositing.
+/// - [`INHERIT`]: The way in which the presentation engine treats the alpha component in the images
+///   is unknown to the Vulkan API. Instead, the application is responsible for setting the
+///   composite alpha blending mode using native window system commands. If the application does not
+///   set the blending mode using native window system commands, then a platform-specific default
+///   will be used.
 ///# Related
 /// - [`VK_KHR_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
@@ -992,41 +995,38 @@ impl ColorSpaceKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum CompositeAlphaFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`CompositeAlphaOpaqueKhr`]: The alpha component, if it
+#[repr(transparent)]
+pub struct CompositeAlphaFlagBitsKHR(u32);
+impl const Default for CompositeAlphaFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl CompositeAlphaFlagBitsKHR {
+    ///[`OPAQUE`]: The alpha component, if it
     ///exists, of the images is ignored in the compositing process.
     ///Instead, the image is treated as if it has a constant alpha of 1.0.
-    CompositeAlphaOpaqueKhr = 1,
-    ///[`CompositeAlphaPreMultipliedKhr`]: The alpha component, if
+    pub const OPAQUE: Self = Self(1);
+    ///[`PRE_MULTIPLIED`]: The alpha component, if
     ///it exists, of the images is respected in the compositing process.
     ///The non-alpha components of the image are expected to already be
     ///multiplied by the alpha component by the application.
-    CompositeAlphaPreMultipliedKhr = 2,
-    ///[`CompositeAlphaPostMultipliedKhr`]: The alpha component,
+    pub const PRE_MULTIPLIED: Self = Self(2);
+    ///[`POST_MULTIPLIED`]: The alpha component,
     ///if it exists, of the images is respected in the compositing process.
     ///The non-alpha components of the image are not expected to already be
     ///multiplied by the alpha component by the application; instead, the
     ///compositor will multiply the non-alpha components of the image by the
     ///alpha component during compositing.
-    CompositeAlphaPostMultipliedKhr = 4,
-    ///[`CompositeAlphaInheritKhr`]: The way in which the
+    pub const POST_MULTIPLIED: Self = Self(4);
+    ///[`INHERIT`]: The way in which the
     ///presentation engine treats the alpha component in the images is unknown
     ///to the Vulkan API.
     ///Instead, the application is responsible for setting the composite alpha
     ///blending mode using native window system commands.
     ///If the application does not set the blending mode using native window
     ///system commands, then a platform-specific default will be used.
-    CompositeAlphaInheritKhr = 8,
-}
-impl const Default for CompositeAlphaFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl CompositeAlphaFlagBitsKHR {
+    pub const INHERIT: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1035,12 +1035,15 @@ impl CompositeAlphaFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSurfaceTransformFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceTransformFlagBitsKHR.html) - Presentation transforms supported on a device
@@ -1067,22 +1070,19 @@ impl CompositeAlphaFlagBitsKHR {
 ///} VkSurfaceTransformFlagBitsKHR;
 ///```
 ///# Description
-/// - [`SurfaceTransformIdentityKhr`] specifies that image content is presented without being
-///   transformed.
-/// - [`SurfaceTransformRotate90Khr`] specifies that image content is rotated 90 degrees clockwise.
-/// - [`SurfaceTransformRotate180Khr`] specifies that image content is rotated 180 degrees
-///   clockwise.
-/// - [`SurfaceTransformRotate270Khr`] specifies that image content is rotated 270 degrees
-///   clockwise.
-/// - [`SurfaceTransformHorizontalMirrorKhr`] specifies that image content is mirrored horizontally.
-/// - [`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies that image content is mirrored
-///   horizontally, then rotated 90 degrees clockwise.
-/// - [`SurfaceTransformHorizontalMirrorRotate180Khr`] specifies that image content is mirrored
-///   horizontally, then rotated 180 degrees clockwise.
-/// - [`SurfaceTransformHorizontalMirrorRotate270Khr`] specifies that image content is mirrored
-///   horizontally, then rotated 270 degrees clockwise.
-/// - [`SurfaceTransformInheritKhr`] specifies that the presentation transform is not specified, and
-///   is instead determined by platform-specific considerations and mechanisms outside Vulkan.
+/// - [`IDENTITY`] specifies that image content is presented without being transformed.
+/// - [`ROTATE90`] specifies that image content is rotated 90 degrees clockwise.
+/// - [`ROTATE180`] specifies that image content is rotated 180 degrees clockwise.
+/// - [`ROTATE270`] specifies that image content is rotated 270 degrees clockwise.
+/// - [`HORIZONTAL_MIRROR`] specifies that image content is mirrored horizontally.
+/// - [`HORIZONTAL_MIRROR_ROTATE90`] specifies that image content is mirrored horizontally, then
+///   rotated 90 degrees clockwise.
+/// - [`HORIZONTAL_MIRROR_ROTATE180`] specifies that image content is mirrored horizontally, then
+///   rotated 180 degrees clockwise.
+/// - [`HORIZONTAL_MIRROR_ROTATE270`] specifies that image content is mirrored horizontally, then
+///   rotated 270 degrees clockwise.
+/// - [`INHERIT`] specifies that the presentation transform is not specified, and is instead
+///   determined by platform-specific considerations and mechanisms outside Vulkan.
 ///# Related
 /// - [`VK_KHR_surface`]
 /// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
@@ -1106,48 +1106,45 @@ impl CompositeAlphaFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum SurfaceTransformFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`SurfaceTransformIdentityKhr`] specifies that image content
-    ///is presented without being transformed.
-    SurfaceTransformIdentityKhr = 1,
-    ///[`SurfaceTransformRotate90Khr`] specifies that image
-    ///content is rotated 90 degrees clockwise.
-    SurfaceTransformRotate90Khr = 2,
-    ///[`SurfaceTransformRotate180Khr`] specifies that image
-    ///content is rotated 180 degrees clockwise.
-    SurfaceTransformRotate180Khr = 4,
-    ///[`SurfaceTransformRotate270Khr`] specifies that image
-    ///content is rotated 270 degrees clockwise.
-    SurfaceTransformRotate270Khr = 8,
-    ///[`SurfaceTransformHorizontalMirrorKhr`] specifies that
-    ///image content is mirrored horizontally.
-    SurfaceTransformHorizontalMirrorKhr = 16,
-    ///[`SurfaceTransformHorizontalMirrorRotate90Khr`] specifies
-    ///that image content is mirrored horizontally, then rotated 90 degrees
-    ///clockwise.
-    SurfaceTransformHorizontalMirrorRotate90Khr = 32,
-    ///[`SurfaceTransformHorizontalMirrorRotate180Khr`]
-    ///specifies that image content is mirrored horizontally, then rotated 180
-    ///degrees clockwise.
-    SurfaceTransformHorizontalMirrorRotate180Khr = 64,
-    ///[`SurfaceTransformHorizontalMirrorRotate270Khr`]
-    ///specifies that image content is mirrored horizontally, then rotated 270
-    ///degrees clockwise.
-    SurfaceTransformHorizontalMirrorRotate270Khr = 128,
-    ///[`SurfaceTransformInheritKhr`] specifies that the
-    ///presentation transform is not specified, and is instead determined by
-    ///platform-specific considerations and mechanisms outside Vulkan.
-    SurfaceTransformInheritKhr = 256,
-}
+#[repr(transparent)]
+pub struct SurfaceTransformFlagBitsKHR(u32);
 impl const Default for SurfaceTransformFlagBitsKHR {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl SurfaceTransformFlagBitsKHR {
+    ///[`IDENTITY`] specifies that image content
+    ///is presented without being transformed.
+    pub const IDENTITY: Self = Self(1);
+    ///[`ROTATE90`] specifies that image
+    ///content is rotated 90 degrees clockwise.
+    pub const ROTATE90: Self = Self(2);
+    ///[`ROTATE180`] specifies that image
+    ///content is rotated 180 degrees clockwise.
+    pub const ROTATE180: Self = Self(4);
+    ///[`ROTATE270`] specifies that image
+    ///content is rotated 270 degrees clockwise.
+    pub const ROTATE270: Self = Self(8);
+    ///[`HORIZONTAL_MIRROR`] specifies that
+    ///image content is mirrored horizontally.
+    pub const HORIZONTAL_MIRROR: Self = Self(16);
+    ///[`HORIZONTAL_MIRROR_ROTATE90`] specifies
+    ///that image content is mirrored horizontally, then rotated 90 degrees
+    ///clockwise.
+    pub const HORIZONTAL_MIRROR_ROTATE90: Self = Self(32);
+    ///[`HORIZONTAL_MIRROR_ROTATE180`]
+    ///specifies that image content is mirrored horizontally, then rotated 180
+    ///degrees clockwise.
+    pub const HORIZONTAL_MIRROR_ROTATE180: Self = Self(64);
+    ///[`HORIZONTAL_MIRROR_ROTATE270`]
+    ///specifies that image content is mirrored horizontally, then rotated 270
+    ///degrees clockwise.
+    pub const HORIZONTAL_MIRROR_ROTATE270: Self = Self(128);
+    ///[`INHERIT`] specifies that the
+    ///presentation transform is not specified, and is instead determined by
+    ///platform-specific considerations and mechanisms outside Vulkan.
+    pub const INHERIT: Self = Self(256);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1156,12 +1153,15 @@ impl SurfaceTransformFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkCompositeAlphaFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCompositeAlphaFlagBitsKHR.html) - Alpha compositing modes supported on a device
@@ -1179,20 +1179,20 @@ impl SurfaceTransformFlagBitsKHR {
 ///```
 ///# Description
 ///These values are described as follows:
-/// - [`CompositeAlphaOpaqueKhr`]: The alpha component, if it exists, of the images is ignored in
-///   the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
-/// - [`CompositeAlphaPreMultipliedKhr`]: The alpha component, if it exists, of the images is
-///   respected in the compositing process. The non-alpha components of the image are expected to
-///   already be multiplied by the alpha component by the application.
-/// - [`CompositeAlphaPostMultipliedKhr`]: The alpha component, if it exists, of the images is
-///   respected in the compositing process. The non-alpha components of the image are not expected
-///   to already be multiplied by the alpha component by the application; instead, the compositor
-///   will multiply the non-alpha components of the image by the alpha component during compositing.
-/// - [`CompositeAlphaInheritKhr`]: The way in which the presentation engine treats the alpha
-///   component in the images is unknown to the Vulkan API. Instead, the application is responsible
-///   for setting the composite alpha blending mode using native window system commands. If the
-///   application does not set the blending mode using native window system commands, then a
-///   platform-specific default will be used.
+/// - [`OPAQUE`]: The alpha component, if it exists, of the images is ignored in the compositing
+///   process. Instead, the image is treated as if it has a constant alpha of 1.0.
+/// - [`PRE_MULTIPLIED`]: The alpha component, if it exists, of the images is respected in the
+///   compositing process. The non-alpha components of the image are expected to already be
+///   multiplied by the alpha component by the application.
+/// - [`POST_MULTIPLIED`]: The alpha component, if it exists, of the images is respected in the
+///   compositing process. The non-alpha components of the image are not expected to already be
+///   multiplied by the alpha component by the application; instead, the compositor will multiply
+///   the non-alpha components of the image by the alpha component during compositing.
+/// - [`INHERIT`]: The way in which the presentation engine treats the alpha component in the images
+///   is unknown to the Vulkan API. Instead, the application is responsible for setting the
+///   composite alpha blending mode using native window system commands. If the application does not
+///   set the blending mode using native window system commands, then a platform-specific default
+///   will be used.
 ///# Related
 /// - [`VK_KHR_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
@@ -1218,34 +1218,34 @@ impl const Default for CompositeAlphaFlagsKHR {
 }
 impl From<CompositeAlphaFlagBitsKHR> for CompositeAlphaFlagsKHR {
     fn from(from: CompositeAlphaFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl CompositeAlphaFlagsKHR {
-    ///[`CompositeAlphaOpaqueKhr`]: The alpha component, if it
+    ///[`OPAQUE`]: The alpha component, if it
     ///exists, of the images is ignored in the compositing process.
     ///Instead, the image is treated as if it has a constant alpha of 1.0.
-    pub const COMPOSITE_ALPHA_OPAQUE_KHR: Self = Self(1);
-    ///[`CompositeAlphaPreMultipliedKhr`]: The alpha component, if
+    pub const OPAQUE: Self = Self(1);
+    ///[`PRE_MULTIPLIED`]: The alpha component, if
     ///it exists, of the images is respected in the compositing process.
     ///The non-alpha components of the image are expected to already be
     ///multiplied by the alpha component by the application.
-    pub const COMPOSITE_ALPHA_PRE_MULTIPLIED_KHR: Self = Self(2);
-    ///[`CompositeAlphaPostMultipliedKhr`]: The alpha component,
+    pub const PRE_MULTIPLIED: Self = Self(2);
+    ///[`POST_MULTIPLIED`]: The alpha component,
     ///if it exists, of the images is respected in the compositing process.
     ///The non-alpha components of the image are not expected to already be
     ///multiplied by the alpha component by the application; instead, the
     ///compositor will multiply the non-alpha components of the image by the
     ///alpha component during compositing.
-    pub const COMPOSITE_ALPHA_POST_MULTIPLIED_KHR: Self = Self(4);
-    ///[`CompositeAlphaInheritKhr`]: The way in which the
+    pub const POST_MULTIPLIED: Self = Self(4);
+    ///[`INHERIT`]: The way in which the
     ///presentation engine treats the alpha component in the images is unknown
     ///to the Vulkan API.
     ///Instead, the application is responsible for setting the composite alpha
     ///blending mode using native window system commands.
     ///If the application does not set the blending mode using native window
     ///system commands, then a platform-specific default will be used.
-    pub const COMPOSITE_ALPHA_INHERIT_KHR: Self = Self(8);
+    pub const INHERIT: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -1257,16 +1257,16 @@ impl CompositeAlphaFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::COMPOSITE_ALPHA_OPAQUE_KHR;
+            all |= Self::OPAQUE;
         }
         {
-            all |= Self::COMPOSITE_ALPHA_PRE_MULTIPLIED_KHR;
+            all |= Self::PRE_MULTIPLIED;
         }
         {
-            all |= Self::COMPOSITE_ALPHA_POST_MULTIPLIED_KHR;
+            all |= Self::POST_MULTIPLIED;
         }
         {
-            all |= Self::COMPOSITE_ALPHA_INHERIT_KHR;
+            all |= Self::INHERIT;
         }
         all
     }
@@ -1468,39 +1468,33 @@ impl std::fmt::Debug for CompositeAlphaFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(CompositeAlphaFlagsKHR::COMPOSITE_ALPHA_OPAQUE_KHR) {
+                    if self.0.contains(CompositeAlphaFlagsKHR::OPAQUE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(COMPOSITE_ALPHA_OPAQUE_KHR))?;
+                        f.write_str(stringify!(OPAQUE))?;
                     }
-                    if self
-                        .0
-                        .contains(CompositeAlphaFlagsKHR::COMPOSITE_ALPHA_PRE_MULTIPLIED_KHR)
-                    {
+                    if self.0.contains(CompositeAlphaFlagsKHR::PRE_MULTIPLIED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(COMPOSITE_ALPHA_PRE_MULTIPLIED_KHR))?;
+                        f.write_str(stringify!(PRE_MULTIPLIED))?;
                     }
-                    if self
-                        .0
-                        .contains(CompositeAlphaFlagsKHR::COMPOSITE_ALPHA_POST_MULTIPLIED_KHR)
-                    {
+                    if self.0.contains(CompositeAlphaFlagsKHR::POST_MULTIPLIED) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(COMPOSITE_ALPHA_POST_MULTIPLIED_KHR))?;
+                        f.write_str(stringify!(POST_MULTIPLIED))?;
                     }
-                    if self.0.contains(CompositeAlphaFlagsKHR::COMPOSITE_ALPHA_INHERIT_KHR) {
+                    if self.0.contains(CompositeAlphaFlagsKHR::INHERIT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(COMPOSITE_ALPHA_INHERIT_KHR))?;
+                        f.write_str(stringify!(INHERIT))?;
                     }
                 }
                 Ok(())
@@ -2046,7 +2040,7 @@ impl PhysicalDevice {
             &mut p_supported,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_supported != 0),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_supported != 0),
             e => VulkanResult::Err(e),
         }
     }
@@ -2127,7 +2121,7 @@ impl PhysicalDevice {
         let mut p_surface_capabilities = MaybeUninit::<SurfaceCapabilitiesKHR>::uninit();
         let _return = _function(self.as_raw(), surface, p_surface_capabilities.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_surface_capabilities.assume_init()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_surface_capabilities.assume_init()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2256,7 +2250,7 @@ impl PhysicalDevice {
             p_surface_formats.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_surface_formats)
             },
             e => VulkanResult::Err(e),
@@ -2377,7 +2371,7 @@ impl PhysicalDevice {
             p_present_modes.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_present_modes)
             },
             e => VulkanResult::Err(e),

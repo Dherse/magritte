@@ -156,7 +156,7 @@ impl<'lt> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             workgroup_memory_explicit_layout: 0,
             workgroup_memory_explicit_layout_scalar_block_layout: 0,

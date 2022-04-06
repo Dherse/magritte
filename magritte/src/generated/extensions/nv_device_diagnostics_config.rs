@@ -74,11 +74,12 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cs
 ///} VkDeviceDiagnosticsConfigFlagBitsNV;
 ///```
 ///# Description
-/// - [`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`] enables the generation of debug information
-///   for shaders.
-/// - [`DeviceDiagnosticsConfigEnableResourceTrackingNv`] enables driver side tracking of resources
-///   (images, buffers, etc.) used to augment the device fault information.
-/// - [`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the command will be associated as the marker data for the automatically inserted checkpoints.
+/// - [`ENABLE_SHADER_DEBUG_INFO`] enables the generation of debug information for shaders.
+/// - [`ENABLE_RESOURCE_TRACKING`] enables driver side tracking of resources (images, buffers, etc.)
+///   used to augment the device fault information.
+/// - [`ENABLE_AUTOMATIC_CHECKPOINTS`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints)
+///   for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the
+///   command will be associated as the marker data for the automatically inserted checkpoints.
 ///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
@@ -95,31 +96,28 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cs
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DeviceDiagnosticsConfigFlagBitsNV {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`]
+#[repr(transparent)]
+pub struct DeviceDiagnosticsConfigFlagBitsNV(u32);
+impl const Default for DeviceDiagnosticsConfigFlagBitsNV {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DeviceDiagnosticsConfigFlagBitsNV {
+    ///[`ENABLE_SHADER_DEBUG_INFO`]
     ///enables the generation of debug information for shaders.
-    DeviceDiagnosticsConfigEnableShaderDebugInfoNv = 1,
-    ///[`DeviceDiagnosticsConfigEnableResourceTrackingNv`]
+    pub const ENABLE_SHADER_DEBUG_INFO: Self = Self(1);
+    ///[`ENABLE_RESOURCE_TRACKING`]
     ///enables driver side tracking of resources (images, buffers, etc.) used
     ///to augment the device fault information.
-    DeviceDiagnosticsConfigEnableResourceTrackingNv = 2,
-    ///[`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`]
+    pub const ENABLE_RESOURCE_TRACKING: Self = Self(2);
+    ///[`ENABLE_AUTOMATIC_CHECKPOINTS`]
     ///enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches,
     ///trace rays,
     ///and copies.
     ///The CPU call stack at the time of the command will be associated as the
     ///marker data for the automatically inserted checkpoints.
-    DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv = 4,
-}
-impl const Default for DeviceDiagnosticsConfigFlagBitsNV {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DeviceDiagnosticsConfigFlagBitsNV {
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -128,12 +126,15 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDeviceDiagnosticsConfigFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigFlagBitsNV.html) - Bitmask specifying diagnostics flags
@@ -149,11 +150,12 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
 ///} VkDeviceDiagnosticsConfigFlagBitsNV;
 ///```
 ///# Description
-/// - [`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`] enables the generation of debug information
-///   for shaders.
-/// - [`DeviceDiagnosticsConfigEnableResourceTrackingNv`] enables driver side tracking of resources
-///   (images, buffers, etc.) used to augment the device fault information.
-/// - [`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the command will be associated as the marker data for the automatically inserted checkpoints.
+/// - [`ENABLE_SHADER_DEBUG_INFO`] enables the generation of debug information for shaders.
+/// - [`ENABLE_RESOURCE_TRACKING`] enables driver side tracking of resources (images, buffers, etc.)
+///   used to augment the device fault information.
+/// - [`ENABLE_AUTOMATIC_CHECKPOINTS`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints)
+///   for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the
+///   command will be associated as the marker data for the automatically inserted checkpoints.
 ///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
@@ -178,24 +180,24 @@ impl const Default for DeviceDiagnosticsConfigFlagsNV {
 }
 impl From<DeviceDiagnosticsConfigFlagBitsNV> for DeviceDiagnosticsConfigFlagsNV {
     fn from(from: DeviceDiagnosticsConfigFlagBitsNV) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DeviceDiagnosticsConfigFlagsNV {
-    ///[`DeviceDiagnosticsConfigEnableShaderDebugInfoNv`]
+    ///[`ENABLE_SHADER_DEBUG_INFO`]
     ///enables the generation of debug information for shaders.
-    pub const DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV: Self = Self(1);
-    ///[`DeviceDiagnosticsConfigEnableResourceTrackingNv`]
+    pub const ENABLE_SHADER_DEBUG_INFO: Self = Self(1);
+    ///[`ENABLE_RESOURCE_TRACKING`]
     ///enables driver side tracking of resources (images, buffers, etc.) used
     ///to augment the device fault information.
-    pub const DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV: Self = Self(2);
-    ///[`DeviceDiagnosticsConfigEnableAutomaticCheckpointsNv`]
+    pub const ENABLE_RESOURCE_TRACKING: Self = Self(2);
+    ///[`ENABLE_AUTOMATIC_CHECKPOINTS`]
     ///enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches,
     ///trace rays,
     ///and copies.
     ///The CPU call stack at the time of the command will be associated as the
     ///marker data for the automatically inserted checkpoints.
-    pub const DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV: Self = Self(4);
+    pub const ENABLE_AUTOMATIC_CHECKPOINTS: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -207,13 +209,13 @@ impl DeviceDiagnosticsConfigFlagsNV {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV;
+            all |= Self::ENABLE_SHADER_DEBUG_INFO;
         }
         {
-            all |= Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV;
+            all |= Self::ENABLE_RESOURCE_TRACKING;
         }
         {
-            all |= Self::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV;
+            all |= Self::ENABLE_AUTOMATIC_CHECKPOINTS;
         }
         all
     }
@@ -421,32 +423,33 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
                     let mut first = true;
                     if self
                         .0
-                        .contains(DeviceDiagnosticsConfigFlagsNV::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV)
+                        .contains(DeviceDiagnosticsConfigFlagsNV::ENABLE_SHADER_DEBUG_INFO)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_NV))?;
+                        f.write_str(stringify!(ENABLE_SHADER_DEBUG_INFO))?;
                     }
                     if self
                         .0
-                        .contains(DeviceDiagnosticsConfigFlagsNV::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV)
+                        .contains(DeviceDiagnosticsConfigFlagsNV::ENABLE_RESOURCE_TRACKING)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_NV))?;
+                        f.write_str(stringify!(ENABLE_RESOURCE_TRACKING))?;
                     }
-                    if self.0.contains(
-                        DeviceDiagnosticsConfigFlagsNV::DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV,
-                    ) {
+                    if self
+                        .0
+                        .contains(DeviceDiagnosticsConfigFlagsNV::ENABLE_AUTOMATIC_CHECKPOINTS)
+                    {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_NV))?;
+                        f.write_str(stringify!(ENABLE_AUTOMATIC_CHECKPOINTS))?;
                     }
                 }
                 Ok(())
@@ -517,7 +520,7 @@ impl<'lt> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDiagnosticsConfigFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             diagnostics_config: 0,
         }
@@ -657,7 +660,7 @@ impl<'lt> Default for DeviceDiagnosticsConfigCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceDiagnosticsConfigCreateInfoNv,
+            s_type: StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             flags: Default::default(),
         }

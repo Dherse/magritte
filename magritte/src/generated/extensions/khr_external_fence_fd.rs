@@ -255,7 +255,7 @@ impl<'lt> Default for ImportFenceFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportFenceFdInfoKhr,
+            s_type: StructureType::IMPORT_FENCE_FD_INFO_KHR,
             p_next: std::ptr::null(),
             fence: Default::default(),
             flags: Default::default(),
@@ -425,7 +425,7 @@ impl<'lt> Default for FenceGetFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::FenceGetFdInfoKhr,
+            s_type: StructureType::FENCE_GET_FD_INFO_KHR,
             p_next: std::ptr::null(),
             fence: Default::default(),
             handle_type: Default::default(),
@@ -568,7 +568,7 @@ impl Device {
         let mut p_fd = Default::default();
         let _return = _function(self.as_raw(), p_get_fd_info as *const FenceGetFdInfoKHR<'lt>, &mut p_fd);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_fd),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_fd),
             e => VulkanResult::Err(e),
         }
     }
@@ -646,7 +646,7 @@ impl Device {
             p_import_fence_fd_info as *const ImportFenceFdInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

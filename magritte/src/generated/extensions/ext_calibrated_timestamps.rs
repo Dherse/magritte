@@ -254,13 +254,13 @@ pub type FNGetCalibratedTimestampsExt = Option<
 ///} VkTimeDomainEXT;
 ///```
 ///# Description
-/// - [`TimeDomainDeviceExt`] specifies the device time domain. Timestamp values in this time domain
-///   use the same units and are comparable with device timestamp values captured using [`cmd_write_timestamp`]
-///   or [`cmd_write_timestamp2`] and are defined to be incrementing according to the [timestampPeriod](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-timestampPeriod)
+/// - [`DEVICE`] specifies the device time domain. Timestamp values in this time domain use the same
+///   units and are comparable with device timestamp values captured using [`cmd_write_timestamp`] or
+///   [`cmd_write_timestamp2`] and are defined to be incrementing according to the [timestampPeriod](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-timestampPeriod)
 ///   of the device.
-/// - [`TimeDomainClockMonotonicExt`] specifies the CLOCK_MONOTONIC time domain available on POSIX
-///   platforms. Timestamp values in this time domain are in units of nanoseconds and are comparable
-///   with platform timestamp values captured using the POSIX clock_gettime API as computed by this
+/// - [`CLOCK_MONOTONIC`] specifies the CLOCK_MONOTONIC time domain available on POSIX platforms.
+///   Timestamp values in this time domain are in units of nanoseconds and are comparable with
+///   platform timestamp values captured using the POSIX clock_gettime API as computed by this
 ///   example:
 ///
 ///```c
@@ -269,10 +269,10 @@ pub type FNGetCalibratedTimestampsExt = Option<
 ///return tv.tv_nsec + tv.tv_sec*1000000000ull;
 ///```
 ///
-/// - [`TimeDomainClockMonotonicRawExt`] specifies the CLOCK_MONOTONIC_RAW time domain available on
-///   POSIX platforms. Timestamp values in this time domain are in units of nanoseconds and are
-///   comparable with platform timestamp values captured using the POSIX clock_gettime API as
-///   computed by this example:
+/// - [`CLOCK_MONOTONIC_RAW`] specifies the CLOCK_MONOTONIC_RAW time domain available on POSIX
+///   platforms. Timestamp values in this time domain are in units of nanoseconds and are comparable
+///   with platform timestamp values captured using the POSIX clock_gettime API as computed by this
+///   example:
 ///
 ///```c
 ///struct timespec tv;
@@ -280,10 +280,10 @@ pub type FNGetCalibratedTimestampsExt = Option<
 ///return tv.tv_nsec + tv.tv_sec*1000000000ull;
 ///```
 ///
-/// - [`TimeDomainQueryPerformanceCounterExt`] specifies the performance counter (QPC) time domain
-///   available on Windows. Timestamp values in this time domain are in the same units as those
-///   provided by the Windows QueryPerformanceCounter API and are comparable with platform timestamp
-///   values captured using that API as computed by this example:
+/// - [`QUERY_PERFORMANCE_COUNTER`] specifies the performance counter (QPC) time domain available on
+///   Windows. Timestamp values in this time domain are in the same units as those provided by the
+///   Windows QueryPerformanceCounter API and are comparable with platform timestamp values captured
+///   using that API as computed by this example:
 ///
 ///```c
 ///LARGE_INTEGER counter;
@@ -307,42 +307,41 @@ pub type FNGetCalibratedTimestampsExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum TimeDomainEXT {
-    ///[`TimeDomainDeviceExt`] specifies the device time domain.
+#[repr(transparent)]
+pub struct TimeDomainEXT(i32);
+impl const Default for TimeDomainEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl TimeDomainEXT {
+    ///[`DEVICE`] specifies the device time domain.
     ///Timestamp values in this time domain use the same units and are
     ///comparable with device timestamp values captured using
     ///[`cmd_write_timestamp`]
     ///or [`cmd_write_timestamp2`]
     ///and are defined to be incrementing according to the
     ///[timestampPeriod](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-timestampPeriod) of the device.
-    TimeDomainDeviceExt = 0,
-    ///[`TimeDomainClockMonotonicExt`] specifies the CLOCK_MONOTONIC
+    pub const DEVICE: Self = Self(0);
+    ///[`CLOCK_MONOTONIC`] specifies the CLOCK_MONOTONIC
     ///time domain available on POSIX platforms.
     ///Timestamp values in this time domain are in units of nanoseconds and are
     ///comparable with platform timestamp values captured using the POSIX
     ///clock_gettime API as computed by this example:
-    TimeDomainClockMonotonicExt = 1,
-    ///[`TimeDomainClockMonotonicRawExt`] specifies the
+    pub const CLOCK_MONOTONIC: Self = Self(1);
+    ///[`CLOCK_MONOTONIC_RAW`] specifies the
     ///CLOCK_MONOTONIC_RAW time domain available on POSIX platforms.
     ///Timestamp values in this time domain are in units of nanoseconds and are
     ///comparable with platform timestamp values captured using the POSIX
     ///clock_gettime API as computed by this example:
-    TimeDomainClockMonotonicRawExt = 2,
-    ///[`TimeDomainQueryPerformanceCounterExt`] specifies the
+    pub const CLOCK_MONOTONIC_RAW: Self = Self(2);
+    ///[`QUERY_PERFORMANCE_COUNTER`] specifies the
     ///performance counter (QPC) time domain available on Windows.
     ///Timestamp values in this time domain are in the same units as those
     ///provided by the Windows QueryPerformanceCounter API and are comparable
     ///with platform timestamp values captured using that API as computed by
     ///this example:
-    TimeDomainQueryPerformanceCounterExt = 3,
-}
-impl const Default for TimeDomainEXT {
-    fn default() -> Self {
-        Self::TimeDomainDeviceExt
-    }
-}
-impl TimeDomainEXT {
+    pub const QUERY_PERFORMANCE_COUNTER: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -351,12 +350,15 @@ impl TimeDomainEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkCalibratedTimestampInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCalibratedTimestampInfoEXT.html) - Structure specifying the input parameters of a calibrated timestamp query
@@ -417,7 +419,7 @@ impl<'lt> Default for CalibratedTimestampInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CalibratedTimestampInfoExt,
+            s_type: StructureType::CALIBRATED_TIMESTAMP_INFO_EXT,
             p_next: std::ptr::null(),
             time_domain: Default::default(),
         }
@@ -561,7 +563,7 @@ impl PhysicalDevice {
         let mut p_time_domains = SmallVec::<TimeDomainEXT>::from_elem(Default::default(), p_time_domain_count as usize);
         let _return = _function(self.as_raw(), &mut p_time_domain_count, p_time_domains.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_time_domains)
             },
             e => VulkanResult::Err(e),
@@ -659,7 +661,7 @@ impl Device {
             &mut p_max_deviation,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, (p_timestamps, p_max_deviation)),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, (p_timestamps, p_max_deviation)),
             e => VulkanResult::Err(e),
         }
     }

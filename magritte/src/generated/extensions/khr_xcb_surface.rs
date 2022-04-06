@@ -289,7 +289,7 @@ impl<'lt> Default for XcbSurfaceCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::XcbSurfaceCreateInfoKhr,
+            s_type: StructureType::XCB_SURFACE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             flags: Default::default(),
             connection: std::ptr::null_mut(),
@@ -463,7 +463,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -540,7 +540,7 @@ impl PhysicalDevice {
             &mut connection,
             visual_id,
         );
-        (connection, unsafe { std::mem::transmute(_return as u8) })
+        (connection, std::mem::transmute(_return as u8))
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_KHR_xcb_surface`

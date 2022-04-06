@@ -95,7 +95,7 @@ pub unsafe fn create_surface<'a: 'b, 'b>(
             todo!()
         },
 
-        _ => VulkanResult::Err(VulkanResultCodes::ErrorExtensionNotPresent), // not supported
+        _ => VulkanResult::Err(VulkanResultCodes::ERROR_EXTENSION_NOT_PRESENT), // not supported
     }
 }
 
@@ -146,7 +146,7 @@ pub fn enable_required_extensions<W: HasRawWindowHandle>(
         #[cfg(any(target_os = "ios"))]
         RawWindowHandle::IOS(_) => extensions.enable_khr_surface().enable_ext_metal_surface(),
 
-        _ => return Err(VulkanResultCodes::ErrorExtensionNotPresent),
+        _ => return Err(VulkanResultCodes::ERROR_EXTENSION_NOT_PRESENT),
     };
 
     Ok(extensions)

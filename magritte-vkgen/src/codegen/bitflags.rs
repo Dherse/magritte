@@ -1,5 +1,5 @@
 use ahash::AHashMap;
-use proc_macro2::{Ident, Literal, Span, TokenStream};
+use proc_macro2::{Literal, TokenStream};
 use quote::quote;
 use tracing::warn;
 
@@ -46,7 +46,7 @@ impl<'a> Bit<'a> {
             #doc
             #provided_by
             #conditional_compilation
-            #name = #value,
+            pub const #name: Self = Self(#value);
         }
     }
 }
@@ -72,29 +72,6 @@ impl<'a> BitFlag<'a> {
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
-
-        let has_empty = self
-            .bits()
-            .iter()
-            .filter(|v| !v.origin().is_disabled())
-            .any(|v| v.value() == 0);
-
-        // create an empty declaration if none exists
-        let empty_decl = (!has_empty).then(|| {
-            quote! {
-                #[doc(hidden)]
-                Empty = 0,
-            }
-        });
-
-        // get the default (empty) value or use the empty declaration if non exists
-        let default = self
-            .bits()
-            .iter()
-            .filter(|v| !v.origin().is_disabled())
-            .find(|v| v.value() == 0)
-            .map_or_else(|| Ident::new("Empty", Span::call_site()), |v| v.as_ident());
-
         // generate the code for each bit
         let bits = self
             .bits()
@@ -116,19 +93,20 @@ impl<'a> BitFlag<'a> {
             #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[non_exhaustive]
-            #[repr(#ty)]
-            pub enum #name {
-                #empty_decl
-                #(#bits)*
-            }
+            #[repr(transparent)]
+            pub struct #name(#ty);
 
             impl const Default for #name {
                 fn default() -> Self {
-                    Self::#default
+                    Self(0)
                 }
             }
 
             impl #name {
+                #(
+                    #bits
+                )*
+
                 #[doc = "Default empty value"]
                 #[inline]
                 pub const fn empty() -> Self {
@@ -138,13 +116,16 @@ impl<'a> BitFlag<'a> {
                 #[doc = "Gets the raw underlying value"]
                 #[inline]
                 pub const fn bits(&self) -> #ty {
-                    *self as #ty
+                    self.0
                 }
 
-                #[doc = "Gets a value from a raw underlying value, unchecked and therefore unsafe"]
+                #[doc = "Gets a value from a raw underlying value, unchecked and therefore unsafe."]
+                #[doc = ""]
+                #[doc = "# Safety"]
+                #[doc = "The caller of this function must ensure that all of the bits are valid."]
                 #[inline]
-                pub const unsafe fn from_bits(bits: #ty) -> #ty {
-                    std::mem::transmute(bits)
+                pub const unsafe fn from_bits_unchecked(bits: #ty) -> Self {
+                    Self(bits)
                 }
             }
         }

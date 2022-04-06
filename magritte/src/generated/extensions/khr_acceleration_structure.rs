@@ -2485,21 +2485,20 @@ pub type FNCmdBuildAccelerationStructuresIndirectKhr = Option<
 ///typedef VkCopyAccelerationStructureModeKHR VkCopyAccelerationStructureModeNV;
 ///```
 ///# Description
-/// - [`CopyAccelerationStructureModeCloneKhr`] creates a direct copy of the acceleration structure
-///   specified in `src` into the one specified by `dst`. The `dst` acceleration structure  **must**
-///   have been created with the same parameters as `src`. If `src` contains references to other
-///   acceleration structures, `dst` will reference the same acceleration structures.
-/// - [`CopyAccelerationStructureModeCompactKhr`] creates a more compact version of an acceleration
-///   structure `src` into `dst`. The acceleration structure `dst` **must**  have been created with
-///   a size at least as large as that returned by
-///   [`cmd_write_acceleration_structures_properties_khr`] or
+/// - [`CLONE`] creates a direct copy of the acceleration structure specified in `src` into the one
+///   specified by `dst`. The `dst` acceleration structure  **must**  have been created with the
+///   same parameters as `src`. If `src` contains references to other acceleration structures, `dst`
+///   will reference the same acceleration structures.
+/// - [`COMPACT`] creates a more compact version of an acceleration structure `src` into `dst`. The
+///   acceleration structure `dst` **must**  have been created with a size at least as large as that
+///   returned by [`cmd_write_acceleration_structures_properties_khr`] or
 ///   [`write_acceleration_structures_properties_khr`] after the build of the acceleration structure
 ///   specified by `src`. If `src` contains references to other acceleration structures, `dst` will
 ///   reference the same acceleration structures.
-/// - [`CopyAccelerationStructureModeSerializeKhr`] serializes the acceleration structure to a
-///   semi-opaque format which can be reloaded on a compatible implementation.
-/// - [`CopyAccelerationStructureModeDeserializeKhr`] deserializes the semi-opaque serialization
-///   format in the buffer to the acceleration structure.
+/// - [`SERIALIZE`] serializes the acceleration structure to a semi-opaque format which can be
+///   reloaded on a compatible implementation.
+/// - [`DESERIALIZE`] deserializes the semi-opaque serialization format in the buffer to the
+///   acceleration structure.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -2520,17 +2519,23 @@ pub type FNCmdBuildAccelerationStructuresIndirectKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum CopyAccelerationStructureModeKHR {
-    ///[`CopyAccelerationStructureModeCloneKhr`] creates a direct
+#[repr(transparent)]
+pub struct CopyAccelerationStructureModeKHR(i32);
+impl const Default for CopyAccelerationStructureModeKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl CopyAccelerationStructureModeKHR {
+    ///[`CLONE`] creates a direct
     ///copy of the acceleration structure specified in `src` into the one
     ///specified by `dst`.
     ///The `dst` acceleration structure  **must**  have been created with the
     ///same parameters as `src`.
     ///If `src` contains references to other acceleration structures,
     ///`dst` will reference the same acceleration structures.
-    CopyAccelerationStructureModeCloneKhr = 0,
-    ///[`CopyAccelerationStructureModeCompactKhr`] creates a more
+    pub const CLONE: Self = Self(0);
+    ///[`COMPACT`] creates a more
     ///compact version of an acceleration structure `src` into `dst`.
     ///The acceleration structure `dst` **must**  have been created with a size
     ///at least as large as that returned by
@@ -2539,22 +2544,15 @@ pub enum CopyAccelerationStructureModeKHR {
     ///after the build of the acceleration structure specified by `src`.
     ///If `src` contains references to other acceleration structures,
     ///`dst` will reference the same acceleration structures.
-    CopyAccelerationStructureModeCompactKhr = 1,
-    ///[`CopyAccelerationStructureModeSerializeKhr`] serializes the
+    pub const COMPACT: Self = Self(1);
+    ///[`SERIALIZE`] serializes the
     ///acceleration structure to a semi-opaque format which can be reloaded on
     ///a compatible implementation.
-    CopyAccelerationStructureModeSerializeKhr = 2,
-    ///[`CopyAccelerationStructureModeDeserializeKhr`] deserializes
+    pub const SERIALIZE: Self = Self(2);
+    ///[`DESERIALIZE`] deserializes
     ///the semi-opaque serialization format in the buffer to the acceleration
     ///structure.
-    CopyAccelerationStructureModeDeserializeKhr = 3,
-}
-impl const Default for CopyAccelerationStructureModeKHR {
-    fn default() -> Self {
-        Self::CopyAccelerationStructureModeCloneKhr
-    }
-}
-impl CopyAccelerationStructureModeKHR {
+    pub const DESERIALIZE: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2563,12 +2561,15 @@ impl CopyAccelerationStructureModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkBuildAccelerationStructureModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuildAccelerationStructureModeKHR.html) - Enum specifying the type of build operation to perform
@@ -2582,11 +2583,10 @@ impl CopyAccelerationStructureModeKHR {
 ///} VkBuildAccelerationStructureModeKHR;
 ///```
 ///# Description
-/// - [`BuildAccelerationStructureModeBuildKhr`] specifies that the destination acceleration
-///   structure will be built using the specified geometries.
-/// - [`BuildAccelerationStructureModeUpdateKhr`] specifies that the destination acceleration
-///   structure will be built using data in a source acceleration structure, updated by the
+/// - [`BUILD`] specifies that the destination acceleration structure will be built using the
 ///   specified geometries.
+/// - [`UPDATE`] specifies that the destination acceleration structure will be built using data in a
+///   source acceleration structure, updated by the specified geometries.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
@@ -2603,23 +2603,22 @@ impl CopyAccelerationStructureModeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum BuildAccelerationStructureModeKHR {
-    ///[`BuildAccelerationStructureModeBuildKhr`] specifies that the
-    ///destination acceleration structure will be built using the specified
-    ///geometries.
-    BuildAccelerationStructureModeBuildKhr = 0,
-    ///[`BuildAccelerationStructureModeUpdateKhr`] specifies that the
-    ///destination acceleration structure will be built using data in a source
-    ///acceleration structure, updated by the specified geometries.
-    BuildAccelerationStructureModeUpdateKhr = 1,
-}
+#[repr(transparent)]
+pub struct BuildAccelerationStructureModeKHR(i32);
 impl const Default for BuildAccelerationStructureModeKHR {
     fn default() -> Self {
-        Self::BuildAccelerationStructureModeBuildKhr
+        Self(0)
     }
 }
 impl BuildAccelerationStructureModeKHR {
+    ///[`BUILD`] specifies that the
+    ///destination acceleration structure will be built using the specified
+    ///geometries.
+    pub const BUILD: Self = Self(0);
+    ///[`UPDATE`] specifies that the
+    ///destination acceleration structure will be built using data in a source
+    ///acceleration structure, updated by the specified geometries.
+    pub const UPDATE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2628,12 +2627,15 @@ impl BuildAccelerationStructureModeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkAccelerationStructureTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureTypeKHR.html) - Type of acceleration structure
@@ -2662,12 +2664,12 @@ impl BuildAccelerationStructureModeKHR {
 ///typedef VkAccelerationStructureTypeKHR VkAccelerationStructureTypeNV;
 ///```
 ///# Description
-/// - [`AccelerationStructureTypeTopLevelKhr`] is a top-level acceleration structure containing
-///   instance data referring to bottom-level acceleration structures.
-/// - [`AccelerationStructureTypeBottomLevelKhr`] is a bottom-level acceleration structure
-///   containing the AABBs or geometry to be intersected.
-/// - [`AccelerationStructureTypeGenericKhr`] is an acceleration structure whose type is determined
-///   at build time used for special circumstances.
+/// - [`TOP_LEVEL`] is a top-level acceleration structure containing instance data referring to
+///   bottom-level acceleration structures.
+/// - [`BOTTOM_LEVEL`] is a bottom-level acceleration structure containing the AABBs or geometry to
+///   be intersected.
+/// - [`GENERIC`] is an acceleration structure whose type is determined at build time used for
+///   special circumstances.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -2687,27 +2689,26 @@ impl BuildAccelerationStructureModeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum AccelerationStructureTypeKHR {
-    ///[`AccelerationStructureTypeTopLevelKhr`] is a top-level
-    ///acceleration structure containing instance data referring to
-    ///bottom-level acceleration structures.
-    AccelerationStructureTypeTopLevelKhr = 0,
-    ///[`AccelerationStructureTypeBottomLevelKhr`] is a bottom-level
-    ///acceleration structure containing the AABBs or geometry to be
-    ///intersected.
-    AccelerationStructureTypeBottomLevelKhr = 1,
-    ///[`AccelerationStructureTypeGenericKhr`] is an acceleration
-    ///structure whose type is determined at build time used for special
-    ///circumstances.
-    AccelerationStructureTypeGenericKhr = 2,
-}
+#[repr(transparent)]
+pub struct AccelerationStructureTypeKHR(i32);
 impl const Default for AccelerationStructureTypeKHR {
     fn default() -> Self {
-        Self::AccelerationStructureTypeTopLevelKhr
+        Self(0)
     }
 }
 impl AccelerationStructureTypeKHR {
+    ///[`TOP_LEVEL`] is a top-level
+    ///acceleration structure containing instance data referring to
+    ///bottom-level acceleration structures.
+    pub const TOP_LEVEL: Self = Self(0);
+    ///[`BOTTOM_LEVEL`] is a bottom-level
+    ///acceleration structure containing the AABBs or geometry to be
+    ///intersected.
+    pub const BOTTOM_LEVEL: Self = Self(1);
+    ///[`GENERIC`] is an acceleration
+    ///structure whose type is determined at build time used for special
+    ///circumstances.
+    pub const GENERIC: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2716,12 +2717,15 @@ impl AccelerationStructureTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkGeometryTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTypeKHR.html) - Enum specifying which type of geometry is provided
@@ -2745,10 +2749,9 @@ impl AccelerationStructureTypeKHR {
 ///typedef VkGeometryTypeKHR VkGeometryTypeNV;
 ///```
 ///# Description
-/// - [`GeometryTypeTrianglesKhr`] specifies a geometry type consisting of triangles.
-/// - [`GeometryTypeAabbsKhr`] specifies a geometry type consisting of axis-aligned bounding boxes.
-/// - [`GeometryTypeInstancesKhr`] specifies a geometry type consisting of acceleration structure
-///   instances.
+/// - [`TRIANGLES`] specifies a geometry type consisting of triangles.
+/// - [`AABBS`] specifies a geometry type consisting of axis-aligned bounding boxes.
+/// - [`INSTANCES`] specifies a geometry type consisting of acceleration structure instances.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -2767,24 +2770,23 @@ impl AccelerationStructureTypeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum GeometryTypeKHR {
-    ///[`GeometryTypeTrianglesKhr`] specifies a geometry type
-    ///consisting of triangles.
-    GeometryTypeTrianglesKhr = 0,
-    ///[`GeometryTypeAabbsKhr`] specifies a geometry type consisting of
-    ///axis-aligned bounding boxes.
-    GeometryTypeAabbsKhr = 1,
-    ///[`GeometryTypeInstancesKhr`] specifies a geometry type
-    ///consisting of acceleration structure instances.
-    GeometryTypeInstancesKhr = 2,
-}
+#[repr(transparent)]
+pub struct GeometryTypeKHR(i32);
 impl const Default for GeometryTypeKHR {
     fn default() -> Self {
-        Self::GeometryTypeTrianglesKhr
+        Self(0)
     }
 }
 impl GeometryTypeKHR {
+    ///[`TRIANGLES`] specifies a geometry type
+    ///consisting of triangles.
+    pub const TRIANGLES: Self = Self(0);
+    ///[`AABBS`] specifies a geometry type consisting of
+    ///axis-aligned bounding boxes.
+    pub const AABBS: Self = Self(1);
+    ///[`INSTANCES`] specifies a geometry type
+    ///consisting of acceleration structure instances.
+    pub const INSTANCES: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2793,12 +2795,15 @@ impl GeometryTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkAccelerationStructureBuildTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildTypeKHR.html) - Acceleration structure build type
@@ -2814,12 +2819,10 @@ impl GeometryTypeKHR {
 ///} VkAccelerationStructureBuildTypeKHR;
 ///```
 ///# Description
-/// - [`AccelerationStructureBuildTypeHostKhr`] requests the memory requirement for operations
-///   performed by the host.
-/// - [`AccelerationStructureBuildTypeDeviceKhr`] requests the memory requirement for operations
-///   performed by the device.
-/// - [`AccelerationStructureBuildTypeHostOrDeviceKhr`] requests the memory requirement for
-///   operations performed by either the host, or the device.
+/// - [`HOST`] requests the memory requirement for operations performed by the host.
+/// - [`DEVICE`] requests the memory requirement for operations performed by the device.
+/// - [`HOST_OR_DEVICE`] requests the memory requirement for operations performed by either the
+///   host, or the device.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`get_acceleration_structure_build_sizes_khr`]
@@ -2836,25 +2839,24 @@ impl GeometryTypeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum AccelerationStructureBuildTypeKHR {
-    ///[`AccelerationStructureBuildTypeHostKhr`] requests the memory
-    ///requirement for operations performed by the host.
-    AccelerationStructureBuildTypeHostKhr = 0,
-    ///[`AccelerationStructureBuildTypeDeviceKhr`] requests the
-    ///memory requirement for operations performed by the device.
-    AccelerationStructureBuildTypeDeviceKhr = 1,
-    ///[`AccelerationStructureBuildTypeHostOrDeviceKhr`] requests
-    ///the memory requirement for operations performed by either the host, or
-    ///the device.
-    AccelerationStructureBuildTypeHostOrDeviceKhr = 2,
-}
+#[repr(transparent)]
+pub struct AccelerationStructureBuildTypeKHR(i32);
 impl const Default for AccelerationStructureBuildTypeKHR {
     fn default() -> Self {
-        Self::AccelerationStructureBuildTypeHostKhr
+        Self(0)
     }
 }
 impl AccelerationStructureBuildTypeKHR {
+    ///[`HOST`] requests the memory
+    ///requirement for operations performed by the host.
+    pub const HOST: Self = Self(0);
+    ///[`DEVICE`] requests the
+    ///memory requirement for operations performed by the device.
+    pub const DEVICE: Self = Self(1);
+    ///[`HOST_OR_DEVICE`] requests
+    ///the memory requirement for operations performed by either the host, or
+    ///the device.
+    pub const HOST_OR_DEVICE: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2863,12 +2865,15 @@ impl AccelerationStructureBuildTypeKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkAccelerationStructureCompatibilityKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCompatibilityKHR.html) - Acceleration structure compatibility
@@ -2883,10 +2888,10 @@ impl AccelerationStructureBuildTypeKHR {
 ///} VkAccelerationStructureCompatibilityKHR;
 ///```
 ///# Description
-/// - [`AccelerationStructureCompatibilityCompatibleKhr`] if the `pVersionData` version acceleration
-///   structure is compatible with `device`.
-/// - [`AccelerationStructureCompatibilityIncompatibleKhr`] if the `pVersionData` version
-///   acceleration structure is not compatible with `device`.
+/// - [`COMPATIBLE`] if the `pVersionData` version acceleration structure is compatible with
+///   `device`.
+/// - [`INCOMPATIBLE`] if the `pVersionData` version acceleration structure is not compatible with
+///   `device`.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`get_device_acceleration_structure_compatibility_khr`]
@@ -2903,23 +2908,22 @@ impl AccelerationStructureBuildTypeKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum AccelerationStructureCompatibilityKHR {
-    ///[`AccelerationStructureCompatibilityCompatibleKhr`] if the
-    ///`pVersionData` version acceleration structure is compatible with
-    ///`device`.
-    AccelerationStructureCompatibilityCompatibleKhr = 0,
-    ///[`AccelerationStructureCompatibilityIncompatibleKhr`] if the
-    ///`pVersionData` version acceleration structure is not compatible with
-    ///`device`.
-    AccelerationStructureCompatibilityIncompatibleKhr = 1,
-}
+#[repr(transparent)]
+pub struct AccelerationStructureCompatibilityKHR(i32);
 impl const Default for AccelerationStructureCompatibilityKHR {
     fn default() -> Self {
-        Self::AccelerationStructureCompatibilityCompatibleKhr
+        Self(0)
     }
 }
 impl AccelerationStructureCompatibilityKHR {
+    ///[`COMPATIBLE`] if the
+    ///`pVersionData` version acceleration structure is compatible with
+    ///`device`.
+    pub const COMPATIBLE: Self = Self(0);
+    ///[`INCOMPATIBLE`] if the
+    ///`pVersionData` version acceleration structure is not compatible with
+    ///`device`.
+    pub const INCOMPATIBLE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2928,12 +2932,15 @@ impl AccelerationStructureCompatibilityKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkGeometryInstanceFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryInstanceFlagBitsKHR.html) - Instance flag bits
@@ -2967,18 +2974,18 @@ impl AccelerationStructureCompatibilityKHR {
 ///typedef VkGeometryInstanceFlagBitsKHR VkGeometryInstanceFlagBitsNV;
 ///```
 ///# Description
-/// - [`GeometryInstanceTriangleFacingCullDisableKhr`] disables face culling for this instance.
-/// - [`GeometryInstanceTriangleFlipFacingKhr`] indicates that the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face)
+/// - [`TRIANGLE_FACING_CULL_DISABLE`] disables face culling for this instance.
+/// - [`TRIANGLE_FLIP_FACING`] indicates that the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face)
 ///   for geometry in this instance is inverted. Because the facing is determined in object space,
 ///   an instance transform does not change the winding, but a geometry transform does.
-/// - [`GeometryInstanceForceOpaqueKhr`] causes this instance to act as though
-///   `VK_GEOMETRY_OPAQUE_BIT_KHR` were specified on all geometries referenced by this instance.
-///   This behavior  **can**  be overridden by the SPIR-V `NoOpaqueKHR` ray flag.
-/// - [`GeometryInstanceForceNoOpaqueKhr`] causes this instance to act as though
-///   `VK_GEOMETRY_OPAQUE_BIT_KHR` were not specified on all geometries referenced by this instance.
-///   This behavior  **can**  be overridden by the SPIR-V `OpaqueKHR` ray flag.
-///[`GeometryInstanceForceNoOpaqueKhr`] and
-///[`GeometryInstanceForceOpaqueKhr`] **must**  not be used in the
+/// - [`FORCE_OPAQUE`] causes this instance to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were
+///   specified on all geometries referenced by this instance. This behavior  **can**  be overridden
+///   by the SPIR-V `NoOpaqueKHR` ray flag.
+/// - [`FORCE_NO_OPAQUE`] causes this instance to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were
+///   not specified on all geometries referenced by this instance. This behavior  **can**  be
+///   overridden by the SPIR-V `OpaqueKHR` ray flag.
+///[`FORCE_NO_OPAQUE`] and
+///[`FORCE_OPAQUE`] **must**  not be used in the
 ///same flag.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -2997,37 +3004,34 @@ impl AccelerationStructureCompatibilityKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum GeometryInstanceFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`GeometryInstanceTriangleFacingCullDisableKhr`] disables
+#[repr(transparent)]
+pub struct GeometryInstanceFlagBitsKHR(u32);
+impl const Default for GeometryInstanceFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl GeometryInstanceFlagBitsKHR {
+    ///[`TRIANGLE_FACING_CULL_DISABLE`] disables
     ///face culling for this instance.
-    GeometryInstanceTriangleFacingCullDisableKhr = 1,
-    ///[`GeometryInstanceTriangleFlipFacingKhr`] indicates that
+    pub const TRIANGLE_FACING_CULL_DISABLE: Self = Self(1);
+    ///[`TRIANGLE_FLIP_FACING`] indicates that
     ///the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face) for geometry in
     ///this instance is inverted.
     ///Because the facing is determined in object space, an instance transform
     ///does not change the winding, but a geometry transform does.
-    GeometryInstanceTriangleFlipFacingKhr = 2,
-    ///[`GeometryInstanceForceOpaqueKhr`] causes this instance to
+    pub const TRIANGLE_FLIP_FACING: Self = Self(2);
+    ///[`FORCE_OPAQUE`] causes this instance to
     ///act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were specified on all
     ///geometries referenced by this instance.
     ///This behavior  **can**  be overridden by the SPIR-V `NoOpaqueKHR` ray
     ///flag.
-    GeometryInstanceForceOpaqueKhr = 4,
-    ///[`GeometryInstanceForceNoOpaqueKhr`] causes this instance
+    pub const FORCE_OPAQUE: Self = Self(4);
+    ///[`FORCE_NO_OPAQUE`] causes this instance
     ///to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were not specified on
     ///all geometries referenced by this instance.
     ///This behavior  **can**  be overridden by the SPIR-V `OpaqueKHR` ray flag.
-    GeometryInstanceForceNoOpaqueKhr = 8,
-}
-impl const Default for GeometryInstanceFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl GeometryInstanceFlagBitsKHR {
+    pub const FORCE_NO_OPAQUE: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -3036,12 +3040,15 @@ impl GeometryInstanceFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkGeometryFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryFlagBitsKHR.html) - Bitmask specifying additional parameters for a geometry
@@ -3066,11 +3073,11 @@ impl GeometryInstanceFlagBitsKHR {
 ///typedef VkGeometryFlagBitsKHR VkGeometryFlagBitsNV;
 ///```
 ///# Description
-/// - [`GeometryOpaqueKhr`] indicates that this geometry does not invoke the any-hit shaders even if
-///   present in a hit group.
-/// - [`GeometryNoDuplicateAnyHitInvocationKhr`] indicates that the implementation  **must**  only
-///   call the any-hit shader a single time for each primitive in this geometry. If this bit is
-///   absent an implementation  **may**  invoke the any-hit shader more than once for this geometry.
+/// - [`OPAQUE`] indicates that this geometry does not invoke the any-hit shaders even if present in
+///   a hit group.
+/// - [`NO_DUPLICATE_ANY_HIT_INVOCATION`] indicates that the implementation  **must**  only call the
+///   any-hit shader a single time for each primitive in this geometry. If this bit is absent an
+///   implementation  **may**  invoke the any-hit shader more than once for this geometry.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -3088,26 +3095,23 @@ impl GeometryInstanceFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum GeometryFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`GeometryOpaqueKhr`] indicates that this geometry does not
+#[repr(transparent)]
+pub struct GeometryFlagBitsKHR(u32);
+impl const Default for GeometryFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl GeometryFlagBitsKHR {
+    ///[`OPAQUE`] indicates that this geometry does not
     ///invoke the any-hit shaders even if present in a hit group.
-    GeometryOpaqueKhr = 1,
-    ///[`GeometryNoDuplicateAnyHitInvocationKhr`] indicates that
+    pub const OPAQUE: Self = Self(1);
+    ///[`NO_DUPLICATE_ANY_HIT_INVOCATION`] indicates that
     ///the implementation  **must**  only call the any-hit shader a single time for
     ///each primitive in this geometry.
     ///If this bit is absent an implementation  **may**  invoke the any-hit shader
     ///more than once for this geometry.
-    GeometryNoDuplicateAnyHitInvocationKhr = 2,
-}
-impl const Default for GeometryFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl GeometryFlagBitsKHR {
+    pub const NO_DUPLICATE_ANY_HIT_INVOCATION: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -3116,12 +3120,15 @@ impl GeometryFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkBuildAccelerationStructureFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuildAccelerationStructureFlagBitsKHR.html) - Bitmask specifying additional parameters for acceleration structure builds
@@ -3164,22 +3171,21 @@ impl GeometryFlagBitsKHR {
 ///typedef VkBuildAccelerationStructureFlagBitsKHR VkBuildAccelerationStructureFlagBitsNV;
 ///```
 ///# Description
-/// - [`BuildAccelerationStructureAllowUpdateKhr`] indicates     that the specified acceleration
-///   structure  **can**  be updated with     a `mode` of
-///   `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in
+/// - [`ALLOW_UPDATE`] indicates     that the specified acceleration structure  **can**  be updated
+///   with     a `mode` of `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in
 ///   [`AccelerationStructureBuildGeometryInfoKHR`] or     an `update` of [`TRUE`] in
 ///   [`cmd_build_acceleration_structure_nv`]     .
-/// - [`BuildAccelerationStructureAllowCompactionKhr`] indicates that the specified acceleration
-///   structure  **can**  act as the source for a copy acceleration structure command with `mode` of
+/// - [`ALLOW_COMPACTION`] indicates that the specified acceleration structure  **can**  act as the
+///   source for a copy acceleration structure command with `mode` of
 ///   `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a compacted acceleration
 ///   structure.
-/// - [`BuildAccelerationStructurePreferFastTraceKhr`] indicates that the given acceleration
-///   structure build  **should**  prioritize trace performance over build time.
-/// - [`BuildAccelerationStructurePreferFastBuildKhr`] indicates that the given acceleration
-///   structure build  **should**  prioritize build time over trace performance.
-/// - [`BuildAccelerationStructureLowMemoryKhr`] indicates that this acceleration structure
-///   **should**  minimize the size of the scratch memory and the final result acceleration
-///   structure, potentially at the expense of build time or trace performance.
+/// - [`PREFER_FAST_TRACE`] indicates that the given acceleration structure build  **should**
+///   prioritize trace performance over build time.
+/// - [`PREFER_FAST_BUILD`] indicates that the given acceleration structure build  **should**
+///   prioritize build time over trace performance.
+/// - [`LOW_MEMORY`] indicates that this acceleration structure  **should**  minimize the size of
+///   the scratch memory and the final result acceleration structure, potentially at the expense of
+///   build time or trace performance.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -3197,11 +3203,15 @@ impl GeometryFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum BuildAccelerationStructureFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`BuildAccelerationStructureAllowUpdateKhr`] indicates
+#[repr(transparent)]
+pub struct BuildAccelerationStructureFlagBitsKHR(u32);
+impl const Default for BuildAccelerationStructureFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl BuildAccelerationStructureFlagBitsKHR {
+    ///[`ALLOW_UPDATE`] indicates
     ///    that the specified acceleration structure  **can**  be updated with
     ///    a `mode` of `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in
     ///    [`AccelerationStructureBuildGeometryInfoKHR`]
@@ -3209,38 +3219,31 @@ pub enum BuildAccelerationStructureFlagBitsKHR {
     ///    an `update` of [`TRUE`] in
     ///    [`cmd_build_acceleration_structure_nv`]
     ///    .
-    BuildAccelerationStructureAllowUpdateKhr = 1,
-    ///[`BuildAccelerationStructureAllowCompactionKhr`] indicates
+    pub const ALLOW_UPDATE: Self = Self(1);
+    ///[`ALLOW_COMPACTION`] indicates
     ///that the specified acceleration structure  **can**  act as the source for a
     ///copy acceleration structure command with `mode` of
     ///`VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a
     ///compacted acceleration structure.
-    BuildAccelerationStructureAllowCompactionKhr = 2,
-    ///[`BuildAccelerationStructurePreferFastTraceKhr`]
+    pub const ALLOW_COMPACTION: Self = Self(2);
+    ///[`PREFER_FAST_TRACE`]
     ///indicates that the given acceleration structure build  **should**  prioritize
     ///trace performance over build time.
-    BuildAccelerationStructurePreferFastTraceKhr = 4,
-    ///[`BuildAccelerationStructurePreferFastBuildKhr`]
+    pub const PREFER_FAST_TRACE: Self = Self(4);
+    ///[`PREFER_FAST_BUILD`]
     ///indicates that the given acceleration structure build  **should**  prioritize
     ///build time over trace performance.
-    BuildAccelerationStructurePreferFastBuildKhr = 8,
-    ///[`BuildAccelerationStructureLowMemoryKhr`] indicates that
+    pub const PREFER_FAST_BUILD: Self = Self(8);
+    ///[`LOW_MEMORY`] indicates that
     ///this acceleration structure  **should**  minimize the size of the scratch
     ///memory and the final result acceleration structure, potentially at the
     ///expense of build time or trace performance.
-    BuildAccelerationStructureLowMemoryKhr = 16,
+    pub const LOW_MEMORY: Self = Self(16);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-    BuildAccelerationStructureMotionNv = 32,
-}
-impl const Default for BuildAccelerationStructureFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl BuildAccelerationStructureFlagBitsKHR {
+    pub const MOTION_NV: Self = Self(32);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -3249,12 +3252,15 @@ impl BuildAccelerationStructureFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkAccelerationStructureCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateFlagBitsKHR.html) - Bitmask specifying additional creation parameters for acceleration structure
@@ -3271,8 +3277,8 @@ impl BuildAccelerationStructureFlagBitsKHR {
 ///} VkAccelerationStructureCreateFlagBitsKHR;
 ///```
 ///# Description
-/// - [`AccelerationStructureCreateDeviceAddressCaptureReplayKhr`] specifies that the acceleration
-///   structure’s address  **can**  be saved and reused on a subsequent run.
+/// - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the acceleration structure’s address  **can**
+///   be saved and reused on a subsequent run.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureCreateFlagsKHR`]
@@ -3289,26 +3295,23 @@ impl BuildAccelerationStructureFlagBitsKHR {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum AccelerationStructureCreateFlagBitsKHR {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`AccelerationStructureCreateDeviceAddressCaptureReplayKhr`]
+#[repr(transparent)]
+pub struct AccelerationStructureCreateFlagBitsKHR(u32);
+impl const Default for AccelerationStructureCreateFlagBitsKHR {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl AccelerationStructureCreateFlagBitsKHR {
+    ///[`DEVICE_ADDRESS_CAPTURE_REPLAY`]
     ///specifies that the acceleration structure’s address  **can**  be saved and
     ///reused on a subsequent run.
-    AccelerationStructureCreateDeviceAddressCaptureReplayKhr = 1,
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-    AccelerationStructureCreateMotionNv = 4,
-}
-impl const Default for AccelerationStructureCreateFlagBitsKHR {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl AccelerationStructureCreateFlagBitsKHR {
+    pub const MOTION_NV: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -3317,12 +3320,15 @@ impl AccelerationStructureCreateFlagBitsKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkGeometryFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryFlagBitsKHR.html) - Bitmask specifying additional parameters for a geometry
@@ -3347,11 +3353,11 @@ impl AccelerationStructureCreateFlagBitsKHR {
 ///typedef VkGeometryFlagBitsKHR VkGeometryFlagBitsNV;
 ///```
 ///# Description
-/// - [`GeometryOpaqueKhr`] indicates that this geometry does not invoke the any-hit shaders even if
-///   present in a hit group.
-/// - [`GeometryNoDuplicateAnyHitInvocationKhr`] indicates that the implementation  **must**  only
-///   call the any-hit shader a single time for each primitive in this geometry. If this bit is
-///   absent an implementation  **may**  invoke the any-hit shader more than once for this geometry.
+/// - [`OPAQUE`] indicates that this geometry does not invoke the any-hit shaders even if present in
+///   a hit group.
+/// - [`NO_DUPLICATE_ANY_HIT_INVOCATION`] indicates that the implementation  **must**  only call the
+///   any-hit shader a single time for each primitive in this geometry. If this bit is absent an
+///   implementation  **may**  invoke the any-hit shader more than once for this geometry.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -3377,19 +3383,19 @@ impl const Default for GeometryFlagsKHR {
 }
 impl From<GeometryFlagBitsKHR> for GeometryFlagsKHR {
     fn from(from: GeometryFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl GeometryFlagsKHR {
-    ///[`GeometryOpaqueKhr`] indicates that this geometry does not
+    ///[`OPAQUE`] indicates that this geometry does not
     ///invoke the any-hit shaders even if present in a hit group.
-    pub const GEOMETRY_OPAQUE_KHR: Self = Self(1);
-    ///[`GeometryNoDuplicateAnyHitInvocationKhr`] indicates that
+    pub const OPAQUE: Self = Self(1);
+    ///[`NO_DUPLICATE_ANY_HIT_INVOCATION`] indicates that
     ///the implementation  **must**  only call the any-hit shader a single time for
     ///each primitive in this geometry.
     ///If this bit is absent an implementation  **may**  invoke the any-hit shader
     ///more than once for this geometry.
-    pub const GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR: Self = Self(2);
+    pub const NO_DUPLICATE_ANY_HIT_INVOCATION: Self = Self(2);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3401,10 +3407,10 @@ impl GeometryFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::GEOMETRY_OPAQUE_KHR;
+            all |= Self::OPAQUE;
         }
         {
-            all |= Self::GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR;
+            all |= Self::NO_DUPLICATE_ANY_HIT_INVOCATION;
         }
         all
     }
@@ -3606,22 +3612,19 @@ impl std::fmt::Debug for GeometryFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(GeometryFlagsKHR::GEOMETRY_OPAQUE_KHR) {
+                    if self.0.contains(GeometryFlagsKHR::OPAQUE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GEOMETRY_OPAQUE_KHR))?;
+                        f.write_str(stringify!(OPAQUE))?;
                     }
-                    if self
-                        .0
-                        .contains(GeometryFlagsKHR::GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR)
-                    {
+                    if self.0.contains(GeometryFlagsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_KHR))?;
+                        f.write_str(stringify!(NO_DUPLICATE_ANY_HIT_INVOCATION))?;
                     }
                 }
                 Ok(())
@@ -3663,18 +3666,18 @@ impl std::fmt::Debug for GeometryFlagsKHR {
 ///typedef VkGeometryInstanceFlagBitsKHR VkGeometryInstanceFlagBitsNV;
 ///```
 ///# Description
-/// - [`GeometryInstanceTriangleFacingCullDisableKhr`] disables face culling for this instance.
-/// - [`GeometryInstanceTriangleFlipFacingKhr`] indicates that the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face)
+/// - [`TRIANGLE_FACING_CULL_DISABLE`] disables face culling for this instance.
+/// - [`TRIANGLE_FLIP_FACING`] indicates that the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face)
 ///   for geometry in this instance is inverted. Because the facing is determined in object space,
 ///   an instance transform does not change the winding, but a geometry transform does.
-/// - [`GeometryInstanceForceOpaqueKhr`] causes this instance to act as though
-///   `VK_GEOMETRY_OPAQUE_BIT_KHR` were specified on all geometries referenced by this instance.
-///   This behavior  **can**  be overridden by the SPIR-V `NoOpaqueKHR` ray flag.
-/// - [`GeometryInstanceForceNoOpaqueKhr`] causes this instance to act as though
-///   `VK_GEOMETRY_OPAQUE_BIT_KHR` were not specified on all geometries referenced by this instance.
-///   This behavior  **can**  be overridden by the SPIR-V `OpaqueKHR` ray flag.
-///[`GeometryInstanceForceNoOpaqueKhr`] and
-///[`GeometryInstanceForceOpaqueKhr`] **must**  not be used in the
+/// - [`FORCE_OPAQUE`] causes this instance to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were
+///   specified on all geometries referenced by this instance. This behavior  **can**  be overridden
+///   by the SPIR-V `NoOpaqueKHR` ray flag.
+/// - [`FORCE_NO_OPAQUE`] causes this instance to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were
+///   not specified on all geometries referenced by this instance. This behavior  **can**  be
+///   overridden by the SPIR-V `OpaqueKHR` ray flag.
+///[`FORCE_NO_OPAQUE`] and
+///[`FORCE_OPAQUE`] **must**  not be used in the
 ///same flag.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -3701,30 +3704,30 @@ impl const Default for GeometryInstanceFlagsKHR {
 }
 impl From<GeometryInstanceFlagBitsKHR> for GeometryInstanceFlagsKHR {
     fn from(from: GeometryInstanceFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl GeometryInstanceFlagsKHR {
-    ///[`GeometryInstanceTriangleFacingCullDisableKhr`] disables
+    ///[`TRIANGLE_FACING_CULL_DISABLE`] disables
     ///face culling for this instance.
-    pub const GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR: Self = Self(1);
-    ///[`GeometryInstanceTriangleFlipFacingKhr`] indicates that
+    pub const TRIANGLE_FACING_CULL_DISABLE: Self = Self(1);
+    ///[`TRIANGLE_FLIP_FACING`] indicates that
     ///the [facing determination](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-traversal-culling-face) for geometry in
     ///this instance is inverted.
     ///Because the facing is determined in object space, an instance transform
     ///does not change the winding, but a geometry transform does.
-    pub const GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR: Self = Self(2);
-    ///[`GeometryInstanceForceOpaqueKhr`] causes this instance to
+    pub const TRIANGLE_FLIP_FACING: Self = Self(2);
+    ///[`FORCE_OPAQUE`] causes this instance to
     ///act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were specified on all
     ///geometries referenced by this instance.
     ///This behavior  **can**  be overridden by the SPIR-V `NoOpaqueKHR` ray
     ///flag.
-    pub const GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR: Self = Self(4);
-    ///[`GeometryInstanceForceNoOpaqueKhr`] causes this instance
+    pub const FORCE_OPAQUE: Self = Self(4);
+    ///[`FORCE_NO_OPAQUE`] causes this instance
     ///to act as though `VK_GEOMETRY_OPAQUE_BIT_KHR` were not specified on
     ///all geometries referenced by this instance.
     ///This behavior  **can**  be overridden by the SPIR-V `OpaqueKHR` ray flag.
-    pub const GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR: Self = Self(8);
+    pub const FORCE_NO_OPAQUE: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3736,16 +3739,16 @@ impl GeometryInstanceFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR;
+            all |= Self::TRIANGLE_FACING_CULL_DISABLE;
         }
         {
-            all |= Self::GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR;
+            all |= Self::TRIANGLE_FLIP_FACING;
         }
         {
-            all |= Self::GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR;
+            all |= Self::FORCE_OPAQUE;
         }
         {
-            all |= Self::GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR;
+            all |= Self::FORCE_NO_OPAQUE;
         }
         all
     }
@@ -3947,45 +3950,33 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR)
-                    {
+                    if self.0.contains(GeometryInstanceFlagsKHR::TRIANGLE_FACING_CULL_DISABLE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_KHR))?;
+                        f.write_str(stringify!(TRIANGLE_FACING_CULL_DISABLE))?;
                     }
-                    if self
-                        .0
-                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR)
-                    {
+                    if self.0.contains(GeometryInstanceFlagsKHR::TRIANGLE_FLIP_FACING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_KHR))?;
+                        f.write_str(stringify!(TRIANGLE_FLIP_FACING))?;
                     }
-                    if self
-                        .0
-                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR)
-                    {
+                    if self.0.contains(GeometryInstanceFlagsKHR::FORCE_OPAQUE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GEOMETRY_INSTANCE_FORCE_OPAQUE_KHR))?;
+                        f.write_str(stringify!(FORCE_OPAQUE))?;
                     }
-                    if self
-                        .0
-                        .contains(GeometryInstanceFlagsKHR::GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR)
-                    {
+                    if self.0.contains(GeometryInstanceFlagsKHR::FORCE_NO_OPAQUE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_KHR))?;
+                        f.write_str(stringify!(FORCE_NO_OPAQUE))?;
                     }
                 }
                 Ok(())
@@ -4036,22 +4027,21 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
 ///typedef VkBuildAccelerationStructureFlagBitsKHR VkBuildAccelerationStructureFlagBitsNV;
 ///```
 ///# Description
-/// - [`BuildAccelerationStructureAllowUpdateKhr`] indicates     that the specified acceleration
-///   structure  **can**  be updated with     a `mode` of
-///   `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in
+/// - [`ALLOW_UPDATE`] indicates     that the specified acceleration structure  **can**  be updated
+///   with     a `mode` of `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in
 ///   [`AccelerationStructureBuildGeometryInfoKHR`] or     an `update` of [`TRUE`] in
 ///   [`cmd_build_acceleration_structure_nv`]     .
-/// - [`BuildAccelerationStructureAllowCompactionKhr`] indicates that the specified acceleration
-///   structure  **can**  act as the source for a copy acceleration structure command with `mode` of
+/// - [`ALLOW_COMPACTION`] indicates that the specified acceleration structure  **can**  act as the
+///   source for a copy acceleration structure command with `mode` of
 ///   `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a compacted acceleration
 ///   structure.
-/// - [`BuildAccelerationStructurePreferFastTraceKhr`] indicates that the given acceleration
-///   structure build  **should**  prioritize trace performance over build time.
-/// - [`BuildAccelerationStructurePreferFastBuildKhr`] indicates that the given acceleration
-///   structure build  **should**  prioritize build time over trace performance.
-/// - [`BuildAccelerationStructureLowMemoryKhr`] indicates that this acceleration structure
-///   **should**  minimize the size of the scratch memory and the final result acceleration
-///   structure, potentially at the expense of build time or trace performance.
+/// - [`PREFER_FAST_TRACE`] indicates that the given acceleration structure build  **should**
+///   prioritize trace performance over build time.
+/// - [`PREFER_FAST_BUILD`] indicates that the given acceleration structure build  **should**
+///   prioritize build time over trace performance.
+/// - [`LOW_MEMORY`] indicates that this acceleration structure  **should**  minimize the size of
+///   the scratch memory and the final result acceleration structure, potentially at the expense of
+///   build time or trace performance.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`VK_NV_ray_tracing`]
@@ -4077,11 +4067,11 @@ impl const Default for BuildAccelerationStructureFlagsKHR {
 }
 impl From<BuildAccelerationStructureFlagBitsKHR> for BuildAccelerationStructureFlagsKHR {
     fn from(from: BuildAccelerationStructureFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl BuildAccelerationStructureFlagsKHR {
-    ///[`BuildAccelerationStructureAllowUpdateKhr`] indicates
+    ///[`ALLOW_UPDATE`] indicates
     ///    that the specified acceleration structure  **can**  be updated with
     ///    a `mode` of `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in
     ///    [`AccelerationStructureBuildGeometryInfoKHR`]
@@ -4089,31 +4079,31 @@ impl BuildAccelerationStructureFlagsKHR {
     ///    an `update` of [`TRUE`] in
     ///    [`cmd_build_acceleration_structure_nv`]
     ///    .
-    pub const BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR: Self = Self(1);
-    ///[`BuildAccelerationStructureAllowCompactionKhr`] indicates
+    pub const ALLOW_UPDATE: Self = Self(1);
+    ///[`ALLOW_COMPACTION`] indicates
     ///that the specified acceleration structure  **can**  act as the source for a
     ///copy acceleration structure command with `mode` of
     ///`VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a
     ///compacted acceleration structure.
-    pub const BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR: Self = Self(2);
-    ///[`BuildAccelerationStructurePreferFastTraceKhr`]
+    pub const ALLOW_COMPACTION: Self = Self(2);
+    ///[`PREFER_FAST_TRACE`]
     ///indicates that the given acceleration structure build  **should**  prioritize
     ///trace performance over build time.
-    pub const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR: Self = Self(4);
-    ///[`BuildAccelerationStructurePreferFastBuildKhr`]
+    pub const PREFER_FAST_TRACE: Self = Self(4);
+    ///[`PREFER_FAST_BUILD`]
     ///indicates that the given acceleration structure build  **should**  prioritize
     ///build time over trace performance.
-    pub const BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR: Self = Self(8);
-    ///[`BuildAccelerationStructureLowMemoryKhr`] indicates that
+    pub const PREFER_FAST_BUILD: Self = Self(8);
+    ///[`LOW_MEMORY`] indicates that
     ///this acceleration structure  **should**  minimize the size of the scratch
     ///memory and the final result acceleration structure, potentially at the
     ///expense of build time or trace performance.
-    pub const BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR: Self = Self(16);
+    pub const LOW_MEMORY: Self = Self(16);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-    pub const BUILD_ACCELERATION_STRUCTURE_MOTION_NV: Self = Self(32);
+    pub const MOTION_NV: Self = Self(32);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4125,23 +4115,23 @@ impl BuildAccelerationStructureFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR;
+            all |= Self::ALLOW_UPDATE;
         }
         {
-            all |= Self::BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR;
+            all |= Self::ALLOW_COMPACTION;
         }
         {
-            all |= Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR;
+            all |= Self::PREFER_FAST_TRACE;
         }
         {
-            all |= Self::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR;
+            all |= Self::PREFER_FAST_BUILD;
         }
         {
-            all |= Self::BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR;
+            all |= Self::LOW_MEMORY;
         }
         #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
         {
-            all |= Self::BUILD_ACCELERATION_STRUCTURE_MOTION_NV;
+            all |= Self::MOTION_NV;
         }
         all
     }
@@ -4347,64 +4337,48 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR)
-                    {
+                    if self.0.contains(BuildAccelerationStructureFlagsKHR::ALLOW_UPDATE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_KHR))?;
+                        f.write_str(stringify!(ALLOW_UPDATE))?;
                     }
-                    if self
-                        .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR)
-                    {
+                    if self.0.contains(BuildAccelerationStructureFlagsKHR::ALLOW_COMPACTION) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_KHR))?;
+                        f.write_str(stringify!(ALLOW_COMPACTION))?;
                     }
-                    if self.0.contains(
-                        BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR,
-                    ) {
+                    if self.0.contains(BuildAccelerationStructureFlagsKHR::PREFER_FAST_TRACE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_KHR))?;
+                        f.write_str(stringify!(PREFER_FAST_TRACE))?;
                     }
-                    if self.0.contains(
-                        BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR,
-                    ) {
+                    if self.0.contains(BuildAccelerationStructureFlagsKHR::PREFER_FAST_BUILD) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_KHR))?;
+                        f.write_str(stringify!(PREFER_FAST_BUILD))?;
                     }
-                    if self
-                        .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR)
-                    {
+                    if self.0.contains(BuildAccelerationStructureFlagsKHR::LOW_MEMORY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_KHR))?;
+                        f.write_str(stringify!(LOW_MEMORY))?;
                     }
                     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-                    if self
-                        .0
-                        .contains(BuildAccelerationStructureFlagsKHR::BUILD_ACCELERATION_STRUCTURE_MOTION_NV)
-                    {
+                    if self.0.contains(BuildAccelerationStructureFlagsKHR::MOTION_NV) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(BUILD_ACCELERATION_STRUCTURE_MOTION_NV))?;
+                        f.write_str(stringify!(MOTION_NV))?;
                     }
                 }
                 Ok(())
@@ -4429,8 +4403,8 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
 ///} VkAccelerationStructureCreateFlagBitsKHR;
 ///```
 ///# Description
-/// - [`AccelerationStructureCreateDeviceAddressCaptureReplayKhr`] specifies that the acceleration
-///   structure’s address  **can**  be saved and reused on a subsequent run.
+/// - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the acceleration structure’s address  **can**
+///   be saved and reused on a subsequent run.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
 /// - [`AccelerationStructureCreateFlagsKHR`]
@@ -4455,19 +4429,19 @@ impl const Default for AccelerationStructureCreateFlagsKHR {
 }
 impl From<AccelerationStructureCreateFlagBitsKHR> for AccelerationStructureCreateFlagsKHR {
     fn from(from: AccelerationStructureCreateFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl AccelerationStructureCreateFlagsKHR {
-    ///[`AccelerationStructureCreateDeviceAddressCaptureReplayKhr`]
+    ///[`DEVICE_ADDRESS_CAPTURE_REPLAY`]
     ///specifies that the acceleration structure’s address  **can**  be saved and
     ///reused on a subsequent run.
-    pub const ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR: Self = Self(1);
+    pub const DEVICE_ADDRESS_CAPTURE_REPLAY: Self = Self(1);
     ///No documentation found
     ///
     ///Provided by [`crate::extensions::nv_ray_tracing_motion_blur`]
     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-    pub const ACCELERATION_STRUCTURE_CREATE_MOTION_NV: Self = Self(4);
+    pub const MOTION_NV: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -4479,11 +4453,11 @@ impl AccelerationStructureCreateFlagsKHR {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR;
+            all |= Self::DEVICE_ADDRESS_CAPTURE_REPLAY;
         }
         #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
         {
-            all |= Self::ACCELERATION_STRUCTURE_CREATE_MOTION_NV;
+            all |= Self::MOTION_NV;
         }
         all
     }
@@ -4689,17 +4663,23 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self . 0 . contains (AccelerationStructureCreateFlagsKHR :: ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR) { if ! first { first = false ; f . write_str (" | ") ? ; } f . write_str (stringify ! (ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_KHR)) ? ; }
-                    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
                     if self
                         .0
-                        .contains(AccelerationStructureCreateFlagsKHR::ACCELERATION_STRUCTURE_CREATE_MOTION_NV)
+                        .contains(AccelerationStructureCreateFlagsKHR::DEVICE_ADDRESS_CAPTURE_REPLAY)
                     {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(ACCELERATION_STRUCTURE_CREATE_MOTION_NV))?;
+                        f.write_str(stringify!(DEVICE_ADDRESS_CAPTURE_REPLAY))?;
+                    }
+                    #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+                    if self.0.contains(AccelerationStructureCreateFlagsKHR::MOTION_NV) {
+                        if !first {
+                            first = false;
+                            f.write_str(" | ")?;
+                        }
+                        f.write_str(stringify!(MOTION_NV))?;
                     }
                 }
                 Ok(())
@@ -4782,7 +4762,7 @@ impl<'lt> Default for WriteDescriptorSetAccelerationStructureKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::WriteDescriptorSetAccelerationStructureKhr,
+            s_type: StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR,
             p_next: std::ptr::null(),
             acceleration_structure_count: 0,
             acceleration_structures: std::ptr::null(),
@@ -4969,7 +4949,7 @@ impl<'lt> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceAccelerationStructureFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             acceleration_structure: 0,
             acceleration_structure_capture_replay: 0,
@@ -5346,7 +5326,7 @@ impl<'lt> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceAccelerationStructurePropertiesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             max_geometry_count: 0,
             max_instance_count: 0,
@@ -5619,7 +5599,7 @@ impl<'lt> Default for AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureGeometryTrianglesDataKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR,
             p_next: std::ptr::null(),
             vertex_format: Default::default(),
             vertex_data: unsafe { std::mem::zeroed() },
@@ -5833,7 +5813,7 @@ impl<'lt> Default for AccelerationStructureGeometryAabbsDataKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureGeometryAabbsDataKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR,
             p_next: std::ptr::null(),
             data: unsafe { std::mem::zeroed() },
             stride: Default::default(),
@@ -5976,7 +5956,7 @@ impl<'lt> Default for AccelerationStructureGeometryInstancesDataKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureGeometryInstancesDataKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR,
             p_next: std::ptr::null(),
             array_of_pointers: 0,
             data: unsafe { std::mem::zeroed() },
@@ -6146,7 +6126,7 @@ impl<'lt> Default for AccelerationStructureGeometryKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureGeometryKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR,
             p_next: std::ptr::null(),
             geometry_type: Default::default(),
             geometry: unsafe { std::mem::zeroed() },
@@ -6434,7 +6414,7 @@ impl<'lt> Default for AccelerationStructureBuildGeometryInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureBuildGeometryInfoKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR,
             p_next: std::ptr::null(),
             type_: Default::default(),
             flags: Default::default(),
@@ -6941,7 +6921,7 @@ impl<'lt> Default for AccelerationStructureCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureCreateInfoKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             create_flags: Default::default(),
             buffer: Default::default(),
@@ -7541,7 +7521,7 @@ impl<'lt> Default for AccelerationStructureDeviceAddressInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureDeviceAddressInfoKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR,
             p_next: std::ptr::null(),
             acceleration_structure: Default::default(),
         }
@@ -7622,7 +7602,7 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
 ///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mbin">×</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
 ///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
@@ -7664,7 +7644,7 @@ impl<'lt> Default for AccelerationStructureVersionInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureVersionInfoKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR,
             p_next: std::ptr::null(),
             version_data: std::ptr::null(),
         }
@@ -7806,7 +7786,7 @@ impl<'lt> Default for CopyAccelerationStructureInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CopyAccelerationStructureInfoKhr,
+            s_type: StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR,
             p_next: std::ptr::null(),
             src: Default::default(),
             dst: Default::default(),
@@ -7967,7 +7947,7 @@ impl<'lt> Default for CopyAccelerationStructureToMemoryInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CopyAccelerationStructureToMemoryInfoKhr,
+            s_type: StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR,
             p_next: std::ptr::null(),
             src: Default::default(),
             dst: unsafe { std::mem::zeroed() },
@@ -8131,7 +8111,7 @@ impl<'lt> Default for CopyMemoryToAccelerationStructureInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CopyMemoryToAccelerationStructureInfoKhr,
+            s_type: StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR,
             p_next: std::ptr::null(),
             src: unsafe { std::mem::zeroed() },
             dst: Default::default(),
@@ -8287,7 +8267,7 @@ impl<'lt> Default for AccelerationStructureBuildSizesInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AccelerationStructureBuildSizesInfoKhr,
+            s_type: StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR,
             p_next: std::ptr::null(),
             acceleration_structure_size: Default::default(),
             update_scratch_size: Default::default(),
@@ -8678,9 +8658,9 @@ impl Device {
             p_info as *const CopyAccelerationStructureInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success
-            | VulkanResultCodes::OperationDeferredKhr
-            | VulkanResultCodes::OperationNotDeferredKhr => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS
+            | VulkanResultCodes::OPERATION_DEFERRED_KHR
+            | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -8779,9 +8759,9 @@ impl Device {
             p_info as *const CopyAccelerationStructureToMemoryInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success
-            | VulkanResultCodes::OperationDeferredKhr
-            | VulkanResultCodes::OperationNotDeferredKhr => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS
+            | VulkanResultCodes::OPERATION_DEFERRED_KHR
+            | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -8876,9 +8856,9 @@ impl Device {
             p_info as *const CopyMemoryToAccelerationStructureInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success
-            | VulkanResultCodes::OperationDeferredKhr
-            | VulkanResultCodes::OperationNotDeferredKhr => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS
+            | VulkanResultCodes::OPERATION_DEFERRED_KHR
+            | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -9003,7 +8983,7 @@ impl Device {
             stride.unwrap_or_default() as _,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -9189,7 +9169,7 @@ impl Device {
             p_acceleration_structure.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_acceleration_structure.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -9503,9 +9483,9 @@ impl Device {
             pp_build_range_infos.as_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success
-            | VulkanResultCodes::OperationDeferredKhr
-            | VulkanResultCodes::OperationNotDeferredKhr => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS
+            | VulkanResultCodes::OPERATION_DEFERRED_KHR
+            | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

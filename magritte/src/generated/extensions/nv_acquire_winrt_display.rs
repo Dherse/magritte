@@ -290,7 +290,7 @@ impl PhysicalDevice {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), display);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -374,7 +374,7 @@ impl PhysicalDevice {
             p_display.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_display.assume_init(), ()))
             },
             e => VulkanResult::Err(e),

@@ -139,7 +139,7 @@ impl StatefulFunctionGeneratorState {
                 ArgKind::This(arg) => this.push_this(arg, &handle_ident),
                 ArgKind::Passthrough(arg) => this.push_passthrough(source, imports, arg),
                 ArgKind::CStr(arg) => this.push_cstr(imports, arg, &state_lifetime),
-                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, handle, &fun, arg, inner),
+                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, handle, arg, inner),
                 ArgKind::ValueWrittenToChained(arg, inner) => {
                     this.push_value_written_to_chained(source, imports, arg, inner)
                 },
@@ -158,12 +158,8 @@ impl StatefulFunctionGeneratorState {
                     this.return_types
                         .push(ret.as_ty(source, Some(imports)).0.to_token_stream());
 
-                    if fun.original_name() == "vkGetDeviceProcAddr" {
-                        println!("{:#?}", ret);
-                    }
-
                     this.return_values.push(
-                        match ret.c_to_rust_converter(source, Mutability::Const, quote! { _return }, None) {
+                        match ret.c_to_rust_converter(source, Mutability::Const, quote! { _return }, None, true) {
                             Some((v, _)) => v,
                             None => quote! { _return },
                         },
@@ -311,12 +307,12 @@ impl StatefulFunctionGeneratorState {
                         .find(|arg| match arg.ty() {
                             Ty::Named(named) if named == out.parent().unwrap() => true,
                             _ => false
-                        }) 
+                        })
                     {
                         existing_parent.as_ident().to_token_stream()
                     } else {
                         self.lifetime = false;
-    
+
                         let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
                         self.function_args.push(quote! {
                             parent: &'parent Unique<'this, #hdl>
@@ -325,7 +321,7 @@ impl StatefulFunctionGeneratorState {
                     }*/
 
                     self.lifetime = false;
-    
+
                     let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
                     self.function_args.push(quote! {
                         parent: &'parent Unique<'this, #hdl>
@@ -416,7 +412,6 @@ impl StatefulFunctionGeneratorState {
         source: &Source<'a>,
         imports: &Imports,
         handle: &Handle<'a>,
-        fun: &Function<'a>,
         arg: FunctionArgument<'a>,
         inner: Ty<'a>,
     ) {
@@ -456,25 +451,8 @@ impl StatefulFunctionGeneratorState {
                     imports.push("std::mem::MaybeUninit");
 
                     let parent = if out.parent() != Some(handle.original_name()) {
-                        /*if let Some(existing_parent) = fun.arguments().iter()
-                            .find(|arg| match arg.ty() {
-                                Ty::Named(named) if named == out.parent().unwrap() => true,
-                                _ => false
-                            }) 
-                        {
-                            existing_parent.as_ident().to_token_stream()
-                        } else {
-                            self.lifetime = false;
-        
-                            let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
-                            self.function_args.push(quote! {
-                                parent: &'parent Unique<'this, #hdl>
-                            });
-                            quote! { parent }
-                        }*/
-
                         self.lifetime = false;
-    
+
                         let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
                         self.function_args.push(quote! {
                             parent: &'parent Unique<'this, #hdl>
@@ -547,6 +525,18 @@ impl StatefulFunctionGeneratorState {
                     });
                 },
                 _ => unreachable!("resolve type should not be an alias"),
+            },
+            Ty::Pointer(_, _) => {
+                // for pointer we use a null pointer
+                self.return_initializations.push(quote! {
+                    let mut #ret_ident = std::ptr::null_mut();
+                });
+
+                self.return_values.push(quote! { #ret_ident });
+
+                self.call_args.push(box move |_| {
+                    quote! { &mut #ret_ident }
+                });
             },
             _ => {
                 // if we are any other type, we just use the default
@@ -846,7 +836,7 @@ impl StatefulFunctionGeneratorState {
                         let (rustified, _) = arg.ty().as_ty(source, Some(imports));
                         self.function_args.push(quote! { #name: #rustified });
 
-                        let rust_to_c = arg.ty().rust_to_c_converter_inline(source, arg.name());
+                        let rust_to_c = arg.ty().rust_to_c_converter_inline(arg.name());
 
                         self.call_args.push(box move |_| quote! { #rust_to_c });
                     },

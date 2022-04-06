@@ -188,7 +188,7 @@ impl<'lt> Default for SamplerCustomBorderColorCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SamplerCustomBorderColorCreateInfoExt,
+            s_type: StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             custom_border_color: unsafe { std::mem::zeroed() },
             format: Default::default(),
@@ -311,7 +311,7 @@ impl<'lt> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCustomBorderColorPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             max_custom_border_color_samplers: 0,
         }
@@ -453,7 +453,7 @@ impl<'lt> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCustomBorderColorFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             custom_border_colors: 0,
             custom_border_color_without_format: 0,

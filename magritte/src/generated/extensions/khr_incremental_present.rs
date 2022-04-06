@@ -175,7 +175,7 @@ impl<'lt> Default for PresentRegionsKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PresentRegionsKhr,
+            s_type: StructureType::PRESENT_REGIONS_KHR,
             p_next: std::ptr::null(),
             swapchain_count: 0,
             regions: std::ptr::null(),

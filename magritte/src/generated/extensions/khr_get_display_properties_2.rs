@@ -348,7 +348,7 @@ impl<'lt> Default for DisplayProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayProperties2Khr,
+            s_type: StructureType::DISPLAY_PROPERTIES2_KHR,
             p_next: std::ptr::null_mut(),
             display_properties: Default::default(),
         }
@@ -462,7 +462,7 @@ impl<'lt> Default for DisplayPlaneProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayPlaneProperties2Khr,
+            s_type: StructureType::DISPLAY_PLANE_PROPERTIES2_KHR,
             p_next: std::ptr::null_mut(),
             display_plane_properties: Default::default(),
         }
@@ -579,7 +579,7 @@ impl<'lt> Default for DisplayModeProperties2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayModeProperties2Khr,
+            s_type: StructureType::DISPLAY_MODE_PROPERTIES2_KHR,
             p_next: std::ptr::null_mut(),
             display_mode_properties: Default::default(),
         }
@@ -708,7 +708,7 @@ impl<'lt> Default for DisplayPlaneInfo2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayPlaneInfo2Khr,
+            s_type: StructureType::DISPLAY_PLANE_INFO2_KHR,
             p_next: std::ptr::null(),
             mode: Default::default(),
             plane_index: 0,
@@ -828,7 +828,7 @@ impl<'lt> Default for DisplayPlaneCapabilities2KHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DisplayPlaneCapabilities2Khr,
+            s_type: StructureType::DISPLAY_PLANE_CAPABILITIES2_KHR,
             p_next: std::ptr::null_mut(),
             capabilities: Default::default(),
         }
@@ -969,7 +969,7 @@ impl PhysicalDevice {
             SmallVec::<DisplayProperties2KHR<'lt>>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -1053,7 +1053,7 @@ impl PhysicalDevice {
             SmallVec::<DisplayPlaneProperties2KHR<'lt>>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -1143,7 +1143,7 @@ impl PhysicalDevice {
             SmallVec::<DisplayModeProperties2KHR<'lt>>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), display, &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -1226,7 +1226,7 @@ impl PhysicalDevice {
             &mut p_capabilities,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_capabilities.p_next = std::ptr::null_mut();
                 p_capabilities
             }),

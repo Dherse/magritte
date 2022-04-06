@@ -199,7 +199,7 @@ impl<'lt> Default for PhysicalDeviceShaderCorePropertiesAMD<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShaderCorePropertiesAmd,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD,
             p_next: std::ptr::null_mut(),
             shader_engine_count: 0,
             shader_arrays_per_engine_count: 0,

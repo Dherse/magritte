@@ -1402,7 +1402,7 @@ impl<'lt> Default for PhysicalDeviceMeshShaderFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceMeshShaderFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             task_shader: 0,
             mesh_shader: 0,
@@ -1694,7 +1694,7 @@ impl<'lt> Default for PhysicalDeviceMeshShaderPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceMeshShaderPropertiesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             max_draw_mesh_tasks_count: 0,
             max_task_work_group_invocations: 0,

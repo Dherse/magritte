@@ -69,8 +69,8 @@ pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///} VkValidationCheckEXT;
 ///```
 ///# Description
-/// - [`ValidationCheckAllExt`] specifies that all validation checks are disabled.
-/// - [`ValidationCheckShadersExt`] specifies that shader validation is disabled.
+/// - [`ALL`] specifies that all validation checks are disabled.
+/// - [`SHADERS`] specifies that shader validation is disabled.
 ///# Related
 /// - [`VK_EXT_validation_flags`]
 /// - [`ValidationFlagsEXT`]
@@ -87,21 +87,20 @@ pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ValidationCheckEXT {
-    ///[`ValidationCheckAllExt`] specifies that all validation checks
-    ///are disabled.
-    ValidationCheckAllExt = 0,
-    ///[`ValidationCheckShadersExt`] specifies that shader validation
-    ///is disabled.
-    ValidationCheckShadersExt = 1,
-}
+#[repr(transparent)]
+pub struct ValidationCheckEXT(i32);
 impl const Default for ValidationCheckEXT {
     fn default() -> Self {
-        Self::ValidationCheckAllExt
+        Self(0)
     }
 }
 impl ValidationCheckEXT {
+    ///[`ALL`] specifies that all validation checks
+    ///are disabled.
+    pub const ALL: Self = Self(0);
+    ///[`SHADERS`] specifies that shader validation
+    ///is disabled.
+    pub const SHADERS: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -110,12 +109,15 @@ impl ValidationCheckEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkValidationFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFlagsEXT.html) - Specify validation checks to disable for a Vulkan instance
@@ -180,7 +182,7 @@ impl<'lt> Default for ValidationFlagsEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ValidationFlagsExt,
+            s_type: StructureType::VALIDATION_FLAGS_EXT,
             p_next: std::ptr::null(),
             disabled_validation_check_count: 0,
             disabled_validation_checks: std::ptr::null(),

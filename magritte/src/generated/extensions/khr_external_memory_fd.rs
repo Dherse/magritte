@@ -275,7 +275,7 @@ impl<'lt> Default for ImportMemoryFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportMemoryFdInfoKhr,
+            s_type: StructureType::IMPORT_MEMORY_FD_INFO_KHR,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
             fd: 0,
@@ -396,7 +396,7 @@ impl<'lt> Default for MemoryFdPropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryFdPropertiesKhr,
+            s_type: StructureType::MEMORY_FD_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -529,7 +529,7 @@ impl<'lt> Default for MemoryGetFdInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryGetFdInfoKhr,
+            s_type: StructureType::MEMORY_GET_FD_INFO_KHR,
             p_next: std::ptr::null(),
             memory: Default::default(),
             handle_type: Default::default(),
@@ -675,7 +675,7 @@ impl Device {
             &mut p_fd,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_fd),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_fd),
             e => VulkanResult::Err(e),
         }
     }
@@ -763,7 +763,7 @@ impl Device {
             &mut p_memory_fd_properties,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_memory_fd_properties.p_next = std::ptr::null_mut();
                 p_memory_fd_properties
             }),

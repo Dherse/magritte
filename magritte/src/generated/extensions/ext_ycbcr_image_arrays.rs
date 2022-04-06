@@ -106,7 +106,7 @@ impl<'lt> Default for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceYcbcrImageArraysFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             ycbcr_image_arrays: 0,
         }

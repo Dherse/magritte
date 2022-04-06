@@ -234,7 +234,7 @@ impl<'lt> Default for ViSurfaceCreateInfoNN<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ViSurfaceCreateInfoNn,
+            s_type: StructureType::VI_SURFACE_CREATE_INFO_NN,
             p_next: std::ptr::null(),
             flags: Default::default(),
             window: std::ptr::null_mut(),
@@ -412,7 +412,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),

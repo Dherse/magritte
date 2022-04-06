@@ -1845,10 +1845,10 @@ pub type FNCmdDrawIndexedIndirectCount = Option<
 ///typedef VkSemaphoreType VkSemaphoreTypeKHR;
 ///```
 ///# Description
-/// - [`Binary`] specifies a *binary semaphore* type that has a boolean payload indicating whether
+/// - [`BINARY`] specifies a *binary semaphore* type that has a boolean payload indicating whether
 ///   the semaphore is currently signaled or unsignaled. When created, the semaphore is in the
 ///   unsignaled state.
-/// - [`Timeline`] specifies a *timeline semaphore* type that has a strictly increasing 64-bit
+/// - [`TIMELINE`] specifies a *timeline semaphore* type that has a strictly increasing 64-bit
 ///   unsigned integer payload indicating whether the semaphore is signaled with respect to a
 ///   particular reference value. When created, the semaphore payload has the value given by the
 ///   `initialValue` field of [`SemaphoreTypeCreateInfo`].
@@ -1869,27 +1869,26 @@ pub type FNCmdDrawIndexedIndirectCount = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum SemaphoreType {
-    ///[`Binary`] specifies a *binary semaphore* type that
+#[repr(transparent)]
+pub struct SemaphoreType(i32);
+impl const Default for SemaphoreType {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl SemaphoreType {
+    ///[`BINARY`] specifies a *binary semaphore* type that
     ///has a boolean payload indicating whether the semaphore is currently
     ///signaled or unsignaled.
     ///When created, the semaphore is in the unsignaled state.
-    Binary = 0,
-    ///[`Timeline`] specifies a *timeline semaphore* type
+    pub const BINARY: Self = Self(0);
+    ///[`TIMELINE`] specifies a *timeline semaphore* type
     ///that has a strictly increasing 64-bit unsigned integer payload
     ///indicating whether the semaphore is signaled with respect to a
     ///particular reference value.
     ///When created, the semaphore payload has the value given by the
     ///`initialValue` field of [`SemaphoreTypeCreateInfo`].
-    Timeline = 1,
-}
-impl const Default for SemaphoreType {
-    fn default() -> Self {
-        Self::Binary
-    }
-}
-impl SemaphoreType {
+    pub const TIMELINE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1898,12 +1897,15 @@ impl SemaphoreType {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSamplerReductionMode](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerReductionMode.html) - Specify reduction mode for texture filtering
@@ -1930,10 +1932,10 @@ impl SemaphoreType {
 ///typedef VkSamplerReductionMode VkSamplerReductionModeEXT;
 ///```
 ///# Description
-/// - [`WeightedAverage`] specifies that texel values are combined by computing a weighted average of values in the footprint, using weights as specified in [the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
-/// - [`Min`] specifies that texel values are combined by taking the component-wise minimum of
+/// - [`WEIGHTED_AVERAGE`] specifies that texel values are combined by computing a weighted average of values in the footprint, using weights as specified in [the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
+/// - [`MIN`] specifies that texel values are combined by taking the component-wise minimum of
 ///   values in the footprint with non-zero weights.
-/// - [`Max`] specifies that texel values are combined by taking the component-wise maximum of
+/// - [`MAX`] specifies that texel values are combined by taking the component-wise maximum of
 ///   values in the footprint with non-zero weights.
 ///# Related
 /// - [`VK_EXT_sampler_filter_minmax`]
@@ -1952,28 +1954,27 @@ impl SemaphoreType {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum SamplerReductionMode {
-    ///[`WeightedAverage`] specifies that texel
-    ///values are combined by computing a weighted average of values in the
-    ///footprint, using weights as specified in
-    ///[the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
-    WeightedAverage = 0,
-    ///[`Min`] specifies that texel values are
-    ///combined by taking the component-wise minimum of values in the footprint
-    ///with non-zero weights.
-    Min = 1,
-    ///[`Max`] specifies that texel values are
-    ///combined by taking the component-wise maximum of values in the footprint
-    ///with non-zero weights.
-    Max = 2,
-}
+#[repr(transparent)]
+pub struct SamplerReductionMode(i32);
 impl const Default for SamplerReductionMode {
     fn default() -> Self {
-        Self::WeightedAverage
+        Self(0)
     }
 }
 impl SamplerReductionMode {
+    ///[`WEIGHTED_AVERAGE`] specifies that texel
+    ///values are combined by computing a weighted average of values in the
+    ///footprint, using weights as specified in
+    ///[the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
+    pub const WEIGHTED_AVERAGE: Self = Self(0);
+    ///[`MIN`] specifies that texel values are
+    ///combined by taking the component-wise minimum of values in the footprint
+    ///with non-zero weights.
+    pub const MIN: Self = Self(1);
+    ///[`MAX`] specifies that texel values are
+    ///combined by taking the component-wise maximum of values in the footprint
+    ///with non-zero weights.
+    pub const MAX: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -1982,12 +1983,15 @@ impl SamplerReductionMode {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDriverId](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDriverId.html) - Khronos driver IDs
@@ -2068,61 +2072,58 @@ impl SamplerReductionMode {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DriverId {
-    #[doc(hidden)]
-    Empty = 0,
-    ///No documentation found
-    AmdProprietary = 1,
-    ///No documentation found
-    AmdOpenSource = 2,
-    ///No documentation found
-    MesaRadv = 3,
-    ///No documentation found
-    NvidiaProprietary = 4,
-    ///No documentation found
-    IntelProprietaryWindows = 5,
-    ///No documentation found
-    IntelOpenSourceMesa = 6,
-    ///No documentation found
-    ImaginationProprietary = 7,
-    ///No documentation found
-    QualcommProprietary = 8,
-    ///No documentation found
-    ArmProprietary = 9,
-    ///No documentation found
-    GoogleSwiftshader = 10,
-    ///No documentation found
-    GgpProprietary = 11,
-    ///No documentation found
-    BroadcomProprietary = 12,
-    ///No documentation found
-    MesaLlvmpipe = 13,
-    ///No documentation found
-    Moltenvk = 14,
-    ///No documentation found
-    CoreaviProprietary = 15,
-    ///No documentation found
-    JuiceProprietary = 16,
-    ///No documentation found
-    VerisiliconProprietary = 17,
-    ///No documentation found
-    MesaTurnip = 18,
-    ///No documentation found
-    MesaV3Dv = 19,
-    ///No documentation found
-    MesaPanvk = 20,
-    ///No documentation found
-    SamsungProprietary = 21,
-    ///No documentation found
-    MesaVenus = 22,
-}
+#[repr(transparent)]
+pub struct DriverId(i32);
 impl const Default for DriverId {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl DriverId {
+    ///No documentation found
+    pub const AMD_PROPRIETARY: Self = Self(1);
+    ///No documentation found
+    pub const AMD_OPEN_SOURCE: Self = Self(2);
+    ///No documentation found
+    pub const MESA_RADV: Self = Self(3);
+    ///No documentation found
+    pub const NVIDIA_PROPRIETARY: Self = Self(4);
+    ///No documentation found
+    pub const INTEL_PROPRIETARY_WINDOWS: Self = Self(5);
+    ///No documentation found
+    pub const INTEL_OPEN_SOURCE_MESA: Self = Self(6);
+    ///No documentation found
+    pub const IMAGINATION_PROPRIETARY: Self = Self(7);
+    ///No documentation found
+    pub const QUALCOMM_PROPRIETARY: Self = Self(8);
+    ///No documentation found
+    pub const ARM_PROPRIETARY: Self = Self(9);
+    ///No documentation found
+    pub const GOOGLE_SWIFTSHADER: Self = Self(10);
+    ///No documentation found
+    pub const GGP_PROPRIETARY: Self = Self(11);
+    ///No documentation found
+    pub const BROADCOM_PROPRIETARY: Self = Self(12);
+    ///No documentation found
+    pub const MESA_LLVMPIPE: Self = Self(13);
+    ///No documentation found
+    pub const MOLTENVK: Self = Self(14);
+    ///No documentation found
+    pub const COREAVI_PROPRIETARY: Self = Self(15);
+    ///No documentation found
+    pub const JUICE_PROPRIETARY: Self = Self(16);
+    ///No documentation found
+    pub const VERISILICON_PROPRIETARY: Self = Self(17);
+    ///No documentation found
+    pub const MESA_TURNIP: Self = Self(18);
+    ///No documentation found
+    pub const MESA_V3_DV: Self = Self(19);
+    ///No documentation found
+    pub const MESA_PANVK: Self = Self(20);
+    ///No documentation found
+    pub const SAMSUNG_PROPRIETARY: Self = Self(21);
+    ///No documentation found
+    pub const MESA_VENUS: Self = Self(22);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2131,12 +2132,15 @@ impl DriverId {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkShaderFloatControlsIndependence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderFloatControlsIndependence.html) - Bitmask specifying whether, and how, shader float controls can be set separately
@@ -2165,11 +2169,11 @@ impl DriverId {
 ///typedef VkShaderFloatControlsIndependence VkShaderFloatControlsIndependenceKHR;
 ///```
 ///# Description
-/// - [`32BitOnly`] specifies that shader float controls for 32-bit floating point  **can**  be set
-///   independently; other bit widths  **must**  be set identically to each other.
-/// - [`All`] specifies that shader float controls for all bit widths  **can**  be set
+/// - [`32_BIT_ONLY`] specifies that shader float controls for 32-bit floating point  **can**  be
+///   set independently; other bit widths  **must**  be set identically to each other.
+/// - [`ALL`] specifies that shader float controls for all bit widths  **can**  be set
 ///   independently.
-/// - [`None`] specifies that shader float controls for all bit widths  **must**  be set
+/// - [`NONE`] specifies that shader float controls for all bit widths  **must**  be set
 ///   identically.
 ///# Related
 /// - [`VK_KHR_shader_float_controls`]
@@ -2189,25 +2193,24 @@ impl DriverId {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ShaderFloatControlsIndependence {
-    ///[`32BitOnly`] specifies that
-    ///shader float controls for 32-bit floating point  **can**  be set
-    ///independently; other bit widths  **must**  be set identically to each other.
-    _32BitOnly = 0,
-    ///[`All`] specifies that shader
-    ///float controls for all bit widths  **can**  be set independently.
-    All = 1,
-    ///[`None`] specifies that shader
-    ///float controls for all bit widths  **must**  be set identically.
-    None = 2,
-}
+#[repr(transparent)]
+pub struct ShaderFloatControlsIndependence(i32);
 impl const Default for ShaderFloatControlsIndependence {
     fn default() -> Self {
-        Self::_32BitOnly
+        Self(0)
     }
 }
 impl ShaderFloatControlsIndependence {
+    ///[`32_BIT_ONLY`] specifies that
+    ///shader float controls for 32-bit floating point  **can**  be set
+    ///independently; other bit widths  **must**  be set identically to each other.
+    pub const _32_BIT_ONLY: Self = Self(0);
+    ///[`ALL`] specifies that shader
+    ///float controls for all bit widths  **can**  be set independently.
+    pub const ALL: Self = Self(1);
+    ///[`NONE`] specifies that shader
+    ///float controls for all bit widths  **must**  be set identically.
+    pub const NONE: Self = Self(2);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2216,12 +2219,15 @@ impl ShaderFloatControlsIndependence {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSemaphoreWaitFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitFlagBits.html) - Bitmask specifying additional parameters of a semaphore wait operation
@@ -2242,12 +2248,11 @@ impl ShaderFloatControlsIndependence {
 ///typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
 ///```
 ///# Description
-/// - [`SemaphoreWaitAny`] specifies that the semaphore wait condition is that at least one of the
-///   semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the
-///   corresponding element of [`SemaphoreWaitInfo::values`]. If [`SemaphoreWaitAny`] is not set,
-///   the semaphore wait condition is that all of the semaphores in
-///   [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding
-///   element of [`SemaphoreWaitInfo::values`].
+/// - [`ANY`] specifies that the semaphore wait condition is that at least one of the semaphores in
+///   [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the corresponding element
+///   of [`SemaphoreWaitInfo::values`]. If [`ANY`] is not set, the semaphore wait condition is that
+///   all of the semaphores in [`SemaphoreWaitInfo::semaphores`] have reached the value specified by
+///   the corresponding element of [`SemaphoreWaitInfo::values`].
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -2265,28 +2270,25 @@ impl ShaderFloatControlsIndependence {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum SemaphoreWaitFlagBits {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`SemaphoreWaitAny`] specifies that the semaphore wait
+#[repr(transparent)]
+pub struct SemaphoreWaitFlagBits(u32);
+impl const Default for SemaphoreWaitFlagBits {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl SemaphoreWaitFlagBits {
+    ///[`ANY`] specifies that the semaphore wait
     ///condition is that at least one of the semaphores in
     ///[`SemaphoreWaitInfo`]::`pSemaphores` has reached the value
     ///specified by the corresponding element of
     ///[`SemaphoreWaitInfo`]::`pValues`.
-    ///If [`SemaphoreWaitAny`] is not set, the semaphore wait
+    ///If [`ANY`] is not set, the semaphore wait
     ///condition is that all of the semaphores in
     ///[`SemaphoreWaitInfo`]::`pSemaphores` have reached the value
     ///specified by the corresponding element of
     ///[`SemaphoreWaitInfo`]::`pValues`.
-    SemaphoreWaitAny = 1,
-}
-impl const Default for SemaphoreWaitFlagBits {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl SemaphoreWaitFlagBits {
+    pub const ANY: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2295,12 +2297,15 @@ impl SemaphoreWaitFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDescriptorBindingFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBindingFlagBits.html) - Bitmask specifying descriptor set layout binding properties
@@ -2334,28 +2339,38 @@ impl SemaphoreWaitFlagBits {
 ///typedef VkDescriptorBindingFlagBits VkDescriptorBindingFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DescriptorBindingUpdateAfterBind`] indicates that if descriptors in this binding are updated
-///   between when the descriptor set is bound in a command buffer and when that command buffer is
-///   submitted to a queue, then the submission will use the most recently set descriptors for this
-///   binding and the updates do not invalidate the command buffer. Descriptor bindings created with
-///   this flag are also partially exempt from the external synchronization requirement in
+/// - [`UPDATE_AFTER_BIND`] indicates that if descriptors in this binding are updated between when
+///   the descriptor set is bound in a command buffer and when that command buffer is submitted to a
+///   queue, then the submission will use the most recently set descriptors for this binding and the
+///   updates do not invalidate the command buffer. Descriptor bindings created with this flag are
+///   also partially exempt from the external synchronization requirement in
 ///   [`UpdateDescriptorSetWithTemplateKHR`] and [`update_descriptor_sets`]. Multiple descriptors
 ///   with this flag set  **can**  be updated concurrently in different threads, though the same
 ///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
 ///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
 ///   thread, but not concurrently with the set being reset or freed.
-/// - [`DescriptorBindingPartiallyBound`] indicates that descriptors in this binding that are not
-///   *dynamically used* need not contain valid descriptors at the time the descriptors are
-///   consumed. A descriptor is dynamically used if any shader invocation executes an instruction
-///   that performs any memory access using the descriptor.
-/// - [`DescriptorBindingUpdateUnusedWhilePending`] indicates that descriptors in this binding
-///   **can**  be updated after a command buffer has bound this descriptor set, or while a command
-///   buffer that uses this descriptor set is pending execution, as long as the descriptors that are
-///   updated are not used by those command buffers. If [`DescriptorBindingPartiallyBound`] is also
-///   set, then descriptors  **can**  be updated as long as they are not dynamically used by any
-///   shader invocations. If [`DescriptorBindingPartiallyBound`] is not set, then descriptors
-///   **can**  be updated as long as they are not statically used by any shader invocations.
-/// - [`DescriptorBindingVariableDescriptorCount`] indicates that     this is a *variable-sized descriptor binding* whose size will be     specified when a descriptor set is allocated using this layout.     The value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This  **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding with the largest value of `binding`).     For the purposes of counting against limits such as     `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is     counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.     In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding; thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits instead.
+/// - [`PARTIALLY_BOUND`] indicates that descriptors in this binding that are not *dynamically used*
+///   need not contain valid descriptors at the time the descriptors are consumed. A descriptor is
+///   dynamically used if any shader invocation executes an instruction that performs any memory
+///   access using the descriptor.
+/// - [`UPDATE_UNUSED_WHILE_PENDING`] indicates that descriptors in this binding  **can**  be
+///   updated after a command buffer has bound this descriptor set, or while a command buffer that
+///   uses this descriptor set is pending execution, as long as the descriptors that are updated are
+///   not used by those command buffers. If [`PARTIALLY_BOUND`] is also set, then descriptors
+///   **can**  be updated as long as they are not dynamically used by any shader invocations. If
+///   [`PARTIALLY_BOUND`] is not set, then descriptors  **can**  be updated as long as they are not
+///   statically used by any shader invocations.
+/// - [`VARIABLE_DESCRIPTOR_COUNT`] indicates that     this is a *variable-sized descriptor binding*
+///   whose size will be     specified when a descriptor set is allocated using this layout.     The
+///   value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This
+///   **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding
+///   with the largest value of `binding`).     For the purposes of counting against limits such as 
+///   `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is  
+///   counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
+///   In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding;
+///   thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize)
+///   and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize)
+///   limits instead.
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
@@ -2373,11 +2388,15 @@ impl SemaphoreWaitFlagBits {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum DescriptorBindingFlagBits {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`DescriptorBindingUpdateAfterBind`] indicates that if
+#[repr(transparent)]
+pub struct DescriptorBindingFlagBits(u32);
+impl const Default for DescriptorBindingFlagBits {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl DescriptorBindingFlagBits {
+    ///[`UPDATE_AFTER_BIND`] indicates that if
     ///descriptors in this binding are updated between when the descriptor set
     ///is bound in a command buffer and when that command buffer is submitted
     ///to a queue, then the submission will use the most recently set
@@ -2393,26 +2412,26 @@ pub enum DescriptorBindingFlagBits {
     ///Descriptors with this flag set  **can**  be updated concurrently with the set
     ///being bound to a command buffer in another thread, but not concurrently
     ///with the set being reset or freed.
-    DescriptorBindingUpdateAfterBind = 1,
-    ///[`DescriptorBindingUpdateUnusedWhilePending`] indicates
+    pub const UPDATE_AFTER_BIND: Self = Self(1);
+    ///[`UPDATE_UNUSED_WHILE_PENDING`] indicates
     ///that descriptors in this binding  **can**  be updated after a command buffer
     ///has bound this descriptor set, or while a command buffer that uses this
     ///descriptor set is pending execution, as long as the descriptors that are
     ///updated are not used by those command buffers.
-    ///If [`DescriptorBindingPartiallyBound`] is also set, then
+    ///If [`PARTIALLY_BOUND`] is also set, then
     ///descriptors  **can**  be updated as long as they are not dynamically used by
     ///any shader invocations.
-    ///If [`DescriptorBindingPartiallyBound`] is not set, then
+    ///If [`PARTIALLY_BOUND`] is not set, then
     ///descriptors  **can**  be updated as long as they are not statically used by
     ///any shader invocations.
-    DescriptorBindingUpdateUnusedWhilePending = 2,
-    ///[`DescriptorBindingPartiallyBound`] indicates that
+    pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(2);
+    ///[`PARTIALLY_BOUND`] indicates that
     ///descriptors in this binding that are not *dynamically used* need not
     ///contain valid descriptors at the time the descriptors are consumed.
     ///A descriptor is dynamically used if any shader invocation executes an
     ///instruction that performs any memory access using the descriptor.
-    DescriptorBindingPartiallyBound = 4,
-    ///[`DescriptorBindingVariableDescriptorCount`] indicates that
+    pub const PARTIALLY_BOUND: Self = Self(4);
+    ///[`VARIABLE_DESCRIPTOR_COUNT`] indicates that
     ///    this is a *variable-sized descriptor binding* whose size will be
     ///    specified when a descriptor set is allocated using this layout.
     ///    The value of `descriptorCount` is treated as an upper bound on the
@@ -2428,14 +2447,7 @@ pub enum DescriptorBindingFlagBits {
     ///    byte size of the binding; thus it counts against the
     ///[`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits
     ///instead.
-    DescriptorBindingVariableDescriptorCount = 8,
-}
-impl const Default for DescriptorBindingFlagBits {
-    fn default() -> Self {
-        Self::Empty
-    }
-}
-impl DescriptorBindingFlagBits {
+    pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2444,12 +2456,15 @@ impl DescriptorBindingFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkResolveModeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveModeFlagBits.html) - Bitmask indicating supported depth and stencil resolve modes
@@ -2484,15 +2499,13 @@ impl DescriptorBindingFlagBits {
 ///typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`ResolveModeNone`] indicates that no resolve operation is done.
-/// - [`ResolveModeSampleZero`] indicates that result of the resolve operation is equal to the value
-///   of sample 0.
-/// - [`ResolveModeAverage`] indicates that result of the resolve operation is the average of the
-///   sample values.
-/// - [`ResolveModeMin`] indicates that result of the resolve operation is the minimum of the sample
+/// - [`NONE`] indicates that no resolve operation is done.
+/// - [`SAMPLE_ZERO`] indicates that result of the resolve operation is equal to the value of sample
+///   0.
+/// - [`AVERAGE`] indicates that result of the resolve operation is the average of the sample
 ///   values.
-/// - [`ResolveModeMax`] indicates that result of the resolve operation is the maximum of the sample
-///   values.
+/// - [`MIN`] indicates that result of the resolve operation is the minimum of the sample values.
+/// - [`MAX`] indicates that result of the resolve operation is the maximum of the sample values.
 ///# Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
@@ -2512,29 +2525,28 @@ impl DescriptorBindingFlagBits {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum ResolveModeFlagBits {
-    ///[`ResolveModeNone`] indicates that no resolve operation is done.
-    ResolveModeNone = 0,
-    ///[`ResolveModeSampleZero`] indicates that result of the
-    ///resolve operation is equal to the value of sample 0.
-    ResolveModeSampleZero = 1,
-    ///[`ResolveModeAverage`] indicates that result of the resolve
-    ///operation is the average of the sample values.
-    ResolveModeAverage = 2,
-    ///[`ResolveModeMin`] indicates that result of the resolve
-    ///operation is the minimum of the sample values.
-    ResolveModeMin = 4,
-    ///[`ResolveModeMax`] indicates that result of the resolve
-    ///operation is the maximum of the sample values.
-    ResolveModeMax = 8,
-}
+#[repr(transparent)]
+pub struct ResolveModeFlagBits(u32);
 impl const Default for ResolveModeFlagBits {
     fn default() -> Self {
-        Self::ResolveModeNone
+        Self(0)
     }
 }
 impl ResolveModeFlagBits {
+    ///[`NONE`] indicates that no resolve operation is done.
+    pub const NONE: Self = Self(0);
+    ///[`SAMPLE_ZERO`] indicates that result of the
+    ///resolve operation is equal to the value of sample 0.
+    pub const SAMPLE_ZERO: Self = Self(1);
+    ///[`AVERAGE`] indicates that result of the resolve
+    ///operation is the average of the sample values.
+    pub const AVERAGE: Self = Self(2);
+    ///[`MIN`] indicates that result of the resolve
+    ///operation is the minimum of the sample values.
+    pub const MIN: Self = Self(4);
+    ///[`MAX`] indicates that result of the resolve
+    ///operation is the maximum of the sample values.
+    pub const MAX: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -2543,12 +2555,15 @@ impl ResolveModeFlagBits {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSemaphoreWaitFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitFlagBits.html) - Bitmask specifying additional parameters of a semaphore wait operation
@@ -2569,12 +2584,11 @@ impl ResolveModeFlagBits {
 ///typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
 ///```
 ///# Description
-/// - [`SemaphoreWaitAny`] specifies that the semaphore wait condition is that at least one of the
-///   semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the
-///   corresponding element of [`SemaphoreWaitInfo::values`]. If [`SemaphoreWaitAny`] is not set,
-///   the semaphore wait condition is that all of the semaphores in
-///   [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding
-///   element of [`SemaphoreWaitInfo::values`].
+/// - [`ANY`] specifies that the semaphore wait condition is that at least one of the semaphores in
+///   [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the corresponding element
+///   of [`SemaphoreWaitInfo::values`]. If [`ANY`] is not set, the semaphore wait condition is that
+///   all of the semaphores in [`SemaphoreWaitInfo::semaphores`] have reached the value specified by
+///   the corresponding element of [`SemaphoreWaitInfo::values`].
 ///# Related
 /// - [`VK_KHR_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
@@ -2600,21 +2614,21 @@ impl const Default for SemaphoreWaitFlags {
 }
 impl From<SemaphoreWaitFlagBits> for SemaphoreWaitFlags {
     fn from(from: SemaphoreWaitFlagBits) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl SemaphoreWaitFlags {
-    ///[`SemaphoreWaitAny`] specifies that the semaphore wait
+    ///[`ANY`] specifies that the semaphore wait
     ///condition is that at least one of the semaphores in
     ///[`SemaphoreWaitInfo`]::`pSemaphores` has reached the value
     ///specified by the corresponding element of
     ///[`SemaphoreWaitInfo`]::`pValues`.
-    ///If [`SemaphoreWaitAny`] is not set, the semaphore wait
+    ///If [`ANY`] is not set, the semaphore wait
     ///condition is that all of the semaphores in
     ///[`SemaphoreWaitInfo`]::`pSemaphores` have reached the value
     ///specified by the corresponding element of
     ///[`SemaphoreWaitInfo`]::`pValues`.
-    pub const SEMAPHORE_WAIT_ANY: Self = Self(1);
+    pub const ANY: Self = Self(1);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2626,7 +2640,7 @@ impl SemaphoreWaitFlags {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::SEMAPHORE_WAIT_ANY;
+            all |= Self::ANY;
         }
         all
     }
@@ -2828,12 +2842,12 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(SemaphoreWaitFlags::SEMAPHORE_WAIT_ANY) {
+                    if self.0.contains(SemaphoreWaitFlags::ANY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(SEMAPHORE_WAIT_ANY))?;
+                        f.write_str(stringify!(ANY))?;
                     }
                 }
                 Ok(())
@@ -2875,28 +2889,38 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 ///typedef VkDescriptorBindingFlagBits VkDescriptorBindingFlagBitsEXT;
 ///```
 ///# Description
-/// - [`DescriptorBindingUpdateAfterBind`] indicates that if descriptors in this binding are updated
-///   between when the descriptor set is bound in a command buffer and when that command buffer is
-///   submitted to a queue, then the submission will use the most recently set descriptors for this
-///   binding and the updates do not invalidate the command buffer. Descriptor bindings created with
-///   this flag are also partially exempt from the external synchronization requirement in
+/// - [`UPDATE_AFTER_BIND`] indicates that if descriptors in this binding are updated between when
+///   the descriptor set is bound in a command buffer and when that command buffer is submitted to a
+///   queue, then the submission will use the most recently set descriptors for this binding and the
+///   updates do not invalidate the command buffer. Descriptor bindings created with this flag are
+///   also partially exempt from the external synchronization requirement in
 ///   [`UpdateDescriptorSetWithTemplateKHR`] and [`update_descriptor_sets`]. Multiple descriptors
 ///   with this flag set  **can**  be updated concurrently in different threads, though the same
 ///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
 ///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
 ///   thread, but not concurrently with the set being reset or freed.
-/// - [`DescriptorBindingPartiallyBound`] indicates that descriptors in this binding that are not
-///   *dynamically used* need not contain valid descriptors at the time the descriptors are
-///   consumed. A descriptor is dynamically used if any shader invocation executes an instruction
-///   that performs any memory access using the descriptor.
-/// - [`DescriptorBindingUpdateUnusedWhilePending`] indicates that descriptors in this binding
-///   **can**  be updated after a command buffer has bound this descriptor set, or while a command
-///   buffer that uses this descriptor set is pending execution, as long as the descriptors that are
-///   updated are not used by those command buffers. If [`DescriptorBindingPartiallyBound`] is also
-///   set, then descriptors  **can**  be updated as long as they are not dynamically used by any
-///   shader invocations. If [`DescriptorBindingPartiallyBound`] is not set, then descriptors
-///   **can**  be updated as long as they are not statically used by any shader invocations.
-/// - [`DescriptorBindingVariableDescriptorCount`] indicates that     this is a *variable-sized descriptor binding* whose size will be     specified when a descriptor set is allocated using this layout.     The value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This  **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding with the largest value of `binding`).     For the purposes of counting against limits such as     `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is     counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.     In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding; thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits instead.
+/// - [`PARTIALLY_BOUND`] indicates that descriptors in this binding that are not *dynamically used*
+///   need not contain valid descriptors at the time the descriptors are consumed. A descriptor is
+///   dynamically used if any shader invocation executes an instruction that performs any memory
+///   access using the descriptor.
+/// - [`UPDATE_UNUSED_WHILE_PENDING`] indicates that descriptors in this binding  **can**  be
+///   updated after a command buffer has bound this descriptor set, or while a command buffer that
+///   uses this descriptor set is pending execution, as long as the descriptors that are updated are
+///   not used by those command buffers. If [`PARTIALLY_BOUND`] is also set, then descriptors
+///   **can**  be updated as long as they are not dynamically used by any shader invocations. If
+///   [`PARTIALLY_BOUND`] is not set, then descriptors  **can**  be updated as long as they are not
+///   statically used by any shader invocations.
+/// - [`VARIABLE_DESCRIPTOR_COUNT`] indicates that     this is a *variable-sized descriptor binding*
+///   whose size will be     specified when a descriptor set is allocated using this layout.     The
+///   value of `descriptorCount` is treated as an upper bound on the     size of the binding.     This
+///   **must**  only be used for the last binding in the descriptor set     layout (i.e. the binding
+///   with the largest value of `binding`).     For the purposes of counting against limits such as 
+///   `maxDescriptorSet`* and `maxPerStageDescriptor`*, the full value     of `descriptorCount` is  
+///   counted, except for descriptor bindings with a descriptor type of     `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
+///   In this case, `descriptorCount` specifies the upper bound on the     byte size of the binding;
+///   thus it counts against the [`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize)
+///   and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize)
+///   limits instead.
 ///# Related
 /// - [`VK_EXT_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
@@ -2922,11 +2946,11 @@ impl const Default for DescriptorBindingFlags {
 }
 impl From<DescriptorBindingFlagBits> for DescriptorBindingFlags {
     fn from(from: DescriptorBindingFlagBits) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl DescriptorBindingFlags {
-    ///[`DescriptorBindingUpdateAfterBind`] indicates that if
+    ///[`UPDATE_AFTER_BIND`] indicates that if
     ///descriptors in this binding are updated between when the descriptor set
     ///is bound in a command buffer and when that command buffer is submitted
     ///to a queue, then the submission will use the most recently set
@@ -2942,26 +2966,26 @@ impl DescriptorBindingFlags {
     ///Descriptors with this flag set  **can**  be updated concurrently with the set
     ///being bound to a command buffer in another thread, but not concurrently
     ///with the set being reset or freed.
-    pub const DESCRIPTOR_BINDING_UPDATE_AFTER_BIND: Self = Self(1);
-    ///[`DescriptorBindingUpdateUnusedWhilePending`] indicates
+    pub const UPDATE_AFTER_BIND: Self = Self(1);
+    ///[`UPDATE_UNUSED_WHILE_PENDING`] indicates
     ///that descriptors in this binding  **can**  be updated after a command buffer
     ///has bound this descriptor set, or while a command buffer that uses this
     ///descriptor set is pending execution, as long as the descriptors that are
     ///updated are not used by those command buffers.
-    ///If [`DescriptorBindingPartiallyBound`] is also set, then
+    ///If [`PARTIALLY_BOUND`] is also set, then
     ///descriptors  **can**  be updated as long as they are not dynamically used by
     ///any shader invocations.
-    ///If [`DescriptorBindingPartiallyBound`] is not set, then
+    ///If [`PARTIALLY_BOUND`] is not set, then
     ///descriptors  **can**  be updated as long as they are not statically used by
     ///any shader invocations.
-    pub const DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING: Self = Self(2);
-    ///[`DescriptorBindingPartiallyBound`] indicates that
+    pub const UPDATE_UNUSED_WHILE_PENDING: Self = Self(2);
+    ///[`PARTIALLY_BOUND`] indicates that
     ///descriptors in this binding that are not *dynamically used* need not
     ///contain valid descriptors at the time the descriptors are consumed.
     ///A descriptor is dynamically used if any shader invocation executes an
     ///instruction that performs any memory access using the descriptor.
-    pub const DESCRIPTOR_BINDING_PARTIALLY_BOUND: Self = Self(4);
-    ///[`DescriptorBindingVariableDescriptorCount`] indicates that
+    pub const PARTIALLY_BOUND: Self = Self(4);
+    ///[`VARIABLE_DESCRIPTOR_COUNT`] indicates that
     ///    this is a *variable-sized descriptor binding* whose size will be
     ///    specified when a descriptor set is allocated using this layout.
     ///    The value of `descriptorCount` is treated as an upper bound on the
@@ -2977,7 +3001,7 @@ impl DescriptorBindingFlags {
     ///    byte size of the binding; thus it counts against the
     ///[`maxInlineUniformBlockSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformBlockSize) and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize) limits
     ///instead.
-    pub const DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT: Self = Self(8);
+    pub const VARIABLE_DESCRIPTOR_COUNT: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -2989,16 +3013,16 @@ impl DescriptorBindingFlags {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::DESCRIPTOR_BINDING_UPDATE_AFTER_BIND;
+            all |= Self::UPDATE_AFTER_BIND;
         }
         {
-            all |= Self::DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING;
+            all |= Self::UPDATE_UNUSED_WHILE_PENDING;
         }
         {
-            all |= Self::DESCRIPTOR_BINDING_PARTIALLY_BOUND;
+            all |= Self::PARTIALLY_BOUND;
         }
         {
-            all |= Self::DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT;
+            all |= Self::VARIABLE_DESCRIPTOR_COUNT;
         }
         all
     }
@@ -3200,45 +3224,33 @@ impl std::fmt::Debug for DescriptorBindingFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_UPDATE_AFTER_BIND)
-                    {
+                    if self.0.contains(DescriptorBindingFlags::UPDATE_AFTER_BIND) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DESCRIPTOR_BINDING_UPDATE_AFTER_BIND))?;
+                        f.write_str(stringify!(UPDATE_AFTER_BIND))?;
                     }
-                    if self
-                        .0
-                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING)
-                    {
+                    if self.0.contains(DescriptorBindingFlags::UPDATE_UNUSED_WHILE_PENDING) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING))?;
+                        f.write_str(stringify!(UPDATE_UNUSED_WHILE_PENDING))?;
                     }
-                    if self
-                        .0
-                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_PARTIALLY_BOUND)
-                    {
+                    if self.0.contains(DescriptorBindingFlags::PARTIALLY_BOUND) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DESCRIPTOR_BINDING_PARTIALLY_BOUND))?;
+                        f.write_str(stringify!(PARTIALLY_BOUND))?;
                     }
-                    if self
-                        .0
-                        .contains(DescriptorBindingFlags::DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT)
-                    {
+                    if self.0.contains(DescriptorBindingFlags::VARIABLE_DESCRIPTOR_COUNT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT))?;
+                        f.write_str(stringify!(VARIABLE_DESCRIPTOR_COUNT))?;
                     }
                 }
                 Ok(())
@@ -3281,15 +3293,13 @@ impl std::fmt::Debug for DescriptorBindingFlags {
 ///typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
 ///```
 ///# Description
-/// - [`ResolveModeNone`] indicates that no resolve operation is done.
-/// - [`ResolveModeSampleZero`] indicates that result of the resolve operation is equal to the value
-///   of sample 0.
-/// - [`ResolveModeAverage`] indicates that result of the resolve operation is the average of the
-///   sample values.
-/// - [`ResolveModeMin`] indicates that result of the resolve operation is the minimum of the sample
+/// - [`NONE`] indicates that no resolve operation is done.
+/// - [`SAMPLE_ZERO`] indicates that result of the resolve operation is equal to the value of sample
+///   0.
+/// - [`AVERAGE`] indicates that result of the resolve operation is the average of the sample
 ///   values.
-/// - [`ResolveModeMax`] indicates that result of the resolve operation is the maximum of the sample
-///   values.
+/// - [`MIN`] indicates that result of the resolve operation is the minimum of the sample values.
+/// - [`MAX`] indicates that result of the resolve operation is the maximum of the sample values.
 ///# Related
 /// - [`VK_KHR_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
@@ -3317,24 +3327,24 @@ impl const Default for ResolveModeFlags {
 }
 impl From<ResolveModeFlagBits> for ResolveModeFlags {
     fn from(from: ResolveModeFlagBits) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl ResolveModeFlags {
-    ///[`ResolveModeNone`] indicates that no resolve operation is done.
-    pub const RESOLVE_MODE_NONE: Self = Self(0);
-    ///[`ResolveModeSampleZero`] indicates that result of the
+    ///[`NONE`] indicates that no resolve operation is done.
+    pub const NONE: Self = Self(0);
+    ///[`SAMPLE_ZERO`] indicates that result of the
     ///resolve operation is equal to the value of sample 0.
-    pub const RESOLVE_MODE_SAMPLE_ZERO: Self = Self(1);
-    ///[`ResolveModeAverage`] indicates that result of the resolve
+    pub const SAMPLE_ZERO: Self = Self(1);
+    ///[`AVERAGE`] indicates that result of the resolve
     ///operation is the average of the sample values.
-    pub const RESOLVE_MODE_AVERAGE: Self = Self(2);
-    ///[`ResolveModeMin`] indicates that result of the resolve
+    pub const AVERAGE: Self = Self(2);
+    ///[`MIN`] indicates that result of the resolve
     ///operation is the minimum of the sample values.
-    pub const RESOLVE_MODE_MIN: Self = Self(4);
-    ///[`ResolveModeMax`] indicates that result of the resolve
+    pub const MIN: Self = Self(4);
+    ///[`MAX`] indicates that result of the resolve
     ///operation is the maximum of the sample values.
-    pub const RESOLVE_MODE_MAX: Self = Self(8);
+    pub const MAX: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -3346,19 +3356,19 @@ impl ResolveModeFlags {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::RESOLVE_MODE_NONE;
+            all |= Self::NONE;
         }
         {
-            all |= Self::RESOLVE_MODE_SAMPLE_ZERO;
+            all |= Self::SAMPLE_ZERO;
         }
         {
-            all |= Self::RESOLVE_MODE_AVERAGE;
+            all |= Self::AVERAGE;
         }
         {
-            all |= Self::RESOLVE_MODE_MIN;
+            all |= Self::MIN;
         }
         {
-            all |= Self::RESOLVE_MODE_MAX;
+            all |= Self::MAX;
         }
         all
     }
@@ -3560,40 +3570,40 @@ impl std::fmt::Debug for ResolveModeFlags {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_NONE) {
+                    if self.0.contains(ResolveModeFlags::NONE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RESOLVE_MODE_NONE))?;
+                        f.write_str(stringify!(NONE))?;
                     }
-                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_SAMPLE_ZERO) {
+                    if self.0.contains(ResolveModeFlags::SAMPLE_ZERO) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RESOLVE_MODE_SAMPLE_ZERO))?;
+                        f.write_str(stringify!(SAMPLE_ZERO))?;
                     }
-                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_AVERAGE) {
+                    if self.0.contains(ResolveModeFlags::AVERAGE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RESOLVE_MODE_AVERAGE))?;
+                        f.write_str(stringify!(AVERAGE))?;
                     }
-                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_MIN) {
+                    if self.0.contains(ResolveModeFlags::MIN) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RESOLVE_MODE_MIN))?;
+                        f.write_str(stringify!(MIN))?;
                     }
-                    if self.0.contains(ResolveModeFlags::RESOLVE_MODE_MAX) {
+                    if self.0.contains(ResolveModeFlags::MAX) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(RESOLVE_MODE_MAX))?;
+                        f.write_str(stringify!(MAX))?;
                     }
                 }
                 Ok(())
@@ -3797,7 +3807,7 @@ impl<'lt> Default for PhysicalDeviceDriverProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDriverProperties,
+            s_type: StructureType::PHYSICAL_DEVICE_DRIVER_PROPERTIES,
             p_next: std::ptr::null_mut(),
             driver_id: Default::default(),
             driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE as usize],
@@ -3984,7 +3994,7 @@ impl<'lt> Default for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShaderSubgroupExtendedTypesFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES,
             p_next: std::ptr::null_mut(),
             shader_subgroup_extended_types: 0,
         }
@@ -4167,7 +4177,7 @@ impl<'lt> Default for PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceSamplerFilterMinmaxProperties,
+            s_type: StructureType::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES,
             p_next: std::ptr::null_mut(),
             filter_minmax_single_component_formats: 0,
             filter_minmax_image_component_mapping: 0,
@@ -4352,7 +4362,7 @@ impl<'lt> Default for SamplerReductionModeCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SamplerReductionModeCreateInfo,
+            s_type: StructureType::SAMPLER_REDUCTION_MODE_CREATE_INFO,
             p_next: std::ptr::null(),
             reduction_mode: Default::default(),
         }
@@ -4478,7 +4488,7 @@ impl<'lt> Default for ImageFormatListCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageFormatListCreateInfo,
+            s_type: StructureType::IMAGE_FORMAT_LIST_CREATE_INFO,
             p_next: std::ptr::null(),
             view_format_count: 0,
             view_formats: std::ptr::null(),
@@ -4666,7 +4676,7 @@ impl<'lt> Default for PhysicalDeviceShaderFloat16Int8Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShaderFloat16Int8Features,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADER_FLOAT16_INT_8_FEATURES,
             p_next: std::ptr::null_mut(),
             shader_float_16: 0,
             shader_int_8: 0,
@@ -4963,7 +4973,7 @@ impl<'lt> Default for PhysicalDeviceFloatControlsProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceFloatControlsProperties,
+            s_type: StructureType::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES,
             p_next: std::ptr::null_mut(),
             denorm_behavior_independence: Default::default(),
             rounding_mode_independence: Default::default(),
@@ -5667,7 +5677,7 @@ impl<'lt> Default for PhysicalDeviceHostQueryResetFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceHostQueryResetFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES,
             p_next: std::ptr::null_mut(),
             host_query_reset: 0,
         }
@@ -6106,7 +6116,7 @@ impl<'lt> Default for PhysicalDeviceDescriptorIndexingFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDescriptorIndexingFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES,
             p_next: std::ptr::null_mut(),
             shader_input_attachment_array_dynamic_indexing: 0,
             shader_uniform_texel_buffer_array_dynamic_indexing: 0,
@@ -7128,7 +7138,7 @@ impl<'lt> Default for PhysicalDeviceDescriptorIndexingProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDescriptorIndexingProperties,
+            s_type: StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES,
             p_next: std::ptr::null_mut(),
             max_update_after_bind_descriptors_in_all_pools: 0,
             shader_uniform_buffer_array_non_uniform_indexing_native: 0,
@@ -7819,7 +7829,7 @@ impl<'lt> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DescriptorSetLayoutBindingFlagsCreateInfo,
+            s_type: StructureType::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO,
             p_next: std::ptr::null(),
             binding_count: 0,
             binding_flags: std::ptr::null(),
@@ -7991,7 +8001,7 @@ impl<'lt> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DescriptorSetVariableDescriptorCountAllocateInfo,
+            s_type: StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO,
             p_next: std::ptr::null(),
             descriptor_set_count: 0,
             descriptor_counts: std::ptr::null(),
@@ -8158,7 +8168,7 @@ impl<'lt> Default for DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DescriptorSetVariableDescriptorCountLayoutSupport,
+            s_type: StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT,
             p_next: std::ptr::null_mut(),
             max_variable_descriptor_count: 0,
         }
@@ -8430,7 +8440,7 @@ impl<'lt> Default for AttachmentDescription2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AttachmentDescription2,
+            s_type: StructureType::ATTACHMENT_DESCRIPTION2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             format: Default::default(),
@@ -8711,7 +8721,7 @@ impl<'lt> Default for AttachmentReference2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AttachmentReference2,
+            s_type: StructureType::ATTACHMENT_REFERENCE2,
             p_next: std::ptr::null(),
             attachment: 0,
             layout: Default::default(),
@@ -9003,7 +9013,7 @@ impl<'lt> Default for SubpassDescription2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SubpassDescription2,
+            s_type: StructureType::SUBPASS_DESCRIPTION2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             pipeline_bind_point: Default::default(),
@@ -9442,7 +9452,7 @@ impl<'lt> Default for SubpassDependency2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SubpassDependency2,
+            s_type: StructureType::SUBPASS_DEPENDENCY2,
             p_next: std::ptr::null(),
             src_subpass: 0,
             dst_subpass: 0,
@@ -9800,7 +9810,7 @@ impl<'lt> Default for RenderPassCreateInfo2<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RenderPassCreateInfo2,
+            s_type: StructureType::RENDER_PASS_CREATE_INFO2,
             p_next: std::ptr::null(),
             flags: Default::default(),
             attachment_count: 0,
@@ -10074,7 +10084,7 @@ impl<'lt> Default for SubpassBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SubpassBeginInfo,
+            s_type: StructureType::SUBPASS_BEGIN_INFO,
             p_next: std::ptr::null(),
             contents: Default::default(),
         }
@@ -10186,7 +10196,7 @@ impl<'lt> Default for SubpassEndInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SubpassEndInfo,
+            s_type: StructureType::SUBPASS_END_INFO,
             p_next: std::ptr::null(),
         }
     }
@@ -10294,7 +10304,7 @@ impl<'lt> Default for PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceTimelineSemaphoreFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES,
             p_next: std::ptr::null_mut(),
             timeline_semaphore: 0,
         }
@@ -10442,7 +10452,7 @@ impl<'lt> Default for PhysicalDeviceTimelineSemaphoreProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceTimelineSemaphoreProperties,
+            s_type: StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES,
             p_next: std::ptr::null_mut(),
             max_timeline_semaphore_value_difference: 0,
         }
@@ -10577,7 +10587,7 @@ impl<'lt> Default for SemaphoreTypeCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SemaphoreTypeCreateInfo,
+            s_type: StructureType::SEMAPHORE_TYPE_CREATE_INFO,
             p_next: std::ptr::null(),
             semaphore_type: Default::default(),
             initial_value: 0,
@@ -10739,7 +10749,7 @@ impl<'lt> Default for TimelineSemaphoreSubmitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::TimelineSemaphoreSubmitInfo,
+            s_type: StructureType::TIMELINE_SEMAPHORE_SUBMIT_INFO,
             p_next: std::ptr::null(),
             wait_semaphore_value_count: 0,
             wait_semaphore_values: std::ptr::null(),
@@ -10942,7 +10952,7 @@ impl<'lt> Default for SemaphoreWaitInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SemaphoreWaitInfo,
+            s_type: StructureType::SEMAPHORE_WAIT_INFO,
             p_next: std::ptr::null(),
             flags: Default::default(),
             semaphore_count: 0,
@@ -11133,7 +11143,7 @@ impl<'lt> Default for SemaphoreSignalInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SemaphoreSignalInfo,
+            s_type: StructureType::SEMAPHORE_SIGNAL_INFO,
             p_next: std::ptr::null(),
             semaphore: Default::default(),
             value: 0,
@@ -11304,7 +11314,7 @@ impl<'lt> Default for PhysicalDevice8BitStorageFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevice8BitStorageFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE8_BIT_STORAGE_FEATURES,
             p_next: std::ptr::null_mut(),
             storage_buffer_8_bit_access: 0,
             uniform_and_storage_buffer_8_bit_access: 0,
@@ -11544,7 +11554,7 @@ impl<'lt> Default for PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVulkanMemoryModelFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES,
             p_next: std::ptr::null_mut(),
             vulkan_memory_model: 0,
             vulkan_memory_model_device_scope: 0,
@@ -11776,7 +11786,7 @@ impl<'lt> Default for PhysicalDeviceShaderAtomicInt64Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShaderAtomicInt64Features,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES,
             p_next: std::ptr::null_mut(),
             shader_buffer_int_64_atomics: 0,
             shader_shared_int_64_atomics: 0,
@@ -11983,7 +11993,7 @@ impl<'lt> Default for PhysicalDeviceDepthStencilResolveProperties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDepthStencilResolveProperties,
+            s_type: StructureType::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES,
             p_next: std::ptr::null_mut(),
             supported_depth_resolve_modes: Default::default(),
             supported_stencil_resolve_modes: Default::default(),
@@ -12256,7 +12266,7 @@ impl<'lt> Default for SubpassDescriptionDepthStencilResolve<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SubpassDescriptionDepthStencilResolve,
+            s_type: StructureType::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE,
             p_next: std::ptr::null(),
             depth_resolve_mode: Default::default(),
             stencil_resolve_mode: Default::default(),
@@ -12436,7 +12446,7 @@ impl<'lt> Default for ImageStencilUsageCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageStencilUsageCreateInfo,
+            s_type: StructureType::IMAGE_STENCIL_USAGE_CREATE_INFO,
             p_next: std::ptr::null(),
             stencil_usage: Default::default(),
         }
@@ -12558,7 +12568,7 @@ impl<'lt> Default for PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceScalarBlockLayoutFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES,
             p_next: std::ptr::null_mut(),
             scalar_block_layout: 0,
         }
@@ -12715,7 +12725,7 @@ impl<'lt> Default for PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceUniformBufferStandardLayoutFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES,
             p_next: std::ptr::null_mut(),
             uniform_buffer_standard_layout: 0,
         }
@@ -12892,7 +12902,7 @@ impl<'lt> Default for PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceBufferDeviceAddressFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES,
             p_next: std::ptr::null_mut(),
             buffer_device_address: 0,
             buffer_device_address_capture_replay: 0,
@@ -13123,7 +13133,7 @@ impl<'lt> Default for BufferDeviceAddressInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferDeviceAddressInfo,
+            s_type: StructureType::BUFFER_DEVICE_ADDRESS_INFO,
             p_next: std::ptr::null(),
             buffer: Default::default(),
         }
@@ -13244,7 +13254,7 @@ impl<'lt> Default for BufferOpaqueCaptureAddressCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferOpaqueCaptureAddressCreateInfo,
+            s_type: StructureType::BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO,
             p_next: std::ptr::null(),
             opaque_capture_address: 0,
         }
@@ -13368,7 +13378,7 @@ impl<'lt> Default for PhysicalDeviceImagelessFramebufferFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceImagelessFramebufferFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES,
             p_next: std::ptr::null_mut(),
             imageless_framebuffer: 0,
         }
@@ -13520,7 +13530,7 @@ impl<'lt> Default for FramebufferAttachmentsCreateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::FramebufferAttachmentsCreateInfo,
+            s_type: StructureType::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO,
             p_next: std::ptr::null(),
             attachment_image_info_count: 0,
             attachment_image_infos: std::ptr::null(),
@@ -13714,7 +13724,7 @@ impl<'lt> Default for FramebufferAttachmentImageInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::FramebufferAttachmentImageInfo,
+            s_type: StructureType::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO,
             p_next: std::ptr::null(),
             flags: Default::default(),
             usage: Default::default(),
@@ -13934,7 +13944,7 @@ impl<'lt> Default for RenderPassAttachmentBeginInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::RenderPassAttachmentBeginInfo,
+            s_type: StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO,
             p_next: std::ptr::null(),
             attachment_count: 0,
             attachments: std::ptr::null(),
@@ -14093,7 +14103,7 @@ impl<'lt> Default for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceSeparateDepthStencilLayoutsFeatures,
+            s_type: StructureType::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES,
             p_next: std::ptr::null_mut(),
             separate_depth_stencil_layouts: 0,
         }
@@ -14246,7 +14256,7 @@ impl<'lt> Default for AttachmentReferenceStencilLayout<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AttachmentReferenceStencilLayout,
+            s_type: StructureType::ATTACHMENT_REFERENCE_STENCIL_LAYOUT,
             p_next: std::ptr::null_mut(),
             stencil_layout: Default::default(),
         }
@@ -14391,7 +14401,7 @@ impl<'lt> Default for AttachmentDescriptionStencilLayout<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::AttachmentDescriptionStencilLayout,
+            s_type: StructureType::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT,
             p_next: std::ptr::null_mut(),
             stencil_initial_layout: Default::default(),
             stencil_final_layout: Default::default(),
@@ -14531,7 +14541,7 @@ impl<'lt> Default for MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryOpaqueCaptureAddressAllocateInfo,
+            s_type: StructureType::MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO,
             p_next: std::ptr::null(),
             opaque_capture_address: 0,
         }
@@ -14648,7 +14658,7 @@ impl<'lt> Default for DeviceMemoryOpaqueCaptureAddressInfo<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceMemoryOpaqueCaptureAddressInfo,
+            s_type: StructureType::DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO,
             p_next: std::ptr::null(),
             memory: Default::default(),
         }
@@ -14895,7 +14905,7 @@ impl<'lt> Default for PhysicalDeviceVulkan11Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVulkan11Features,
+            s_type: StructureType::PHYSICAL_DEVICE_VULKAN1_1_FEATURES,
             p_next: std::ptr::null_mut(),
             storage_buffer_16_bit_access: 0,
             uniform_and_storage_buffer_16_bit_access: 0,
@@ -15528,7 +15538,7 @@ impl<'lt> Default for PhysicalDeviceVulkan11Properties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVulkan11Properties,
+            s_type: StructureType::PHYSICAL_DEVICE_VULKAN1_1_PROPERTIES,
             p_next: std::ptr::null_mut(),
             device_uuid: [0; UUID_SIZE as usize],
             driver_uuid: [0; UUID_SIZE as usize],
@@ -16499,7 +16509,7 @@ impl<'lt> Default for PhysicalDeviceVulkan12Features<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVulkan12Features,
+            s_type: StructureType::PHYSICAL_DEVICE_VULKAN1_2_FEATURES,
             p_next: std::ptr::null_mut(),
             sampler_mirror_clamp_to_edge: 0,
             draw_indirect_count: 0,
@@ -18383,16 +18393,16 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
@@ -18712,7 +18722,7 @@ impl<'lt> Default for PhysicalDeviceVulkan12Properties<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceVulkan12Properties,
+            s_type: StructureType::PHYSICAL_DEVICE_VULKAN1_2_PROPERTIES,
             p_next: std::ptr::null_mut(),
             driver_id: Default::default(),
             driver_name: [b'\0' as i8; MAX_DRIVER_NAME_SIZE as usize],
@@ -20304,7 +20314,7 @@ impl Device {
             p_render_pass.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_render_pass.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -20390,7 +20400,7 @@ impl Device {
         let mut p_value = Default::default();
         let _return = _function(self.as_raw(), semaphore, &mut p_value);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_value),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_value),
             e => VulkanResult::Err(e),
         }
     }
@@ -20490,7 +20500,7 @@ impl Device {
             timeout.unwrap_or_default() as _,
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Timeout => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::TIMEOUT => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -20569,7 +20579,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_signal_info as *const SemaphoreSignalInfo<'lt>);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

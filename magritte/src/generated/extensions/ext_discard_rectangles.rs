@@ -170,8 +170,8 @@ pub type FNCmdSetDiscardRectangleExt = Option<
 ///} VkDiscardRectangleModeEXT;
 ///```
 ///# Description
-/// - [`DiscardRectangleModeInclusiveExt`] specifies that the discard rectangle test is inclusive.
-/// - [`DiscardRectangleModeExclusiveExt`] specifies that the discard rectangle test is exclusive.
+/// - [`INCLUSIVE`] specifies that the discard rectangle test is inclusive.
+/// - [`EXCLUSIVE`] specifies that the discard rectangle test is exclusive.
 ///# Related
 /// - [`VK_EXT_discard_rectangles`]
 /// - [`PipelineDiscardRectangleStateCreateInfoEXT`]
@@ -188,21 +188,20 @@ pub type FNCmdSetDiscardRectangleExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DiscardRectangleModeEXT {
-    ///[`DiscardRectangleModeInclusiveExt`] specifies that the discard
-    ///rectangle test is inclusive.
-    DiscardRectangleModeInclusiveExt = 0,
-    ///[`DiscardRectangleModeExclusiveExt`] specifies that the discard
-    ///rectangle test is exclusive.
-    DiscardRectangleModeExclusiveExt = 1,
-}
+#[repr(transparent)]
+pub struct DiscardRectangleModeEXT(i32);
 impl const Default for DiscardRectangleModeEXT {
     fn default() -> Self {
-        Self::DiscardRectangleModeInclusiveExt
+        Self(0)
     }
 }
 impl DiscardRectangleModeEXT {
+    ///[`INCLUSIVE`] specifies that the discard
+    ///rectangle test is inclusive.
+    pub const INCLUSIVE: Self = Self(0);
+    ///[`EXCLUSIVE`] specifies that the discard
+    ///rectangle test is exclusive.
+    pub const EXCLUSIVE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -211,12 +210,15 @@ impl DiscardRectangleModeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPipelineDiscardRectangleStateCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineDiscardRectangleStateCreateFlagsEXT.html) - Reserved for future use
@@ -309,7 +311,7 @@ impl<'lt> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDiscardRectanglePropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             max_discard_rectangles: 0,
         }
@@ -453,7 +455,7 @@ impl<'lt> Default for PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineDiscardRectangleStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             discard_rectangle_mode: Default::default(),

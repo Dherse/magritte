@@ -511,7 +511,7 @@ impl<'lt> Default for PresentTimesInfoGOOGLE<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PresentTimesInfoGoogle,
+            s_type: StructureType::PRESENT_TIMES_INFO_GOOGLE,
             p_next: std::ptr::null(),
             swapchain_count: 0,
             times: std::ptr::null(),
@@ -754,7 +754,7 @@ impl Device {
         let mut p_display_timing_properties = MaybeUninit::<RefreshCycleDurationGOOGLE>::uninit();
         let _return = _function(self.as_raw(), swapchain, p_display_timing_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_display_timing_properties.assume_init()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_display_timing_properties.assume_init()),
             e => VulkanResult::Err(e),
         }
     }
@@ -874,7 +874,7 @@ impl Device {
             p_presentation_timings.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_presentation_timings)
             },
             e => VulkanResult::Err(e),

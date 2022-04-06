@@ -308,7 +308,7 @@ impl<'a> Field<'a> {
         // create the converter
         let (converter, ref_) = self
             .ty()
-            .c_to_rust_converter(source, Mutability::Const, quote! { self.#name }, len)
+            .c_to_rust_converter(source, Mutability::Const, quote! { self.#name }, len, false)
             .expect("failed to created const converter");
 
         // if the output is a reference, get it
@@ -376,7 +376,7 @@ impl<'a> Field<'a> {
         // create the converter
         let (converter, ref_) =
             self.ty()
-                .c_to_rust_converter(source, Mutability::Mutable, quote! { self.#name }, len)?;
+                .c_to_rust_converter(source, Mutability::Mutable, quote! { self.#name }, len, false)?;
 
         // if the output is a reference, get it
         let ref_ = ref_.then(|| quote! { &mut });

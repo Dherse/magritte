@@ -375,16 +375,16 @@ pub type FNReleaseFullScreenExclusiveModeExt =
 ///} VkFullScreenExclusiveEXT;
 ///```
 ///# Description
-/// - [`FullScreenExclusiveDefaultExt`] indicates the implementation  **should**  determine the
-///   appropriate full-screen method by whatever means it deems appropriate.
-/// - [`FullScreenExclusiveAllowedExt`] indicates the implementation  **may**  use full-screen
-///   exclusive mechanisms when available. Such mechanisms  **may**  result in better performance
-///   and/or the availability of different presentation capabilities, but  **may**  require a more
-///   disruptive transition during swapchain initialization, first presentation and/or destruction.
-/// - [`FullScreenExclusiveDisallowedExt`] indicates the implementation  **should**  avoid using
-///   full-screen mechanisms which rely on disruptive transitions.
-/// - [`FullScreenExclusiveApplicationControlledExt`] indicates the application will manage
-///   full-screen exclusive mode by using the [`acquire_full_screen_exclusive_mode_ext`] and
+/// - [`DEFAULT`] indicates the implementation  **should**  determine the appropriate full-screen
+///   method by whatever means it deems appropriate.
+/// - [`ALLOWED`] indicates the implementation  **may**  use full-screen exclusive mechanisms when
+///   available. Such mechanisms  **may**  result in better performance and/or the availability of
+///   different presentation capabilities, but  **may**  require a more disruptive transition during
+///   swapchain initialization, first presentation and/or destruction.
+/// - [`DISALLOWED`] indicates the implementation  **should**  avoid using full-screen mechanisms
+///   which rely on disruptive transitions.
+/// - [`APPLICATION_CONTROLLED`] indicates the application will manage full-screen exclusive mode by
+///   using the [`acquire_full_screen_exclusive_mode_ext`] and
 ///   [`release_full_screen_exclusive_mode_ext`] commands.
 ///# Related
 /// - [`VK_EXT_full_screen_exclusive`]
@@ -402,35 +402,34 @@ pub type FNReleaseFullScreenExclusiveModeExt =
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum FullScreenExclusiveEXT {
-    ///[`FullScreenExclusiveDefaultExt`] indicates the implementation
+#[repr(transparent)]
+pub struct FullScreenExclusiveEXT(i32);
+impl const Default for FullScreenExclusiveEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl FullScreenExclusiveEXT {
+    ///[`DEFAULT`] indicates the implementation
     /// **should**  determine the appropriate full-screen method by whatever means
     ///it deems appropriate.
-    FullScreenExclusiveDefaultExt = 0,
-    ///[`FullScreenExclusiveAllowedExt`] indicates the implementation
+    pub const DEFAULT: Self = Self(0);
+    ///[`ALLOWED`] indicates the implementation
     /// **may**  use full-screen exclusive mechanisms when available.
     ///Such mechanisms  **may**  result in better performance and/or the
     ///availability of different presentation capabilities, but  **may**  require a
     ///more disruptive transition during swapchain initialization, first
     ///presentation and/or destruction.
-    FullScreenExclusiveAllowedExt = 1,
-    ///[`FullScreenExclusiveDisallowedExt`] indicates the
+    pub const ALLOWED: Self = Self(1);
+    ///[`DISALLOWED`] indicates the
     ///implementation  **should**  avoid using full-screen mechanisms which rely on
     ///disruptive transitions.
-    FullScreenExclusiveDisallowedExt = 2,
-    ///[`FullScreenExclusiveApplicationControlledExt`] indicates the
+    pub const DISALLOWED: Self = Self(2);
+    ///[`APPLICATION_CONTROLLED`] indicates the
     ///application will manage full-screen exclusive mode by using the
     ///[`acquire_full_screen_exclusive_mode_ext`] and
     ///[`release_full_screen_exclusive_mode_ext`] commands.
-    FullScreenExclusiveApplicationControlledExt = 3,
-}
-impl const Default for FullScreenExclusiveEXT {
-    fn default() -> Self {
-        Self::FullScreenExclusiveDefaultExt
-    }
-}
-impl FullScreenExclusiveEXT {
+    pub const APPLICATION_CONTROLLED: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -439,12 +438,15 @@ impl FullScreenExclusiveEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkSurfaceFullScreenExclusiveInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFullScreenExclusiveInfoEXT.html) - Structure specifying the preferred full-screen transition behavior
@@ -504,7 +506,7 @@ impl<'lt> Default for SurfaceFullScreenExclusiveInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceFullScreenExclusiveInfoExt,
+            s_type: StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT,
             p_next: std::ptr::null_mut(),
             full_screen_exclusive: Default::default(),
         }
@@ -622,7 +624,7 @@ impl<'lt> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceFullScreenExclusiveWin32InfoExt,
+            s_type: StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT,
             p_next: std::ptr::null(),
             hmonitor: unsafe { std::mem::zeroed() },
         }
@@ -745,7 +747,7 @@ impl<'lt> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SurfaceCapabilitiesFullScreenExclusiveExt,
+            s_type: StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT,
             p_next: std::ptr::null_mut(),
             full_screen_exclusive_supported: 0,
         }
@@ -937,7 +939,7 @@ impl PhysicalDevice {
             p_present_modes.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_present_modes)
             },
             e => VulkanResult::Err(e),
@@ -1028,7 +1030,7 @@ impl Device {
             p_modes as *mut DeviceGroupPresentModeFlagsKHR,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -1113,7 +1115,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swapchain);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -1173,7 +1175,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swapchain);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

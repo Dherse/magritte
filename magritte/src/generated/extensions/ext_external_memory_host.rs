@@ -251,7 +251,7 @@ impl<'lt> Default for ImportMemoryHostPointerInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportMemoryHostPointerInfoExt,
+            s_type: StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT,
             p_next: std::ptr::null(),
             handle_type: Default::default(),
             host_pointer: std::ptr::null_mut(),
@@ -389,7 +389,7 @@ impl<'lt> Default for MemoryHostPointerPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MemoryHostPointerPropertiesExt,
+            s_type: StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
         }
@@ -512,7 +512,7 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceExternalMemoryHostPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             min_imported_host_pointer_alignment: Default::default(),
         }
@@ -660,7 +660,7 @@ impl Device {
             &mut p_memory_host_pointer_properties,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_memory_host_pointer_properties.p_next = std::ptr::null_mut();
                 p_memory_host_pointer_properties
             }),

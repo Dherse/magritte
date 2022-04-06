@@ -196,15 +196,13 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 ///} VkExternalMemoryHandleTypeFlagBitsNV;
 ///```
 ///# Description
-/// - [`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a handle to memory returned by
-///   [`get_memory_win32_handle_nv`].
-/// - [`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a handle to memory returned by
-///   [`get_memory_win32_handle_nv`], or one duplicated from such a handle using
-///   `DuplicateHandle()`.
-/// - [`ExternalMemoryHandleTypeD3D11ImageNv`] specifies a valid NT handle to memory returned by
+/// - [`OPAQUE_WIN32_KMT`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`].
+/// - [`OPAQUE_WIN32`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`], or
+///   one duplicated from such a handle using `DuplicateHandle()`.
+/// - [`D3_D_11_IMAGE`] specifies a valid NT handle to memory returned by
 ///   `IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a handle using
 ///   `DuplicateHandle()`.
-/// - [`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a handle to memory returned by
+/// - [`D3_D_11_IMAGE_KMT`] specifies a handle to memory returned by
 ///   `IDXGIResource::GetSharedHandle()`.
 ///# Related
 /// - [`VK_NV_external_memory_capabilities`]
@@ -222,32 +220,29 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum ExternalMemoryHandleTypeFlagBitsNV {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a
-    ///handle to memory returned by [`get_memory_win32_handle_nv`], or one
-    ///duplicated from such a handle using `DuplicateHandle()`.
-    ExternalMemoryHandleTypeOpaqueWin32Nv = 1,
-    ///[`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a
-    ///handle to memory returned by [`get_memory_win32_handle_nv`].
-    ExternalMemoryHandleTypeOpaqueWin32KmtNv = 2,
-    ///[`ExternalMemoryHandleTypeD3D11ImageNv`] specifies a
-    ///valid NT handle to memory returned by
-    ///`IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a
-    ///handle using `DuplicateHandle()`.
-    ExternalMemoryHandleTypeD3D11ImageNv = 4,
-    ///[`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a
-    ///handle to memory returned by `IDXGIResource::GetSharedHandle()`.
-    ExternalMemoryHandleTypeD3D11ImageKmtNv = 8,
-}
+#[repr(transparent)]
+pub struct ExternalMemoryHandleTypeFlagBitsNV(u32);
 impl const Default for ExternalMemoryHandleTypeFlagBitsNV {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl ExternalMemoryHandleTypeFlagBitsNV {
+    ///[`OPAQUE_WIN32`] specifies a
+    ///handle to memory returned by [`get_memory_win32_handle_nv`], or one
+    ///duplicated from such a handle using `DuplicateHandle()`.
+    pub const OPAQUE_WIN32: Self = Self(1);
+    ///[`OPAQUE_WIN32_KMT`] specifies a
+    ///handle to memory returned by [`get_memory_win32_handle_nv`].
+    pub const OPAQUE_WIN32_KMT: Self = Self(2);
+    ///[`D3_D_11_IMAGE`] specifies a
+    ///valid NT handle to memory returned by
+    ///`IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a
+    ///handle using `DuplicateHandle()`.
+    pub const D3_D_11_IMAGE: Self = Self(4);
+    ///[`D3_D_11_IMAGE_KMT`] specifies a
+    ///handle to memory returned by `IDXGIResource::GetSharedHandle()`.
+    pub const D3_D_11_IMAGE_KMT: Self = Self(8);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -256,12 +251,15 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkExternalMemoryFeatureFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBitsNV.html) - Bitmask specifying external memory features
@@ -278,12 +276,12 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
 ///} VkExternalMemoryFeatureFlagBitsNV;
 ///```
 ///# Description
-/// - [`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that external memory of the specified type
-///   **must**  be created as a dedicated allocation when used in the manner specified.
-/// - [`ExternalMemoryFeatureExportableNv`] specifies that the implementation supports exporting
-///   handles of the specified type.
-/// - [`ExternalMemoryFeatureImportableNv`] specifies that the implementation supports importing
-///   handles of the specified type.
+/// - [`DEDICATED_ONLY`] specifies that external memory of the specified type  **must**  be created
+///   as a dedicated allocation when used in the manner specified.
+/// - [`EXPORTABLE`] specifies that the implementation supports exporting handles of the specified
+///   type.
+/// - [`IMPORTABLE`] specifies that the implementation supports importing handles of the specified
+///   type.
 ///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
@@ -302,27 +300,24 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum ExternalMemoryFeatureFlagBitsNV {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that
-    ///external memory of the specified type  **must**  be created as a dedicated
-    ///allocation when used in the manner specified.
-    ExternalMemoryFeatureDedicatedOnlyNv = 1,
-    ///[`ExternalMemoryFeatureExportableNv`] specifies that the
-    ///implementation supports exporting handles of the specified type.
-    ExternalMemoryFeatureExportableNv = 2,
-    ///[`ExternalMemoryFeatureImportableNv`] specifies that the
-    ///implementation supports importing handles of the specified type.
-    ExternalMemoryFeatureImportableNv = 4,
-}
+#[repr(transparent)]
+pub struct ExternalMemoryFeatureFlagBitsNV(u32);
 impl const Default for ExternalMemoryFeatureFlagBitsNV {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl ExternalMemoryFeatureFlagBitsNV {
+    ///[`DEDICATED_ONLY`] specifies that
+    ///external memory of the specified type  **must**  be created as a dedicated
+    ///allocation when used in the manner specified.
+    pub const DEDICATED_ONLY: Self = Self(1);
+    ///[`EXPORTABLE`] specifies that the
+    ///implementation supports exporting handles of the specified type.
+    pub const EXPORTABLE: Self = Self(2);
+    ///[`IMPORTABLE`] specifies that the
+    ///implementation supports importing handles of the specified type.
+    pub const IMPORTABLE: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -331,12 +326,15 @@ impl ExternalMemoryFeatureFlagBitsNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkExternalMemoryHandleTypeFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBitsNV.html) - Bitmask specifying external memory handle types
@@ -353,15 +351,13 @@ impl ExternalMemoryFeatureFlagBitsNV {
 ///} VkExternalMemoryHandleTypeFlagBitsNV;
 ///```
 ///# Description
-/// - [`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a handle to memory returned by
-///   [`get_memory_win32_handle_nv`].
-/// - [`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a handle to memory returned by
-///   [`get_memory_win32_handle_nv`], or one duplicated from such a handle using
-///   `DuplicateHandle()`.
-/// - [`ExternalMemoryHandleTypeD3D11ImageNv`] specifies a valid NT handle to memory returned by
+/// - [`OPAQUE_WIN32_KMT`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`].
+/// - [`OPAQUE_WIN32`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`], or
+///   one duplicated from such a handle using `DuplicateHandle()`.
+/// - [`D3_D_11_IMAGE`] specifies a valid NT handle to memory returned by
 ///   `IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a handle using
 ///   `DuplicateHandle()`.
-/// - [`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a handle to memory returned by
+/// - [`D3_D_11_IMAGE_KMT`] specifies a handle to memory returned by
 ///   `IDXGIResource::GetSharedHandle()`.
 ///# Related
 /// - [`VK_NV_external_memory_capabilities`]
@@ -387,25 +383,25 @@ impl const Default for ExternalMemoryHandleTypeFlagsNV {
 }
 impl From<ExternalMemoryHandleTypeFlagBitsNV> for ExternalMemoryHandleTypeFlagsNV {
     fn from(from: ExternalMemoryHandleTypeFlagBitsNV) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl ExternalMemoryHandleTypeFlagsNV {
-    ///[`ExternalMemoryHandleTypeOpaqueWin32Nv`] specifies a
+    ///[`OPAQUE_WIN32`] specifies a
     ///handle to memory returned by [`get_memory_win32_handle_nv`], or one
     ///duplicated from such a handle using `DuplicateHandle()`.
-    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV: Self = Self(1);
-    ///[`ExternalMemoryHandleTypeOpaqueWin32KmtNv`] specifies a
+    pub const OPAQUE_WIN_32: Self = Self(1);
+    ///[`OPAQUE_WIN32_KMT`] specifies a
     ///handle to memory returned by [`get_memory_win32_handle_nv`].
-    pub const EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV: Self = Self(2);
-    ///[`ExternalMemoryHandleTypeD3D11ImageNv`] specifies a
+    pub const OPAQUE_WIN_32_KMT: Self = Self(2);
+    ///[`D3_D_11_IMAGE`] specifies a
     ///valid NT handle to memory returned by
     ///`IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a
     ///handle using `DuplicateHandle()`.
-    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV: Self = Self(4);
-    ///[`ExternalMemoryHandleTypeD3D11ImageKmtNv`] specifies a
+    pub const D_3_D_11_IMAGE: Self = Self(4);
+    ///[`D3_D_11_IMAGE_KMT`] specifies a
     ///handle to memory returned by `IDXGIResource::GetSharedHandle()`.
-    pub const EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV: Self = Self(8);
+    pub const D_3_D_11_IMAGE_KMT: Self = Self(8);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -417,16 +413,16 @@ impl ExternalMemoryHandleTypeFlagsNV {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV;
+            all |= Self::OPAQUE_WIN_32;
         }
         {
-            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV;
+            all |= Self::OPAQUE_WIN_32_KMT;
         }
         {
-            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV;
+            all |= Self::D_3_D_11_IMAGE;
         }
         {
-            all |= Self::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV;
+            all |= Self::D_3_D_11_IMAGE_KMT;
         }
         all
     }
@@ -632,45 +628,33 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV)
-                    {
+                    if self.0.contains(ExternalMemoryHandleTypeFlagsNV::OPAQUE_WIN_32) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_NV))?;
+                        f.write_str(stringify!(OPAQUE_WIN_32))?;
                     }
-                    if self
-                        .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV)
-                    {
+                    if self.0.contains(ExternalMemoryHandleTypeFlagsNV::OPAQUE_WIN_32_KMT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN_32_KMT_NV))?;
+                        f.write_str(stringify!(OPAQUE_WIN_32_KMT))?;
                     }
-                    if self
-                        .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV)
-                    {
+                    if self.0.contains(ExternalMemoryHandleTypeFlagsNV::D_3_D_11_IMAGE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_NV))?;
+                        f.write_str(stringify!(D_3_D_11_IMAGE))?;
                     }
-                    if self
-                        .0
-                        .contains(ExternalMemoryHandleTypeFlagsNV::EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV)
-                    {
+                    if self.0.contains(ExternalMemoryHandleTypeFlagsNV::D_3_D_11_IMAGE_KMT) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_HANDLE_TYPE_D_3_D_11_IMAGE_KMT_NV))?;
+                        f.write_str(stringify!(D_3_D_11_IMAGE_KMT))?;
                     }
                 }
                 Ok(())
@@ -695,12 +679,12 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
 ///} VkExternalMemoryFeatureFlagBitsNV;
 ///```
 ///# Description
-/// - [`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that external memory of the specified type
-///   **must**  be created as a dedicated allocation when used in the manner specified.
-/// - [`ExternalMemoryFeatureExportableNv`] specifies that the implementation supports exporting
-///   handles of the specified type.
-/// - [`ExternalMemoryFeatureImportableNv`] specifies that the implementation supports importing
-///   handles of the specified type.
+/// - [`DEDICATED_ONLY`] specifies that external memory of the specified type  **must**  be created
+///   as a dedicated allocation when used in the manner specified.
+/// - [`EXPORTABLE`] specifies that the implementation supports exporting handles of the specified
+///   type.
+/// - [`IMPORTABLE`] specifies that the implementation supports importing handles of the specified
+///   type.
 ///# Related
 /// - [`VK_NV_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
@@ -727,20 +711,20 @@ impl const Default for ExternalMemoryFeatureFlagsNV {
 }
 impl From<ExternalMemoryFeatureFlagBitsNV> for ExternalMemoryFeatureFlagsNV {
     fn from(from: ExternalMemoryFeatureFlagBitsNV) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl ExternalMemoryFeatureFlagsNV {
-    ///[`ExternalMemoryFeatureDedicatedOnlyNv`] specifies that
+    ///[`DEDICATED_ONLY`] specifies that
     ///external memory of the specified type  **must**  be created as a dedicated
     ///allocation when used in the manner specified.
-    pub const EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV: Self = Self(1);
-    ///[`ExternalMemoryFeatureExportableNv`] specifies that the
+    pub const DEDICATED_ONLY: Self = Self(1);
+    ///[`EXPORTABLE`] specifies that the
     ///implementation supports exporting handles of the specified type.
-    pub const EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV: Self = Self(2);
-    ///[`ExternalMemoryFeatureImportableNv`] specifies that the
+    pub const EXPORTABLE: Self = Self(2);
+    ///[`IMPORTABLE`] specifies that the
     ///implementation supports importing handles of the specified type.
-    pub const EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV: Self = Self(4);
+    pub const IMPORTABLE: Self = Self(4);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -752,13 +736,13 @@ impl ExternalMemoryFeatureFlagsNV {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV;
+            all |= Self::DEDICATED_ONLY;
         }
         {
-            all |= Self::EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV;
+            all |= Self::EXPORTABLE;
         }
         {
-            all |= Self::EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV;
+            all |= Self::IMPORTABLE;
         }
         all
     }
@@ -960,35 +944,26 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(ExternalMemoryFeatureFlagsNV::EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV)
-                    {
+                    if self.0.contains(ExternalMemoryFeatureFlagsNV::DEDICATED_ONLY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_NV))?;
+                        f.write_str(stringify!(DEDICATED_ONLY))?;
                     }
-                    if self
-                        .0
-                        .contains(ExternalMemoryFeatureFlagsNV::EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV)
-                    {
+                    if self.0.contains(ExternalMemoryFeatureFlagsNV::EXPORTABLE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_EXPORTABLE_NV))?;
+                        f.write_str(stringify!(EXPORTABLE))?;
                     }
-                    if self
-                        .0
-                        .contains(ExternalMemoryFeatureFlagsNV::EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV)
-                    {
+                    if self.0.contains(ExternalMemoryFeatureFlagsNV::IMPORTABLE) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(EXTERNAL_MEMORY_FEATURE_IMPORTABLE_NV))?;
+                        f.write_str(stringify!(IMPORTABLE))?;
                     }
                 }
                 Ok(())
@@ -1264,7 +1239,7 @@ impl PhysicalDevice {
             p_external_image_format_properties.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, p_external_image_format_properties.assume_init())
             },
             e => VulkanResult::Err(e),

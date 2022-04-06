@@ -334,7 +334,7 @@ impl<'lt> Default for DrmFormatModifierPropertiesListEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DrmFormatModifierPropertiesListExt,
+            s_type: StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT,
             p_next: std::ptr::null_mut(),
             drm_format_modifier_count: 0,
             drm_format_modifier_properties: std::ptr::null_mut(),
@@ -693,7 +693,7 @@ impl<'lt> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceImageDrmFormatModifierInfoExt,
+            s_type: StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT,
             p_next: std::ptr::null(),
             drm_format_modifier: 0,
             sharing_mode: Default::default(),
@@ -869,7 +869,7 @@ impl<'lt> Default for ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageDrmFormatModifierListCreateInfoExt,
+            s_type: StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             drm_format_modifier_count: 0,
             drm_format_modifiers: std::ptr::null(),
@@ -1051,7 +1051,7 @@ impl<'lt> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageDrmFormatModifierExplicitCreateInfoExt,
+            s_type: StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             drm_format_modifier: 0,
             drm_format_modifier_plane_count: 0,
@@ -1206,7 +1206,7 @@ impl<'lt> Default for ImageDrmFormatModifierPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageDrmFormatModifierPropertiesExt,
+            s_type: StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             drm_format_modifier: 0,
         }
@@ -1343,7 +1343,7 @@ impl<'lt> Default for DrmFormatModifierPropertiesList2EXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DrmFormatModifierPropertiesList2Ext,
+            s_type: StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST2_EXT,
             p_next: std::ptr::null_mut(),
             drm_format_modifier_count: 0,
             drm_format_modifier_properties: std::ptr::null_mut(),
@@ -1623,7 +1623,7 @@ impl Device {
             .unwrap_or_else(|| MaybeUninit::<ImageDrmFormatModifierPropertiesEXT<'lt>>::zeroed().assume_init());
         let _return = _function(self.as_raw(), image, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_properties.p_next = std::ptr::null_mut();
                 p_properties
             }),

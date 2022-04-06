@@ -155,10 +155,10 @@ pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
 ///} VkScopeNV;
 ///```
 ///# Description
-/// - [`ScopeDeviceNv`] corresponds to SPIR-V [`Device`] scope.
-/// - [`ScopeWorkgroupNv`] corresponds to SPIR-V `Workgroup` scope.
-/// - [`ScopeSubgroupNv`] corresponds to SPIR-V `Subgroup` scope.
-/// - [`ScopeQueueFamilyNv`] corresponds to SPIR-V `QueueFamily` scope.
+/// - [`DEVICE`] corresponds to SPIR-V [`Device`] scope.
+/// - [`WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
+/// - [`SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
+/// - [`QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily` scope.
 ///All enum values match the corresponding SPIR-V value.
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
@@ -176,26 +176,23 @@ pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ScopeNV {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ScopeDeviceNv`] corresponds to SPIR-V [`Device`] scope.
-    ScopeDeviceNv = 1,
-    ///[`ScopeWorkgroupNv`] corresponds to SPIR-V `Workgroup` scope.
-    ScopeWorkgroupNv = 2,
-    ///[`ScopeSubgroupNv`] corresponds to SPIR-V `Subgroup` scope.
-    ScopeSubgroupNv = 3,
-    ///[`ScopeQueueFamilyNv`] corresponds to SPIR-V `QueueFamily`
-    ///scope.
-    ScopeQueueFamilyNv = 5,
-}
+#[repr(transparent)]
+pub struct ScopeNV(i32);
 impl const Default for ScopeNV {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl ScopeNV {
+    ///[`DEVICE`] corresponds to SPIR-V [`Device`] scope.
+    pub const DEVICE: Self = Self(1);
+    ///[`WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
+    pub const WORKGROUP: Self = Self(2);
+    ///[`SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
+    pub const SUBGROUP: Self = Self(3);
+    ///[`QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily`
+    ///scope.
+    pub const QUEUE_FAMILY: Self = Self(5);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -204,12 +201,15 @@ impl ScopeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkComponentTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComponentTypeNV.html) - Specify SPIR-V cooperative matrix component type
@@ -232,17 +232,17 @@ impl ScopeNV {
 ///} VkComponentTypeNV;
 ///```
 ///# Description
-/// - [`ComponentTypeFloat16Nv`] corresponds to SPIR-V `OpTypeFloat` 16.
-/// - [`ComponentTypeFloat32Nv`] corresponds to SPIR-V `OpTypeFloat` 32.
-/// - [`ComponentTypeFloat64Nv`] corresponds to SPIR-V `OpTypeFloat` 64.
-/// - [`ComponentTypeSint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 1.
-/// - [`ComponentTypeSint16Nv`] corresponds to SPIR-V `OpTypeInt` 16 1.
-/// - [`ComponentTypeSint32Nv`] corresponds to SPIR-V `OpTypeInt` 32 1.
-/// - [`ComponentTypeSint64Nv`] corresponds to SPIR-V `OpTypeInt` 64 1.
-/// - [`ComponentTypeUint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 0.
-/// - [`ComponentTypeUint16Nv`] corresponds to SPIR-V `OpTypeInt` 16 0.
-/// - [`ComponentTypeUint32Nv`] corresponds to SPIR-V `OpTypeInt` 32 0.
-/// - [`ComponentTypeUint64Nv`] corresponds to SPIR-V `OpTypeInt` 64 0.
+/// - [`FLOAT16`] corresponds to SPIR-V `OpTypeFloat` 16.
+/// - [`FLOAT32`] corresponds to SPIR-V `OpTypeFloat` 32.
+/// - [`FLOAT64`] corresponds to SPIR-V `OpTypeFloat` 64.
+/// - [`SINT8`] corresponds to SPIR-V `OpTypeInt` 8 1.
+/// - [`SINT16`] corresponds to SPIR-V `OpTypeInt` 16 1.
+/// - [`SINT32`] corresponds to SPIR-V `OpTypeInt` 32 1.
+/// - [`SINT64`] corresponds to SPIR-V `OpTypeInt` 64 1.
+/// - [`UINT8`] corresponds to SPIR-V `OpTypeInt` 8 0.
+/// - [`UINT16`] corresponds to SPIR-V `OpTypeInt` 16 0.
+/// - [`UINT32`] corresponds to SPIR-V `OpTypeInt` 32 0.
+/// - [`UINT64`] corresponds to SPIR-V `OpTypeInt` 64 0.
 ///# Related
 /// - [`VK_NV_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
@@ -259,46 +259,45 @@ impl ScopeNV {
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ComponentTypeNV {
-    ///[`ComponentTypeFloat16Nv`] corresponds to SPIR-V
-    ///`OpTypeFloat` 16.
-    ComponentTypeFloat16Nv = 0,
-    ///[`ComponentTypeFloat32Nv`] corresponds to SPIR-V
-    ///`OpTypeFloat` 32.
-    ComponentTypeFloat32Nv = 1,
-    ///[`ComponentTypeFloat64Nv`] corresponds to SPIR-V
-    ///`OpTypeFloat` 64.
-    ComponentTypeFloat64Nv = 2,
-    ///[`ComponentTypeSint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 1.
-    ComponentTypeSint8Nv = 3,
-    ///[`ComponentTypeSint16Nv`] corresponds to SPIR-V `OpTypeInt`
-    ///16 1.
-    ComponentTypeSint16Nv = 4,
-    ///[`ComponentTypeSint32Nv`] corresponds to SPIR-V `OpTypeInt`
-    ///32 1.
-    ComponentTypeSint32Nv = 5,
-    ///[`ComponentTypeSint64Nv`] corresponds to SPIR-V `OpTypeInt`
-    ///64 1.
-    ComponentTypeSint64Nv = 6,
-    ///[`ComponentTypeUint8Nv`] corresponds to SPIR-V `OpTypeInt` 8 0.
-    ComponentTypeUint8Nv = 7,
-    ///[`ComponentTypeUint16Nv`] corresponds to SPIR-V `OpTypeInt`
-    ///16 0.
-    ComponentTypeUint16Nv = 8,
-    ///[`ComponentTypeUint32Nv`] corresponds to SPIR-V `OpTypeInt`
-    ///32 0.
-    ComponentTypeUint32Nv = 9,
-    ///[`ComponentTypeUint64Nv`] corresponds to SPIR-V `OpTypeInt`
-    ///64 0.
-    ComponentTypeUint64Nv = 10,
-}
+#[repr(transparent)]
+pub struct ComponentTypeNV(i32);
 impl const Default for ComponentTypeNV {
     fn default() -> Self {
-        Self::ComponentTypeFloat16Nv
+        Self(0)
     }
 }
 impl ComponentTypeNV {
+    ///[`FLOAT16`] corresponds to SPIR-V
+    ///`OpTypeFloat` 16.
+    pub const FLOAT16: Self = Self(0);
+    ///[`FLOAT32`] corresponds to SPIR-V
+    ///`OpTypeFloat` 32.
+    pub const FLOAT32: Self = Self(1);
+    ///[`FLOAT64`] corresponds to SPIR-V
+    ///`OpTypeFloat` 64.
+    pub const FLOAT64: Self = Self(2);
+    ///[`SINT8`] corresponds to SPIR-V `OpTypeInt` 8 1.
+    pub const SINT8: Self = Self(3);
+    ///[`SINT16`] corresponds to SPIR-V `OpTypeInt`
+    ///16 1.
+    pub const SINT16: Self = Self(4);
+    ///[`SINT32`] corresponds to SPIR-V `OpTypeInt`
+    ///32 1.
+    pub const SINT32: Self = Self(5);
+    ///[`SINT64`] corresponds to SPIR-V `OpTypeInt`
+    ///64 1.
+    pub const SINT64: Self = Self(6);
+    ///[`UINT8`] corresponds to SPIR-V `OpTypeInt` 8 0.
+    pub const UINT8: Self = Self(7);
+    ///[`UINT16`] corresponds to SPIR-V `OpTypeInt`
+    ///16 0.
+    pub const UINT16: Self = Self(8);
+    ///[`UINT32`] corresponds to SPIR-V `OpTypeInt`
+    ///32 0.
+    pub const UINT32: Self = Self(9);
+    ///[`UINT64`] corresponds to SPIR-V `OpTypeInt`
+    ///64 0.
+    pub const UINT64: Self = Self(10);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -307,12 +306,15 @@ impl ComponentTypeNV {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDeviceCooperativeMatrixFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html) - Structure describing cooperative matrix features that can be supported by an implementation
@@ -385,7 +387,7 @@ impl<'lt> Default for PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCooperativeMatrixFeaturesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV,
             p_next: std::ptr::null_mut(),
             cooperative_matrix: 0,
             cooperative_matrix_robust_buffer_access: 0,
@@ -570,7 +572,7 @@ impl<'lt> Default for PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceCooperativeMatrixPropertiesNv,
+            s_type: StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             cooperative_matrix_supported_stages: Default::default(),
         }
@@ -741,7 +743,7 @@ impl<'lt> Default for CooperativeMatrixPropertiesNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::CooperativeMatrixPropertiesNv,
+            s_type: StructureType::COOPERATIVE_MATRIX_PROPERTIES_NV,
             p_next: std::ptr::null_mut(),
             m_size: 0,
             n_size: 0,
@@ -988,7 +990,7 @@ impl PhysicalDevice {
             SmallVec::<CooperativeMatrixPropertiesNV<'lt>>::from_elem(Default::default(), p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }

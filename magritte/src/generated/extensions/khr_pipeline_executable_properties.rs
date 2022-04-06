@@ -352,18 +352,15 @@ pub type FNGetPipelineExecutableInternalRepresentationsKhr = Option<
 ///} VkPipelineExecutableStatisticFormatKHR;
 ///```
 ///# Description
-/// - [`PipelineExecutableStatisticFormatBool32Khr`] specifies that the statistic is returned as a
-///   32-bit boolean value which  **must**  be either [`TRUE`] or [`FALSE`] and  **should**  be read
-///   from the `b32` field of [`PipelineExecutableStatisticValueKHR`].
-/// - [`PipelineExecutableStatisticFormatInt64Khr`] specifies that the statistic is returned as a
-///   signed 64-bit integer and  **should**  be read from the `i64` field of
+/// - [`BOOL32`] specifies that the statistic is returned as a 32-bit boolean value which  **must**
+///   be either [`TRUE`] or [`FALSE`] and  **should**  be read from the `b32` field of
 ///   [`PipelineExecutableStatisticValueKHR`].
-/// - [`PipelineExecutableStatisticFormatUint64Khr`] specifies that the statistic is returned as an
-///   unsigned 64-bit integer and  **should**  be read from the `u64` field of
-///   [`PipelineExecutableStatisticValueKHR`].
-/// - [`PipelineExecutableStatisticFormatFloat64Khr`] specifies that the statistic is returned as a
-///   64-bit floating-point value and  **should**  be read from the `f64` field of
-///   [`PipelineExecutableStatisticValueKHR`].
+/// - [`INT64`] specifies that the statistic is returned as a signed 64-bit integer and  **should**
+///   be read from the `i64` field of [`PipelineExecutableStatisticValueKHR`].
+/// - [`UINT64`] specifies that the statistic is returned as an unsigned 64-bit integer and
+///   **should**  be read from the `u64` field of [`PipelineExecutableStatisticValueKHR`].
+/// - [`FLOAT64`] specifies that the statistic is returned as a 64-bit floating-point value and
+///   **should**  be read from the `f64` field of [`PipelineExecutableStatisticValueKHR`].
 ///# Related
 /// - [`VK_KHR_pipeline_executable_properties`]
 /// - [`PipelineExecutableStatisticKHR`]
@@ -380,34 +377,33 @@ pub type FNGetPipelineExecutableInternalRepresentationsKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum PipelineExecutableStatisticFormatKHR {
-    ///[`PipelineExecutableStatisticFormatBool32Khr`] specifies that
-    ///the statistic is returned as a 32-bit boolean value which  **must**  be
-    ///either [`TRUE`] or [`FALSE`] and  **should**  be read from the
-    ///`b32` field of [`PipelineExecutableStatisticValueKHR`].
-    PipelineExecutableStatisticFormatBool32Khr = 0,
-    ///[`PipelineExecutableStatisticFormatInt64Khr`] specifies that
-    ///the statistic is returned as a signed 64-bit integer and  **should**  be read
-    ///from the `i64` field of [`PipelineExecutableStatisticValueKHR`].
-    PipelineExecutableStatisticFormatInt64Khr = 1,
-    ///[`PipelineExecutableStatisticFormatUint64Khr`] specifies that
-    ///the statistic is returned as an unsigned 64-bit integer and  **should**  be
-    ///read from the `u64` field of
-    ///[`PipelineExecutableStatisticValueKHR`].
-    PipelineExecutableStatisticFormatUint64Khr = 2,
-    ///[`PipelineExecutableStatisticFormatFloat64Khr`] specifies that
-    ///the statistic is returned as a 64-bit floating-point value and  **should**
-    ///be read from the `f64` field of
-    ///[`PipelineExecutableStatisticValueKHR`].
-    PipelineExecutableStatisticFormatFloat64Khr = 3,
-}
+#[repr(transparent)]
+pub struct PipelineExecutableStatisticFormatKHR(i32);
 impl const Default for PipelineExecutableStatisticFormatKHR {
     fn default() -> Self {
-        Self::PipelineExecutableStatisticFormatBool32Khr
+        Self(0)
     }
 }
 impl PipelineExecutableStatisticFormatKHR {
+    ///[`BOOL32`] specifies that
+    ///the statistic is returned as a 32-bit boolean value which  **must**  be
+    ///either [`TRUE`] or [`FALSE`] and  **should**  be read from the
+    ///`b32` field of [`PipelineExecutableStatisticValueKHR`].
+    pub const BOOL32: Self = Self(0);
+    ///[`INT64`] specifies that
+    ///the statistic is returned as a signed 64-bit integer and  **should**  be read
+    ///from the `i64` field of [`PipelineExecutableStatisticValueKHR`].
+    pub const INT64: Self = Self(1);
+    ///[`UINT64`] specifies that
+    ///the statistic is returned as an unsigned 64-bit integer and  **should**  be
+    ///read from the `u64` field of
+    ///[`PipelineExecutableStatisticValueKHR`].
+    pub const UINT64: Self = Self(2);
+    ///[`FLOAT64`] specifies that
+    ///the statistic is returned as a 64-bit floating-point value and  **should**
+    ///be read from the `f64` field of
+    ///[`PipelineExecutableStatisticValueKHR`].
+    pub const FLOAT64: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -416,12 +412,15 @@ impl PipelineExecutableStatisticFormatKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html) - Structure describing whether pipeline executable properties are available
@@ -488,7 +487,7 @@ impl<'lt> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt>
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePipelineExecutablePropertiesFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             pipeline_executable_info: 0,
         }
@@ -625,7 +624,7 @@ impl<'lt> Default for PipelineInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineInfoKhr,
+            s_type: StructureType::PIPELINE_INFO_KHR,
             p_next: std::ptr::null(),
             pipeline: Default::default(),
         }
@@ -764,7 +763,7 @@ impl<'lt> Default for PipelineExecutablePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineExecutablePropertiesKhr,
+            s_type: StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             stages: Default::default(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
@@ -936,7 +935,7 @@ impl<'lt> Default for PipelineExecutableInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineExecutableInfoKhr,
+            s_type: StructureType::PIPELINE_EXECUTABLE_INFO_KHR,
             p_next: std::ptr::null(),
             pipeline: Default::default(),
             executable_index: 0,
@@ -1077,7 +1076,7 @@ impl<'lt> Default for PipelineExecutableStatisticKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineExecutableStatisticKhr,
+            s_type: StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR,
             p_next: std::ptr::null_mut(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
@@ -1285,7 +1284,7 @@ impl<'lt> Default for PipelineExecutableInternalRepresentationKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineExecutableInternalRepresentationKhr,
+            s_type: StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR,
             p_next: std::ptr::null_mut(),
             name: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
             description: [b'\0' as i8; MAX_DESCRIPTION_SIZE as usize],
@@ -1614,7 +1613,7 @@ impl Device {
             p_properties.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
             e => VulkanResult::Err(e),
         }
     }
@@ -1734,7 +1733,7 @@ impl Device {
             p_statistics.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, p_statistics),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_statistics),
             e => VulkanResult::Err(e),
         }
     }
@@ -1863,7 +1862,7 @@ impl Device {
             p_internal_representations.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_internal_representations)
             },
             e => VulkanResult::Err(e),

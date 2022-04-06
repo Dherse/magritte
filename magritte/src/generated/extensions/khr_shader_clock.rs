@@ -118,7 +118,7 @@ impl<'lt> Default for PhysicalDeviceShaderClockFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceShaderClockFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             shader_subgroup_clock: 0,
             shader_device_clock: 0,

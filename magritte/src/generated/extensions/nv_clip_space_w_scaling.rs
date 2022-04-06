@@ -296,7 +296,7 @@ impl<'lt> Default for PipelineViewportWScalingStateCreateInfoNV<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineViewportWScalingStateCreateInfoNv,
+            s_type: StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV,
             p_next: std::ptr::null(),
             viewport_w_scaling_enable: 0,
             viewport_count: 0,

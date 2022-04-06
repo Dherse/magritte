@@ -299,19 +299,19 @@ pub type FNCmdSetFragmentShadingRateKhr = Option<
 ///} VkFragmentShadingRateCombinerOpKHR;
 ///```
 ///# Description
-/// - [`FragmentShadingRateCombinerOpKeepKhr`] specifies a combiner operation of
-///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>.
-/// - [`FragmentShadingRateCombinerOpReplaceKhr`] specifies a combiner operation of
-///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = B<sub>xy</sub>.
-/// - [`FragmentShadingRateCombinerOpMinKhr`] specifies a combiner operation of
-///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = min(A<sub>xy</sub>,B<sub>xy</sub>).
-/// - [`FragmentShadingRateCombinerOpMaxKhr`] specifies a combiner operation of
-///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = max(A<sub>xy</sub>,B<sub>xy</sub>).
-/// - [`FragmentShadingRateCombinerOpMulKhr`] specifies a combiner operation of
-///   combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>*B<sub>xy</sub>.
+/// - [`KEEP`] specifies a combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) =
+///   A<sub>xy</sub>.
+/// - [`REPLACE`] specifies a combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) =
+///   B<sub>xy</sub>.
+/// - [`MIN`] specifies a combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) =
+///   min(A<sub>xy</sub>,B<sub>xy</sub>).
+/// - [`MAX`] specifies a combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) =
+///   max(A<sub>xy</sub>,B<sub>xy</sub>).
+/// - [`MUL`] specifies a combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) =
+///   A<sub>xy</sub>*B<sub>xy</sub>.
 ///where combine(A<sub>xy</sub>,B<sub>xy</sub>) is the combine operation, and A<sub>xy</sub>
 ///and B<sub>xy</sub> are the inputs to the operation.If [`fragmentShadingRateStrictMultiplyCombiner`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateStrictMultiplyCombiner) is [`FALSE`], using
-///[`FragmentShadingRateCombinerOpMulKhr`] with values of 1 for both
+///[`MUL`] with values of 1 for both
 ///A and B in the same dimension results in the value 2 being produced for that
 ///dimension.
 ///See the definition of [`fragmentShadingRateStrictMultiplyCombiner`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-fragmentShadingRateStrictMultiplyCombiner) for more information.These operations are performed in a component-wise fashion.
@@ -334,30 +334,29 @@ pub type FNCmdSetFragmentShadingRateKhr = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum FragmentShadingRateCombinerOpKHR {
-    ///[`FragmentShadingRateCombinerOpKeepKhr`] specifies a combiner
-    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>.
-    FragmentShadingRateCombinerOpKeepKhr = 0,
-    ///[`FragmentShadingRateCombinerOpReplaceKhr`] specifies a
-    ///combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = B<sub>xy</sub>.
-    FragmentShadingRateCombinerOpReplaceKhr = 1,
-    ///[`FragmentShadingRateCombinerOpMinKhr`] specifies a combiner
-    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = min(A<sub>xy</sub>,B<sub>xy</sub>).
-    FragmentShadingRateCombinerOpMinKhr = 2,
-    ///[`FragmentShadingRateCombinerOpMaxKhr`] specifies a combiner
-    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = max(A<sub>xy</sub>,B<sub>xy</sub>).
-    FragmentShadingRateCombinerOpMaxKhr = 3,
-    ///[`FragmentShadingRateCombinerOpMulKhr`] specifies a combiner
-    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>*B<sub>xy</sub>.
-    FragmentShadingRateCombinerOpMulKhr = 4,
-}
+#[repr(transparent)]
+pub struct FragmentShadingRateCombinerOpKHR(i32);
 impl const Default for FragmentShadingRateCombinerOpKHR {
     fn default() -> Self {
-        Self::FragmentShadingRateCombinerOpKeepKhr
+        Self(0)
     }
 }
 impl FragmentShadingRateCombinerOpKHR {
+    ///[`KEEP`] specifies a combiner
+    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>.
+    pub const KEEP: Self = Self(0);
+    ///[`REPLACE`] specifies a
+    ///combiner operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = B<sub>xy</sub>.
+    pub const REPLACE: Self = Self(1);
+    ///[`MIN`] specifies a combiner
+    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = min(A<sub>xy</sub>,B<sub>xy</sub>).
+    pub const MIN: Self = Self(2);
+    ///[`MAX`] specifies a combiner
+    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = max(A<sub>xy</sub>,B<sub>xy</sub>).
+    pub const MAX: Self = Self(3);
+    ///[`MUL`] specifies a combiner
+    ///operation of combine(A<sub>xy</sub>,B<sub>xy</sub>) = A<sub>xy</sub>*B<sub>xy</sub>.
+    pub const MUL: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -366,12 +365,15 @@ impl FragmentShadingRateCombinerOpKHR {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkFragmentShadingRateAttachmentInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html) - Structure specifying a fragment shading rate attachment for a subpass
@@ -456,7 +458,7 @@ impl<'lt> Default for FragmentShadingRateAttachmentInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::FragmentShadingRateAttachmentInfoKhr,
+            s_type: StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR,
             p_next: std::ptr::null(),
             fragment_shading_rate_attachment: std::ptr::null(),
             shading_rate_attachment_texel_size: Default::default(),
@@ -613,7 +615,7 @@ impl<'lt> Default for PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineFragmentShadingRateStateCreateInfoKhr,
+            s_type: StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR,
             p_next: std::ptr::null(),
             fragment_size: Default::default(),
             combiner_ops: [Default::default(); 2 as usize],
@@ -758,7 +760,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceFragmentShadingRateFeaturesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR,
             p_next: std::ptr::null_mut(),
             pipeline_fragment_shading_rate: 0,
             primitive_fragment_shading_rate: 0,
@@ -1180,7 +1182,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceFragmentShadingRatePropertiesKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR,
             p_next: std::ptr::null_mut(),
             min_fragment_shading_rate_attachment_texel_size: Default::default(),
             max_fragment_shading_rate_attachment_texel_size: Default::default(),
@@ -1772,7 +1774,7 @@ impl<'lt> Default for PhysicalDeviceFragmentShadingRateKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceFragmentShadingRateKhr,
+            s_type: StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR,
             p_next: std::ptr::null_mut(),
             sample_counts: Default::default(),
             fragment_size: Default::default(),
@@ -1964,7 +1966,7 @@ impl PhysicalDevice {
             p_fragment_shading_rates.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_fragment_shading_rates)
             },
             e => VulkanResult::Err(e),

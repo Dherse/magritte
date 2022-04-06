@@ -217,7 +217,7 @@ impl<'lt> Default for SharedPresentSurfaceCapabilitiesKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SharedPresentSurfaceCapabilitiesKhr,
+            s_type: StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR,
             p_next: std::ptr::null_mut(),
             shared_present_supported_usage_flags: Default::default(),
         }
@@ -344,7 +344,7 @@ impl Device {
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swapchain);
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::SuboptimalKhr => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::SUBOPTIMAL_KHR => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

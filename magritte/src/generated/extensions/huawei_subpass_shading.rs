@@ -368,7 +368,7 @@ impl<'lt> Default for SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SubpassShadingPipelineCreateInfoHuawei,
+            s_type: StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI,
             p_next: std::ptr::null_mut(),
             render_pass: Default::default(),
             subpass: 0,
@@ -507,7 +507,7 @@ impl<'lt> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceSubpassShadingPropertiesHuawei,
+            s_type: StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI,
             p_next: std::ptr::null_mut(),
             max_subpass_shading_workgroup_size_aspect_ratio: 0,
         }
@@ -629,7 +629,7 @@ impl<'lt> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceSubpassShadingFeaturesHuawei,
+            s_type: StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI,
             p_next: std::ptr::null_mut(),
             subpass_shading: 0,
         }
@@ -783,7 +783,7 @@ impl Device {
         let mut p_max_workgroup_size = MaybeUninit::<Extent2D>::uninit();
         let _return = _function(self.as_raw(), renderpass, p_max_workgroup_size.as_mut_ptr());
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => {
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
                 VulkanResult::Success(_return, p_max_workgroup_size.assume_init())
             },
             e => VulkanResult::Err(e),

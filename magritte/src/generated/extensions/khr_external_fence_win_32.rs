@@ -274,7 +274,7 @@ impl<'lt> Default for ImportFenceWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportFenceWin32HandleInfoKhr,
+            s_type: StructureType::IMPORT_FENCE_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             fence: Default::default(),
             flags: Default::default(),
@@ -487,7 +487,7 @@ impl<'lt> Default for ExportFenceWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ExportFenceWin32HandleInfoKhr,
+            s_type: StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             attributes: std::ptr::null(),
             dw_access: unsafe { std::mem::zeroed() },
@@ -659,7 +659,7 @@ impl<'lt> Default for FenceGetWin32HandleInfoKHR<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::FenceGetWin32HandleInfoKhr,
+            s_type: StructureType::FENCE_GET_WIN32_HANDLE_INFO_KHR,
             p_next: std::ptr::null(),
             fence: Default::default(),
             handle_type: Default::default(),
@@ -802,7 +802,7 @@ impl Device {
             &mut p_handle,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, p_handle),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, p_handle),
             e => VulkanResult::Err(e),
         }
     }
@@ -881,7 +881,7 @@ impl Device {
             p_import_fence_win_32_handle_info as *const ImportFenceWin32HandleInfoKHR<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

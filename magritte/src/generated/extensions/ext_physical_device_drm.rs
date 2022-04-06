@@ -131,7 +131,7 @@ impl<'lt> Default for PhysicalDeviceDrmPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDrmPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             has_primary: 0,
             has_render: 0,

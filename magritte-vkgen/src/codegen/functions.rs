@@ -33,9 +33,9 @@ impl<'a> Function<'a> {
 
         self.as_fn_pointer().generate_doc(source, doc, out);
 
-        let loader = match self.name() {
-            "get_instance_proc_addr" => Some(quote! { .entry() }),
-            "get_device_proc_addr" => Some(quote! { .instance() }),
+        let loader = match self.original_name() {
+            "vkGetInstanceProcAddr" => Some(quote! { .entry() }),
+            "vkGetDeviceProcAddr" => Some(quote! { .instance() }),
             _ => match handle.name() {
                 "Device" | "Instance" => None,
                 _ => match &*handle.ancestor_loader(source).unwrap() {
@@ -162,7 +162,7 @@ impl<'a> Function<'a> {
 
         // let this = gen.this.not().then(|| quote! { self: &Unique<'a, #handle_ident>, });
 
-        let origin = if self.name() == "get_instance_proc_addr" {
+        let origin = if self.original_name() == "vkGetInstanceProcAddr" {
             None
         } else {
             let ident = Ident::new(&self.origin().as_name(), Span::call_site());
@@ -172,15 +172,16 @@ impl<'a> Function<'a> {
             })
         };
 
-        let origin_expect =
-            (self.origin() != &Origin::Vulkan1_0 && self.name() != "get_instance_proc_addr").then(|| {
+        let origin_expect = (self.origin() != &Origin::Vulkan1_0 && self.original_name() != "vkGetInstanceProcAddr")
+            .then(|| {
                 quote! {
                     .expect("extension/version not loaded")
                 }
             });
 
-        let origin_unwrap =
-            (self.origin() != &Origin::Vulkan1_0 && self.name() != "get_instance_proc_addr").then(|| {
+        let origin_unwrap = (self.origin() != &Origin::Vulkan1_0
+            && self.original_name() != "get_invkGetInstanceProcAddrstance_proc_addr")
+            .then(|| {
                 quote! {
                     .unwrap_unchecked()
                 }

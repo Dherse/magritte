@@ -460,13 +460,12 @@ pub type FNGetBufferCollectionPropertiesFuchsia = Option<
 ///# Description
 ///General hints about the type of memory that should be allocated by Sysmem
 ///based on the expected usage of the images in the buffer collection include:
-/// - [`ImageConstraintsInfoCpuReadRarelyFuchsia`]
-/// - [`ImageConstraintsInfoCpuReadOftenFuchsia`]
-/// - [`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
-/// - [`ImageConstraintsInfoCpuWriteOftenFuchsia`]
+/// - [`CPU_READ_RARELY`]
+/// - [`CPU_READ_OFTEN`]
+/// - [`CPU_WRITE_RARELY`]
+/// - [`CPU_WRITE_OFTEN`]
 ///For protected memory:
-/// - [`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies that protected memory is optional
-///   for the buffer collection.
+/// - [`PROTECTED_OPTIONAL`] specifies that protected memory is optional for the buffer collection.
 ///Note that if all participants in the buffer collection (Vulkan or otherwise)
 ///specify that protected memory is optional, Sysmem will not allocate
 ///protected memory.
@@ -486,28 +485,25 @@ pub type FNGetBufferCollectionPropertiesFuchsia = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(u32)]
-pub enum ImageConstraintsInfoFlagBitsFUCHSIA {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ImageConstraintsInfoCpuReadRarelyFuchsia`]
-    ImageConstraintsInfoCpuReadRarelyFuchsia = 1,
-    ///[`ImageConstraintsInfoCpuReadOftenFuchsia`]
-    ImageConstraintsInfoCpuReadOftenFuchsia = 2,
-    ///[`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
-    ImageConstraintsInfoCpuWriteRarelyFuchsia = 4,
-    ///[`ImageConstraintsInfoCpuWriteOftenFuchsia`]
-    ImageConstraintsInfoCpuWriteOftenFuchsia = 8,
-    ///[`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies
-    ///that protected memory is optional for the buffer collection.
-    ImageConstraintsInfoProtectedOptionalFuchsia = 16,
-}
+#[repr(transparent)]
+pub struct ImageConstraintsInfoFlagBitsFUCHSIA(u32);
 impl const Default for ImageConstraintsInfoFlagBitsFUCHSIA {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl ImageConstraintsInfoFlagBitsFUCHSIA {
+    ///[`CPU_READ_RARELY`]
+    pub const CPU_READ_RARELY: Self = Self(1);
+    ///[`CPU_READ_OFTEN`]
+    pub const CPU_READ_OFTEN: Self = Self(2);
+    ///[`CPU_WRITE_RARELY`]
+    pub const CPU_WRITE_RARELY: Self = Self(4);
+    ///[`CPU_WRITE_OFTEN`]
+    pub const CPU_WRITE_OFTEN: Self = Self(8);
+    ///[`PROTECTED_OPTIONAL`] specifies
+    ///that protected memory is optional for the buffer collection.
+    pub const PROTECTED_OPTIONAL: Self = Self(16);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -516,12 +512,15 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> u32 {
-        *self as u32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: u32) -> u32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
+        Self(bits)
     }
 }
 ///[VkImageFormatConstraintsFlagsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatConstraintsFlagsFUCHSIA.html) - Reserved for future use
@@ -575,13 +574,12 @@ impl std::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
 ///# Description
 ///General hints about the type of memory that should be allocated by Sysmem
 ///based on the expected usage of the images in the buffer collection include:
-/// - [`ImageConstraintsInfoCpuReadRarelyFuchsia`]
-/// - [`ImageConstraintsInfoCpuReadOftenFuchsia`]
-/// - [`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
-/// - [`ImageConstraintsInfoCpuWriteOftenFuchsia`]
+/// - [`CPU_READ_RARELY`]
+/// - [`CPU_READ_OFTEN`]
+/// - [`CPU_WRITE_RARELY`]
+/// - [`CPU_WRITE_OFTEN`]
 ///For protected memory:
-/// - [`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies that protected memory is optional
-///   for the buffer collection.
+/// - [`PROTECTED_OPTIONAL`] specifies that protected memory is optional for the buffer collection.
 ///Note that if all participants in the buffer collection (Vulkan or otherwise)
 ///specify that protected memory is optional, Sysmem will not allocate
 ///protected memory.
@@ -609,21 +607,21 @@ impl const Default for ImageConstraintsInfoFlagsFUCHSIA {
 }
 impl From<ImageConstraintsInfoFlagBitsFUCHSIA> for ImageConstraintsInfoFlagsFUCHSIA {
     fn from(from: ImageConstraintsInfoFlagBitsFUCHSIA) -> Self {
-        unsafe { Self::from_bits_unchecked(from as u32) }
+        unsafe { Self::from_bits_unchecked(from.bits()) }
     }
 }
 impl ImageConstraintsInfoFlagsFUCHSIA {
-    ///[`ImageConstraintsInfoCpuReadRarelyFuchsia`]
-    pub const IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA: Self = Self(1);
-    ///[`ImageConstraintsInfoCpuReadOftenFuchsia`]
-    pub const IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA: Self = Self(2);
-    ///[`ImageConstraintsInfoCpuWriteRarelyFuchsia`]
-    pub const IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA: Self = Self(4);
-    ///[`ImageConstraintsInfoCpuWriteOftenFuchsia`]
-    pub const IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA: Self = Self(8);
-    ///[`ImageConstraintsInfoProtectedOptionalFuchsia`] specifies
+    ///[`CPU_READ_RARELY`]
+    pub const CPU_READ_RARELY: Self = Self(1);
+    ///[`CPU_READ_OFTEN`]
+    pub const CPU_READ_OFTEN: Self = Self(2);
+    ///[`CPU_WRITE_RARELY`]
+    pub const CPU_WRITE_RARELY: Self = Self(4);
+    ///[`CPU_WRITE_OFTEN`]
+    pub const CPU_WRITE_OFTEN: Self = Self(8);
+    ///[`PROTECTED_OPTIONAL`] specifies
     ///that protected memory is optional for the buffer collection.
-    pub const IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA: Self = Self(16);
+    pub const PROTECTED_OPTIONAL: Self = Self(16);
     ///Default empty flags
     #[inline]
     pub const fn empty() -> Self {
@@ -635,19 +633,19 @@ impl ImageConstraintsInfoFlagsFUCHSIA {
     pub const fn all() -> Self {
         let mut all = Self::empty();
         {
-            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA;
+            all |= Self::CPU_READ_RARELY;
         }
         {
-            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA;
+            all |= Self::CPU_READ_OFTEN;
         }
         {
-            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA;
+            all |= Self::CPU_WRITE_RARELY;
         }
         {
-            all |= Self::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA;
+            all |= Self::CPU_WRITE_OFTEN;
         }
         {
-            all |= Self::IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA;
+            all |= Self::PROTECTED_OPTIONAL;
         }
         all
     }
@@ -853,55 +851,40 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
                     f.write_str("empty")?;
                 } else {
                     let mut first = true;
-                    if self
-                        .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA)
-                    {
+                    if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_READ_RARELY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA))?;
+                        f.write_str(stringify!(CPU_READ_RARELY))?;
                     }
-                    if self
-                        .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA)
-                    {
+                    if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_READ_OFTEN) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA))?;
+                        f.write_str(stringify!(CPU_READ_OFTEN))?;
                     }
-                    if self
-                        .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA)
-                    {
+                    if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_WRITE_RARELY) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA))?;
+                        f.write_str(stringify!(CPU_WRITE_RARELY))?;
                     }
-                    if self
-                        .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA)
-                    {
+                    if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_WRITE_OFTEN) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA))?;
+                        f.write_str(stringify!(CPU_WRITE_OFTEN))?;
                     }
-                    if self
-                        .0
-                        .contains(ImageConstraintsInfoFlagsFUCHSIA::IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA)
-                    {
+                    if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::PROTECTED_OPTIONAL) {
                         if !first {
                             first = false;
                             f.write_str(" | ")?;
                         }
-                        f.write_str(stringify!(IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA))?;
+                        f.write_str(stringify!(PROTECTED_OPTIONAL))?;
                     }
                 }
                 Ok(())
@@ -970,7 +953,7 @@ impl<'lt> Default for ImportMemoryBufferCollectionFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImportMemoryBufferCollectionFuchsia,
+            s_type: StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA,
             p_next: std::ptr::null(),
             collection: Default::default(),
             index: 0,
@@ -1101,7 +1084,7 @@ impl<'lt> Default for BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferCollectionImageCreateInfoFuchsia,
+            s_type: StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             collection: Default::default(),
             index: 0,
@@ -1232,7 +1215,7 @@ impl<'lt> Default for BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferCollectionBufferCreateInfoFuchsia,
+            s_type: StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             collection: Default::default(),
             index: 0,
@@ -1360,7 +1343,7 @@ impl<'lt> Default for BufferCollectionCreateInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferCollectionCreateInfoFuchsia,
+            s_type: StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             collection_token: unsafe { std::mem::zeroed() },
         }
@@ -1562,7 +1545,7 @@ impl<'lt> Default for BufferCollectionPropertiesFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferCollectionPropertiesFuchsia,
+            s_type: StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA,
             p_next: std::ptr::null_mut(),
             memory_type_bits: 0,
             buffer_count: 0,
@@ -1842,7 +1825,7 @@ impl<'lt> Default for BufferConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferConstraintsInfoFuchsia,
+            s_type: StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             create_info: Default::default(),
             required_format_features: Default::default(),
@@ -1983,7 +1966,7 @@ impl<'lt> Default for SysmemColorSpaceFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::SysmemColorSpaceFuchsia,
+            s_type: StructureType::SYSMEM_COLOR_SPACE_FUCHSIA,
             p_next: std::ptr::null(),
             color_space: 0,
         }
@@ -2130,7 +2113,7 @@ impl<'lt> Default for ImageFormatConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageFormatConstraintsInfoFuchsia,
+            s_type: StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             image_create_info: Default::default(),
             required_format_features: Default::default(),
@@ -2383,7 +2366,7 @@ impl<'lt> Default for ImageConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ImageConstraintsInfoFuchsia,
+            s_type: StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             format_constraints_count: 0,
             format_constraints: std::ptr::null(),
@@ -2587,7 +2570,7 @@ impl<'lt> Default for BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferCollectionConstraintsInfoFuchsia,
+            s_type: StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA,
             p_next: std::ptr::null(),
             min_buffer_count: 0,
             max_buffer_count: 0,
@@ -2782,7 +2765,7 @@ impl Device {
             p_collection.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_collection.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -2868,7 +2851,7 @@ impl Device {
             p_buffer_constraints_info as *const BufferConstraintsInfoFUCHSIA<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -2959,7 +2942,7 @@ impl Device {
             p_image_constraints_info as *const ImageConstraintsInfoFUCHSIA<'lt>,
         );
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -3134,7 +3117,7 @@ impl Device {
             .unwrap_or_else(|| MaybeUninit::<BufferCollectionPropertiesFUCHSIA<'lt>>::zeroed().assume_init());
         let _return = _function(self.as_raw(), collection, &mut p_properties);
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, {
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_properties.p_next = std::ptr::null_mut();
                 p_properties
             }),
@@ -3212,8 +3195,7 @@ impl Handle for BufferCollectionFUCHSIA {
     #[inline]
     #[track_caller]
     unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        self.device()
-            .destroy_buffer_collection_fuchsia(Some(self.as_raw()), None);
+        self.device().destroy_buffer_collection_fuchsia(self.as_raw(), None);
     }
     #[inline]
     unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {

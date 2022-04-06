@@ -199,7 +199,7 @@ impl<'lt> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDevicePageableDeviceLocalMemoryFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             pageable_device_local_memory: 0,
         }

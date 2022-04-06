@@ -362,7 +362,7 @@ pub type FNMergeValidationCachesExt = Option<
 ///} VkValidationCacheHeaderVersionEXT;
 ///```
 ///# Description
-/// - [`ValidationCacheHeaderVersionOneExt`] specifies version one of the validation cache.
+/// - [`ONE`] specifies version one of the validation cache.
 ///# Related
 /// - [`VK_EXT_validation_cache`]
 /// - [`create_validation_cache_ext`]
@@ -380,20 +380,17 @@ pub type FNMergeValidationCachesExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ValidationCacheHeaderVersionEXT {
-    #[doc(hidden)]
-    Empty = 0,
-    ///[`ValidationCacheHeaderVersionOneExt`] specifies version one
-    ///of the validation cache.
-    ValidationCacheHeaderVersionOneExt = 1,
-}
+#[repr(transparent)]
+pub struct ValidationCacheHeaderVersionEXT(i32);
 impl const Default for ValidationCacheHeaderVersionEXT {
     fn default() -> Self {
-        Self::Empty
+        Self(0)
     }
 }
 impl ValidationCacheHeaderVersionEXT {
+    ///[`ONE`] specifies version one
+    ///of the validation cache.
+    pub const ONE: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -402,12 +399,15 @@ impl ValidationCacheHeaderVersionEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkValidationCacheCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationCacheCreateFlagsEXT.html) - Reserved for future use
@@ -522,7 +522,7 @@ impl<'lt> Default for ValidationCacheCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ValidationCacheCreateInfoExt,
+            s_type: StructureType::VALIDATION_CACHE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             initial_data_size: 0,
@@ -675,7 +675,7 @@ impl<'lt> Default for ShaderModuleValidationCacheCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::ShaderModuleValidationCacheCreateInfoExt,
+            s_type: StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             validation_cache: Default::default(),
         }
@@ -820,7 +820,7 @@ impl Device {
             p_validation_cache.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_validation_cache.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -1017,7 +1017,7 @@ impl Device {
             p_data.unwrap_or_else(std::ptr::null_mut),
         );
         match _return {
-            VulkanResultCodes::Success | VulkanResultCodes::Incomplete => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }
@@ -1099,7 +1099,7 @@ impl Device {
         let src_cache_count = (|len: usize| len)(p_src_caches.len()) as _;
         let _return = _function(self.as_raw(), dst_cache, src_cache_count, p_src_caches.as_ptr());
         match _return {
-            VulkanResultCodes::Success => VulkanResult::Success(_return, ()),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, ()),
             e => VulkanResult::Err(e),
         }
     }

@@ -218,7 +218,7 @@ impl<'lt> Default for MacOsSurfaceCreateInfoMVK<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::MacosSurfaceCreateInfoMvk,
+            s_type: StructureType::MACOS_SURFACE_CREATE_INFO_MVK,
             p_next: std::ptr::null(),
             flags: Default::default(),
             view: std::ptr::null(),
@@ -375,7 +375,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),

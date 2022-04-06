@@ -152,11 +152,10 @@ pub type FNCmdSetLineStippleExt = Option<
 ///} VkLineRasterizationModeEXT;
 ///```
 ///# Description
-/// - [`LineRasterizationModeDefaultExt`] is equivalent to [`LineRasterizationModeRectangularExt`] if [`PhysicalDeviceLimits::strict_lines`] is [`TRUE`], otherwise lines are drawn as non-`strictLines` parallelograms. Both of these modes are defined in [Basic Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-basic).
-/// - [`LineRasterizationModeRectangularExt`] specifies lines drawn as if they were rectangles
-///   extruded from the line
-/// - [`LineRasterizationModeBresenhamExt`] specifies lines drawn by determining which pixel diamonds the line intersects and exits, as defined in [Bresenham Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
-/// - [`LineRasterizationModeRectangularSmoothExt`] specifies lines drawn if they were rectangles extruded from the line, with alpha falloff, as defined in [Smooth Lines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
+/// - [`DEFAULT`] is equivalent to [`RECTANGULAR`] if [`PhysicalDeviceLimits::strict_lines`] is [`TRUE`], otherwise lines are drawn as non-`strictLines` parallelograms. Both of these modes are defined in [Basic Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-basic).
+/// - [`RECTANGULAR`] specifies lines drawn as if they were rectangles extruded from the line
+/// - [`BRESENHAM`] specifies lines drawn by determining which pixel diamonds the line intersects and exits, as defined in [Bresenham Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
+/// - [`RECTANGULAR_SMOOTH`] specifies lines drawn if they were rectangles extruded from the line, with alpha falloff, as defined in [Smooth Lines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
 ///# Related
 /// - [`VK_EXT_line_rasterization`]
 /// - [`PipelineRasterizationLineStateCreateInfoEXT`]
@@ -173,34 +172,33 @@ pub type FNCmdSetLineStippleExt = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum LineRasterizationModeEXT {
-    ///[`LineRasterizationModeDefaultExt`] is equivalent to
-    ///[`LineRasterizationModeRectangularExt`] if
+#[repr(transparent)]
+pub struct LineRasterizationModeEXT(i32);
+impl const Default for LineRasterizationModeEXT {
+    fn default() -> Self {
+        Self(0)
+    }
+}
+impl LineRasterizationModeEXT {
+    ///[`DEFAULT`] is equivalent to
+    ///[`RECTANGULAR`] if
     ///[`PhysicalDeviceLimits`]::`strictLines` is [`TRUE`],
     ///otherwise lines are drawn as non-`strictLines` parallelograms.
     ///Both of these modes are defined in [Basic Line
     ///Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-basic).
-    LineRasterizationModeDefaultExt = 0,
-    ///[`LineRasterizationModeRectangularExt`] specifies lines drawn
+    pub const DEFAULT: Self = Self(0);
+    ///[`RECTANGULAR`] specifies lines drawn
     ///as if they were rectangles extruded from the line
-    LineRasterizationModeRectangularExt = 1,
-    ///[`LineRasterizationModeBresenhamExt`] specifies lines drawn by
+    pub const RECTANGULAR: Self = Self(1);
+    ///[`BRESENHAM`] specifies lines drawn by
     ///determining which pixel diamonds the line intersects and exits, as
     ///defined in [Bresenham Line Segment
     ///Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
-    LineRasterizationModeBresenhamExt = 2,
-    ///[`LineRasterizationModeRectangularSmoothExt`] specifies lines
+    pub const BRESENHAM: Self = Self(2);
+    ///[`RECTANGULAR_SMOOTH`] specifies lines
     ///drawn if they were rectangles extruded from the line, with alpha
     ///falloff, as defined in [Smooth Lines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
-    LineRasterizationModeRectangularSmoothExt = 3,
-}
-impl const Default for LineRasterizationModeEXT {
-    fn default() -> Self {
-        Self::LineRasterizationModeDefaultExt
-    }
-}
-impl LineRasterizationModeEXT {
+    pub const RECTANGULAR_SMOOTH: Self = Self(3);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -209,12 +207,15 @@ impl LineRasterizationModeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDeviceLineRasterizationFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html) - Structure describing the line rasterization features that can be supported by an implementation
@@ -317,7 +318,7 @@ impl<'lt> Default for PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceLineRasterizationFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             rectangular_lines: 0,
             bresenham_lines: 0,
@@ -644,7 +645,7 @@ impl<'lt> Default for PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceLineRasterizationPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             line_sub_pixel_precision_bits: 0,
         }
@@ -790,7 +791,7 @@ impl<'lt> Default for PipelineRasterizationLineStateCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRasterizationLineStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             line_rasterization_mode: Default::default(),
             stippled_line_enable: 0,

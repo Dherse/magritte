@@ -251,7 +251,7 @@ impl<'lt> Default for DirectFBSurfaceCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DirectfbSurfaceCreateInfoExt,
+            s_type: StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             dfb: std::ptr::null_mut(),
@@ -418,7 +418,7 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::Success => {
+            VulkanResultCodes::SUCCESS => {
                 VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), ()))
             },
             e => VulkanResult::Err(e),
@@ -487,7 +487,7 @@ impl PhysicalDevice {
             .unwrap_unchecked();
         let mut dfb = std::mem::zeroed();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _, &mut dfb);
-        (dfb, unsafe { std::mem::transmute(_return as u8) })
+        (dfb, std::mem::transmute(_return as u8))
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_EXT_directfb_surface`

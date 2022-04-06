@@ -221,16 +221,14 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 ///} VkDeviceMemoryReportEventTypeEXT;
 ///```
 ///# Description
-/// - [`DeviceMemoryReportEventTypeAllocateExt`] specifies this event corresponds to the allocation
-///   of an internal device memory object or a [`DeviceMemory`].
-/// - [`DeviceMemoryReportEventTypeFreeExt`] specifies this event corresponds to the deallocation of
-///   an internally-allocated device memory object or a [`DeviceMemory`].
-/// - [`DeviceMemoryReportEventTypeImportExt`] specifies this event corresponds to the import of an
-///   external memory object.
-/// - [`DeviceMemoryReportEventTypeUnimportExt`] specifies this event is the release of an imported
-///   external memory object.
-/// - [`DeviceMemoryReportEventTypeAllocationFailedExt`] specifies this event corresponds to the
-///   failed allocation of an internal device memory object or a [`DeviceMemory`].
+/// - [`ALLOCATE`] specifies this event corresponds to the allocation of an internal device memory
+///   object or a [`DeviceMemory`].
+/// - [`FREE`] specifies this event corresponds to the deallocation of an internally-allocated
+///   device memory object or a [`DeviceMemory`].
+/// - [`IMPORT`] specifies this event corresponds to the import of an external memory object.
+/// - [`UNIMPORT`] specifies this event is the release of an imported external memory object.
+/// - [`ALLOCATION_FAILED`] specifies this event corresponds to the failed allocation of an internal
+///   device memory object or a [`DeviceMemory`].
 ///# Related
 /// - [`VK_EXT_device_memory_report`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
@@ -247,33 +245,32 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum DeviceMemoryReportEventTypeEXT {
-    ///[`DeviceMemoryReportEventTypeAllocateExt`] specifies this
-    ///event corresponds to the allocation of an internal device memory object
-    ///or a [`DeviceMemory`].
-    DeviceMemoryReportEventTypeAllocateExt = 0,
-    ///[`DeviceMemoryReportEventTypeFreeExt`] specifies this event
-    ///corresponds to the deallocation of an internally-allocated device memory
-    ///object or a [`DeviceMemory`].
-    DeviceMemoryReportEventTypeFreeExt = 1,
-    ///[`DeviceMemoryReportEventTypeImportExt`] specifies this event
-    ///corresponds to the import of an external memory object.
-    DeviceMemoryReportEventTypeImportExt = 2,
-    ///[`DeviceMemoryReportEventTypeUnimportExt`] specifies this
-    ///event is the release of an imported external memory object.
-    DeviceMemoryReportEventTypeUnimportExt = 3,
-    ///[`DeviceMemoryReportEventTypeAllocationFailedExt`] specifies
-    ///this event corresponds to the failed allocation of an internal device
-    ///memory object or a [`DeviceMemory`].
-    DeviceMemoryReportEventTypeAllocationFailedExt = 4,
-}
+#[repr(transparent)]
+pub struct DeviceMemoryReportEventTypeEXT(i32);
 impl const Default for DeviceMemoryReportEventTypeEXT {
     fn default() -> Self {
-        Self::DeviceMemoryReportEventTypeAllocateExt
+        Self(0)
     }
 }
 impl DeviceMemoryReportEventTypeEXT {
+    ///[`ALLOCATE`] specifies this
+    ///event corresponds to the allocation of an internal device memory object
+    ///or a [`DeviceMemory`].
+    pub const ALLOCATE: Self = Self(0);
+    ///[`FREE`] specifies this event
+    ///corresponds to the deallocation of an internally-allocated device memory
+    ///object or a [`DeviceMemory`].
+    pub const FREE: Self = Self(1);
+    ///[`IMPORT`] specifies this event
+    ///corresponds to the import of an external memory object.
+    pub const IMPORT: Self = Self(2);
+    ///[`UNIMPORT`] specifies this
+    ///event is the release of an imported external memory object.
+    pub const UNIMPORT: Self = Self(3);
+    ///[`ALLOCATION_FAILED`] specifies
+    ///this event corresponds to the failed allocation of an internal device
+    ///memory object or a [`DeviceMemory`].
+    pub const ALLOCATION_FAILED: Self = Self(4);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -282,12 +279,15 @@ impl DeviceMemoryReportEventTypeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkDeviceMemoryReportFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportFlagsEXT.html) - Reserved for future use
@@ -386,7 +386,7 @@ impl<'lt> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceDeviceMemoryReportFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             device_memory_report: 0,
         }
@@ -538,7 +538,7 @@ impl<'lt> Default for DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceDeviceMemoryReportCreateInfoExt,
+            s_type: StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             flags: Default::default(),
             pfn_user_callback: None,
@@ -779,7 +779,7 @@ impl<'lt> Default for DeviceMemoryReportCallbackDataEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::DeviceMemoryReportCallbackDataExt,
+            s_type: StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT,
             p_next: std::ptr::null_mut(),
             flags: Default::default(),
             type_: Default::default(),

@@ -107,10 +107,10 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///} VkProvokingVertexModeEXT;
 ///```
 ///# Description
-/// - [`ProvokingVertexModeFirstVertexExt`] specifies that the provoking vertex is the first
-///   non-adjacency vertex in the list of vertices used by a primitive.
-/// - [`ProvokingVertexModeLastVertexExt`] specifies that the provoking vertex is the last
-///   non-adjacency vertex in the list of vertices used by a primitive.
+/// - [`FIRST_VERTEX`] specifies that the provoking vertex is the first non-adjacency vertex in the
+///   list of vertices used by a primitive.
+/// - [`LAST_VERTEX`] specifies that the provoking vertex is the last non-adjacency vertex in the
+///   list of vertices used by a primitive.
 ///These modes are described more precisely in
 ///[Primitive Topologies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-topologies).
 ///# Related
@@ -129,23 +129,22 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[non_exhaustive]
-#[repr(i32)]
-pub enum ProvokingVertexModeEXT {
-    ///[`ProvokingVertexModeFirstVertexExt`] specifies that the
-    ///provoking vertex is the first non-adjacency vertex in the list of
-    ///vertices used by a primitive.
-    ProvokingVertexModeFirstVertexExt = 0,
-    ///[`ProvokingVertexModeLastVertexExt`] specifies that the
-    ///provoking vertex is the last non-adjacency vertex in the list of
-    ///vertices used by a primitive.
-    ProvokingVertexModeLastVertexExt = 1,
-}
+#[repr(transparent)]
+pub struct ProvokingVertexModeEXT(i32);
 impl const Default for ProvokingVertexModeEXT {
     fn default() -> Self {
-        Self::ProvokingVertexModeFirstVertexExt
+        Self(0)
     }
 }
 impl ProvokingVertexModeEXT {
+    ///[`FIRST_VERTEX`] specifies that the
+    ///provoking vertex is the first non-adjacency vertex in the list of
+    ///vertices used by a primitive.
+    pub const FIRST_VERTEX: Self = Self(0);
+    ///[`LAST_VERTEX`] specifies that the
+    ///provoking vertex is the last non-adjacency vertex in the list of
+    ///vertices used by a primitive.
+    pub const LAST_VERTEX: Self = Self(1);
     ///Default empty value
     #[inline]
     pub const fn empty() -> Self {
@@ -154,12 +153,15 @@ impl ProvokingVertexModeEXT {
     ///Gets the raw underlying value
     #[inline]
     pub const fn bits(&self) -> i32 {
-        *self as i32
+        self.0
     }
-    ///Gets a value from a raw underlying value, unchecked and therefore unsafe
+    ///Gets a value from a raw underlying value, unchecked and therefore unsafe.
+    ///
+    ///# Safety
+    ///The caller of this function must ensure that all of the bits are valid.
     #[inline]
-    pub const unsafe fn from_bits(bits: i32) -> i32 {
-        std::mem::transmute(bits)
+    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
+        Self(bits)
     }
 }
 ///[VkPhysicalDeviceProvokingVertexFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html) - Structure describing the provoking vertex features that can be supported by an implementation
@@ -238,7 +240,7 @@ impl<'lt> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceProvokingVertexFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             provoking_vertex_last: 0,
             transform_feedback_preserves_provoking_vertex: 0,
@@ -427,7 +429,7 @@ impl<'lt> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceProvokingVertexPropertiesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT,
             p_next: std::ptr::null_mut(),
             provoking_vertex_mode_per_pipeline: 0,
             transform_feedback_preserves_triangle_fan_provoking_vertex: 0,
@@ -618,7 +620,7 @@ impl<'lt> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PipelineRasterizationProvokingVertexStateCreateInfoExt,
+            s_type: StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             provoking_vertex_mode: Default::default(),
         }

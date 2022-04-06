@@ -169,7 +169,7 @@ impl<'lt> Default for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::PhysicalDeviceBufferDeviceAddressFeaturesExt,
+            s_type: StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
             buffer_device_address: 0,
             buffer_device_address_capture_replay: 0,
@@ -389,7 +389,7 @@ impl<'lt> Default for BufferDeviceAddressCreateInfoEXT<'lt> {
     fn default() -> Self {
         Self {
             _lifetime: PhantomData,
-            s_type: StructureType::BufferDeviceAddressCreateInfoExt,
+            s_type: StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT,
             p_next: std::ptr::null(),
             device_address: Default::default(),
         }
