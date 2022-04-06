@@ -250,9 +250,14 @@ where
         }
     }
 
-    /// Gets the last element
+    /// Gets a reference to the last element
     pub fn last(&self) -> Option<&'_ T> {
         self.values.last()
+    }
+
+    /// Gets a mutable reference to the last element
+    pub fn last_mut(&mut self) -> Option<&'_ mut T> {
+        self.values.last_mut()
     }
 
     /// Does the symbol table contain an element with a certain key

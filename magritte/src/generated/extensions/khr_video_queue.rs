@@ -7125,7 +7125,7 @@ impl Device {
     #[doc(alias = "vkCreateVideoSessionParametersKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'parent, 'this, 'lt>(
+    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'this: 'parent, 'parent, 'lt>(
         self: &'this Unique<'a, Device>,
         p_create_info: &VideoSessionParametersCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,

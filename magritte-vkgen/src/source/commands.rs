@@ -146,6 +146,11 @@ impl<'a> Function<'a> {
         &self.arguments
     }
 
+    /// Get a mutable reference to the function's arguments.
+    pub(crate) fn arguments_mut(&mut self) -> &mut SymbolTable<'a, FunctionArgument<'a>> {
+        &mut self.arguments
+    }
+
     /// Get a reference to the function's aliases.
     pub fn aliases(&self) -> &SymbolTable<'a, Cow<'a, str>> {
         &self.aliases
@@ -281,6 +286,11 @@ impl<'a> FunctionArgument<'a> {
     /// Get a reference to the function argument's ty.
     pub fn ty(&self) -> &Ty<'a> {
         &self.ty
+    }
+
+    /// Get a mutable reference to the function argument's ty.
+    pub fn ty_mut(&mut self) -> &mut Ty<'a> {
+        &mut self.ty
     }
 
     /// Get a reference to the function argument's externally synced.

@@ -3358,7 +3358,7 @@ impl PhysicalDevice {
     #[doc(alias = "vkCreateDisplayModeKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_display_mode_khr<'a: 'this, 'parent, 'this, 'lt>(
+    pub unsafe fn create_display_mode_khr<'a: 'this, 'this: 'parent, 'parent, 'lt>(
         self: &'this Unique<'a, PhysicalDevice>,
         display: DisplayKHR,
         p_create_info: &DisplayModeCreateInfoKHR<'lt>,

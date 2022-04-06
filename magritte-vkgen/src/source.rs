@@ -457,6 +457,38 @@ impl<'a> Source<'a> {
             }
         }
 
+        this.handles.push(Handle {
+            original_name: Cow::Borrowed("VkImage"),
+            rename: Some(Cow::Borrowed("VkSwapchainImage")),
+            name: "SwapchainImage".to_string(),
+            parent: Some(Cow::Borrowed("VkSwapchainKHR")),
+            dispatchable: false,
+            origin: this.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone(),
+            functions: SymbolTable::default(),
+            destroyer: None,
+        });
+
+        this.global.push(
+            (
+                Cow::Borrowed("VkSwapchainImage"),
+                "SwapchainImage".to_string(),
+                SourceType::Handle,
+                this.handles.len() - 1,
+            )
+        );
+
+        *this.functions
+            .get_by_name_mut("vkGetSwapchainImagesKHR")
+            .unwrap()
+            .arguments_mut()
+            .last_mut()
+            .unwrap()
+            .ty_mut()
+            .as_slice_mut()
+            .1
+            .as_named_mut() = Cow::Borrowed("VkSwapchainImage");
+        
+
         this
     }
 

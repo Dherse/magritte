@@ -16,6 +16,9 @@ pub struct Handle<'a> {
     /// The name of the handle
     pub original_name: Cow<'a, str>,
 
+    /// Renaming for custom aliases
+    pub rename: Option<Cow<'a, str>>,
+
     /// The rustified name of the handle
     pub name: String,
 
@@ -60,6 +63,7 @@ impl<'a> Handle<'a> {
         Self {
             original_name: Cow::Borrowed(original_name),
             name,
+            rename: None,
             parent,
             dispatchable,
             origin,
@@ -230,7 +234,7 @@ impl<'a> Handle<'a> {
 
 impl<'a> SymbolName<'a> for Handle<'a> {
     fn name(&self) -> Cow<'a, str> {
-        self.original_name.clone()
+        self.rename.clone().unwrap_or_else(|| self.original_name.clone())
     }
 
     fn pretty_name(&self) -> String {

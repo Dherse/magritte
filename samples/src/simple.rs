@@ -1,5 +1,6 @@
 use std::{borrow::Cow, error::Error, ffi::CStr};
 
+use log::{error, warn, debug, trace, info};
 use magritte::{
     cstr,
     entry::Entry,
@@ -20,6 +21,8 @@ use magritte::{
 use winit::{event_loop::EventLoop, window::WindowBuilder};
 
 pub fn main() -> Result<(), Box<dyn Error>> {
+    pretty_env_logger::init();
+
     let event_loop = EventLoop::<()>::new();
     let window = WindowBuilder::new()
         .with_title("Magritte - Example")
@@ -30,7 +33,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let version = unsafe { entry.enumerate_instance_version() }.unwrap();
 
-    println!("Maximum supported version: {}", version);
+    info!("Maximum supported version: {}", version);
 
     let extensions = magritte::window::enable_required_extensions(&window, Extensions::from_version(version))?
         .enable_ext_debug_utils()
@@ -91,7 +94,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         })
         .expect("couldn't find a device");
 
-    println!("Found device: {:?}", pdevice.as_raw());
+        info!("Found device: {:?}", pdevice.as_raw());
 
     let queue_info = DeviceQueueCreateInfo::default()
         .set_queue_family_index(queue_family_index as u32)
@@ -111,7 +114,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let (device, _) = unsafe { pdevice.create_device(&device_create_info, None)? };
 
-    println!("Created device: {:?}", device.as_raw());
+    info!("Created device: {:?}", device.as_raw());
 
     let queue = unsafe { device.get_device_queue(Some(queue_family_index as u32), Some(0)) };
 
@@ -119,7 +122,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         unsafe { pdevice.get_physical_device_surface_formats_khr(Some(surface.as_raw()), None)? };
 
     let surface_format = surface_formats.remove(0);
-    println!("Using format {:?}", surface_format);
+    info!("Using format {:?}", surface_format);
 
     let (surface_capabilities, _) = unsafe { pdevice.get_physical_device_surface_capabilities_khr(surface.as_raw())? };
 
@@ -171,7 +174,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let (swapchain, _) = unsafe { device.create_swapchain_khr(&swapchain_create_info, None)? };
 
-    println!("Created swapchain: {:?}", swapchain.as_raw());
+    info!("Created swapchain: {:?}", swapchain.as_raw());
 
     let pool_create_info = CommandPoolCreateInfo::default()
         .set_flags(CommandPoolCreateFlags::COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER)
@@ -181,7 +184,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         device.create_command_pool(&pool_create_info, None)?
     };
 
-    println!("Created command pool: {:?}", pool.as_raw());
+    info!("Created command pool: {:?}", pool.as_raw());
 
     let command_buffer_allocate_info = CommandBufferAllocateInfo::default()
         .set_command_buffer_count(2)
@@ -196,7 +199,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     let draw_command_buffer = command_buffers.pop().unwrap();
 
     let (present_images, _) = unsafe {
-        device.get_swapchain_images_khr(swapchain.as_raw(), None)?
+        device.get_swapchain_images_khr(swapchain.as_raw(), None, &swapchain)?
     };
 
     /*let present_image_views = present_images
@@ -229,14 +232,37 @@ unsafe extern "system" fn vulkan_debug_callback<'lt>(
         CStr::from_ptr(callback_data.message).to_string_lossy()
     };
 
-    println!(
-        "{:?}:\n{:?} [{} ({})] : {}\n",
-        message_severity,
-        message_type,
-        message_id_name,
-        &message_id_number.to_string(),
-        message,
-    );
+    match message_severity {
+        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityVerboseExt => trace!(
+            "{:?} [{} ({})] : {}",
+            message_type,
+            message_id_name,
+            &message_id_number.to_string(),
+            message,
+        ),
+        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityInfoExt => debug!(
+            "{:?} [{} ({})] : {}",
+            message_type,
+            message_id_name,
+            &message_id_number.to_string(),
+            message,
+        ),
+        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityWarningExt => warn!(
+            "{:?} [{} ({})] : {}",
+            message_type,
+            message_id_name,
+            &message_id_number.to_string(),
+            message,
+        ),
+        DebugUtilsMessageSeverityFlagBitsEXT::DebugUtilsMessageSeverityErrorExt => error!(
+            "{:?} [{} ({})] : {}",
+            message_type,
+            message_id_name,
+            &message_id_number.to_string(),
+            message,
+        ),
+        _ => {},
+    }
 
     FALSE
 }

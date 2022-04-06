@@ -543,8 +543,8 @@ use crate::{
         ColorSpaceKHR, CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR,
     },
     vulkan1_0::{
-        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, Image, ImageUsageFlags,
-        Instance, PhysicalDevice, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
+        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, ImageUsageFlags, Instance,
+        PhysicalDevice, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
     },
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
@@ -801,7 +801,7 @@ pub type FNGetSwapchainImagesKhr = Option<
         device: Device,
         swapchain: SwapchainKHR,
         p_swapchain_image_count: *mut u32,
-        p_swapchain_images: *mut Image,
+        p_swapchain_images: *mut SwapchainImage,
     ) -> VulkanResultCodes,
 >;
 ///[vkAcquireNextImageKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquireNextImageKHR.html) - Retrieve the index of the next available presentable image
@@ -2623,11 +2623,12 @@ impl Device {
     #[doc(alias = "vkGetSwapchainImagesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_swapchain_images_khr<'a: 'this, 'this>(
+    pub unsafe fn get_swapchain_images_khr<'a: 'this, 'this: 'parent, 'parent>(
         self: &'this Unique<'a, Device>,
         swapchain: SwapchainKHR,
         p_swapchain_image_count: Option<usize>,
-    ) -> VulkanResult<SmallVec<Unique<'this, Image>>> {
+        parent: &'parent Unique<'this, SwapchainKHR>,
+    ) -> VulkanResult<SmallVec<Unique<'parent, SwapchainImage>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -2650,7 +2651,8 @@ impl Device {
                 v
             },
         };
-        let mut p_swapchain_images = SmallVec::<Image>::from_elem(Default::default(), p_swapchain_image_count as usize);
+        let mut p_swapchain_images =
+            SmallVec::<SwapchainImage>::from_elem(Default::default(), p_swapchain_image_count as usize);
         let _return = _function(
             self.as_raw(),
             swapchain,
@@ -2662,7 +2664,7 @@ impl Device {
                 _return,
                 p_swapchain_images
                     .into_iter()
-                    .map(|i| Unique::new(self, i, ()))
+                    .map(|i| Unique::new(parent, i, ()))
                     .collect(),
             ),
             e => VulkanResult::Err(e),
@@ -3018,6 +3020,118 @@ impl<'a> Unique<'a, SwapchainKHR> {
     #[inline]
     pub fn device(&self) -> &'a Unique<'a, Device> {
         self.parent()
+    }
+}
+///[VkImage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImage.html) - Opaque handle to an image object
+///# C Specifications
+///Images represent multidimensional - up to 3 - arrays of data which  **can**  be
+///used for various purposes (e.g. attachments, textures), by binding them to a
+///graphics or compute pipeline via descriptor sets, or by directly specifying
+///them as parameters to certain commands.Images are represented by [`Image`] handles:
+///```c
+///// Provided by VK_VERSION_1_0
+///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkImage)
+///```
+///# Related
+/// - [`crate::vulkan1_0`]
+/// - [`BindImageMemoryInfo`]
+/// - [`BlitImageInfo2`]
+/// - [`CopyBufferToImageInfo2`]
+/// - [`CopyImageInfo2`]
+/// - [`CopyImageToBufferInfo2`]
+/// - [`DedicatedAllocationMemoryAllocateInfoNV`]
+/// - [`ImageMemoryBarrier`]
+/// - [`ImageMemoryBarrier2`]
+/// - [`ImageMemoryRequirementsInfo2`]
+/// - [`ImageSparseMemoryRequirementsInfo2`]
+/// - [`ImageViewCreateInfo`]
+/// - [`MemoryDedicatedAllocateInfo`]
+/// - [`ResolveImageInfo2`]
+/// - [`SparseImageMemoryBindInfo`]
+/// - [`SparseImageOpaqueMemoryBindInfo`]
+/// - [`bind_image_memory`]
+/// - [`cmd_blit_image`]
+/// - [`cmd_clear_color_image`]
+/// - [`cmd_clear_depth_stencil_image`]
+/// - [`cmd_copy_buffer_to_image`]
+/// - [`cmd_copy_image`]
+/// - [`cmd_copy_image_to_buffer`]
+/// - [`cmd_resolve_image`]
+/// - [`create_image`]
+/// - [`destroy_image`]
+/// - [`get_image_drm_format_modifier_properties_ext`]
+/// - [`get_image_memory_requirements`]
+/// - [`get_image_sparse_memory_requirements`]
+/// - [`get_image_subresource_layout`]
+/// - [`get_swapchain_images_khr`]
+///
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// Commons Attribution 4.0 International*.
+///This license explicitely allows adapting the source material as long as proper credit is given.
+#[doc(alias = "VkImage")]
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
+#[repr(transparent)]
+pub struct SwapchainImage(pub u64);
+impl SwapchainImage {
+    ///Creates a new null handle
+    #[inline]
+    pub const fn null() -> Self {
+        Self(0)
+    }
+    ///Checks if this is a null handle
+    #[inline]
+    pub fn is_null(&self) -> bool {
+        self == &Self::null()
+    }
+    ///Gets the raw value
+    #[inline]
+    pub fn raw(&self) -> u64 {
+        self.0
+    }
+}
+unsafe impl Send for SwapchainImage {}
+impl Default for SwapchainImage {
+    fn default() -> Self {
+        Self::null()
+    }
+}
+impl Handle for SwapchainImage {
+    type Parent<'a> = Unique<'a, SwapchainKHR>;
+    type VTable = ();
+    type Metadata = ();
+    #[inline]
+    #[track_caller]
+    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
+    #[inline]
+    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable {
+        ()
+    }
+}
+impl<'a> Unique<'a, SwapchainImage> {
+    ///Gets the reference to the [`Entry`]
+    #[inline]
+    pub fn entry(&self) -> &'a Entry {
+        self.parent().parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`Instance`]
+    #[inline]
+    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+        self.parent().parent().parent().parent()
+    }
+    ///Gets the reference to the [`PhysicalDevice`]
+    #[inline]
+    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+        self.parent().parent().parent()
+    }
+    ///Gets the reference to the [`Device`]
+    #[inline]
+    pub fn device(&self) -> &'a Unique<'a, Device> {
+        self.parent().parent()
     }
 }
 ///The V-table of [`Device`] for functions from `VK_KHR_swapchain`

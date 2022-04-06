@@ -9,6 +9,8 @@ path = "src/simple.rs"
 
 [dependencies]
 winit = "0.26.1"
+log = "0.4.16"
+pretty_env_logger = "0.4.0"
 
 [dependencies.magritte]
 path = "../magritte"

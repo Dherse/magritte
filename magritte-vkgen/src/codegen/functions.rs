@@ -186,7 +186,7 @@ impl<'a> Function<'a> {
                 }
             });
 
-        let lifetime = gen.lifetime.not().then(|| quote! { 'parent, });
+        let lifetime = gen.lifetime.not().then(|| quote! { : 'parent, 'parent });
 
         quote_each_token! {
             out
@@ -194,7 +194,7 @@ impl<'a> Function<'a> {
             #alias
             #[track_caller]
             #[inline]
-            pub unsafe fn #name <'a: 'this, #lifetime 'this, #generics>(
+            pub unsafe fn #name <'a: 'this, 'this #lifetime, #generics>(
                 // #this
                 #(#params),*
             ) -> #return_ty {

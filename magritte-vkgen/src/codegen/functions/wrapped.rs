@@ -139,7 +139,7 @@ impl StatefulFunctionGeneratorState {
                 ArgKind::This(arg) => this.push_this(arg, &handle_ident),
                 ArgKind::Passthrough(arg) => this.push_passthrough(source, imports, arg),
                 ArgKind::CStr(arg) => this.push_cstr(imports, arg, &state_lifetime),
-                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, handle, arg, inner),
+                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, handle, &fun, arg, inner),
                 ArgKind::ValueWrittenToChained(arg, inner) => {
                     this.push_value_written_to_chained(source, imports, arg, inner)
                 },
@@ -191,7 +191,7 @@ impl StatefulFunctionGeneratorState {
         let name = arg.as_ident();
 
         self.function_args.push(quote! {
-            #name: Option<usize>,
+            #name: Option<usize>
         });
 
         self.extra_call_info = Some(ExtraCallInfo {
@@ -307,8 +307,25 @@ impl StatefulFunctionGeneratorState {
         if let Ty::Named(name) = inner {
             if let Some(out) = source.handles.get_by_either(&name) {
                 let parent = if out.parent() != Some(handle.original_name()) {
-                    self.lifetime = false;
+                    /*if let Some(existing_parent) = fun.arguments().iter()
+                        .find(|arg| match arg.ty() {
+                            Ty::Named(named) if named == out.parent().unwrap() => true,
+                            _ => false
+                        }) 
+                    {
+                        existing_parent.as_ident().to_token_stream()
+                    } else {
+                        self.lifetime = false;
+    
+                        let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
+                        self.function_args.push(quote! {
+                            parent: &'parent Unique<'this, #hdl>
+                        });
+                        quote! { parent }
+                    }*/
 
+                    self.lifetime = false;
+    
                     let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
                     self.function_args.push(quote! {
                         parent: &'parent Unique<'this, #hdl>
@@ -370,7 +387,7 @@ impl StatefulFunctionGeneratorState {
                     };
 
                     self.function_args.push(quote! {
-                        #ret_ident: Option<#ty>,
+                        #ret_ident: Option<#ty>
                     });
 
                     self.return_values.push(quote! {
@@ -399,6 +416,7 @@ impl StatefulFunctionGeneratorState {
         source: &Source<'a>,
         imports: &Imports,
         handle: &Handle<'a>,
+        fun: &Function<'a>,
         arg: FunctionArgument<'a>,
         inner: Ty<'a>,
     ) {
@@ -438,8 +456,25 @@ impl StatefulFunctionGeneratorState {
                     imports.push("std::mem::MaybeUninit");
 
                     let parent = if out.parent() != Some(handle.original_name()) {
+                        /*if let Some(existing_parent) = fun.arguments().iter()
+                            .find(|arg| match arg.ty() {
+                                Ty::Named(named) if named == out.parent().unwrap() => true,
+                                _ => false
+                            }) 
+                        {
+                            existing_parent.as_ident().to_token_stream()
+                        } else {
+                            self.lifetime = false;
+        
+                            let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
+                            self.function_args.push(quote! {
+                                parent: &'parent Unique<'this, #hdl>
+                            });
+                            quote! { parent }
+                        }*/
+
                         self.lifetime = false;
-                    
+    
                         let hdl = source.handles.get_by_either(out.parent().unwrap()).unwrap().as_ident();
                         self.function_args.push(quote! {
                             parent: &'parent Unique<'this, #hdl>

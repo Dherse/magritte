@@ -205,6 +205,17 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Decomposes self into a named type's mutable name
+    ///
+    /// # Panics
+    /// If `self` is not a named type.
+    pub fn as_named_mut(&mut self) -> &mut Cow<'a, str> {
+        match self {
+            Ty::Named(a) => a,
+            _ => panic!("not a named type: {:?}", self),
+        }
+    }
+
     /// Decomposes self into a string array's length
     ///
     /// # Panics
@@ -245,6 +256,17 @@ impl<'a> Ty<'a> {
     pub fn as_slice(&self) -> (Mutability, &Ty<'a>, &Expr<'a>) {
         match self {
             Ty::Slice(a, b, c) => (*a, &**b, c),
+            _ => panic!("not a slice: {:?}", self),
+        }
+    }
+
+    /// Decomposes self into a mutable slice's mutability, element type and length
+    ///
+    /// # Panics
+    /// If `self` is not a slice.
+    pub fn as_slice_mut(&mut self) -> (&mut Mutability, &mut Ty<'a>, &mut Expr<'a>) {
+        match self {
+            Ty::Slice(a, b, c) => (a, &mut **b, c),
             _ => panic!("not a slice: {:?}", self),
         }
     }
