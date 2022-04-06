@@ -333,11 +333,11 @@ impl Instance {
     #[doc(alias = "vkCreateImagePipeSurfaceFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_image_pipe_surface_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_image_pipe_surface_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &ImagePipeSurfaceCreateInfoFUCHSIA<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()

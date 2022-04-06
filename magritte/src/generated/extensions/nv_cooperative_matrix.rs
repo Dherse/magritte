@@ -956,8 +956,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_cooperative_matrix_properties_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_cooperative_matrix_properties_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<CooperativeMatrixPropertiesNV<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

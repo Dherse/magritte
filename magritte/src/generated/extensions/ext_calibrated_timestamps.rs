@@ -531,8 +531,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceCalibrateableTimeDomainsEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_calibrateable_time_domains_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_calibrateable_time_domains_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_time_domain_count: Option<usize>,
     ) -> VulkanResult<SmallVec<TimeDomainEXT>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -629,8 +629,8 @@ impl Device {
     #[doc(alias = "vkGetCalibratedTimestampsEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_calibrated_timestamps_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_calibrated_timestamps_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_timestamp_infos: &[crate::extensions::ext_calibrated_timestamps::CalibratedTimestampInfoEXT<'lt>],
     ) -> VulkanResult<(SmallVec<u64>, u64)> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

@@ -762,8 +762,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_subpass_shading_max_workgroup_size_huawei<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_subpass_shading_max_workgroup_size_huawei<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         renderpass: RenderPass,
     ) -> VulkanResult<Extent2D> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -953,7 +953,9 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSubpassShadingHUAWEI")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_subpass_shading_huawei<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
+    pub unsafe fn cmd_subpass_shading_huawei<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
+    ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()

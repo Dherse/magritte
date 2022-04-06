@@ -11,14 +11,14 @@ use tracing::debug;
 use crate::entry::{Entry, EntryVTable};
 
 #[derive(Debug)]
-pub struct Unique<'a, T: Handle> {
-    pub(crate) parent: &'a T::Parent<'a>,
+pub struct Unique<'a, 'b: 'a, T: Handle<'a>> {
+    pub(crate) parent: &'b T::Parent,
     pub(crate) vtable: T::VTable,
     pub(crate) metadata: T::Metadata,
     pub(crate) this: T,
 }
 
-impl<'a, T: Handle> Deref for Unique<'a, T> {
+impl<'a, 'b: 'a, T: Handle<'a>> Deref for Unique<'a, 'b, T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -26,22 +26,22 @@ impl<'a, T: Handle> Deref for Unique<'a, T> {
     }
 }
 
-impl<'a, T: Handle> DerefMut for Unique<'a, T> {
+impl<'a, 'b: 'a, T: Handle<'a>> DerefMut for Unique<'a, 'b, T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.this
     }
 }
 
-unsafe impl<'a, T: Handle + Send> Send for Unique<'a, T> {}
-unsafe impl<'a, T: Handle + Send> Sync for Unique<'a, T> {}
+unsafe impl<'a, 'b: 'a, T: Handle<'a> + Send> Send for Unique<'a, 'b, T> {}
+unsafe impl<'a, 'b: 'a, T: Handle<'a> + Send> Sync for Unique<'a, 'b, T> {}
 
-impl<'a, T: Handle> Unique<'a, T> {
+impl<'a, 'b: 'a, T: Handle<'a>> Unique<'a, 'b, T> {
     /// Creates a new unique pointer
     ///
     /// # Safety
     /// Cannot prove that the value is unique.
     #[inline]
-    pub unsafe fn new<'b: 'a>(parent: &'a T::Parent<'b>, this: T, metadata: T::Metadata) -> Self {
+    pub unsafe fn new(parent: &'a T::Parent, this: T, metadata: T::Metadata) -> Self {
         let vtable = this.load_vtable(parent, &metadata);
 
         Self {
@@ -54,7 +54,7 @@ impl<'a, T: Handle> Unique<'a, T> {
 
     /// Gets a reference to the parent
     #[inline]
-    pub fn parent(&self) -> &'a T::Parent<'a> {
+    pub fn parent(&self) -> &'a T::Parent {
         self.parent
     }
 
@@ -77,7 +77,7 @@ impl<'a, T: Handle> Unique<'a, T> {
     }
 }
 
-impl<'a, T: Handle> AsRaw for Unique<'a, T> {
+impl<'a, 'b: 'a, T: Handle<'a>> AsRaw for Unique<'a, 'b, T> {
     type Raw = T;
 
     fn as_raw(&self) -> Self::Raw {
@@ -85,7 +85,7 @@ impl<'a, T: Handle> AsRaw for Unique<'a, T> {
     }
 }
 
-impl<'a, T: Handle> Drop for Unique<'a, T> {
+impl<'a, 'b: 'a, T: Handle<'a>> Drop for Unique<'a, 'b, T> {
     fn drop(&mut self) {
         debug!("Dropping {}", std::any::type_name::<T>());
 
@@ -94,9 +94,9 @@ impl<'a, T: Handle> Drop for Unique<'a, T> {
         }
     }
 }
-pub trait Handle: Copy {
+pub trait Handle<'a>: Copy {
     /// The parent of this handle
-    type Parent<'a>: Send + Sync + 'a;
+    type Parent: Send + Sync + 'a;
 
     /// The associated V-Table
     type VTable: Send + Sync;
@@ -110,7 +110,7 @@ pub trait Handle: Copy {
     /// Destroy tha handle, only called on `drop`
     /// The function is unsafe because it cannot be proven
     /// it has only be called once.
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>);
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>);
 
     #[doc(hidden)]
     fn as_raw(self) -> Self::Raw;
@@ -119,17 +119,17 @@ pub trait Handle: Copy {
     unsafe fn from_raw(this: Self::Raw) -> Self;
 
     /// Loads the V-Table of this handle.
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable;
+    unsafe fn load_vtable(&self, parent: &Self::Parent, metadata: &Self::Metadata) -> Self::VTable;
 
     #[inline]
     #[doc(hidden)]
-    unsafe fn coerce<T: Handle<Raw = Self::Raw>>(self) -> T {
+    unsafe fn coerce<T: Handle<'a, Raw = Self::Raw>>(self) -> T {
         T::from_raw(self.as_raw())
     }
 }
 
-impl Handle for () {
-    type Parent<'a> = ();
+impl<'a> Handle<'a> for () {
+    type Parent = ();
 
     type VTable = ();
 
@@ -139,10 +139,10 @@ impl Handle for () {
 
 
     #[inline]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {}
 
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {
         ()
     }
 
@@ -155,8 +155,8 @@ impl Handle for () {
     }
 }
 
-impl Handle for Entry {
-    type Parent<'a> = ();
+impl<'a> Handle<'a> for Entry {
+    type Parent = ();
 
     type VTable = EntryVTable;
 
@@ -165,10 +165,10 @@ impl Handle for Entry {
     type Raw = ();
 
     #[inline]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {}
 
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {
         self.0
     }
 

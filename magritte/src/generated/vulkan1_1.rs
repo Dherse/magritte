@@ -19288,8 +19288,8 @@ impl Instance {
     #[doc(alias = "vkEnumeratePhysicalDeviceGroupsKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn enumerate_physical_device_groups<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn enumerate_physical_device_groups<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_physical_device_group_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PhysicalDeviceGroupProperties<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -19393,8 +19393,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceFeatures2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_features2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_features2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_features: Option<PhysicalDeviceFeatures2<'lt>>,
     ) -> PhysicalDeviceFeatures2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -19486,8 +19486,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_properties2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_properties2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_properties: Option<PhysicalDeviceProperties2<'lt>>,
     ) -> PhysicalDeviceProperties2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -19583,8 +19583,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceFormatProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_format_properties2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_format_properties2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         format: Format,
         p_format_properties: Option<FormatProperties2<'lt>>,
     ) -> FormatProperties2<'lt> {
@@ -19695,8 +19695,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceImageFormatProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_image_format_properties2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_image_format_properties2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_image_format_info: &PhysicalDeviceImageFormatInfo2<'lt>,
         p_image_format_properties: Option<ImageFormatProperties2<'lt>>,
     ) -> VulkanResult<ImageFormatProperties2<'lt>> {
@@ -19803,8 +19803,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_queue_family_properties2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_queue_family_properties2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_queue_family_property_count: Option<usize>,
     ) -> SmallVec<QueueFamilyProperties2<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -19907,8 +19907,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceMemoryProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_memory_properties2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_memory_properties2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_memory_properties: Option<PhysicalDeviceMemoryProperties2<'lt>>,
     ) -> PhysicalDeviceMemoryProperties2<'lt> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20020,8 +20020,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceSparseImageFormatProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_sparse_image_format_properties2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_sparse_image_format_properties2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_format_info: &PhysicalDeviceSparseImageFormatInfo2<'lt>,
         p_property_count: Option<usize>,
     ) -> SmallVec<SparseImageFormatProperties2<'lt>> {
@@ -20133,8 +20133,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceExternalBufferPropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_external_buffer_properties<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_external_buffer_properties<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_external_buffer_info: &PhysicalDeviceExternalBufferInfo<'lt>,
         p_external_buffer_properties: Option<ExternalBufferProperties<'lt>>,
     ) -> ExternalBufferProperties<'lt> {
@@ -20236,8 +20236,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceExternalSemaphorePropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_external_semaphore_properties<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_external_semaphore_properties<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_external_semaphore_info: &PhysicalDeviceExternalSemaphoreInfo<'lt>,
         p_external_semaphore_properties: Option<ExternalSemaphoreProperties<'lt>>,
     ) -> ExternalSemaphoreProperties<'lt> {
@@ -20339,8 +20339,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceExternalFencePropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_external_fence_properties<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_external_fence_properties<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_external_fence_info: &PhysicalDeviceExternalFenceInfo<'lt>,
         p_external_fence_properties: Option<ExternalFenceProperties<'lt>>,
     ) -> ExternalFenceProperties<'lt> {
@@ -20443,8 +20443,8 @@ impl Device {
     #[doc(alias = "vkTrimCommandPoolKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn trim_command_pool<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn trim_command_pool<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         command_pool: CommandPool,
         flags: CommandPoolTrimFlags,
     ) -> () {
@@ -20547,8 +20547,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceGroupPeerMemoryFeaturesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_group_peer_memory_features<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_group_peer_memory_features<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         heap_index: Option<u32>,
         local_device_index: Option<u32>,
         remote_device_index: Option<u32>,
@@ -20648,8 +20648,8 @@ impl Device {
     #[doc(alias = "vkBindBufferMemory2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn bind_buffer_memory2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn bind_buffer_memory2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_bind_infos: &[crate::vulkan1_1::BindBufferMemoryInfo<'lt>],
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20749,8 +20749,8 @@ impl Device {
     #[doc(alias = "vkBindImageMemory2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn bind_image_memory2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn bind_image_memory2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_bind_infos: &[crate::vulkan1_1::BindImageMemoryInfo<'lt>],
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20877,11 +20877,11 @@ impl Device {
     #[doc(alias = "vkCreateDescriptorUpdateTemplateKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_descriptor_update_template<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_descriptor_update_template<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &DescriptorUpdateTemplateCreateInfo<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, DescriptorUpdateTemplate>> {
+    ) -> VulkanResult<Unique<'this, 'a, DescriptorUpdateTemplate>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -20991,8 +20991,8 @@ impl Device {
     #[doc(alias = "vkDestroyDescriptorUpdateTemplateKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_descriptor_update_template<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_descriptor_update_template<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         descriptor_update_template: Option<DescriptorUpdateTemplate>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -21185,8 +21185,8 @@ impl Device {
     #[doc(alias = "vkUpdateDescriptorSetWithTemplateKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn update_descriptor_set_with_template<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn update_descriptor_set_with_template<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         descriptor_set: DescriptorSet,
         descriptor_update_template: DescriptorUpdateTemplate,
         p_data: *const c_void,
@@ -21275,8 +21275,8 @@ impl Device {
     #[doc(alias = "vkGetBufferMemoryRequirements2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_buffer_memory_requirements2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_buffer_memory_requirements2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &BufferMemoryRequirementsInfo2<'lt>,
         p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
@@ -21372,8 +21372,8 @@ impl Device {
     #[doc(alias = "vkGetImageMemoryRequirements2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_image_memory_requirements2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_image_memory_requirements2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &ImageMemoryRequirementsInfo2<'lt>,
         p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
@@ -21476,8 +21476,8 @@ impl Device {
     #[doc(alias = "vkGetImageSparseMemoryRequirements2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_image_sparse_memory_requirements2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_image_sparse_memory_requirements2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &ImageSparseMemoryRequirementsInfo2<'lt>,
         p_sparse_memory_requirement_count: Option<usize>,
     ) -> SmallVec<SparseImageMemoryRequirements2<'lt>> {
@@ -21606,11 +21606,11 @@ impl Device {
     #[doc(alias = "vkCreateSamplerYcbcrConversionKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_sampler_ycbcr_conversion<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_sampler_ycbcr_conversion<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &SamplerYcbcrConversionCreateInfo<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SamplerYcbcrConversion>> {
+    ) -> VulkanResult<Unique<'this, 'a, SamplerYcbcrConversion>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -21713,8 +21713,8 @@ impl Device {
     #[doc(alias = "vkDestroySamplerYcbcrConversionKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_sampler_ycbcr_conversion<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_sampler_ycbcr_conversion<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         ycbcr_conversion: Option<SamplerYcbcrConversion>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -21798,10 +21798,10 @@ impl Device {
     #[doc(alias = "vkGetDeviceQueue2")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_queue2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_queue2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_queue_info: &DeviceQueueInfo2<'lt>,
-    ) -> Unique<'this, Queue> {
+    ) -> Unique<'this, 'a, Queue> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -21893,8 +21893,8 @@ impl Device {
     #[doc(alias = "vkGetDescriptorSetLayoutSupportKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_descriptor_set_layout_support<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_descriptor_set_layout_support<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &DescriptorSetLayoutCreateInfo<'lt>,
         p_support: Option<DescriptorSetLayoutSupport<'lt>>,
     ) -> DescriptorSetLayoutSupport<'lt> {
@@ -22008,8 +22008,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetDeviceMaskKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_device_mask<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_device_mask<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         device_mask: Option<u32>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -22265,8 +22265,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDispatchBaseKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_dispatch_base<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_dispatch_base<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         base_group_x: Option<u32>,
         base_group_y: Option<u32>,
         base_group_z: Option<u32>,
@@ -22382,8 +22382,8 @@ impl Default for DescriptorUpdateTemplate {
         Self::null()
     }
 }
-impl Handle for DescriptorUpdateTemplate {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for DescriptorUpdateTemplate {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -22397,34 +22397,34 @@ impl Handle for DescriptorUpdateTemplate {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_descriptor_update_template(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DescriptorUpdateTemplate> {
+impl<'a, 'b> Unique<'a, 'b, DescriptorUpdateTemplate> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
@@ -22491,8 +22491,8 @@ impl Default for SamplerYcbcrConversion {
         Self::null()
     }
 }
-impl Handle for SamplerYcbcrConversion {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for SamplerYcbcrConversion {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -22506,34 +22506,34 @@ impl Handle for SamplerYcbcrConversion {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_sampler_ycbcr_conversion(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, SamplerYcbcrConversion> {
+impl<'a, 'b> Unique<'a, 'b, SamplerYcbcrConversion> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

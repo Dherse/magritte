@@ -969,8 +969,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetLineStippleEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_line_stipple_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_line_stipple_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         line_stipple_factor: Option<u32>,
         line_stipple_pattern: Option<u16>,
     ) -> () {

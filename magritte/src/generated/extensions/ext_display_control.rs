@@ -999,8 +999,8 @@ impl Device {
     #[doc(alias = "vkDisplayPowerControlEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn display_power_control_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn display_power_control_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         display: DisplayKHR,
         p_display_power_info: &DisplayPowerInfoEXT<'lt>,
     ) -> VulkanResult<()> {
@@ -1077,11 +1077,11 @@ impl Device {
     #[doc(alias = "vkRegisterDeviceEventEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn register_device_event_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn register_device_event_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_device_event_info: &DeviceEventInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, Fence>> {
+    ) -> VulkanResult<Unique<'this, 'a, Fence>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1167,12 +1167,12 @@ impl Device {
     #[doc(alias = "vkRegisterDisplayEventEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn register_display_event_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn register_display_event_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         display: DisplayKHR,
         p_display_event_info: &DisplayEventInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, Fence>> {
+    ) -> VulkanResult<Unique<'this, 'a, Fence>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1257,8 +1257,8 @@ impl Device {
     #[doc(alias = "vkGetSwapchainCounterEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_swapchain_counter_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_swapchain_counter_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
         counter: SurfaceCounterFlagBitsEXT,
     ) -> VulkanResult<u64> {

@@ -1868,8 +1868,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDevicePresentRectanglesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_present_rectangles_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_present_rectangles_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         surface: SurfaceKHR,
         p_rect_count: Option<usize>,
     ) -> VulkanResult<SmallVec<Rect2D>> {
@@ -1948,8 +1948,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceGroupPresentCapabilitiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_group_present_capabilities_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_group_present_capabilities_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_device_group_present_capabilities: Option<DeviceGroupPresentCapabilitiesKHR<'lt>>,
     ) -> VulkanResult<DeviceGroupPresentCapabilitiesKHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2037,8 +2037,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceGroupSurfacePresentModesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_group_surface_present_modes_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_group_surface_present_modes_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         surface: SurfaceKHR,
         p_modes: &mut DeviceGroupPresentModeFlagsKHR,
     ) -> VulkanResult<()> {
@@ -2117,8 +2117,8 @@ impl Device {
     #[doc(alias = "vkAcquireNextImage2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_next_image2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_next_image2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_acquire_info: &AcquireNextImageInfoKHR<'lt>,
     ) -> VulkanResult<u32> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

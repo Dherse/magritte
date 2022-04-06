@@ -1927,8 +1927,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceFragmentShadingRatesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_fragment_shading_rates_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_fragment_shading_rates_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_fragment_shading_rate_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PhysicalDeviceFragmentShadingRateKHR<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2057,8 +2057,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetFragmentShadingRateKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_fragment_shading_rate_khr<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_fragment_shading_rate_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_fragment_size: &Extent2D,
         combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
     ) -> () {

@@ -6,7 +6,6 @@
 #![feature(
     const_trait_impl,
     const_mut_refs,
-    const_fn_fn_ptr_basics,
     generic_associated_types,
     arbitrary_self_types,
     try_trait_v2

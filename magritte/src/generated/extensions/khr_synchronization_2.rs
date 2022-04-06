@@ -734,8 +734,8 @@ impl Queue {
     #[doc(alias = "vkGetQueueCheckpointData2NV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_queue_checkpoint_data2_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Queue>,
+    pub unsafe fn get_queue_checkpoint_data2_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Queue>,
         p_checkpoint_data_count: Option<usize>,
     ) -> SmallVec<CheckpointData2NV<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -883,8 +883,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdWriteBufferMarker2AMD")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_write_buffer_marker2_amd<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_write_buffer_marker2_amd<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         stage: PipelineStageFlags2,
         dst_buffer: Buffer,
         dst_offset: DeviceSize,

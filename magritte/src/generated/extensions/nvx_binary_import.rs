@@ -921,11 +921,11 @@ impl Device {
     #[doc(alias = "vkCreateCuModuleNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_cu_module_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_cu_module_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &CuModuleCreateInfoNVX<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, CuModuleNVX>> {
+    ) -> VulkanResult<Unique<'this, 'a, CuModuleNVX>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -999,11 +999,11 @@ impl Device {
     #[doc(alias = "vkCreateCuFunctionNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_cu_function_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_cu_function_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &CuFunctionCreateInfoNVX<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, CuFunctionNVX>> {
+    ) -> VulkanResult<Unique<'this, 'a, CuFunctionNVX>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1070,8 +1070,8 @@ impl Device {
     #[doc(alias = "vkDestroyCuModuleNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_cu_module_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_cu_module_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         module: CuModuleNVX,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -1134,8 +1134,8 @@ impl Device {
     #[doc(alias = "vkDestroyCuFunctionNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_cu_function_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_cu_function_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         function: CuFunctionNVX,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -1202,8 +1202,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdCuLaunchKernelNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_cu_launch_kernel_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_cu_launch_kernel_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, CommandBuffer>,
         p_launch_info: &CuLaunchInfoNVX<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1274,8 +1274,8 @@ impl Default for CuModuleNVX {
         Self::null()
     }
 }
-impl Handle for CuModuleNVX {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for CuModuleNVX {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -1289,33 +1289,33 @@ impl Handle for CuModuleNVX {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_cu_module_nvx(self.as_raw().coerce(), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, CuModuleNVX> {
+impl<'a, 'b> Unique<'a, 'b, CuModuleNVX> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
@@ -1375,8 +1375,8 @@ impl Default for CuFunctionNVX {
         Self::null()
     }
 }
-impl Handle for CuFunctionNVX {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for CuFunctionNVX {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -1390,33 +1390,33 @@ impl Handle for CuFunctionNVX {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_cu_function_nvx(self.as_raw().coerce(), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, CuFunctionNVX> {
+impl<'a, 'b> Unique<'a, 'b, CuFunctionNVX> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

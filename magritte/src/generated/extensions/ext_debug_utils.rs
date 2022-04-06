@@ -2818,11 +2818,11 @@ impl Instance {
     #[doc(alias = "vkCreateDebugUtilsMessengerEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_debug_utils_messenger_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_debug_utils_messenger_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &DebugUtilsMessengerCreateInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, DebugUtilsMessengerEXT>> {
+    ) -> VulkanResult<Unique<'this, 'a, DebugUtilsMessengerEXT>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -2909,8 +2909,8 @@ impl Instance {
     #[doc(alias = "vkDestroyDebugUtilsMessengerEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_debug_utils_messenger_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn destroy_debug_utils_messenger_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         messenger: Option<DebugUtilsMessengerEXT>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -2994,8 +2994,8 @@ impl Instance {
     #[doc(alias = "vkSubmitDebugUtilsMessageEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn submit_debug_utils_message_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn submit_debug_utils_message_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         message_severity: DebugUtilsMessageSeverityFlagBitsEXT,
         message_types: DebugUtilsMessageTypeFlagsEXT,
         p_callback_data: &DebugUtilsMessengerCallbackDataEXT<'lt>,
@@ -3066,8 +3066,8 @@ impl Device {
     #[doc(alias = "vkSetDebugUtilsObjectNameEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_debug_utils_object_name_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_debug_utils_object_name_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_name_info: &DebugUtilsObjectNameInfoEXT<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3130,8 +3130,8 @@ impl Device {
     #[doc(alias = "vkSetDebugUtilsObjectTagEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_debug_utils_object_tag_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_debug_utils_object_tag_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_tag_info: &DebugUtilsObjectTagInfoEXT<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3189,8 +3189,8 @@ impl Queue {
     #[doc(alias = "vkQueueBeginDebugUtilsLabelEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn queue_begin_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Queue>,
+    pub unsafe fn queue_begin_debug_utils_label_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Queue>,
         p_label_info: &DebugUtilsLabelEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3248,7 +3248,9 @@ impl Queue {
     #[doc(alias = "vkQueueEndDebugUtilsLabelEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn queue_end_debug_utils_label_ext<'a: 'this, 'this>(self: &'this Unique<'a, Queue>) -> () {
+    pub unsafe fn queue_end_debug_utils_label_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Queue>,
+    ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()
@@ -3303,8 +3305,8 @@ impl Queue {
     #[doc(alias = "vkQueueInsertDebugUtilsLabelEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn queue_insert_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Queue>,
+    pub unsafe fn queue_insert_debug_utils_label_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Queue>,
         p_label_info: &DebugUtilsLabelEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3369,8 +3371,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBeginDebugUtilsLabelEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_begin_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_begin_debug_utils_label_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_label_info: &DebugUtilsLabelEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3453,7 +3455,9 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEndDebugUtilsLabelEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_end_debug_utils_label_ext<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
+    pub unsafe fn cmd_end_debug_utils_label_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
+    ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()
@@ -3516,8 +3520,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdInsertDebugUtilsLabelEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_insert_debug_utils_label_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_insert_debug_utils_label_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_label_info: &DebugUtilsLabelEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3586,8 +3590,8 @@ impl Default for DebugUtilsMessengerEXT {
         Self::null()
     }
 }
-impl Handle for DebugUtilsMessengerEXT {
-    type Parent<'a> = Unique<'a, Instance>;
+impl<'a> Handle<'a> for DebugUtilsMessengerEXT {
+    type Parent = Unique<'a, 'a, Instance>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3601,24 +3605,24 @@ impl Handle for DebugUtilsMessengerEXT {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.instance()
                 .destroy_debug_utils_messenger_ext(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DebugUtilsMessengerEXT> {
+impl<'a, 'b> Unique<'a, 'b, DebugUtilsMessengerEXT> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

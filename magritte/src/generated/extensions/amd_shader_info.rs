@@ -626,8 +626,8 @@ impl Device {
     #[doc(alias = "vkGetShaderInfoAMD")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_shader_info_amd<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_shader_info_amd<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         pipeline: Pipeline,
         shader_stage: ShaderStageFlagBits,
         info_type: ShaderInfoTypeAMD,

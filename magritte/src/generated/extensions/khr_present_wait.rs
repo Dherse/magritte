@@ -405,8 +405,8 @@ impl Device {
     #[doc(alias = "vkWaitForPresentKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn wait_for_present_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn wait_for_present_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
         present_id: Option<u64>,
         timeout: Option<u64>,

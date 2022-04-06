@@ -1172,8 +1172,8 @@ impl Device {
     #[doc(alias = "vkDebugMarkerSetObjectNameEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn debug_marker_set_object_name_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn debug_marker_set_object_name_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_name_info: &DebugMarkerObjectNameInfoEXT<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1242,8 +1242,8 @@ impl Device {
     #[doc(alias = "vkDebugMarkerSetObjectTagEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn debug_marker_set_object_tag_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn debug_marker_set_object_tag_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_tag_info: &DebugMarkerObjectTagInfoEXT<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1310,8 +1310,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDebugMarkerBeginEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_debug_marker_begin_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_debug_marker_begin_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_marker_info: &DebugMarkerMarkerInfoEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1384,7 +1384,9 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDebugMarkerEndEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_debug_marker_end_ext<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
+    pub unsafe fn cmd_debug_marker_end_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
+    ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()
@@ -1448,8 +1450,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDebugMarkerInsertEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_debug_marker_insert_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_debug_marker_insert_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_marker_info: &DebugMarkerMarkerInfoEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

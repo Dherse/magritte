@@ -56,7 +56,7 @@ impl<'a> Handle<'a> {
             let ident = handle.as_ident();
 
             quote! {
-                Unique<'a, #ident>
+                Unique<'a, 'a, #ident>
             }
         } else {
             imports.push("crate::entry::Entry");
@@ -79,7 +79,7 @@ impl<'a> Handle<'a> {
             quote! {
                 #[doc = #doc_str]
                 #[inline]
-                pub fn #func_name(&self) -> &'a Unique<'a, #ident> {
+                pub fn #func_name(&self) -> &Unique<'b, 'b, #ident> {
                     self #(
                         .#ancestors()
                     )*
@@ -93,7 +93,7 @@ impl<'a> Handle<'a> {
         ancestors.push(quote! {
             #[doc = "Gets the reference to the [`Entry`]"]
             #[inline]
-            pub fn entry(&self) -> &'a Entry {
+            pub fn entry(&self) -> &Entry {
                 self #(
                     .#entry_ancestors()
                 )*
@@ -340,8 +340,8 @@ impl<'a> Handle<'a> {
                 }
             }
 
-            impl Handle for #name {
-                type Parent<'a> = #parent;
+            impl<'a> Handle<'a> for #name {
+                type Parent = #parent;
 
                 type VTable = #vtable;
 
@@ -361,17 +361,17 @@ impl<'a> Handle<'a> {
 
                 #[inline]
                 #[track_caller]
-                unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+                unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
                     #destroy
                 }
 
                 #[inline]
-                unsafe fn load_vtable<'a>(&self, #parent_ident: &Self::Parent<'a>, #metadata_ident: &Self::Metadata) -> Self::VTable {
+                unsafe fn load_vtable(&self, #parent_ident: &Self::Parent, #metadata_ident: &Self::Metadata) -> Self::VTable {
                     #load_vtable
                 }
             }
 
-            impl<'a> Unique<'a, #name> {
+            impl<'a, 'b> Unique<'a, 'b, #name> {
                 #(#ancestors)*
             }
         }

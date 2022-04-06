@@ -327,8 +327,8 @@ impl Device {
     #[doc(alias = "vkSetDeviceMemoryPriorityEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_device_memory_priority_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_device_memory_priority_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         memory: DeviceMemory,
         priority: Option<f32>,
     ) -> () {

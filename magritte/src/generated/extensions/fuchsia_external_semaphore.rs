@@ -562,8 +562,8 @@ impl Device {
     #[doc(alias = "vkGetSemaphoreZirconHandleFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_semaphore_zircon_handle_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_semaphore_zircon_handle_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_zircon_handle_info: &SemaphoreGetZirconHandleInfoFUCHSIA<'lt>,
     ) -> VulkanResult<zx_handle_t> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -641,8 +641,8 @@ impl Device {
     #[doc(alias = "vkImportSemaphoreZirconHandleFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn import_semaphore_zircon_handle_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn import_semaphore_zircon_handle_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_import_semaphore_zircon_handle_info: &ImportSemaphoreZirconHandleInfoFUCHSIA<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

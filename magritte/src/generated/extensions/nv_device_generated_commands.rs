@@ -4538,8 +4538,8 @@ impl Device {
     #[doc(alias = "vkGetGeneratedCommandsMemoryRequirementsNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_generated_commands_memory_requirements_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_generated_commands_memory_requirements_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &GeneratedCommandsMemoryRequirementsInfoNV<'lt>,
         p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
@@ -4622,11 +4622,11 @@ impl Device {
     #[doc(alias = "vkCreateIndirectCommandsLayoutNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_indirect_commands_layout_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_indirect_commands_layout_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &IndirectCommandsLayoutCreateInfoNV<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, IndirectCommandsLayoutNV>> {
+    ) -> VulkanResult<Unique<'this, 'a, IndirectCommandsLayoutNV>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -4712,8 +4712,8 @@ impl Device {
     #[doc(alias = "vkDestroyIndirectCommandsLayoutNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_indirect_commands_layout_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_indirect_commands_layout_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         indirect_commands_layout: Option<IndirectCommandsLayoutNV>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -5186,8 +5186,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdExecuteGeneratedCommandsNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_execute_generated_commands_nv<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_execute_generated_commands_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         is_preprocessed: bool,
         p_generated_commands_info: &GeneratedCommandsInfoNV<'lt>,
     ) -> () {
@@ -5266,8 +5266,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdPreprocessGeneratedCommandsNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_preprocess_generated_commands_nv<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_preprocess_generated_commands_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_generated_commands_info: &GeneratedCommandsInfoNV<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -5356,8 +5356,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBindPipelineShaderGroupNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_bind_pipeline_shader_group_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_bind_pipeline_shader_group_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         pipeline_bind_point: PipelineBindPoint,
         pipeline: Pipeline,
         group_index: Option<u32>,
@@ -5435,8 +5435,8 @@ impl Default for IndirectCommandsLayoutNV {
         Self::null()
     }
 }
-impl Handle for IndirectCommandsLayoutNV {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for IndirectCommandsLayoutNV {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -5450,34 +5450,34 @@ impl Handle for IndirectCommandsLayoutNV {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_indirect_commands_layout_nv(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, IndirectCommandsLayoutNV> {
+impl<'a, 'b> Unique<'a, 'b, IndirectCommandsLayoutNV> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

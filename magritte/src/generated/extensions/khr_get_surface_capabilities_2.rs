@@ -665,8 +665,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilities2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_surface_capabilities2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
         p_surface_capabilities: Option<SurfaceCapabilities2KHR<'lt>>,
     ) -> VulkanResult<SurfaceCapabilities2KHR<'lt>> {
@@ -773,8 +773,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceSurfaceFormats2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_surface_formats2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_surface_formats2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
         p_surface_format_count: Option<usize>,
     ) -> VulkanResult<SmallVec<SurfaceFormat2KHR<'lt>>> {

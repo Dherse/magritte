@@ -497,8 +497,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryWin32HandleNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_win32_handle_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_win32_handle_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         memory: DeviceMemory,
         handle_type: ExternalMemoryHandleTypeFlagsNV,
     ) -> VulkanResult<HANDLE> {

@@ -1200,8 +1200,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceExternalImageFormatPropertiesNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_external_image_format_properties_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_external_image_format_properties_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         format: Format,
         type_: ImageType,
         tiling: ImageTiling,

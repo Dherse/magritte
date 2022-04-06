@@ -261,8 +261,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdWriteBufferMarkerAMD")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_write_buffer_marker_amd<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_write_buffer_marker_amd<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         pipeline_stage: PipelineStageFlagBits,
         dst_buffer: Buffer,
         dst_offset: DeviceSize,

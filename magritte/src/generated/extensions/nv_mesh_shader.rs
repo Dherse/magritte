@@ -2400,8 +2400,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawMeshTasksNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_mesh_tasks_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         task_count: Option<u32>,
         first_task: Option<u32>,
     ) -> () {
@@ -2856,8 +2856,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawMeshTasksIndirectNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_indirect_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         buffer: Buffer,
         offset: DeviceSize,
         draw_count: Option<u32>,
@@ -3330,8 +3330,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawMeshTasksIndirectCountNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_mesh_tasks_indirect_count_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_mesh_tasks_indirect_count_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         buffer: Buffer,
         offset: DeviceSize,
         count_buffer: Buffer,

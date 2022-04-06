@@ -490,8 +490,8 @@ impl Queue {
     #[doc(alias = "vkGetQueueCheckpointDataNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_queue_checkpoint_data_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Queue>,
+    pub unsafe fn get_queue_checkpoint_data_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Queue>,
         p_checkpoint_data_count: Option<usize>,
     ) -> SmallVec<CheckpointDataNV<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -569,8 +569,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetCheckpointNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_checkpoint_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_checkpoint_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_checkpoint_marker: *const c_void,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

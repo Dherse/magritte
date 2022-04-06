@@ -733,8 +733,8 @@ impl Device {
     #[doc(alias = "vkGetRefreshCycleDurationGOOGLE")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_refresh_cycle_duration_google<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_refresh_cycle_duration_google<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
     ) -> VulkanResult<RefreshCycleDurationGOOGLE> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -834,8 +834,8 @@ impl Device {
     #[doc(alias = "vkGetPastPresentationTimingGOOGLE")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_past_presentation_timing_google<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_past_presentation_timing_google<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
         p_presentation_timing_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PastPresentationTimingGOOGLE>> {

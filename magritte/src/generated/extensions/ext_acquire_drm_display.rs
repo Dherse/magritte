@@ -214,8 +214,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkAcquireDrmDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_drm_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn acquire_drm_display_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         drm_fd: Option<i32>,
         display: DisplayKHR,
     ) -> VulkanResult<()> {
@@ -297,11 +297,11 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetDrmDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_drm_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_drm_display_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         drm_fd: Option<i32>,
         connector_id: Option<u32>,
-    ) -> VulkanResult<Unique<'this, DisplayKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, DisplayKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()

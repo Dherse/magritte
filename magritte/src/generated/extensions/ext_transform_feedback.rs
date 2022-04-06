@@ -1973,8 +1973,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBindTransformFeedbackBuffersEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_bind_transform_feedback_buffers_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_bind_transform_feedback_buffers_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_binding: Option<u32>,
         p_buffers: &[crate::vulkan1_0::Buffer],
         p_offsets: &[crate::vulkan1_0::DeviceSize],
@@ -2107,8 +2107,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBeginTransformFeedbackEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_begin_transform_feedback_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_begin_transform_feedback_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_counter_buffer: Option<u32>,
         p_counter_buffers: &[crate::vulkan1_0::Buffer],
         p_counter_buffer_offsets: Option<&[crate::vulkan1_0::DeviceSize]>,
@@ -2229,8 +2229,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEndTransformFeedbackEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_end_transform_feedback_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_end_transform_feedback_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_counter_buffer: Option<u32>,
         p_counter_buffers: &[crate::vulkan1_0::Buffer],
         p_counter_buffer_offsets: Option<&[crate::vulkan1_0::DeviceSize]>,
@@ -2385,8 +2385,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBeginQueryIndexedEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_begin_query_indexed_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_begin_query_indexed_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         query_pool: QueryPool,
         query: Option<u32>,
         flags: QueryControlFlags,
@@ -2485,8 +2485,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEndQueryIndexedEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_end_query_indexed_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_end_query_indexed_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         query_pool: QueryPool,
         query: Option<u32>,
         index: Option<u32>,
@@ -2983,8 +2983,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawIndirectByteCountEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_indirect_byte_count_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_indirect_byte_count_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         instance_count: Option<u32>,
         first_instance: Option<u32>,
         counter_buffer: Buffer,

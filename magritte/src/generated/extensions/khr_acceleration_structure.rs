@@ -7590,12 +7590,12 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
-///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span class="mspace"
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
+///   class="mord">2</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mbin">×</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
+///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
 ///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
 ///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
@@ -8531,8 +8531,8 @@ impl Device {
     #[doc(alias = "vkDestroyAccelerationStructureKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_acceleration_structure_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_acceleration_structure_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         acceleration_structure: Option<AccelerationStructureKHR>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -8621,8 +8621,8 @@ impl Device {
     #[doc(alias = "vkCopyAccelerationStructureKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn copy_acceleration_structure_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn copy_acceleration_structure_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         deferred_operation: Option<DeferredOperationKHR>,
         p_info: &CopyAccelerationStructureInfoKHR<'lt>,
     ) -> VulkanResult<()> {
@@ -8720,8 +8720,8 @@ impl Device {
     #[doc(alias = "vkCopyAccelerationStructureToMemoryKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn copy_acceleration_structure_to_memory_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn copy_acceleration_structure_to_memory_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         deferred_operation: Option<DeferredOperationKHR>,
         p_info: &CopyAccelerationStructureToMemoryInfoKHR<'lt>,
     ) -> VulkanResult<()> {
@@ -8815,8 +8815,8 @@ impl Device {
     #[doc(alias = "vkCopyMemoryToAccelerationStructureKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn copy_memory_to_acceleration_structure_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn copy_memory_to_acceleration_structure_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         deferred_operation: Option<DeferredOperationKHR>,
         p_info: &CopyMemoryToAccelerationStructureInfoKHR<'lt>,
     ) -> VulkanResult<()> {
@@ -8932,8 +8932,8 @@ impl Device {
     #[doc(alias = "vkWriteAccelerationStructuresPropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn write_acceleration_structures_properties_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn write_acceleration_structures_properties_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         p_acceleration_structures: &[crate::extensions::khr_acceleration_structure::AccelerationStructureKHR],
         query_type: QueryType,
         data_size: usize,
@@ -9015,8 +9015,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceAccelerationStructureCompatibilityKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_acceleration_structure_compatibility_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_acceleration_structure_compatibility_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_version_info: &AccelerationStructureVersionInfoKHR<'lt>,
     ) -> AccelerationStructureCompatibilityKHR {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -9118,11 +9118,11 @@ impl Device {
     #[doc(alias = "vkCreateAccelerationStructureKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_acceleration_structure_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_acceleration_structure_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &AccelerationStructureCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, AccelerationStructureKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, AccelerationStructureKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -9430,8 +9430,8 @@ impl Device {
     #[doc(alias = "vkBuildAccelerationStructuresKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn build_acceleration_structures_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn build_acceleration_structures_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         deferred_operation: Option<DeferredOperationKHR>,
         p_infos: &[crate::extensions::khr_acceleration_structure::AccelerationStructureBuildGeometryInfoKHR<'lt>],
         pp_build_range_infos : & [* const crate :: extensions :: khr_acceleration_structure :: AccelerationStructureBuildRangeInfoKHR],
@@ -9518,8 +9518,8 @@ impl Device {
     #[doc(alias = "vkGetAccelerationStructureDeviceAddressKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_acceleration_structure_device_address_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_acceleration_structure_device_address_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &AccelerationStructureDeviceAddressInfoKHR<'lt>,
     ) -> DeviceAddress {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -9647,8 +9647,8 @@ impl Device {
     #[doc(alias = "vkGetAccelerationStructureBuildSizesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_acceleration_structure_build_sizes_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_acceleration_structure_build_sizes_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         build_type: AccelerationStructureBuildTypeKHR,
         p_build_info: &AccelerationStructureBuildGeometryInfoKHR<'lt>,
         p_max_primitive_counts: Option<&[u32]>,
@@ -9736,8 +9736,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdCopyAccelerationStructureKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_copy_acceleration_structure_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_copy_acceleration_structure_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_info: &CopyAccelerationStructureInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -9849,8 +9849,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdCopyAccelerationStructureToMemoryKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_copy_acceleration_structure_to_memory_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_copy_acceleration_structure_to_memory_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_info: &CopyAccelerationStructureToMemoryInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -9944,8 +9944,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdCopyMemoryToAccelerationStructureKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_copy_memory_to_acceleration_structure_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_copy_memory_to_acceleration_structure_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_info: &CopyMemoryToAccelerationStructureInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -10061,8 +10061,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdWriteAccelerationStructuresPropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_write_acceleration_structures_properties_khr<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_write_acceleration_structures_properties_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_acceleration_structures: &[crate::extensions::khr_acceleration_structure::AccelerationStructureKHR],
         query_type: QueryType,
         query_pool: QueryPool,
@@ -10438,8 +10438,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBuildAccelerationStructuresKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_build_acceleration_structures_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_build_acceleration_structures_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_infos: &[crate::extensions::khr_acceleration_structure::AccelerationStructureBuildGeometryInfoKHR<'lt>],
         pp_build_range_infos : & [* const crate :: extensions :: khr_acceleration_structure :: AccelerationStructureBuildRangeInfoKHR],
     ) -> () {
@@ -10817,8 +10817,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBuildAccelerationStructuresIndirectKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_build_acceleration_structures_indirect_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_build_acceleration_structures_indirect_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_infos: &[crate::extensions::khr_acceleration_structure::AccelerationStructureBuildGeometryInfoKHR<'lt>],
         p_indirect_device_addresses: &[crate::vulkan1_0::DeviceAddress],
         p_indirect_strides: &[u32],
@@ -10918,8 +10918,8 @@ impl Default for AccelerationStructureKHR {
         Self::null()
     }
 }
-impl Handle for AccelerationStructureKHR {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for AccelerationStructureKHR {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -10933,34 +10933,34 @@ impl Handle for AccelerationStructureKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_acceleration_structure_khr(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, AccelerationStructureKHR> {
+impl<'a, 'b> Unique<'a, 'b, AccelerationStructureKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

@@ -466,11 +466,11 @@ impl Device {
     #[doc(alias = "vkCreateSharedSwapchainsKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_shared_swapchains_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_shared_swapchains_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_infos: &[crate::extensions::khr_swapchain::SwapchainCreateInfoKHR<'lt>],
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<SmallVec<Unique<'this, SwapchainKHR>>> {
+    ) -> VulkanResult<SmallVec<Unique<'this, 'a, SwapchainKHR>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()

@@ -1790,8 +1790,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBindShadingRateImageNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_bind_shading_rate_image_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_bind_shading_rate_image_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         image_view: Option<ImageView>,
         image_layout: ImageLayout,
     ) -> () {
@@ -1883,8 +1883,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetViewportShadingRatePaletteNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_viewport_shading_rate_palette_nv<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_viewport_shading_rate_palette_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_viewport: Option<u32>,
         p_shading_rate_palettes: &[crate::extensions::nv_shading_rate_image::ShadingRatePaletteNV<'lt>],
     ) -> () {
@@ -1985,8 +1985,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetCoarseSampleOrderNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_coarse_sample_order_nv<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_coarse_sample_order_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         sample_order_type: CoarseSampleOrderTypeNV,
         p_custom_sample_orders: &[crate::extensions::nv_shading_rate_image::CoarseSampleOrderCustomNV<'lt>],
     ) -> () {

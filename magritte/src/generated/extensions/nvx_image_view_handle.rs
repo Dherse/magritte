@@ -461,8 +461,8 @@ impl Device {
     #[doc(alias = "vkGetImageViewHandleNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_image_view_handle_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_image_view_handle_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &ImageViewHandleInfoNVX<'lt>,
     ) -> u32 {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -524,8 +524,8 @@ impl Device {
     #[doc(alias = "vkGetImageViewAddressNVX")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_image_view_address_nvx<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_image_view_address_nvx<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         image_view: ImageView,
         p_properties: Option<ImageViewAddressPropertiesNVX<'lt>>,
     ) -> VulkanResult<ImageViewAddressPropertiesNVX<'lt>> {

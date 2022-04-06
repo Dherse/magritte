@@ -790,11 +790,11 @@ impl Device {
     #[doc(alias = "vkCreateValidationCacheEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_validation_cache_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_validation_cache_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &ValidationCacheCreateInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, ValidationCacheEXT>> {
+    ) -> VulkanResult<Unique<'this, 'a, ValidationCacheEXT>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -875,8 +875,8 @@ impl Device {
     #[doc(alias = "vkDestroyValidationCacheEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_validation_cache_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_validation_cache_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         validation_cache: Option<ValidationCacheEXT>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -985,8 +985,8 @@ impl Device {
     #[doc(alias = "vkGetValidationCacheDataEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_validation_cache_data_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_validation_cache_data_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         validation_cache: ValidationCacheEXT,
         p_data_size: *mut usize,
         p_data: Option<*mut c_void>,
@@ -1070,8 +1070,8 @@ impl Device {
     #[doc(alias = "vkMergeValidationCachesEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn merge_validation_caches_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn merge_validation_caches_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         dst_cache: ValidationCacheEXT,
         p_src_caches: &[crate::extensions::ext_validation_cache::ValidationCacheEXT],
     ) -> VulkanResult<()> {
@@ -1157,8 +1157,8 @@ impl Default for ValidationCacheEXT {
         Self::null()
     }
 }
-impl Handle for ValidationCacheEXT {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for ValidationCacheEXT {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -1172,34 +1172,34 @@ impl Handle for ValidationCacheEXT {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_validation_cache_ext(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, ValidationCacheEXT> {
+impl<'a, 'b> Unique<'a, 'b, ValidationCacheEXT> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

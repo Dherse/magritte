@@ -268,8 +268,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkAcquireWinrtDisplayNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_winrt_display_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn acquire_winrt_display_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         display: DisplayKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -345,10 +345,10 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetWinrtDisplayNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_winrt_display_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_winrt_display_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         device_relative_id: Option<u32>,
-    ) -> VulkanResult<Unique<'this, DisplayKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, DisplayKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()

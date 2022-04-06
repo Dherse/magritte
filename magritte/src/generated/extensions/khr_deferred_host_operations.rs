@@ -388,10 +388,10 @@ impl Device {
     #[doc(alias = "vkCreateDeferredOperationKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_deferred_operation_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_deferred_operation_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, DeferredOperationKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, DeferredOperationKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -473,8 +473,8 @@ impl Device {
     #[doc(alias = "vkDestroyDeferredOperationKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_deferred_operation_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_deferred_operation_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         operation: Option<DeferredOperationKHR>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -557,8 +557,8 @@ impl Device {
     #[doc(alias = "vkGetDeferredOperationMaxConcurrencyKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_deferred_operation_max_concurrency_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_deferred_operation_max_concurrency_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         operation: DeferredOperationKHR,
     ) -> u32 {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -622,8 +622,8 @@ impl Device {
     #[doc(alias = "vkGetDeferredOperationResultKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_deferred_operation_result_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_deferred_operation_result_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         operation: DeferredOperationKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -709,8 +709,8 @@ impl Device {
     #[doc(alias = "vkDeferredOperationJoinKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn deferred_operation_join_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn deferred_operation_join_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         operation: DeferredOperationKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -789,8 +789,8 @@ impl Default for DeferredOperationKHR {
         Self::null()
     }
 }
-impl Handle for DeferredOperationKHR {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for DeferredOperationKHR {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -804,34 +804,34 @@ impl Handle for DeferredOperationKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_deferred_operation_khr(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DeferredOperationKHR> {
+impl<'a, 'b> Unique<'a, 'b, DeferredOperationKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

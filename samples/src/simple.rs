@@ -16,9 +16,9 @@ use magritte::{
     vulkan1_0::{
         ApplicationInfo, Bool32, CommandBufferAllocateInfo, CommandBufferLevel, CommandPoolCreateFlags,
         CommandPoolCreateInfo, DeviceCreateInfo, DeviceQueueCreateInfo, Extent2D, ImageUsageFlags, InstanceCreateInfo,
-        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags,
+        PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags, FenceCreateInfo, FenceCreateFlags, SemaphoreCreateInfo, Instance, Device, Queue, CommandPool, CommandBuffer, Semaphore, Fence, PhysicalDevice,
     },
-    AsRaw, Extensions, Version, SmallVec,
+    AsRaw, Extensions, Version, SmallVec, Unique,
 };
 
 use winit::{event_loop::EventLoop, window::WindowBuilder};
@@ -93,14 +93,14 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
                     supports_graphics_and_surface.then(|| index)
                 })
-                .map(|index| (pdevice, index))
+                .map(|index| (pdevice, index as u32))
         })
         .expect("couldn't find a device");
 
     info!("Found device: {:?}", pdevice.as_raw());
 
     let queue_info = DeviceQueueCreateInfo::default()
-        .set_queue_family_index(queue_family_index as u32)
+        .set_queue_family_index(queue_family_index)
         .set_queue_priorities(&[1.0]);
 
     let device_extensions = extensions
@@ -119,7 +119,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     info!("Created device: {:?}", device.as_raw());
 
-    let queue = unsafe { device.get_device_queue(Some(queue_family_index as u32), Some(0)) };
+    let queue = unsafe { device.get_device_queue(Some(queue_family_index), Some(0)) };
 
     let (mut surface_formats, _) =
         unsafe { pdevice.get_physical_device_surface_formats_khr(Some(surface.as_raw()), None)? };
@@ -180,18 +180,18 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let pool_create_info = CommandPoolCreateInfo::default()
         .set_flags(CommandPoolCreateFlags::RESET_COMMAND_BUFFER)
-        .set_queue_family_index(queue_family_index as u32);
+        .set_queue_family_index(queue_family_index);
 
-    let (pool, _) = unsafe { device.create_command_pool(&pool_create_info, None)? };
+    let (command_pool, _) = unsafe { device.create_command_pool(&pool_create_info, None)? };
 
-    info!("Created command pool: {:?}", pool.as_raw());
+    info!("Created command pool: {:?}", command_pool.as_raw());
 
     let command_buffer_allocate_info = CommandBufferAllocateInfo::default()
         .set_command_buffer_count(2)
-        .set_command_pool(pool.as_raw())
+        .set_command_pool(command_pool.as_raw())
         .set_level(CommandBufferLevel::PRIMARY);
 
-    let (mut command_buffers, _) = unsafe { pool.allocate_command_buffers(&command_buffer_allocate_info)? };
+    let (mut command_buffers, _) = unsafe { command_pool.allocate_command_buffers(&command_buffer_allocate_info)? };
 
     let setup_command_buffer = command_buffers.pop().unwrap();
     let draw_command_buffer = command_buffers.pop().unwrap();
@@ -227,13 +227,49 @@ pub fn main() -> Result<(), Box<dyn Error>> {
             }
         })
         .collect::<Result<SmallVec<_>, _>>()?;
-    /*let present_image_views = present_images
-    .iter()
-    .map(|image| {
 
-    })*/
+    let fence_create_info = FenceCreateInfo::default().set_flags(FenceCreateFlags::SIGNALED);
+
+    let (draw_commands_reuse_fence, _) = unsafe {
+        device.create_fence(&fence_create_info, None)?
+    };
+
+    let (setup_commands_reuse_fence, _) = unsafe {
+        device.create_fence(&fence_create_info, None)?
+    };
+
+    let semaphore_create_info = SemaphoreCreateInfo::default();
+
+    let (present_complete_semaphore, _) = unsafe {
+        device.create_semaphore(&semaphore_create_info, None)?
+    };
+
+    let (rendering_complete_semaphore, _) = unsafe {
+        device.create_semaphore(&semaphore_create_info, None)?
+    };
+
 
     Ok(())
+}
+
+pub struct State<'a> {
+    event_loop: EventLoop<()>,
+    entry: &'a Entry,
+    instance: &'a Unique<'a, 'static, Instance>,
+}
+
+impl<'state> State<'state> {
+    pub fn new<'a>(
+        event_loop: EventLoop<()>,
+        entry: &'a Entry,
+        instance: &'a Unique<'a, 'static, Instance>,
+    ) -> State<'a> {
+        State::<'a> {
+            event_loop,
+            entry,
+            instance,
+        }
+    }
 }
 
 unsafe extern "system" fn vulkan_debug_callback<'lt>(

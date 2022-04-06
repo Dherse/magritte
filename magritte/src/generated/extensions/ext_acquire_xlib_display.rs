@@ -228,8 +228,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkAcquireXlibDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_xlib_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn acquire_xlib_display_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         display: DisplayKHR,
     ) -> VulkanResult<Display> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -303,10 +303,10 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetRandROutputDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_rand_r_output_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_rand_r_output_display_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         rr_output: RROutput,
-    ) -> VulkanResult<(Display, Unique<'this, DisplayKHR>)> {
+    ) -> VulkanResult<(Display, Unique<'this, 'a, DisplayKHR>)> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()

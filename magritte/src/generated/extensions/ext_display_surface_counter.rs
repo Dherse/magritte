@@ -911,8 +911,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilities2EXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_surface_capabilities2_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_surface_capabilities2_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         surface: SurfaceKHR,
         p_surface_capabilities: Option<SurfaceCapabilities2EXT<'lt>>,
     ) -> VulkanResult<SurfaceCapabilities2EXT<'lt>> {

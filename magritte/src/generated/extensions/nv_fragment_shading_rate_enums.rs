@@ -1055,8 +1055,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetFragmentShadingRateEnumNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_fragment_shading_rate_enum_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_fragment_shading_rate_enum_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         shading_rate: FragmentShadingRateNV,
         combiner_ops: [FragmentShadingRateCombinerOpKHR; 2],
     ) -> () {

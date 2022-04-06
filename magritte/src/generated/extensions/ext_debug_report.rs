@@ -1077,11 +1077,11 @@ impl Instance {
     #[doc(alias = "vkCreateDebugReportCallbackEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_debug_report_callback_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_debug_report_callback_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &DebugReportCallbackCreateInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, DebugReportCallbackEXT>> {
+    ) -> VulkanResult<Unique<'this, 'a, DebugReportCallbackEXT>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1165,8 +1165,8 @@ impl Instance {
     #[doc(alias = "vkDestroyDebugReportCallbackEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_debug_report_callback_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn destroy_debug_report_callback_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         callback: Option<DebugReportCallbackEXT>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -1253,8 +1253,8 @@ impl Instance {
     #[doc(alias = "vkDebugReportMessageEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn debug_report_message_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn debug_report_message_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Instance>,
         flags: DebugReportFlagsEXT,
         object_type: DebugReportObjectTypeEXT,
         object: Option<u64>,
@@ -1336,8 +1336,8 @@ impl Default for DebugReportCallbackEXT {
         Self::null()
     }
 }
-impl Handle for DebugReportCallbackEXT {
-    type Parent<'a> = Unique<'a, Instance>;
+impl<'a> Handle<'a> for DebugReportCallbackEXT {
+    type Parent = Unique<'a, 'a, Instance>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -1351,24 +1351,24 @@ impl Handle for DebugReportCallbackEXT {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.instance()
                 .destroy_debug_report_callback_ext(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DebugReportCallbackEXT> {
+impl<'a, 'b> Unique<'a, 'b, DebugReportCallbackEXT> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

@@ -346,11 +346,11 @@ impl Instance {
     #[doc(alias = "vkCreateMacOSSurfaceMVK")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_mac_os_surface_mvk<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_mac_os_surface_mvk<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &MacOsSurfaceCreateInfoMVK<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()

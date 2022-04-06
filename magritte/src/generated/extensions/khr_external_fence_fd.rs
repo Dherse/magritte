@@ -547,8 +547,8 @@ impl Device {
     #[doc(alias = "vkGetFenceFdKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_fence_fd_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_fence_fd_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_fd_info: &FenceGetFdInfoKHR<'lt>,
     ) -> VulkanResult<i32> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -621,8 +621,8 @@ impl Device {
     #[doc(alias = "vkImportFenceFdKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn import_fence_fd_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn import_fence_fd_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_import_fence_fd_info: &ImportFenceFdInfoKHR<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

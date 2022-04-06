@@ -483,8 +483,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetViewportWScalingNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_viewport_w_scaling_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_viewport_w_scaling_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_viewport: Option<u32>,
         p_viewport_w_scalings: &[crate::extensions::nv_clip_space_w_scaling::ViewportWScalingNV],
     ) -> () {

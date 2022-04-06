@@ -324,8 +324,8 @@ impl Device {
     #[doc(alias = "vkGetSwapchainStatusKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_swapchain_status_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_swapchain_status_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

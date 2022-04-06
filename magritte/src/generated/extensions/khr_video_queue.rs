@@ -6665,8 +6665,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceVideoCapabilitiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_video_capabilities_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_video_capabilities_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_video_profile: &VideoProfileKHR<'lt>,
         p_capabilities: Option<VideoCapabilitiesKHR<'lt>>,
     ) -> VulkanResult<VideoCapabilitiesKHR<'lt>> {
@@ -6791,8 +6791,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceVideoFormatPropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_video_format_properties_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_video_format_properties_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_video_format_info: &PhysicalDeviceVideoFormatInfoKHR<'lt>,
         p_video_format_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<VideoFormatPropertiesKHR<'lt>>> {
@@ -6894,11 +6894,11 @@ impl Device {
     #[doc(alias = "vkCreateVideoSessionKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_video_session_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_video_session_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &VideoSessionCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, VideoSessionKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, VideoSessionKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -6968,8 +6968,8 @@ impl Device {
     #[doc(alias = "vkDestroyVideoSessionKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_video_session_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_video_session_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         video_session: VideoSessionKHR,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -7048,11 +7048,11 @@ impl VideoSessionKHR {
     #[doc(alias = "vkCreateVideoSessionParametersKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, VideoSessionKHR>,
+    pub unsafe fn create_video_session_parameters_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, VideoSessionKHR>,
         p_create_info: &VideoSessionParametersCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, VideoSessionParametersKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, VideoSessionParametersKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()
@@ -7129,8 +7129,8 @@ impl Device {
     #[doc(alias = "vkUpdateVideoSessionParametersKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn update_video_session_parameters_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn update_video_session_parameters_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         video_session_parameters: VideoSessionParametersKHR,
         p_update_info: &VideoSessionParametersUpdateInfoKHR<'lt>,
     ) -> VulkanResult<()> {
@@ -7196,8 +7196,8 @@ impl Device {
     #[doc(alias = "vkDestroyVideoSessionParametersKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_video_session_parameters_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_video_session_parameters_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         video_session_parameters: VideoSessionParametersKHR,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -7289,8 +7289,8 @@ impl Device {
     #[doc(alias = "vkGetVideoSessionMemoryRequirementsKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_video_session_memory_requirements_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_video_session_memory_requirements_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         video_session: VideoSessionKHR,
         p_video_session_memory_requirements_count: Option<usize>,
     ) -> VulkanResult<SmallVec<VideoGetMemoryPropertiesKHR<'lt>>> {
@@ -7381,8 +7381,8 @@ impl Device {
     #[doc(alias = "vkBindVideoSessionMemoryKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn bind_video_session_memory_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn bind_video_session_memory_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         video_session: VideoSessionKHR,
         p_video_session_bind_memories: &[crate::extensions::khr_video_queue::VideoBindMemoryKHR<'lt>],
     ) -> VulkanResult<()> {
@@ -7457,8 +7457,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBeginVideoCodingKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_begin_video_coding_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_begin_video_coding_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, CommandBuffer>,
         p_begin_info: &VideoBeginCodingInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -7524,8 +7524,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdControlVideoCodingKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_control_video_coding_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_control_video_coding_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, CommandBuffer>,
         p_coding_control_info: &VideoCodingControlInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -7594,8 +7594,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEndVideoCodingKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_end_video_coding_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_end_video_coding_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, CommandBuffer>,
         p_end_coding_info: &VideoEndCodingInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -7668,8 +7668,8 @@ impl Default for VideoSessionKHR {
         Self::null()
     }
 }
-impl Handle for VideoSessionKHR {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for VideoSessionKHR {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -7683,33 +7683,33 @@ impl Handle for VideoSessionKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_video_session_khr(self.as_raw().coerce(), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, VideoSessionKHR> {
+impl<'a, 'b> Unique<'a, 'b, VideoSessionKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
@@ -7770,8 +7770,8 @@ impl Default for VideoSessionParametersKHR {
         Self::null()
     }
 }
-impl Handle for VideoSessionParametersKHR {
-    type Parent<'a> = Unique<'a, VideoSessionKHR>;
+impl<'a> Handle<'a> for VideoSessionParametersKHR {
+    type Parent = Unique<'a, 'a, VideoSessionKHR>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -7785,39 +7785,39 @@ impl Handle for VideoSessionParametersKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_video_session_parameters_khr(self.as_raw().coerce(), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, VideoSessionParametersKHR> {
+impl<'a, 'b> Unique<'a, 'b, VideoSessionParametersKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent().parent()
     }
     ///Gets the reference to the [`VideoSessionKHR`]
     #[inline]
-    pub fn video_session_khr(&self) -> &'a Unique<'a, VideoSessionKHR> {
+    pub fn video_session_khr(&self) -> &Unique<'b, 'b, VideoSessionKHR> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

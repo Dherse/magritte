@@ -426,8 +426,8 @@ impl Device {
     #[doc(alias = "vkSetLocalDimmingAMD")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_local_dimming_amd<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_local_dimming_amd<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swap_chain: SwapchainKHR,
         local_dimming_enable: bool,
     ) -> () {

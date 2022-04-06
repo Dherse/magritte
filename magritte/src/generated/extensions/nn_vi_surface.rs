@@ -383,11 +383,11 @@ impl Instance {
     #[doc(alias = "vkCreateViSurfaceNN")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_vi_surface_nn<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_vi_surface_nn<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &ViSurfaceCreateInfoNN<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()

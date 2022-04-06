@@ -32,7 +32,7 @@ impl Entry {
         instance_create_info: &InstanceCreateInfo<'lt>,
         allocation_callback: Option<&AllocationCallbacks<'lt>>,
         extensions: Extensions,
-    ) -> Result<Unique<'_, Instance>, VulkanResultCodes> {
+    ) -> Result<Unique<'_, 'static, Instance>, VulkanResultCodes> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let fn_ = self.vtable().create_instance().unwrap();
 

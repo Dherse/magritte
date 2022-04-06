@@ -4833,14 +4833,14 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
@@ -4848,8 +4848,8 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -18387,7 +18387,7 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
@@ -18395,8 +18395,8 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
@@ -20188,8 +20188,8 @@ impl Device {
     #[doc(alias = "vkResetQueryPoolEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn reset_query_pool<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn reset_query_pool<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         query_pool: QueryPool,
         first_query: Option<u32>,
         query_count: Option<u32>,
@@ -20297,11 +20297,11 @@ impl Device {
     #[doc(alias = "vkCreateRenderPass2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_render_pass2<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_render_pass2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &RenderPassCreateInfo2<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, RenderPass>> {
+    ) -> VulkanResult<Unique<'this, 'a, RenderPass>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -20408,8 +20408,8 @@ impl Device {
     #[doc(alias = "vkGetSemaphoreCounterValueKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_semaphore_counter_value<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_semaphore_counter_value<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         semaphore: Semaphore,
     ) -> VulkanResult<u64> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20521,8 +20521,8 @@ impl Device {
     #[doc(alias = "vkWaitSemaphoresKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn wait_semaphores<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn wait_semaphores<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_wait_info: &SemaphoreWaitInfo<'lt>,
         timeout: Option<u64>,
     ) -> VulkanResult<()> {
@@ -20622,8 +20622,8 @@ impl Device {
     #[doc(alias = "vkSignalSemaphoreKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn signal_semaphore<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn signal_semaphore<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_signal_info: &SemaphoreSignalInfo<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20716,8 +20716,8 @@ impl Device {
     #[doc(alias = "vkGetBufferOpaqueCaptureAddressKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_buffer_opaque_capture_address<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_buffer_opaque_capture_address<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &BufferDeviceAddressInfo<'lt>,
     ) -> u64 {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20833,8 +20833,8 @@ impl Device {
     #[doc(alias = "vkGetBufferDeviceAddressEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_buffer_device_address<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_buffer_device_address<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &BufferDeviceAddressInfo<'lt>,
     ) -> DeviceAddress {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -20943,8 +20943,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceMemoryOpaqueCaptureAddressKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_memory_opaque_capture_address<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_memory_opaque_capture_address<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &DeviceMemoryOpaqueCaptureAddressInfo<'lt>,
     ) -> u64 {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -21126,8 +21126,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBeginRenderPass2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_begin_render_pass2<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_begin_render_pass2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_render_pass_begin: &RenderPassBeginInfo<'lt>,
         p_subpass_begin_info: &SubpassBeginInfo<'lt>,
     ) -> () {
@@ -21245,8 +21245,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdNextSubpass2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_next_subpass2<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_next_subpass2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_subpass_begin_info: &SubpassBeginInfo<'lt>,
         p_subpass_end_info: &SubpassEndInfo<'lt>,
     ) -> () {
@@ -21358,8 +21358,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEndRenderPass2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_end_render_pass2<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_end_render_pass2<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_subpass_end_info: &SubpassEndInfo<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -21906,8 +21906,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawIndirectCountAMD")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_indirect_count<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_indirect_count<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         buffer: Buffer,
         offset: DeviceSize,
         count_buffer: Buffer,
@@ -22488,8 +22488,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawIndexedIndirectCountAMD")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_indexed_indirect_count<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_indexed_indirect_count<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         buffer: Buffer,
         offset: DeviceSize,
         count_buffer: Buffer,

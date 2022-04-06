@@ -880,8 +880,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryWin32HandleKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_win32_handle_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_win32_handle_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_win_32_handle_info: &MemoryGetWin32HandleInfoKHR<'lt>,
     ) -> VulkanResult<HANDLE> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -961,8 +961,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryWin32HandlePropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_win32_handle_properties_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_win32_handle_properties_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         handle: HANDLE,
         p_memory_win_32_handle_properties: Option<MemoryWin32HandlePropertiesKHR<'lt>>,

@@ -695,8 +695,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// device memory object or a [`DeviceMemory`] is backed by
 ///an imported external memory object, [`memory_object_id`] **must**  be unique
 ///system wide.
-///## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be
-/// used to
+///## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be used to
 ///back [`DeviceMemory`], implementations  **can**  advertise that heap with no
 ///types.
 ///## Valid Usage (Implicit)

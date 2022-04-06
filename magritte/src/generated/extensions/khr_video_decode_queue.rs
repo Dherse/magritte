@@ -1395,8 +1395,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDecodeVideoKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_decode_video_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_decode_video_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, CommandBuffer>,
         p_frame_info: &VideoDecodeInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

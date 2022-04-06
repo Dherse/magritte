@@ -446,8 +446,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryRemoteAddressNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_remote_address_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_remote_address_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_memory_get_remote_address_info: &MemoryGetRemoteAddressInfoNV<'lt>,
     ) -> VulkanResult<RemoteAddressNV> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

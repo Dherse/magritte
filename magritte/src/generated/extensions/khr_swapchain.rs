@@ -2471,11 +2471,11 @@ impl Device {
     #[doc(alias = "vkCreateSwapchainKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_swapchain_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_swapchain_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &SwapchainCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SwapchainKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SwapchainKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -2576,8 +2576,8 @@ impl Device {
     #[doc(alias = "vkDestroySwapchainKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_swapchain_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_swapchain_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: Option<SwapchainKHR>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -2663,11 +2663,11 @@ impl SwapchainKHR {
     #[doc(alias = "vkGetSwapchainImagesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_swapchain_images_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, SwapchainKHR>,
+    pub unsafe fn get_swapchain_images_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, SwapchainKHR>,
         swapchain: SwapchainKHR,
         p_swapchain_image_count: Option<usize>,
-    ) -> VulkanResult<SmallVec<Unique<'this, SwapchainImage>>> {
+    ) -> VulkanResult<SmallVec<Unique<'this, 'a, SwapchainImage>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()
@@ -2795,8 +2795,8 @@ impl Device {
     #[doc(alias = "vkAcquireNextImageKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_next_image_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_next_image_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
         timeout: Option<u64>,
         semaphore: Option<Semaphore>,
@@ -2882,11 +2882,11 @@ impl SwapchainImage {
     #[doc(alias = "vkCreateImageView")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_swapchain_image_view<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, SwapchainImage>,
+    pub unsafe fn create_swapchain_image_view<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, SwapchainImage>,
         p_create_info: &ImageViewCreateInfo<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SwapchainImageView>> {
+    ) -> VulkanResult<Unique<'this, 'a, SwapchainImageView>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .device()
@@ -3013,8 +3013,8 @@ impl Queue {
     #[doc(alias = "vkQueuePresentKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn queue_present_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, Queue>,
+    pub unsafe fn queue_present_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, Queue>,
         p_present_info: &PresentInfoKHR<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3105,8 +3105,8 @@ impl Default for SwapchainKHR {
         Self::null()
     }
 }
-impl Handle for SwapchainKHR {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for SwapchainKHR {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3120,33 +3120,33 @@ impl Handle for SwapchainKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_swapchain_khr(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, SwapchainKHR> {
+impl<'a, 'b> Unique<'a, 'b, SwapchainKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
@@ -3234,8 +3234,8 @@ impl Default for SwapchainImage {
         Self::null()
     }
 }
-impl Handle for SwapchainImage {
-    type Parent<'a> = Unique<'a, SwapchainKHR>;
+impl<'a> Handle<'a> for SwapchainImage {
+    type Parent = Unique<'a, 'a, SwapchainKHR>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3249,29 +3249,29 @@ impl Handle for SwapchainImage {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {}
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, SwapchainImage> {
+impl<'a, 'b> Unique<'a, 'b, SwapchainImage> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent().parent()
     }
     ///Disables the base dropping behaviour of this handle
@@ -3344,8 +3344,8 @@ impl Default for SwapchainImageView {
         Self::null()
     }
 }
-impl Handle for SwapchainImageView {
-    type Parent<'a> = Unique<'a, SwapchainImage>;
+impl<'a> Handle<'a> for SwapchainImageView {
+    type Parent = Unique<'a, 'a, SwapchainImage>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3359,33 +3359,33 @@ impl Handle for SwapchainImageView {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device().destroy_image_view(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, SwapchainImageView> {
+impl<'a, 'b> Unique<'a, 'b, SwapchainImageView> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent().parent().parent()
     }
     ///Disables the base dropping behaviour of this handle

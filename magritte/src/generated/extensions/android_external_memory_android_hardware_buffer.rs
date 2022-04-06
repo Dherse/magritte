@@ -1578,8 +1578,8 @@ impl Device {
     #[doc(alias = "vkGetAndroidHardwareBufferPropertiesANDROID")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_android_hardware_buffer_properties_android<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_android_hardware_buffer_properties_android<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         buffer: &AHardwareBuffer,
         p_properties: Option<AndroidHardwareBufferPropertiesANDROID<'lt>>,
     ) -> VulkanResult<AndroidHardwareBufferPropertiesANDROID<'lt>> {
@@ -1663,8 +1663,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryAndroidHardwareBufferANDROID")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_android_hardware_buffer_android<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_android_hardware_buffer_android<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &MemoryGetAndroidHardwareBufferInfoANDROID<'lt>,
     ) -> VulkanResult<*mut AHardwareBuffer> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

@@ -895,8 +895,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceSurfacePresentModes2EXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_surface_present_modes2_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_surface_present_modes2_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
         p_present_mode_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PresentModeKHR>> {
@@ -1002,8 +1002,8 @@ impl Device {
     #[doc(alias = "vkGetDeviceGroupSurfacePresentModes2EXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_group_surface_present_modes2_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_group_surface_present_modes2_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_surface_info: &PhysicalDeviceSurfaceInfo2KHR<'lt>,
         p_modes: &mut DeviceGroupPresentModeFlagsKHR,
     ) -> VulkanResult<()> {
@@ -1090,8 +1090,8 @@ impl Device {
     #[doc(alias = "vkAcquireFullScreenExclusiveModeEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_full_screen_exclusive_mode_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_full_screen_exclusive_mode_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1148,8 +1148,8 @@ impl Device {
     #[doc(alias = "vkReleaseFullScreenExclusiveModeEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn release_full_screen_exclusive_mode_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn release_full_screen_exclusive_mode_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         swapchain: SwapchainKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

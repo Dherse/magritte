@@ -315,7 +315,7 @@ impl StatefulFunctionGeneratorState {
                 }
 
                 ty = quote! {
-                    Unique<'this, #ty>
+                    Unique<'this, 'a, #ty>
                 };
 
                 *self.return_values.last_mut().unwrap() = quote! {
@@ -445,7 +445,7 @@ impl StatefulFunctionGeneratorState {
                     
                     let last = self.return_types.pop().unwrap();
                     self.return_types.push(quote! {
-                        Unique<'this, #last>
+                        Unique<'this, 'a, #last>
                     });
                     
                     // For handle, we just contain a `u64` so we can just use uninitialized value, it

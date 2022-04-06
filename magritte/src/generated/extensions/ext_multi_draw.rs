@@ -1873,8 +1873,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawMultiEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_multi_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_multi_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_vertex_info: &[crate::extensions::ext_multi_draw::MultiDrawInfoEXT],
         instance_count: Option<u32>,
         first_instance: Option<u32>,
@@ -2378,8 +2378,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdDrawMultiIndexedEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_draw_multi_indexed_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_draw_multi_indexed_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_index_info: &[crate::extensions::ext_multi_draw::MultiDrawIndexedInfoEXT],
         instance_count: Option<u32>,
         first_instance: Option<u32>,

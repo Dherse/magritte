@@ -533,8 +533,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetExclusiveScissorNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_exclusive_scissor_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_exclusive_scissor_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_exclusive_scissor: Option<u32>,
         p_exclusive_scissors: &[crate::vulkan1_0::Rect2D],
     ) -> () {

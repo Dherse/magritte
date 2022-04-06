@@ -5,30 +5,16 @@
 use crate::Unique;
 
 #[cfg(feature = "VK_KHR_swapchain")]
-use crate::extensions::khr_swapchain::{SwapchainImage, SwapchainImageView};
+use crate::extensions::khr_swapchain::SwapchainImage;
 
 #[cfg(feature = "VK_KHR_swapchain")]
-use crate::vulkan1_0::{ImageView, Image};
+use crate::vulkan1_0::Image;
 
 #[cfg(feature = "VK_KHR_swapchain")]
-impl<'a> Unique<'a, SwapchainImage> {
+impl<'a, 'b> Unique<'a, 'b, SwapchainImage> {
     /// Transforms a swapchain image into a regular image
     #[inline]
     pub const fn as_raw_image(&self) -> Image {
         Image(self.this.0)
-    }
-}
-
-#[cfg(feature = "VK_KHR_swapchain")]
-impl<'a> Unique<'a, ImageView> {
-    pub fn to_swapchain_view<'new, 'b>(self, swapchain: &'new Unique<'b, SwapchainImage>) -> Unique<'new, SwapchainImageView> where 'a: 'b, 'b: 'new {
-        unsafe {
-            Unique {
-                parent: std::mem::transmute(swapchain),
-                vtable: (),
-                metadata: true,
-                this: SwapchainImageView(self.disable_drop().this.0)
-            }
-        }
     }
 }

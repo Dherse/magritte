@@ -2527,8 +2527,13 @@ impl PhysicalDevice {
     #[doc(alias = "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_khr<
+        'a: 'this,
+        'b: 'a + 'this,
+        'this,
+        'lt,
+    >(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         queue_family_index: Option<u32>,
         p_counter_count: Option<usize>,
     ) -> VulkanResult<(
@@ -2630,8 +2635,13 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr<
+        'a: 'this,
+        'b: 'a + 'this,
+        'this,
+        'lt,
+    >(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_performance_query_create_info: &QueryPoolPerformanceCreateInfoKHR<'lt>,
     ) -> u32 {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2705,8 +2715,8 @@ impl Device {
     #[doc(alias = "vkAcquireProfilingLockKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_profiling_lock_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_profiling_lock_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &AcquireProfilingLockInfoKHR<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2761,7 +2771,9 @@ impl Device {
     #[doc(alias = "vkReleaseProfilingLockKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn release_profiling_lock_khr<'a: 'this, 'this>(self: &'this Unique<'a, Device>) -> () {
+    pub unsafe fn release_profiling_lock_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
+    ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()

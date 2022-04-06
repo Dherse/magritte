@@ -348,8 +348,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBindInvocationMaskHUAWEI")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_bind_invocation_mask_huawei<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_bind_invocation_mask_huawei<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         image_view: Option<ImageView>,
         image_layout: ImageLayout,
     ) -> () {

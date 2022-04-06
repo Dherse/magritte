@@ -2762,8 +2762,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEncodeVideoKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_encode_video_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_encode_video_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, CommandBuffer>,
         p_encode_info: &VideoEncodeInfoKHR<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

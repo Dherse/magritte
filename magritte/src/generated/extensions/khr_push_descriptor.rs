@@ -417,8 +417,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdPushDescriptorSetKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_push_descriptor_set_khr<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_push_descriptor_set_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         pipeline_bind_point: PipelineBindPoint,
         layout: PipelineLayout,
         set: Option<u32>,

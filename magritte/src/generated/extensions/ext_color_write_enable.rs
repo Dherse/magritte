@@ -503,8 +503,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetColorWriteEnableEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_color_write_enable_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_color_write_enable_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_color_write_enables: &[crate::vulkan1_0::Bool32],
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

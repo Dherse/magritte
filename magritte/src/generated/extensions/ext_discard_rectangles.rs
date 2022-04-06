@@ -645,8 +645,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetDiscardRectangleEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_discard_rectangle_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_discard_rectangle_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         first_discard_rectangle: Option<u32>,
         p_discard_rectangles: &[crate::vulkan1_0::Rect2D],
     ) -> () {

@@ -496,8 +496,8 @@ impl Device {
     #[doc(alias = "vkSetHdrMetadataEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_hdr_metadata_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_hdr_metadata_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_swapchains: &[crate::extensions::khr_swapchain::SwapchainKHR],
         p_metadata: &[crate::extensions::ext_hdr_metadata::HdrMetadataEXT<'lt>],
     ) -> () {

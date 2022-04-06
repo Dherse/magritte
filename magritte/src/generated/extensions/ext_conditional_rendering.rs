@@ -1084,8 +1084,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBeginConditionalRenderingEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_begin_conditional_rendering_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_begin_conditional_rendering_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_conditional_rendering_begin: &ConditionalRenderingBeginInfoEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1157,8 +1157,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdEndConditionalRenderingEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_end_conditional_rendering_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_end_conditional_rendering_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self

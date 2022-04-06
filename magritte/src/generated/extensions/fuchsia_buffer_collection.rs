@@ -2735,11 +2735,11 @@ impl Device {
     #[doc(alias = "vkCreateBufferCollectionFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_buffer_collection_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_buffer_collection_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &BufferCollectionCreateInfoFUCHSIA<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, BufferCollectionFUCHSIA>> {
+    ) -> VulkanResult<Unique<'this, 'a, BufferCollectionFUCHSIA>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -2823,8 +2823,8 @@ impl Device {
     #[doc(alias = "vkSetBufferCollectionBufferConstraintsFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         collection: BufferCollectionFUCHSIA,
         p_buffer_constraints_info: &BufferConstraintsInfoFUCHSIA<'lt>,
     ) -> VulkanResult<()> {
@@ -2912,8 +2912,8 @@ impl Device {
     #[doc(alias = "vkSetBufferCollectionImageConstraintsFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_buffer_collection_image_constraints_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_buffer_collection_image_constraints_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         collection: BufferCollectionFUCHSIA,
         p_image_constraints_info: &ImageConstraintsInfoFUCHSIA<'lt>,
     ) -> VulkanResult<()> {
@@ -2985,8 +2985,8 @@ impl Device {
     #[doc(alias = "vkDestroyBufferCollectionFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_buffer_collection_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_buffer_collection_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         collection: BufferCollectionFUCHSIA,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -3085,8 +3085,8 @@ impl Device {
     #[doc(alias = "vkGetBufferCollectionPropertiesFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_buffer_collection_properties_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_buffer_collection_properties_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         collection: BufferCollectionFUCHSIA,
         p_properties: Option<BufferCollectionPropertiesFUCHSIA<'lt>>,
     ) -> VulkanResult<BufferCollectionPropertiesFUCHSIA<'lt>> {
@@ -3176,8 +3176,8 @@ impl Default for BufferCollectionFUCHSIA {
         Self::null()
     }
 }
-impl Handle for BufferCollectionFUCHSIA {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for BufferCollectionFUCHSIA {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3191,34 +3191,34 @@ impl Handle for BufferCollectionFUCHSIA {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_buffer_collection_fuchsia(self.as_raw().coerce(), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, BufferCollectionFUCHSIA> {
+impl<'a, 'b> Unique<'a, 'b, BufferCollectionFUCHSIA> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

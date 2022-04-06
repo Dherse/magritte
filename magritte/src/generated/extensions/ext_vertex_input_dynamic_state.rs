@@ -774,8 +774,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetVertexInputEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_vertex_input_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_vertex_input_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_vertex_binding_descriptions : & [crate :: extensions :: ext_vertex_input_dynamic_state :: VertexInputBindingDescription2EXT < 'lt >],
         p_vertex_attribute_descriptions : & [crate :: extensions :: ext_vertex_input_dynamic_state :: VertexInputAttributeDescription2EXT < 'lt >],
     ) -> () {

@@ -432,11 +432,11 @@ impl Instance {
     #[doc(alias = "vkCreateWaylandSurfaceKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_wayland_surface_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_wayland_surface_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &WaylandSurfaceCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -506,8 +506,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceWaylandPresentationSupportKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_wayland_presentation_support_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_wayland_presentation_support_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         queue_family_index: Option<u32>,
     ) -> (wl_display, bool) {
         #[cfg(any(debug_assertions, feature = "assertions"))]

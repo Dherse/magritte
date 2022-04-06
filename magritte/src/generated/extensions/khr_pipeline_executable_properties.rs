@@ -1569,8 +1569,8 @@ impl Device {
     #[doc(alias = "vkGetPipelineExecutablePropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_pipeline_executable_properties_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_pipeline_executable_properties_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_pipeline_info: &PipelineInfoKHR<'lt>,
         p_executable_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PipelineExecutablePropertiesKHR<'lt>>> {
@@ -1689,8 +1689,8 @@ impl Device {
     #[doc(alias = "vkGetPipelineExecutableStatisticsKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_pipeline_executable_statistics_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_pipeline_executable_statistics_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_executable_info: &PipelineExecutableInfoKHR<'lt>,
         p_statistic_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PipelineExecutableStatisticKHR<'lt>>> {
@@ -1814,8 +1814,8 @@ impl Device {
     #[doc(alias = "vkGetPipelineExecutableInternalRepresentationsKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_pipeline_executable_internal_representations_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_pipeline_executable_internal_representations_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_executable_info: &PipelineExecutableInfoKHR<'lt>,
         p_internal_representation_count: Option<usize>,
     ) -> VulkanResult<SmallVec<PipelineExecutableInternalRepresentationKHR<'lt>>> {

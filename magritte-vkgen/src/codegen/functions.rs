@@ -245,17 +245,8 @@ impl<'a> Function<'a> {
 
         let is_lifetime = self.has_lifetime(source);
 
-        let generics = if is_lifetime {
-            Some(quote! {
-                'lt,
-            })
-        } else {
-            None
-        };
-
-        // println!("{}: {:#?}", self.original_name(), gen);
-
-        // let unsafe_ = if gen.unsafe_ { Some(quote! { unsafe }) } else { None };
+        let generics = is_lifetime.then(|| quote! { 'lt });
+        
         let function_getter = self.function_getter(handle.origin(), source, handle);
 
         let mut aliases = vec![ self.original_name() ];
@@ -263,8 +254,8 @@ impl<'a> Function<'a> {
 
         let ident = handle.as_ident();
         let this = match gen.this {
-            Mutability::Mutable => quote! { self: &'this mut Unique<'a, #ident> },
-            Mutability::Const => quote! { self: &'this Unique<'a, #ident> },
+            Mutability::Mutable => quote! { self: &'this mut Unique<'a, 'b, #ident> },
+            Mutability::Const => quote! { self: &'this Unique<'a, 'b, #ident> },
         };
 
         quote_each_token! {
@@ -275,7 +266,7 @@ impl<'a> Function<'a> {
             )*
             #[track_caller]
             #[inline]
-            pub unsafe fn #name <'a: 'this, 'this, #generics>(
+            pub unsafe fn #name <'a: 'this, 'b: 'a + 'this, 'this, #generics>(
                 #this,
                 #(#params),*
             ) -> #return_ty {

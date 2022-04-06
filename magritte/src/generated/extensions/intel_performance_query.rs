@@ -1749,8 +1749,8 @@ impl Device {
     #[doc(alias = "vkInitializePerformanceApiINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn initialize_performance_api_intel<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn initialize_performance_api_intel<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_initialize_info: &InitializePerformanceApiInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1805,7 +1805,9 @@ impl Device {
     #[doc(alias = "vkUninitializePerformanceApiINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn uninitialize_performance_api_intel<'a: 'this, 'this>(self: &'this Unique<'a, Device>) -> () {
+    pub unsafe fn uninitialize_performance_api_intel<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
+    ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1867,10 +1869,10 @@ impl Device {
     #[doc(alias = "vkAcquirePerformanceConfigurationINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_performance_configuration_intel<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_performance_configuration_intel<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_acquire_info: &PerformanceConfigurationAcquireInfoINTEL<'lt>,
-    ) -> VulkanResult<Unique<'this, PerformanceConfigurationINTEL>> {
+    ) -> VulkanResult<Unique<'this, 'a, PerformanceConfigurationINTEL>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1944,8 +1946,8 @@ impl Device {
     #[doc(alias = "vkReleasePerformanceConfigurationINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn release_performance_configuration_intel<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn release_performance_configuration_intel<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         configuration: Option<PerformanceConfigurationINTEL>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2009,8 +2011,8 @@ impl Device {
     #[doc(alias = "vkGetPerformanceParameterINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_performance_parameter_intel<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_performance_parameter_intel<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         parameter: PerformanceParameterTypeINTEL,
     ) -> VulkanResult<PerformanceValueINTEL> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2073,8 +2075,8 @@ impl Queue {
     #[doc(alias = "vkQueueSetPerformanceConfigurationINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn queue_set_performance_configuration_intel<'a: 'this, 'this>(
-        self: &'this Unique<'a, Queue>,
+    pub unsafe fn queue_set_performance_configuration_intel<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Queue>,
         configuration: PerformanceConfigurationINTEL,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2147,8 +2149,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetPerformanceMarkerINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_performance_marker_intel<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_performance_marker_intel<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_marker_info: &PerformanceMarkerInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2220,8 +2222,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetPerformanceStreamMarkerINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_performance_stream_marker_intel<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_performance_stream_marker_intel<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_marker_info: &PerformanceStreamMarkerInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2302,8 +2304,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetPerformanceOverrideINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_performance_override_intel<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_performance_override_intel<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_override_info: &PerformanceOverrideInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2382,8 +2384,8 @@ impl Default for PerformanceConfigurationINTEL {
         Self::null()
     }
 }
-impl Handle for PerformanceConfigurationINTEL {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for PerformanceConfigurationINTEL {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -2397,34 +2399,34 @@ impl Handle for PerformanceConfigurationINTEL {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .release_performance_configuration_intel(Some(self.as_raw().coerce()));
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, PerformanceConfigurationINTEL> {
+impl<'a, 'b> Unique<'a, 'b, PerformanceConfigurationINTEL> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

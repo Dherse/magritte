@@ -452,11 +452,11 @@ impl Instance {
     #[doc(alias = "vkCreateWin32SurfaceKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_win32_surface_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_win32_surface_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &Win32SurfaceCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -523,8 +523,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceWin32PresentationSupportKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_win32_presentation_support_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_win32_presentation_support_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         queue_family_index: Option<u32>,
     ) -> bool {
         #[cfg(any(debug_assertions, feature = "assertions"))]

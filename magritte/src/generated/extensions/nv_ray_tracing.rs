@@ -3790,8 +3790,8 @@ impl Device {
     #[doc(alias = "vkCompileDeferredNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn compile_deferred_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn compile_deferred_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         pipeline: Pipeline,
         shader: Option<u32>,
     ) -> VulkanResult<()> {
@@ -3874,11 +3874,11 @@ impl Device {
     #[doc(alias = "vkCreateAccelerationStructureNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_acceleration_structure_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_acceleration_structure_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_create_info: &AccelerationStructureCreateInfoNV<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, AccelerationStructureNV>> {
+    ) -> VulkanResult<Unique<'this, 'a, AccelerationStructureNV>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -3961,8 +3961,8 @@ impl Device {
     #[doc(alias = "vkDestroyAccelerationStructureNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_acceleration_structure_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_acceleration_structure_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         acceleration_structure: Option<AccelerationStructureNV>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -4038,8 +4038,8 @@ impl Device {
     #[doc(alias = "vkGetAccelerationStructureMemoryRequirementsNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_acceleration_structure_memory_requirements_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_acceleration_structure_memory_requirements_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_info: &AccelerationStructureMemoryRequirementsInfoNV<'lt>,
         p_memory_requirements: Option<MemoryRequirements2<'lt>>,
     ) -> MemoryRequirements2<'lt> {
@@ -4109,8 +4109,8 @@ impl Device {
     #[doc(alias = "vkBindAccelerationStructureMemoryNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn bind_acceleration_structure_memory_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn bind_acceleration_structure_memory_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_bind_infos: &[crate::extensions::nv_ray_tracing::BindAccelerationStructureMemoryInfoNV<'lt>],
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -4187,8 +4187,8 @@ impl Device {
     #[doc(alias = "vkGetAccelerationStructureHandleNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_acceleration_structure_handle_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_acceleration_structure_handle_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         acceleration_structure: AccelerationStructureNV,
         data_size: usize,
         p_data: *mut c_void,
@@ -4285,12 +4285,12 @@ impl Device {
     #[doc(alias = "vkCreateRayTracingPipelinesNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_ray_tracing_pipelines_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_ray_tracing_pipelines_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         pipeline_cache: Option<PipelineCache>,
         p_create_infos: &[crate::extensions::nv_ray_tracing::RayTracingPipelineCreateInfoNV<'lt>],
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<SmallVec<Unique<'this, Pipeline>>> {
+    ) -> VulkanResult<SmallVec<Unique<'this, 'a, Pipeline>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -4394,8 +4394,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdCopyAccelerationStructureNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_copy_acceleration_structure_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_copy_acceleration_structure_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         dst: AccelerationStructureNV,
         src: AccelerationStructureNV,
         mode: CopyAccelerationStructureModeKHR,
@@ -4500,8 +4500,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdWriteAccelerationStructuresPropertiesNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_write_acceleration_structures_properties_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_write_acceleration_structures_properties_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_acceleration_structures: &[crate::extensions::nv_ray_tracing::AccelerationStructureNV],
         query_type: QueryType,
         query_pool: QueryPool,
@@ -4654,8 +4654,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdBuildAccelerationStructureNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_build_acceleration_structure_nv<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_build_acceleration_structure_nv<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_info: &AccelerationStructureInfoNV<'lt>,
         instance_data: Option<Buffer>,
         instance_offset: DeviceSize,
@@ -4951,8 +4951,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdTraceRaysNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_trace_rays_nv<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_trace_rays_nv<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         raygen_shader_binding_table_buffer: Buffer,
         raygen_shader_binding_offset: DeviceSize,
         miss_shader_binding_table_buffer: Option<Buffer>,
@@ -5057,8 +5057,8 @@ impl Default for AccelerationStructureNV {
         Self::null()
     }
 }
-impl Handle for AccelerationStructureNV {
-    type Parent<'a> = Unique<'a, Device>;
+impl<'a> Handle<'a> for AccelerationStructureNV {
+    type Parent = Unique<'a, 'a, Device>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -5072,34 +5072,34 @@ impl Handle for AccelerationStructureNV {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         if *self.metadata() {
             self.device()
                 .destroy_acceleration_structure_nv(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, AccelerationStructureNV> {
+impl<'a, 'b> Unique<'a, 'b, AccelerationStructureNV> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<'b, 'b, Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

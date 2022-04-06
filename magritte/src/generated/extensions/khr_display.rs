@@ -2819,11 +2819,11 @@ impl Instance {
     #[doc(alias = "vkCreateDisplayPlaneSurfaceKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_display_plane_surface_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_display_plane_surface_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &DisplaySurfaceCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -2910,8 +2910,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceDisplayPropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_display_properties_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_display_properties_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<DisplayPropertiesKHR<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3005,8 +3005,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceDisplayPlanePropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_display_plane_properties_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_display_plane_properties_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<DisplayPlanePropertiesKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -3102,11 +3102,11 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetDisplayPlaneSupportedDisplaysKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_display_plane_supported_displays_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_display_plane_supported_displays_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         plane_index: Option<u32>,
         p_display_count: Option<usize>,
-    ) -> VulkanResult<SmallVec<Unique<'this, DisplayKHR>>> {
+    ) -> VulkanResult<SmallVec<Unique<'this, 'a, DisplayKHR>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -3212,8 +3212,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetDisplayModePropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_display_mode_properties_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_display_mode_properties_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         display: DisplayKHR,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<DisplayModePropertiesKHR>> {
@@ -3306,12 +3306,12 @@ impl DisplayKHR {
     #[doc(alias = "vkCreateDisplayModeKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_display_mode_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, DisplayKHR>,
+    pub unsafe fn create_display_mode_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, DisplayKHR>,
         display: DisplayKHR,
         p_create_info: &DisplayModeCreateInfoKHR<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, DisplayModeKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, DisplayModeKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -3398,8 +3398,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetDisplayPlaneCapabilitiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_display_plane_capabilities_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_display_plane_capabilities_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         mode: DisplayModeKHR,
         plane_index: Option<u32>,
     ) -> VulkanResult<DisplayPlaneCapabilitiesKHR> {
@@ -3490,8 +3490,8 @@ impl Default for DisplayKHR {
         Self::null()
     }
 }
-impl Handle for DisplayKHR {
-    type Parent<'a> = Unique<'a, PhysicalDevice>;
+impl<'a> Handle<'a> for DisplayKHR {
+    type Parent = Unique<'a, 'a, PhysicalDevice>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3505,29 +3505,29 @@ impl Handle for DisplayKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {
         #[cfg(feature = "VK_EXT_direct_mode_display")]
         if *self.metadata() {
             self.parent().release_display_ext(self.as_raw().coerce());
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DisplayKHR> {
+impl<'a, 'b> Unique<'a, 'b, DisplayKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
@@ -3587,8 +3587,8 @@ impl Default for DisplayModeKHR {
         Self::null()
     }
 }
-impl Handle for DisplayModeKHR {
-    type Parent<'a> = Unique<'a, DisplayKHR>;
+impl<'a> Handle<'a> for DisplayModeKHR {
+    type Parent = Unique<'a, 'a, DisplayKHR>;
     type VTable = ();
     type Metadata = bool;
     type Raw = u64;
@@ -3602,29 +3602,29 @@ impl Handle for DisplayModeKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
+    unsafe fn destroy<'b>(self: &mut Unique<'a, 'b, Self>) {}
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DisplayModeKHR> {
+impl<'a, 'b> Unique<'a, 'b, DisplayModeKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Entry {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<'b, 'b, Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<'b, 'b, PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`DisplayKHR`]
     #[inline]
-    pub fn display_khr(&self) -> &'a Unique<'a, DisplayKHR> {
+    pub fn display_khr(&self) -> &Unique<'b, 'b, DisplayKHR> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle

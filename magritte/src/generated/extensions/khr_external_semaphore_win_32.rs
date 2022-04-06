@@ -1025,8 +1025,8 @@ impl Device {
     #[doc(alias = "vkGetSemaphoreWin32HandleKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_semaphore_win32_handle_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_semaphore_win32_handle_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_win_32_handle_info: &SemaphoreGetWin32HandleInfoKHR<'lt>,
     ) -> VulkanResult<HANDLE> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1101,8 +1101,8 @@ impl Device {
     #[doc(alias = "vkImportSemaphoreWin32HandleKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn import_semaphore_win32_handle_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn import_semaphore_win32_handle_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_import_semaphore_win_32_handle_info: &ImportSemaphoreWin32HandleInfoKHR<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

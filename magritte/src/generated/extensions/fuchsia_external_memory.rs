@@ -602,8 +602,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryZirconHandleFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_zircon_handle_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_zircon_handle_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_zircon_handle_info: &MemoryGetZirconHandleInfoFUCHSIA<'lt>,
     ) -> VulkanResult<zx_handle_t> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -681,8 +681,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryZirconHandlePropertiesFUCHSIA")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_zircon_handle_properties_fuchsia<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_zircon_handle_properties_fuchsia<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         zircon_handle: zx_handle_t,
         p_memory_zircon_handle_properties: Option<MemoryZirconHandlePropertiesFUCHSIA<'lt>>,

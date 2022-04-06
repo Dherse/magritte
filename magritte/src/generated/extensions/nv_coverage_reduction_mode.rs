@@ -791,8 +791,13 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv<
+        'a: 'this,
+        'b: 'a + 'this,
+        'this,
+        'lt,
+    >(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_combination_count: Option<usize>,
     ) -> VulkanResult<SmallVec<FramebufferMixedSamplesCombinationNV<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

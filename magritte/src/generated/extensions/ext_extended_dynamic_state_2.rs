@@ -467,8 +467,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetPatchControlPointsEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_patch_control_points_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_patch_control_points_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         patch_control_points: Option<u32>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -544,8 +544,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetLogicOpEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_logic_op_ext<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_logic_op_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         logic_op: LogicOp,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

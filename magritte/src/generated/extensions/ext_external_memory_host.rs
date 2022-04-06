@@ -630,8 +630,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryHostPointerPropertiesEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_host_pointer_properties_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_host_pointer_properties_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         p_host_pointer: *const c_void,
         p_memory_host_pointer_properties: Option<MemoryHostPointerPropertiesEXT<'lt>>,

@@ -777,8 +777,8 @@ impl Device {
     #[doc(alias = "vkGetFenceWin32HandleKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_fence_win32_handle_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_fence_win32_handle_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_win_32_handle_info: &FenceGetWin32HandleInfoKHR<'lt>,
     ) -> VulkanResult<HANDLE> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -856,8 +856,8 @@ impl Device {
     #[doc(alias = "vkImportFenceWin32HandleKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn import_fence_win32_handle_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn import_fence_win32_handle_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_import_fence_win_32_handle_info: &ImportFenceWin32HandleInfoKHR<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

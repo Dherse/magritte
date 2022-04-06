@@ -137,8 +137,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkReleaseDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn release_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn release_display_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         display: DisplayKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

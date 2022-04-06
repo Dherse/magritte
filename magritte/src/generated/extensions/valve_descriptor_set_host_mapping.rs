@@ -553,8 +553,8 @@ impl Device {
     #[doc(alias = "vkGetDescriptorSetLayoutHostMappingInfoVALVE")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_binding_reference: &DescriptorSetBindingReferenceVALVE<'lt>,
         p_host_mapping: Option<DescriptorSetLayoutHostMappingInfoVALVE<'lt>>,
     ) -> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
@@ -616,8 +616,8 @@ impl Device {
     #[doc(alias = "vkGetDescriptorSetHostMappingVALVE")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_descriptor_set_host_mapping_valve<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_descriptor_set_host_mapping_valve<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         descriptor_set: DescriptorSet,
     ) -> *mut c_void {
         #[cfg(any(debug_assertions, feature = "assertions"))]

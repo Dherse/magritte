@@ -3199,8 +3199,8 @@ impl Device {
     #[doc(alias = "vkGetRayTracingShaderGroupHandlesNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_handles_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_ray_tracing_shader_group_handles_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         pipeline: Pipeline,
         first_group: Option<u32>,
         group_count: Option<u32>,
@@ -3315,8 +3315,8 @@ impl Device {
     #[doc(alias = "vkGetRayTracingCaptureReplayShaderGroupHandlesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_ray_tracing_capture_replay_shader_group_handles_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         pipeline: Pipeline,
         first_group: Option<u32>,
         group_count: Option<u32>,
@@ -3447,13 +3447,13 @@ impl Device {
     #[doc(alias = "vkCreateRayTracingPipelinesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_ray_tracing_pipelines_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_ray_tracing_pipelines_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         deferred_operation: Option<DeferredOperationKHR>,
         pipeline_cache: Option<PipelineCache>,
         p_create_infos: &[crate::extensions::khr_ray_tracing_pipeline::RayTracingPipelineCreateInfoKHR<'lt>],
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<SmallVec<Unique<'this, Pipeline>>> {
+    ) -> VulkanResult<SmallVec<Unique<'this, 'a, Pipeline>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -3540,8 +3540,8 @@ impl Device {
     #[doc(alias = "vkGetRayTracingShaderGroupStackSizeKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_ray_tracing_shader_group_stack_size_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_ray_tracing_shader_group_stack_size_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, Device>,
         pipeline: Pipeline,
         group: Option<u32>,
         group_shader: ShaderGroupShaderKHR,
@@ -3835,8 +3835,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdTraceRaysKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_trace_rays_khr<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_trace_rays_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_raygen_shader_binding_table: &StridedDeviceAddressRegionKHR,
         p_miss_shader_binding_table: &StridedDeviceAddressRegionKHR,
         p_hit_shader_binding_table: &StridedDeviceAddressRegionKHR,
@@ -4146,8 +4146,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdTraceRaysIndirectKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_trace_rays_indirect_khr<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_trace_rays_indirect_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_raygen_shader_binding_table: &StridedDeviceAddressRegionKHR,
         p_miss_shader_binding_table: &StridedDeviceAddressRegionKHR,
         p_hit_shader_binding_table: &StridedDeviceAddressRegionKHR,
@@ -4233,8 +4233,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetRayTracingPipelineStackSizeKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size_khr<'a: 'this, 'this>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_ray_tracing_pipeline_stack_size_khr<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         pipeline_stack_size: Option<u32>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

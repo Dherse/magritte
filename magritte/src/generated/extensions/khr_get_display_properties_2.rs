@@ -937,8 +937,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceDisplayProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_display_properties2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_display_properties2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<DisplayProperties2KHR<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1019,8 +1019,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceDisplayPlaneProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_display_plane_properties2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_display_plane_properties2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<DisplayPlaneProperties2KHR<'lt>>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1106,8 +1106,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetDisplayModeProperties2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_display_mode_properties2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_display_mode_properties2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         display: DisplayKHR,
         p_property_count: Option<usize>,
     ) -> VulkanResult<SmallVec<DisplayModeProperties2KHR<'lt>>> {
@@ -1191,8 +1191,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetDisplayPlaneCapabilities2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_display_plane_capabilities2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_display_plane_capabilities2_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         p_display_plane_info: &DisplayPlaneInfo2KHR<'lt>,
         p_capabilities: Option<DisplayPlaneCapabilities2KHR<'lt>>,
     ) -> VulkanResult<DisplayPlaneCapabilities2KHR<'lt>> {

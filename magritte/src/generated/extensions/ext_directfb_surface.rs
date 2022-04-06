@@ -389,11 +389,11 @@ impl Instance {
     #[doc(alias = "vkCreateDirectFBSurfaceEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_direct_fb_surface_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_direct_fb_surface_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Instance>,
         p_create_info: &DirectFBSurfaceCreateInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<'this, 'a, SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -463,8 +463,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceDirectFBPresentationSupportEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_direct_fb_presentation_support_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_direct_fb_presentation_support_ext<'a: 'this, 'b: 'a + 'this, 'this>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         queue_family_index: Option<u32>,
     ) -> (IDirectFB, bool) {
         #[cfg(any(debug_assertions, feature = "assertions"))]

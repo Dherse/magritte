@@ -1513,8 +1513,8 @@ impl PhysicalDevice {
     #[doc(alias = "vkGetPhysicalDeviceMultisamplePropertiesEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_multisample_properties_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_multisample_properties_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, PhysicalDevice>,
         samples: SampleCountFlagBits,
         p_multisample_properties: Option<MultisamplePropertiesEXT<'lt>>,
     ) -> MultisamplePropertiesEXT<'lt> {
@@ -1605,8 +1605,8 @@ impl CommandBuffer {
     #[doc(alias = "vkCmdSetSampleLocationsEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_sample_locations_ext<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_sample_locations_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this mut Unique<'a, 'b, CommandBuffer>,
         p_sample_locations_info: &SampleLocationsInfoEXT<'lt>,
     ) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]

@@ -1600,8 +1600,8 @@ impl Device {
     #[doc(alias = "vkGetImageDrmFormatModifierPropertiesEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_image_drm_format_modifier_properties_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_image_drm_format_modifier_properties_ext<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         image: Image,
         p_properties: Option<ImageDrmFormatModifierPropertiesEXT<'lt>>,
     ) -> VulkanResult<ImageDrmFormatModifierPropertiesEXT<'lt>> {

@@ -650,8 +650,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryFdKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_fd_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_fd_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         p_get_fd_info: &MemoryGetFdInfoKHR<'lt>,
     ) -> VulkanResult<i32> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -732,8 +732,8 @@ impl Device {
     #[doc(alias = "vkGetMemoryFdPropertiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_memory_fd_properties_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_memory_fd_properties_khr<'a: 'this, 'b: 'a + 'this, 'this, 'lt>(
+        self: &'this Unique<'a, 'b, Device>,
         handle_type: ExternalMemoryHandleTypeFlagBits,
         fd: Option<i32>,
         p_memory_fd_properties: Option<MemoryFdPropertiesKHR<'lt>>,
