@@ -189,8 +189,8 @@ Here are the following families that need to be implemented in the code generato
 - [x] Functions
 - [ ] Commands & command buffers
 - [x] Conditional compilation
-- [ ] Fixing naming bugs
-- [ ] Dedicated `VkImage` for `VkSwapchainKHR`
+- [x] Fixing naming issues
+- [x] Dedicated `VkImage` for `VkSwapchainKHR`
 - [ ] Remove `khr` in function name
 - [ ] Function alias flattening
 - [ ] Refactor the code generator to group all edge-cases into one easily accessible module, currently edge cases are spread throughout the project.
