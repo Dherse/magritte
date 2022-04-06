@@ -4,7 +4,7 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, path::PathBuf};
+use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, path::PathBuf, ops::Not};
 
 use cargo_toml::Manifest;
 use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
@@ -13,6 +13,7 @@ use quote::ToTokens;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use tracing::{info, span, Level};
 use tracing_subscriber::{fmt::time::UtcTime, EnvFilter};
+use clap::Parser;
 
 #[global_allocator]
 static GLOBAL: MiMalloc = MiMalloc;
@@ -29,7 +30,17 @@ const BINDING_OUT_PATH: &str = "magritte/src/generated/";
 /// The path where the generated bindings will be written to.
 const CARGO_TOML_PATH: &str = "magritte/Cargo.toml";
 
+#[derive(Parser, Debug)]
+#[clap(author, version)]
+struct Args {
+    /// Disables the documentation generation
+    #[clap(short, long)]
+    no_doc: bool,
+}
+
 fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
+    let args = Args::parse();
+
     tracing_subscriber::fmt()
         .with_timer(UtcTime::rfc_3339())
         .with_env_filter(EnvFilter::from_default_env())
@@ -44,7 +55,8 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     let vk_xml = std::fs::read_to_string(VK_XML_PATH)?;
 
     let registry_thread = std::thread::spawn(move || parse_registry(&vk_xml));
-    let documentation_thread = std::thread::spawn(move || parse_documentation(DOC_IN_PATH));
+
+    let documentation_thread = args.no_doc.not().then(|| std::thread::spawn(move || parse_documentation(DOC_IN_PATH)));
 
     let registry = registry_thread.join().expect("failed to wait for thread")?;
 
@@ -54,7 +66,11 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Processed registry");
 
-    let mut doc = documentation_thread.join().expect("failed to wait for thread")?;
+    let mut doc = if let Some(doc) = documentation_thread {
+        doc.join().expect("failed to wait for thread")?
+    } else {
+        magritte_vkgen::doc::Documentation::default()
+    };
 
     info!("Got documentation");
 
