@@ -64,12 +64,12 @@
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_synchronization2
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdPipelineBarrier2KHR`]
-//! - [`CmdResetEvent2KHR`]
-//! - [`CmdSetEvent2KHR`]
-//! - [`CmdWaitEvents2KHR`]
-//! - [`CmdWriteTimestamp2KHR`]
-//! - [`QueueSubmit2KHR`]
+//! - [`cmd_pipeline_barrier2_khr`]
+//! - [`cmd_reset_event2_khr`]
+//! - [`cmd_set_event2_khr`]
+//! - [`cmd_wait_events2_khr`]
+//! - [`cmd_write_timestamp2_khr`]
+//! - [`queue_submit2_khr`]
 //!If [`VK_AMD_buffer_marker`] is supported:
 //! - [`cmd_write_buffer_marker2_amd`]
 //!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
@@ -174,12 +174,12 @@
 //! - [`SubmitFlagBitsKHR`]
 //! - [`SubmitFlagsKHR`]
 //! - [`SubmitInfo2KHR`]
-//! - [`CmdPipelineBarrier2KHR`]
-//! - [`CmdResetEvent2KHR`]
-//! - [`CmdSetEvent2KHR`]
-//! - [`CmdWaitEvents2KHR`]
-//! - [`CmdWriteTimestamp2KHR`]
-//! - [`QueueSubmit2KHR`]
+//! - [`cmd_pipeline_barrier2_khr`]
+//! - [`cmd_reset_event2_khr`]
+//! - [`cmd_set_event2_khr`]
+//! - [`cmd_wait_events2_khr`]
+//! - [`cmd_write_timestamp2_khr`]
+//! - [`queue_submit2_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -743,16 +743,14 @@ impl Queue {
             .device()
             .vtable()
             .khr_synchronization_2()
-            .expect("extension/version not loaded")
-            .get_queue_checkpoint_data2_nv()
+            .and_then(|vtable| vtable.get_queue_checkpoint_data2_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_synchronization_2()
-            .unwrap_unchecked()
-            .get_queue_checkpoint_data2_nv()
+            .and_then(|vtable| vtable.get_queue_checkpoint_data2_nv())
             .unwrap_unchecked();
         let mut p_checkpoint_data_count = match p_checkpoint_data_count {
             Some(v) => v as _,
@@ -897,16 +895,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_synchronization_2()
-            .expect("extension/version not loaded")
-            .cmd_write_buffer_marker2_amd()
+            .and_then(|vtable| vtable.cmd_write_buffer_marker2_amd())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_synchronization_2()
-            .unwrap_unchecked()
-            .cmd_write_buffer_marker2_amd()
+            .and_then(|vtable| vtable.cmd_write_buffer_marker2_amd())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -925,17 +921,17 @@ pub struct DeviceKhrSynchronization2VTable {
     ///See [`FNCmdWriteBufferMarker2Amd`] for more information.
     pub cmd_write_buffer_marker2_amd: FNCmdWriteBufferMarker2Amd,
     ///See [`FNCmdSetEvent2`] for more information.
-    pub cmd_set_event2: FNCmdSetEvent2,
+    pub cmd_set_event2_khr: FNCmdSetEvent2,
     ///See [`FNCmdResetEvent2`] for more information.
-    pub cmd_reset_event2: FNCmdResetEvent2,
+    pub cmd_reset_event2_khr: FNCmdResetEvent2,
     ///See [`FNCmdWaitEvents2`] for more information.
-    pub cmd_wait_events2: FNCmdWaitEvents2,
+    pub cmd_wait_events2_khr: FNCmdWaitEvents2,
     ///See [`FNCmdPipelineBarrier2`] for more information.
-    pub cmd_pipeline_barrier2: FNCmdPipelineBarrier2,
+    pub cmd_pipeline_barrier2_khr: FNCmdPipelineBarrier2,
     ///See [`FNQueueSubmit2`] for more information.
-    pub queue_submit2: FNQueueSubmit2,
+    pub queue_submit2_khr: FNQueueSubmit2,
     ///See [`FNCmdWriteTimestamp2`] for more information.
-    pub cmd_write_timestamp2: FNCmdWriteTimestamp2,
+    pub cmd_write_timestamp2_khr: FNCmdWriteTimestamp2,
 }
 impl DeviceKhrSynchronization2VTable {
     ///Loads the VTable from the owner and the names
@@ -954,22 +950,22 @@ impl DeviceKhrSynchronization2VTable {
             cmd_write_buffer_marker2_amd: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteBufferMarker2AMD").as_ptr()))
             },
-            cmd_set_event2: unsafe {
+            cmd_set_event2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetEvent2KHR").as_ptr()))
             },
-            cmd_reset_event2: unsafe {
+            cmd_reset_event2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResetEvent2KHR").as_ptr()))
             },
-            cmd_wait_events2: unsafe {
+            cmd_wait_events2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWaitEvents2KHR").as_ptr()))
             },
-            cmd_pipeline_barrier2: unsafe {
+            cmd_pipeline_barrier2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdPipelineBarrier2KHR").as_ptr()))
             },
-            queue_submit2: unsafe {
+            queue_submit2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkQueueSubmit2KHR").as_ptr()))
             },
-            cmd_write_timestamp2: unsafe {
+            cmd_write_timestamp2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdWriteTimestamp2KHR").as_ptr()))
             },
         }
@@ -984,28 +980,29 @@ impl DeviceKhrSynchronization2VTable {
     pub fn cmd_write_buffer_marker2_amd(&self) -> FNCmdWriteBufferMarker2Amd {
         self.cmd_write_buffer_marker2_amd
     }
-    ///Gets [`Self::cmd_set_event2`]. See [`FNCmdSetEvent2`] for more information.
-    pub fn cmd_set_event2(&self) -> FNCmdSetEvent2 {
-        self.cmd_set_event2
+    ///Gets [`Self::cmd_set_event2_khr`]. See [`FNCmdSetEvent2`] for more information.
+    pub fn cmd_set_event2_khr(&self) -> FNCmdSetEvent2 {
+        self.cmd_set_event2_khr
     }
-    ///Gets [`Self::cmd_reset_event2`]. See [`FNCmdResetEvent2`] for more information.
-    pub fn cmd_reset_event2(&self) -> FNCmdResetEvent2 {
-        self.cmd_reset_event2
+    ///Gets [`Self::cmd_reset_event2_khr`]. See [`FNCmdResetEvent2`] for more information.
+    pub fn cmd_reset_event2_khr(&self) -> FNCmdResetEvent2 {
+        self.cmd_reset_event2_khr
     }
-    ///Gets [`Self::cmd_wait_events2`]. See [`FNCmdWaitEvents2`] for more information.
-    pub fn cmd_wait_events2(&self) -> FNCmdWaitEvents2 {
-        self.cmd_wait_events2
+    ///Gets [`Self::cmd_wait_events2_khr`]. See [`FNCmdWaitEvents2`] for more information.
+    pub fn cmd_wait_events2_khr(&self) -> FNCmdWaitEvents2 {
+        self.cmd_wait_events2_khr
     }
-    ///Gets [`Self::cmd_pipeline_barrier2`]. See [`FNCmdPipelineBarrier2`] for more information.
-    pub fn cmd_pipeline_barrier2(&self) -> FNCmdPipelineBarrier2 {
-        self.cmd_pipeline_barrier2
+    ///Gets [`Self::cmd_pipeline_barrier2_khr`]. See [`FNCmdPipelineBarrier2`] for more
+    /// information.
+    pub fn cmd_pipeline_barrier2_khr(&self) -> FNCmdPipelineBarrier2 {
+        self.cmd_pipeline_barrier2_khr
     }
-    ///Gets [`Self::queue_submit2`]. See [`FNQueueSubmit2`] for more information.
-    pub fn queue_submit2(&self) -> FNQueueSubmit2 {
-        self.queue_submit2
+    ///Gets [`Self::queue_submit2_khr`]. See [`FNQueueSubmit2`] for more information.
+    pub fn queue_submit2_khr(&self) -> FNQueueSubmit2 {
+        self.queue_submit2_khr
     }
-    ///Gets [`Self::cmd_write_timestamp2`]. See [`FNCmdWriteTimestamp2`] for more information.
-    pub fn cmd_write_timestamp2(&self) -> FNCmdWriteTimestamp2 {
-        self.cmd_write_timestamp2
+    ///Gets [`Self::cmd_write_timestamp2_khr`]. See [`FNCmdWriteTimestamp2`] for more information.
+    pub fn cmd_write_timestamp2_khr(&self) -> FNCmdWriteTimestamp2 {
+        self.cmd_write_timestamp2_khr
     }
 }

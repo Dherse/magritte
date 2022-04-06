@@ -14,11 +14,11 @@
 //!   @vkushwaha-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_extended_dynamic_state2 extension>>)
 //!# New functions & commands
-//! - [`CmdSetDepthBiasEnableEXT`]
+//! - [`cmd_set_depth_bias_enable_ext`]
 //! - [`cmd_set_logic_op_ext`]
 //! - [`cmd_set_patch_control_points_ext`]
-//! - [`CmdSetPrimitiveRestartEnableEXT`]
-//! - [`CmdSetRasterizerDiscardEnableEXT`]
+//! - [`cmd_set_primitive_restart_enable_ext`]
+//! - [`cmd_set_rasterizer_discard_enable_ext`]
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceExtendedDynamicState2FeaturesEXT`]
@@ -40,11 +40,11 @@
 //! * - Vikram Kushwaha, NVIDIA  - Piers Daniell, NVIDIA  - Jeff Bolz, NVIDIA
 //!# Related
 //! - [`PhysicalDeviceExtendedDynamicState2FeaturesEXT`]
-//! - [`CmdSetDepthBiasEnableEXT`]
+//! - [`cmd_set_depth_bias_enable_ext`]
 //! - [`cmd_set_logic_op_ext`]
 //! - [`cmd_set_patch_control_points_ext`]
-//! - [`CmdSetPrimitiveRestartEnableEXT`]
-//! - [`CmdSetRasterizerDiscardEnableEXT`]
+//! - [`cmd_set_primitive_restart_enable_ext`]
+//! - [`cmd_set_rasterizer_discard_enable_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -476,16 +476,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_extended_dynamic_state_2()
-            .expect("extension/version not loaded")
-            .cmd_set_patch_control_points_ext()
+            .and_then(|vtable| vtable.cmd_set_patch_control_points_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_extended_dynamic_state_2()
-            .unwrap_unchecked()
-            .cmd_set_patch_control_points_ext()
+            .and_then(|vtable| vtable.cmd_set_patch_control_points_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), patch_control_points.unwrap_or_default() as _);
         ()
@@ -555,16 +553,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_extended_dynamic_state_2()
-            .expect("extension/version not loaded")
-            .cmd_set_logic_op_ext()
+            .and_then(|vtable| vtable.cmd_set_logic_op_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_extended_dynamic_state_2()
-            .unwrap_unchecked()
-            .cmd_set_logic_op_ext()
+            .and_then(|vtable| vtable.cmd_set_logic_op_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), logic_op);
         ()
@@ -577,11 +573,11 @@ pub struct DeviceExtExtendedDynamicState2VTable {
     ///See [`FNCmdSetLogicOpExt`] for more information.
     pub cmd_set_logic_op_ext: FNCmdSetLogicOpExt,
     ///See [`FNCmdSetRasterizerDiscardEnable`] for more information.
-    pub cmd_set_rasterizer_discard_enable: FNCmdSetRasterizerDiscardEnable,
+    pub cmd_set_rasterizer_discard_enable_ext: FNCmdSetRasterizerDiscardEnable,
     ///See [`FNCmdSetDepthBiasEnable`] for more information.
-    pub cmd_set_depth_bias_enable: FNCmdSetDepthBiasEnable,
+    pub cmd_set_depth_bias_enable_ext: FNCmdSetDepthBiasEnable,
     ///See [`FNCmdSetPrimitiveRestartEnable`] for more information.
-    pub cmd_set_primitive_restart_enable: FNCmdSetPrimitiveRestartEnable,
+    pub cmd_set_primitive_restart_enable_ext: FNCmdSetPrimitiveRestartEnable,
 }
 impl DeviceExtExtendedDynamicState2VTable {
     ///Loads the VTable from the owner and the names
@@ -603,16 +599,16 @@ impl DeviceExtExtendedDynamicState2VTable {
             cmd_set_logic_op_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetLogicOpEXT").as_ptr()))
             },
-            cmd_set_rasterizer_discard_enable: unsafe {
+            cmd_set_rasterizer_discard_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCmdSetRasterizerDiscardEnableEXT").as_ptr(),
                 ))
             },
-            cmd_set_depth_bias_enable: unsafe {
+            cmd_set_depth_bias_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthBiasEnableEXT").as_ptr()))
             },
-            cmd_set_primitive_restart_enable: unsafe {
+            cmd_set_primitive_restart_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCmdSetPrimitiveRestartEnableEXT").as_ptr(),
@@ -629,19 +625,19 @@ impl DeviceExtExtendedDynamicState2VTable {
     pub fn cmd_set_logic_op_ext(&self) -> FNCmdSetLogicOpExt {
         self.cmd_set_logic_op_ext
     }
-    ///Gets [`Self::cmd_set_rasterizer_discard_enable`]. See [`FNCmdSetRasterizerDiscardEnable`]
-    /// for more information.
-    pub fn cmd_set_rasterizer_discard_enable(&self) -> FNCmdSetRasterizerDiscardEnable {
-        self.cmd_set_rasterizer_discard_enable
+    ///Gets [`Self::cmd_set_rasterizer_discard_enable_ext`]. See
+    /// [`FNCmdSetRasterizerDiscardEnable`] for more information.
+    pub fn cmd_set_rasterizer_discard_enable_ext(&self) -> FNCmdSetRasterizerDiscardEnable {
+        self.cmd_set_rasterizer_discard_enable_ext
     }
-    ///Gets [`Self::cmd_set_depth_bias_enable`]. See [`FNCmdSetDepthBiasEnable`] for more
+    ///Gets [`Self::cmd_set_depth_bias_enable_ext`]. See [`FNCmdSetDepthBiasEnable`] for more
     /// information.
-    pub fn cmd_set_depth_bias_enable(&self) -> FNCmdSetDepthBiasEnable {
-        self.cmd_set_depth_bias_enable
+    pub fn cmd_set_depth_bias_enable_ext(&self) -> FNCmdSetDepthBiasEnable {
+        self.cmd_set_depth_bias_enable_ext
     }
-    ///Gets [`Self::cmd_set_primitive_restart_enable`]. See [`FNCmdSetPrimitiveRestartEnable`] for
-    /// more information.
-    pub fn cmd_set_primitive_restart_enable(&self) -> FNCmdSetPrimitiveRestartEnable {
-        self.cmd_set_primitive_restart_enable
+    ///Gets [`Self::cmd_set_primitive_restart_enable_ext`]. See [`FNCmdSetPrimitiveRestartEnable`]
+    /// for more information.
+    pub fn cmd_set_primitive_restart_enable_ext(&self) -> FNCmdSetPrimitiveRestartEnable {
+        self.cmd_set_primitive_restart_enable_ext
     }
 }

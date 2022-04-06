@@ -441,15 +441,13 @@ impl Instance {
         let _function = self
             .vtable()
             .khr_wayland_surface()
-            .expect("extension/version not loaded")
-            .create_wayland_surface_khr()
+            .and_then(|vtable| vtable.create_wayland_surface_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_wayland_surface()
-            .unwrap_unchecked()
-            .create_wayland_surface_khr()
+            .and_then(|vtable| vtable.create_wayland_surface_khr())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(
@@ -517,16 +515,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_wayland_surface()
-            .expect("extension/version not loaded")
-            .get_physical_device_wayland_presentation_support_khr()
+            .and_then(|vtable| vtable.get_physical_device_wayland_presentation_support_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_wayland_surface()
-            .unwrap_unchecked()
-            .get_physical_device_wayland_presentation_support_khr()
+            .and_then(|vtable| vtable.get_physical_device_wayland_presentation_support_khr())
             .unwrap_unchecked();
         let mut display = std::mem::zeroed();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _, &mut display);

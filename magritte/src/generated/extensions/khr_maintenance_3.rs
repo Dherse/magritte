@@ -20,7 +20,7 @@
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance3
 //!   extension>>)
 //!# New functions & commands
-//! - [`GetDescriptorSetLayoutSupportKHR`]
+//! - [`get_descriptor_set_layout_support_khr`]
 //!# New structures
 //! - [`DescriptorSetLayoutSupportKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMaintenance3PropertiesKHR`]
@@ -40,7 +40,7 @@
 //!# Related
 //! - [`DescriptorSetLayoutSupportKHR`]
 //! - [`PhysicalDeviceMaintenance3PropertiesKHR`]
-//! - [`GetDescriptorSetLayoutSupportKHR`]
+//! - [`get_descriptor_set_layout_support_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -62,7 +62,7 @@ pub const KHR_MAINTENANCE_3_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 ///The V-table of [`Device`] for functions from `VK_KHR_maintenance3`
 pub struct DeviceKhrMaintenance3VTable {
     ///See [`FNGetDescriptorSetLayoutSupport`] for more information.
-    pub get_descriptor_set_layout_support: FNGetDescriptorSetLayoutSupport,
+    pub get_descriptor_set_layout_support_khr: FNGetDescriptorSetLayoutSupport,
 }
 impl DeviceKhrMaintenance3VTable {
     ///Loads the VTable from the owner and the names
@@ -75,7 +75,7 @@ impl DeviceKhrMaintenance3VTable {
         loader: Device,
     ) -> Self {
         Self {
-            get_descriptor_set_layout_support: unsafe {
+            get_descriptor_set_layout_support_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetDescriptorSetLayoutSupportKHR").as_ptr(),
@@ -83,9 +83,9 @@ impl DeviceKhrMaintenance3VTable {
             },
         }
     }
-    ///Gets [`Self::get_descriptor_set_layout_support`]. See [`FNGetDescriptorSetLayoutSupport`]
-    /// for more information.
-    pub fn get_descriptor_set_layout_support(&self) -> FNGetDescriptorSetLayoutSupport {
-        self.get_descriptor_set_layout_support
+    ///Gets [`Self::get_descriptor_set_layout_support_khr`]. See
+    /// [`FNGetDescriptorSetLayoutSupport`] for more information.
+    pub fn get_descriptor_set_layout_support_khr(&self) -> FNGetDescriptorSetLayoutSupport {
+        self.get_descriptor_set_layout_support_khr
     }
 }

@@ -1406,16 +1406,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_video_decode_queue()
-            .expect("extension/version not loaded")
-            .cmd_decode_video_khr()
+            .and_then(|vtable| vtable.cmd_decode_video_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_video_decode_queue()
-            .unwrap_unchecked()
-            .cmd_decode_video_khr()
+            .and_then(|vtable| vtable.cmd_decode_video_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_frame_info as *const VideoDecodeInfoKHR<'lt>);
         ()

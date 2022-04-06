@@ -801,16 +801,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .nv_coverage_reduction_mode()
-            .expect("extension/version not loaded")
-            .get_physical_device_supported_framebuffer_mixed_samples_combinations_nv()
+            .and_then(|vtable| vtable.get_physical_device_supported_framebuffer_mixed_samples_combinations_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .nv_coverage_reduction_mode()
-            .unwrap_unchecked()
-            .get_physical_device_supported_framebuffer_mixed_samples_combinations_nv()
+            .and_then(|vtable| vtable.get_physical_device_supported_framebuffer_mixed_samples_combinations_nv())
             .unwrap_unchecked();
         let mut p_combination_count = match p_combination_count {
             Some(v) => v as _,

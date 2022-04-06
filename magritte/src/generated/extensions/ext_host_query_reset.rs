@@ -13,7 +13,7 @@
 //!   @BNieuwenhuizen%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_host_query_reset extension>>)
 //!# New functions & commands
-//! - [`ResetQueryPoolEXT`]
+//! - [`reset_query_pool_ext`]
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceHostQueryResetFeaturesEXT`]
@@ -32,7 +32,7 @@
 //!   NVIDIA
 //!# Related
 //! - [`PhysicalDeviceHostQueryResetFeaturesEXT`]
-//! - [`ResetQueryPoolEXT`]
+//! - [`reset_query_pool_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -54,7 +54,7 @@ pub const EXT_HOST_QUERY_RESET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///The V-table of [`Device`] for functions from `VK_EXT_host_query_reset`
 pub struct DeviceExtHostQueryResetVTable {
     ///See [`FNResetQueryPool`] for more information.
-    pub reset_query_pool: FNResetQueryPool,
+    pub reset_query_pool_ext: FNResetQueryPool,
 }
 impl DeviceExtHostQueryResetVTable {
     ///Loads the VTable from the owner and the names
@@ -67,13 +67,13 @@ impl DeviceExtHostQueryResetVTable {
         loader: Device,
     ) -> Self {
         Self {
-            reset_query_pool: unsafe {
+            reset_query_pool_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkResetQueryPoolEXT").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::reset_query_pool`]. See [`FNResetQueryPool`] for more information.
-    pub fn reset_query_pool(&self) -> FNResetQueryPool {
-        self.reset_query_pool
+    ///Gets [`Self::reset_query_pool_ext`]. See [`FNResetQueryPool`] for more information.
+    pub fn reset_query_pool_ext(&self) -> FNResetQueryPool {
+        self.reset_query_pool_ext
     }
 }

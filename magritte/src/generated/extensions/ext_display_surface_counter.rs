@@ -923,19 +923,16 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_display_surface_counter()
-            .expect("extension/version not loaded")
-            .get_physical_device_surface_capabilities2_ext()
+            .and_then(|vtable| vtable.get_physical_device_surface_capabilities2_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_display_surface_counter()
-            .unwrap_unchecked()
-            .get_physical_device_surface_capabilities2_ext()
+            .and_then(|vtable| vtable.get_physical_device_surface_capabilities2_ext())
             .unwrap_unchecked();
-        let mut p_surface_capabilities = p_surface_capabilities
-            .unwrap_or_else(|| MaybeUninit::<SurfaceCapabilities2EXT<'lt>>::zeroed().assume_init());
+        let mut p_surface_capabilities = p_surface_capabilities.unwrap_or_default();
         let _return = _function(self.as_raw(), surface, &mut p_surface_capabilities);
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {

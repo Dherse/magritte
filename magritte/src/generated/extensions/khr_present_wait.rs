@@ -415,15 +415,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_present_wait()
-            .expect("extension/version not loaded")
-            .wait_for_present_khr()
+            .and_then(|vtable| vtable.wait_for_present_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_present_wait()
-            .unwrap_unchecked()
-            .wait_for_present_khr()
+            .and_then(|vtable| vtable.wait_for_present_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

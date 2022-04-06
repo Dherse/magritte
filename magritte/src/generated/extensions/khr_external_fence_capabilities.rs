@@ -18,7 +18,7 @@
 //!   @critsec%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_fence_capabilities extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceExternalFencePropertiesKHR`]
+//! - [`get_physical_device_external_fence_properties_khr`]
 //!# New structures
 //! - [`ExternalFencePropertiesKHR`]
 //! - [`PhysicalDeviceExternalFenceInfoKHR`]
@@ -60,7 +60,7 @@
 //! - [`ExternalFencePropertiesKHR`]
 //! - [`PhysicalDeviceExternalFenceInfoKHR`]
 //! - [`PhysicalDeviceIdPropertiesKHR`]
-//! - [`GetPhysicalDeviceExternalFencePropertiesKHR`]
+//! - [`get_physical_device_external_fence_properties_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -83,7 +83,7 @@ pub const KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///The V-table of [`Instance`] for functions from `VK_KHR_external_fence_capabilities`
 pub struct InstanceKhrExternalFenceCapabilitiesVTable {
     ///See [`FNGetPhysicalDeviceExternalFenceProperties`] for more information.
-    pub get_physical_device_external_fence_properties: FNGetPhysicalDeviceExternalFenceProperties,
+    pub get_physical_device_external_fence_properties_khr: FNGetPhysicalDeviceExternalFenceProperties,
 }
 impl InstanceKhrExternalFenceCapabilitiesVTable {
     ///Loads the VTable from the owner and the names
@@ -96,7 +96,7 @@ impl InstanceKhrExternalFenceCapabilitiesVTable {
         loader: Instance,
     ) -> Self {
         Self {
-            get_physical_device_external_fence_properties: unsafe {
+            get_physical_device_external_fence_properties_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceExternalFencePropertiesKHR").as_ptr(),
@@ -104,9 +104,9 @@ impl InstanceKhrExternalFenceCapabilitiesVTable {
             },
         }
     }
-    ///Gets [`Self::get_physical_device_external_fence_properties`]. See
+    ///Gets [`Self::get_physical_device_external_fence_properties_khr`]. See
     /// [`FNGetPhysicalDeviceExternalFenceProperties`] for more information.
-    pub fn get_physical_device_external_fence_properties(&self) -> FNGetPhysicalDeviceExternalFenceProperties {
-        self.get_physical_device_external_fence_properties
+    pub fn get_physical_device_external_fence_properties_khr(&self) -> FNGetPhysicalDeviceExternalFenceProperties {
+        self.get_physical_device_external_fence_properties_khr
     }
 }

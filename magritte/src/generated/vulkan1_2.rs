@@ -16,7 +16,6 @@ use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
-    ffi::CStr,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
     mem::MaybeUninit,
@@ -1229,9 +1228,9 @@ pub type FNCmdEndRenderPass2 = Option<
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
-///   to this drawing command, and the `primitiveTopology` parameter of
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `primitiveTopology` parameter of
+///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the pipeline
 ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
 /// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
@@ -1239,9 +1238,10 @@ pub type FNCmdEndRenderPass2 = Option<
 ///   this draw command
 /// - If the bound graphics pipeline was created with the
 ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
-///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
-///   **must**  have been called in the current command buffer prior to this draw command, and the
-///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+///   prior to this draw command, and the `pStrides` parameter of [`cmd_bind_vertex_buffers2_ext`]
+///   **must**  not be `NULL`
 /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
 ///   current command buffer prior to this draw command
@@ -1251,8 +1251,8 @@ pub type FNCmdEndRenderPass2 = Option<
 ///   prior to this drawing command
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
-///   prior to this drawing command
+///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
+///   buffer prior to this drawing command
 /// - The bound graphics pipeline  **must**  not have been created with the
 ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
 ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
@@ -1723,9 +1723,9 @@ pub type FNCmdDrawIndirectCount = Option<
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
-///   to this drawing command, and the `primitiveTopology` parameter of
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `primitiveTopology` parameter of
+///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the pipeline
 ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
 /// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
@@ -1733,9 +1733,10 @@ pub type FNCmdDrawIndirectCount = Option<
 ///   this draw command
 /// - If the bound graphics pipeline was created with the
 ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
-///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
-///   **must**  have been called in the current command buffer prior to this draw command, and the
-///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+///   prior to this draw command, and the `pStrides` parameter of [`cmd_bind_vertex_buffers2_ext`]
+///   **must**  not be `NULL`
 /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
 ///   current command buffer prior to this draw command
@@ -1745,8 +1746,8 @@ pub type FNCmdDrawIndirectCount = Option<
 ///   prior to this drawing command
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
-///   prior to this drawing command
+///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
+///   buffer prior to this drawing command
 /// - The bound graphics pipeline  **must**  not have been created with the
 ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
 ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
@@ -2344,11 +2345,11 @@ impl SemaphoreWaitFlagBits {
 ///   queue, then the submission will use the most recently set descriptors for this binding and the
 ///   updates do not invalidate the command buffer. Descriptor bindings created with this flag are
 ///   also partially exempt from the external synchronization requirement in
-///   [`UpdateDescriptorSetWithTemplateKHR`] and [`update_descriptor_sets`]. Multiple descriptors
-///   with this flag set  **can**  be updated concurrently in different threads, though the same
-///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
-///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
-///   thread, but not concurrently with the set being reset or freed.
+///   [`update_descriptor_set_with_template_khr`] and [`update_descriptor_sets`]. Multiple
+///   descriptors with this flag set  **can**  be updated concurrently in different threads, though
+///   the same descriptor  **must**  not be updated concurrently by two threads. Descriptors with
+///   this flag set  **can**  be updated concurrently with the set being bound to a command buffer
+///   in another thread, but not concurrently with the set being reset or freed.
 /// - [`PARTIALLY_BOUND`] indicates that descriptors in this binding that are not *dynamically used*
 ///   need not contain valid descriptors at the time the descriptors are consumed. A descriptor is
 ///   dynamically used if any shader invocation executes an instruction that performs any memory
@@ -2404,7 +2405,7 @@ impl DescriptorBindingFlagBits {
     ///command buffer.
     ///Descriptor bindings created with this flag are also partially exempt
     ///from the external synchronization requirement in
-    ///[`UpdateDescriptorSetWithTemplateKHR`] and
+    ///[`update_descriptor_set_with_template_khr`] and
     ///[`update_descriptor_sets`].
     ///Multiple descriptors with this flag set  **can**  be updated concurrently in
     ///different threads, though the same descriptor  **must**  not be updated
@@ -2894,11 +2895,11 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 ///   queue, then the submission will use the most recently set descriptors for this binding and the
 ///   updates do not invalidate the command buffer. Descriptor bindings created with this flag are
 ///   also partially exempt from the external synchronization requirement in
-///   [`UpdateDescriptorSetWithTemplateKHR`] and [`update_descriptor_sets`]. Multiple descriptors
-///   with this flag set  **can**  be updated concurrently in different threads, though the same
-///   descriptor  **must**  not be updated concurrently by two threads. Descriptors with this flag
-///   set  **can**  be updated concurrently with the set being bound to a command buffer in another
-///   thread, but not concurrently with the set being reset or freed.
+///   [`update_descriptor_set_with_template_khr`] and [`update_descriptor_sets`]. Multiple
+///   descriptors with this flag set  **can**  be updated concurrently in different threads, though
+///   the same descriptor  **must**  not be updated concurrently by two threads. Descriptors with
+///   this flag set  **can**  be updated concurrently with the set being bound to a command buffer
+///   in another thread, but not concurrently with the set being reset or freed.
 /// - [`PARTIALLY_BOUND`] indicates that descriptors in this binding that are not *dynamically used*
 ///   need not contain valid descriptors at the time the descriptors are consumed. A descriptor is
 ///   dynamically used if any shader invocation executes an instruction that performs any memory
@@ -2958,7 +2959,7 @@ impl DescriptorBindingFlags {
     ///command buffer.
     ///Descriptor bindings created with this flag are also partially exempt
     ///from the external synchronization requirement in
-    ///[`UpdateDescriptorSetWithTemplateKHR`] and
+    ///[`update_descriptor_set_with_template_khr`] and
     ///[`update_descriptor_sets`].
     ///Multiple descriptors with this flag set  **can**  be updated concurrently in
     ///different threads, though the same descriptor  **must**  not be updated
@@ -4854,8 +4855,8 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -9759,7 +9760,7 @@ impl<'lt> SubpassDependency2<'lt> {
 /// - [`SubpassDependency2`]
 /// - [`SubpassDescription2`]
 /// - [`create_render_pass2`]
-/// - [`CreateRenderPass2KHR`]
+/// - [`create_render_pass2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -10053,9 +10054,9 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
 /// - [`StructureType`]
 /// - [`SubpassContents`]
 /// - [`cmd_begin_render_pass2`]
-/// - [`CmdBeginRenderPass2KHR`]
+/// - [`cmd_begin_render_pass2_khr`]
 /// - [`cmd_next_subpass2`]
-/// - [`CmdNextSubpass2KHR`]
+/// - [`cmd_next_subpass2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -10168,9 +10169,9 @@ impl<'lt> SubpassBeginInfo<'lt> {
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 /// - [`cmd_end_render_pass2`]
-/// - [`CmdEndRenderPass2KHR`]
+/// - [`cmd_end_render_pass2_khr`]
 /// - [`cmd_next_subpass2`]
-/// - [`CmdNextSubpass2KHR`]
+/// - [`cmd_next_subpass2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -10915,7 +10916,7 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 /// - [`SemaphoreWaitFlags`]
 /// - [`StructureType`]
 /// - [`wait_semaphores`]
-/// - [`WaitSemaphoresKHR`]
+/// - [`wait_semaphores_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -11113,7 +11114,7 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 /// - [`Semaphore`]
 /// - [`StructureType`]
 /// - [`signal_semaphore`]
-/// - [`SignalSemaphoreKHR`]
+/// - [`signal_semaphore_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -13102,10 +13103,10 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeatures<'lt> {
 /// - [`Buffer`]
 /// - [`StructureType`]
 /// - [`get_buffer_device_address`]
-/// - [`GetBufferDeviceAddressEXT`]
-/// - [`GetBufferDeviceAddressKHR`]
+/// - [`get_buffer_device_address_ext`]
+/// - [`get_buffer_device_address_khr`]
 /// - [`get_buffer_opaque_capture_address`]
-/// - [`GetBufferOpaqueCaptureAddressKHR`]
+/// - [`get_buffer_opaque_capture_address_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -14630,7 +14631,7 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 /// - [`get_device_memory_opaque_capture_address`]
-/// - [`GetDeviceMemoryOpaqueCaptureAddressKHR`]
+/// - [`get_device_memory_opaque_capture_address_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -18393,9 +18394,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
@@ -18407,9 +18408,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -20191,6 +20192,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkResetQueryPool")]
+    #[doc(alias = "vkResetQueryPoolEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn reset_query_pool<'a: 'this, 'this>(
@@ -20203,15 +20205,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .reset_query_pool()
+            .and_then(|vtable| vtable.reset_query_pool())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_host_query_reset")]
+                return self
+                    .vtable()
+                    .ext_host_query_reset()
+                    .and_then(|vtable| vtable.reset_query_pool_ext());
+                #[cfg(not(feature = "VK_EXT_host_query_reset"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .reset_query_pool()
+            .and_then(|vtable| vtable.reset_query_pool())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_host_query_reset")]
+                return self
+                    .vtable()
+                    .ext_host_query_reset()
+                    .and_then(|vtable| vtable.reset_query_pool_ext());
+                #[cfg(not(feature = "VK_EXT_host_query_reset"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -20283,6 +20301,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateRenderPass2")]
+    #[doc(alias = "vkCreateRenderPass2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn create_render_pass2<'a: 'this, 'this, 'lt>(
@@ -20294,15 +20313,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .create_render_pass2()
+            .and_then(|vtable| vtable.create_render_pass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.create_render_pass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .create_render_pass2()
+            .and_then(|vtable| vtable.create_render_pass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.create_render_pass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_render_pass = MaybeUninit::<RenderPass>::uninit();
         let _return = _function(
@@ -20377,6 +20412,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetSemaphoreCounterValue")]
+    #[doc(alias = "vkGetSemaphoreCounterValueKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_semaphore_counter_value<'a: 'this, 'this>(
@@ -20387,15 +20423,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .get_semaphore_counter_value()
+            .and_then(|vtable| vtable.get_semaphore_counter_value())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_timeline_semaphore")]
+                return self
+                    .vtable()
+                    .khr_timeline_semaphore()
+                    .and_then(|vtable| vtable.get_semaphore_counter_value_khr());
+                #[cfg(not(feature = "VK_KHR_timeline_semaphore"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .get_semaphore_counter_value()
+            .and_then(|vtable| vtable.get_semaphore_counter_value())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_timeline_semaphore")]
+                return self
+                    .vtable()
+                    .khr_timeline_semaphore()
+                    .and_then(|vtable| vtable.get_semaphore_counter_value_khr());
+                #[cfg(not(feature = "VK_KHR_timeline_semaphore"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_value = Default::default();
         let _return = _function(self.as_raw(), semaphore, &mut p_value);
@@ -20473,6 +20525,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkWaitSemaphores")]
+    #[doc(alias = "vkWaitSemaphoresKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn wait_semaphores<'a: 'this, 'this, 'lt>(
@@ -20484,15 +20537,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .wait_semaphores()
+            .and_then(|vtable| vtable.wait_semaphores())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_timeline_semaphore")]
+                return self
+                    .vtable()
+                    .khr_timeline_semaphore()
+                    .and_then(|vtable| vtable.wait_semaphores_khr());
+                #[cfg(not(feature = "VK_KHR_timeline_semaphore"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .wait_semaphores()
+            .and_then(|vtable| vtable.wait_semaphores())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_timeline_semaphore")]
+                return self
+                    .vtable()
+                    .khr_timeline_semaphore()
+                    .and_then(|vtable| vtable.wait_semaphores_khr());
+                #[cfg(not(feature = "VK_KHR_timeline_semaphore"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -20557,6 +20626,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSignalSemaphore")]
+    #[doc(alias = "vkSignalSemaphoreKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn signal_semaphore<'a: 'this, 'this, 'lt>(
@@ -20567,15 +20637,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .signal_semaphore()
+            .and_then(|vtable| vtable.signal_semaphore())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_timeline_semaphore")]
+                return self
+                    .vtable()
+                    .khr_timeline_semaphore()
+                    .and_then(|vtable| vtable.signal_semaphore_khr());
+                #[cfg(not(feature = "VK_KHR_timeline_semaphore"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .signal_semaphore()
+            .and_then(|vtable| vtable.signal_semaphore())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_timeline_semaphore")]
+                return self
+                    .vtable()
+                    .khr_timeline_semaphore()
+                    .and_then(|vtable| vtable.signal_semaphore_khr());
+                #[cfg(not(feature = "VK_KHR_timeline_semaphore"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_signal_info as *const SemaphoreSignalInfo<'lt>);
         match _return {
@@ -20634,6 +20720,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetBufferOpaqueCaptureAddress")]
+    #[doc(alias = "vkGetBufferOpaqueCaptureAddressKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_buffer_opaque_capture_address<'a: 'this, 'this, 'lt>(
@@ -20644,15 +20731,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .get_buffer_opaque_capture_address()
+            .and_then(|vtable| vtable.get_buffer_opaque_capture_address())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_buffer_device_address")]
+                return self
+                    .vtable()
+                    .khr_buffer_device_address()
+                    .and_then(|vtable| vtable.get_buffer_opaque_capture_address_khr());
+                #[cfg(not(feature = "VK_KHR_buffer_device_address"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .get_buffer_opaque_capture_address()
+            .and_then(|vtable| vtable.get_buffer_opaque_capture_address())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_buffer_device_address")]
+                return self
+                    .vtable()
+                    .khr_buffer_device_address()
+                    .and_then(|vtable| vtable.get_buffer_opaque_capture_address_khr());
+                #[cfg(not(feature = "VK_KHR_buffer_device_address"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_info as *const BufferDeviceAddressInfo<'lt>);
         _return
@@ -20733,6 +20836,8 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetBufferDeviceAddress")]
+    #[doc(alias = "vkGetBufferDeviceAddressKHR")]
+    #[doc(alias = "vkGetBufferDeviceAddressEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_buffer_device_address<'a: 'this, 'this, 'lt>(
@@ -20743,15 +20848,49 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .get_buffer_device_address()
+            .and_then(|vtable| vtable.get_buffer_device_address())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_buffer_device_address")]
+                return self
+                    .vtable()
+                    .khr_buffer_device_address()
+                    .and_then(|vtable| vtable.get_buffer_device_address_khr());
+                #[cfg(not(feature = "VK_KHR_buffer_device_address"))]
+                return None;
+            })
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_buffer_device_address")]
+                return self
+                    .vtable()
+                    .ext_buffer_device_address()
+                    .and_then(|vtable| vtable.get_buffer_device_address_ext());
+                #[cfg(not(feature = "VK_EXT_buffer_device_address"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .get_buffer_device_address()
+            .and_then(|vtable| vtable.get_buffer_device_address())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_buffer_device_address")]
+                return self
+                    .vtable()
+                    .khr_buffer_device_address()
+                    .and_then(|vtable| vtable.get_buffer_device_address_khr());
+                #[cfg(not(feature = "VK_KHR_buffer_device_address"))]
+                return None;
+            })
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_buffer_device_address")]
+                return self
+                    .vtable()
+                    .ext_buffer_device_address()
+                    .and_then(|vtable| vtable.get_buffer_device_address_ext());
+                #[cfg(not(feature = "VK_EXT_buffer_device_address"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_info as *const BufferDeviceAddressInfo<'lt>);
         _return
@@ -20808,6 +20947,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceMemoryOpaqueCaptureAddress")]
+    #[doc(alias = "vkGetDeviceMemoryOpaqueCaptureAddressKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_device_memory_opaque_capture_address<'a: 'this, 'this, 'lt>(
@@ -20818,15 +20958,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .get_device_memory_opaque_capture_address()
+            .and_then(|vtable| vtable.get_device_memory_opaque_capture_address())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_buffer_device_address")]
+                return self
+                    .vtable()
+                    .khr_buffer_device_address()
+                    .and_then(|vtable| vtable.get_device_memory_opaque_capture_address_khr());
+                #[cfg(not(feature = "VK_KHR_buffer_device_address"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .get_device_memory_opaque_capture_address()
+            .and_then(|vtable| vtable.get_device_memory_opaque_capture_address())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_buffer_device_address")]
+                return self
+                    .vtable()
+                    .khr_buffer_device_address()
+                    .and_then(|vtable| vtable.get_device_memory_opaque_capture_address_khr());
+                #[cfg(not(feature = "VK_KHR_buffer_device_address"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -20974,6 +21130,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBeginRenderPass2")]
+    #[doc(alias = "vkCmdBeginRenderPass2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_begin_render_pass2<'a: 'this, 'this, 'lt>(
@@ -20986,16 +21143,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .cmd_begin_render_pass2()
+            .and_then(|vtable| vtable.cmd_begin_render_pass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.cmd_begin_render_pass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .cmd_begin_render_pass2()
+            .and_then(|vtable| vtable.cmd_begin_render_pass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.cmd_begin_render_pass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -21074,6 +21249,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdNextSubpass2")]
+    #[doc(alias = "vkCmdNextSubpass2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_next_subpass2<'a: 'this, 'this, 'lt>(
@@ -21086,16 +21262,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .cmd_next_subpass2()
+            .and_then(|vtable| vtable.cmd_next_subpass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.cmd_next_subpass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .cmd_next_subpass2()
+            .and_then(|vtable| vtable.cmd_next_subpass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.cmd_next_subpass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -21168,6 +21362,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdEndRenderPass2")]
+    #[doc(alias = "vkCmdEndRenderPass2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_end_render_pass2<'a: 'this, 'this, 'lt>(
@@ -21179,16 +21374,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .cmd_end_render_pass2()
+            .and_then(|vtable| vtable.cmd_end_render_pass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.cmd_end_render_pass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .cmd_end_render_pass2()
+            .and_then(|vtable| vtable.cmd_end_render_pass2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_create_renderpass2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_create_renderpass_2()
+                    .and_then(|vtable| vtable.cmd_end_render_pass2_khr());
+                #[cfg(not(feature = "VK_KHR_create_renderpass2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_subpass_end_info as *const SubpassEndInfo<'lt>);
         ()
@@ -21603,10 +21816,10 @@ impl CommandBuffer {
     ///   [[fxvertex-input]]()
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
-    ///   prior to this drawing command, and the `primitiveTopology` parameter of
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
-    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    ///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the
+    ///   pipeline [`PipelineInputAssemblyStateCreateInfo::topology`] state
     /// - If the bound graphics pipeline was created with both the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
     ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
@@ -21614,9 +21827,9 @@ impl CommandBuffer {
     /// - If the bound graphics pipeline was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
-    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
-    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
-    ///   **must**  not be `NULL`
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  not be `NULL`
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
     ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
@@ -21627,7 +21840,7 @@ impl CommandBuffer {
     ///   buffer prior to this drawing command
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
     ///   buffer prior to this drawing command
     /// - The bound graphics pipeline  **must**  not have been created with the
     ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
@@ -21696,6 +21909,8 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDrawIndirectCount")]
+    #[doc(alias = "vkCmdDrawIndirectCountKHR")]
+    #[doc(alias = "vkCmdDrawIndirectCountAMD")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_draw_indirect_count<'a: 'this, 'this>(
@@ -21712,16 +21927,54 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .cmd_draw_indirect_count()
+            .and_then(|vtable| vtable.cmd_draw_indirect_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indirect_count_khr());
+                #[cfg(not(feature = "VK_KHR_draw_indirect_count"))]
+                return None;
+            })
+            .or_else(|| {
+                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .amd_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indirect_count_amd());
+                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .cmd_draw_indirect_count()
+            .and_then(|vtable| vtable.cmd_draw_indirect_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indirect_count_khr());
+                #[cfg(not(feature = "VK_KHR_draw_indirect_count"))]
+                return None;
+            })
+            .or_else(|| {
+                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .amd_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indirect_count_amd());
+                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -22144,10 +22397,10 @@ impl CommandBuffer {
     ///   [[fxvertex-input]]()
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
-    ///   prior to this drawing command, and the `primitiveTopology` parameter of
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
-    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    ///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the
+    ///   pipeline [`PipelineInputAssemblyStateCreateInfo::topology`] state
     /// - If the bound graphics pipeline was created with both the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
     ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
@@ -22155,9 +22408,9 @@ impl CommandBuffer {
     /// - If the bound graphics pipeline was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
-    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
-    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
-    ///   **must**  not be `NULL`
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  not be `NULL`
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
     ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
@@ -22168,7 +22421,7 @@ impl CommandBuffer {
     ///   buffer prior to this drawing command
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
     ///   buffer prior to this drawing command
     /// - The bound graphics pipeline  **must**  not have been created with the
     ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
@@ -22238,6 +22491,8 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDrawIndexedIndirectCount")]
+    #[doc(alias = "vkCmdDrawIndexedIndirectCountKHR")]
+    #[doc(alias = "vkCmdDrawIndexedIndirectCountAMD")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_draw_indexed_indirect_count<'a: 'this, 'this>(
@@ -22254,16 +22509,54 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_2()
-            .expect("extension/version not loaded")
-            .cmd_draw_indexed_indirect_count()
+            .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count_khr());
+                #[cfg(not(feature = "VK_KHR_draw_indirect_count"))]
+                return None;
+            })
+            .or_else(|| {
+                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .amd_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count_amd());
+                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_2()
-            .unwrap_unchecked()
-            .cmd_draw_indexed_indirect_count()
+            .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count_khr());
+                #[cfg(not(feature = "VK_KHR_draw_indirect_count"))]
+                return None;
+            })
+            .or_else(|| {
+                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                return self
+                    .device()
+                    .vtable()
+                    .amd_draw_indirect_count()
+                    .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count_amd());
+                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

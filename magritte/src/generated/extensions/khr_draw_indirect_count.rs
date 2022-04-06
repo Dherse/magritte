@@ -19,8 +19,8 @@
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_draw_indirect_count extension>>)
 //!# New functions & commands
-//! - [`CmdDrawIndexedIndirectCountKHR`]
-//! - [`CmdDrawIndirectCountKHR`]
+//! - [`cmd_draw_indexed_indirect_count_khr`]
+//! - [`cmd_draw_indirect_count_khr`]
 //!# New constants
 //! - [`KHR_DRAW_INDIRECT_COUNT_EXTENSION_NAME`]
 //! - [`KHR_DRAW_INDIRECT_COUNT_SPEC_VERSION`]
@@ -33,8 +33,8 @@
 //! * - Matthaeus G. Chajdas, AMD  - Derrick Owens, AMD  - Graham Sellers, AMD  - Daniel Rakos, AMD
 //!   - Dominik Witczak, AMD  - Piers Daniell, NVIDIA
 //!# Related
-//! - [`CmdDrawIndexedIndirectCountKHR`]
-//! - [`CmdDrawIndirectCountKHR`]
+//! - [`cmd_draw_indexed_indirect_count_khr`]
+//! - [`cmd_draw_indirect_count_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -59,9 +59,9 @@ pub const KHR_DRAW_INDIRECT_COUNT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The V-table of [`Device`] for functions from `VK_KHR_draw_indirect_count`
 pub struct DeviceKhrDrawIndirectCountVTable {
     ///See [`FNCmdDrawIndirectCount`] for more information.
-    pub cmd_draw_indirect_count: FNCmdDrawIndirectCount,
+    pub cmd_draw_indirect_count_khr: FNCmdDrawIndirectCount,
     ///See [`FNCmdDrawIndexedIndirectCount`] for more information.
-    pub cmd_draw_indexed_indirect_count: FNCmdDrawIndexedIndirectCount,
+    pub cmd_draw_indexed_indirect_count_khr: FNCmdDrawIndexedIndirectCount,
 }
 impl DeviceKhrDrawIndirectCountVTable {
     ///Loads the VTable from the owner and the names
@@ -74,10 +74,10 @@ impl DeviceKhrDrawIndirectCountVTable {
         loader: Device,
     ) -> Self {
         Self {
-            cmd_draw_indirect_count: unsafe {
+            cmd_draw_indirect_count_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndirectCountKHR").as_ptr()))
             },
-            cmd_draw_indexed_indirect_count: unsafe {
+            cmd_draw_indexed_indirect_count_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCmdDrawIndexedIndirectCountKHR").as_ptr(),
@@ -85,13 +85,14 @@ impl DeviceKhrDrawIndirectCountVTable {
             },
         }
     }
-    ///Gets [`Self::cmd_draw_indirect_count`]. See [`FNCmdDrawIndirectCount`] for more information.
-    pub fn cmd_draw_indirect_count(&self) -> FNCmdDrawIndirectCount {
-        self.cmd_draw_indirect_count
+    ///Gets [`Self::cmd_draw_indirect_count_khr`]. See [`FNCmdDrawIndirectCount`] for more
+    /// information.
+    pub fn cmd_draw_indirect_count_khr(&self) -> FNCmdDrawIndirectCount {
+        self.cmd_draw_indirect_count_khr
     }
-    ///Gets [`Self::cmd_draw_indexed_indirect_count`]. See [`FNCmdDrawIndexedIndirectCount`] for
-    /// more information.
-    pub fn cmd_draw_indexed_indirect_count(&self) -> FNCmdDrawIndexedIndirectCount {
-        self.cmd_draw_indexed_indirect_count
+    ///Gets [`Self::cmd_draw_indexed_indirect_count_khr`]. See [`FNCmdDrawIndexedIndirectCount`]
+    /// for more information.
+    pub fn cmd_draw_indexed_indirect_count_khr(&self) -> FNCmdDrawIndexedIndirectCount {
+        self.cmd_draw_indexed_indirect_count_khr
     }
 }

@@ -277,16 +277,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .nv_acquire_winrt_display()
-            .expect("extension/version not loaded")
-            .acquire_winrt_display_nv()
+            .and_then(|vtable| vtable.acquire_winrt_display_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .nv_acquire_winrt_display()
-            .unwrap_unchecked()
-            .acquire_winrt_display_nv()
+            .and_then(|vtable| vtable.acquire_winrt_display_nv())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), display);
         match _return {
@@ -356,16 +354,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .nv_acquire_winrt_display()
-            .expect("extension/version not loaded")
-            .get_winrt_display_nv()
+            .and_then(|vtable| vtable.get_winrt_display_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .nv_acquire_winrt_display()
-            .unwrap_unchecked()
-            .get_winrt_display_nv()
+            .and_then(|vtable| vtable.get_winrt_display_nv())
             .unwrap_unchecked();
         let mut p_display = MaybeUninit::<DisplayKHR>::uninit();
         let _return = _function(

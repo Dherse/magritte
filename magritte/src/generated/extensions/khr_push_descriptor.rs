@@ -429,16 +429,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_push_descriptor()
-            .expect("extension/version not loaded")
-            .cmd_push_descriptor_set_khr()
+            .and_then(|vtable| vtable.cmd_push_descriptor_set_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_push_descriptor()
-            .unwrap_unchecked()
-            .cmd_push_descriptor_set_khr()
+            .and_then(|vtable| vtable.cmd_push_descriptor_set_khr())
             .unwrap_unchecked();
         let descriptor_write_count = (|len: usize| len)(p_descriptor_writes.len()) as _;
         let _return = _function(

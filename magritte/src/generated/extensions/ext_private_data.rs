@@ -22,10 +22,10 @@
 //!# New handles
 //! - [`PrivateDataSlotEXT`]
 //!# New functions & commands
-//! - [`CreatePrivateDataSlotEXT`]
-//! - [`DestroyPrivateDataSlotEXT`]
-//! - [`GetPrivateDataEXT`]
-//! - [`SetPrivateDataEXT`]
+//! - [`create_private_data_slot_ext`]
+//! - [`destroy_private_data_slot_ext`]
+//! - [`get_private_data_ext`]
+//! - [`set_private_data_ext`]
 //!# New structures
 //! - [`PrivateDataSlotCreateInfoEXT`]
 //! - Extending [`DeviceCreateInfo`]:  - [`DevicePrivateDataCreateInfoEXT`]
@@ -53,10 +53,10 @@
 //! - [`PrivateDataSlotCreateFlagsEXT`]
 //! - [`PrivateDataSlotCreateInfoEXT`]
 //! - [`PrivateDataSlotEXT`]
-//! - [`CreatePrivateDataSlotEXT`]
-//! - [`DestroyPrivateDataSlotEXT`]
-//! - [`GetPrivateDataEXT`]
-//! - [`SetPrivateDataEXT`]
+//! - [`create_private_data_slot_ext`]
+//! - [`destroy_private_data_slot_ext`]
+//! - [`get_private_data_ext`]
+//! - [`set_private_data_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -81,13 +81,13 @@ pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The V-table of [`Device`] for functions from `VK_EXT_private_data`
 pub struct DeviceExtPrivateDataVTable {
     ///See [`FNCreatePrivateDataSlot`] for more information.
-    pub create_private_data_slot: FNCreatePrivateDataSlot,
+    pub create_private_data_slot_ext: FNCreatePrivateDataSlot,
     ///See [`FNDestroyPrivateDataSlot`] for more information.
-    pub destroy_private_data_slot: FNDestroyPrivateDataSlot,
+    pub destroy_private_data_slot_ext: FNDestroyPrivateDataSlot,
     ///See [`FNSetPrivateData`] for more information.
-    pub set_private_data: FNSetPrivateData,
+    pub set_private_data_ext: FNSetPrivateData,
     ///See [`FNGetPrivateData`] for more information.
-    pub get_private_data: FNGetPrivateData,
+    pub get_private_data_ext: FNGetPrivateData,
 }
 impl DeviceExtPrivateDataVTable {
     ///Loads the VTable from the owner and the names
@@ -100,36 +100,36 @@ impl DeviceExtPrivateDataVTable {
         loader: Device,
     ) -> Self {
         Self {
-            create_private_data_slot: unsafe {
+            create_private_data_slot_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreatePrivateDataSlotEXT").as_ptr()))
             },
-            destroy_private_data_slot: unsafe {
+            destroy_private_data_slot_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkDestroyPrivateDataSlotEXT").as_ptr()))
             },
-            set_private_data: unsafe {
+            set_private_data_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkSetPrivateDataEXT").as_ptr()))
             },
-            get_private_data: unsafe {
+            get_private_data_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetPrivateDataEXT").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::create_private_data_slot`]. See [`FNCreatePrivateDataSlot`] for more
+    ///Gets [`Self::create_private_data_slot_ext`]. See [`FNCreatePrivateDataSlot`] for more
     /// information.
-    pub fn create_private_data_slot(&self) -> FNCreatePrivateDataSlot {
-        self.create_private_data_slot
+    pub fn create_private_data_slot_ext(&self) -> FNCreatePrivateDataSlot {
+        self.create_private_data_slot_ext
     }
-    ///Gets [`Self::destroy_private_data_slot`]. See [`FNDestroyPrivateDataSlot`] for more
+    ///Gets [`Self::destroy_private_data_slot_ext`]. See [`FNDestroyPrivateDataSlot`] for more
     /// information.
-    pub fn destroy_private_data_slot(&self) -> FNDestroyPrivateDataSlot {
-        self.destroy_private_data_slot
+    pub fn destroy_private_data_slot_ext(&self) -> FNDestroyPrivateDataSlot {
+        self.destroy_private_data_slot_ext
     }
-    ///Gets [`Self::set_private_data`]. See [`FNSetPrivateData`] for more information.
-    pub fn set_private_data(&self) -> FNSetPrivateData {
-        self.set_private_data
+    ///Gets [`Self::set_private_data_ext`]. See [`FNSetPrivateData`] for more information.
+    pub fn set_private_data_ext(&self) -> FNSetPrivateData {
+        self.set_private_data_ext
     }
-    ///Gets [`Self::get_private_data`]. See [`FNGetPrivateData`] for more information.
-    pub fn get_private_data(&self) -> FNGetPrivateData {
-        self.get_private_data
+    ///Gets [`Self::get_private_data_ext`]. See [`FNGetPrivateData`] for more information.
+    pub fn get_private_data_ext(&self) -> FNGetPrivateData {
+        self.get_private_data_ext
     }
 }

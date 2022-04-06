@@ -1937,16 +1937,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_fragment_shading_rate()
-            .expect("extension/version not loaded")
-            .get_physical_device_fragment_shading_rates_khr()
+            .and_then(|vtable| vtable.get_physical_device_fragment_shading_rates_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_fragment_shading_rate()
-            .unwrap_unchecked()
-            .get_physical_device_fragment_shading_rates_khr()
+            .and_then(|vtable| vtable.get_physical_device_fragment_shading_rates_khr())
             .unwrap_unchecked();
         let mut p_fragment_shading_rate_count = match p_fragment_shading_rate_count {
             Some(v) => v as _,
@@ -2070,16 +2068,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_fragment_shading_rate()
-            .expect("extension/version not loaded")
-            .cmd_set_fragment_shading_rate_khr()
+            .and_then(|vtable| vtable.cmd_set_fragment_shading_rate_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_fragment_shading_rate()
-            .unwrap_unchecked()
-            .cmd_set_fragment_shading_rate_khr()
+            .and_then(|vtable| vtable.cmd_set_fragment_shading_rate_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_fragment_size as *const Extent2D, combiner_ops);
         ()

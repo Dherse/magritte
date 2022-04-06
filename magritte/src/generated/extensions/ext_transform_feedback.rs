@@ -1003,9 +1003,9 @@ pub type FNCmdEndQueryIndexedExt =
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
-///   to this drawing command, and the `primitiveTopology` parameter of
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `primitiveTopology` parameter of
+///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the pipeline
 ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
 /// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
@@ -1013,9 +1013,10 @@ pub type FNCmdEndQueryIndexedExt =
 ///   this draw command
 /// - If the bound graphics pipeline was created with the
 ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
-///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
-///   **must**  have been called in the current command buffer prior to this draw command, and the
-///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+///   prior to this draw command, and the `pStrides` parameter of [`cmd_bind_vertex_buffers2_ext`]
+///   **must**  not be `NULL`
 /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
 ///   current command buffer prior to this draw command
@@ -1025,8 +1026,8 @@ pub type FNCmdEndQueryIndexedExt =
 ///   prior to this drawing command
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
-///   prior to this drawing command
+///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
+///   buffer prior to this drawing command
 /// - The bound graphics pipeline  **must**  not have been created with the
 ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
 ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
@@ -1984,16 +1985,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_transform_feedback()
-            .expect("extension/version not loaded")
-            .cmd_bind_transform_feedback_buffers_ext()
+            .and_then(|vtable| vtable.cmd_bind_transform_feedback_buffers_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_transform_feedback()
-            .unwrap_unchecked()
-            .cmd_bind_transform_feedback_buffers_ext()
+            .and_then(|vtable| vtable.cmd_bind_transform_feedback_buffers_ext())
             .unwrap_unchecked();
         let binding_count = (|len: usize| len)(p_buffers.len()) as _;
         let _return = _function(
@@ -2119,16 +2118,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_transform_feedback()
-            .expect("extension/version not loaded")
-            .cmd_begin_transform_feedback_ext()
+            .and_then(|vtable| vtable.cmd_begin_transform_feedback_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_transform_feedback()
-            .unwrap_unchecked()
-            .cmd_begin_transform_feedback_ext()
+            .and_then(|vtable| vtable.cmd_begin_transform_feedback_ext())
             .unwrap_unchecked();
         let counter_buffer_count = (|len: usize| len)(p_counter_buffers.len()) as _;
         let _return = _function(
@@ -2243,16 +2240,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_transform_feedback()
-            .expect("extension/version not loaded")
-            .cmd_end_transform_feedback_ext()
+            .and_then(|vtable| vtable.cmd_end_transform_feedback_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_transform_feedback()
-            .unwrap_unchecked()
-            .cmd_end_transform_feedback_ext()
+            .and_then(|vtable| vtable.cmd_end_transform_feedback_ext())
             .unwrap_unchecked();
         let counter_buffer_count = (|len: usize| len)(p_counter_buffers.len()) as _;
         let _return = _function(
@@ -2402,16 +2397,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_transform_feedback()
-            .expect("extension/version not loaded")
-            .cmd_begin_query_indexed_ext()
+            .and_then(|vtable| vtable.cmd_begin_query_indexed_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_transform_feedback()
-            .unwrap_unchecked()
-            .cmd_begin_query_indexed_ext()
+            .and_then(|vtable| vtable.cmd_begin_query_indexed_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -2503,16 +2496,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_transform_feedback()
-            .expect("extension/version not loaded")
-            .cmd_end_query_indexed_ext()
+            .and_then(|vtable| vtable.cmd_end_query_indexed_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_transform_feedback()
-            .unwrap_unchecked()
-            .cmd_end_query_indexed_ext()
+            .and_then(|vtable| vtable.cmd_end_query_indexed_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -2917,10 +2908,10 @@ impl CommandBuffer {
     ///   [[fxvertex-input]]()
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
-    ///   prior to this drawing command, and the `primitiveTopology` parameter of
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
-    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    ///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the
+    ///   pipeline [`PipelineInputAssemblyStateCreateInfo::topology`] state
     /// - If the bound graphics pipeline was created with both the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
     ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
@@ -2928,9 +2919,9 @@ impl CommandBuffer {
     /// - If the bound graphics pipeline was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
-    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
-    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
-    ///   **must**  not be `NULL`
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  not be `NULL`
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
     ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
@@ -2941,7 +2932,7 @@ impl CommandBuffer {
     ///   buffer prior to this drawing command
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
     ///   buffer prior to this drawing command
     /// - The bound graphics pipeline  **must**  not have been created with the
     ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
@@ -3006,16 +2997,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_transform_feedback()
-            .expect("extension/version not loaded")
-            .cmd_draw_indirect_byte_count_ext()
+            .and_then(|vtable| vtable.cmd_draw_indirect_byte_count_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_transform_feedback()
-            .unwrap_unchecked()
-            .cmd_draw_indirect_byte_count_ext()
+            .and_then(|vtable| vtable.cmd_draw_indirect_byte_count_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

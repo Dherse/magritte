@@ -1802,16 +1802,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_shading_rate_image()
-            .expect("extension/version not loaded")
-            .cmd_bind_shading_rate_image_nv()
+            .and_then(|vtable| vtable.cmd_bind_shading_rate_image_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_shading_rate_image()
-            .unwrap_unchecked()
-            .cmd_bind_shading_rate_image_nv()
+            .and_then(|vtable| vtable.cmd_bind_shading_rate_image_nv())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), image_view.unwrap_or_default(), image_layout);
         ()
@@ -1897,16 +1895,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_shading_rate_image()
-            .expect("extension/version not loaded")
-            .cmd_set_viewport_shading_rate_palette_nv()
+            .and_then(|vtable| vtable.cmd_set_viewport_shading_rate_palette_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_shading_rate_image()
-            .unwrap_unchecked()
-            .cmd_set_viewport_shading_rate_palette_nv()
+            .and_then(|vtable| vtable.cmd_set_viewport_shading_rate_palette_nv())
             .unwrap_unchecked();
         let viewport_count = (|len: usize| len)(p_shading_rate_palettes.len()) as _;
         let _return = _function(
@@ -2001,16 +1997,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_shading_rate_image()
-            .expect("extension/version not loaded")
-            .cmd_set_coarse_sample_order_nv()
+            .and_then(|vtable| vtable.cmd_set_coarse_sample_order_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_shading_rate_image()
-            .unwrap_unchecked()
-            .cmd_set_coarse_sample_order_nv()
+            .and_then(|vtable| vtable.cmd_set_coarse_sample_order_nv())
             .unwrap_unchecked();
         let custom_sample_order_count = (|len: usize| len)(p_custom_sample_orders.len()) as _;
         let _return = _function(

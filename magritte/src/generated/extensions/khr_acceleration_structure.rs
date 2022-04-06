@@ -8361,8 +8361,8 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
 ///} VkDeviceOrHostAddressKHR;
 ///```
 ///# Members
-/// - [`device_address`] is a buffer device address as returned by the [`GetBufferDeviceAddressKHR`]
-///   command.
+/// - [`device_address`] is a buffer device address as returned by the
+///   [`get_buffer_device_address_khr`] command.
 /// - [`host_address`] is a host memory address.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -8383,7 +8383,7 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
 #[repr(C)]
 pub union DeviceOrHostAddressKHR {
     ///[`device_address`] is a buffer device address as returned by the
-    ///[`GetBufferDeviceAddressKHR`] command.
+    ///[`get_buffer_device_address_khr`] command.
     pub device_address: DeviceAddress,
     ///[`host_address`] is a host memory address.
     pub host_address: *mut c_void,
@@ -8404,8 +8404,8 @@ impl Default for DeviceOrHostAddressKHR {
 ///} VkDeviceOrHostAddressConstKHR;
 ///```
 ///# Members
-/// - [`device_address`] is a buffer device address as returned by the [`GetBufferDeviceAddressKHR`]
-///   command.
+/// - [`device_address`] is a buffer device address as returned by the
+///   [`get_buffer_device_address_khr`] command.
 /// - [`host_address`] is a const host memory address.
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]
@@ -8429,7 +8429,7 @@ impl Default for DeviceOrHostAddressKHR {
 #[repr(C)]
 pub union DeviceOrHostAddressConstKHR {
     ///[`device_address`] is a buffer device address as returned by the
-    ///[`GetBufferDeviceAddressKHR`] command.
+    ///[`get_buffer_device_address_khr`] command.
     pub device_address: DeviceAddress,
     ///[`host_address`] is a const host memory address.
     pub host_address: *const c_void,
@@ -8550,15 +8550,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .destroy_acceleration_structure_khr()
+            .and_then(|vtable| vtable.destroy_acceleration_structure_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .destroy_acceleration_structure_khr()
+            .and_then(|vtable| vtable.destroy_acceleration_structure_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -8642,15 +8640,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .copy_acceleration_structure_khr()
+            .and_then(|vtable| vtable.copy_acceleration_structure_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .copy_acceleration_structure_khr()
+            .and_then(|vtable| vtable.copy_acceleration_structure_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -8743,15 +8739,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .copy_acceleration_structure_to_memory_khr()
+            .and_then(|vtable| vtable.copy_acceleration_structure_to_memory_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .copy_acceleration_structure_to_memory_khr()
+            .and_then(|vtable| vtable.copy_acceleration_structure_to_memory_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -8840,15 +8834,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .copy_memory_to_acceleration_structure_khr()
+            .and_then(|vtable| vtable.copy_memory_to_acceleration_structure_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .copy_memory_to_acceleration_structure_khr()
+            .and_then(|vtable| vtable.copy_memory_to_acceleration_structure_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -8962,15 +8954,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .write_acceleration_structures_properties_khr()
+            .and_then(|vtable| vtable.write_acceleration_structures_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .write_acceleration_structures_properties_khr()
+            .and_then(|vtable| vtable.write_acceleration_structures_properties_khr())
             .unwrap_unchecked();
         let acceleration_structure_count = (|len: usize| len)(p_acceleration_structures.len()) as _;
         let _return = _function(
@@ -9043,15 +9033,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .get_device_acceleration_structure_compatibility_khr()
+            .and_then(|vtable| vtable.get_device_acceleration_structure_compatibility_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .get_device_acceleration_structure_compatibility_khr()
+            .and_then(|vtable| vtable.get_device_acceleration_structure_compatibility_khr())
             .unwrap_unchecked();
         let mut p_compatibility = AccelerationStructureCompatibilityKHR::empty();
         let _return = _function(
@@ -9149,15 +9137,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .create_acceleration_structure_khr()
+            .and_then(|vtable| vtable.create_acceleration_structure_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .create_acceleration_structure_khr()
+            .and_then(|vtable| vtable.create_acceleration_structure_khr())
             .unwrap_unchecked();
         let mut p_acceleration_structure = MaybeUninit::<AccelerationStructureKHR>::uninit();
         let _return = _function(
@@ -9464,15 +9450,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .build_acceleration_structures_khr()
+            .and_then(|vtable| vtable.build_acceleration_structures_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .build_acceleration_structures_khr()
+            .and_then(|vtable| vtable.build_acceleration_structures_khr())
             .unwrap_unchecked();
         let info_count = (|len: usize| len)(p_infos.len()) as _;
         let _return = _function(
@@ -9552,15 +9536,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .get_acceleration_structure_device_address_khr()
+            .and_then(|vtable| vtable.get_acceleration_structure_device_address_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .get_acceleration_structure_device_address_khr()
+            .and_then(|vtable| vtable.get_acceleration_structure_device_address_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -9685,15 +9667,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .get_acceleration_structure_build_sizes_khr()
+            .and_then(|vtable| vtable.get_acceleration_structure_build_sizes_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .get_acceleration_structure_build_sizes_khr()
+            .and_then(|vtable| vtable.get_acceleration_structure_build_sizes_khr())
             .unwrap_unchecked();
         let mut p_size_info = MaybeUninit::<AccelerationStructureBuildSizesInfoKHR<'lt>>::zeroed();
         let _return = _function(
@@ -9775,16 +9755,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .cmd_copy_acceleration_structure_khr()
+            .and_then(|vtable| vtable.cmd_copy_acceleration_structure_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .cmd_copy_acceleration_structure_khr()
+            .and_then(|vtable| vtable.cmd_copy_acceleration_structure_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_info as *const CopyAccelerationStructureInfoKHR<'lt>);
         ()
@@ -9890,16 +9868,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .cmd_copy_acceleration_structure_to_memory_khr()
+            .and_then(|vtable| vtable.cmd_copy_acceleration_structure_to_memory_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .cmd_copy_acceleration_structure_to_memory_khr()
+            .and_then(|vtable| vtable.cmd_copy_acceleration_structure_to_memory_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -9987,16 +9963,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .cmd_copy_memory_to_acceleration_structure_khr()
+            .and_then(|vtable| vtable.cmd_copy_memory_to_acceleration_structure_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .cmd_copy_memory_to_acceleration_structure_khr()
+            .and_then(|vtable| vtable.cmd_copy_memory_to_acceleration_structure_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -10109,16 +10083,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .cmd_write_acceleration_structures_properties_khr()
+            .and_then(|vtable| vtable.cmd_write_acceleration_structures_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .cmd_write_acceleration_structures_properties_khr()
+            .and_then(|vtable| vtable.cmd_write_acceleration_structures_properties_khr())
             .unwrap_unchecked();
         let acceleration_structure_count = (|len: usize| len)(p_acceleration_structures.len()) as _;
         let _return = _function(
@@ -10486,16 +10458,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .cmd_build_acceleration_structures_khr()
+            .and_then(|vtable| vtable.cmd_build_acceleration_structures_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .cmd_build_acceleration_structures_khr()
+            .and_then(|vtable| vtable.cmd_build_acceleration_structures_khr())
             .unwrap_unchecked();
         let info_count = (|len: usize| len)(p_infos.len()) as _;
         let _return = _function(
@@ -10869,16 +10839,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .expect("extension/version not loaded")
-            .cmd_build_acceleration_structures_indirect_khr()
+            .and_then(|vtable| vtable.cmd_build_acceleration_structures_indirect_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_acceleration_structure()
-            .unwrap_unchecked()
-            .cmd_build_acceleration_structures_indirect_khr()
+            .and_then(|vtable| vtable.cmd_build_acceleration_structures_indirect_khr())
             .unwrap_unchecked();
         let info_count = (|len: usize| len)(p_infos.len()) as _;
         let _return = _function(

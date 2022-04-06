@@ -398,15 +398,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_directfb_surface()
-            .expect("extension/version not loaded")
-            .create_direct_fb_surface_ext()
+            .and_then(|vtable| vtable.create_direct_fb_surface_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_directfb_surface()
-            .unwrap_unchecked()
-            .create_direct_fb_surface_ext()
+            .and_then(|vtable| vtable.create_direct_fb_surface_ext())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(
@@ -474,16 +472,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_directfb_surface()
-            .expect("extension/version not loaded")
-            .get_physical_device_direct_fb_presentation_support_ext()
+            .and_then(|vtable| vtable.get_physical_device_direct_fb_presentation_support_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_directfb_surface()
-            .unwrap_unchecked()
-            .get_physical_device_direct_fb_presentation_support_ext()
+            .and_then(|vtable| vtable.get_physical_device_direct_fb_presentation_support_ext())
             .unwrap_unchecked();
         let mut dfb = std::mem::zeroed();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _, &mut dfb);

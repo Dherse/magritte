@@ -784,16 +784,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_vertex_input_dynamic_state()
-            .expect("extension/version not loaded")
-            .cmd_set_vertex_input_ext()
+            .and_then(|vtable| vtable.cmd_set_vertex_input_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_vertex_input_dynamic_state()
-            .unwrap_unchecked()
-            .cmd_set_vertex_input_ext()
+            .and_then(|vtable| vtable.cmd_set_vertex_input_ext())
             .unwrap_unchecked();
         let vertex_binding_description_count = (|len: usize| len)(p_vertex_binding_descriptions.len()) as _;
         let vertex_attribute_description_count = (|len: usize| len)(p_vertex_attribute_descriptions.len()) as _;

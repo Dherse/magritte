@@ -18,7 +18,7 @@ use magritte::{
         CommandPoolCreateInfo, DeviceCreateInfo, DeviceQueueCreateInfo, Extent2D, ImageUsageFlags, InstanceCreateInfo,
         PhysicalDeviceFeatures, QueueFlags, SharingMode, FALSE,
     },
-    AsRaw, Extensions,
+    AsRaw, Extensions, vulkan1_1::PhysicalDeviceFeatures2, Version,
 };
 
 use winit::{event_loop::EventLoop, window::WindowBuilder};
@@ -38,9 +38,10 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     info!("Maximum supported version: {}", version);
 
-    let extensions = magritte::window::enable_required_extensions(&window, Extensions::from_version(version))?
+    let extensions = magritte::window::enable_required_extensions(&window, Extensions::from_version(Version::VULKAN1_0))?
         .enable_ext_debug_utils()
-        .enable_khr_swapchain();
+        .enable_khr_swapchain()
+        .enable_khr_get_physical_device_properties_2();
 
     let ext_list = extensions
         .instance_extension_names()
@@ -103,13 +104,20 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         .set_queue_family_index(queue_family_index as u32)
         .set_queue_priorities(&[1.0]);
 
-    let features = PhysicalDeviceFeatures::default();
+    let features2 = unsafe {
+        pdevice.get_physical_device_features2(None)
+    };
+
+    println!("{:#?}", features2);
+
 
     let device_extensions = extensions
         .device_extension_names()
         .into_iter()
         .map(|c| c.as_ptr())
         .collect::<Vec<_>>();
+
+    let features = PhysicalDeviceFeatures::default();
     let device_create_info = DeviceCreateInfo::default()
         .set_queue_create_infos(std::slice::from_ref(&queue_info))
         .set_pp_enabled_extension_names(&device_extensions)

@@ -224,16 +224,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_acquire_drm_display()
-            .expect("extension/version not loaded")
-            .acquire_drm_display_ext()
+            .and_then(|vtable| vtable.acquire_drm_display_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_acquire_drm_display()
-            .unwrap_unchecked()
-            .acquire_drm_display_ext()
+            .and_then(|vtable| vtable.acquire_drm_display_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), drm_fd.unwrap_or_default() as _, display);
         match _return {
@@ -309,16 +307,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_acquire_drm_display()
-            .expect("extension/version not loaded")
-            .get_drm_display_ext()
+            .and_then(|vtable| vtable.get_drm_display_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_acquire_drm_display()
-            .unwrap_unchecked()
-            .get_drm_display_ext()
+            .and_then(|vtable| vtable.get_drm_display_ext())
             .unwrap_unchecked();
         let mut display = MaybeUninit::<DisplayKHR>::uninit();
         let _return = _function(

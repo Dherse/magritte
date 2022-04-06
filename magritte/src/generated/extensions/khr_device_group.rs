@@ -19,9 +19,9 @@
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_device_group
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdDispatchBaseKHR`]
-//! - [`CmdSetDeviceMaskKHR`]
-//! - [`GetDeviceGroupPeerMemoryFeaturesKHR`]
+//! - [`cmd_dispatch_base_khr`]
+//! - [`cmd_set_device_mask_khr`]
+//! - [`get_device_group_peer_memory_features_khr`]
 //!If [`VK_KHR_surface`] is supported:
 //! - [`get_device_group_present_capabilities_khr`]
 //! - [`get_device_group_surface_present_modes_khr`]
@@ -109,9 +109,9 @@
 //! - [`MemoryAllocateFlagsKHR`]
 //! - [`PeerMemoryFeatureFlagBitsKHR`]
 //! - [`PeerMemoryFeatureFlagsKHR`]
-//! - [`CmdDispatchBaseKHR`]
-//! - [`CmdSetDeviceMaskKHR`]
-//! - [`GetDeviceGroupPeerMemoryFeaturesKHR`]
+//! - [`cmd_dispatch_base_khr`]
+//! - [`cmd_set_device_mask_khr`]
+//! - [`get_device_group_peer_memory_features_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -1880,16 +1880,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_device_group()
-            .expect("extension/version not loaded")
-            .get_physical_device_present_rectangles_khr()
+            .and_then(|vtable| vtable.get_physical_device_present_rectangles_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_device_group()
-            .unwrap_unchecked()
-            .get_physical_device_present_rectangles_khr()
+            .and_then(|vtable| vtable.get_physical_device_present_rectangles_khr())
             .unwrap_unchecked();
         let mut p_rect_count = match p_rect_count {
             Some(v) => v as _,
@@ -1960,18 +1958,15 @@ impl Device {
         let _function = self
             .vtable()
             .khr_device_group()
-            .expect("extension/version not loaded")
-            .get_device_group_present_capabilities_khr()
+            .and_then(|vtable| vtable.get_device_group_present_capabilities_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_device_group()
-            .unwrap_unchecked()
-            .get_device_group_present_capabilities_khr()
+            .and_then(|vtable| vtable.get_device_group_present_capabilities_khr())
             .unwrap_unchecked();
-        let mut p_device_group_present_capabilities = p_device_group_present_capabilities
-            .unwrap_or_else(|| MaybeUninit::<DeviceGroupPresentCapabilitiesKHR<'lt>>::zeroed().assume_init());
+        let mut p_device_group_present_capabilities = p_device_group_present_capabilities.unwrap_or_default();
         let _return = _function(self.as_raw(), &mut p_device_group_present_capabilities);
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
@@ -2053,15 +2048,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_device_group()
-            .expect("extension/version not loaded")
-            .get_device_group_surface_present_modes_khr()
+            .and_then(|vtable| vtable.get_device_group_surface_present_modes_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_device_group()
-            .unwrap_unchecked()
-            .get_device_group_surface_present_modes_khr()
+            .and_then(|vtable| vtable.get_device_group_surface_present_modes_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), surface, p_modes as *mut DeviceGroupPresentModeFlagsKHR);
         match _return {
@@ -2134,15 +2127,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_device_group()
-            .expect("extension/version not loaded")
-            .acquire_next_image2_khr()
+            .and_then(|vtable| vtable.acquire_next_image2_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_device_group()
-            .unwrap_unchecked()
-            .acquire_next_image2_khr()
+            .and_then(|vtable| vtable.acquire_next_image2_khr())
             .unwrap_unchecked();
         let mut p_image_index = Default::default();
         let _return = _function(
@@ -2198,11 +2189,11 @@ pub struct DeviceKhrDeviceGroupVTable {
     ///See [`FNAcquireNextImage2Khr`] for more information.
     pub acquire_next_image2_khr: FNAcquireNextImage2Khr,
     ///See [`FNGetDeviceGroupPeerMemoryFeatures`] for more information.
-    pub get_device_group_peer_memory_features: FNGetDeviceGroupPeerMemoryFeatures,
+    pub get_device_group_peer_memory_features_khr: FNGetDeviceGroupPeerMemoryFeatures,
     ///See [`FNCmdSetDeviceMask`] for more information.
-    pub cmd_set_device_mask: FNCmdSetDeviceMask,
+    pub cmd_set_device_mask_khr: FNCmdSetDeviceMask,
     ///See [`FNCmdDispatchBase`] for more information.
-    pub cmd_dispatch_base: FNCmdDispatchBase,
+    pub cmd_dispatch_base_khr: FNCmdDispatchBase,
 }
 impl DeviceKhrDeviceGroupVTable {
     ///Loads the VTable from the owner and the names
@@ -2230,16 +2221,16 @@ impl DeviceKhrDeviceGroupVTable {
             acquire_next_image2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkAcquireNextImage2KHR").as_ptr()))
             },
-            get_device_group_peer_memory_features: unsafe {
+            get_device_group_peer_memory_features_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetDeviceGroupPeerMemoryFeaturesKHR").as_ptr(),
                 ))
             },
-            cmd_set_device_mask: unsafe {
+            cmd_set_device_mask_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDeviceMaskKHR").as_ptr()))
             },
-            cmd_dispatch_base: unsafe {
+            cmd_dispatch_base_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDispatchBaseKHR").as_ptr()))
             },
         }
@@ -2258,17 +2249,17 @@ impl DeviceKhrDeviceGroupVTable {
     pub fn acquire_next_image2_khr(&self) -> FNAcquireNextImage2Khr {
         self.acquire_next_image2_khr
     }
-    ///Gets [`Self::get_device_group_peer_memory_features`]. See
+    ///Gets [`Self::get_device_group_peer_memory_features_khr`]. See
     /// [`FNGetDeviceGroupPeerMemoryFeatures`] for more information.
-    pub fn get_device_group_peer_memory_features(&self) -> FNGetDeviceGroupPeerMemoryFeatures {
-        self.get_device_group_peer_memory_features
+    pub fn get_device_group_peer_memory_features_khr(&self) -> FNGetDeviceGroupPeerMemoryFeatures {
+        self.get_device_group_peer_memory_features_khr
     }
-    ///Gets [`Self::cmd_set_device_mask`]. See [`FNCmdSetDeviceMask`] for more information.
-    pub fn cmd_set_device_mask(&self) -> FNCmdSetDeviceMask {
-        self.cmd_set_device_mask
+    ///Gets [`Self::cmd_set_device_mask_khr`]. See [`FNCmdSetDeviceMask`] for more information.
+    pub fn cmd_set_device_mask_khr(&self) -> FNCmdSetDeviceMask {
+        self.cmd_set_device_mask_khr
     }
-    ///Gets [`Self::cmd_dispatch_base`]. See [`FNCmdDispatchBase`] for more information.
-    pub fn cmd_dispatch_base(&self) -> FNCmdDispatchBase {
-        self.cmd_dispatch_base
+    ///Gets [`Self::cmd_dispatch_base_khr`]. See [`FNCmdDispatchBase`] for more information.
+    pub fn cmd_dispatch_base_khr(&self) -> FNCmdDispatchBase {
+        self.cmd_dispatch_base_khr
     }
 }

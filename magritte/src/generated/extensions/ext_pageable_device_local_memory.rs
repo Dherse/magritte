@@ -336,15 +336,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_pageable_device_local_memory()
-            .expect("extension/version not loaded")
-            .set_device_memory_priority_ext()
+            .and_then(|vtable| vtable.set_device_memory_priority_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_pageable_device_local_memory()
-            .unwrap_unchecked()
-            .set_device_memory_priority_ext()
+            .and_then(|vtable| vtable.set_device_memory_priority_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), memory, priority.unwrap_or_default() as _);
         ()

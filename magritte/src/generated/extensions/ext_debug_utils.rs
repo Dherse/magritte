@@ -2829,15 +2829,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .create_debug_utils_messenger_ext()
+            .and_then(|vtable| vtable.create_debug_utils_messenger_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .create_debug_utils_messenger_ext()
+            .and_then(|vtable| vtable.create_debug_utils_messenger_ext())
             .unwrap_unchecked();
         let mut p_messenger = MaybeUninit::<DebugUtilsMessengerEXT>::uninit();
         let _return = _function(
@@ -2922,15 +2920,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .destroy_debug_utils_messenger_ext()
+            .and_then(|vtable| vtable.destroy_debug_utils_messenger_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .destroy_debug_utils_messenger_ext()
+            .and_then(|vtable| vtable.destroy_debug_utils_messenger_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3010,15 +3006,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .submit_debug_utils_message_ext()
+            .and_then(|vtable| vtable.submit_debug_utils_message_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .submit_debug_utils_message_ext()
+            .and_then(|vtable| vtable.submit_debug_utils_message_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3082,15 +3076,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .set_debug_utils_object_name_ext()
+            .and_then(|vtable| vtable.set_debug_utils_object_name_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .set_debug_utils_object_name_ext()
+            .and_then(|vtable| vtable.set_debug_utils_object_name_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_name_info as *const DebugUtilsObjectNameInfoEXT<'lt>);
         match _return {
@@ -3148,15 +3140,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .set_debug_utils_object_tag_ext()
+            .and_then(|vtable| vtable.set_debug_utils_object_tag_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .set_debug_utils_object_tag_ext()
+            .and_then(|vtable| vtable.set_debug_utils_object_tag_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_tag_info as *const DebugUtilsObjectTagInfoEXT<'lt>);
         match _return {
@@ -3210,16 +3200,14 @@ impl Queue {
             .device()
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .queue_begin_debug_utils_label_ext()
+            .and_then(|vtable| vtable.queue_begin_debug_utils_label_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .queue_begin_debug_utils_label_ext()
+            .and_then(|vtable| vtable.queue_begin_debug_utils_label_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
         ()
@@ -3268,16 +3256,14 @@ impl Queue {
             .device()
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .queue_end_debug_utils_label_ext()
+            .and_then(|vtable| vtable.queue_end_debug_utils_label_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .queue_end_debug_utils_label_ext()
+            .and_then(|vtable| vtable.queue_end_debug_utils_label_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()
@@ -3328,16 +3314,14 @@ impl Queue {
             .device()
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .queue_insert_debug_utils_label_ext()
+            .and_then(|vtable| vtable.queue_insert_debug_utils_label_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .queue_insert_debug_utils_label_ext()
+            .and_then(|vtable| vtable.queue_insert_debug_utils_label_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
         ()
@@ -3396,16 +3380,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .cmd_begin_debug_utils_label_ext()
+            .and_then(|vtable| vtable.cmd_begin_debug_utils_label_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .cmd_begin_debug_utils_label_ext()
+            .and_then(|vtable| vtable.cmd_begin_debug_utils_label_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
         ()
@@ -3479,16 +3461,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .cmd_end_debug_utils_label_ext()
+            .and_then(|vtable| vtable.cmd_end_debug_utils_label_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .cmd_end_debug_utils_label_ext()
+            .and_then(|vtable| vtable.cmd_end_debug_utils_label_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()
@@ -3547,16 +3527,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_debug_utils()
-            .expect("extension/version not loaded")
-            .cmd_insert_debug_utils_label_ext()
+            .and_then(|vtable| vtable.cmd_insert_debug_utils_label_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_utils()
-            .unwrap_unchecked()
-            .cmd_insert_debug_utils_label_ext()
+            .and_then(|vtable| vtable.cmd_insert_debug_utils_label_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_label_info as *const DebugUtilsLabelEXT<'lt>);
         ()

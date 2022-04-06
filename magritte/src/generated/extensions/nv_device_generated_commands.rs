@@ -23,7 +23,7 @@
 //!scenario, or updates synchronized on the host.The intended usage for this extension is for the
 //! application to:
 //! - create [`Buffer`] objects and retrieve physical addresses from them via
-//!   [`GetBufferDeviceAddressEXT`]
+//!   [`get_buffer_device_address_ext`]
 //! - create a graphics pipeline using [`GraphicsPipelineShaderGroupsCreateInfoNV`] for the ability
 //!   to change shaders on the device.
 //! - create a [`IndirectCommandsLayoutNV`], which lists the [`IndirectCommandsTokenTypeNV`] it
@@ -838,9 +838,9 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
-///   to this drawing command, and the `primitiveTopology` parameter of
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `primitiveTopology` parameter of
+///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the pipeline
 ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
 /// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
@@ -848,9 +848,10 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   this draw command
 /// - If the bound graphics pipeline was created with the
 ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
-///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
-///   **must**  have been called in the current command buffer prior to this draw command, and the
-///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+///   prior to this draw command, and the `pStrides` parameter of [`cmd_bind_vertex_buffers2_ext`]
+///   **must**  not be `NULL`
 /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
 ///   current command buffer prior to this draw command
@@ -860,8 +861,8 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   prior to this drawing command
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
-///   prior to this drawing command
+///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
+///   buffer prior to this drawing command
 /// - The bound graphics pipeline  **must**  not have been created with the
 ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
 ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
@@ -4549,18 +4550,15 @@ impl Device {
         let _function = self
             .vtable()
             .nv_device_generated_commands()
-            .expect("extension/version not loaded")
-            .get_generated_commands_memory_requirements_nv()
+            .and_then(|vtable| vtable.get_generated_commands_memory_requirements_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_device_generated_commands()
-            .unwrap_unchecked()
-            .get_generated_commands_memory_requirements_nv()
+            .and_then(|vtable| vtable.get_generated_commands_memory_requirements_nv())
             .unwrap_unchecked();
-        let mut p_memory_requirements =
-            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
+        let mut p_memory_requirements = p_memory_requirements.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_info as *const GeneratedCommandsMemoryRequirementsInfoNV<'lt>,
@@ -4636,15 +4634,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_device_generated_commands()
-            .expect("extension/version not loaded")
-            .create_indirect_commands_layout_nv()
+            .and_then(|vtable| vtable.create_indirect_commands_layout_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_device_generated_commands()
-            .unwrap_unchecked()
-            .create_indirect_commands_layout_nv()
+            .and_then(|vtable| vtable.create_indirect_commands_layout_nv())
             .unwrap_unchecked();
         let mut p_indirect_commands_layout = MaybeUninit::<IndirectCommandsLayoutNV>::uninit();
         let _return = _function(
@@ -4727,15 +4723,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_device_generated_commands()
-            .expect("extension/version not loaded")
-            .destroy_indirect_commands_layout_nv()
+            .and_then(|vtable| vtable.destroy_indirect_commands_layout_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_device_generated_commands()
-            .unwrap_unchecked()
-            .destroy_indirect_commands_layout_nv()
+            .and_then(|vtable| vtable.destroy_indirect_commands_layout_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -5119,10 +5113,10 @@ impl CommandBuffer {
     ///   [[fxvertex-input]]()
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
-    ///   prior to this drawing command, and the `primitiveTopology` parameter of
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
-    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    ///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the
+    ///   pipeline [`PipelineInputAssemblyStateCreateInfo::topology`] state
     /// - If the bound graphics pipeline was created with both the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
     ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
@@ -5130,9 +5124,9 @@ impl CommandBuffer {
     /// - If the bound graphics pipeline was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
-    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
-    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
-    ///   **must**  not be `NULL`
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  not be `NULL`
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
     ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
@@ -5143,7 +5137,7 @@ impl CommandBuffer {
     ///   buffer prior to this drawing command
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
     ///   buffer prior to this drawing command
     /// - The bound graphics pipeline  **must**  not have been created with the
     ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
@@ -5204,16 +5198,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_device_generated_commands()
-            .expect("extension/version not loaded")
-            .cmd_execute_generated_commands_nv()
+            .and_then(|vtable| vtable.cmd_execute_generated_commands_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_device_generated_commands()
-            .unwrap_unchecked()
-            .cmd_execute_generated_commands_nv()
+            .and_then(|vtable| vtable.cmd_execute_generated_commands_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -5285,16 +5277,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_device_generated_commands()
-            .expect("extension/version not loaded")
-            .cmd_preprocess_generated_commands_nv()
+            .and_then(|vtable| vtable.cmd_preprocess_generated_commands_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_device_generated_commands()
-            .unwrap_unchecked()
-            .cmd_preprocess_generated_commands_nv()
+            .and_then(|vtable| vtable.cmd_preprocess_generated_commands_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -5379,16 +5369,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_device_generated_commands()
-            .expect("extension/version not loaded")
-            .cmd_bind_pipeline_shader_group_nv()
+            .and_then(|vtable| vtable.cmd_bind_pipeline_shader_group_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_device_generated_commands()
-            .unwrap_unchecked()
-            .cmd_bind_pipeline_shader_group_nv()
+            .and_then(|vtable| vtable.cmd_bind_pipeline_shader_group_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

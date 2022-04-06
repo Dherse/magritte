@@ -656,16 +656,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_discard_rectangles()
-            .expect("extension/version not loaded")
-            .cmd_set_discard_rectangle_ext()
+            .and_then(|vtable| vtable.cmd_set_discard_rectangle_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_discard_rectangles()
-            .unwrap_unchecked()
-            .cmd_set_discard_rectangle_ext()
+            .and_then(|vtable| vtable.cmd_set_discard_rectangle_ext())
             .unwrap_unchecked();
         let discard_rectangle_count = (|len: usize| len)(p_discard_rectangles.len()) as _;
         let _return = _function(

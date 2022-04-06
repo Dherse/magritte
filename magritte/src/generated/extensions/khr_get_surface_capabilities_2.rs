@@ -675,19 +675,16 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_get_surface_capabilities_2()
-            .expect("extension/version not loaded")
-            .get_physical_device_surface_capabilities2_khr()
+            .and_then(|vtable| vtable.get_physical_device_surface_capabilities2_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_get_surface_capabilities_2()
-            .unwrap_unchecked()
-            .get_physical_device_surface_capabilities2_khr()
+            .and_then(|vtable| vtable.get_physical_device_surface_capabilities2_khr())
             .unwrap_unchecked();
-        let mut p_surface_capabilities = p_surface_capabilities
-            .unwrap_or_else(|| MaybeUninit::<SurfaceCapabilities2KHR<'lt>>::zeroed().assume_init());
+        let mut p_surface_capabilities = p_surface_capabilities.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
@@ -786,16 +783,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_get_surface_capabilities_2()
-            .expect("extension/version not loaded")
-            .get_physical_device_surface_formats2_khr()
+            .and_then(|vtable| vtable.get_physical_device_surface_formats2_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_get_surface_capabilities_2()
-            .unwrap_unchecked()
-            .get_physical_device_surface_formats2_khr()
+            .and_then(|vtable| vtable.get_physical_device_surface_formats2_khr())
             .unwrap_unchecked();
         let mut p_surface_format_count = match p_surface_format_count {
             Some(v) => v as _,

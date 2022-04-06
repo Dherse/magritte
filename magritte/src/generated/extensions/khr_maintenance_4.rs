@@ -11,9 +11,10 @@
 //!   alternative to `LocalSize` to specify the local workgroup size with specialization constants.
 //! - Add a guarantee that images created with identical creation parameters will always have the
 //!   same alignment requirements.
-//! - Add new [`GetDeviceBufferMemoryRequirementsKHR`], [`GetDeviceImageMemoryRequirementsKHR`], and
-//!   [`GetDeviceImageSparseMemoryRequirementsKHR`] to allow the application to query the image
-//!   memory requirements without having to create an image object and query it.
+//! - Add new [`get_device_buffer_memory_requirements_khr`],
+//!   [`get_device_image_memory_requirements_khr`], and
+//!   [`get_device_image_sparse_memory_requirements_khr`] to allow the application to query the
+//!   image memory requirements without having to create an image object and query it.
 //! - Relax the requirement that push constants must be initialized before they are dynamically
 //!   accessed.
 //! - Relax the interface matching rules to allow a larger output vector to match with a smaller
@@ -31,9 +32,9 @@
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance4
 //!   extension>>)
 //!# New functions & commands
-//! - [`GetDeviceBufferMemoryRequirementsKHR`]
-//! - [`GetDeviceImageMemoryRequirementsKHR`]
-//! - [`GetDeviceImageSparseMemoryRequirementsKHR`]
+//! - [`get_device_buffer_memory_requirements_khr`]
+//! - [`get_device_image_memory_requirements_khr`]
+//! - [`get_device_image_sparse_memory_requirements_khr`]
 //!# New structures
 //! - [`DeviceBufferMemoryRequirementsKHR`]
 //! - [`DeviceImageMemoryRequirementsKHR`]
@@ -64,9 +65,9 @@
 //! - [`DeviceImageMemoryRequirementsKHR`]
 //! - [`PhysicalDeviceMaintenance4FeaturesKHR`]
 //! - [`PhysicalDeviceMaintenance4PropertiesKHR`]
-//! - [`GetDeviceBufferMemoryRequirementsKHR`]
-//! - [`GetDeviceImageMemoryRequirementsKHR`]
-//! - [`GetDeviceImageSparseMemoryRequirementsKHR`]
+//! - [`get_device_buffer_memory_requirements_khr`]
+//! - [`get_device_image_memory_requirements_khr`]
+//! - [`get_device_image_sparse_memory_requirements_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -94,11 +95,11 @@ pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 ///The V-table of [`Device`] for functions from `VK_KHR_maintenance4`
 pub struct DeviceKhrMaintenance4VTable {
     ///See [`FNGetDeviceBufferMemoryRequirements`] for more information.
-    pub get_device_buffer_memory_requirements: FNGetDeviceBufferMemoryRequirements,
+    pub get_device_buffer_memory_requirements_khr: FNGetDeviceBufferMemoryRequirements,
     ///See [`FNGetDeviceImageMemoryRequirements`] for more information.
-    pub get_device_image_memory_requirements: FNGetDeviceImageMemoryRequirements,
+    pub get_device_image_memory_requirements_khr: FNGetDeviceImageMemoryRequirements,
     ///See [`FNGetDeviceImageSparseMemoryRequirements`] for more information.
-    pub get_device_image_sparse_memory_requirements: FNGetDeviceImageSparseMemoryRequirements,
+    pub get_device_image_sparse_memory_requirements_khr: FNGetDeviceImageSparseMemoryRequirements,
 }
 impl DeviceKhrMaintenance4VTable {
     ///Loads the VTable from the owner and the names
@@ -111,19 +112,19 @@ impl DeviceKhrMaintenance4VTable {
         loader: Device,
     ) -> Self {
         Self {
-            get_device_buffer_memory_requirements: unsafe {
+            get_device_buffer_memory_requirements_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetDeviceBufferMemoryRequirementsKHR").as_ptr(),
                 ))
             },
-            get_device_image_memory_requirements: unsafe {
+            get_device_image_memory_requirements_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetDeviceImageMemoryRequirementsKHR").as_ptr(),
                 ))
             },
-            get_device_image_sparse_memory_requirements: unsafe {
+            get_device_image_sparse_memory_requirements_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetDeviceImageSparseMemoryRequirementsKHR").as_ptr(),
@@ -131,19 +132,19 @@ impl DeviceKhrMaintenance4VTable {
             },
         }
     }
-    ///Gets [`Self::get_device_buffer_memory_requirements`]. See
+    ///Gets [`Self::get_device_buffer_memory_requirements_khr`]. See
     /// [`FNGetDeviceBufferMemoryRequirements`] for more information.
-    pub fn get_device_buffer_memory_requirements(&self) -> FNGetDeviceBufferMemoryRequirements {
-        self.get_device_buffer_memory_requirements
+    pub fn get_device_buffer_memory_requirements_khr(&self) -> FNGetDeviceBufferMemoryRequirements {
+        self.get_device_buffer_memory_requirements_khr
     }
-    ///Gets [`Self::get_device_image_memory_requirements`]. See
+    ///Gets [`Self::get_device_image_memory_requirements_khr`]. See
     /// [`FNGetDeviceImageMemoryRequirements`] for more information.
-    pub fn get_device_image_memory_requirements(&self) -> FNGetDeviceImageMemoryRequirements {
-        self.get_device_image_memory_requirements
+    pub fn get_device_image_memory_requirements_khr(&self) -> FNGetDeviceImageMemoryRequirements {
+        self.get_device_image_memory_requirements_khr
     }
-    ///Gets [`Self::get_device_image_sparse_memory_requirements`]. See
+    ///Gets [`Self::get_device_image_sparse_memory_requirements_khr`]. See
     /// [`FNGetDeviceImageSparseMemoryRequirements`] for more information.
-    pub fn get_device_image_sparse_memory_requirements(&self) -> FNGetDeviceImageSparseMemoryRequirements {
-        self.get_device_image_sparse_memory_requirements
+    pub fn get_device_image_sparse_memory_requirements_khr(&self) -> FNGetDeviceImageSparseMemoryRequirements {
+        self.get_device_image_sparse_memory_requirements_khr
     }
 }

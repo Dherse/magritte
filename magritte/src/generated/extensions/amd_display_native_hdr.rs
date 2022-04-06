@@ -435,15 +435,13 @@ impl Device {
         let _function = self
             .vtable()
             .amd_display_native_hdr()
-            .expect("extension/version not loaded")
-            .set_local_dimming_amd()
+            .and_then(|vtable| vtable.set_local_dimming_amd())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .amd_display_native_hdr()
-            .unwrap_unchecked()
-            .set_local_dimming_amd()
+            .and_then(|vtable| vtable.set_local_dimming_amd())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swap_chain, local_dimming_enable as u8 as u32);
         ()

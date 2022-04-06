@@ -461,15 +461,13 @@ impl Instance {
         let _function = self
             .vtable()
             .khr_win_32_surface()
-            .expect("extension/version not loaded")
-            .create_win32_surface_khr()
+            .and_then(|vtable| vtable.create_win32_surface_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_win_32_surface()
-            .unwrap_unchecked()
-            .create_win32_surface_khr()
+            .and_then(|vtable| vtable.create_win32_surface_khr())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(
@@ -534,16 +532,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_win_32_surface()
-            .expect("extension/version not loaded")
-            .get_physical_device_win32_presentation_support_khr()
+            .and_then(|vtable| vtable.get_physical_device_win32_presentation_support_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_win_32_surface()
-            .unwrap_unchecked()
-            .get_physical_device_win32_presentation_support_khr()
+            .and_then(|vtable| vtable.get_physical_device_win32_presentation_support_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _);
         std::mem::transmute(_return as u8)

@@ -350,15 +350,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ggp_stream_descriptor_surface()
-            .expect("extension/version not loaded")
-            .create_stream_descriptor_surface_ggp()
+            .and_then(|vtable| vtable.create_stream_descriptor_surface_ggp())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ggp_stream_descriptor_surface()
-            .unwrap_unchecked()
-            .create_stream_descriptor_surface_ggp()
+            .and_then(|vtable| vtable.create_stream_descriptor_surface_ggp())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(

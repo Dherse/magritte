@@ -332,15 +332,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_shared_presentable_image()
-            .expect("extension/version not loaded")
-            .get_swapchain_status_khr()
+            .and_then(|vtable| vtable.get_swapchain_status_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_shared_presentable_image()
-            .unwrap_unchecked()
-            .get_swapchain_status_khr()
+            .and_then(|vtable| vtable.get_swapchain_status_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swapchain);
         match _return {

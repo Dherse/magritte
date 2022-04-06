@@ -190,7 +190,7 @@ pub fn funcpointer_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
 }
 
 /// Converts a Vulkan function name into a rustified function pointer name
-pub fn function_name<'a>(name: &'a str) -> String {
+pub fn function_name<'a>(name: &'a str, _: &[Tag<'a>]) -> String {
     let trimmed = name.trim_start_matches("vk");
 
     let mut trimmed = trimmed.to_case(Case::Snake);

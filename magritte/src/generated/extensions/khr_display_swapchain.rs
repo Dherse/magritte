@@ -475,15 +475,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_display_swapchain()
-            .expect("extension/version not loaded")
-            .create_shared_swapchains_khr()
+            .and_then(|vtable| vtable.create_shared_swapchains_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_display_swapchain()
-            .unwrap_unchecked()
-            .create_shared_swapchains_khr()
+            .and_then(|vtable| vtable.create_shared_swapchains_khr())
             .unwrap_unchecked();
         let swapchain_count = (|len: usize| len)(p_create_infos.len()) as _;
         let mut p_swapchains = SmallVec::<SwapchainKHR>::from_elem(Default::default(), swapchain_count as usize);

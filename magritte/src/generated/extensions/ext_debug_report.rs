@@ -1087,15 +1087,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_debug_report()
-            .expect("extension/version not loaded")
-            .create_debug_report_callback_ext()
+            .and_then(|vtable| vtable.create_debug_report_callback_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_report()
-            .unwrap_unchecked()
-            .create_debug_report_callback_ext()
+            .and_then(|vtable| vtable.create_debug_report_callback_ext())
             .unwrap_unchecked();
         let mut p_callback = MaybeUninit::<DebugReportCallbackEXT>::uninit();
         let _return = _function(
@@ -1177,15 +1175,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_debug_report()
-            .expect("extension/version not loaded")
-            .destroy_debug_report_callback_ext()
+            .and_then(|vtable| vtable.destroy_debug_report_callback_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_report()
-            .unwrap_unchecked()
-            .destroy_debug_report_callback_ext()
+            .and_then(|vtable| vtable.destroy_debug_report_callback_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1272,15 +1268,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_debug_report()
-            .expect("extension/version not loaded")
-            .debug_report_message_ext()
+            .and_then(|vtable| vtable.debug_report_message_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_report()
-            .unwrap_unchecked()
-            .debug_report_message_ext()
+            .and_then(|vtable| vtable.debug_report_message_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

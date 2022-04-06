@@ -570,15 +570,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_external_semaphore()
-            .expect("extension/version not loaded")
-            .get_semaphore_zircon_handle_fuchsia()
+            .and_then(|vtable| vtable.get_semaphore_zircon_handle_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_external_semaphore()
-            .unwrap_unchecked()
-            .get_semaphore_zircon_handle_fuchsia()
+            .and_then(|vtable| vtable.get_semaphore_zircon_handle_fuchsia())
             .unwrap_unchecked();
         let mut p_zircon_handle = std::mem::zeroed();
         let _return = _function(
@@ -651,15 +649,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_external_semaphore()
-            .expect("extension/version not loaded")
-            .import_semaphore_zircon_handle_fuchsia()
+            .and_then(|vtable| vtable.import_semaphore_zircon_handle_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_external_semaphore()
-            .unwrap_unchecked()
-            .import_semaphore_zircon_handle_fuchsia()
+            .and_then(|vtable| vtable.import_semaphore_zircon_handle_fuchsia())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

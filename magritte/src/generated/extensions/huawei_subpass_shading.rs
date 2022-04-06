@@ -770,15 +770,13 @@ impl Device {
         let _function = self
             .vtable()
             .huawei_subpass_shading()
-            .expect("extension/version not loaded")
-            .get_device_subpass_shading_max_workgroup_size_huawei()
+            .and_then(|vtable| vtable.get_device_subpass_shading_max_workgroup_size_huawei())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .huawei_subpass_shading()
-            .unwrap_unchecked()
-            .get_device_subpass_shading_max_workgroup_size_huawei()
+            .and_then(|vtable| vtable.get_device_subpass_shading_max_workgroup_size_huawei())
             .unwrap_unchecked();
         let mut p_max_workgroup_size = MaybeUninit::<Extent2D>::uninit();
         let _return = _function(self.as_raw(), renderpass, p_max_workgroup_size.as_mut_ptr());
@@ -961,16 +959,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .huawei_subpass_shading()
-            .expect("extension/version not loaded")
-            .cmd_subpass_shading_huawei()
+            .and_then(|vtable| vtable.cmd_subpass_shading_huawei())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .huawei_subpass_shading()
-            .unwrap_unchecked()
-            .cmd_subpass_shading_huawei()
+            .and_then(|vtable| vtable.cmd_subpass_shading_huawei())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()

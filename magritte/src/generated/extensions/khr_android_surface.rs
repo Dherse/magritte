@@ -420,15 +420,13 @@ impl Instance {
         let _function = self
             .vtable()
             .khr_android_surface()
-            .expect("extension/version not loaded")
-            .create_android_surface_khr()
+            .and_then(|vtable| vtable.create_android_surface_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_android_surface()
-            .unwrap_unchecked()
-            .create_android_surface_khr()
+            .and_then(|vtable| vtable.create_android_surface_khr())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(

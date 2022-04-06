@@ -563,18 +563,15 @@ impl Device {
         let _function = self
             .vtable()
             .valve_descriptor_set_host_mapping()
-            .expect("extension/version not loaded")
-            .get_descriptor_set_layout_host_mapping_info_valve()
+            .and_then(|vtable| vtable.get_descriptor_set_layout_host_mapping_info_valve())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .valve_descriptor_set_host_mapping()
-            .unwrap_unchecked()
-            .get_descriptor_set_layout_host_mapping_info_valve()
+            .and_then(|vtable| vtable.get_descriptor_set_layout_host_mapping_info_valve())
             .unwrap_unchecked();
-        let mut p_host_mapping = p_host_mapping
-            .unwrap_or_else(|| MaybeUninit::<DescriptorSetLayoutHostMappingInfoVALVE<'lt>>::zeroed().assume_init());
+        let mut p_host_mapping = p_host_mapping.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_binding_reference as *const DescriptorSetBindingReferenceVALVE<'lt>,
@@ -628,15 +625,13 @@ impl Device {
         let _function = self
             .vtable()
             .valve_descriptor_set_host_mapping()
-            .expect("extension/version not loaded")
-            .get_descriptor_set_host_mapping_valve()
+            .and_then(|vtable| vtable.get_descriptor_set_host_mapping_valve())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .valve_descriptor_set_host_mapping()
-            .unwrap_unchecked()
-            .get_descriptor_set_host_mapping_valve()
+            .and_then(|vtable| vtable.get_descriptor_set_host_mapping_valve())
             .unwrap_unchecked();
         let mut pp_data = std::ptr::null_mut();
         let _return = _function(self.as_raw(), descriptor_set, &mut pp_data);

@@ -444,9 +444,9 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
-///   to this drawing command, and the `primitiveTopology` parameter of
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `primitiveTopology` parameter of
+///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the pipeline
 ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
 /// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
@@ -454,9 +454,10 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 ///   this draw command
 /// - If the bound graphics pipeline was created with the
 ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
-///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
-///   **must**  have been called in the current command buffer prior to this draw command, and the
-///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+///   prior to this draw command, and the `pStrides` parameter of [`cmd_bind_vertex_buffers2_ext`]
+///   **must**  not be `NULL`
 /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
 ///   current command buffer prior to this draw command
@@ -466,8 +467,8 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 ///   prior to this drawing command
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
-///   prior to this drawing command
+///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
+///   buffer prior to this drawing command
 /// - The bound graphics pipeline  **must**  not have been created with the
 ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
 ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
@@ -901,9 +902,9 @@ pub type FNCmdDrawMultiExt = Option<
 ///   within the corresponding vertex buffer binding, as described in [[fxvertex-input]]()
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer prior
-///   to this drawing command, and the `primitiveTopology` parameter of
-///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
+///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command buffer
+///   prior to this drawing command, and the `primitiveTopology` parameter of
+///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the pipeline
 ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
 /// - If the bound graphics pipeline was created with both the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic states enabled, then
@@ -911,9 +912,10 @@ pub type FNCmdDrawMultiExt = Option<
 ///   this draw command
 /// - If the bound graphics pipeline was created with the
 ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
-///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then [`CmdBindVertexBuffers2EXT`]
-///   **must**  have been called in the current command buffer prior to this draw command, and the
-///   `pStrides` parameter of [`CmdBindVertexBuffers2EXT`] **must**  not be `NULL`
+///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
+///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+///   prior to this draw command, and the `pStrides` parameter of [`cmd_bind_vertex_buffers2_ext`]
+///   **must**  not be `NULL`
 /// - If the bound graphics pipeline state was created with the `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
 ///   dynamic state enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in the
 ///   current command buffer prior to this draw command
@@ -923,8 +925,8 @@ pub type FNCmdDrawMultiExt = Option<
 ///   prior to this drawing command
 /// - If the bound graphics pipeline state was created with the
 ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command buffer
-///   prior to this drawing command
+///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
+///   buffer prior to this drawing command
 /// - The bound graphics pipeline  **must**  not have been created with the
 ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
 ///   [`GraphicsPipelineCreateInfo::stages`] set to `VK_SHADER_STAGE_TASK_BIT_NV` or
@@ -1804,10 +1806,10 @@ impl CommandBuffer {
     ///   [[fxvertex-input]]()
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
-    ///   prior to this drawing command, and the `primitiveTopology` parameter of
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
-    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    ///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the
+    ///   pipeline [`PipelineInputAssemblyStateCreateInfo::topology`] state
     /// - If the bound graphics pipeline was created with both the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
     ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
@@ -1815,9 +1817,9 @@ impl CommandBuffer {
     /// - If the bound graphics pipeline was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
-    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
-    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
-    ///   **must**  not be `NULL`
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  not be `NULL`
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
     ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
@@ -1828,7 +1830,7 @@ impl CommandBuffer {
     ///   buffer prior to this drawing command
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
     ///   buffer prior to this drawing command
     /// - The bound graphics pipeline  **must**  not have been created with the
     ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
@@ -1883,16 +1885,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_multi_draw()
-            .expect("extension/version not loaded")
-            .cmd_draw_multi_ext()
+            .and_then(|vtable| vtable.cmd_draw_multi_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_multi_draw()
-            .unwrap_unchecked()
-            .cmd_draw_multi_ext()
+            .and_then(|vtable| vtable.cmd_draw_multi_ext())
             .unwrap_unchecked();
         let draw_count = (|len: usize| len)(p_vertex_info.len()) as _;
         let _return = _function(
@@ -2305,10 +2305,10 @@ impl CommandBuffer {
     ///   [[fxvertex-input]]()
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  have been called in the current command buffer
-    ///   prior to this drawing command, and the `primitiveTopology` parameter of
-    ///   [`CmdSetPrimitiveTopologyEXT`] **must**  be of the same [topology class]() as the pipeline
-    ///   [`PipelineInputAssemblyStateCreateInfo::topology`] state
+    ///   [`cmd_set_primitive_topology_ext`] **must**  have been called in the current command
+    ///   buffer prior to this drawing command, and the `primitiveTopology` parameter of
+    ///   [`cmd_set_primitive_topology_ext`] **must**  be of the same [topology class]() as the
+    ///   pipeline [`PipelineInputAssemblyStateCreateInfo::topology`] state
     /// - If the bound graphics pipeline was created with both the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` and `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`
     ///   dynamic states enabled, then [`cmd_set_vertex_input_ext`] **must**  have been called in
@@ -2316,9 +2316,9 @@ impl CommandBuffer {
     /// - If the bound graphics pipeline was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT` dynamic state enabled, but not the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
-    ///   [`CmdBindVertexBuffers2EXT`] **must**  have been called in the current command buffer
-    ///   prior to this draw command, and the `pStrides` parameter of [`CmdBindVertexBuffers2EXT`]
-    ///   **must**  not be `NULL`
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  have been called in the current command buffer
+    ///   prior to this draw command, and the `pStrides` parameter of
+    ///   [`cmd_bind_vertex_buffers2_ext`] **must**  not be `NULL`
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled, then
     ///   [`cmd_set_vertex_input_ext`] **must**  have been called in the current command buffer
@@ -2329,7 +2329,7 @@ impl CommandBuffer {
     ///   buffer prior to this drawing command
     /// - If the bound graphics pipeline state was created with the
     ///   `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT` dynamic state enabled then
-    ///   [`CmdSetPrimitiveRestartEnableEXT`] **must**  have been called in the current command
+    ///   [`cmd_set_primitive_restart_enable_ext`] **must**  have been called in the current command
     ///   buffer prior to this drawing command
     /// - The bound graphics pipeline  **must**  not have been created with the
     ///   [`PipelineShaderStageCreateInfo::stage`] member of an element of
@@ -2391,16 +2391,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_multi_draw()
-            .expect("extension/version not loaded")
-            .cmd_draw_multi_indexed_ext()
+            .and_then(|vtable| vtable.cmd_draw_multi_indexed_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_multi_draw()
-            .unwrap_unchecked()
-            .cmd_draw_multi_indexed_ext()
+            .and_then(|vtable| vtable.cmd_draw_multi_indexed_ext())
             .unwrap_unchecked();
         let draw_count = (|len: usize| len)(p_index_info.len()) as _;
         let _return = _function(

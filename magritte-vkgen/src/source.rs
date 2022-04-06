@@ -879,7 +879,7 @@ impl<'a> Source<'a> {
         let span = span!(Level::INFO, "command", ?original_name);
         let _guard = span.enter();
 
-        let name = function_name(original_name);
+        let name = function_name(original_name, &self.tags[..]);
         info!(?name, "generated rustified name");
 
         let (_, return_type) = Ty::new(def_.proto.type_name.as_ref().expect("no return type for command"), "");
@@ -973,7 +973,7 @@ impl<'a> Source<'a> {
                 let span = span!(Level::INFO, "command alias", ?original_name, ?alias);
                 let _guard = span.enter();
 
-                let name = funcpointer_name(original_name, &self.tags[..]);
+                let name = function_name(original_name, &self.tags[..]);
                 info!(?name, "generated rustified name");
 
                 self.command_aliases

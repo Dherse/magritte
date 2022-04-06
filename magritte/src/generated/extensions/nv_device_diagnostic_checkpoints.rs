@@ -499,16 +499,14 @@ impl Queue {
             .device()
             .vtable()
             .nv_device_diagnostic_checkpoints()
-            .expect("extension/version not loaded")
-            .get_queue_checkpoint_data_nv()
+            .and_then(|vtable| vtable.get_queue_checkpoint_data_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_device_diagnostic_checkpoints()
-            .unwrap_unchecked()
-            .get_queue_checkpoint_data_nv()
+            .and_then(|vtable| vtable.get_queue_checkpoint_data_nv())
             .unwrap_unchecked();
         let mut p_checkpoint_data_count = match p_checkpoint_data_count {
             Some(v) => v as _,
@@ -580,16 +578,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_device_diagnostic_checkpoints()
-            .expect("extension/version not loaded")
-            .cmd_set_checkpoint_nv()
+            .and_then(|vtable| vtable.cmd_set_checkpoint_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_device_diagnostic_checkpoints()
-            .unwrap_unchecked()
-            .cmd_set_checkpoint_nv()
+            .and_then(|vtable| vtable.cmd_set_checkpoint_nv())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_checkpoint_marker);
         ()

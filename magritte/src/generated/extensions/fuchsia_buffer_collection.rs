@@ -2745,15 +2745,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .expect("extension/version not loaded")
-            .create_buffer_collection_fuchsia()
+            .and_then(|vtable| vtable.create_buffer_collection_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .unwrap_unchecked()
-            .create_buffer_collection_fuchsia()
+            .and_then(|vtable| vtable.create_buffer_collection_fuchsia())
             .unwrap_unchecked();
         let mut p_collection = MaybeUninit::<BufferCollectionFUCHSIA>::uninit();
         let _return = _function(
@@ -2835,15 +2833,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .expect("extension/version not loaded")
-            .set_buffer_collection_buffer_constraints_fuchsia()
+            .and_then(|vtable| vtable.set_buffer_collection_buffer_constraints_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .unwrap_unchecked()
-            .set_buffer_collection_buffer_constraints_fuchsia()
+            .and_then(|vtable| vtable.set_buffer_collection_buffer_constraints_fuchsia())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -2926,15 +2922,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .expect("extension/version not loaded")
-            .set_buffer_collection_image_constraints_fuchsia()
+            .and_then(|vtable| vtable.set_buffer_collection_image_constraints_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .unwrap_unchecked()
-            .set_buffer_collection_image_constraints_fuchsia()
+            .and_then(|vtable| vtable.set_buffer_collection_image_constraints_fuchsia())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3001,15 +2995,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .expect("extension/version not loaded")
-            .destroy_buffer_collection_fuchsia()
+            .and_then(|vtable| vtable.destroy_buffer_collection_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .unwrap_unchecked()
-            .destroy_buffer_collection_fuchsia()
+            .and_then(|vtable| vtable.destroy_buffer_collection_fuchsia())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3103,18 +3095,15 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .expect("extension/version not loaded")
-            .get_buffer_collection_properties_fuchsia()
+            .and_then(|vtable| vtable.get_buffer_collection_properties_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_buffer_collection()
-            .unwrap_unchecked()
-            .get_buffer_collection_properties_fuchsia()
+            .and_then(|vtable| vtable.get_buffer_collection_properties_fuchsia())
             .unwrap_unchecked();
-        let mut p_properties = p_properties
-            .unwrap_or_else(|| MaybeUninit::<BufferCollectionPropertiesFUCHSIA<'lt>>::zeroed().assume_init());
+        let mut p_properties = p_properties.unwrap_or_default();
         let _return = _function(self.as_raw(), collection, &mut p_properties);
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {

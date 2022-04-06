@@ -358,16 +358,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .huawei_invocation_mask()
-            .expect("extension/version not loaded")
-            .cmd_bind_invocation_mask_huawei()
+            .and_then(|vtable| vtable.cmd_bind_invocation_mask_huawei())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .huawei_invocation_mask()
-            .unwrap_unchecked()
-            .cmd_bind_invocation_mask_huawei()
+            .and_then(|vtable| vtable.cmd_bind_invocation_mask_huawei())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), image_view.unwrap_or_default(), image_layout);
         ()

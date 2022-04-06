@@ -2410,16 +2410,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_mesh_shader()
-            .expect("extension/version not loaded")
-            .cmd_draw_mesh_tasks_nv()
+            .and_then(|vtable| vtable.cmd_draw_mesh_tasks_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_mesh_shader()
-            .unwrap_unchecked()
-            .cmd_draw_mesh_tasks_nv()
+            .and_then(|vtable| vtable.cmd_draw_mesh_tasks_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -2870,16 +2868,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_mesh_shader()
-            .expect("extension/version not loaded")
-            .cmd_draw_mesh_tasks_indirect_nv()
+            .and_then(|vtable| vtable.cmd_draw_mesh_tasks_indirect_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_mesh_shader()
-            .unwrap_unchecked()
-            .cmd_draw_mesh_tasks_indirect_nv()
+            .and_then(|vtable| vtable.cmd_draw_mesh_tasks_indirect_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3348,16 +3344,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_mesh_shader()
-            .expect("extension/version not loaded")
-            .cmd_draw_mesh_tasks_indirect_count_nv()
+            .and_then(|vtable| vtable.cmd_draw_mesh_tasks_indirect_count_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_mesh_shader()
-            .unwrap_unchecked()
-            .cmd_draw_mesh_tasks_indirect_count_nv()
+            .and_then(|vtable| vtable.cmd_draw_mesh_tasks_indirect_count_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

@@ -930,15 +930,13 @@ impl Device {
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .expect("extension/version not loaded")
-            .create_cu_module_nvx()
+            .and_then(|vtable| vtable.create_cu_module_nvx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .unwrap_unchecked()
-            .create_cu_module_nvx()
+            .and_then(|vtable| vtable.create_cu_module_nvx())
             .unwrap_unchecked();
         let mut p_module = MaybeUninit::<CuModuleNVX>::uninit();
         let _return = _function(
@@ -1008,15 +1006,13 @@ impl Device {
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .expect("extension/version not loaded")
-            .create_cu_function_nvx()
+            .and_then(|vtable| vtable.create_cu_function_nvx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .unwrap_unchecked()
-            .create_cu_function_nvx()
+            .and_then(|vtable| vtable.create_cu_function_nvx())
             .unwrap_unchecked();
         let mut p_function = MaybeUninit::<CuFunctionNVX>::uninit();
         let _return = _function(
@@ -1081,15 +1077,13 @@ impl Device {
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .expect("extension/version not loaded")
-            .destroy_cu_module_nvx()
+            .and_then(|vtable| vtable.destroy_cu_module_nvx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .unwrap_unchecked()
-            .destroy_cu_module_nvx()
+            .and_then(|vtable| vtable.destroy_cu_module_nvx())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1147,15 +1141,13 @@ impl Device {
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .expect("extension/version not loaded")
-            .destroy_cu_function_nvx()
+            .and_then(|vtable| vtable.destroy_cu_function_nvx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nvx_binary_import()
-            .unwrap_unchecked()
-            .destroy_cu_function_nvx()
+            .and_then(|vtable| vtable.destroy_cu_function_nvx())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1217,16 +1209,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nvx_binary_import()
-            .expect("extension/version not loaded")
-            .cmd_cu_launch_kernel_nvx()
+            .and_then(|vtable| vtable.cmd_cu_launch_kernel_nvx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nvx_binary_import()
-            .unwrap_unchecked()
-            .cmd_cu_launch_kernel_nvx()
+            .and_then(|vtable| vtable.cmd_cu_launch_kernel_nvx())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_launch_info as *const CuLaunchInfoNVX<'lt>);
         ()

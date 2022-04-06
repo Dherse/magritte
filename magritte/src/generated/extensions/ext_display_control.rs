@@ -1011,15 +1011,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_display_control()
-            .expect("extension/version not loaded")
-            .display_power_control_ext()
+            .and_then(|vtable| vtable.display_power_control_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_display_control()
-            .unwrap_unchecked()
-            .display_power_control_ext()
+            .and_then(|vtable| vtable.display_power_control_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1091,15 +1089,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_display_control()
-            .expect("extension/version not loaded")
-            .register_device_event_ext()
+            .and_then(|vtable| vtable.register_device_event_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_display_control()
-            .unwrap_unchecked()
-            .register_device_event_ext()
+            .and_then(|vtable| vtable.register_device_event_ext())
             .unwrap_unchecked();
         let mut p_fence = MaybeUninit::<Fence>::uninit();
         let _return = _function(
@@ -1182,15 +1178,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_display_control()
-            .expect("extension/version not loaded")
-            .register_display_event_ext()
+            .and_then(|vtable| vtable.register_display_event_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_display_control()
-            .unwrap_unchecked()
-            .register_display_event_ext()
+            .and_then(|vtable| vtable.register_display_event_ext())
             .unwrap_unchecked();
         let mut p_fence = MaybeUninit::<Fence>::uninit();
         let _return = _function(
@@ -1271,15 +1265,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_display_control()
-            .expect("extension/version not loaded")
-            .get_swapchain_counter_ext()
+            .and_then(|vtable| vtable.get_swapchain_counter_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_display_control()
-            .unwrap_unchecked()
-            .get_swapchain_counter_ext()
+            .and_then(|vtable| vtable.get_swapchain_counter_ext())
             .unwrap_unchecked();
         let mut p_counter_value = Default::default();
         let _return = _function(self.as_raw(), swapchain, counter, &mut p_counter_value);

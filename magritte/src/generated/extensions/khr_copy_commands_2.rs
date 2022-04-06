@@ -6,9 +6,9 @@
 //!that their copy parameters are specified using extensible structures that
 //!can be used to pass extension-specific information.The following extensible copy commands are
 //! introduced with this extension:
-//![`CmdCopyBuffer2KHR`], [`CmdCopyImage2KHR`],
-//![`CmdCopyBufferToImage2KHR`], [`CmdCopyImageToBuffer2KHR`],
-//![`CmdBlitImage2KHR`], and [`CmdResolveImage2KHR`].
+//![`cmd_copy_buffer2_khr`], [`cmd_copy_image2_khr`],
+//![`cmd_copy_buffer_to_image2_khr`], [`cmd_copy_image_to_buffer2_khr`],
+//![`cmd_blit_image2_khr`], and [`cmd_resolve_image2_khr`].
 //!Each command contains an `*Info2KHR` structure parameter that includes
 //!`sType`/`pNext` members.
 //!Lower level structures describing each region to be copied are also extended
@@ -24,12 +24,12 @@
 //!   @jackohound%0A<<Here describe the issue or question you have about the VK_KHR_copy_commands2
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdBlitImage2KHR`]
-//! - [`CmdCopyBuffer2KHR`]
-//! - [`CmdCopyBufferToImage2KHR`]
-//! - [`CmdCopyImage2KHR`]
-//! - [`CmdCopyImageToBuffer2KHR`]
-//! - [`CmdResolveImage2KHR`]
+//! - [`cmd_blit_image2_khr`]
+//! - [`cmd_copy_buffer2_khr`]
+//! - [`cmd_copy_buffer_to_image2_khr`]
+//! - [`cmd_copy_image2_khr`]
+//! - [`cmd_copy_image_to_buffer2_khr`]
+//! - [`cmd_resolve_image2_khr`]
 //!# New structures
 //! - [`BlitImageInfo2KHR`]
 //! - [`BufferCopy2KHR`]
@@ -72,12 +72,12 @@
 //! - [`ImageCopy2KHR`]
 //! - [`ImageResolve2KHR`]
 //! - [`ResolveImageInfo2KHR`]
-//! - [`CmdBlitImage2KHR`]
-//! - [`CmdCopyBuffer2KHR`]
-//! - [`CmdCopyBufferToImage2KHR`]
-//! - [`CmdCopyImage2KHR`]
-//! - [`CmdCopyImageToBuffer2KHR`]
-//! - [`CmdResolveImage2KHR`]
+//! - [`cmd_blit_image2_khr`]
+//! - [`cmd_copy_buffer2_khr`]
+//! - [`cmd_copy_buffer_to_image2_khr`]
+//! - [`cmd_copy_image2_khr`]
+//! - [`cmd_copy_image_to_buffer2_khr`]
+//! - [`cmd_resolve_image2_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -105,17 +105,17 @@ pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 ///The V-table of [`Device`] for functions from `VK_KHR_copy_commands2`
 pub struct DeviceKhrCopyCommands2VTable {
     ///See [`FNCmdCopyBuffer2`] for more information.
-    pub cmd_copy_buffer2: FNCmdCopyBuffer2,
+    pub cmd_copy_buffer2_khr: FNCmdCopyBuffer2,
     ///See [`FNCmdCopyImage2`] for more information.
-    pub cmd_copy_image2: FNCmdCopyImage2,
+    pub cmd_copy_image2_khr: FNCmdCopyImage2,
     ///See [`FNCmdBlitImage2`] for more information.
-    pub cmd_blit_image2: FNCmdBlitImage2,
+    pub cmd_blit_image2_khr: FNCmdBlitImage2,
     ///See [`FNCmdCopyBufferToImage2`] for more information.
-    pub cmd_copy_buffer_to_image2: FNCmdCopyBufferToImage2,
+    pub cmd_copy_buffer_to_image2_khr: FNCmdCopyBufferToImage2,
     ///See [`FNCmdCopyImageToBuffer2`] for more information.
-    pub cmd_copy_image_to_buffer2: FNCmdCopyImageToBuffer2,
+    pub cmd_copy_image_to_buffer2_khr: FNCmdCopyImageToBuffer2,
     ///See [`FNCmdResolveImage2`] for more information.
-    pub cmd_resolve_image2: FNCmdResolveImage2,
+    pub cmd_resolve_image2_khr: FNCmdResolveImage2,
 }
 impl DeviceKhrCopyCommands2VTable {
     ///Loads the VTable from the owner and the names
@@ -128,50 +128,50 @@ impl DeviceKhrCopyCommands2VTable {
         loader: Device,
     ) -> Self {
         Self {
-            cmd_copy_buffer2: unsafe {
+            cmd_copy_buffer2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBuffer2KHR").as_ptr()))
             },
-            cmd_copy_image2: unsafe {
+            cmd_copy_image2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImage2KHR").as_ptr()))
             },
-            cmd_blit_image2: unsafe {
+            cmd_blit_image2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBlitImage2KHR").as_ptr()))
             },
-            cmd_copy_buffer_to_image2: unsafe {
+            cmd_copy_buffer_to_image2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyBufferToImage2KHR").as_ptr()))
             },
-            cmd_copy_image_to_buffer2: unsafe {
+            cmd_copy_image_to_buffer2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdCopyImageToBuffer2KHR").as_ptr()))
             },
-            cmd_resolve_image2: unsafe {
+            cmd_resolve_image2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdResolveImage2KHR").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::cmd_copy_buffer2`]. See [`FNCmdCopyBuffer2`] for more information.
-    pub fn cmd_copy_buffer2(&self) -> FNCmdCopyBuffer2 {
-        self.cmd_copy_buffer2
+    ///Gets [`Self::cmd_copy_buffer2_khr`]. See [`FNCmdCopyBuffer2`] for more information.
+    pub fn cmd_copy_buffer2_khr(&self) -> FNCmdCopyBuffer2 {
+        self.cmd_copy_buffer2_khr
     }
-    ///Gets [`Self::cmd_copy_image2`]. See [`FNCmdCopyImage2`] for more information.
-    pub fn cmd_copy_image2(&self) -> FNCmdCopyImage2 {
-        self.cmd_copy_image2
+    ///Gets [`Self::cmd_copy_image2_khr`]. See [`FNCmdCopyImage2`] for more information.
+    pub fn cmd_copy_image2_khr(&self) -> FNCmdCopyImage2 {
+        self.cmd_copy_image2_khr
     }
-    ///Gets [`Self::cmd_blit_image2`]. See [`FNCmdBlitImage2`] for more information.
-    pub fn cmd_blit_image2(&self) -> FNCmdBlitImage2 {
-        self.cmd_blit_image2
+    ///Gets [`Self::cmd_blit_image2_khr`]. See [`FNCmdBlitImage2`] for more information.
+    pub fn cmd_blit_image2_khr(&self) -> FNCmdBlitImage2 {
+        self.cmd_blit_image2_khr
     }
-    ///Gets [`Self::cmd_copy_buffer_to_image2`]. See [`FNCmdCopyBufferToImage2`] for more
+    ///Gets [`Self::cmd_copy_buffer_to_image2_khr`]. See [`FNCmdCopyBufferToImage2`] for more
     /// information.
-    pub fn cmd_copy_buffer_to_image2(&self) -> FNCmdCopyBufferToImage2 {
-        self.cmd_copy_buffer_to_image2
+    pub fn cmd_copy_buffer_to_image2_khr(&self) -> FNCmdCopyBufferToImage2 {
+        self.cmd_copy_buffer_to_image2_khr
     }
-    ///Gets [`Self::cmd_copy_image_to_buffer2`]. See [`FNCmdCopyImageToBuffer2`] for more
+    ///Gets [`Self::cmd_copy_image_to_buffer2_khr`]. See [`FNCmdCopyImageToBuffer2`] for more
     /// information.
-    pub fn cmd_copy_image_to_buffer2(&self) -> FNCmdCopyImageToBuffer2 {
-        self.cmd_copy_image_to_buffer2
+    pub fn cmd_copy_image_to_buffer2_khr(&self) -> FNCmdCopyImageToBuffer2 {
+        self.cmd_copy_image_to_buffer2_khr
     }
-    ///Gets [`Self::cmd_resolve_image2`]. See [`FNCmdResolveImage2`] for more information.
-    pub fn cmd_resolve_image2(&self) -> FNCmdResolveImage2 {
-        self.cmd_resolve_image2
+    ///Gets [`Self::cmd_resolve_image2_khr`]. See [`FNCmdResolveImage2`] for more information.
+    pub fn cmd_resolve_image2_khr(&self) -> FNCmdResolveImage2 {
+        self.cmd_resolve_image2_khr
     }
 }

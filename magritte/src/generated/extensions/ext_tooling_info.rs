@@ -27,7 +27,7 @@
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_EXT_tooling_info
 //!   extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceToolPropertiesEXT`]
+//! - [`get_physical_device_tool_properties_ext`]
 //!# New structures
 //! - [`PhysicalDeviceToolPropertiesEXT`]
 //!# New enums
@@ -60,7 +60,7 @@
 //! - [`PhysicalDeviceToolPropertiesEXT`]
 //! - [`ToolPurposeFlagBitsEXT`]
 //! - [`ToolPurposeFlagsEXT`]
-//! - [`GetPhysicalDeviceToolPropertiesEXT`]
+//! - [`get_physical_device_tool_properties_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -82,7 +82,7 @@ pub const EXT_TOOLING_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///The V-table of [`Instance`] for functions from `VK_EXT_tooling_info`
 pub struct InstanceExtToolingInfoVTable {
     ///See [`FNGetPhysicalDeviceToolProperties`] for more information.
-    pub get_physical_device_tool_properties: FNGetPhysicalDeviceToolProperties,
+    pub get_physical_device_tool_properties_ext: FNGetPhysicalDeviceToolProperties,
 }
 impl InstanceExtToolingInfoVTable {
     ///Loads the VTable from the owner and the names
@@ -95,7 +95,7 @@ impl InstanceExtToolingInfoVTable {
         loader: Instance,
     ) -> Self {
         Self {
-            get_physical_device_tool_properties: unsafe {
+            get_physical_device_tool_properties_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceToolPropertiesEXT").as_ptr(),
@@ -103,9 +103,9 @@ impl InstanceExtToolingInfoVTable {
             },
         }
     }
-    ///Gets [`Self::get_physical_device_tool_properties`]. See
+    ///Gets [`Self::get_physical_device_tool_properties_ext`]. See
     /// [`FNGetPhysicalDeviceToolProperties`] for more information.
-    pub fn get_physical_device_tool_properties(&self) -> FNGetPhysicalDeviceToolProperties {
-        self.get_physical_device_tool_properties
+    pub fn get_physical_device_tool_properties_ext(&self) -> FNGetPhysicalDeviceToolProperties {
+        self.get_physical_device_tool_properties_ext
     }
 }

@@ -24,9 +24,9 @@
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_timeline_semaphore extension>>)
 //!# New functions & commands
-//! - [`GetSemaphoreCounterValueKHR`]
-//! - [`SignalSemaphoreKHR`]
-//! - [`WaitSemaphoresKHR`]
+//! - [`get_semaphore_counter_value_khr`]
+//! - [`signal_semaphore_khr`]
+//! - [`wait_semaphores_khr`]
 //!# New structures
 //! - [`SemaphoreSignalInfoKHR`]
 //! - [`SemaphoreWaitInfoKHR`]
@@ -132,9 +132,9 @@
 //! - [`SemaphoreWaitFlagsKHR`]
 //! - [`SemaphoreWaitInfoKHR`]
 //! - [`TimelineSemaphoreSubmitInfoKHR`]
-//! - [`GetSemaphoreCounterValueKHR`]
-//! - [`SignalSemaphoreKHR`]
-//! - [`WaitSemaphoresKHR`]
+//! - [`get_semaphore_counter_value_khr`]
+//! - [`signal_semaphore_khr`]
+//! - [`wait_semaphores_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -159,11 +159,11 @@ pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///The V-table of [`Device`] for functions from `VK_KHR_timeline_semaphore`
 pub struct DeviceKhrTimelineSemaphoreVTable {
     ///See [`FNGetSemaphoreCounterValue`] for more information.
-    pub get_semaphore_counter_value: FNGetSemaphoreCounterValue,
+    pub get_semaphore_counter_value_khr: FNGetSemaphoreCounterValue,
     ///See [`FNWaitSemaphores`] for more information.
-    pub wait_semaphores: FNWaitSemaphores,
+    pub wait_semaphores_khr: FNWaitSemaphores,
     ///See [`FNSignalSemaphore`] for more information.
-    pub signal_semaphore: FNSignalSemaphore,
+    pub signal_semaphore_khr: FNSignalSemaphore,
 }
 impl DeviceKhrTimelineSemaphoreVTable {
     ///Loads the VTable from the owner and the names
@@ -176,31 +176,31 @@ impl DeviceKhrTimelineSemaphoreVTable {
         loader: Device,
     ) -> Self {
         Self {
-            get_semaphore_counter_value: unsafe {
+            get_semaphore_counter_value_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetSemaphoreCounterValueKHR").as_ptr(),
                 ))
             },
-            wait_semaphores: unsafe {
+            wait_semaphores_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkWaitSemaphoresKHR").as_ptr()))
             },
-            signal_semaphore: unsafe {
+            signal_semaphore_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkSignalSemaphoreKHR").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::get_semaphore_counter_value`]. See [`FNGetSemaphoreCounterValue`] for more
+    ///Gets [`Self::get_semaphore_counter_value_khr`]. See [`FNGetSemaphoreCounterValue`] for more
     /// information.
-    pub fn get_semaphore_counter_value(&self) -> FNGetSemaphoreCounterValue {
-        self.get_semaphore_counter_value
+    pub fn get_semaphore_counter_value_khr(&self) -> FNGetSemaphoreCounterValue {
+        self.get_semaphore_counter_value_khr
     }
-    ///Gets [`Self::wait_semaphores`]. See [`FNWaitSemaphores`] for more information.
-    pub fn wait_semaphores(&self) -> FNWaitSemaphores {
-        self.wait_semaphores
+    ///Gets [`Self::wait_semaphores_khr`]. See [`FNWaitSemaphores`] for more information.
+    pub fn wait_semaphores_khr(&self) -> FNWaitSemaphores {
+        self.wait_semaphores_khr
     }
-    ///Gets [`Self::signal_semaphore`]. See [`FNSignalSemaphore`] for more information.
-    pub fn signal_semaphore(&self) -> FNSignalSemaphore {
-        self.signal_semaphore
+    ///Gets [`Self::signal_semaphore_khr`]. See [`FNSignalSemaphore`] for more information.
+    pub fn signal_semaphore_khr(&self) -> FNSignalSemaphore {
+        self.signal_semaphore_khr
     }
 }

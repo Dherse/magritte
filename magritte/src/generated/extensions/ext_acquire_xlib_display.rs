@@ -237,16 +237,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_acquire_xlib_display()
-            .expect("extension/version not loaded")
-            .acquire_xlib_display_ext()
+            .and_then(|vtable| vtable.acquire_xlib_display_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_acquire_xlib_display()
-            .unwrap_unchecked()
-            .acquire_xlib_display_ext()
+            .and_then(|vtable| vtable.acquire_xlib_display_ext())
             .unwrap_unchecked();
         let mut dpy = std::mem::zeroed();
         let _return = _function(self.as_raw(), &mut dpy, display);
@@ -314,16 +312,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_acquire_xlib_display()
-            .expect("extension/version not loaded")
-            .get_rand_r_output_display_ext()
+            .and_then(|vtable| vtable.get_rand_r_output_display_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_acquire_xlib_display()
-            .unwrap_unchecked()
-            .get_rand_r_output_display_ext()
+            .and_then(|vtable| vtable.get_rand_r_output_display_ext())
             .unwrap_unchecked();
         let mut dpy = std::mem::zeroed();
         let mut p_display = MaybeUninit::<DisplayKHR>::uninit();

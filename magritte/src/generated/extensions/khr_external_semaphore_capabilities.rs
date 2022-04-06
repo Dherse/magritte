@@ -18,7 +18,7 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore_capabilities extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceExternalSemaphorePropertiesKHR`]
+//! - [`get_physical_device_external_semaphore_properties_khr`]
 //!# New structures
 //! - [`ExternalSemaphorePropertiesKHR`]
 //! - [`PhysicalDeviceExternalSemaphoreInfoKHR`]
@@ -61,7 +61,7 @@
 //! - [`ExternalSemaphorePropertiesKHR`]
 //! - [`PhysicalDeviceExternalSemaphoreInfoKHR`]
 //! - [`PhysicalDeviceIdPropertiesKHR`]
-//! - [`GetPhysicalDeviceExternalSemaphorePropertiesKHR`]
+//! - [`get_physical_device_external_semaphore_properties_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -84,7 +84,7 @@ pub const KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///The V-table of [`Instance`] for functions from `VK_KHR_external_semaphore_capabilities`
 pub struct InstanceKhrExternalSemaphoreCapabilitiesVTable {
     ///See [`FNGetPhysicalDeviceExternalSemaphoreProperties`] for more information.
-    pub get_physical_device_external_semaphore_properties: FNGetPhysicalDeviceExternalSemaphoreProperties,
+    pub get_physical_device_external_semaphore_properties_khr: FNGetPhysicalDeviceExternalSemaphoreProperties,
 }
 impl InstanceKhrExternalSemaphoreCapabilitiesVTable {
     ///Loads the VTable from the owner and the names
@@ -97,7 +97,7 @@ impl InstanceKhrExternalSemaphoreCapabilitiesVTable {
         loader: Instance,
     ) -> Self {
         Self {
-            get_physical_device_external_semaphore_properties: unsafe {
+            get_physical_device_external_semaphore_properties_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceExternalSemaphorePropertiesKHR").as_ptr(),
@@ -105,9 +105,11 @@ impl InstanceKhrExternalSemaphoreCapabilitiesVTable {
             },
         }
     }
-    ///Gets [`Self::get_physical_device_external_semaphore_properties`]. See
+    ///Gets [`Self::get_physical_device_external_semaphore_properties_khr`]. See
     /// [`FNGetPhysicalDeviceExternalSemaphoreProperties`] for more information.
-    pub fn get_physical_device_external_semaphore_properties(&self) -> FNGetPhysicalDeviceExternalSemaphoreProperties {
-        self.get_physical_device_external_semaphore_properties
+    pub fn get_physical_device_external_semaphore_properties_khr(
+        &self,
+    ) -> FNGetPhysicalDeviceExternalSemaphoreProperties {
+        self.get_physical_device_external_semaphore_properties_khr
     }
 }

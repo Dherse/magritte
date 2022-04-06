@@ -493,16 +493,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_clip_space_w_scaling()
-            .expect("extension/version not loaded")
-            .cmd_set_viewport_w_scaling_nv()
+            .and_then(|vtable| vtable.cmd_set_viewport_w_scaling_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_clip_space_w_scaling()
-            .unwrap_unchecked()
-            .cmd_set_viewport_w_scaling_nv()
+            .and_then(|vtable| vtable.cmd_set_viewport_w_scaling_nv())
             .unwrap_unchecked();
         let viewport_count = (|len: usize| len)(p_viewport_w_scalings.len()) as _;
         let _return = _function(

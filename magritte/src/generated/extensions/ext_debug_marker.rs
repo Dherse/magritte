@@ -1181,15 +1181,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_debug_marker()
-            .expect("extension/version not loaded")
-            .debug_marker_set_object_name_ext()
+            .and_then(|vtable| vtable.debug_marker_set_object_name_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_marker()
-            .unwrap_unchecked()
-            .debug_marker_set_object_name_ext()
+            .and_then(|vtable| vtable.debug_marker_set_object_name_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_name_info as *const DebugMarkerObjectNameInfoEXT<'lt>);
         match _return {
@@ -1253,15 +1251,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_debug_marker()
-            .expect("extension/version not loaded")
-            .debug_marker_set_object_tag_ext()
+            .and_then(|vtable| vtable.debug_marker_set_object_tag_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_debug_marker()
-            .unwrap_unchecked()
-            .debug_marker_set_object_tag_ext()
+            .and_then(|vtable| vtable.debug_marker_set_object_tag_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_tag_info as *const DebugMarkerObjectTagInfoEXT<'lt>);
         match _return {
@@ -1324,16 +1320,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_debug_marker()
-            .expect("extension/version not loaded")
-            .cmd_debug_marker_begin_ext()
+            .and_then(|vtable| vtable.cmd_debug_marker_begin_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_marker()
-            .unwrap_unchecked()
-            .cmd_debug_marker_begin_ext()
+            .and_then(|vtable| vtable.cmd_debug_marker_begin_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_marker_info as *const DebugMarkerMarkerInfoEXT<'lt>);
         ()
@@ -1397,16 +1391,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_debug_marker()
-            .expect("extension/version not loaded")
-            .cmd_debug_marker_end_ext()
+            .and_then(|vtable| vtable.cmd_debug_marker_end_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_marker()
-            .unwrap_unchecked()
-            .cmd_debug_marker_end_ext()
+            .and_then(|vtable| vtable.cmd_debug_marker_end_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()
@@ -1466,16 +1458,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_debug_marker()
-            .expect("extension/version not loaded")
-            .cmd_debug_marker_insert_ext()
+            .and_then(|vtable| vtable.cmd_debug_marker_insert_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_debug_marker()
-            .unwrap_unchecked()
-            .cmd_debug_marker_insert_ext()
+            .and_then(|vtable| vtable.cmd_debug_marker_insert_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_marker_info as *const DebugMarkerMarkerInfoEXT<'lt>);
         ()

@@ -308,7 +308,6 @@ impl<'a> Handle<'a> {
         'a: 'b,
     {
         imports.push_origin(&Origin::Vulkan1_0, self.name());
-        imports.push("std::ffi::CStr");
 
         // the name of the vtable
         let name = self.vtable_ident(origin);
@@ -320,38 +319,31 @@ impl<'a> Handle<'a> {
             origin.name()
         );
 
-        let functions = functions
-            .into_iter()
-            .map(|fun| match fun {
-                HandleFunction::Function(func) => (*func, func.original_name()),
-                HandleFunction::Alias(alias) => (
-                    source
-                        .functions
-                        .get_by_either(alias.of())
-                        .or_else(|| source.commands.get_by_either(alias.of()).map(Deref::deref))
-                        .expect("unknown function"),
-                    alias.original_name(),
-                ),
-            })
-            .collect::<Vec<_>>();
-
-        for (fun, _) in &functions {
-            imports.push_origin(fun.origin(), fun.as_fn_pointer_name());
+        for fun in functions {
+            match fun {
+                HandleFunction::Function(fun) => imports.push_origin(fun.origin(), fun.as_fn_pointer_name()),
+                HandleFunction::Alias(alias) => alias.import_function_pointer_ty(source, imports),
+            }
         }
 
         // the field definitions
-        let fields = functions.iter().map(|(fun, _)| fun.generate_field_code());
+        let fields = functions.iter().map(|fun| match fun {
+            HandleFunction::Function(fun) => fun.generate_field_code(),
+            HandleFunction::Alias(alias) => alias.generate_field_code(source),
+        });
 
         // the field initialization
         let owner = quote! { loader };
 
-        let field_inits = functions
-            .iter()
-            .map(|(fun, rename)| fun.generate_field_init_code(origin, source, &owner, None, Some(rename), imports));
+        let field_inits = functions.iter().map(|fun| match fun {
+            HandleFunction::Function(fun) => fun.generate_field_init_code(origin, source, &owner, None, imports),
+            HandleFunction::Alias(alias) => alias.generate_field_init_code(origin, source, &owner, None, imports),
+        });
 
-        let field_getters = functions
-            .iter()
-            .map(|(fun, _)| fun.generate_field_getter_code(origin, source));
+        let field_getters = functions.iter().map(|fun| match fun {
+            HandleFunction::Function(fun) => fun.generate_field_getter_code(origin, source),
+            HandleFunction::Alias(alias) => alias.generate_field_getter_code(origin, source),
+        });
 
         let loader = self.as_ident();
 

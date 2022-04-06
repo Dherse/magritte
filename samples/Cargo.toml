@@ -14,5 +14,12 @@ pretty_env_logger = "0.4.0"
 
 [dependencies.magritte]
 path = "../magritte"
-features = [ "libloading", "smallvec", "window", "VK_KHR_swapchain", "VK_KHR_surface", "VK_KHR_xlib_surface", "VK_EXT_debug_utils" ]
+features = [ 
+    "libloading", 
+    "smallvec", 
+    "window", 
+    "VK_KHR_swapchain",
+    "VK_EXT_debug_utils", 
+    "VK_KHR_get_physical_device_properties2"
+]
 default-features = false

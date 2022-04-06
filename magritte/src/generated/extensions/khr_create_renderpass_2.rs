@@ -35,10 +35,10 @@
 //!   @tobias%0A<<Here describe the issue or question you have about the VK_KHR_create_renderpass2
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdBeginRenderPass2KHR`]
-//! - [`CmdEndRenderPass2KHR`]
-//! - [`CmdNextSubpass2KHR`]
-//! - [`CreateRenderPass2KHR`]
+//! - [`cmd_begin_render_pass2_khr`]
+//! - [`cmd_end_render_pass2_khr`]
+//! - [`cmd_next_subpass2_khr`]
+//! - [`create_render_pass2_khr`]
 //!# New structures
 //! - [`AttachmentDescription2KHR`]
 //! - [`AttachmentReference2KHR`]
@@ -69,10 +69,10 @@
 //! - [`SubpassDependency2KHR`]
 //! - [`SubpassDescription2KHR`]
 //! - [`SubpassEndInfoKHR`]
-//! - [`CmdBeginRenderPass2KHR`]
-//! - [`CmdEndRenderPass2KHR`]
-//! - [`CmdNextSubpass2KHR`]
-//! - [`CreateRenderPass2KHR`]
+//! - [`cmd_begin_render_pass2_khr`]
+//! - [`cmd_end_render_pass2_khr`]
+//! - [`cmd_next_subpass2_khr`]
+//! - [`create_render_pass2_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -97,13 +97,13 @@ pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The V-table of [`Device`] for functions from `VK_KHR_create_renderpass2`
 pub struct DeviceKhrCreateRenderpass2VTable {
     ///See [`FNCreateRenderPass2`] for more information.
-    pub create_render_pass2: FNCreateRenderPass2,
+    pub create_render_pass2_khr: FNCreateRenderPass2,
     ///See [`FNCmdBeginRenderPass2`] for more information.
-    pub cmd_begin_render_pass2: FNCmdBeginRenderPass2,
+    pub cmd_begin_render_pass2_khr: FNCmdBeginRenderPass2,
     ///See [`FNCmdNextSubpass2`] for more information.
-    pub cmd_next_subpass2: FNCmdNextSubpass2,
+    pub cmd_next_subpass2_khr: FNCmdNextSubpass2,
     ///See [`FNCmdEndRenderPass2`] for more information.
-    pub cmd_end_render_pass2: FNCmdEndRenderPass2,
+    pub cmd_end_render_pass2_khr: FNCmdEndRenderPass2,
 }
 impl DeviceKhrCreateRenderpass2VTable {
     ///Loads the VTable from the owner and the names
@@ -116,34 +116,35 @@ impl DeviceKhrCreateRenderpass2VTable {
         loader: Device,
     ) -> Self {
         Self {
-            create_render_pass2: unsafe {
+            create_render_pass2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCreateRenderPass2KHR").as_ptr()))
             },
-            cmd_begin_render_pass2: unsafe {
+            cmd_begin_render_pass2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderPass2KHR").as_ptr()))
             },
-            cmd_next_subpass2: unsafe {
+            cmd_next_subpass2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdNextSubpass2KHR").as_ptr()))
             },
-            cmd_end_render_pass2: unsafe {
+            cmd_end_render_pass2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderPass2KHR").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::create_render_pass2`]. See [`FNCreateRenderPass2`] for more information.
-    pub fn create_render_pass2(&self) -> FNCreateRenderPass2 {
-        self.create_render_pass2
+    ///Gets [`Self::create_render_pass2_khr`]. See [`FNCreateRenderPass2`] for more information.
+    pub fn create_render_pass2_khr(&self) -> FNCreateRenderPass2 {
+        self.create_render_pass2_khr
     }
-    ///Gets [`Self::cmd_begin_render_pass2`]. See [`FNCmdBeginRenderPass2`] for more information.
-    pub fn cmd_begin_render_pass2(&self) -> FNCmdBeginRenderPass2 {
-        self.cmd_begin_render_pass2
+    ///Gets [`Self::cmd_begin_render_pass2_khr`]. See [`FNCmdBeginRenderPass2`] for more
+    /// information.
+    pub fn cmd_begin_render_pass2_khr(&self) -> FNCmdBeginRenderPass2 {
+        self.cmd_begin_render_pass2_khr
     }
-    ///Gets [`Self::cmd_next_subpass2`]. See [`FNCmdNextSubpass2`] for more information.
-    pub fn cmd_next_subpass2(&self) -> FNCmdNextSubpass2 {
-        self.cmd_next_subpass2
+    ///Gets [`Self::cmd_next_subpass2_khr`]. See [`FNCmdNextSubpass2`] for more information.
+    pub fn cmd_next_subpass2_khr(&self) -> FNCmdNextSubpass2 {
+        self.cmd_next_subpass2_khr
     }
-    ///Gets [`Self::cmd_end_render_pass2`]. See [`FNCmdEndRenderPass2`] for more information.
-    pub fn cmd_end_render_pass2(&self) -> FNCmdEndRenderPass2 {
-        self.cmd_end_render_pass2
+    ///Gets [`Self::cmd_end_render_pass2_khr`]. See [`FNCmdEndRenderPass2`] for more information.
+    pub fn cmd_end_render_pass2_khr(&self) -> FNCmdEndRenderPass2 {
+        self.cmd_end_render_pass2_khr
     }
 }

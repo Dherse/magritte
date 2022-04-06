@@ -574,15 +574,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_semaphore_fd()
-            .expect("extension/version not loaded")
-            .get_semaphore_fd_khr()
+            .and_then(|vtable| vtable.get_semaphore_fd_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_semaphore_fd()
-            .unwrap_unchecked()
-            .get_semaphore_fd_khr()
+            .and_then(|vtable| vtable.get_semaphore_fd_khr())
             .unwrap_unchecked();
         let mut p_fd = Default::default();
         let _return = _function(
@@ -654,15 +652,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_semaphore_fd()
-            .expect("extension/version not loaded")
-            .import_semaphore_fd_khr()
+            .and_then(|vtable| vtable.import_semaphore_fd_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_semaphore_fd()
-            .unwrap_unchecked()
-            .import_semaphore_fd_khr()
+            .and_then(|vtable| vtable.import_semaphore_fd_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

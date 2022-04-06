@@ -512,16 +512,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_color_write_enable()
-            .expect("extension/version not loaded")
-            .cmd_set_color_write_enable_ext()
+            .and_then(|vtable| vtable.cmd_set_color_write_enable_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_color_write_enable()
-            .unwrap_unchecked()
-            .cmd_set_color_write_enable_ext()
+            .and_then(|vtable| vtable.cmd_set_color_write_enable_ext())
             .unwrap_unchecked();
         let attachment_count = (|len: usize| len)(p_color_write_enables.len()) as _;
         let _return = _function(self.as_raw(), attachment_count, p_color_write_enables.as_ptr());

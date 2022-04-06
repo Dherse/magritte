@@ -26,13 +26,13 @@
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_physical_device_properties2 extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceFeatures2KHR`]
-//! - [`GetPhysicalDeviceFormatProperties2KHR`]
-//! - [`GetPhysicalDeviceImageFormatProperties2KHR`]
-//! - [`GetPhysicalDeviceMemoryProperties2KHR`]
-//! - [`GetPhysicalDeviceProperties2KHR`]
-//! - [`GetPhysicalDeviceQueueFamilyProperties2KHR`]
-//! - [`GetPhysicalDeviceSparseImageFormatProperties2KHR`]
+//! - [`get_physical_device_features2_khr`]
+//! - [`get_physical_device_format_properties2_khr`]
+//! - [`get_physical_device_image_format_properties2_khr`]
+//! - [`get_physical_device_memory_properties2_khr`]
+//! - [`get_physical_device_properties2_khr`]
+//! - [`get_physical_device_queue_family_properties2_khr`]
+//! - [`get_physical_device_sparse_image_format_properties2_khr`]
 //!# New structures
 //! - [`FormatProperties2KHR`]
 //! - [`ImageFormatProperties2KHR`]
@@ -74,13 +74,13 @@
 //! - [`PhysicalDeviceSparseImageFormatInfo2KHR`]
 //! - [`QueueFamilyProperties2KHR`]
 //! - [`SparseImageFormatProperties2KHR`]
-//! - [`GetPhysicalDeviceFeatures2KHR`]
-//! - [`GetPhysicalDeviceFormatProperties2KHR`]
-//! - [`GetPhysicalDeviceImageFormatProperties2KHR`]
-//! - [`GetPhysicalDeviceMemoryProperties2KHR`]
-//! - [`GetPhysicalDeviceProperties2KHR`]
-//! - [`GetPhysicalDeviceQueueFamilyProperties2KHR`]
-//! - [`GetPhysicalDeviceSparseImageFormatProperties2KHR`]
+//! - [`get_physical_device_features2_khr`]
+//! - [`get_physical_device_format_properties2_khr`]
+//! - [`get_physical_device_image_format_properties2_khr`]
+//! - [`get_physical_device_memory_properties2_khr`]
+//! - [`get_physical_device_properties2_khr`]
+//! - [`get_physical_device_queue_family_properties2_khr`]
+//! - [`get_physical_device_sparse_image_format_properties2_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -110,19 +110,19 @@ pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME: &'static CStr =
 ///The V-table of [`Instance`] for functions from `VK_KHR_get_physical_device_properties2`
 pub struct InstanceKhrGetPhysicalDeviceProperties2VTable {
     ///See [`FNGetPhysicalDeviceFeatures2`] for more information.
-    pub get_physical_device_features2: FNGetPhysicalDeviceFeatures2,
+    pub get_physical_device_features2_khr: FNGetPhysicalDeviceFeatures2,
     ///See [`FNGetPhysicalDeviceProperties2`] for more information.
-    pub get_physical_device_properties2: FNGetPhysicalDeviceProperties2,
+    pub get_physical_device_properties2_khr: FNGetPhysicalDeviceProperties2,
     ///See [`FNGetPhysicalDeviceFormatProperties2`] for more information.
-    pub get_physical_device_format_properties2: FNGetPhysicalDeviceFormatProperties2,
+    pub get_physical_device_format_properties2_khr: FNGetPhysicalDeviceFormatProperties2,
     ///See [`FNGetPhysicalDeviceImageFormatProperties2`] for more information.
-    pub get_physical_device_image_format_properties2: FNGetPhysicalDeviceImageFormatProperties2,
+    pub get_physical_device_image_format_properties2_khr: FNGetPhysicalDeviceImageFormatProperties2,
     ///See [`FNGetPhysicalDeviceQueueFamilyProperties2`] for more information.
-    pub get_physical_device_queue_family_properties2: FNGetPhysicalDeviceQueueFamilyProperties2,
+    pub get_physical_device_queue_family_properties2_khr: FNGetPhysicalDeviceQueueFamilyProperties2,
     ///See [`FNGetPhysicalDeviceMemoryProperties2`] for more information.
-    pub get_physical_device_memory_properties2: FNGetPhysicalDeviceMemoryProperties2,
+    pub get_physical_device_memory_properties2_khr: FNGetPhysicalDeviceMemoryProperties2,
     ///See [`FNGetPhysicalDeviceSparseImageFormatProperties2`] for more information.
-    pub get_physical_device_sparse_image_format_properties2: FNGetPhysicalDeviceSparseImageFormatProperties2,
+    pub get_physical_device_sparse_image_format_properties2_khr: FNGetPhysicalDeviceSparseImageFormatProperties2,
 }
 impl InstanceKhrGetPhysicalDeviceProperties2VTable {
     ///Loads the VTable from the owner and the names
@@ -135,43 +135,43 @@ impl InstanceKhrGetPhysicalDeviceProperties2VTable {
         loader: Instance,
     ) -> Self {
         Self {
-            get_physical_device_features2: unsafe {
+            get_physical_device_features2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceFeatures2KHR").as_ptr(),
                 ))
             },
-            get_physical_device_properties2: unsafe {
+            get_physical_device_properties2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceProperties2KHR").as_ptr(),
                 ))
             },
-            get_physical_device_format_properties2: unsafe {
+            get_physical_device_format_properties2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceFormatProperties2KHR").as_ptr(),
                 ))
             },
-            get_physical_device_image_format_properties2: unsafe {
+            get_physical_device_image_format_properties2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceImageFormatProperties2KHR").as_ptr(),
                 ))
             },
-            get_physical_device_queue_family_properties2: unsafe {
+            get_physical_device_queue_family_properties2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceQueueFamilyProperties2KHR").as_ptr(),
                 ))
             },
-            get_physical_device_memory_properties2: unsafe {
+            get_physical_device_memory_properties2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceMemoryProperties2KHR").as_ptr(),
                 ))
             },
-            get_physical_device_sparse_image_format_properties2: unsafe {
+            get_physical_device_sparse_image_format_properties2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceSparseImageFormatProperties2KHR").as_ptr(),
@@ -179,41 +179,41 @@ impl InstanceKhrGetPhysicalDeviceProperties2VTable {
             },
         }
     }
-    ///Gets [`Self::get_physical_device_features2`]. See [`FNGetPhysicalDeviceFeatures2`] for more
-    /// information.
-    pub fn get_physical_device_features2(&self) -> FNGetPhysicalDeviceFeatures2 {
-        self.get_physical_device_features2
-    }
-    ///Gets [`Self::get_physical_device_properties2`]. See [`FNGetPhysicalDeviceProperties2`] for
+    ///Gets [`Self::get_physical_device_features2_khr`]. See [`FNGetPhysicalDeviceFeatures2`] for
     /// more information.
-    pub fn get_physical_device_properties2(&self) -> FNGetPhysicalDeviceProperties2 {
-        self.get_physical_device_properties2
+    pub fn get_physical_device_features2_khr(&self) -> FNGetPhysicalDeviceFeatures2 {
+        self.get_physical_device_features2_khr
     }
-    ///Gets [`Self::get_physical_device_format_properties2`]. See
+    ///Gets [`Self::get_physical_device_properties2_khr`]. See [`FNGetPhysicalDeviceProperties2`]
+    /// for more information.
+    pub fn get_physical_device_properties2_khr(&self) -> FNGetPhysicalDeviceProperties2 {
+        self.get_physical_device_properties2_khr
+    }
+    ///Gets [`Self::get_physical_device_format_properties2_khr`]. See
     /// [`FNGetPhysicalDeviceFormatProperties2`] for more information.
-    pub fn get_physical_device_format_properties2(&self) -> FNGetPhysicalDeviceFormatProperties2 {
-        self.get_physical_device_format_properties2
+    pub fn get_physical_device_format_properties2_khr(&self) -> FNGetPhysicalDeviceFormatProperties2 {
+        self.get_physical_device_format_properties2_khr
     }
-    ///Gets [`Self::get_physical_device_image_format_properties2`]. See
+    ///Gets [`Self::get_physical_device_image_format_properties2_khr`]. See
     /// [`FNGetPhysicalDeviceImageFormatProperties2`] for more information.
-    pub fn get_physical_device_image_format_properties2(&self) -> FNGetPhysicalDeviceImageFormatProperties2 {
-        self.get_physical_device_image_format_properties2
+    pub fn get_physical_device_image_format_properties2_khr(&self) -> FNGetPhysicalDeviceImageFormatProperties2 {
+        self.get_physical_device_image_format_properties2_khr
     }
-    ///Gets [`Self::get_physical_device_queue_family_properties2`]. See
+    ///Gets [`Self::get_physical_device_queue_family_properties2_khr`]. See
     /// [`FNGetPhysicalDeviceQueueFamilyProperties2`] for more information.
-    pub fn get_physical_device_queue_family_properties2(&self) -> FNGetPhysicalDeviceQueueFamilyProperties2 {
-        self.get_physical_device_queue_family_properties2
+    pub fn get_physical_device_queue_family_properties2_khr(&self) -> FNGetPhysicalDeviceQueueFamilyProperties2 {
+        self.get_physical_device_queue_family_properties2_khr
     }
-    ///Gets [`Self::get_physical_device_memory_properties2`]. See
+    ///Gets [`Self::get_physical_device_memory_properties2_khr`]. See
     /// [`FNGetPhysicalDeviceMemoryProperties2`] for more information.
-    pub fn get_physical_device_memory_properties2(&self) -> FNGetPhysicalDeviceMemoryProperties2 {
-        self.get_physical_device_memory_properties2
+    pub fn get_physical_device_memory_properties2_khr(&self) -> FNGetPhysicalDeviceMemoryProperties2 {
+        self.get_physical_device_memory_properties2_khr
     }
-    ///Gets [`Self::get_physical_device_sparse_image_format_properties2`]. See
+    ///Gets [`Self::get_physical_device_sparse_image_format_properties2_khr`]. See
     /// [`FNGetPhysicalDeviceSparseImageFormatProperties2`] for more information.
-    pub fn get_physical_device_sparse_image_format_properties2(
+    pub fn get_physical_device_sparse_image_format_properties2_khr(
         &self,
     ) -> FNGetPhysicalDeviceSparseImageFormatProperties2 {
-        self.get_physical_device_sparse_image_format_properties2
+        self.get_physical_device_sparse_image_format_properties2_khr
     }
 }

@@ -980,16 +980,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_line_rasterization()
-            .expect("extension/version not loaded")
-            .cmd_set_line_stipple_ext()
+            .and_then(|vtable| vtable.cmd_set_line_stipple_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_line_rasterization()
-            .unwrap_unchecked()
-            .cmd_set_line_stipple_ext()
+            .and_then(|vtable| vtable.cmd_set_line_stipple_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

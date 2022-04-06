@@ -355,15 +355,13 @@ impl Instance {
         let _function = self
             .vtable()
             .mvk_ios_surface()
-            .expect("extension/version not loaded")
-            .create_ios_surface_mvk()
+            .and_then(|vtable| vtable.create_ios_surface_mvk())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .mvk_ios_surface()
-            .unwrap_unchecked()
-            .create_ios_surface_mvk()
+            .and_then(|vtable| vtable.create_ios_surface_mvk())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(

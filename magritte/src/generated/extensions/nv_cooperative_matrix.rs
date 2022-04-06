@@ -967,16 +967,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .nv_cooperative_matrix()
-            .expect("extension/version not loaded")
-            .get_physical_device_cooperative_matrix_properties_nv()
+            .and_then(|vtable| vtable.get_physical_device_cooperative_matrix_properties_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .nv_cooperative_matrix()
-            .unwrap_unchecked()
-            .get_physical_device_cooperative_matrix_properties_nv()
+            .and_then(|vtable| vtable.get_physical_device_cooperative_matrix_properties_nv())
             .unwrap_unchecked();
         let mut p_property_count = match p_property_count {
             Some(v) => v as _,

@@ -1579,15 +1579,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_pipeline_executable_properties()
-            .expect("extension/version not loaded")
-            .get_pipeline_executable_properties_khr()
+            .and_then(|vtable| vtable.get_pipeline_executable_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_pipeline_executable_properties()
-            .unwrap_unchecked()
-            .get_pipeline_executable_properties_khr()
+            .and_then(|vtable| vtable.get_pipeline_executable_properties_khr())
             .unwrap_unchecked();
         let mut p_executable_count = match p_executable_count {
             Some(v) => v as _,
@@ -1701,15 +1699,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_pipeline_executable_properties()
-            .expect("extension/version not loaded")
-            .get_pipeline_executable_statistics_khr()
+            .and_then(|vtable| vtable.get_pipeline_executable_statistics_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_pipeline_executable_properties()
-            .unwrap_unchecked()
-            .get_pipeline_executable_statistics_khr()
+            .and_then(|vtable| vtable.get_pipeline_executable_statistics_khr())
             .unwrap_unchecked();
         let mut p_statistic_count = match p_statistic_count {
             Some(v) => v as _,
@@ -1828,15 +1824,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_pipeline_executable_properties()
-            .expect("extension/version not loaded")
-            .get_pipeline_executable_internal_representations_khr()
+            .and_then(|vtable| vtable.get_pipeline_executable_internal_representations_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_pipeline_executable_properties()
-            .unwrap_unchecked()
-            .get_pipeline_executable_internal_representations_khr()
+            .and_then(|vtable| vtable.get_pipeline_executable_internal_representations_khr())
             .unwrap_unchecked();
         let mut p_internal_representation_count = match p_internal_representation_count {
             Some(v) => v as _,

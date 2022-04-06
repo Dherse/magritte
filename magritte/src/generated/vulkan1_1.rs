@@ -18,7 +18,7 @@ use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
-    ffi::{c_void, CStr},
+    ffi::c_void,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
     mem::MaybeUninit,
@@ -4993,7 +4993,7 @@ impl std::fmt::Debug for MemoryAllocateFlags {
 ///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`trim_command_pool`]
-/// - [`TrimCommandPoolKHR`]
+/// - [`trim_command_pool_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8001,7 +8001,7 @@ impl std::fmt::Debug for FenceImportFlags {
 /// - [`PhysicalDeviceFeatures`]
 /// - [`StructureType`]
 /// - [`get_physical_device_features2`]
-/// - [`GetPhysicalDeviceFeatures2KHR`]
+/// - [`get_physical_device_features2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8165,7 +8165,7 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
 /// - [`PhysicalDeviceProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_properties2`]
-/// - [`GetPhysicalDeviceProperties2KHR`]
+/// - [`get_physical_device_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8293,7 +8293,7 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
 /// - [`FormatProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_format_properties2`]
-/// - [`GetPhysicalDeviceFormatProperties2KHR`]
+/// - [`get_physical_device_format_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8424,7 +8424,7 @@ impl<'lt> FormatProperties2<'lt> {
 /// - [`ImageFormatProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_image_format_properties2`]
-/// - [`GetPhysicalDeviceImageFormatProperties2KHR`]
+/// - [`get_physical_device_image_format_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8587,7 +8587,7 @@ impl<'lt> ImageFormatProperties2<'lt> {
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 /// - [`get_physical_device_image_format_properties2`]
-/// - [`GetPhysicalDeviceImageFormatProperties2KHR`]
+/// - [`get_physical_device_image_format_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8778,7 +8778,7 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
 /// - [`QueueFamilyProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_queue_family_properties2`]
-/// - [`GetPhysicalDeviceQueueFamilyProperties2KHR`]
+/// - [`get_physical_device_queue_family_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -8902,7 +8902,7 @@ impl<'lt> QueueFamilyProperties2<'lt> {
 /// - [`PhysicalDeviceMemoryProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_memory_properties2`]
-/// - [`GetPhysicalDeviceMemoryProperties2KHR`]
+/// - [`get_physical_device_memory_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -9024,7 +9024,7 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
 /// - [`SparseImageFormatProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_sparse_image_format_properties2`]
-/// - [`GetPhysicalDeviceSparseImageFormatProperties2KHR`]
+/// - [`get_physical_device_sparse_image_format_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -9169,7 +9169,7 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 /// - [`get_physical_device_sparse_image_format_properties2`]
-/// - [`GetPhysicalDeviceSparseImageFormatProperties2KHR`]
+/// - [`get_physical_device_sparse_image_format_properties2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -9943,7 +9943,7 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_buffer_properties`]
-/// - [`GetPhysicalDeviceExternalBufferPropertiesKHR`]
+/// - [`get_physical_device_external_buffer_properties_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -10095,7 +10095,7 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
 /// - [`ExternalMemoryProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_buffer_properties`]
-/// - [`GetPhysicalDeviceExternalBufferPropertiesKHR`]
+/// - [`get_physical_device_external_buffer_properties_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -10825,7 +10825,7 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_semaphore_properties`]
-/// - [`GetPhysicalDeviceExternalSemaphorePropertiesKHR`]
+/// - [`get_physical_device_external_semaphore_properties_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -10951,7 +10951,7 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
 /// - [`ExternalSemaphoreHandleTypeFlags`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_semaphore_properties`]
-/// - [`GetPhysicalDeviceExternalSemaphorePropertiesKHR`]
+/// - [`get_physical_device_external_semaphore_properties_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -11239,7 +11239,7 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_fence_properties`]
-/// - [`GetPhysicalDeviceExternalFencePropertiesKHR`]
+/// - [`get_physical_device_external_fence_properties_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -11363,7 +11363,7 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 /// - [`ExternalFenceHandleTypeFlags`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_fence_properties`]
-/// - [`GetPhysicalDeviceExternalFencePropertiesKHR`]
+/// - [`get_physical_device_external_fence_properties_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -12385,7 +12385,7 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 /// - [`PhysicalDevice`]
 /// - [`StructureType`]
 /// - [`enumerate_physical_device_groups`]
-/// - [`EnumeratePhysicalDeviceGroupsKHR`]
+/// - [`enumerate_physical_device_groups_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -12796,7 +12796,7 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 /// - [`bind_buffer_memory2`]
-/// - [`BindBufferMemory2KHR`]
+/// - [`bind_buffer_memory2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -13221,7 +13221,7 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 /// - [`Image`]
 /// - [`StructureType`]
 /// - [`bind_image_memory2`]
-/// - [`BindImageMemory2KHR`]
+/// - [`bind_image_memory2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -14797,7 +14797,7 @@ impl DescriptorUpdateTemplateEntry {
 /// - [`PipelineLayout`]
 /// - [`StructureType`]
 /// - [`create_descriptor_update_template`]
-/// - [`CreateDescriptorUpdateTemplateKHR`]
+/// - [`create_descriptor_update_template_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -15850,7 +15850,7 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
 /// - [`Buffer`]
 /// - [`StructureType`]
 /// - [`get_buffer_memory_requirements2`]
-/// - [`GetBufferMemoryRequirements2KHR`]
+/// - [`get_buffer_memory_requirements2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -15984,7 +15984,7 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
 /// - [`Image`]
 /// - [`StructureType`]
 /// - [`get_image_memory_requirements2`]
-/// - [`GetImageMemoryRequirements2KHR`]
+/// - [`get_image_memory_requirements2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -16097,7 +16097,7 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
 /// - [`Image`]
 /// - [`StructureType`]
 /// - [`get_image_sparse_memory_requirements2`]
-/// - [`GetImageSparseMemoryRequirements2KHR`]
+/// - [`get_image_sparse_memory_requirements2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -16213,14 +16213,14 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
 /// - [`StructureType`]
 /// - [`VideoGetMemoryPropertiesKHR`]
 /// - [`get_buffer_memory_requirements2`]
-/// - [`GetBufferMemoryRequirements2KHR`]
+/// - [`get_buffer_memory_requirements2_khr`]
 /// - [`get_device_buffer_memory_requirements`]
-/// - [`GetDeviceBufferMemoryRequirementsKHR`]
+/// - [`get_device_buffer_memory_requirements_khr`]
 /// - [`get_device_image_memory_requirements`]
-/// - [`GetDeviceImageMemoryRequirementsKHR`]
+/// - [`get_device_image_memory_requirements_khr`]
 /// - [`get_generated_commands_memory_requirements_nv`]
 /// - [`get_image_memory_requirements2`]
-/// - [`GetImageMemoryRequirements2KHR`]
+/// - [`get_image_memory_requirements2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -16341,9 +16341,9 @@ impl<'lt> MemoryRequirements2<'lt> {
 /// - [`SparseImageMemoryRequirements`]
 /// - [`StructureType`]
 /// - [`get_device_image_sparse_memory_requirements`]
-/// - [`GetDeviceImageSparseMemoryRequirementsKHR`]
+/// - [`get_device_image_sparse_memory_requirements_khr`]
 /// - [`get_image_sparse_memory_requirements2`]
-/// - [`GetImageSparseMemoryRequirements2KHR`]
+/// - [`get_image_sparse_memory_requirements2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -17439,7 +17439,7 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 /// - [`SamplerYcbcrRange`]
 /// - [`StructureType`]
 /// - [`create_sampler_ycbcr_conversion`]
-/// - [`CreateSamplerYcbcrConversionKHR`]
+/// - [`create_sampler_ycbcr_conversion_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -18969,7 +18969,7 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_support`]
-/// - [`GetDescriptorSetLayoutSupportKHR`]
+/// - [`get_descriptor_set_layout_support_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -19303,6 +19303,7 @@ impl Instance {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkEnumeratePhysicalDeviceGroups")]
+    #[doc(alias = "vkEnumeratePhysicalDeviceGroupsKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn enumerate_physical_device_groups<'a: 'this, 'this, 'lt>(
@@ -19313,15 +19314,31 @@ impl Instance {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .enumerate_physical_device_groups()
+            .and_then(|vtable| vtable.enumerate_physical_device_groups())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group_creation")]
+                return self
+                    .vtable()
+                    .khr_device_group_creation()
+                    .and_then(|vtable| vtable.enumerate_physical_device_groups_khr());
+                #[cfg(not(feature = "VK_KHR_device_group_creation"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .enumerate_physical_device_groups()
+            .and_then(|vtable| vtable.enumerate_physical_device_groups())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group_creation")]
+                return self
+                    .vtable()
+                    .khr_device_group_creation()
+                    .and_then(|vtable| vtable.enumerate_physical_device_groups_khr());
+                #[cfg(not(feature = "VK_KHR_device_group_creation"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_physical_device_group_count = match p_physical_device_group_count {
             Some(v) => v as _,
@@ -19391,6 +19408,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceFeatures2")]
+    #[doc(alias = "vkGetPhysicalDeviceFeatures2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_features2<'a: 'this, 'this, 'lt>(
@@ -19402,19 +19420,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_features2()
+            .and_then(|vtable| vtable.get_physical_device_features2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_features2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_features2()
+            .and_then(|vtable| vtable.get_physical_device_features2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_features2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_features =
-            p_features.unwrap_or_else(|| MaybeUninit::<PhysicalDeviceFeatures2<'lt>>::zeroed().assume_init());
+        let mut p_features = p_features.unwrap_or_default();
         let _return = _function(self.as_raw(), &mut p_features);
         {
             p_features.p_next = std::ptr::null_mut();
@@ -19466,6 +19501,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceProperties2")]
+    #[doc(alias = "vkGetPhysicalDeviceProperties2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_properties2<'a: 'this, 'this, 'lt>(
@@ -19477,19 +19513,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_properties2()
+            .and_then(|vtable| vtable.get_physical_device_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_properties2()
+            .and_then(|vtable| vtable.get_physical_device_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_properties =
-            p_properties.unwrap_or_else(|| MaybeUninit::<PhysicalDeviceProperties2<'lt>>::zeroed().assume_init());
+        let mut p_properties = p_properties.unwrap_or_default();
         let _return = _function(self.as_raw(), &mut p_properties);
         {
             p_properties.p_next = std::ptr::null_mut();
@@ -19545,6 +19598,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceFormatProperties2")]
+    #[doc(alias = "vkGetPhysicalDeviceFormatProperties2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_format_properties2<'a: 'this, 'this, 'lt>(
@@ -19557,19 +19611,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_format_properties2()
+            .and_then(|vtable| vtable.get_physical_device_format_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_format_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_format_properties2()
+            .and_then(|vtable| vtable.get_physical_device_format_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_format_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_format_properties =
-            p_format_properties.unwrap_or_else(|| MaybeUninit::<FormatProperties2<'lt>>::zeroed().assume_init());
+        let mut p_format_properties = p_format_properties.unwrap_or_default();
         let _return = _function(self.as_raw(), format, &mut p_format_properties);
         {
             p_format_properties.p_next = std::ptr::null_mut();
@@ -19639,6 +19710,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceImageFormatProperties2")]
+    #[doc(alias = "vkGetPhysicalDeviceImageFormatProperties2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_image_format_properties2<'a: 'this, 'this, 'lt>(
@@ -19651,19 +19723,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_image_format_properties2()
+            .and_then(|vtable| vtable.get_physical_device_image_format_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_image_format_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_image_format_properties2()
+            .and_then(|vtable| vtable.get_physical_device_image_format_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_image_format_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_image_format_properties = p_image_format_properties
-            .unwrap_or_else(|| MaybeUninit::<ImageFormatProperties2<'lt>>::zeroed().assume_init());
+        let mut p_image_format_properties = p_image_format_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_image_format_info as *const PhysicalDeviceImageFormatInfo2<'lt>,
@@ -19729,6 +19818,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties2")]
+    #[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_queue_family_properties2<'a: 'this, 'this, 'lt>(
@@ -19740,16 +19830,34 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_queue_family_properties2()
+            .and_then(|vtable| vtable.get_physical_device_queue_family_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_queue_family_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_queue_family_properties2()
+            .and_then(|vtable| vtable.get_physical_device_queue_family_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_queue_family_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_queue_family_property_count = match p_queue_family_property_count {
             Some(v) => v as _,
@@ -19814,6 +19922,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceMemoryProperties2")]
+    #[doc(alias = "vkGetPhysicalDeviceMemoryProperties2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_memory_properties2<'a: 'this, 'this, 'lt>(
@@ -19825,19 +19934,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_memory_properties2()
+            .and_then(|vtable| vtable.get_physical_device_memory_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_memory_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_memory_properties2()
+            .and_then(|vtable| vtable.get_physical_device_memory_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_memory_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_memory_properties = p_memory_properties
-            .unwrap_or_else(|| MaybeUninit::<PhysicalDeviceMemoryProperties2<'lt>>::zeroed().assume_init());
+        let mut p_memory_properties = p_memory_properties.unwrap_or_default();
         let _return = _function(self.as_raw(), &mut p_memory_properties);
         {
             p_memory_properties.p_next = std::ptr::null_mut();
@@ -19909,6 +20035,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceSparseImageFormatProperties2")]
+    #[doc(alias = "vkGetPhysicalDeviceSparseImageFormatProperties2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_sparse_image_format_properties2<'a: 'this, 'this, 'lt>(
@@ -19921,16 +20048,34 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_sparse_image_format_properties2()
+            .and_then(|vtable| vtable.get_physical_device_sparse_image_format_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_sparse_image_format_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_sparse_image_format_properties2()
+            .and_then(|vtable| vtable.get_physical_device_sparse_image_format_properties2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_get_physical_device_properties_2()
+                    .and_then(|vtable| vtable.get_physical_device_sparse_image_format_properties2_khr());
+                #[cfg(not(feature = "VK_KHR_get_physical_device_properties2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_property_count = match p_property_count {
             Some(v) => v as _,
@@ -20003,6 +20148,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceExternalBufferProperties")]
+    #[doc(alias = "vkGetPhysicalDeviceExternalBufferPropertiesKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_external_buffer_properties<'a: 'this, 'this, 'lt>(
@@ -20015,19 +20161,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_external_buffer_properties()
+            .and_then(|vtable| vtable.get_physical_device_external_buffer_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_external_memory_capabilities")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_external_memory_capabilities()
+                    .and_then(|vtable| vtable.get_physical_device_external_buffer_properties_khr());
+                #[cfg(not(feature = "VK_KHR_external_memory_capabilities"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_external_buffer_properties()
+            .and_then(|vtable| vtable.get_physical_device_external_buffer_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_external_memory_capabilities")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_external_memory_capabilities()
+                    .and_then(|vtable| vtable.get_physical_device_external_buffer_properties_khr());
+                #[cfg(not(feature = "VK_KHR_external_memory_capabilities"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_external_buffer_properties = p_external_buffer_properties
-            .unwrap_or_else(|| MaybeUninit::<ExternalBufferProperties<'lt>>::zeroed().assume_init());
+        let mut p_external_buffer_properties = p_external_buffer_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_external_buffer_info as *const PhysicalDeviceExternalBufferInfo<'lt>,
@@ -20088,6 +20251,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceExternalSemaphoreProperties")]
+    #[doc(alias = "vkGetPhysicalDeviceExternalSemaphorePropertiesKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_external_semaphore_properties<'a: 'this, 'this, 'lt>(
@@ -20100,19 +20264,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_external_semaphore_properties()
+            .and_then(|vtable| vtable.get_physical_device_external_semaphore_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_external_semaphore_capabilities")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_external_semaphore_capabilities()
+                    .and_then(|vtable| vtable.get_physical_device_external_semaphore_properties_khr());
+                #[cfg(not(feature = "VK_KHR_external_semaphore_capabilities"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_external_semaphore_properties()
+            .and_then(|vtable| vtable.get_physical_device_external_semaphore_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_external_semaphore_capabilities")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_external_semaphore_capabilities()
+                    .and_then(|vtable| vtable.get_physical_device_external_semaphore_properties_khr());
+                #[cfg(not(feature = "VK_KHR_external_semaphore_capabilities"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_external_semaphore_properties = p_external_semaphore_properties
-            .unwrap_or_else(|| MaybeUninit::<ExternalSemaphoreProperties<'lt>>::zeroed().assume_init());
+        let mut p_external_semaphore_properties = p_external_semaphore_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_external_semaphore_info as *const PhysicalDeviceExternalSemaphoreInfo<'lt>,
@@ -20173,6 +20354,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceExternalFenceProperties")]
+    #[doc(alias = "vkGetPhysicalDeviceExternalFencePropertiesKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_external_fence_properties<'a: 'this, 'this, 'lt>(
@@ -20185,19 +20367,36 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_physical_device_external_fence_properties()
+            .and_then(|vtable| vtable.get_physical_device_external_fence_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_external_fence_capabilities")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_external_fence_capabilities()
+                    .and_then(|vtable| vtable.get_physical_device_external_fence_properties_khr());
+                #[cfg(not(feature = "VK_KHR_external_fence_capabilities"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_physical_device_external_fence_properties()
+            .and_then(|vtable| vtable.get_physical_device_external_fence_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_external_fence_capabilities")]
+                return self
+                    .instance()
+                    .vtable()
+                    .khr_external_fence_capabilities()
+                    .and_then(|vtable| vtable.get_physical_device_external_fence_properties_khr());
+                #[cfg(not(feature = "VK_KHR_external_fence_capabilities"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_external_fence_properties = p_external_fence_properties
-            .unwrap_or_else(|| MaybeUninit::<ExternalFenceProperties<'lt>>::zeroed().assume_init());
+        let mut p_external_fence_properties = p_external_fence_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_external_fence_info as *const PhysicalDeviceExternalFenceInfo<'lt>,
@@ -20259,6 +20458,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkTrimCommandPool")]
+    #[doc(alias = "vkTrimCommandPoolKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn trim_command_pool<'a: 'this, 'this>(
@@ -20270,15 +20470,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .trim_command_pool()
+            .and_then(|vtable| vtable.trim_command_pool())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance1")]
+                return self
+                    .vtable()
+                    .khr_maintenance_1()
+                    .and_then(|vtable| vtable.trim_command_pool_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance1"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .trim_command_pool()
+            .and_then(|vtable| vtable.trim_command_pool())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance1")]
+                return self
+                    .vtable()
+                    .khr_maintenance_1()
+                    .and_then(|vtable| vtable.trim_command_pool_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance1"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), command_pool, flags);
         ()
@@ -20346,6 +20562,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceGroupPeerMemoryFeatures")]
+    #[doc(alias = "vkGetDeviceGroupPeerMemoryFeaturesKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_device_group_peer_memory_features<'a: 'this, 'this>(
@@ -20358,15 +20575,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_device_group_peer_memory_features()
+            .and_then(|vtable| vtable.get_device_group_peer_memory_features())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group")]
+                return self
+                    .vtable()
+                    .khr_device_group()
+                    .and_then(|vtable| vtable.get_device_group_peer_memory_features_khr());
+                #[cfg(not(feature = "VK_KHR_device_group"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_device_group_peer_memory_features()
+            .and_then(|vtable| vtable.get_device_group_peer_memory_features())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group")]
+                return self
+                    .vtable()
+                    .khr_device_group()
+                    .and_then(|vtable| vtable.get_device_group_peer_memory_features_khr());
+                #[cfg(not(feature = "VK_KHR_device_group"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_peer_memory_features = PeerMemoryFeatureFlags::empty();
         let _return = _function(
@@ -20430,6 +20663,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkBindBufferMemory2")]
+    #[doc(alias = "vkBindBufferMemory2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn bind_buffer_memory2<'a: 'this, 'this, 'lt>(
@@ -20440,15 +20674,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .bind_buffer_memory2()
+            .and_then(|vtable| vtable.bind_buffer_memory2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_bind_memory2")]
+                return self
+                    .vtable()
+                    .khr_bind_memory_2()
+                    .and_then(|vtable| vtable.bind_buffer_memory2_khr());
+                #[cfg(not(feature = "VK_KHR_bind_memory2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .bind_buffer_memory2()
+            .and_then(|vtable| vtable.bind_buffer_memory2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_bind_memory2")]
+                return self
+                    .vtable()
+                    .khr_bind_memory_2()
+                    .and_then(|vtable| vtable.bind_buffer_memory2_khr());
+                #[cfg(not(feature = "VK_KHR_bind_memory2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let bind_info_count = (|len: usize| len)(p_bind_infos.len()) as _;
         let _return = _function(self.as_raw(), bind_info_count, p_bind_infos.as_ptr());
@@ -20514,6 +20764,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkBindImageMemory2")]
+    #[doc(alias = "vkBindImageMemory2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn bind_image_memory2<'a: 'this, 'this, 'lt>(
@@ -20524,15 +20775,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .bind_image_memory2()
+            .and_then(|vtable| vtable.bind_image_memory2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_bind_memory2")]
+                return self
+                    .vtable()
+                    .khr_bind_memory_2()
+                    .and_then(|vtable| vtable.bind_image_memory2_khr());
+                #[cfg(not(feature = "VK_KHR_bind_memory2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .bind_image_memory2()
+            .and_then(|vtable| vtable.bind_image_memory2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_bind_memory2")]
+                return self
+                    .vtable()
+                    .khr_bind_memory_2()
+                    .and_then(|vtable| vtable.bind_image_memory2_khr());
+                #[cfg(not(feature = "VK_KHR_bind_memory2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let bind_info_count = (|len: usize| len)(p_bind_infos.len()) as _;
         let _return = _function(self.as_raw(), bind_info_count, p_bind_infos.as_ptr());
@@ -20625,6 +20892,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateDescriptorUpdateTemplate")]
+    #[doc(alias = "vkCreateDescriptorUpdateTemplateKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn create_descriptor_update_template<'a: 'this, 'this, 'lt>(
@@ -20636,15 +20904,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .create_descriptor_update_template()
+            .and_then(|vtable| vtable.create_descriptor_update_template())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                return self
+                    .vtable()
+                    .khr_descriptor_update_template()
+                    .and_then(|vtable| vtable.create_descriptor_update_template_khr());
+                #[cfg(not(feature = "VK_KHR_descriptor_update_template"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .create_descriptor_update_template()
+            .and_then(|vtable| vtable.create_descriptor_update_template())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                return self
+                    .vtable()
+                    .khr_descriptor_update_template()
+                    .and_then(|vtable| vtable.create_descriptor_update_template_khr());
+                #[cfg(not(feature = "VK_KHR_descriptor_update_template"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_descriptor_update_template = MaybeUninit::<DescriptorUpdateTemplate>::uninit();
         let _return = _function(
@@ -20722,6 +21006,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyDescriptorUpdateTemplate")]
+    #[doc(alias = "vkDestroyDescriptorUpdateTemplateKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn destroy_descriptor_update_template<'a: 'this, 'this, 'lt>(
@@ -20733,15 +21018,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .destroy_descriptor_update_template()
+            .and_then(|vtable| vtable.destroy_descriptor_update_template())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                return self
+                    .vtable()
+                    .khr_descriptor_update_template()
+                    .and_then(|vtable| vtable.destroy_descriptor_update_template_khr());
+                #[cfg(not(feature = "VK_KHR_descriptor_update_template"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .destroy_descriptor_update_template()
+            .and_then(|vtable| vtable.destroy_descriptor_update_template())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                return self
+                    .vtable()
+                    .khr_descriptor_update_template()
+                    .and_then(|vtable| vtable.destroy_descriptor_update_template_khr());
+                #[cfg(not(feature = "VK_KHR_descriptor_update_template"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -20899,6 +21200,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkUpdateDescriptorSetWithTemplate")]
+    #[doc(alias = "vkUpdateDescriptorSetWithTemplateKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn update_descriptor_set_with_template<'a: 'this, 'this>(
@@ -20911,15 +21213,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .update_descriptor_set_with_template()
+            .and_then(|vtable| vtable.update_descriptor_set_with_template())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                return self
+                    .vtable()
+                    .khr_descriptor_update_template()
+                    .and_then(|vtable| vtable.update_descriptor_set_with_template_khr());
+                #[cfg(not(feature = "VK_KHR_descriptor_update_template"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .update_descriptor_set_with_template()
+            .and_then(|vtable| vtable.update_descriptor_set_with_template())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                return self
+                    .vtable()
+                    .khr_descriptor_update_template()
+                    .and_then(|vtable| vtable.update_descriptor_set_with_template_khr());
+                #[cfg(not(feature = "VK_KHR_descriptor_update_template"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), descriptor_set, descriptor_update_template, p_data);
         ()
@@ -20972,6 +21290,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetBufferMemoryRequirements2")]
+    #[doc(alias = "vkGetBufferMemoryRequirements2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_buffer_memory_requirements2<'a: 'this, 'this, 'lt>(
@@ -20983,18 +21302,33 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_buffer_memory_requirements2()
+            .and_then(|vtable| vtable.get_buffer_memory_requirements2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+                return self
+                    .vtable()
+                    .khr_get_memory_requirements_2()
+                    .and_then(|vtable| vtable.get_buffer_memory_requirements2_khr());
+                #[cfg(not(feature = "VK_KHR_get_memory_requirements2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_buffer_memory_requirements2()
+            .and_then(|vtable| vtable.get_buffer_memory_requirements2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+                return self
+                    .vtable()
+                    .khr_get_memory_requirements_2()
+                    .and_then(|vtable| vtable.get_buffer_memory_requirements2_khr());
+                #[cfg(not(feature = "VK_KHR_get_memory_requirements2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_memory_requirements =
-            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
+        let mut p_memory_requirements = p_memory_requirements.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_info as *const BufferMemoryRequirementsInfo2<'lt>,
@@ -21053,6 +21387,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetImageMemoryRequirements2")]
+    #[doc(alias = "vkGetImageMemoryRequirements2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_image_memory_requirements2<'a: 'this, 'this, 'lt>(
@@ -21064,18 +21399,33 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_image_memory_requirements2()
+            .and_then(|vtable| vtable.get_image_memory_requirements2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+                return self
+                    .vtable()
+                    .khr_get_memory_requirements_2()
+                    .and_then(|vtable| vtable.get_image_memory_requirements2_khr());
+                #[cfg(not(feature = "VK_KHR_get_memory_requirements2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_image_memory_requirements2()
+            .and_then(|vtable| vtable.get_image_memory_requirements2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+                return self
+                    .vtable()
+                    .khr_get_memory_requirements_2()
+                    .and_then(|vtable| vtable.get_image_memory_requirements2_khr());
+                #[cfg(not(feature = "VK_KHR_get_memory_requirements2"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_memory_requirements =
-            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
+        let mut p_memory_requirements = p_memory_requirements.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_info as *const ImageMemoryRequirementsInfo2<'lt>,
@@ -21141,6 +21491,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetImageSparseMemoryRequirements2")]
+    #[doc(alias = "vkGetImageSparseMemoryRequirements2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_image_sparse_memory_requirements2<'a: 'this, 'this, 'lt>(
@@ -21152,15 +21503,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_image_sparse_memory_requirements2()
+            .and_then(|vtable| vtable.get_image_sparse_memory_requirements2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+                return self
+                    .vtable()
+                    .khr_get_memory_requirements_2()
+                    .and_then(|vtable| vtable.get_image_sparse_memory_requirements2_khr());
+                #[cfg(not(feature = "VK_KHR_get_memory_requirements2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_image_sparse_memory_requirements2()
+            .and_then(|vtable| vtable.get_image_sparse_memory_requirements2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+                return self
+                    .vtable()
+                    .khr_get_memory_requirements_2()
+                    .and_then(|vtable| vtable.get_image_sparse_memory_requirements2_khr());
+                #[cfg(not(feature = "VK_KHR_get_memory_requirements2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_sparse_memory_requirement_count = match p_sparse_memory_requirement_count {
             Some(v) => v as _,
@@ -21254,6 +21621,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateSamplerYcbcrConversion")]
+    #[doc(alias = "vkCreateSamplerYcbcrConversionKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn create_sampler_ycbcr_conversion<'a: 'this, 'this, 'lt>(
@@ -21265,15 +21633,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .create_sampler_ycbcr_conversion()
+            .and_then(|vtable| vtable.create_sampler_ycbcr_conversion())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+                return self
+                    .vtable()
+                    .khr_sampler_ycbcr_conversion()
+                    .and_then(|vtable| vtable.create_sampler_ycbcr_conversion_khr());
+                #[cfg(not(feature = "VK_KHR_sampler_ycbcr_conversion"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .create_sampler_ycbcr_conversion()
+            .and_then(|vtable| vtable.create_sampler_ycbcr_conversion())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+                return self
+                    .vtable()
+                    .khr_sampler_ycbcr_conversion()
+                    .and_then(|vtable| vtable.create_sampler_ycbcr_conversion_khr());
+                #[cfg(not(feature = "VK_KHR_sampler_ycbcr_conversion"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_ycbcr_conversion = MaybeUninit::<SamplerYcbcrConversion>::uninit();
         let _return = _function(
@@ -21344,6 +21728,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroySamplerYcbcrConversion")]
+    #[doc(alias = "vkDestroySamplerYcbcrConversionKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn destroy_sampler_ycbcr_conversion<'a: 'this, 'this, 'lt>(
@@ -21355,15 +21740,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .destroy_sampler_ycbcr_conversion()
+            .and_then(|vtable| vtable.destroy_sampler_ycbcr_conversion())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+                return self
+                    .vtable()
+                    .khr_sampler_ycbcr_conversion()
+                    .and_then(|vtable| vtable.destroy_sampler_ycbcr_conversion_khr());
+                #[cfg(not(feature = "VK_KHR_sampler_ycbcr_conversion"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .destroy_sampler_ycbcr_conversion()
+            .and_then(|vtable| vtable.destroy_sampler_ycbcr_conversion())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+                return self
+                    .vtable()
+                    .khr_sampler_ycbcr_conversion()
+                    .and_then(|vtable| vtable.destroy_sampler_ycbcr_conversion_khr());
+                #[cfg(not(feature = "VK_KHR_sampler_ycbcr_conversion"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -21423,15 +21824,13 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_device_queue2()
+            .and_then(|vtable| vtable.get_device_queue2())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_device_queue2()
+            .and_then(|vtable| vtable.get_device_queue2())
             .unwrap_unchecked();
         let mut p_queue = MaybeUninit::<Queue>::uninit();
         let _return = _function(
@@ -21509,6 +21908,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDescriptorSetLayoutSupport")]
+    #[doc(alias = "vkGetDescriptorSetLayoutSupportKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_descriptor_set_layout_support<'a: 'this, 'this, 'lt>(
@@ -21520,18 +21920,33 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .get_descriptor_set_layout_support()
+            .and_then(|vtable| vtable.get_descriptor_set_layout_support())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance3")]
+                return self
+                    .vtable()
+                    .khr_maintenance_3()
+                    .and_then(|vtable| vtable.get_descriptor_set_layout_support_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance3"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .get_descriptor_set_layout_support()
+            .and_then(|vtable| vtable.get_descriptor_set_layout_support())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance3")]
+                return self
+                    .vtable()
+                    .khr_maintenance_3()
+                    .and_then(|vtable| vtable.get_descriptor_set_layout_support_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance3"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_support =
-            p_support.unwrap_or_else(|| MaybeUninit::<DescriptorSetLayoutSupport<'lt>>::zeroed().assume_init());
+        let mut p_support = p_support.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_create_info as *const DescriptorSetLayoutCreateInfo<'lt>,
@@ -21608,6 +22023,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDeviceMask")]
+    #[doc(alias = "vkCmdSetDeviceMaskKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_device_mask<'a: 'this, 'this>(
@@ -21619,16 +22035,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .cmd_set_device_mask()
+            .and_then(|vtable| vtable.cmd_set_device_mask())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_device_group()
+                    .and_then(|vtable| vtable.cmd_set_device_mask_khr());
+                #[cfg(not(feature = "VK_KHR_device_group"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .cmd_set_device_mask()
+            .and_then(|vtable| vtable.cmd_set_device_mask())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_device_group()
+                    .and_then(|vtable| vtable.cmd_set_device_mask_khr());
+                #[cfg(not(feature = "VK_KHR_device_group"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), device_mask.unwrap_or_default() as _);
         ()
@@ -21846,6 +22280,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDispatchBase")]
+    #[doc(alias = "vkCmdDispatchBaseKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_dispatch_base<'a: 'this, 'this>(
@@ -21862,16 +22297,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_1()
-            .expect("extension/version not loaded")
-            .cmd_dispatch_base()
+            .and_then(|vtable| vtable.cmd_dispatch_base())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_device_group()
+                    .and_then(|vtable| vtable.cmd_dispatch_base_khr());
+                #[cfg(not(feature = "VK_KHR_device_group"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_1()
-            .unwrap_unchecked()
-            .cmd_dispatch_base()
+            .and_then(|vtable| vtable.cmd_dispatch_base())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_device_group")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_device_group()
+                    .and_then(|vtable| vtable.cmd_dispatch_base_khr());
+                #[cfg(not(feature = "VK_KHR_device_group"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -21906,11 +22359,11 @@ impl CommandBuffer {
 /// - [`crate::vulkan1_1`]
 /// - [`cmd_push_descriptor_set_with_template_khr`]
 /// - [`create_descriptor_update_template`]
-/// - [`CreateDescriptorUpdateTemplateKHR`]
+/// - [`create_descriptor_update_template_khr`]
 /// - [`destroy_descriptor_update_template`]
-/// - [`DestroyDescriptorUpdateTemplateKHR`]
+/// - [`destroy_descriptor_update_template_khr`]
 /// - [`update_descriptor_set_with_template`]
-/// - [`UpdateDescriptorSetWithTemplateKHR`]
+/// - [`update_descriptor_set_with_template_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -22002,9 +22455,9 @@ impl<'a> Unique<'a, DescriptorUpdateTemplate> {
 /// - [`crate::vulkan1_1`]
 /// - [`SamplerYcbcrConversionInfo`]
 /// - [`create_sampler_ycbcr_conversion`]
-/// - [`CreateSamplerYcbcrConversionKHR`]
+/// - [`create_sampler_ycbcr_conversion_khr`]
 /// - [`destroy_sampler_ycbcr_conversion`]
-/// - [`DestroySamplerYcbcrConversionKHR`]
+/// - [`destroy_sampler_ycbcr_conversion_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

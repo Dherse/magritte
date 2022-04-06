@@ -1523,19 +1523,16 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_sample_locations()
-            .expect("extension/version not loaded")
-            .get_physical_device_multisample_properties_ext()
+            .and_then(|vtable| vtable.get_physical_device_multisample_properties_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_sample_locations()
-            .unwrap_unchecked()
-            .get_physical_device_multisample_properties_ext()
+            .and_then(|vtable| vtable.get_physical_device_multisample_properties_ext())
             .unwrap_unchecked();
-        let mut p_multisample_properties = p_multisample_properties
-            .unwrap_or_else(|| MaybeUninit::<MultisamplePropertiesEXT<'lt>>::zeroed().assume_init());
+        let mut p_multisample_properties = p_multisample_properties.unwrap_or_default();
         let _return = _function(self.as_raw(), samples, &mut p_multisample_properties);
         {
             p_multisample_properties.p_next = std::ptr::null_mut();
@@ -1617,16 +1614,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_sample_locations()
-            .expect("extension/version not loaded")
-            .cmd_set_sample_locations_ext()
+            .and_then(|vtable| vtable.cmd_set_sample_locations_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_sample_locations()
-            .unwrap_unchecked()
-            .cmd_set_sample_locations_ext()
+            .and_then(|vtable| vtable.cmd_set_sample_locations_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

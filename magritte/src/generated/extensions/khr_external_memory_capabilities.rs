@@ -18,7 +18,7 @@
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_memory_capabilities extension>>)
 //!# New functions & commands
-//! - [`GetPhysicalDeviceExternalBufferPropertiesKHR`]
+//! - [`get_physical_device_external_buffer_properties_khr`]
 //!# New structures
 //! - [`ExternalBufferPropertiesKHR`]
 //! - [`ExternalMemoryPropertiesKHR`]
@@ -119,7 +119,7 @@
 //! - [`PhysicalDeviceExternalBufferInfoKHR`]
 //! - [`PhysicalDeviceExternalImageFormatInfoKHR`]
 //! - [`PhysicalDeviceIdPropertiesKHR`]
-//! - [`GetPhysicalDeviceExternalBufferPropertiesKHR`]
+//! - [`get_physical_device_external_buffer_properties_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -142,7 +142,7 @@ pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///The V-table of [`Instance`] for functions from `VK_KHR_external_memory_capabilities`
 pub struct InstanceKhrExternalMemoryCapabilitiesVTable {
     ///See [`FNGetPhysicalDeviceExternalBufferProperties`] for more information.
-    pub get_physical_device_external_buffer_properties: FNGetPhysicalDeviceExternalBufferProperties,
+    pub get_physical_device_external_buffer_properties_khr: FNGetPhysicalDeviceExternalBufferProperties,
 }
 impl InstanceKhrExternalMemoryCapabilitiesVTable {
     ///Loads the VTable from the owner and the names
@@ -155,7 +155,7 @@ impl InstanceKhrExternalMemoryCapabilitiesVTable {
         loader: Instance,
     ) -> Self {
         Self {
-            get_physical_device_external_buffer_properties: unsafe {
+            get_physical_device_external_buffer_properties_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetPhysicalDeviceExternalBufferPropertiesKHR").as_ptr(),
@@ -163,9 +163,9 @@ impl InstanceKhrExternalMemoryCapabilitiesVTable {
             },
         }
     }
-    ///Gets [`Self::get_physical_device_external_buffer_properties`]. See
+    ///Gets [`Self::get_physical_device_external_buffer_properties_khr`]. See
     /// [`FNGetPhysicalDeviceExternalBufferProperties`] for more information.
-    pub fn get_physical_device_external_buffer_properties(&self) -> FNGetPhysicalDeviceExternalBufferProperties {
-        self.get_physical_device_external_buffer_properties
+    pub fn get_physical_device_external_buffer_properties_khr(&self) -> FNGetPhysicalDeviceExternalBufferProperties {
+        self.get_physical_device_external_buffer_properties_khr
     }
 }

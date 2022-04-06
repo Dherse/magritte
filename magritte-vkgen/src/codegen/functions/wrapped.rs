@@ -394,7 +394,7 @@ impl StatefulFunctionGeneratorState {
                     });
 
                     self.return_initializations.push(quote! {
-                        let mut #ret_ident = #ret_ident.unwrap_or_else(|| MaybeUninit::<#ty>::zeroed().assume_init());
+                        let mut #ret_ident = #ret_ident.unwrap_or_default();
                     });
 
                     self.call_args.push(box move |_| {

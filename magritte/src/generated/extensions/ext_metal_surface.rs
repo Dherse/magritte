@@ -366,15 +366,13 @@ impl Instance {
         let _function = self
             .vtable()
             .ext_metal_surface()
-            .expect("extension/version not loaded")
-            .create_metal_surface_ext()
+            .and_then(|vtable| vtable.create_metal_surface_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_metal_surface()
-            .unwrap_unchecked()
-            .create_metal_surface_ext()
+            .and_then(|vtable| vtable.create_metal_surface_ext())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(

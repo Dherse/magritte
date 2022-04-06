@@ -16,8 +16,8 @@
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_bind_memory2
 //!   extension>>)
 //!# New functions & commands
-//! - [`BindBufferMemory2KHR`]
-//! - [`BindImageMemory2KHR`]
+//! - [`bind_buffer_memory2_khr`]
+//! - [`bind_image_memory2_khr`]
 //!# New structures
 //! - [`BindBufferMemoryInfoKHR`]
 //! - [`BindImageMemoryInfoKHR`]
@@ -38,8 +38,8 @@
 //!# Related
 //! - [`BindBufferMemoryInfoKHR`]
 //! - [`BindImageMemoryInfoKHR`]
-//! - [`BindBufferMemory2KHR`]
-//! - [`BindImageMemory2KHR`]
+//! - [`bind_buffer_memory2_khr`]
+//! - [`bind_image_memory2_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -64,9 +64,9 @@ pub const KHR_BIND_MEMORY_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 ///The V-table of [`Device`] for functions from `VK_KHR_bind_memory2`
 pub struct DeviceKhrBindMemory2VTable {
     ///See [`FNBindBufferMemory2`] for more information.
-    pub bind_buffer_memory2: FNBindBufferMemory2,
+    pub bind_buffer_memory2_khr: FNBindBufferMemory2,
     ///See [`FNBindImageMemory2`] for more information.
-    pub bind_image_memory2: FNBindImageMemory2,
+    pub bind_image_memory2_khr: FNBindImageMemory2,
 }
 impl DeviceKhrBindMemory2VTable {
     ///Loads the VTable from the owner and the names
@@ -79,20 +79,20 @@ impl DeviceKhrBindMemory2VTable {
         loader: Device,
     ) -> Self {
         Self {
-            bind_buffer_memory2: unsafe {
+            bind_buffer_memory2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindBufferMemory2KHR").as_ptr()))
             },
-            bind_image_memory2: unsafe {
+            bind_image_memory2_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkBindImageMemory2KHR").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::bind_buffer_memory2`]. See [`FNBindBufferMemory2`] for more information.
-    pub fn bind_buffer_memory2(&self) -> FNBindBufferMemory2 {
-        self.bind_buffer_memory2
+    ///Gets [`Self::bind_buffer_memory2_khr`]. See [`FNBindBufferMemory2`] for more information.
+    pub fn bind_buffer_memory2_khr(&self) -> FNBindBufferMemory2 {
+        self.bind_buffer_memory2_khr
     }
-    ///Gets [`Self::bind_image_memory2`]. See [`FNBindImageMemory2`] for more information.
-    pub fn bind_image_memory2(&self) -> FNBindImageMemory2 {
-        self.bind_image_memory2
+    ///Gets [`Self::bind_image_memory2_khr`]. See [`FNBindImageMemory2`] for more information.
+    pub fn bind_image_memory2_khr(&self) -> FNBindImageMemory2 {
+        self.bind_image_memory2_khr
     }
 }

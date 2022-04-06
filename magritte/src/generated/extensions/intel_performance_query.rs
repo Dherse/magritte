@@ -1762,15 +1762,13 @@ impl Device {
         let _function = self
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .initialize_performance_api_intel()
+            .and_then(|vtable| vtable.initialize_performance_api_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .initialize_performance_api_intel()
+            .and_then(|vtable| vtable.initialize_performance_api_intel())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1817,15 +1815,13 @@ impl Device {
         let _function = self
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .uninitialize_performance_api_intel()
+            .and_then(|vtable| vtable.uninitialize_performance_api_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .uninitialize_performance_api_intel()
+            .and_then(|vtable| vtable.uninitialize_performance_api_intel())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()
@@ -1884,15 +1880,13 @@ impl Device {
         let _function = self
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .acquire_performance_configuration_intel()
+            .and_then(|vtable| vtable.acquire_performance_configuration_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .acquire_performance_configuration_intel()
+            .and_then(|vtable| vtable.acquire_performance_configuration_intel())
             .unwrap_unchecked();
         let mut p_configuration = MaybeUninit::<PerformanceConfigurationINTEL>::uninit();
         let _return = _function(
@@ -1963,15 +1957,13 @@ impl Device {
         let _function = self
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .release_performance_configuration_intel()
+            .and_then(|vtable| vtable.release_performance_configuration_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .release_performance_configuration_intel()
+            .and_then(|vtable| vtable.release_performance_configuration_intel())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), configuration.unwrap_or_default());
         match _return {
@@ -2030,15 +2022,13 @@ impl Device {
         let _function = self
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .get_performance_parameter_intel()
+            .and_then(|vtable| vtable.get_performance_parameter_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .get_performance_parameter_intel()
+            .and_then(|vtable| vtable.get_performance_parameter_intel())
             .unwrap_unchecked();
         let mut p_value = MaybeUninit::<PerformanceValueINTEL>::uninit();
         let _return = _function(self.as_raw(), parameter, p_value.as_mut_ptr());
@@ -2097,16 +2087,14 @@ impl Queue {
             .device()
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .queue_set_performance_configuration_intel()
+            .and_then(|vtable| vtable.queue_set_performance_configuration_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .queue_set_performance_configuration_intel()
+            .and_then(|vtable| vtable.queue_set_performance_configuration_intel())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), configuration);
         match _return {
@@ -2173,16 +2161,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .cmd_set_performance_marker_intel()
+            .and_then(|vtable| vtable.cmd_set_performance_marker_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .cmd_set_performance_marker_intel()
+            .and_then(|vtable| vtable.cmd_set_performance_marker_intel())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_marker_info as *const PerformanceMarkerInfoINTEL<'lt>);
         match _return {
@@ -2248,16 +2234,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .cmd_set_performance_stream_marker_intel()
+            .and_then(|vtable| vtable.cmd_set_performance_stream_marker_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .cmd_set_performance_stream_marker_intel()
+            .and_then(|vtable| vtable.cmd_set_performance_stream_marker_intel())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -2332,16 +2316,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .intel_performance_query()
-            .expect("extension/version not loaded")
-            .cmd_set_performance_override_intel()
+            .and_then(|vtable| vtable.cmd_set_performance_override_intel())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .intel_performance_query()
-            .unwrap_unchecked()
-            .cmd_set_performance_override_intel()
+            .and_then(|vtable| vtable.cmd_set_performance_override_intel())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

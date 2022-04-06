@@ -610,15 +610,13 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_external_memory()
-            .expect("extension/version not loaded")
-            .get_memory_zircon_handle_fuchsia()
+            .and_then(|vtable| vtable.get_memory_zircon_handle_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_external_memory()
-            .unwrap_unchecked()
-            .get_memory_zircon_handle_fuchsia()
+            .and_then(|vtable| vtable.get_memory_zircon_handle_fuchsia())
             .unwrap_unchecked();
         let mut p_zircon_handle = std::mem::zeroed();
         let _return = _function(
@@ -693,18 +691,15 @@ impl Device {
         let _function = self
             .vtable()
             .fuchsia_external_memory()
-            .expect("extension/version not loaded")
-            .get_memory_zircon_handle_properties_fuchsia()
+            .and_then(|vtable| vtable.get_memory_zircon_handle_properties_fuchsia())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .fuchsia_external_memory()
-            .unwrap_unchecked()
-            .get_memory_zircon_handle_properties_fuchsia()
+            .and_then(|vtable| vtable.get_memory_zircon_handle_properties_fuchsia())
             .unwrap_unchecked();
-        let mut p_memory_zircon_handle_properties = p_memory_zircon_handle_properties
-            .unwrap_or_else(|| MaybeUninit::<MemoryZirconHandlePropertiesFUCHSIA<'lt>>::zeroed().assume_init());
+        let mut p_memory_zircon_handle_properties = p_memory_zircon_handle_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             handle_type,

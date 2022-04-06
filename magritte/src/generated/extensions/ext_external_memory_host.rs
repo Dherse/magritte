@@ -641,18 +641,15 @@ impl Device {
         let _function = self
             .vtable()
             .ext_external_memory_host()
-            .expect("extension/version not loaded")
-            .get_memory_host_pointer_properties_ext()
+            .and_then(|vtable| vtable.get_memory_host_pointer_properties_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_external_memory_host()
-            .unwrap_unchecked()
-            .get_memory_host_pointer_properties_ext()
+            .and_then(|vtable| vtable.get_memory_host_pointer_properties_ext())
             .unwrap_unchecked();
-        let mut p_memory_host_pointer_properties = p_memory_host_pointer_properties
-            .unwrap_or_else(|| MaybeUninit::<MemoryHostPointerPropertiesEXT<'lt>>::zeroed().assume_init());
+        let mut p_memory_host_pointer_properties = p_memory_host_pointer_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             handle_type,

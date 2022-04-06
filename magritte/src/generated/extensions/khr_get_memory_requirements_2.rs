@@ -22,9 +22,9 @@
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_memory_requirements2 extension>>)
 //!# New functions & commands
-//! - [`GetBufferMemoryRequirements2KHR`]
-//! - [`GetImageMemoryRequirements2KHR`]
-//! - [`GetImageSparseMemoryRequirements2KHR`]
+//! - [`get_buffer_memory_requirements2_khr`]
+//! - [`get_image_memory_requirements2_khr`]
+//! - [`get_image_sparse_memory_requirements2_khr`]
 //!# New structures
 //! - [`BufferMemoryRequirementsInfo2KHR`]
 //! - [`ImageMemoryRequirementsInfo2KHR`]
@@ -52,9 +52,9 @@
 //! - [`ImageSparseMemoryRequirementsInfo2KHR`]
 //! - [`MemoryRequirements2KHR`]
 //! - [`SparseImageMemoryRequirements2KHR`]
-//! - [`GetBufferMemoryRequirements2KHR`]
-//! - [`GetImageMemoryRequirements2KHR`]
-//! - [`GetImageSparseMemoryRequirements2KHR`]
+//! - [`get_buffer_memory_requirements2_khr`]
+//! - [`get_image_memory_requirements2_khr`]
+//! - [`get_image_sparse_memory_requirements2_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -79,11 +79,11 @@ pub const KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME: &'static CStr = crate::c
 ///The V-table of [`Device`] for functions from `VK_KHR_get_memory_requirements2`
 pub struct DeviceKhrGetMemoryRequirements2VTable {
     ///See [`FNGetBufferMemoryRequirements2`] for more information.
-    pub get_buffer_memory_requirements2: FNGetBufferMemoryRequirements2,
+    pub get_buffer_memory_requirements2_khr: FNGetBufferMemoryRequirements2,
     ///See [`FNGetImageMemoryRequirements2`] for more information.
-    pub get_image_memory_requirements2: FNGetImageMemoryRequirements2,
+    pub get_image_memory_requirements2_khr: FNGetImageMemoryRequirements2,
     ///See [`FNGetImageSparseMemoryRequirements2`] for more information.
-    pub get_image_sparse_memory_requirements2: FNGetImageSparseMemoryRequirements2,
+    pub get_image_sparse_memory_requirements2_khr: FNGetImageSparseMemoryRequirements2,
 }
 impl DeviceKhrGetMemoryRequirements2VTable {
     ///Loads the VTable from the owner and the names
@@ -96,19 +96,19 @@ impl DeviceKhrGetMemoryRequirements2VTable {
         loader: Device,
     ) -> Self {
         Self {
-            get_buffer_memory_requirements2: unsafe {
+            get_buffer_memory_requirements2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetBufferMemoryRequirements2KHR").as_ptr(),
                 ))
             },
-            get_image_memory_requirements2: unsafe {
+            get_image_memory_requirements2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetImageMemoryRequirements2KHR").as_ptr(),
                 ))
             },
-            get_image_sparse_memory_requirements2: unsafe {
+            get_image_sparse_memory_requirements2_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetImageSparseMemoryRequirements2KHR").as_ptr(),
@@ -116,19 +116,19 @@ impl DeviceKhrGetMemoryRequirements2VTable {
             },
         }
     }
-    ///Gets [`Self::get_buffer_memory_requirements2`]. See [`FNGetBufferMemoryRequirements2`] for
-    /// more information.
-    pub fn get_buffer_memory_requirements2(&self) -> FNGetBufferMemoryRequirements2 {
-        self.get_buffer_memory_requirements2
+    ///Gets [`Self::get_buffer_memory_requirements2_khr`]. See [`FNGetBufferMemoryRequirements2`]
+    /// for more information.
+    pub fn get_buffer_memory_requirements2_khr(&self) -> FNGetBufferMemoryRequirements2 {
+        self.get_buffer_memory_requirements2_khr
     }
-    ///Gets [`Self::get_image_memory_requirements2`]. See [`FNGetImageMemoryRequirements2`] for
+    ///Gets [`Self::get_image_memory_requirements2_khr`]. See [`FNGetImageMemoryRequirements2`] for
     /// more information.
-    pub fn get_image_memory_requirements2(&self) -> FNGetImageMemoryRequirements2 {
-        self.get_image_memory_requirements2
+    pub fn get_image_memory_requirements2_khr(&self) -> FNGetImageMemoryRequirements2 {
+        self.get_image_memory_requirements2_khr
     }
-    ///Gets [`Self::get_image_sparse_memory_requirements2`]. See
+    ///Gets [`Self::get_image_sparse_memory_requirements2_khr`]. See
     /// [`FNGetImageSparseMemoryRequirements2`] for more information.
-    pub fn get_image_sparse_memory_requirements2(&self) -> FNGetImageSparseMemoryRequirements2 {
-        self.get_image_sparse_memory_requirements2
+    pub fn get_image_sparse_memory_requirements2_khr(&self) -> FNGetImageSparseMemoryRequirements2 {
+        self.get_image_sparse_memory_requirements2_khr
     }
 }

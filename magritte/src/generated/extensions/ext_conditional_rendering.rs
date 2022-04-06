@@ -1094,16 +1094,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_conditional_rendering()
-            .expect("extension/version not loaded")
-            .cmd_begin_conditional_rendering_ext()
+            .and_then(|vtable| vtable.cmd_begin_conditional_rendering_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_conditional_rendering()
-            .unwrap_unchecked()
-            .cmd_begin_conditional_rendering_ext()
+            .and_then(|vtable| vtable.cmd_begin_conditional_rendering_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1168,16 +1166,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .ext_conditional_rendering()
-            .expect("extension/version not loaded")
-            .cmd_end_conditional_rendering_ext()
+            .and_then(|vtable| vtable.cmd_end_conditional_rendering_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .ext_conditional_rendering()
-            .unwrap_unchecked()
-            .cmd_end_conditional_rendering_ext()
+            .and_then(|vtable| vtable.cmd_end_conditional_rendering_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()

@@ -906,16 +906,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_full_screen_exclusive()
-            .expect("extension/version not loaded")
-            .get_physical_device_surface_present_modes2_ext()
+            .and_then(|vtable| vtable.get_physical_device_surface_present_modes2_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_full_screen_exclusive()
-            .unwrap_unchecked()
-            .get_physical_device_surface_present_modes2_ext()
+            .and_then(|vtable| vtable.get_physical_device_surface_present_modes2_ext())
             .unwrap_unchecked();
         let mut p_present_mode_count = match p_present_mode_count {
             Some(v) => v as _,
@@ -1014,15 +1012,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_full_screen_exclusive()
-            .expect("extension/version not loaded")
-            .get_device_group_surface_present_modes2_ext()
+            .and_then(|vtable| vtable.get_device_group_surface_present_modes2_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_full_screen_exclusive()
-            .unwrap_unchecked()
-            .get_device_group_surface_present_modes2_ext()
+            .and_then(|vtable| vtable.get_device_group_surface_present_modes2_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1103,15 +1099,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_full_screen_exclusive()
-            .expect("extension/version not loaded")
-            .acquire_full_screen_exclusive_mode_ext()
+            .and_then(|vtable| vtable.acquire_full_screen_exclusive_mode_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_full_screen_exclusive()
-            .unwrap_unchecked()
-            .acquire_full_screen_exclusive_mode_ext()
+            .and_then(|vtable| vtable.acquire_full_screen_exclusive_mode_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swapchain);
         match _return {
@@ -1163,15 +1157,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_full_screen_exclusive()
-            .expect("extension/version not loaded")
-            .release_full_screen_exclusive_mode_ext()
+            .and_then(|vtable| vtable.release_full_screen_exclusive_mode_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_full_screen_exclusive()
-            .unwrap_unchecked()
-            .release_full_screen_exclusive_mode_ext()
+            .and_then(|vtable| vtable.release_full_screen_exclusive_mode_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), swapchain);
         match _return {

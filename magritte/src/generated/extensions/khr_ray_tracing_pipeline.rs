@@ -104,7 +104,7 @@
 //!and enums are aliased, changed, or removed.
 //! - Aliased functionality — enums, structures, and commands that are considered equivalent:  -
 //!   [`RayTracingShaderGroupTypeNV`] ↔ [`RayTracingShaderGroupTypeKHR`]  -
-//!   [`GetRayTracingShaderGroupHandlesNV`] ↔ [`get_ray_tracing_shader_group_handles_khr`]
+//!   [`get_ray_tracing_shader_group_handles_nv`] ↔ [`get_ray_tracing_shader_group_handles_khr`]
 //! - Changed enums, structures, and commands:  - [`RayTracingShaderGroupCreateInfoNV`] →
 //!   [`RayTracingShaderGroupCreateInfoKHR`] (added `pShaderGroupCaptureReplayHandle`)  -
 //!   [`RayTracingPipelineCreateInfoNV`] → [`RayTracingPipelineCreateInfoKHR`] (changed type of
@@ -3198,6 +3198,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetRayTracingShaderGroupHandlesKHR")]
+    #[doc(alias = "vkGetRayTracingShaderGroupHandlesNV")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_ray_tracing_shader_group_handles_khr<'a: 'this, 'this>(
@@ -3212,15 +3213,31 @@ impl Device {
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .get_ray_tracing_shader_group_handles_khr()
+            .and_then(|vtable| vtable.get_ray_tracing_shader_group_handles_khr())
+            .or_else(|| {
+                #[cfg(feature = "VK_NV_ray_tracing")]
+                return self
+                    .vtable()
+                    .nv_ray_tracing()
+                    .and_then(|vtable| vtable.get_ray_tracing_shader_group_handles_nv());
+                #[cfg(not(feature = "VK_NV_ray_tracing"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .get_ray_tracing_shader_group_handles_khr()
+            .and_then(|vtable| vtable.get_ray_tracing_shader_group_handles_khr())
+            .or_else(|| {
+                #[cfg(feature = "VK_NV_ray_tracing")]
+                return self
+                    .vtable()
+                    .nv_ray_tracing()
+                    .and_then(|vtable| vtable.get_ray_tracing_shader_group_handles_nv());
+                #[cfg(not(feature = "VK_NV_ray_tracing"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3312,15 +3329,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .get_ray_tracing_capture_replay_shader_group_handles_khr()
+            .and_then(|vtable| vtable.get_ray_tracing_capture_replay_shader_group_handles_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .get_ray_tracing_capture_replay_shader_group_handles_khr()
+            .and_then(|vtable| vtable.get_ray_tracing_capture_replay_shader_group_handles_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -3445,15 +3460,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .create_ray_tracing_pipelines_khr()
+            .and_then(|vtable| vtable.create_ray_tracing_pipelines_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .create_ray_tracing_pipelines_khr()
+            .and_then(|vtable| vtable.create_ray_tracing_pipelines_khr())
             .unwrap_unchecked();
         let create_info_count = (|len: usize| len)(p_create_infos.len()) as _;
         let mut p_pipelines = SmallVec::<Pipeline>::from_elem(Default::default(), create_info_count as usize);
@@ -3539,15 +3552,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .get_ray_tracing_shader_group_stack_size_khr()
+            .and_then(|vtable| vtable.get_ray_tracing_shader_group_stack_size_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .get_ray_tracing_shader_group_stack_size_khr()
+            .and_then(|vtable| vtable.get_ray_tracing_shader_group_stack_size_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), pipeline, group.unwrap_or_default() as _, group_shader);
         _return
@@ -3841,16 +3852,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .cmd_trace_rays_khr()
+            .and_then(|vtable| vtable.cmd_trace_rays_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .cmd_trace_rays_khr()
+            .and_then(|vtable| vtable.cmd_trace_rays_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -4152,16 +4161,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .cmd_trace_rays_indirect_khr()
+            .and_then(|vtable| vtable.cmd_trace_rays_indirect_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .cmd_trace_rays_indirect_khr()
+            .and_then(|vtable| vtable.cmd_trace_rays_indirect_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -4237,16 +4244,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_ray_tracing_pipeline()
-            .expect("extension/version not loaded")
-            .cmd_set_ray_tracing_pipeline_stack_size_khr()
+            .and_then(|vtable| vtable.cmd_set_ray_tracing_pipeline_stack_size_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_ray_tracing_pipeline()
-            .unwrap_unchecked()
-            .cmd_set_ray_tracing_pipeline_stack_size_khr()
+            .and_then(|vtable| vtable.cmd_set_ray_tracing_pipeline_stack_size_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), pipeline_stack_size.unwrap_or_default() as _);
         ()

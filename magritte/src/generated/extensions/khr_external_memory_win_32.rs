@@ -888,15 +888,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_memory_win_32()
-            .expect("extension/version not loaded")
-            .get_memory_win32_handle_khr()
+            .and_then(|vtable| vtable.get_memory_win32_handle_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_memory_win_32()
-            .unwrap_unchecked()
-            .get_memory_win32_handle_khr()
+            .and_then(|vtable| vtable.get_memory_win32_handle_khr())
             .unwrap_unchecked();
         let mut p_handle = std::mem::zeroed();
         let _return = _function(
@@ -973,18 +971,15 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_memory_win_32()
-            .expect("extension/version not loaded")
-            .get_memory_win32_handle_properties_khr()
+            .and_then(|vtable| vtable.get_memory_win32_handle_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_memory_win_32()
-            .unwrap_unchecked()
-            .get_memory_win32_handle_properties_khr()
+            .and_then(|vtable| vtable.get_memory_win32_handle_properties_khr())
             .unwrap_unchecked();
-        let mut p_memory_win_32_handle_properties = p_memory_win_32_handle_properties
-            .unwrap_or_else(|| MaybeUninit::<MemoryWin32HandlePropertiesKHR<'lt>>::zeroed().assume_init());
+        let mut p_memory_win_32_handle_properties = p_memory_win_32_handle_properties.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             handle_type,

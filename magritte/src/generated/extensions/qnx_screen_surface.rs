@@ -403,15 +403,13 @@ impl Instance {
         let _function = self
             .vtable()
             .qnx_screen_surface()
-            .expect("extension/version not loaded")
-            .create_screen_surface_qnx()
+            .and_then(|vtable| vtable.create_screen_surface_qnx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .qnx_screen_surface()
-            .unwrap_unchecked()
-            .create_screen_surface_qnx()
+            .and_then(|vtable| vtable.create_screen_surface_qnx())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(
@@ -479,16 +477,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .qnx_screen_surface()
-            .expect("extension/version not loaded")
-            .get_physical_device_screen_presentation_support_qnx()
+            .and_then(|vtable| vtable.get_physical_device_screen_presentation_support_qnx())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .qnx_screen_surface()
-            .unwrap_unchecked()
-            .get_physical_device_screen_presentation_support_qnx()
+            .and_then(|vtable| vtable.get_physical_device_screen_presentation_support_qnx())
             .unwrap_unchecked();
         let mut window = std::mem::zeroed();
         let _return = _function(self.as_raw(), queue_family_index.unwrap_or_default() as _, &mut window);

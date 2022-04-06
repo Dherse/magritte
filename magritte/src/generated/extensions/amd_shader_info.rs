@@ -639,15 +639,13 @@ impl Device {
         let _function = self
             .vtable()
             .amd_shader_info()
-            .expect("extension/version not loaded")
-            .get_shader_info_amd()
+            .and_then(|vtable| vtable.get_shader_info_amd())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .amd_shader_info()
-            .unwrap_unchecked()
-            .get_shader_info_amd()
+            .and_then(|vtable| vtable.get_shader_info_amd())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

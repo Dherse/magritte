@@ -38,7 +38,7 @@
 //! - [`destroy_acceleration_structure_nv`]
 //! - [`get_acceleration_structure_handle_nv`]
 //! - [`get_acceleration_structure_memory_requirements_nv`]
-//! - [`GetRayTracingShaderGroupHandlesNV`]
+//! - [`get_ray_tracing_shader_group_handles_nv`]
 //!# New structures
 //! - [`AabbPositionsNV`]
 //! - [`AccelerationStructureCreateInfoNV`]
@@ -181,7 +181,7 @@
 //! - [`destroy_acceleration_structure_nv`]
 //! - [`get_acceleration_structure_handle_nv`]
 //! - [`get_acceleration_structure_memory_requirements_nv`]
-//! - [`GetRayTracingShaderGroupHandlesNV`]
+//! - [`get_ray_tracing_shader_group_handles_nv`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -3800,15 +3800,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .compile_deferred_nv()
+            .and_then(|vtable| vtable.compile_deferred_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .compile_deferred_nv()
+            .and_then(|vtable| vtable.compile_deferred_nv())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), pipeline, shader.unwrap_or_default() as _);
         match _return {
@@ -3886,15 +3884,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .create_acceleration_structure_nv()
+            .and_then(|vtable| vtable.create_acceleration_structure_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .create_acceleration_structure_nv()
+            .and_then(|vtable| vtable.create_acceleration_structure_nv())
             .unwrap_unchecked();
         let mut p_acceleration_structure = MaybeUninit::<AccelerationStructureNV>::uninit();
         let _return = _function(
@@ -3975,15 +3971,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .destroy_acceleration_structure_nv()
+            .and_then(|vtable| vtable.destroy_acceleration_structure_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .destroy_acceleration_structure_nv()
+            .and_then(|vtable| vtable.destroy_acceleration_structure_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -4054,18 +4048,15 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .get_acceleration_structure_memory_requirements_nv()
+            .and_then(|vtable| vtable.get_acceleration_structure_memory_requirements_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .get_acceleration_structure_memory_requirements_nv()
+            .and_then(|vtable| vtable.get_acceleration_structure_memory_requirements_nv())
             .unwrap_unchecked();
-        let mut p_memory_requirements =
-            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
+        let mut p_memory_requirements = p_memory_requirements.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_info as *const AccelerationStructureMemoryRequirementsInfoNV<'lt>,
@@ -4127,15 +4118,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .bind_acceleration_structure_memory_nv()
+            .and_then(|vtable| vtable.bind_acceleration_structure_memory_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .bind_acceleration_structure_memory_nv()
+            .and_then(|vtable| vtable.bind_acceleration_structure_memory_nv())
             .unwrap_unchecked();
         let bind_info_count = (|len: usize| len)(p_bind_infos.len()) as _;
         let _return = _function(self.as_raw(), bind_info_count, p_bind_infos.as_ptr());
@@ -4209,15 +4198,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .get_acceleration_structure_handle_nv()
+            .and_then(|vtable| vtable.get_acceleration_structure_handle_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .get_acceleration_structure_handle_nv()
+            .and_then(|vtable| vtable.get_acceleration_structure_handle_nv())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), acceleration_structure, data_size, p_data);
         match _return {
@@ -4309,15 +4296,13 @@ impl Device {
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .create_ray_tracing_pipelines_nv()
+            .and_then(|vtable| vtable.create_ray_tracing_pipelines_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .create_ray_tracing_pipelines_nv()
+            .and_then(|vtable| vtable.create_ray_tracing_pipelines_nv())
             .unwrap_unchecked();
         let create_info_count = (|len: usize| len)(p_create_infos.len()) as _;
         let mut p_pipelines = SmallVec::<Pipeline>::from_elem(Default::default(), create_info_count as usize);
@@ -4421,16 +4406,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .cmd_copy_acceleration_structure_nv()
+            .and_then(|vtable| vtable.cmd_copy_acceleration_structure_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .cmd_copy_acceleration_structure_nv()
+            .and_then(|vtable| vtable.cmd_copy_acceleration_structure_nv())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), dst, src, mode);
         ()
@@ -4530,16 +4513,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .cmd_write_acceleration_structures_properties_nv()
+            .and_then(|vtable| vtable.cmd_write_acceleration_structures_properties_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .cmd_write_acceleration_structures_properties_nv()
+            .and_then(|vtable| vtable.cmd_write_acceleration_structures_properties_nv())
             .unwrap_unchecked();
         let acceleration_structure_count = (|len: usize| len)(p_acceleration_structures.len()) as _;
         let _return = _function(
@@ -4690,16 +4671,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .cmd_build_acceleration_structure_nv()
+            .and_then(|vtable| vtable.cmd_build_acceleration_structure_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .cmd_build_acceleration_structure_nv()
+            .and_then(|vtable| vtable.cmd_build_acceleration_structure_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -4995,16 +4974,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_ray_tracing()
-            .expect("extension/version not loaded")
-            .cmd_trace_rays_nv()
+            .and_then(|vtable| vtable.cmd_trace_rays_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_ray_tracing()
-            .unwrap_unchecked()
-            .cmd_trace_rays_nv()
+            .and_then(|vtable| vtable.cmd_trace_rays_nv())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -5143,7 +5120,7 @@ pub struct DeviceNvRayTracingVTable {
     ///See [`FNCmdTraceRaysNv`] for more information.
     pub cmd_trace_rays_nv: FNCmdTraceRaysNv,
     ///See [`FNGetRayTracingShaderGroupHandlesKhr`] for more information.
-    pub get_ray_tracing_shader_group_handles_khr: FNGetRayTracingShaderGroupHandlesKhr,
+    pub get_ray_tracing_shader_group_handles_nv: FNGetRayTracingShaderGroupHandlesKhr,
 }
 impl DeviceNvRayTracingVTable {
     ///Loads the VTable from the owner and the names
@@ -5216,7 +5193,7 @@ impl DeviceNvRayTracingVTable {
             cmd_trace_rays_nv: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdTraceRaysNV").as_ptr()))
             },
-            get_ray_tracing_shader_group_handles_khr: unsafe {
+            get_ray_tracing_shader_group_handles_nv: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkGetRayTracingShaderGroupHandlesNV").as_ptr(),
@@ -5277,10 +5254,9 @@ impl DeviceNvRayTracingVTable {
     pub fn cmd_trace_rays_nv(&self) -> FNCmdTraceRaysNv {
         self.cmd_trace_rays_nv
     }
-    ///Gets [`Self::get_ray_tracing_shader_group_handles_khr`]. See
+    ///Gets [`Self::get_ray_tracing_shader_group_handles_nv`]. See
     /// [`FNGetRayTracingShaderGroupHandlesKhr`] for more information.
-    #[cfg(any(feature = "VK_KHR_ray_tracing_pipeline", feature = "VK_NV_ray_tracing"))]
-    pub fn get_ray_tracing_shader_group_handles_khr(&self) -> FNGetRayTracingShaderGroupHandlesKhr {
-        self.get_ray_tracing_shader_group_handles_khr
+    pub fn get_ray_tracing_shader_group_handles_nv(&self) -> FNGetRayTracingShaderGroupHandlesKhr {
+        self.get_ray_tracing_shader_group_handles_nv
     }
 }

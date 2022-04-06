@@ -15,8 +15,8 @@
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_draw_indirect_count extension>>)
 //!# New functions & commands
-//! - [`CmdDrawIndexedIndirectCountAMD`]
-//! - [`CmdDrawIndirectCountAMD`]
+//! - [`cmd_draw_indexed_indirect_count_amd`]
+//! - [`cmd_draw_indirect_count_amd`]
 //!# New constants
 //! - [`AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME`]
 //! - [`AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION`]
@@ -30,8 +30,8 @@
 //! * - Matthaeus G. Chajdas, AMD  - Derrick Owens, AMD  - Graham Sellers, AMD  - Daniel Rakos, AMD
 //!   - Dominik Witczak, AMD
 //!# Related
-//! - [`CmdDrawIndexedIndirectCountAMD`]
-//! - [`CmdDrawIndirectCountAMD`]
+//! - [`cmd_draw_indexed_indirect_count_amd`]
+//! - [`cmd_draw_indirect_count_amd`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -56,9 +56,9 @@ pub const AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///The V-table of [`Device`] for functions from `VK_AMD_draw_indirect_count`
 pub struct DeviceAmdDrawIndirectCountVTable {
     ///See [`FNCmdDrawIndirectCount`] for more information.
-    pub cmd_draw_indirect_count: FNCmdDrawIndirectCount,
+    pub cmd_draw_indirect_count_amd: FNCmdDrawIndirectCount,
     ///See [`FNCmdDrawIndexedIndirectCount`] for more information.
-    pub cmd_draw_indexed_indirect_count: FNCmdDrawIndexedIndirectCount,
+    pub cmd_draw_indexed_indirect_count_amd: FNCmdDrawIndexedIndirectCount,
 }
 impl DeviceAmdDrawIndirectCountVTable {
     ///Loads the VTable from the owner and the names
@@ -71,10 +71,10 @@ impl DeviceAmdDrawIndirectCountVTable {
         loader: Device,
     ) -> Self {
         Self {
-            cmd_draw_indirect_count: unsafe {
+            cmd_draw_indirect_count_amd: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdDrawIndirectCountAMD").as_ptr()))
             },
-            cmd_draw_indexed_indirect_count: unsafe {
+            cmd_draw_indexed_indirect_count_amd: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCmdDrawIndexedIndirectCountAMD").as_ptr(),
@@ -82,13 +82,14 @@ impl DeviceAmdDrawIndirectCountVTable {
             },
         }
     }
-    ///Gets [`Self::cmd_draw_indirect_count`]. See [`FNCmdDrawIndirectCount`] for more information.
-    pub fn cmd_draw_indirect_count(&self) -> FNCmdDrawIndirectCount {
-        self.cmd_draw_indirect_count
+    ///Gets [`Self::cmd_draw_indirect_count_amd`]. See [`FNCmdDrawIndirectCount`] for more
+    /// information.
+    pub fn cmd_draw_indirect_count_amd(&self) -> FNCmdDrawIndirectCount {
+        self.cmd_draw_indirect_count_amd
     }
-    ///Gets [`Self::cmd_draw_indexed_indirect_count`]. See [`FNCmdDrawIndexedIndirectCount`] for
-    /// more information.
-    pub fn cmd_draw_indexed_indirect_count(&self) -> FNCmdDrawIndexedIndirectCount {
-        self.cmd_draw_indexed_indirect_count
+    ///Gets [`Self::cmd_draw_indexed_indirect_count_amd`]. See [`FNCmdDrawIndexedIndirectCount`]
+    /// for more information.
+    pub fn cmd_draw_indexed_indirect_count_amd(&self) -> FNCmdDrawIndexedIndirectCount {
+        self.cmd_draw_indexed_indirect_count_amd
     }
 }

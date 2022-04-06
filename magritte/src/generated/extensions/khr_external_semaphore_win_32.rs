@@ -1033,15 +1033,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_semaphore_win_32()
-            .expect("extension/version not loaded")
-            .get_semaphore_win32_handle_khr()
+            .and_then(|vtable| vtable.get_semaphore_win32_handle_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_semaphore_win_32()
-            .unwrap_unchecked()
-            .get_semaphore_win32_handle_khr()
+            .and_then(|vtable| vtable.get_semaphore_win32_handle_khr())
             .unwrap_unchecked();
         let mut p_handle = std::mem::zeroed();
         let _return = _function(
@@ -1111,15 +1109,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_semaphore_win_32()
-            .expect("extension/version not loaded")
-            .import_semaphore_win32_handle_khr()
+            .and_then(|vtable| vtable.import_semaphore_win32_handle_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_semaphore_win_32()
-            .unwrap_unchecked()
-            .import_semaphore_win32_handle_khr()
+            .and_then(|vtable| vtable.import_semaphore_win32_handle_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

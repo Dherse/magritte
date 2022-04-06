@@ -505,15 +505,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_hdr_metadata()
-            .expect("extension/version not loaded")
-            .set_hdr_metadata_ext()
+            .and_then(|vtable| vtable.set_hdr_metadata_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_hdr_metadata()
-            .unwrap_unchecked()
-            .set_hdr_metadata_ext()
+            .and_then(|vtable| vtable.set_hdr_metadata_ext())
             .unwrap_unchecked();
         let swapchain_count = (|len: usize| len)(p_swapchains.len()) as _;
         let _return = _function(

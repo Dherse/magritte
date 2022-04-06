@@ -45,7 +45,7 @@
 //!1) Is there any interaction with the `[`VK_KHR_dynamic_rendering`]`
 //!extension?No.
 //!This extension only affects reads from input attachments.
-//!Render pass instances begun with [`CmdBeginRenderingKHR`] do not have
+//!Render pass instances begun with [`cmd_begin_rendering_khr`] do not have
 //!input attachments and a different mechanism will be needed to provide
 //!similar functionality in this case.
 //!# Version History

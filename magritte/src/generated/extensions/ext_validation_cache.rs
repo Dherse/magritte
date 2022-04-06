@@ -800,15 +800,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .expect("extension/version not loaded")
-            .create_validation_cache_ext()
+            .and_then(|vtable| vtable.create_validation_cache_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .unwrap_unchecked()
-            .create_validation_cache_ext()
+            .and_then(|vtable| vtable.create_validation_cache_ext())
             .unwrap_unchecked();
         let mut p_validation_cache = MaybeUninit::<ValidationCacheEXT>::uninit();
         let _return = _function(
@@ -887,15 +885,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .expect("extension/version not loaded")
-            .destroy_validation_cache_ext()
+            .and_then(|vtable| vtable.destroy_validation_cache_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .unwrap_unchecked()
-            .destroy_validation_cache_ext()
+            .and_then(|vtable| vtable.destroy_validation_cache_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1000,15 +996,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .expect("extension/version not loaded")
-            .get_validation_cache_data_ext()
+            .and_then(|vtable| vtable.get_validation_cache_data_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .unwrap_unchecked()
-            .get_validation_cache_data_ext()
+            .and_then(|vtable| vtable.get_validation_cache_data_ext())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -1086,15 +1080,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .expect("extension/version not loaded")
-            .merge_validation_caches_ext()
+            .and_then(|vtable| vtable.merge_validation_caches_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_validation_cache()
-            .unwrap_unchecked()
-            .merge_validation_caches_ext()
+            .and_then(|vtable| vtable.merge_validation_caches_ext())
             .unwrap_unchecked();
         let src_cache_count = (|len: usize| len)(p_src_caches.len()) as _;
         let _return = _function(self.as_raw(), dst_cache, src_cache_count, p_src_caches.as_ptr());

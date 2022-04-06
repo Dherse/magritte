@@ -8,7 +8,7 @@ use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Function, Handle, Source},
+    source::{Function, Handle, Source, CommandAlias},
     ty::Ty,
 };
 
@@ -16,23 +16,44 @@ pub mod field;
 pub mod raw;
 pub mod wrapped;
 
-impl<'a> Function<'a> {
-    /// generates the code for the function
-    pub fn generate_code(
+impl<'a> CommandAlias<'a> {
+    fn function_getter(
         &self,
         source: &Source<'a>,
-        imports: &Imports,
-        doc: &mut Documentation,
-        handle: &Handle<'a>,
-        mut out: &mut TokenStream,
-    ) {
-        let mut gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), None);
-
+        handle: &Handle<'a>
+    ) -> TokenStream {
         let name = self.as_ident();
-        let original_name = self.original_name();
+        let loader = match handle.name() {
+            "Device" | "Instance" => None,
+            _ => match &*handle.ancestor_loader(source).unwrap() {
+                "VkDevice" => Some(quote! { .device() }),
+                "VkInstance" => Some(quote! { .instance() }),
+                other => unreachable!("not a loader: {}", other),
+            },
+        };
 
-        self.as_fn_pointer().generate_doc(source, doc, out);
+        let origin_ident = Ident::new(&self.origin().as_name(), Span::call_site());
 
+        if self.origin() == &Origin::Vulkan1_0 {
+            quote! {
+                self #loader .vtable().vulkan1_0().#name()
+            }
+        } else {
+            quote! {
+                self #loader .vtable().#origin_ident().and_then(|vtable| vtable.#name())
+            }
+        }
+    }
+}
+
+impl<'a> Function<'a> {
+    fn function_getter(
+        &self,
+        parent: &Origin<'a>,
+        source: &Source<'a>,
+        handle: &Handle<'a>
+    ) -> TokenStream {
+        let name = self.as_ident();
         let loader = match self.original_name() {
             "vkGetInstanceProcAddr" => Some(quote! { .entry() }),
             "vkGetDeviceProcAddr" => Some(quote! { .instance() }),
@@ -45,6 +66,81 @@ impl<'a> Function<'a> {
                 },
             },
         };
+
+        let origin_ident = Ident::new(&self.origin().as_name(), Span::call_site());
+
+        let aliases = self
+            .aliases()
+            .iter()
+            .map(|alias| source.command_aliases.get_by_name(&**alias).unwrap())
+            .map(|alias| alias.function_getter(source, handle));
+
+        let conditions = self
+            .aliases()
+            .iter()
+            .map(|alias| source.command_aliases.get_by_name(&**alias).unwrap())
+            .map(|alias| alias.conditional_compilation(parent, source));
+
+
+        let condition_nots = self
+            .aliases()
+            .iter()
+            .map(|alias| source.command_aliases.get_by_name(&**alias).unwrap())
+            .map(|alias| alias.conditional_compilation_not(parent, source));
+        
+        if self.original_name() == "vkGetInstanceProcAddr" {
+            quote! {
+                self
+                    .entry()
+                    .vtable()
+                    .get_instance_proc_addr()#(
+                        .or_else(|| {
+                            #conditions
+                            return #aliases;
+                            #condition_nots
+                            return None;
+                        })
+                    )*
+            }
+        } else if self.origin() == &Origin::Vulkan1_0 {
+            quote! {
+                self #loader .vtable().vulkan1_0().#name()#(
+                    .or_else(|| {
+                        #conditions
+                        return #aliases;
+                        #condition_nots
+                        return None;
+                    })
+                )*
+            }
+        } else {
+            quote! {
+                self #loader .vtable().#origin_ident().and_then(|vtable| vtable.#name())#(
+                    .or_else(|| {
+                        #conditions
+                        return #aliases;
+                        #condition_nots
+                        return None;
+                    })
+                )*
+            }
+        }
+    }
+
+    /// generates the code for the function
+    pub fn generate_code(
+        &self,
+        source: &Source<'a>,
+        imports: &Imports,
+        doc: &mut Documentation,
+        handle: &Handle<'a>,
+        mut out: &mut TokenStream,
+    ) {
+        let mut gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), None);
+
+        let name = self.as_ident();
+
+        self.as_fn_pointer().generate_doc(source, doc, out);
 
         let extra_call = gen.extra_call_info.map(|info| {
             let ExtraCallInfo {
@@ -151,59 +247,30 @@ impl<'a> Function<'a> {
         // println!("{}: {:#?}", self.original_name(), gen);
 
         // let unsafe_ = if gen.unsafe_ { Some(quote! { unsafe }) } else { None };
-
-        let alias = if !self.original_name().eq(self.name()) {
-            Some(quote! {
-                #[doc(alias = #original_name)]
-            })
-        } else {
-            None
-        };
-
-        // let this = gen.this.not().then(|| quote! { self: &Unique<'a, #handle_ident>, });
-
-        let origin = if self.original_name() == "vkGetInstanceProcAddr" {
-            None
-        } else {
-            let ident = Ident::new(&self.origin().as_name(), Span::call_site());
-
-            Some(quote! {
-                .#ident()
-            })
-        };
-
-        let origin_expect = (self.origin() != &Origin::Vulkan1_0 && self.original_name() != "vkGetInstanceProcAddr")
-            .then(|| {
-                quote! {
-                    .expect("extension/version not loaded")
-                }
-            });
-
-        let origin_unwrap = (self.origin() != &Origin::Vulkan1_0
-            && self.original_name() != "get_invkGetInstanceProcAddrstance_proc_addr")
-            .then(|| {
-                quote! {
-                    .unwrap_unchecked()
-                }
-            });
+        let function_getter = self.function_getter(handle.origin(), source, handle);
 
         let lifetime = gen.lifetime.not().then(|| quote! { : 'parent, 'parent });
+
+        let mut aliases = vec![ self.original_name() ];
+        aliases.extend(self.aliases().iter().map(|s| &**s));
 
         quote_each_token! {
             out
 
-            #alias
+            #(
+                #[doc(alias = #aliases)]
+            )*
             #[track_caller]
             #[inline]
             pub unsafe fn #name <'a: 'this, 'this #lifetime, #generics>(
-                // #this
                 #(#params),*
             ) -> #return_ty {
+                // let _function = self #loader .vtable() #origin #origin_and_then
                 #[cfg(any(debug_assertions, feature = "assertions"))]
-                let _function = self #loader .vtable() #origin #origin_expect.#name().expect("function not loaded");
+                let _function = #function_getter.expect("function not loaded");
 
                 #[cfg(not(any(debug_assertions, feature = "assertions")))]
-                let _function = self #loader .vtable() #origin #origin_unwrap.#name().unwrap_unchecked();
+                let _function = #function_getter.unwrap_unchecked();
 
                 #(
                     #states

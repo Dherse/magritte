@@ -27,8 +27,8 @@
 //!# New handles
 //! - [`SamplerYcbcrConversionKHR`]
 //!# New functions & commands
-//! - [`CreateSamplerYcbcrConversionKHR`]
-//! - [`DestroySamplerYcbcrConversionKHR`]
+//! - [`create_sampler_ycbcr_conversion_khr`]
+//! - [`destroy_sampler_ycbcr_conversion_khr`]
 //!# New structures
 //! - [`SamplerYcbcrConversionCreateInfoKHR`]
 //! - Extending [`BindImageMemoryInfo`]:  - [`BindImagePlaneMemoryInfoKHR`]
@@ -138,8 +138,8 @@
 //! - [`SamplerYcbcrConversionKHR`]
 //! - [`SamplerYcbcrModelConversionKHR`]
 //! - [`SamplerYcbcrRangeKHR`]
-//! - [`CreateSamplerYcbcrConversionKHR`]
-//! - [`DestroySamplerYcbcrConversionKHR`]
+//! - [`create_sampler_ycbcr_conversion_khr`]
+//! - [`destroy_sampler_ycbcr_conversion_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -164,9 +164,9 @@ pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &'static CStr = crate::cs
 ///The V-table of [`Device`] for functions from `VK_KHR_sampler_ycbcr_conversion`
 pub struct DeviceKhrSamplerYcbcrConversionVTable {
     ///See [`FNCreateSamplerYcbcrConversion`] for more information.
-    pub create_sampler_ycbcr_conversion: FNCreateSamplerYcbcrConversion,
+    pub create_sampler_ycbcr_conversion_khr: FNCreateSamplerYcbcrConversion,
     ///See [`FNDestroySamplerYcbcrConversion`] for more information.
-    pub destroy_sampler_ycbcr_conversion: FNDestroySamplerYcbcrConversion,
+    pub destroy_sampler_ycbcr_conversion_khr: FNDestroySamplerYcbcrConversion,
 }
 impl DeviceKhrSamplerYcbcrConversionVTable {
     ///Loads the VTable from the owner and the names
@@ -179,13 +179,13 @@ impl DeviceKhrSamplerYcbcrConversionVTable {
         loader: Device,
     ) -> Self {
         Self {
-            create_sampler_ycbcr_conversion: unsafe {
+            create_sampler_ycbcr_conversion_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCreateSamplerYcbcrConversionKHR").as_ptr(),
                 ))
             },
-            destroy_sampler_ycbcr_conversion: unsafe {
+            destroy_sampler_ycbcr_conversion_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkDestroySamplerYcbcrConversionKHR").as_ptr(),
@@ -193,14 +193,14 @@ impl DeviceKhrSamplerYcbcrConversionVTable {
             },
         }
     }
-    ///Gets [`Self::create_sampler_ycbcr_conversion`]. See [`FNCreateSamplerYcbcrConversion`] for
-    /// more information.
-    pub fn create_sampler_ycbcr_conversion(&self) -> FNCreateSamplerYcbcrConversion {
-        self.create_sampler_ycbcr_conversion
+    ///Gets [`Self::create_sampler_ycbcr_conversion_khr`]. See [`FNCreateSamplerYcbcrConversion`]
+    /// for more information.
+    pub fn create_sampler_ycbcr_conversion_khr(&self) -> FNCreateSamplerYcbcrConversion {
+        self.create_sampler_ycbcr_conversion_khr
     }
-    ///Gets [`Self::destroy_sampler_ycbcr_conversion`]. See [`FNDestroySamplerYcbcrConversion`] for
-    /// more information.
-    pub fn destroy_sampler_ycbcr_conversion(&self) -> FNDestroySamplerYcbcrConversion {
-        self.destroy_sampler_ycbcr_conversion
+    ///Gets [`Self::destroy_sampler_ycbcr_conversion_khr`]. See [`FNDestroySamplerYcbcrConversion`]
+    /// for more information.
+    pub fn destroy_sampler_ycbcr_conversion_khr(&self) -> FNDestroySamplerYcbcrConversion {
+        self.destroy_sampler_ycbcr_conversion_khr
     }
 }

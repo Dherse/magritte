@@ -1,8 +1,8 @@
 //![VK_QCOM_rotated_copy_commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_QCOM_rotated_copy_commands.html) - device extension
 //!# Description
 //!This extension extends adds an optional rotation transform to copy commands
-//![`CmdBlitImage2KHR`], [`CmdCopyImageToBuffer2KHR`] and
-//![`CmdCopyBufferToImage2KHR`].
+//![`cmd_blit_image2_khr`], [`cmd_copy_image_to_buffer2_khr`] and
+//![`cmd_copy_buffer_to_image2_khr`].
 //!When copying between two resources, where one resource contains rotated
 //!content and the other does not, a rotated copy may be desired.
 //!This extension may be used in combination with VK_QCOM_render_pass_transform

@@ -14,18 +14,18 @@
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_extended_dynamic_state extension>>)
 //!# New functions & commands
-//! - [`CmdBindVertexBuffers2EXT`]
-//! - [`CmdSetCullModeEXT`]
-//! - [`CmdSetDepthBoundsTestEnableEXT`]
-//! - [`CmdSetDepthCompareOpEXT`]
-//! - [`CmdSetDepthTestEnableEXT`]
-//! - [`CmdSetDepthWriteEnableEXT`]
-//! - [`CmdSetFrontFaceEXT`]
-//! - [`CmdSetPrimitiveTopologyEXT`]
-//! - [`CmdSetScissorWithCountEXT`]
-//! - [`CmdSetStencilOpEXT`]
-//! - [`CmdSetStencilTestEnableEXT`]
-//! - [`CmdSetViewportWithCountEXT`]
+//! - [`cmd_bind_vertex_buffers2_ext`]
+//! - [`cmd_set_cull_mode_ext`]
+//! - [`cmd_set_depth_bounds_test_enable_ext`]
+//! - [`cmd_set_depth_compare_op_ext`]
+//! - [`cmd_set_depth_test_enable_ext`]
+//! - [`cmd_set_depth_write_enable_ext`]
+//! - [`cmd_set_front_face_ext`]
+//! - [`cmd_set_primitive_topology_ext`]
+//! - [`cmd_set_scissor_with_count_ext`]
+//! - [`cmd_set_stencil_op_ext`]
+//! - [`cmd_set_stencil_test_enable_ext`]
+//! - [`cmd_set_viewport_with_count_ext`]
 //!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`]
@@ -54,18 +54,18 @@
 //!   Technologies  - Tobias Hector, AMD
 //!# Related
 //! - [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`]
-//! - [`CmdBindVertexBuffers2EXT`]
-//! - [`CmdSetCullModeEXT`]
-//! - [`CmdSetDepthBoundsTestEnableEXT`]
-//! - [`CmdSetDepthCompareOpEXT`]
-//! - [`CmdSetDepthTestEnableEXT`]
-//! - [`CmdSetDepthWriteEnableEXT`]
-//! - [`CmdSetFrontFaceEXT`]
-//! - [`CmdSetPrimitiveTopologyEXT`]
-//! - [`CmdSetScissorWithCountEXT`]
-//! - [`CmdSetStencilOpEXT`]
-//! - [`CmdSetStencilTestEnableEXT`]
-//! - [`CmdSetViewportWithCountEXT`]
+//! - [`cmd_bind_vertex_buffers2_ext`]
+//! - [`cmd_set_cull_mode_ext`]
+//! - [`cmd_set_depth_bounds_test_enable_ext`]
+//! - [`cmd_set_depth_compare_op_ext`]
+//! - [`cmd_set_depth_test_enable_ext`]
+//! - [`cmd_set_depth_write_enable_ext`]
+//! - [`cmd_set_front_face_ext`]
+//! - [`cmd_set_primitive_topology_ext`]
+//! - [`cmd_set_scissor_with_count_ext`]
+//! - [`cmd_set_stencil_op_ext`]
+//! - [`cmd_set_stencil_test_enable_ext`]
+//! - [`cmd_set_viewport_with_count_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -258,29 +258,29 @@ impl<'lt> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt> {
 ///The V-table of [`Device`] for functions from `VK_EXT_extended_dynamic_state`
 pub struct DeviceExtExtendedDynamicStateVTable {
     ///See [`FNCmdSetCullMode`] for more information.
-    pub cmd_set_cull_mode: FNCmdSetCullMode,
+    pub cmd_set_cull_mode_ext: FNCmdSetCullMode,
     ///See [`FNCmdSetFrontFace`] for more information.
-    pub cmd_set_front_face: FNCmdSetFrontFace,
+    pub cmd_set_front_face_ext: FNCmdSetFrontFace,
     ///See [`FNCmdSetPrimitiveTopology`] for more information.
-    pub cmd_set_primitive_topology: FNCmdSetPrimitiveTopology,
+    pub cmd_set_primitive_topology_ext: FNCmdSetPrimitiveTopology,
     ///See [`FNCmdSetViewportWithCount`] for more information.
-    pub cmd_set_viewport_with_count: FNCmdSetViewportWithCount,
+    pub cmd_set_viewport_with_count_ext: FNCmdSetViewportWithCount,
     ///See [`FNCmdSetScissorWithCount`] for more information.
-    pub cmd_set_scissor_with_count: FNCmdSetScissorWithCount,
+    pub cmd_set_scissor_with_count_ext: FNCmdSetScissorWithCount,
     ///See [`FNCmdBindVertexBuffers2`] for more information.
-    pub cmd_bind_vertex_buffers2: FNCmdBindVertexBuffers2,
+    pub cmd_bind_vertex_buffers2_ext: FNCmdBindVertexBuffers2,
     ///See [`FNCmdSetDepthTestEnable`] for more information.
-    pub cmd_set_depth_test_enable: FNCmdSetDepthTestEnable,
+    pub cmd_set_depth_test_enable_ext: FNCmdSetDepthTestEnable,
     ///See [`FNCmdSetDepthWriteEnable`] for more information.
-    pub cmd_set_depth_write_enable: FNCmdSetDepthWriteEnable,
+    pub cmd_set_depth_write_enable_ext: FNCmdSetDepthWriteEnable,
     ///See [`FNCmdSetDepthCompareOp`] for more information.
-    pub cmd_set_depth_compare_op: FNCmdSetDepthCompareOp,
+    pub cmd_set_depth_compare_op_ext: FNCmdSetDepthCompareOp,
     ///See [`FNCmdSetDepthBoundsTestEnable`] for more information.
-    pub cmd_set_depth_bounds_test_enable: FNCmdSetDepthBoundsTestEnable,
+    pub cmd_set_depth_bounds_test_enable_ext: FNCmdSetDepthBoundsTestEnable,
     ///See [`FNCmdSetStencilTestEnable`] for more information.
-    pub cmd_set_stencil_test_enable: FNCmdSetStencilTestEnable,
+    pub cmd_set_stencil_test_enable_ext: FNCmdSetStencilTestEnable,
     ///See [`FNCmdSetStencilOp`] for more information.
-    pub cmd_set_stencil_op: FNCmdSetStencilOp,
+    pub cmd_set_stencil_op_ext: FNCmdSetStencilOp,
 }
 impl DeviceExtExtendedDynamicStateVTable {
     ///Loads the VTable from the owner and the names
@@ -293,102 +293,102 @@ impl DeviceExtExtendedDynamicStateVTable {
         loader: Device,
     ) -> Self {
         Self {
-            cmd_set_cull_mode: unsafe {
+            cmd_set_cull_mode_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetCullModeEXT").as_ptr()))
             },
-            cmd_set_front_face: unsafe {
+            cmd_set_front_face_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetFrontFaceEXT").as_ptr()))
             },
-            cmd_set_primitive_topology: unsafe {
+            cmd_set_primitive_topology_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetPrimitiveTopologyEXT").as_ptr()))
             },
-            cmd_set_viewport_with_count: unsafe {
+            cmd_set_viewport_with_count_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetViewportWithCountEXT").as_ptr()))
             },
-            cmd_set_scissor_with_count: unsafe {
+            cmd_set_scissor_with_count_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetScissorWithCountEXT").as_ptr()))
             },
-            cmd_bind_vertex_buffers2: unsafe {
+            cmd_bind_vertex_buffers2_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBindVertexBuffers2EXT").as_ptr()))
             },
-            cmd_set_depth_test_enable: unsafe {
+            cmd_set_depth_test_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthTestEnableEXT").as_ptr()))
             },
-            cmd_set_depth_write_enable: unsafe {
+            cmd_set_depth_write_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthWriteEnableEXT").as_ptr()))
             },
-            cmd_set_depth_compare_op: unsafe {
+            cmd_set_depth_compare_op_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetDepthCompareOpEXT").as_ptr()))
             },
-            cmd_set_depth_bounds_test_enable: unsafe {
+            cmd_set_depth_bounds_test_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCmdSetDepthBoundsTestEnableEXT").as_ptr(),
                 ))
             },
-            cmd_set_stencil_test_enable: unsafe {
+            cmd_set_stencil_test_enable_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilTestEnableEXT").as_ptr()))
             },
-            cmd_set_stencil_op: unsafe {
+            cmd_set_stencil_op_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdSetStencilOpEXT").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::cmd_set_cull_mode`]. See [`FNCmdSetCullMode`] for more information.
-    pub fn cmd_set_cull_mode(&self) -> FNCmdSetCullMode {
-        self.cmd_set_cull_mode
+    ///Gets [`Self::cmd_set_cull_mode_ext`]. See [`FNCmdSetCullMode`] for more information.
+    pub fn cmd_set_cull_mode_ext(&self) -> FNCmdSetCullMode {
+        self.cmd_set_cull_mode_ext
     }
-    ///Gets [`Self::cmd_set_front_face`]. See [`FNCmdSetFrontFace`] for more information.
-    pub fn cmd_set_front_face(&self) -> FNCmdSetFrontFace {
-        self.cmd_set_front_face
+    ///Gets [`Self::cmd_set_front_face_ext`]. See [`FNCmdSetFrontFace`] for more information.
+    pub fn cmd_set_front_face_ext(&self) -> FNCmdSetFrontFace {
+        self.cmd_set_front_face_ext
     }
-    ///Gets [`Self::cmd_set_primitive_topology`]. See [`FNCmdSetPrimitiveTopology`] for more
+    ///Gets [`Self::cmd_set_primitive_topology_ext`]. See [`FNCmdSetPrimitiveTopology`] for more
     /// information.
-    pub fn cmd_set_primitive_topology(&self) -> FNCmdSetPrimitiveTopology {
-        self.cmd_set_primitive_topology
+    pub fn cmd_set_primitive_topology_ext(&self) -> FNCmdSetPrimitiveTopology {
+        self.cmd_set_primitive_topology_ext
     }
-    ///Gets [`Self::cmd_set_viewport_with_count`]. See [`FNCmdSetViewportWithCount`] for more
+    ///Gets [`Self::cmd_set_viewport_with_count_ext`]. See [`FNCmdSetViewportWithCount`] for more
     /// information.
-    pub fn cmd_set_viewport_with_count(&self) -> FNCmdSetViewportWithCount {
-        self.cmd_set_viewport_with_count
+    pub fn cmd_set_viewport_with_count_ext(&self) -> FNCmdSetViewportWithCount {
+        self.cmd_set_viewport_with_count_ext
     }
-    ///Gets [`Self::cmd_set_scissor_with_count`]. See [`FNCmdSetScissorWithCount`] for more
+    ///Gets [`Self::cmd_set_scissor_with_count_ext`]. See [`FNCmdSetScissorWithCount`] for more
     /// information.
-    pub fn cmd_set_scissor_with_count(&self) -> FNCmdSetScissorWithCount {
-        self.cmd_set_scissor_with_count
+    pub fn cmd_set_scissor_with_count_ext(&self) -> FNCmdSetScissorWithCount {
+        self.cmd_set_scissor_with_count_ext
     }
-    ///Gets [`Self::cmd_bind_vertex_buffers2`]. See [`FNCmdBindVertexBuffers2`] for more
+    ///Gets [`Self::cmd_bind_vertex_buffers2_ext`]. See [`FNCmdBindVertexBuffers2`] for more
     /// information.
-    pub fn cmd_bind_vertex_buffers2(&self) -> FNCmdBindVertexBuffers2 {
-        self.cmd_bind_vertex_buffers2
+    pub fn cmd_bind_vertex_buffers2_ext(&self) -> FNCmdBindVertexBuffers2 {
+        self.cmd_bind_vertex_buffers2_ext
     }
-    ///Gets [`Self::cmd_set_depth_test_enable`]. See [`FNCmdSetDepthTestEnable`] for more
+    ///Gets [`Self::cmd_set_depth_test_enable_ext`]. See [`FNCmdSetDepthTestEnable`] for more
     /// information.
-    pub fn cmd_set_depth_test_enable(&self) -> FNCmdSetDepthTestEnable {
-        self.cmd_set_depth_test_enable
+    pub fn cmd_set_depth_test_enable_ext(&self) -> FNCmdSetDepthTestEnable {
+        self.cmd_set_depth_test_enable_ext
     }
-    ///Gets [`Self::cmd_set_depth_write_enable`]. See [`FNCmdSetDepthWriteEnable`] for more
+    ///Gets [`Self::cmd_set_depth_write_enable_ext`]. See [`FNCmdSetDepthWriteEnable`] for more
     /// information.
-    pub fn cmd_set_depth_write_enable(&self) -> FNCmdSetDepthWriteEnable {
-        self.cmd_set_depth_write_enable
+    pub fn cmd_set_depth_write_enable_ext(&self) -> FNCmdSetDepthWriteEnable {
+        self.cmd_set_depth_write_enable_ext
     }
-    ///Gets [`Self::cmd_set_depth_compare_op`]. See [`FNCmdSetDepthCompareOp`] for more
+    ///Gets [`Self::cmd_set_depth_compare_op_ext`]. See [`FNCmdSetDepthCompareOp`] for more
     /// information.
-    pub fn cmd_set_depth_compare_op(&self) -> FNCmdSetDepthCompareOp {
-        self.cmd_set_depth_compare_op
+    pub fn cmd_set_depth_compare_op_ext(&self) -> FNCmdSetDepthCompareOp {
+        self.cmd_set_depth_compare_op_ext
     }
-    ///Gets [`Self::cmd_set_depth_bounds_test_enable`]. See [`FNCmdSetDepthBoundsTestEnable`] for
-    /// more information.
-    pub fn cmd_set_depth_bounds_test_enable(&self) -> FNCmdSetDepthBoundsTestEnable {
-        self.cmd_set_depth_bounds_test_enable
+    ///Gets [`Self::cmd_set_depth_bounds_test_enable_ext`]. See [`FNCmdSetDepthBoundsTestEnable`]
+    /// for more information.
+    pub fn cmd_set_depth_bounds_test_enable_ext(&self) -> FNCmdSetDepthBoundsTestEnable {
+        self.cmd_set_depth_bounds_test_enable_ext
     }
-    ///Gets [`Self::cmd_set_stencil_test_enable`]. See [`FNCmdSetStencilTestEnable`] for more
+    ///Gets [`Self::cmd_set_stencil_test_enable_ext`]. See [`FNCmdSetStencilTestEnable`] for more
     /// information.
-    pub fn cmd_set_stencil_test_enable(&self) -> FNCmdSetStencilTestEnable {
-        self.cmd_set_stencil_test_enable
+    pub fn cmd_set_stencil_test_enable_ext(&self) -> FNCmdSetStencilTestEnable {
+        self.cmd_set_stencil_test_enable_ext
     }
-    ///Gets [`Self::cmd_set_stencil_op`]. See [`FNCmdSetStencilOp`] for more information.
-    pub fn cmd_set_stencil_op(&self) -> FNCmdSetStencilOp {
-        self.cmd_set_stencil_op
+    ///Gets [`Self::cmd_set_stencil_op_ext`]. See [`FNCmdSetStencilOp`] for more information.
+    pub fn cmd_set_stencil_op_ext(&self) -> FNCmdSetStencilOp {
+        self.cmd_set_stencil_op_ext
     }
 }

@@ -2545,16 +2545,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_performance_query()
-            .expect("extension/version not loaded")
-            .enumerate_physical_device_queue_family_performance_query_counters_khr()
+            .and_then(|vtable| vtable.enumerate_physical_device_queue_family_performance_query_counters_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_performance_query()
-            .unwrap_unchecked()
-            .enumerate_physical_device_queue_family_performance_query_counters_khr()
+            .and_then(|vtable| vtable.enumerate_physical_device_queue_family_performance_query_counters_khr())
             .unwrap_unchecked();
         let mut p_counter_count = match p_counter_count {
             Some(v) => v as _,
@@ -2646,16 +2644,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_performance_query()
-            .expect("extension/version not loaded")
-            .get_physical_device_queue_family_performance_query_passes_khr()
+            .and_then(|vtable| vtable.get_physical_device_queue_family_performance_query_passes_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_performance_query()
-            .unwrap_unchecked()
-            .get_physical_device_queue_family_performance_query_passes_khr()
+            .and_then(|vtable| vtable.get_physical_device_queue_family_performance_query_passes_khr())
             .unwrap_unchecked();
         let mut p_num_passes = Default::default();
         let _return = _function(
@@ -2722,15 +2718,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_performance_query()
-            .expect("extension/version not loaded")
-            .acquire_profiling_lock_khr()
+            .and_then(|vtable| vtable.acquire_profiling_lock_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_performance_query()
-            .unwrap_unchecked()
-            .acquire_profiling_lock_khr()
+            .and_then(|vtable| vtable.acquire_profiling_lock_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_info as *const AcquireProfilingLockInfoKHR<'lt>);
         match _return {
@@ -2777,15 +2771,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_performance_query()
-            .expect("extension/version not loaded")
-            .release_profiling_lock_khr()
+            .and_then(|vtable| vtable.release_profiling_lock_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_performance_query()
-            .unwrap_unchecked()
-            .release_profiling_lock_khr()
+            .and_then(|vtable| vtable.release_profiling_lock_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()

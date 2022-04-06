@@ -555,15 +555,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_fence_fd()
-            .expect("extension/version not loaded")
-            .get_fence_fd_khr()
+            .and_then(|vtable| vtable.get_fence_fd_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_fence_fd()
-            .unwrap_unchecked()
-            .get_fence_fd_khr()
+            .and_then(|vtable| vtable.get_fence_fd_khr())
             .unwrap_unchecked();
         let mut p_fd = Default::default();
         let _return = _function(self.as_raw(), p_get_fd_info as *const FenceGetFdInfoKHR<'lt>, &mut p_fd);
@@ -631,15 +629,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_external_fence_fd()
-            .expect("extension/version not loaded")
-            .import_fence_fd_khr()
+            .and_then(|vtable| vtable.import_fence_fd_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_external_fence_fd()
-            .unwrap_unchecked()
-            .import_fence_fd_khr()
+            .and_then(|vtable| vtable.import_fence_fd_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),

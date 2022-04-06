@@ -2829,15 +2829,13 @@ impl Instance {
         let _function = self
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .create_display_plane_surface_khr()
+            .and_then(|vtable| vtable.create_display_plane_surface_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .create_display_plane_surface_khr()
+            .and_then(|vtable| vtable.create_display_plane_surface_khr())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(
@@ -2922,16 +2920,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .get_physical_device_display_properties_khr()
+            .and_then(|vtable| vtable.get_physical_device_display_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .get_physical_device_display_properties_khr()
+            .and_then(|vtable| vtable.get_physical_device_display_properties_khr())
             .unwrap_unchecked();
         let mut p_property_count = match p_property_count {
             Some(v) => v as _,
@@ -3019,16 +3015,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .get_physical_device_display_plane_properties_khr()
+            .and_then(|vtable| vtable.get_physical_device_display_plane_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .get_physical_device_display_plane_properties_khr()
+            .and_then(|vtable| vtable.get_physical_device_display_plane_properties_khr())
             .unwrap_unchecked();
         let mut p_property_count = match p_property_count {
             Some(v) => v as _,
@@ -3119,16 +3113,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .get_display_plane_supported_displays_khr()
+            .and_then(|vtable| vtable.get_display_plane_supported_displays_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .get_display_plane_supported_displays_khr()
+            .and_then(|vtable| vtable.get_display_plane_supported_displays_khr())
             .unwrap_unchecked();
         let mut p_display_count = match p_display_count {
             Some(v) => v as _,
@@ -3231,16 +3223,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .get_display_mode_properties_khr()
+            .and_then(|vtable| vtable.get_display_mode_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .get_display_mode_properties_khr()
+            .and_then(|vtable| vtable.get_display_mode_properties_khr())
             .unwrap_unchecked();
         let mut p_property_count = match p_property_count {
             Some(v) => v as _,
@@ -3329,16 +3319,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .create_display_mode_khr()
+            .and_then(|vtable| vtable.create_display_mode_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .create_display_mode_khr()
+            .and_then(|vtable| vtable.create_display_mode_khr())
             .unwrap_unchecked();
         let mut p_mode = MaybeUninit::<DisplayModeKHR>::uninit();
         let _return = _function(
@@ -3422,16 +3410,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_display()
-            .expect("extension/version not loaded")
-            .get_display_plane_capabilities_khr()
+            .and_then(|vtable| vtable.get_display_plane_capabilities_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_display()
-            .unwrap_unchecked()
-            .get_display_plane_capabilities_khr()
+            .and_then(|vtable| vtable.get_display_plane_capabilities_khr())
             .unwrap_unchecked();
         let mut p_capabilities = MaybeUninit::<DisplayPlaneCapabilitiesKHR>::uninit();
         let _return = _function(

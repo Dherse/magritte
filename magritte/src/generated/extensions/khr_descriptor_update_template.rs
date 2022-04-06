@@ -21,9 +21,9 @@
 //!# New handles
 //! - [`DescriptorUpdateTemplateKHR`]
 //!# New functions & commands
-//! - [`CreateDescriptorUpdateTemplateKHR`]
-//! - [`DestroyDescriptorUpdateTemplateKHR`]
-//! - [`UpdateDescriptorSetWithTemplateKHR`]
+//! - [`create_descriptor_update_template_khr`]
+//! - [`destroy_descriptor_update_template_khr`]
+//! - [`update_descriptor_set_with_template_khr`]
 //!If [`VK_KHR_push_descriptor`] is supported:
 //! - [`cmd_push_descriptor_set_with_template_khr`]
 //!# New structures
@@ -59,9 +59,9 @@
 //! - [`DescriptorUpdateTemplateEntryKHR`]
 //! - [`DescriptorUpdateTemplateKHR`]
 //! - [`DescriptorUpdateTemplateTypeKHR`]
-//! - [`CreateDescriptorUpdateTemplateKHR`]
-//! - [`DestroyDescriptorUpdateTemplateKHR`]
-//! - [`UpdateDescriptorSetWithTemplateKHR`]
+//! - [`create_descriptor_update_template_khr`]
+//! - [`destroy_descriptor_update_template_khr`]
+//! - [`update_descriptor_set_with_template_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -343,16 +343,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_descriptor_update_template()
-            .expect("extension/version not loaded")
-            .cmd_push_descriptor_set_with_template_khr()
+            .and_then(|vtable| vtable.cmd_push_descriptor_set_with_template_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_descriptor_update_template()
-            .unwrap_unchecked()
-            .cmd_push_descriptor_set_with_template_khr()
+            .and_then(|vtable| vtable.cmd_push_descriptor_set_with_template_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -369,11 +367,11 @@ pub struct DeviceKhrDescriptorUpdateTemplateVTable {
     ///See [`FNCmdPushDescriptorSetWithTemplateKhr`] for more information.
     pub cmd_push_descriptor_set_with_template_khr: FNCmdPushDescriptorSetWithTemplateKhr,
     ///See [`FNCreateDescriptorUpdateTemplate`] for more information.
-    pub create_descriptor_update_template: FNCreateDescriptorUpdateTemplate,
+    pub create_descriptor_update_template_khr: FNCreateDescriptorUpdateTemplate,
     ///See [`FNDestroyDescriptorUpdateTemplate`] for more information.
-    pub destroy_descriptor_update_template: FNDestroyDescriptorUpdateTemplate,
+    pub destroy_descriptor_update_template_khr: FNDestroyDescriptorUpdateTemplate,
     ///See [`FNUpdateDescriptorSetWithTemplate`] for more information.
-    pub update_descriptor_set_with_template: FNUpdateDescriptorSetWithTemplate,
+    pub update_descriptor_set_with_template_khr: FNUpdateDescriptorSetWithTemplate,
 }
 impl DeviceKhrDescriptorUpdateTemplateVTable {
     ///Loads the VTable from the owner and the names
@@ -392,19 +390,19 @@ impl DeviceKhrDescriptorUpdateTemplateVTable {
                     crate::cstr!("vkCmdPushDescriptorSetWithTemplateKHR").as_ptr(),
                 ))
             },
-            create_descriptor_update_template: unsafe {
+            create_descriptor_update_template_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkCreateDescriptorUpdateTemplateKHR").as_ptr(),
                 ))
             },
-            destroy_descriptor_update_template: unsafe {
+            destroy_descriptor_update_template_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkDestroyDescriptorUpdateTemplateKHR").as_ptr(),
                 ))
             },
-            update_descriptor_set_with_template: unsafe {
+            update_descriptor_set_with_template_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkUpdateDescriptorSetWithTemplateKHR").as_ptr(),
@@ -417,19 +415,19 @@ impl DeviceKhrDescriptorUpdateTemplateVTable {
     pub fn cmd_push_descriptor_set_with_template_khr(&self) -> FNCmdPushDescriptorSetWithTemplateKhr {
         self.cmd_push_descriptor_set_with_template_khr
     }
-    ///Gets [`Self::create_descriptor_update_template`]. See [`FNCreateDescriptorUpdateTemplate`]
-    /// for more information.
-    pub fn create_descriptor_update_template(&self) -> FNCreateDescriptorUpdateTemplate {
-        self.create_descriptor_update_template
+    ///Gets [`Self::create_descriptor_update_template_khr`]. See
+    /// [`FNCreateDescriptorUpdateTemplate`] for more information.
+    pub fn create_descriptor_update_template_khr(&self) -> FNCreateDescriptorUpdateTemplate {
+        self.create_descriptor_update_template_khr
     }
-    ///Gets [`Self::destroy_descriptor_update_template`]. See [`FNDestroyDescriptorUpdateTemplate`]
-    /// for more information.
-    pub fn destroy_descriptor_update_template(&self) -> FNDestroyDescriptorUpdateTemplate {
-        self.destroy_descriptor_update_template
+    ///Gets [`Self::destroy_descriptor_update_template_khr`]. See
+    /// [`FNDestroyDescriptorUpdateTemplate`] for more information.
+    pub fn destroy_descriptor_update_template_khr(&self) -> FNDestroyDescriptorUpdateTemplate {
+        self.destroy_descriptor_update_template_khr
     }
-    ///Gets [`Self::update_descriptor_set_with_template`]. See
+    ///Gets [`Self::update_descriptor_set_with_template_khr`]. See
     /// [`FNUpdateDescriptorSetWithTemplate`] for more information.
-    pub fn update_descriptor_set_with_template(&self) -> FNUpdateDescriptorSetWithTemplate {
-        self.update_descriptor_set_with_template
+    pub fn update_descriptor_set_with_template_khr(&self) -> FNUpdateDescriptorSetWithTemplate {
+        self.update_descriptor_set_with_template_khr
     }
 }

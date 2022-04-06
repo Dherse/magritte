@@ -20,7 +20,7 @@
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_buffer_device_address extension>>)
 //!# New functions & commands
-//! - [`GetBufferDeviceAddressEXT`]
+//! - [`get_buffer_device_address_ext`]
 //!# New structures
 //! - [`BufferDeviceAddressInfoEXT`]
 //! - Extending [`BufferCreateInfo`]:  - [`BufferDeviceAddressCreateInfoEXT`]
@@ -61,7 +61,7 @@
 //! - [`BufferDeviceAddressInfoEXT`]
 //! - [`PhysicalDeviceBufferAddressFeaturesEXT`]
 //! - [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]
-//! - [`GetBufferDeviceAddressEXT`]
+//! - [`get_buffer_device_address_ext`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -108,7 +108,7 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer_device_address`] indicates that the implementation supports accessing buffer memory
-///   in shaders as storage buffers via an address queried from [`GetBufferDeviceAddressEXT`].
+///   in shaders as storage buffers via an address queried from [`get_buffer_device_address_ext`].
 /// - [`buffer_device_address_capture_replay`] indicates that the implementation supports saving and
 ///   reusing buffer addresses, e.g. for trace capture and replay.
 /// - [`buffer_device_address_multi_device`] indicates that the implementation supports the
@@ -152,7 +152,7 @@ pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
     ///[`buffer_device_address`] indicates
     ///that the implementation supports accessing buffer memory in shaders as
     ///storage buffers via an address queried from
-    ///[`GetBufferDeviceAddressEXT`].
+    ///[`get_buffer_device_address_ext`].
     pub buffer_device_address: Bool32,
     ///[`buffer_device_address_capture_replay`] indicates that the implementation
     ///supports saving and reusing buffer addresses, e.g. for trace capture and
@@ -447,7 +447,7 @@ impl<'lt> BufferDeviceAddressCreateInfoEXT<'lt> {
 ///The V-table of [`Device`] for functions from `VK_EXT_buffer_device_address`
 pub struct DeviceExtBufferDeviceAddressVTable {
     ///See [`FNGetBufferDeviceAddress`] for more information.
-    pub get_buffer_device_address: FNGetBufferDeviceAddress,
+    pub get_buffer_device_address_ext: FNGetBufferDeviceAddress,
 }
 impl DeviceExtBufferDeviceAddressVTable {
     ///Loads the VTable from the owner and the names
@@ -460,14 +460,14 @@ impl DeviceExtBufferDeviceAddressVTable {
         loader: Device,
     ) -> Self {
         Self {
-            get_buffer_device_address: unsafe {
+            get_buffer_device_address_ext: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkGetBufferDeviceAddressEXT").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::get_buffer_device_address`]. See [`FNGetBufferDeviceAddress`] for more
+    ///Gets [`Self::get_buffer_device_address_ext`]. See [`FNGetBufferDeviceAddress`] for more
     /// information.
-    pub fn get_buffer_device_address(&self) -> FNGetBufferDeviceAddress {
-        self.get_buffer_device_address
+    pub fn get_buffer_device_address_ext(&self) -> FNGetBufferDeviceAddress {
+        self.get_buffer_device_address_ext
     }
 }

@@ -20,8 +20,8 @@
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_dynamic_rendering
 //!   extension>>)
 //!# New functions & commands
-//! - [`CmdBeginRenderingKHR`]
-//! - [`CmdEndRenderingKHR`]
+//! - [`cmd_begin_rendering_khr`]
+//! - [`cmd_end_rendering_khr`]
 //!# New structures
 //! - [`RenderingAttachmentInfoKHR`]
 //! - [`RenderingInfoKHR`]
@@ -90,8 +90,8 @@
 //! - [`RenderingFlagBitsKHR`]
 //! - [`RenderingFlagsKHR`]
 //! - [`RenderingInfoKHR`]
-//! - [`CmdBeginRenderingKHR`]
-//! - [`CmdEndRenderingKHR`]
+//! - [`cmd_begin_rendering_khr`]
+//! - [`cmd_end_rendering_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -829,9 +829,9 @@ impl<'lt> MultiviewPerViewAttributesInfoNVX<'lt> {
 ///The V-table of [`Device`] for functions from `VK_KHR_dynamic_rendering`
 pub struct DeviceKhrDynamicRenderingVTable {
     ///See [`FNCmdBeginRendering`] for more information.
-    pub cmd_begin_rendering: FNCmdBeginRendering,
+    pub cmd_begin_rendering_khr: FNCmdBeginRendering,
     ///See [`FNCmdEndRendering`] for more information.
-    pub cmd_end_rendering: FNCmdEndRendering,
+    pub cmd_end_rendering_khr: FNCmdEndRendering,
 }
 impl DeviceKhrDynamicRenderingVTable {
     ///Loads the VTable from the owner and the names
@@ -844,20 +844,20 @@ impl DeviceKhrDynamicRenderingVTable {
         loader: Device,
     ) -> Self {
         Self {
-            cmd_begin_rendering: unsafe {
+            cmd_begin_rendering_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdBeginRenderingKHR").as_ptr()))
             },
-            cmd_end_rendering: unsafe {
+            cmd_end_rendering_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkCmdEndRenderingKHR").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::cmd_begin_rendering`]. See [`FNCmdBeginRendering`] for more information.
-    pub fn cmd_begin_rendering(&self) -> FNCmdBeginRendering {
-        self.cmd_begin_rendering
+    ///Gets [`Self::cmd_begin_rendering_khr`]. See [`FNCmdBeginRendering`] for more information.
+    pub fn cmd_begin_rendering_khr(&self) -> FNCmdBeginRendering {
+        self.cmd_begin_rendering_khr
     }
-    ///Gets [`Self::cmd_end_rendering`]. See [`FNCmdEndRendering`] for more information.
-    pub fn cmd_end_rendering(&self) -> FNCmdEndRendering {
-        self.cmd_end_rendering
+    ///Gets [`Self::cmd_end_rendering_khr`]. See [`FNCmdEndRendering`] for more information.
+    pub fn cmd_end_rendering_khr(&self) -> FNCmdEndRendering {
+        self.cmd_end_rendering_khr
     }
 }

@@ -18,7 +18,7 @@ use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
-    ffi::{c_void, CStr},
+    ffi::c_void,
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
     mem::MaybeUninit,
@@ -9454,7 +9454,7 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 /// - [`PrivateDataSlotCreateFlags`]
 /// - [`StructureType`]
 /// - [`create_private_data_slot`]
-/// - [`CreatePrivateDataSlotEXT`]
+/// - [`create_private_data_slot_ext`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -9720,7 +9720,7 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 /// - [`BufferCreateInfo`]
 /// - [`StructureType`]
 /// - [`get_device_buffer_memory_requirements`]
-/// - [`GetDeviceBufferMemoryRequirementsKHR`]
+/// - [`get_device_buffer_memory_requirements_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -9870,9 +9870,9 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 /// - [`ImageCreateInfo`]
 /// - [`StructureType`]
 /// - [`get_device_image_memory_requirements`]
-/// - [`GetDeviceImageMemoryRequirementsKHR`]
+/// - [`get_device_image_memory_requirements_khr`]
 /// - [`get_device_image_sparse_memory_requirements`]
-/// - [`GetDeviceImageSparseMemoryRequirementsKHR`]
+/// - [`get_device_image_sparse_memory_requirements_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -15431,7 +15431,7 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 /// - [`StructureType`]
 /// - [`ToolPurposeFlags`]
 /// - [`get_physical_device_tool_properties`]
-/// - [`GetPhysicalDeviceToolPropertiesEXT`]
+/// - [`get_physical_device_tool_properties_ext`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -16951,7 +16951,7 @@ impl<'lt> ImageResolve2<'lt> {
 /// - [`BufferCopy2`]
 /// - [`StructureType`]
 /// - [`cmd_copy_buffer2`]
-/// - [`CmdCopyBuffer2KHR`]
+/// - [`cmd_copy_buffer2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -17303,7 +17303,7 @@ impl<'lt> CopyBufferInfo2<'lt> {
 /// - [`ImageLayout`]
 /// - [`StructureType`]
 /// - [`cmd_copy_image2`]
-/// - [`CmdCopyImage2KHR`]
+/// - [`cmd_copy_image2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -17632,7 +17632,7 @@ impl<'lt> CopyImageInfo2<'lt> {
 /// - [`ImageLayout`]
 /// - [`StructureType`]
 /// - [`cmd_blit_image2`]
-/// - [`CmdBlitImage2KHR`]
+/// - [`cmd_blit_image2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -17982,7 +17982,7 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - [`ImageLayout`]
 /// - [`StructureType`]
 /// - [`cmd_copy_buffer_to_image2`]
-/// - [`CmdCopyBufferToImage2KHR`]
+/// - [`cmd_copy_buffer_to_image2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -18294,7 +18294,7 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - [`ImageLayout`]
 /// - [`StructureType`]
 /// - [`cmd_copy_image_to_buffer2`]
-/// - [`CmdCopyImageToBuffer2KHR`]
+/// - [`cmd_copy_image_to_buffer2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -18573,7 +18573,7 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - [`ImageResolve2`]
 /// - [`StructureType`]
 /// - [`cmd_resolve_image2`]
-/// - [`CmdResolveImage2KHR`]
+/// - [`cmd_resolve_image2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -20834,11 +20834,11 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 /// - [`MemoryBarrier2`]
 /// - [`StructureType`]
 /// - [`cmd_pipeline_barrier2`]
-/// - [`CmdPipelineBarrier2KHR`]
+/// - [`cmd_pipeline_barrier2_khr`]
 /// - [`cmd_set_event2`]
-/// - [`CmdSetEvent2KHR`]
+/// - [`cmd_set_event2_khr`]
 /// - [`cmd_wait_events2`]
-/// - [`CmdWaitEvents2KHR`]
+/// - [`cmd_wait_events2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -21497,7 +21497,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 /// - [`StructureType`]
 /// - [`SubmitFlags`]
 /// - [`queue_submit2`]
-/// - [`QueueSubmit2KHR`]
+/// - [`queue_submit2_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -24178,9 +24178,9 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
-///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
@@ -24188,15 +24188,15 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
@@ -24207,54 +24207,53 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
 ///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
@@ -24265,13 +24264,13 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
@@ -24281,79 +24280,77 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">y</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.446108em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
-///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
 /// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
 ///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
@@ -24361,63 +24358,26 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
 ///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -24425,11 +24385,47 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist"
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
+///   mathdefault mtight">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
@@ -24439,63 +24435,64 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
 ///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
@@ -24503,16 +24500,16 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
@@ -24530,26 +24527,26 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
+///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
 ///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
@@ -24559,33 +24556,18 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.15122857142857138em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line"
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
 ///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
+///   class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
@@ -24593,30 +24575,43 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
 ///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -24633,57 +24628,58 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
 ///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span style="margin-right:0.05764em;"
-///   class="mord mathdefault mtight">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
 ///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
-///   class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.446108em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
-///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
 ///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
 ///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
@@ -24694,93 +24690,11 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
 ///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
 ///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   for each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
 ///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
@@ -24788,7 +24702,89 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -24805,9 +24801,9 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
@@ -24828,10 +24824,10 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
 ///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
@@ -24840,26 +24836,26 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.16454285714285716em;"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
@@ -24915,7 +24911,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 /// - [`RenderingFlags`]
 /// - [`StructureType`]
 /// - [`cmd_begin_rendering`]
-/// - [`CmdBeginRenderingKHR`]
+/// - [`cmd_begin_rendering_khr`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -25986,6 +25982,7 @@ impl PhysicalDevice {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceToolProperties")]
+    #[doc(alias = "vkGetPhysicalDeviceToolPropertiesEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_physical_device_tool_properties<'a: 'this, 'this, 'lt>(
@@ -25997,16 +25994,34 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .get_physical_device_tool_properties()
+            .and_then(|vtable| vtable.get_physical_device_tool_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_tooling_info")]
+                return self
+                    .instance()
+                    .vtable()
+                    .ext_tooling_info()
+                    .and_then(|vtable| vtable.get_physical_device_tool_properties_ext());
+                #[cfg(not(feature = "VK_EXT_tooling_info"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .get_physical_device_tool_properties()
+            .and_then(|vtable| vtable.get_physical_device_tool_properties())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_tooling_info")]
+                return self
+                    .instance()
+                    .vtable()
+                    .ext_tooling_info()
+                    .and_then(|vtable| vtable.get_physical_device_tool_properties_ext());
+                #[cfg(not(feature = "VK_EXT_tooling_info"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_tool_count = match p_tool_count {
             Some(v) => v as _,
@@ -26076,6 +26091,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceBufferMemoryRequirements")]
+    #[doc(alias = "vkGetDeviceBufferMemoryRequirementsKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_device_buffer_memory_requirements<'a: 'this, 'this, 'lt>(
@@ -26087,18 +26103,33 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .get_device_buffer_memory_requirements()
+            .and_then(|vtable| vtable.get_device_buffer_memory_requirements())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance4")]
+                return self
+                    .vtable()
+                    .khr_maintenance_4()
+                    .and_then(|vtable| vtable.get_device_buffer_memory_requirements_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance4"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .get_device_buffer_memory_requirements()
+            .and_then(|vtable| vtable.get_device_buffer_memory_requirements())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance4")]
+                return self
+                    .vtable()
+                    .khr_maintenance_4()
+                    .and_then(|vtable| vtable.get_device_buffer_memory_requirements_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance4"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_memory_requirements =
-            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
+        let mut p_memory_requirements = p_memory_requirements.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_info as *const DeviceBufferMemoryRequirements<'lt>,
@@ -26159,6 +26190,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceImageMemoryRequirements")]
+    #[doc(alias = "vkGetDeviceImageMemoryRequirementsKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_device_image_memory_requirements<'a: 'this, 'this, 'lt>(
@@ -26170,18 +26202,33 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .get_device_image_memory_requirements()
+            .and_then(|vtable| vtable.get_device_image_memory_requirements())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance4")]
+                return self
+                    .vtable()
+                    .khr_maintenance_4()
+                    .and_then(|vtable| vtable.get_device_image_memory_requirements_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance4"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .get_device_image_memory_requirements()
+            .and_then(|vtable| vtable.get_device_image_memory_requirements())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance4")]
+                return self
+                    .vtable()
+                    .khr_maintenance_4()
+                    .and_then(|vtable| vtable.get_device_image_memory_requirements_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance4"))]
+                return None;
+            })
             .unwrap_unchecked();
-        let mut p_memory_requirements =
-            p_memory_requirements.unwrap_or_else(|| MaybeUninit::<MemoryRequirements2<'lt>>::zeroed().assume_init());
+        let mut p_memory_requirements = p_memory_requirements.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_info as *const DeviceImageMemoryRequirements<'lt>,
@@ -26249,6 +26296,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceImageSparseMemoryRequirements")]
+    #[doc(alias = "vkGetDeviceImageSparseMemoryRequirementsKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_device_image_sparse_memory_requirements<'a: 'this, 'this, 'lt>(
@@ -26260,15 +26308,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .get_device_image_sparse_memory_requirements()
+            .and_then(|vtable| vtable.get_device_image_sparse_memory_requirements())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance4")]
+                return self
+                    .vtable()
+                    .khr_maintenance_4()
+                    .and_then(|vtable| vtable.get_device_image_sparse_memory_requirements_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance4"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .get_device_image_sparse_memory_requirements()
+            .and_then(|vtable| vtable.get_device_image_sparse_memory_requirements())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_maintenance4")]
+                return self
+                    .vtable()
+                    .khr_maintenance_4()
+                    .and_then(|vtable| vtable.get_device_image_sparse_memory_requirements_khr());
+                #[cfg(not(feature = "VK_KHR_maintenance4"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_sparse_memory_requirement_count = match p_sparse_memory_requirement_count {
             Some(v) => v as _,
@@ -26358,6 +26422,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreatePrivateDataSlot")]
+    #[doc(alias = "vkCreatePrivateDataSlotEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn create_private_data_slot<'a: 'this, 'this, 'lt>(
@@ -26369,15 +26434,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .create_private_data_slot()
+            .and_then(|vtable| vtable.create_private_data_slot())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.create_private_data_slot_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .create_private_data_slot()
+            .and_then(|vtable| vtable.create_private_data_slot())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.create_private_data_slot_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_private_data_slot = MaybeUninit::<PrivateDataSlot>::uninit();
         let _return = _function(
@@ -26455,6 +26536,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyPrivateDataSlot")]
+    #[doc(alias = "vkDestroyPrivateDataSlotEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn destroy_private_data_slot<'a: 'this, 'this, 'lt>(
@@ -26466,15 +26548,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .destroy_private_data_slot()
+            .and_then(|vtable| vtable.destroy_private_data_slot())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.destroy_private_data_slot_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .destroy_private_data_slot()
+            .and_then(|vtable| vtable.destroy_private_data_slot())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.destroy_private_data_slot_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -26547,6 +26645,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetPrivateData")]
+    #[doc(alias = "vkSetPrivateDataEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn set_private_data<'a: 'this, 'this>(
@@ -26560,15 +26659,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .set_private_data()
+            .and_then(|vtable| vtable.set_private_data())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.set_private_data_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .set_private_data()
+            .and_then(|vtable| vtable.set_private_data())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.set_private_data_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -26643,6 +26758,7 @@ impl Device {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPrivateData")]
+    #[doc(alias = "vkGetPrivateDataEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn get_private_data<'a: 'this, 'this>(
@@ -26655,15 +26771,31 @@ impl Device {
         let _function = self
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .get_private_data()
+            .and_then(|vtable| vtable.get_private_data())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.get_private_data_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .get_private_data()
+            .and_then(|vtable| vtable.get_private_data())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_private_data")]
+                return self
+                    .vtable()
+                    .ext_private_data()
+                    .and_then(|vtable| vtable.get_private_data_ext());
+                #[cfg(not(feature = "VK_EXT_private_data"))]
+                return None;
+            })
             .unwrap_unchecked();
         let mut p_data = Default::default();
         let _return = _function(
@@ -26804,6 +26936,7 @@ impl Queue {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueueSubmit2")]
+    #[doc(alias = "vkQueueSubmit2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn queue_submit2<'a: 'this, 'this, 'lt>(
@@ -26816,16 +26949,34 @@ impl Queue {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .queue_submit2()
+            .and_then(|vtable| vtable.queue_submit2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.queue_submit2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .queue_submit2()
+            .and_then(|vtable| vtable.queue_submit2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.queue_submit2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let submit_count = (|len: usize| len)(p_submits.len()) as _;
         let _return = _function(
@@ -26895,6 +27046,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetCullMode")]
+    #[doc(alias = "vkCmdSetCullModeEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_cull_mode<'a: 'this, 'this>(
@@ -26906,16 +27058,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_cull_mode()
+            .and_then(|vtable| vtable.cmd_set_cull_mode())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_cull_mode_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_cull_mode()
+            .and_then(|vtable| vtable.cmd_set_cull_mode())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_cull_mode_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), cull_mode);
         ()
@@ -26978,6 +27148,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetFrontFace")]
+    #[doc(alias = "vkCmdSetFrontFaceEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_front_face<'a: 'this, 'this>(
@@ -26989,16 +27160,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_front_face()
+            .and_then(|vtable| vtable.cmd_set_front_face())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_front_face_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_front_face()
+            .and_then(|vtable| vtable.cmd_set_front_face())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_front_face_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), front_face);
         ()
@@ -27060,6 +27249,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPrimitiveTopology")]
+    #[doc(alias = "vkCmdSetPrimitiveTopologyEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_primitive_topology<'a: 'this, 'this>(
@@ -27071,16 +27261,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_primitive_topology()
+            .and_then(|vtable| vtable.cmd_set_primitive_topology())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_primitive_topology_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_primitive_topology()
+            .and_then(|vtable| vtable.cmd_set_primitive_topology())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_primitive_topology_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), primitive_topology);
         ()
@@ -27156,6 +27364,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetViewportWithCount")]
+    #[doc(alias = "vkCmdSetViewportWithCountEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_viewport_with_count<'a: 'this, 'this>(
@@ -27167,16 +27376,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_viewport_with_count()
+            .and_then(|vtable| vtable.cmd_set_viewport_with_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_viewport_with_count_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_viewport_with_count()
+            .and_then(|vtable| vtable.cmd_set_viewport_with_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_viewport_with_count_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let viewport_count = (|len: usize| len)(p_viewports.len()) as _;
         let _return = _function(self.as_raw(), viewport_count, p_viewports.as_ptr());
@@ -27259,6 +27486,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetScissorWithCount")]
+    #[doc(alias = "vkCmdSetScissorWithCountEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_scissor_with_count<'a: 'this, 'this>(
@@ -27270,16 +27498,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_scissor_with_count()
+            .and_then(|vtable| vtable.cmd_set_scissor_with_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_scissor_with_count_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_scissor_with_count()
+            .and_then(|vtable| vtable.cmd_set_scissor_with_count())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_scissor_with_count_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let scissor_count = (|len: usize| len)(p_scissors.len()) as _;
         let _return = _function(self.as_raw(), scissor_count, p_scissors.as_ptr());
@@ -27422,6 +27668,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBindVertexBuffers2")]
+    #[doc(alias = "vkCmdBindVertexBuffers2EXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_bind_vertex_buffers2<'a: 'this, 'this>(
@@ -27437,16 +27684,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_bind_vertex_buffers2()
+            .and_then(|vtable| vtable.cmd_bind_vertex_buffers2())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_bind_vertex_buffers2_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_bind_vertex_buffers2()
+            .and_then(|vtable| vtable.cmd_bind_vertex_buffers2())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_bind_vertex_buffers2_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let binding_count = (|len: usize| len)(p_buffers.map_or(0, |i| i.len())) as _;
         let _return = _function(
@@ -27517,6 +27782,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthTestEnable")]
+    #[doc(alias = "vkCmdSetDepthTestEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_depth_test_enable<'a: 'this, 'this>(
@@ -27528,16 +27794,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_depth_test_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_test_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_test_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_depth_test_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_test_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_test_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), depth_test_enable as u8 as u32);
         ()
@@ -27599,6 +27883,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthWriteEnable")]
+    #[doc(alias = "vkCmdSetDepthWriteEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_depth_write_enable<'a: 'this, 'this>(
@@ -27610,16 +27895,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_depth_write_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_write_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_write_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_depth_write_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_write_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_write_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), depth_write_enable as u8 as u32);
         ()
@@ -27682,6 +27985,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthCompareOp")]
+    #[doc(alias = "vkCmdSetDepthCompareOpEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_depth_compare_op<'a: 'this, 'this>(
@@ -27693,16 +27997,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_depth_compare_op()
+            .and_then(|vtable| vtable.cmd_set_depth_compare_op())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_compare_op_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_depth_compare_op()
+            .and_then(|vtable| vtable.cmd_set_depth_compare_op())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_compare_op_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), depth_compare_op);
         ()
@@ -27764,6 +28086,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthBoundsTestEnable")]
+    #[doc(alias = "vkCmdSetDepthBoundsTestEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_depth_bounds_test_enable<'a: 'this, 'this>(
@@ -27775,16 +28098,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_depth_bounds_test_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_bounds_test_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_bounds_test_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_depth_bounds_test_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_bounds_test_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_depth_bounds_test_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), depth_bounds_test_enable as u8 as u32);
         ()
@@ -27846,6 +28187,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetStencilTestEnable")]
+    #[doc(alias = "vkCmdSetStencilTestEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_stencil_test_enable<'a: 'this, 'this>(
@@ -27857,16 +28199,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_stencil_test_enable()
+            .and_then(|vtable| vtable.cmd_set_stencil_test_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_stencil_test_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_stencil_test_enable()
+            .and_then(|vtable| vtable.cmd_set_stencil_test_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_stencil_test_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), stencil_test_enable as u8 as u32);
         ()
@@ -27952,6 +28312,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetStencilOp")]
+    #[doc(alias = "vkCmdSetStencilOpEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_stencil_op<'a: 'this, 'this>(
@@ -27967,16 +28328,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_stencil_op()
+            .and_then(|vtable| vtable.cmd_set_stencil_op())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_stencil_op_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_stencil_op()
+            .and_then(|vtable| vtable.cmd_set_stencil_op())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state()
+                    .and_then(|vtable| vtable.cmd_set_stencil_op_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), face_mask, fail_op, pass_op, depth_fail_op, compare_op);
         ()
@@ -28039,6 +28418,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetRasterizerDiscardEnable")]
+    #[doc(alias = "vkCmdSetRasterizerDiscardEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_rasterizer_discard_enable<'a: 'this, 'this>(
@@ -28050,16 +28430,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_rasterizer_discard_enable()
+            .and_then(|vtable| vtable.cmd_set_rasterizer_discard_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state_2()
+                    .and_then(|vtable| vtable.cmd_set_rasterizer_discard_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_rasterizer_discard_enable()
+            .and_then(|vtable| vtable.cmd_set_rasterizer_discard_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state_2()
+                    .and_then(|vtable| vtable.cmd_set_rasterizer_discard_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), rasterizer_discard_enable as u8 as u32);
         ()
@@ -28121,6 +28519,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthBiasEnable")]
+    #[doc(alias = "vkCmdSetDepthBiasEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_depth_bias_enable<'a: 'this, 'this>(
@@ -28132,16 +28531,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_depth_bias_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_bias_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state_2()
+                    .and_then(|vtable| vtable.cmd_set_depth_bias_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_depth_bias_enable()
+            .and_then(|vtable| vtable.cmd_set_depth_bias_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state_2()
+                    .and_then(|vtable| vtable.cmd_set_depth_bias_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), depth_bias_enable as u8 as u32);
         ()
@@ -28205,6 +28622,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPrimitiveRestartEnable")]
+    #[doc(alias = "vkCmdSetPrimitiveRestartEnableEXT")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_primitive_restart_enable<'a: 'this, 'this>(
@@ -28216,16 +28634,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_primitive_restart_enable()
+            .and_then(|vtable| vtable.cmd_set_primitive_restart_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state_2()
+                    .and_then(|vtable| vtable.cmd_set_primitive_restart_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_primitive_restart_enable()
+            .and_then(|vtable| vtable.cmd_set_primitive_restart_enable())
+            .or_else(|| {
+                #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+                return self
+                    .device()
+                    .vtable()
+                    .ext_extended_dynamic_state_2()
+                    .and_then(|vtable| vtable.cmd_set_primitive_restart_enable_ext());
+                #[cfg(not(feature = "VK_EXT_extended_dynamic_state2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), primitive_restart_enable as u8 as u32);
         ()
@@ -28294,6 +28730,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyBuffer2")]
+    #[doc(alias = "vkCmdCopyBuffer2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_copy_buffer2<'a: 'this, 'this, 'lt>(
@@ -28305,16 +28742,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_copy_buffer2()
+            .and_then(|vtable| vtable.cmd_copy_buffer2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_buffer2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_copy_buffer2()
+            .and_then(|vtable| vtable.cmd_copy_buffer2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_buffer2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_copy_buffer_info as *const CopyBufferInfo2<'lt>);
         ()
@@ -28382,6 +28837,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyImage2")]
+    #[doc(alias = "vkCmdCopyImage2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_copy_image2<'a: 'this, 'this, 'lt>(
@@ -28393,16 +28849,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_copy_image2()
+            .and_then(|vtable| vtable.cmd_copy_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_copy_image2()
+            .and_then(|vtable| vtable.cmd_copy_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_copy_image_info as *const CopyImageInfo2<'lt>);
         ()
@@ -28471,6 +28945,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBlitImage2")]
+    #[doc(alias = "vkCmdBlitImage2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_blit_image2<'a: 'this, 'this, 'lt>(
@@ -28482,16 +28957,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_blit_image2()
+            .and_then(|vtable| vtable.cmd_blit_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_blit_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_blit_image2()
+            .and_then(|vtable| vtable.cmd_blit_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_blit_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_blit_image_info as *const BlitImageInfo2<'lt>);
         ()
@@ -28560,6 +29053,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyBufferToImage2")]
+    #[doc(alias = "vkCmdCopyBufferToImage2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_copy_buffer_to_image2<'a: 'this, 'this, 'lt>(
@@ -28571,16 +29065,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_copy_buffer_to_image2()
+            .and_then(|vtable| vtable.cmd_copy_buffer_to_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_buffer_to_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_copy_buffer_to_image2()
+            .and_then(|vtable| vtable.cmd_copy_buffer_to_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_buffer_to_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -28652,6 +29164,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyImageToBuffer2")]
+    #[doc(alias = "vkCmdCopyImageToBuffer2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_copy_image_to_buffer2<'a: 'this, 'this, 'lt>(
@@ -28663,16 +29176,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_copy_image_to_buffer2()
+            .and_then(|vtable| vtable.cmd_copy_image_to_buffer2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_image_to_buffer2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_copy_image_to_buffer2()
+            .and_then(|vtable| vtable.cmd_copy_image_to_buffer2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_copy_image_to_buffer2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -28744,6 +29275,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdResolveImage2")]
+    #[doc(alias = "vkCmdResolveImage2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_resolve_image2<'a: 'this, 'this, 'lt>(
@@ -28755,16 +29287,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_resolve_image2()
+            .and_then(|vtable| vtable.cmd_resolve_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_resolve_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_resolve_image2()
+            .and_then(|vtable| vtable.cmd_resolve_image2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_copy_commands2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_copy_commands_2()
+                    .and_then(|vtable| vtable.cmd_resolve_image2_khr());
+                #[cfg(not(feature = "VK_KHR_copy_commands2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_resolve_image_info as *const ResolveImageInfo2<'lt>);
         ()
@@ -28869,6 +29419,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetEvent2")]
+    #[doc(alias = "vkCmdSetEvent2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_set_event2<'a: 'this, 'this, 'lt>(
@@ -28881,16 +29432,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_set_event2()
+            .and_then(|vtable| vtable.cmd_set_event2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_set_event2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_set_event2()
+            .and_then(|vtable| vtable.cmd_set_event2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_set_event2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), event, p_dependency_info as *const DependencyInfo<'lt>);
         ()
@@ -29007,6 +29576,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdResetEvent2")]
+    #[doc(alias = "vkCmdResetEvent2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_reset_event2<'a: 'this, 'this>(
@@ -29019,16 +29589,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_reset_event2()
+            .and_then(|vtable| vtable.cmd_reset_event2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_reset_event2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_reset_event2()
+            .and_then(|vtable| vtable.cmd_reset_event2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_reset_event2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), event, stage_mask);
         ()
@@ -29146,6 +29734,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdWaitEvents2")]
+    #[doc(alias = "vkCmdWaitEvents2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_wait_events2<'a: 'this, 'this, 'lt>(
@@ -29158,16 +29747,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_wait_events2()
+            .and_then(|vtable| vtable.cmd_wait_events2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_wait_events2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_wait_events2()
+            .and_then(|vtable| vtable.cmd_wait_events2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_wait_events2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let event_count = (|len: usize| len)(p_events.len()) as _;
         let _return = _function(
@@ -29275,6 +29882,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdPipelineBarrier2")]
+    #[doc(alias = "vkCmdPipelineBarrier2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_pipeline_barrier2<'a: 'this, 'this, 'lt>(
@@ -29286,16 +29894,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_pipeline_barrier2()
+            .and_then(|vtable| vtable.cmd_pipeline_barrier2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_pipeline_barrier2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_pipeline_barrier2()
+            .and_then(|vtable| vtable.cmd_pipeline_barrier2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_pipeline_barrier2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_dependency_info as *const DependencyInfo<'lt>);
         ()
@@ -29434,6 +30060,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdWriteTimestamp2")]
+    #[doc(alias = "vkCmdWriteTimestamp2KHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_write_timestamp2<'a: 'this, 'this>(
@@ -29447,16 +30074,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_write_timestamp2()
+            .and_then(|vtable| vtable.cmd_write_timestamp2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_write_timestamp2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_write_timestamp2()
+            .and_then(|vtable| vtable.cmd_write_timestamp2())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_synchronization2")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_synchronization_2()
+                    .and_then(|vtable| vtable.cmd_write_timestamp2_khr());
+                #[cfg(not(feature = "VK_KHR_synchronization2"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), stage, query_pool, query.unwrap_or_default() as _);
         ()
@@ -29523,6 +30168,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBeginRendering")]
+    #[doc(alias = "vkCmdBeginRenderingKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_begin_rendering<'a: 'this, 'this, 'lt>(
@@ -29534,16 +30180,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_begin_rendering()
+            .and_then(|vtable| vtable.cmd_begin_rendering())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_dynamic_rendering")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_dynamic_rendering()
+                    .and_then(|vtable| vtable.cmd_begin_rendering_khr());
+                #[cfg(not(feature = "VK_KHR_dynamic_rendering"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_begin_rendering()
+            .and_then(|vtable| vtable.cmd_begin_rendering())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_dynamic_rendering")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_dynamic_rendering()
+                    .and_then(|vtable| vtable.cmd_begin_rendering_khr());
+                #[cfg(not(feature = "VK_KHR_dynamic_rendering"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_rendering_info as *const RenderingInfo<'lt>);
         ()
@@ -29602,6 +30266,7 @@ impl CommandBuffer {
     ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdEndRendering")]
+    #[doc(alias = "vkCmdEndRenderingKHR")]
     #[track_caller]
     #[inline]
     pub unsafe fn cmd_end_rendering<'a: 'this, 'this>(self: &'this mut Unique<'a, CommandBuffer>) -> () {
@@ -29610,16 +30275,34 @@ impl CommandBuffer {
             .device()
             .vtable()
             .vulkan1_3()
-            .expect("extension/version not loaded")
-            .cmd_end_rendering()
+            .and_then(|vtable| vtable.cmd_end_rendering())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_dynamic_rendering")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_dynamic_rendering()
+                    .and_then(|vtable| vtable.cmd_end_rendering_khr());
+                #[cfg(not(feature = "VK_KHR_dynamic_rendering"))]
+                return None;
+            })
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .vulkan1_3()
-            .unwrap_unchecked()
-            .cmd_end_rendering()
+            .and_then(|vtable| vtable.cmd_end_rendering())
+            .or_else(|| {
+                #[cfg(feature = "VK_KHR_dynamic_rendering")]
+                return self
+                    .device()
+                    .vtable()
+                    .khr_dynamic_rendering()
+                    .and_then(|vtable| vtable.cmd_end_rendering_khr());
+                #[cfg(not(feature = "VK_KHR_dynamic_rendering"))]
+                return None;
+            })
             .unwrap_unchecked();
         let _return = _function(self.as_raw());
         ()
@@ -29641,13 +30324,13 @@ impl CommandBuffer {
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`create_private_data_slot`]
-/// - [`CreatePrivateDataSlotEXT`]
+/// - [`create_private_data_slot_ext`]
 /// - [`destroy_private_data_slot`]
-/// - [`DestroyPrivateDataSlotEXT`]
+/// - [`destroy_private_data_slot_ext`]
 /// - [`get_private_data`]
-/// - [`GetPrivateDataEXT`]
+/// - [`get_private_data_ext`]
 /// - [`set_private_data`]
-/// - [`SetPrivateDataEXT`]
+/// - [`set_private_data_ext`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -543,16 +543,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .nv_scissor_exclusive()
-            .expect("extension/version not loaded")
-            .cmd_set_exclusive_scissor_nv()
+            .and_then(|vtable| vtable.cmd_set_exclusive_scissor_nv())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .nv_scissor_exclusive()
-            .unwrap_unchecked()
-            .cmd_set_exclusive_scissor_nv()
+            .and_then(|vtable| vtable.cmd_set_exclusive_scissor_nv())
             .unwrap_unchecked();
         let exclusive_scissor_count = (|len: usize| len)(p_exclusive_scissors.len()) as _;
         let _return = _function(

@@ -6683,19 +6683,16 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .get_physical_device_video_capabilities_khr()
+            .and_then(|vtable| vtable.get_physical_device_video_capabilities_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .get_physical_device_video_capabilities_khr()
+            .and_then(|vtable| vtable.get_physical_device_video_capabilities_khr())
             .unwrap_unchecked();
-        let mut p_capabilities =
-            p_capabilities.unwrap_or_else(|| MaybeUninit::<VideoCapabilitiesKHR<'lt>>::zeroed().assume_init());
+        let mut p_capabilities = p_capabilities.unwrap_or_default();
         let _return = _function(
             self.as_raw(),
             p_video_profile as *const VideoProfileKHR<'lt>,
@@ -6812,16 +6809,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .get_physical_device_video_format_properties_khr()
+            .and_then(|vtable| vtable.get_physical_device_video_format_properties_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .get_physical_device_video_format_properties_khr()
+            .and_then(|vtable| vtable.get_physical_device_video_format_properties_khr())
             .unwrap_unchecked();
         let mut p_video_format_property_count = match p_video_format_property_count {
             Some(v) => v as _,
@@ -6916,15 +6911,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .create_video_session_khr()
+            .and_then(|vtable| vtable.create_video_session_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .create_video_session_khr()
+            .and_then(|vtable| vtable.create_video_session_khr())
             .unwrap_unchecked();
         let mut p_video_session = MaybeUninit::<VideoSessionKHR>::uninit();
         let _return = _function(
@@ -6992,15 +6985,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .destroy_video_session_khr()
+            .and_then(|vtable| vtable.destroy_video_session_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .destroy_video_session_khr()
+            .and_then(|vtable| vtable.destroy_video_session_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -7075,15 +7066,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .create_video_session_parameters_khr()
+            .and_then(|vtable| vtable.create_video_session_parameters_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .create_video_session_parameters_khr()
+            .and_then(|vtable| vtable.create_video_session_parameters_khr())
             .unwrap_unchecked();
         let mut p_video_session_parameters = MaybeUninit::<VideoSessionParametersKHR>::uninit();
         let _return = _function(
@@ -7156,15 +7145,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .update_video_session_parameters_khr()
+            .and_then(|vtable| vtable.update_video_session_parameters_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .update_video_session_parameters_khr()
+            .and_then(|vtable| vtable.update_video_session_parameters_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -7225,15 +7212,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .destroy_video_session_parameters_khr()
+            .and_then(|vtable| vtable.destroy_video_session_parameters_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .destroy_video_session_parameters_khr()
+            .and_then(|vtable| vtable.destroy_video_session_parameters_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -7320,15 +7305,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .get_video_session_memory_requirements_khr()
+            .and_then(|vtable| vtable.get_video_session_memory_requirements_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .get_video_session_memory_requirements_khr()
+            .and_then(|vtable| vtable.get_video_session_memory_requirements_khr())
             .unwrap_unchecked();
         let mut p_video_session_memory_requirements_count = match p_video_session_memory_requirements_count {
             Some(v) => v as _,
@@ -7414,15 +7397,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .bind_video_session_memory_khr()
+            .and_then(|vtable| vtable.bind_video_session_memory_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .bind_video_session_memory_khr()
+            .and_then(|vtable| vtable.bind_video_session_memory_khr())
             .unwrap_unchecked();
         let video_session_bind_memory_count = (|len: usize| len)(p_video_session_bind_memories.len()) as _;
         let _return = _function(
@@ -7492,16 +7473,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .cmd_begin_video_coding_khr()
+            .and_then(|vtable| vtable.cmd_begin_video_coding_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .cmd_begin_video_coding_khr()
+            .and_then(|vtable| vtable.cmd_begin_video_coding_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_begin_info as *const VideoBeginCodingInfoKHR<'lt>);
         ()
@@ -7561,16 +7540,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .cmd_control_video_coding_khr()
+            .and_then(|vtable| vtable.cmd_control_video_coding_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .cmd_control_video_coding_khr()
+            .and_then(|vtable| vtable.cmd_control_video_coding_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -7633,16 +7610,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .khr_video_queue()
-            .expect("extension/version not loaded")
-            .cmd_end_video_coding_khr()
+            .and_then(|vtable| vtable.cmd_end_video_coding_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .khr_video_queue()
-            .unwrap_unchecked()
-            .cmd_end_video_coding_khr()
+            .and_then(|vtable| vtable.cmd_end_video_coding_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), p_end_coding_info as *const VideoEndCodingInfoKHR<'lt>);
         ()

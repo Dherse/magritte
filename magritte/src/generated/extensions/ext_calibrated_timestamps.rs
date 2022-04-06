@@ -541,16 +541,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_calibrated_timestamps()
-            .expect("extension/version not loaded")
-            .get_physical_device_calibrateable_time_domains_ext()
+            .and_then(|vtable| vtable.get_physical_device_calibrateable_time_domains_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_calibrated_timestamps()
-            .unwrap_unchecked()
-            .get_physical_device_calibrateable_time_domains_ext()
+            .and_then(|vtable| vtable.get_physical_device_calibrateable_time_domains_ext())
             .unwrap_unchecked();
         let mut p_time_domain_count = match p_time_domain_count {
             Some(v) => v as _,
@@ -640,15 +638,13 @@ impl Device {
         let _function = self
             .vtable()
             .ext_calibrated_timestamps()
-            .expect("extension/version not loaded")
-            .get_calibrated_timestamps_ext()
+            .and_then(|vtable| vtable.get_calibrated_timestamps_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_calibrated_timestamps()
-            .unwrap_unchecked()
-            .get_calibrated_timestamps_ext()
+            .and_then(|vtable| vtable.get_calibrated_timestamps_ext())
             .unwrap_unchecked();
         let timestamp_count = (|len: usize| len)(p_timestamp_infos.len()) as _;
         let mut p_timestamps = SmallVec::<u64>::from_elem(Default::default(), timestamp_count as usize);

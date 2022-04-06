@@ -396,15 +396,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .expect("extension/version not loaded")
-            .create_deferred_operation_khr()
+            .and_then(|vtable| vtable.create_deferred_operation_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .unwrap_unchecked()
-            .create_deferred_operation_khr()
+            .and_then(|vtable| vtable.create_deferred_operation_khr())
             .unwrap_unchecked();
         let mut p_deferred_operation = MaybeUninit::<DeferredOperationKHR>::uninit();
         let _return = _function(
@@ -484,15 +482,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .expect("extension/version not loaded")
-            .destroy_deferred_operation_khr()
+            .and_then(|vtable| vtable.destroy_deferred_operation_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .unwrap_unchecked()
-            .destroy_deferred_operation_khr()
+            .and_then(|vtable| vtable.destroy_deferred_operation_khr())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
@@ -569,15 +565,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .expect("extension/version not loaded")
-            .get_deferred_operation_max_concurrency_khr()
+            .and_then(|vtable| vtable.get_deferred_operation_max_concurrency_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .unwrap_unchecked()
-            .get_deferred_operation_max_concurrency_khr()
+            .and_then(|vtable| vtable.get_deferred_operation_max_concurrency_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), operation);
         _return
@@ -636,15 +630,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .expect("extension/version not loaded")
-            .get_deferred_operation_result_khr()
+            .and_then(|vtable| vtable.get_deferred_operation_result_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .unwrap_unchecked()
-            .get_deferred_operation_result_khr()
+            .and_then(|vtable| vtable.get_deferred_operation_result_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), operation);
         match _return {
@@ -725,15 +717,13 @@ impl Device {
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .expect("extension/version not loaded")
-            .deferred_operation_join_khr()
+            .and_then(|vtable| vtable.deferred_operation_join_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_deferred_host_operations()
-            .unwrap_unchecked()
-            .deferred_operation_join_khr()
+            .and_then(|vtable| vtable.deferred_operation_join_khr())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), operation);
         match _return {

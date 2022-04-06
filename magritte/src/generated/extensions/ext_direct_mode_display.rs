@@ -146,16 +146,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .ext_direct_mode_display()
-            .expect("extension/version not loaded")
-            .release_display_ext()
+            .and_then(|vtable| vtable.release_display_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .ext_direct_mode_display()
-            .unwrap_unchecked()
-            .release_display_ext()
+            .and_then(|vtable| vtable.release_display_ext())
             .unwrap_unchecked();
         let _return = _function(self.as_raw(), display);
         match _return {

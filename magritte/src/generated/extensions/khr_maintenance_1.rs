@@ -22,7 +22,7 @@
 //!   [`allocate_descriptor_sets`] and [`allocate_command_buffers`] functions.
 //! - Add new `VK_ERROR_OUT_OF_POOL_MEMORY_KHR` error so implementations can give a more precise
 //!   reason for [`allocate_descriptor_sets`] failures.
-//! - Add a new command [`TrimCommandPoolKHR`] which gives the implementation an opportunity to
+//! - Add a new command [`trim_command_pool_khr`] which gives the implementation an opportunity to
 //!   release any unused command pool memory back to the system.
 //!# Revision
 //!2
@@ -35,7 +35,7 @@
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance1
 //!   extension>>)
 //!# New functions & commands
-//! - [`TrimCommandPoolKHR`]
+//! - [`trim_command_pool_khr`]
 //!# New bitmasks
 //! - [`CommandPoolTrimFlagsKHR`]
 //!# New constants
@@ -62,7 +62,7 @@
 //!   Technologies  - Tom Olson, ARM
 //!# Related
 //! - [`CommandPoolTrimFlagsKHR`]
-//! - [`TrimCommandPoolKHR`]
+//! - [`trim_command_pool_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -84,7 +84,7 @@ pub const KHR_MAINTENANCE_1_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 ///The V-table of [`Device`] for functions from `VK_KHR_maintenance1`
 pub struct DeviceKhrMaintenance1VTable {
     ///See [`FNTrimCommandPool`] for more information.
-    pub trim_command_pool: FNTrimCommandPool,
+    pub trim_command_pool_khr: FNTrimCommandPool,
 }
 impl DeviceKhrMaintenance1VTable {
     ///Loads the VTable from the owner and the names
@@ -97,13 +97,13 @@ impl DeviceKhrMaintenance1VTable {
         loader: Device,
     ) -> Self {
         Self {
-            trim_command_pool: unsafe {
+            trim_command_pool_khr: unsafe {
                 std::mem::transmute(loader_fn(loader, crate::cstr!("vkTrimCommandPoolKHR").as_ptr()))
             },
         }
     }
-    ///Gets [`Self::trim_command_pool`]. See [`FNTrimCommandPool`] for more information.
-    pub fn trim_command_pool(&self) -> FNTrimCommandPool {
-        self.trim_command_pool
+    ///Gets [`Self::trim_command_pool_khr`]. See [`FNTrimCommandPool`] for more information.
+    pub fn trim_command_pool_khr(&self) -> FNTrimCommandPool {
+        self.trim_command_pool_khr
     }
 }

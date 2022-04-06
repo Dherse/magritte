@@ -16,7 +16,7 @@
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_device_group_creation extension>>)
 //!# New functions & commands
-//! - [`EnumeratePhysicalDeviceGroupsKHR`]
+//! - [`enumerate_physical_device_groups_khr`]
 //!# New structures
 //! - [`PhysicalDeviceGroupPropertiesKHR`]
 //! - Extending [`DeviceCreateInfo`]:  - [`DeviceGroupDeviceCreateInfoKHR`]
@@ -38,7 +38,7 @@
 //! - [`MAX_DEVICE_GROUP_SIZE_KHR`]
 //! - [`DeviceGroupDeviceCreateInfoKHR`]
 //! - [`PhysicalDeviceGroupPropertiesKHR`]
-//! - [`EnumeratePhysicalDeviceGroupsKHR`]
+//! - [`enumerate_physical_device_groups_khr`]
 //!
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -60,7 +60,7 @@ pub const KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///The V-table of [`Instance`] for functions from `VK_KHR_device_group_creation`
 pub struct InstanceKhrDeviceGroupCreationVTable {
     ///See [`FNEnumeratePhysicalDeviceGroups`] for more information.
-    pub enumerate_physical_device_groups: FNEnumeratePhysicalDeviceGroups,
+    pub enumerate_physical_device_groups_khr: FNEnumeratePhysicalDeviceGroups,
 }
 impl InstanceKhrDeviceGroupCreationVTable {
     ///Loads the VTable from the owner and the names
@@ -73,7 +73,7 @@ impl InstanceKhrDeviceGroupCreationVTable {
         loader: Instance,
     ) -> Self {
         Self {
-            enumerate_physical_device_groups: unsafe {
+            enumerate_physical_device_groups_khr: unsafe {
                 std::mem::transmute(loader_fn(
                     loader,
                     crate::cstr!("vkEnumeratePhysicalDeviceGroupsKHR").as_ptr(),
@@ -81,9 +81,9 @@ impl InstanceKhrDeviceGroupCreationVTable {
             },
         }
     }
-    ///Gets [`Self::enumerate_physical_device_groups`]. See [`FNEnumeratePhysicalDeviceGroups`] for
-    /// more information.
-    pub fn enumerate_physical_device_groups(&self) -> FNEnumeratePhysicalDeviceGroups {
-        self.enumerate_physical_device_groups
+    ///Gets [`Self::enumerate_physical_device_groups_khr`]. See [`FNEnumeratePhysicalDeviceGroups`]
+    /// for more information.
+    pub fn enumerate_physical_device_groups_khr(&self) -> FNEnumeratePhysicalDeviceGroups {
+        self.enumerate_physical_device_groups_khr
     }
 }

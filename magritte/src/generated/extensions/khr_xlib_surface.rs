@@ -442,15 +442,13 @@ impl Instance {
         let _function = self
             .vtable()
             .khr_xlib_surface()
-            .expect("extension/version not loaded")
-            .create_xlib_surface_khr()
+            .and_then(|vtable| vtable.create_xlib_surface_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .khr_xlib_surface()
-            .unwrap_unchecked()
-            .create_xlib_surface_khr()
+            .and_then(|vtable| vtable.create_xlib_surface_khr())
             .unwrap_unchecked();
         let mut p_surface = MaybeUninit::<SurfaceKHR>::uninit();
         let _return = _function(
@@ -521,16 +519,14 @@ impl PhysicalDevice {
             .instance()
             .vtable()
             .khr_xlib_surface()
-            .expect("extension/version not loaded")
-            .get_physical_device_xlib_presentation_support_khr()
+            .and_then(|vtable| vtable.get_physical_device_xlib_presentation_support_khr())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .instance()
             .vtable()
             .khr_xlib_surface()
-            .unwrap_unchecked()
-            .get_physical_device_xlib_presentation_support_khr()
+            .and_then(|vtable| vtable.get_physical_device_xlib_presentation_support_khr())
             .unwrap_unchecked();
         let mut dpy = std::mem::zeroed();
         let _return = _function(

@@ -1609,18 +1609,15 @@ impl Device {
         let _function = self
             .vtable()
             .ext_image_drm_format_modifier()
-            .expect("extension/version not loaded")
-            .get_image_drm_format_modifier_properties_ext()
+            .and_then(|vtable| vtable.get_image_drm_format_modifier_properties_ext())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .vtable()
             .ext_image_drm_format_modifier()
-            .unwrap_unchecked()
-            .get_image_drm_format_modifier_properties_ext()
+            .and_then(|vtable| vtable.get_image_drm_format_modifier_properties_ext())
             .unwrap_unchecked();
-        let mut p_properties = p_properties
-            .unwrap_or_else(|| MaybeUninit::<ImageDrmFormatModifierPropertiesEXT<'lt>>::zeroed().assume_init());
+        let mut p_properties = p_properties.unwrap_or_default();
         let _return = _function(self.as_raw(), image, &mut p_properties);
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {

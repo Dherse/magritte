@@ -273,16 +273,14 @@ impl CommandBuffer {
             .device()
             .vtable()
             .amd_buffer_marker()
-            .expect("extension/version not loaded")
-            .cmd_write_buffer_marker_amd()
+            .and_then(|vtable| vtable.cmd_write_buffer_marker_amd())
             .expect("function not loaded");
         #[cfg(not(any(debug_assertions, feature = "assertions")))]
         let _function = self
             .device()
             .vtable()
             .amd_buffer_marker()
-            .unwrap_unchecked()
-            .cmd_write_buffer_marker_amd()
+            .and_then(|vtable| vtable.cmd_write_buffer_marker_amd())
             .unwrap_unchecked();
         let _return = _function(
             self.as_raw(),
