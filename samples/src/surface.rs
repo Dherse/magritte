@@ -136,9 +136,11 @@ impl Surface {
             .set_image_array_layers(1);
 
         // Finally, we create the swapchain itself
-        // ⚠ Note that here, things get a bit tricky, the swapchain **must** life longer than the
+        // ⚠ Note that here, things get a bit tricky, the swapchain **must** live longer than the
         // surface it was created for. **You** need to ensure this! Magritte currently cannot do
         // it. Probably in the future.
+        // ⚠ Note that the surface we are refering to is the one in the `SwapchainCreateInfoKHR`.
+        // TODO: use metadata to implement double lifetimes.
         let (swapchain, _) = unsafe { vulkan.device().create_swapchain_khr(&swapchain_create_info, None)? };
 
         info!("We have created the swapchain: {:?}", swapchain.as_raw());

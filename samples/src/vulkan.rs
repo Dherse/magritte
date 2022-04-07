@@ -140,6 +140,8 @@ impl Vulkan {
         // We give it the extra parameter `extensions` as it will keep it as a "metadata".
         let instance = unsafe { entry.create_instance(&instance_create_info, None, extensions)? };
 
+        // What is that `as_raw`??? It's simple, Magritte wraps Vulkan structures into a `Unique` which helps
+        // to enforce most (**not** all) lifetimes. `as_raw` simply lets you get back to the original Vulkan value.
         info!("We have created the instance: {:?}", instance.as_raw());
 
         // The final step in getting debug messages: creating the debug utils messenger.
