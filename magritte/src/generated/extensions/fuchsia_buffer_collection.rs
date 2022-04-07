@@ -122,8 +122,6 @@ use crate::{
     vulkan1_1::{ChromaLocation, SamplerYcbcrModelConversion, SamplerYcbcrRange},
     AsRaw, Handle, Unique, VulkanResult,
 };
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
@@ -156,15 +154,15 @@ pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkBufferCollectionFUCHSIA*                  pCollection);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the [`BufferCollectionFUCHSIA`]
 /// - [`p_create_info`] is a pointer to a [`BufferCollectionCreateInfoFUCHSIA`] structure containing
 ///   parameters affecting creation of the buffer collection
 /// - [`p_allocator`] is a pointer to a [`AllocationCallbacks`] structure controlling host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation) chapter
 /// - `pBufferCollection` is a pointer to a [`BufferCollectionFUCHSIA`] handle in which the
 ///   resulting buffer collection object is returned
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid
 ///   [`BufferCollectionCreateInfoFUCHSIA`] structure
@@ -172,28 +170,28 @@ pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   [`AllocationCallbacks`] structure
 /// - [`p_collection`] **must**  be a valid pointer to a [`BufferCollectionFUCHSIA`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
 ///
-/// ## Host AccessAll functions referencing a [`BufferCollectionFUCHSIA`] **must**  be
-/// externally synchronized with the exception of
-/// [`create_buffer_collection_fuchsia`].
-/// # Related
+///## Host AccessAll functions referencing a [`BufferCollectionFUCHSIA`] **must**  be
+///externally synchronized with the exception of
+///[`create_buffer_collection_fuchsia`].
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`AllocationCallbacks`]
 /// - [`BufferCollectionCreateInfoFUCHSIA`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateBufferCollectionFUCHSIA")]
 pub type FNCreateBufferCollectionFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -213,45 +211,45 @@ pub type FNCreateBufferCollectionFuchsia = Option<
 ///    VkBufferCollectionFUCHSIA                   collection,
 ///    const VkBufferConstraintsInfoFUCHSIA*       pBufferConstraintsInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`p_buffer_constraints_info`] is a pointer to a [`BufferConstraintsInfoFUCHSIA`] structure
-/// # Description
-/// [`set_buffer_collection_buffer_constraints_fuchsia`] **may**  fail if the
-/// implementation does not support the constraints specified in the
-/// `bufferCollectionConstraints` structure.
-/// If that occurs, [`set_buffer_collection_buffer_constraints_fuchsia`] will
-/// return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
-/// ## Valid Usage
+///# Description
+///[`set_buffer_collection_buffer_constraints_fuchsia`] **may**  fail if the
+///implementation does not support the constraints specified in the
+///`bufferCollectionConstraints` structure.
+///If that occurs, [`set_buffer_collection_buffer_constraints_fuchsia`] will
+///return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+///## Valid Usage
 /// - [`set_buffer_collection_image_constraints_fuchsia`] or
 ///   [`set_buffer_collection_buffer_constraints_fuchsia`] **must**  not have already been called on
 ///   [`collection`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 /// - [`p_buffer_constraints_info`] **must**  be a valid pointer to a valid
 ///   [`BufferConstraintsInfoFUCHSIA`] structure
 /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`BufferConstraintsInfoFUCHSIA`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetBufferCollectionBufferConstraintsFUCHSIA")]
 pub type FNSetBufferCollectionBufferConstraintsFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -272,50 +270,50 @@ pub type FNSetBufferCollectionBufferConstraintsFuchsia = Option<
 ///    VkBufferCollectionFUCHSIA                   collection,
 ///    const VkImageConstraintsInfoFUCHSIA*        pImageConstraintsInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`p_image_constraints_info`] is a pointer to a [`ImageConstraintsInfoFUCHSIA`] structure
-/// # Description
-/// [`set_buffer_collection_image_constraints_fuchsia`] **may**  fail if
-/// [`p_image_constraints_info`]`::formatConstraintsCount` is larger than the
-/// implementation-defined limit.
-/// If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
-/// return VK_ERROR_INITIALIZATION_FAILED.[`set_buffer_collection_image_constraints_fuchsia`]
+///# Description
+///[`set_buffer_collection_image_constraints_fuchsia`] **may**  fail if
+///[`p_image_constraints_info`]`::formatConstraintsCount` is larger than the
+///implementation-defined limit.
+///If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
+///return VK_ERROR_INITIALIZATION_FAILED.[`set_buffer_collection_image_constraints_fuchsia`]
 /// **may**  fail if the
-/// implementation does not support any of the formats described by the
-/// [`p_image_constraints_info`] structure.
-/// If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
-/// return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
-/// ## Valid Usage
+///implementation does not support any of the formats described by the
+///[`p_image_constraints_info`] structure.
+///If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
+///return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+///## Valid Usage
 /// - [`set_buffer_collection_image_constraints_fuchsia`] or
 ///   [`set_buffer_collection_buffer_constraints_fuchsia`] **must**  not have already been called on
 ///   [`collection`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 /// - [`p_image_constraints_info`] **must**  be a valid pointer to a valid
 ///   [`ImageConstraintsInfoFUCHSIA`] structure
 /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`Device`]
 /// - [`ImageConstraintsInfoFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetBufferCollectionImageConstraintsFUCHSIA")]
 pub type FNSetBufferCollectionImageConstraintsFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -334,36 +332,36 @@ pub type FNSetBufferCollectionImageConstraintsFuchsia = Option<
 ///    VkBufferCollectionFUCHSIA                   collection,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the [`BufferCollectionFUCHSIA`]
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`p_allocator`] is a pointer to a [`AllocationCallbacks`] structure controlling host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation) chapter
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`Image`] and [`Buffer`] objects that referenced [`collection`] upon creation by inclusion of
 ///   a [`BufferCollectionImageCreateInfoFUCHSIA`] or [`BufferCollectionBufferCreateInfoFUCHSIA`]
 ///   chained to their [`ImageCreateInfo`] or [`BufferCreateInfo`] structures respectively,  **may**
 ///   outlive [`collection`].
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`AllocationCallbacks`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyBufferCollectionFUCHSIA")]
 pub type FNDestroyBufferCollectionFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -389,56 +387,56 @@ pub type FNDestroyBufferCollectionFuchsia = Option<
 ///    VkBufferCollectionFUCHSIA                   collection,
 ///    VkBufferCollectionPropertiesFUCHSIA*        pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device handle
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`p_properties`] is a pointer to the retrieved [`BufferCollectionPropertiesFUCHSIA`] struct
-/// # Description
-/// For image-based buffer collections, upon calling
-/// [`get_buffer_collection_properties_fuchsia`], Sysmem will choose an element
-/// of the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos`
-/// established by the preceding call to
-/// [`set_buffer_collection_image_constraints_fuchsia`].
-/// The index of the element chosen is stored in and can be retrieved from
-/// [`BufferCollectionPropertiesFUCHSIA::create_info_index`].For buffer-based buffer collections, a
+///# Description
+///For image-based buffer collections, upon calling
+///[`get_buffer_collection_properties_fuchsia`], Sysmem will choose an element
+///of the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos`
+///established by the preceding call to
+///[`set_buffer_collection_image_constraints_fuchsia`].
+///The index of the element chosen is stored in and can be retrieved from
+///[`BufferCollectionPropertiesFUCHSIA::create_info_index`].For buffer-based buffer collections, a
 /// single [`BufferCreateInfo`] is
-/// specified as [`BufferConstraintsInfoFUCHSIA::create_info`].
-/// [`BufferCollectionPropertiesFUCHSIA::create_info_index`] will
-/// therefore always be zero.[`get_buffer_collection_properties_fuchsia`] **may**  fail if Sysmem is
+///specified as [`BufferConstraintsInfoFUCHSIA::create_info`].
+///[`BufferCollectionPropertiesFUCHSIA::create_info_index`] will
+///therefore always be zero.[`get_buffer_collection_properties_fuchsia`] **may**  fail if Sysmem is
 /// unable
-/// to resolve the constraints of all of the participants in the buffer
-/// collection.
-/// If that occurs, [`get_buffer_collection_properties_fuchsia`] will return
-/// `VK_ERROR_INITIALIZATION_FAILED`.
-/// ## Valid Usage
+///to resolve the constraints of all of the participants in the buffer
+///collection.
+///If that occurs, [`get_buffer_collection_properties_fuchsia`] will return
+///`VK_ERROR_INITIALIZATION_FAILED`.
+///## Valid Usage
 /// - Prior to calling [`get_buffer_collection_properties_fuchsia`], the constraints on the buffer
 ///   collection  **must**  have been set by either
 ///   [`set_buffer_collection_image_constraints_fuchsia`] or
 ///   [`set_buffer_collection_buffer_constraints_fuchsia`].
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 /// - [`p_properties`] **must**  be a valid pointer to a [`BufferCollectionPropertiesFUCHSIA`]
 ///   structure
 /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetBufferCollectionPropertiesFUCHSIA")]
 pub type FNGetBufferCollectionPropertiesFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -461,32 +459,31 @@ pub type FNGetBufferCollectionPropertiesFuchsia = Option<
 ///    VK_IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA = 0x00000010,
 ///} VkImageConstraintsInfoFlagBitsFUCHSIA;
 ///```
-/// # Description
-/// General hints about the type of memory that should be allocated by Sysmem
-/// based on the expected usage of the images in the buffer collection include:
+///# Description
+///General hints about the type of memory that should be allocated by Sysmem
+///based on the expected usage of the images in the buffer collection include:
 /// - [`CPU_READ_RARELY`]
 /// - [`CPU_READ_OFTEN`]
 /// - [`CPU_WRITE_RARELY`]
 /// - [`CPU_WRITE_OFTEN`]
-/// For protected memory:
+///For protected memory:
 /// - [`PROTECTED_OPTIONAL`] specifies that protected memory is optional for the buffer collection.
-/// Note that if all participants in the buffer collection (Vulkan or otherwise)
-/// specify that protected memory is optional, Sysmem will not allocate
-/// protected memory.
-/// # Related
+///Note that if all participants in the buffer collection (Vulkan or otherwise)
+///specify that protected memory is optional, Sysmem will not allocate
+///protected memory.
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`ImageConstraintsInfoFlagsFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageConstraintsInfoFlagBitsFUCHSIA")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(u32);
@@ -532,19 +529,18 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
 ///// Provided by VK_FUCHSIA_buffer_collection
 ///typedef VkFlags VkImageFormatConstraintsFlagsFUCHSIA;
 ///```
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`ImageFormatConstraintsInfoFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ImageFormatConstraintsFlagsFUCHSIA(u32);
@@ -574,32 +570,31 @@ impl std::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
 ///    VK_IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA = 0x00000010,
 ///} VkImageConstraintsInfoFlagBitsFUCHSIA;
 ///```
-/// # Description
-/// General hints about the type of memory that should be allocated by Sysmem
-/// based on the expected usage of the images in the buffer collection include:
+///# Description
+///General hints about the type of memory that should be allocated by Sysmem
+///based on the expected usage of the images in the buffer collection include:
 /// - [`CPU_READ_RARELY`]
 /// - [`CPU_READ_OFTEN`]
 /// - [`CPU_WRITE_RARELY`]
 /// - [`CPU_WRITE_OFTEN`]
-/// For protected memory:
+///For protected memory:
 /// - [`PROTECTED_OPTIONAL`] specifies that protected memory is optional for the buffer collection.
-/// Note that if all participants in the buffer collection (Vulkan or otherwise)
-/// specify that protected memory is optional, Sysmem will not allocate
-/// protected memory.
-/// # Related
+///Note that if all participants in the buffer collection (Vulkan or otherwise)
+///specify that protected memory is optional, Sysmem will not allocate
+///protected memory.
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`ImageConstraintsInfoFlagsFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageConstraintsInfoFlagsFUCHSIA")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ImageConstraintsInfoFlagsFUCHSIA(u32);
@@ -910,34 +905,33 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 ///    uint32_t                     index;
 ///} VkImportMemoryBufferCollectionFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`index`] the index of the buffer to import from [`collection`]
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`index`] **must**  be less than the value retrieved as
 ///   [`BufferCollectionPropertiesFUCHSIA`]:bufferCount
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryBufferCollectionFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA<'lt> {
     ///Lifetime field
@@ -1040,34 +1034,33 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 ///    uint32_t                     index;
 ///} VkBufferCollectionImageCreateInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`index`] is the index of the buffer in the buffer collection from which the memory will be
 ///   imported
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`index`] **must**  be less than [`BufferCollectionPropertiesFUCHSIA::buffer_count`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA`
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionImageCreateInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1171,34 +1164,33 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 ///    uint32_t                     index;
 ///} VkBufferCollectionBufferCreateInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
 /// - [`index`] is the index of the buffer in the buffer collection from which the memory will be
 ///   imported
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`index`] **must**  be less than [`BufferCollectionPropertiesFUCHSIA::buffer_count`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionBufferCreateInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1301,34 +1293,33 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
 ///    zx_handle_t        collectionToken;
 ///} VkBufferCollectionCreateInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`collection_token`] is a [`zx_handle_t`] containing the Sysmem client’s buffer collection
 ///   token
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`collection_token`] **must**  be a valid [`zx_handle_t`] to a Zircon channel allocated from
 ///   Sysmem (`fuchsia.sysmem.Allocator`/AllocateSharedCollection) with `ZX_DEFAULT_CHANNEL_RIGHTS`
 ///   rights
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`StructureType`]
 /// - [`create_buffer_collection_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionCreateInfoFUCHSIA")]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1431,7 +1422,7 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 ///    VkChromaLocation                 suggestedYChromaOffset;
 ///} VkBufferCollectionPropertiesFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
@@ -1453,24 +1444,24 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 ///   offset
 /// - [`suggested_y_chroma_offset`] is a [`ChromaLocation`] value specifying the suggested Y chroma
 ///   offset
-/// # Description
-/// `sysmemColorSpace` is only set for image-based buffer collections where
-/// the constraints were specified using [`ImageConstraintsInfoFUCHSIA`] in
-/// a call to [`set_buffer_collection_image_constraints_fuchsia`].For image-based buffer
+///# Description
+///`sysmemColorSpace` is only set for image-based buffer collections where
+///the constraints were specified using [`ImageConstraintsInfoFUCHSIA`] in
+///a call to [`set_buffer_collection_image_constraints_fuchsia`].For image-based buffer
 /// collections, [`create_info_index`] will identify both
-/// the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos` element and
-/// the [`ImageConstraintsInfoFUCHSIA::format_constraints`] element
-/// chosen by Sysmem when [`set_buffer_collection_image_constraints_fuchsia`] was
-/// called.
-/// The value of [`sysmem_color_space_index`] will be an index to one of the
-/// color spaces provided in the
-/// [`ImageFormatConstraintsInfoFUCHSIA::color_spaces`] array.The implementation must have
+///the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos` element and
+///the [`ImageConstraintsInfoFUCHSIA::format_constraints`] element
+///chosen by Sysmem when [`set_buffer_collection_image_constraints_fuchsia`] was
+///called.
+///The value of [`sysmem_color_space_index`] will be an index to one of the
+///color spaces provided in the
+///[`ImageFormatConstraintsInfoFUCHSIA::color_spaces`] array.The implementation must have
 /// [`format_features`] with all bits set that
-/// were set in
-/// [`ImageFormatConstraintsInfoFUCHSIA::required_format_features`], by
-/// the call to [`set_buffer_collection_image_constraints_fuchsia`], at
-/// [`create_info_index`] (other bits could be set as well).
-/// ## Valid Usage (Implicit)
+///were set in
+///[`ImageFormatConstraintsInfoFUCHSIA::required_format_features`], by
+///the call to [`set_buffer_collection_image_constraints_fuchsia`], at
+///[`create_info_index`] (other bits could be set as well).
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`format_features`] **must**  be a valid combination of [`FormatFeatureFlagBits`] values
@@ -1481,7 +1472,7 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 /// - [`suggested_ycbcr_range`] **must**  be a valid [`SamplerYcbcrRange`] value
 /// - [`suggested_x_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 /// - [`suggested_y_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`ChromaLocation`]
 /// - [`ComponentMapping`]
@@ -1492,16 +1483,15 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 /// - [`SysmemColorSpaceFUCHSIA`]
 /// - [`get_buffer_collection_properties_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionPropertiesFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA<'lt> {
     ///Lifetime field
@@ -1766,7 +1756,7 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 ///    VkBufferCollectionConstraintsInfoFUCHSIA    bufferCollectionConstraints;
 ///} VkBufferConstraintsInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - `pBufferCreateInfo` a pointer to a [`BufferCreateInfo`] struct describing the buffer
@@ -1775,12 +1765,12 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 ///   buffers in the buffer collection
 /// - [`buffer_collection_constraints`] is used to supply parameters for the negotiation and
 ///   allocation of the buffer collection
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [`required_format_features`] bitmask of [`FormatFeatureFlagBits`] **must**  be chosen from
 ///   among the buffer compatible format features listed in [buffer compatible format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#buffer-compatible-format-features)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`create_info`] **must**  be a valid [`BufferCreateInfo`] structure
@@ -1788,7 +1778,7 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 ///   values
 /// - [`buffer_collection_constraints`] **must**  be a valid
 ///   [`BufferCollectionConstraintsInfoFUCHSIA`] structure
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionConstraintsInfoFUCHSIA`]
 /// - [`BufferCreateInfo`]
@@ -1796,16 +1786,15 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 /// - [`StructureType`]
 /// - [`set_buffer_collection_buffer_constraints_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1925,34 +1914,33 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 ///    uint32_t           colorSpace;
 ///} VkSysmemColorSpaceFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`color_space`] value of the Sysmem `ColorSpaceType`
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`color_space`] **must**  be a `ColorSpaceType` as defined in
 ///   `fuchsia.sysmem/image_formats.fidl`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`ImageFormatConstraintsInfoFUCHSIA`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSysmemColorSpaceFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA<'lt> {
     ///Lifetime field
@@ -2040,7 +2028,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 ///    const VkSysmemColorSpaceFUCHSIA*        pColorSpaces;
 ///} VkImageFormatConstraintsInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`image_create_info`] is the [`ImageCreateInfo`] used to create a [`Image`] that is to use
@@ -2053,8 +2041,8 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 /// - [`color_space_count`] the element count of [`color_spaces`]
 /// - [`color_spaces`] is a pointer to an array of [`SysmemColorSpaceFUCHSIA`] structs of size
 ///   [`color_space_count`]
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`image_create_info`] **must**  be a valid [`ImageCreateInfo`] structure
@@ -2065,7 +2053,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 /// - [`color_spaces`] **must**  be a valid pointer to an array of [`color_space_count`] valid
 ///   [`SysmemColorSpaceFUCHSIA`] structures
 /// - [`color_space_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`FormatFeatureFlags`]
 /// - [`ImageConstraintsInfoFUCHSIA`]
@@ -2074,16 +2062,15 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 /// - [`StructureType`]
 /// - [`SysmemColorSpaceFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageFormatConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -2272,7 +2259,7 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 ///    VkImageConstraintsInfoFlagsFUCHSIA            flags;
 ///} VkImageConstraintsInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format_constraints_count`] is the number of elements in [`format_constraints`].
@@ -2284,8 +2271,8 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 ///   collections.
 /// - [`flags`] is a [`ImageConstraintsInfoFlagBitsFUCHSIA`] value specifying hints about the type
 ///   of memory Sysmem should allocate for the buffer collection.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - All elements of [`format_constraints`] **must**  have at least one bit set in its
 ///   [`ImageFormatConstraintsInfoFUCHSIA::required_format_features`]
 /// - If [`format_constraints`]`::imageCreateInfo`::`usage` contains `VK_IMAGE_USAGE_SAMPLED_BIT`,
@@ -2311,7 +2298,7 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 ///   [`format_constraints`]`::requiredFormatFeatures` **must**  contain
 ///   `VK_FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`format_constraints`] **must**  be a valid pointer to an array of
@@ -2320,7 +2307,7 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 ///   [`BufferCollectionConstraintsInfoFUCHSIA`] structure
 /// - [`flags`] **must**  be a valid combination of [`ImageConstraintsInfoFlagBitsFUCHSIA`] values
 /// - [`format_constraints_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionConstraintsInfoFUCHSIA`]
 /// - [`ImageConstraintsInfoFlagsFUCHSIA`]
@@ -2328,16 +2315,15 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 /// - [`StructureType`]
 /// - [`set_buffer_collection_image_constraints_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -2501,7 +2487,7 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 ///    uint32_t           minBufferCountForSharedSlack;
 ///} VkBufferCollectionConstraintsInfoFUCHSIA;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`min_buffer_count`] is the minimum number of buffers available in the collection
@@ -2510,40 +2496,39 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 /// - [`min_buffer_count_for_dedicated_slack`] is the per-participant minimum buffers for dedicated
 ///   slack
 /// - [`min_buffer_count_for_shared_slack`] is the per-participant minimum buffers for shared slack
-/// # Description
-/// Sysmem uses all buffer count parameters in combination to determine the
-/// number of buffers it will allocate.
-/// Sysmem defines buffer count constraints in
-/// `fuchsia.sysmem/constraints.fidl`.*Camping* as referred to by [`min_buffer_count_for_camping`],
+///# Description
+///Sysmem uses all buffer count parameters in combination to determine the
+///number of buffers it will allocate.
+///Sysmem defines buffer count constraints in
+///`fuchsia.sysmem/constraints.fidl`.*Camping* as referred to by [`min_buffer_count_for_camping`],
 /// is the number of
-/// buffers that should be available for the participant that are not for
-/// transient use.
-/// This number of buffers is required for the participant to logically operate.*Slack* as referred
+///buffers that should be available for the participant that are not for
+///transient use.
+///This number of buffers is required for the participant to logically operate.*Slack* as referred
 /// to by [`min_buffer_count_for_dedicated_slack`] and
-/// [`min_buffer_count_for_shared_slack`], refers to the number of buffers desired
-/// by participants for optimal performance.
-/// [`min_buffer_count_for_dedicated_slack`] refers to the current participant.
-/// [`min_buffer_count_for_shared_slack`] refers to buffer slack for all
-/// participants in the collection.
-/// ## Valid Usage (Implicit)
+///[`min_buffer_count_for_shared_slack`], refers to the number of buffers desired
+///by participants for optimal performance.
+///[`min_buffer_count_for_dedicated_slack`] refers to the current participant.
+///[`min_buffer_count_for_shared_slack`] refers to buffer slack for all
+///participants in the collection.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferConstraintsInfoFUCHSIA`]
 /// - [`ImageConstraintsInfoFUCHSIA`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionConstraintsInfoFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -2697,15 +2682,15 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkBufferCollectionFUCHSIA*                  pCollection);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the [`BufferCollectionFUCHSIA`]
     /// - [`p_create_info`] is a pointer to a [`BufferCollectionCreateInfoFUCHSIA`] structure
     ///   containing parameters affecting creation of the buffer collection
     /// - [`p_allocator`] is a pointer to a [`AllocationCallbacks`] structure controlling host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation) chapter
     /// - `pBufferCollection` is a pointer to a [`BufferCollectionFUCHSIA`] handle in which the
     ///   resulting buffer collection object is returned
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`BufferCollectionCreateInfoFUCHSIA`] structure
@@ -2713,28 +2698,28 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_collection`] **must**  be a valid pointer to a [`BufferCollectionFUCHSIA`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
     ///
-    /// ## Host AccessAll functions referencing a [`BufferCollectionFUCHSIA`] **must**  be
-    /// externally synchronized with the exception of
-    /// [`create_buffer_collection_fuchsia`].
-    /// # Related
+    ///## Host AccessAll functions referencing a [`BufferCollectionFUCHSIA`] **must**  be
+    ///externally synchronized with the exception of
+    ///[`create_buffer_collection_fuchsia`].
+    ///# Related
     /// - [`VK_FUCHSIA_buffer_collection`]
     /// - [`AllocationCallbacks`]
     /// - [`BufferCollectionCreateInfoFUCHSIA`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateBufferCollectionFUCHSIA")]
     #[track_caller]
@@ -2785,45 +2770,45 @@ impl Device {
     ///    VkBufferCollectionFUCHSIA                   collection,
     ///    const VkBufferConstraintsInfoFUCHSIA*       pBufferConstraintsInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device
     /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
     /// - [`p_buffer_constraints_info`] is a pointer to a [`BufferConstraintsInfoFUCHSIA`] structure
-    /// # Description
-    /// [`set_buffer_collection_buffer_constraints_fuchsia`] **may**  fail if the
-    /// implementation does not support the constraints specified in the
-    /// `bufferCollectionConstraints` structure.
-    /// If that occurs, [`set_buffer_collection_buffer_constraints_fuchsia`] will
-    /// return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
-    /// ## Valid Usage
+    ///# Description
+    ///[`set_buffer_collection_buffer_constraints_fuchsia`] **may**  fail if the
+    ///implementation does not support the constraints specified in the
+    ///`bufferCollectionConstraints` structure.
+    ///If that occurs, [`set_buffer_collection_buffer_constraints_fuchsia`] will
+    ///return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+    ///## Valid Usage
     /// - [`set_buffer_collection_image_constraints_fuchsia`] or
     ///   [`set_buffer_collection_buffer_constraints_fuchsia`] **must**  not have already been
     ///   called on [`collection`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
     /// - [`p_buffer_constraints_info`] **must**  be a valid pointer to a valid
     ///   [`BufferConstraintsInfoFUCHSIA`] structure
     /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-    /// # Related
+    ///# Related
     /// - [`VK_FUCHSIA_buffer_collection`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`BufferConstraintsInfoFUCHSIA`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetBufferCollectionBufferConstraintsFUCHSIA")]
     #[track_caller]
@@ -2869,50 +2854,50 @@ impl Device {
     ///    VkBufferCollectionFUCHSIA                   collection,
     ///    const VkImageConstraintsInfoFUCHSIA*        pImageConstraintsInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device
     /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
     /// - [`p_image_constraints_info`] is a pointer to a [`ImageConstraintsInfoFUCHSIA`] structure
-    /// # Description
-    /// [`set_buffer_collection_image_constraints_fuchsia`] **may**  fail if
-    /// [`p_image_constraints_info`]`::formatConstraintsCount` is larger than the
-    /// implementation-defined limit.
-    /// If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
-    /// return VK_ERROR_INITIALIZATION_FAILED.[`set_buffer_collection_image_constraints_fuchsia`]
+    ///# Description
+    ///[`set_buffer_collection_image_constraints_fuchsia`] **may**  fail if
+    ///[`p_image_constraints_info`]`::formatConstraintsCount` is larger than the
+    ///implementation-defined limit.
+    ///If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
+    ///return VK_ERROR_INITIALIZATION_FAILED.[`set_buffer_collection_image_constraints_fuchsia`]
     /// **may**  fail if the
-    /// implementation does not support any of the formats described by the
-    /// [`p_image_constraints_info`] structure.
-    /// If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
-    /// return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
-    /// ## Valid Usage
+    ///implementation does not support any of the formats described by the
+    ///[`p_image_constraints_info`] structure.
+    ///If that occurs, [`set_buffer_collection_image_constraints_fuchsia`] will
+    ///return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
+    ///## Valid Usage
     /// - [`set_buffer_collection_image_constraints_fuchsia`] or
     ///   [`set_buffer_collection_buffer_constraints_fuchsia`] **must**  not have already been
     ///   called on [`collection`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
     /// - [`p_image_constraints_info`] **must**  be a valid pointer to a valid
     ///   [`ImageConstraintsInfoFUCHSIA`] structure
     /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-    /// # Related
+    ///# Related
     /// - [`VK_FUCHSIA_buffer_collection`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`Device`]
     /// - [`ImageConstraintsInfoFUCHSIA`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetBufferCollectionImageConstraintsFUCHSIA")]
     #[track_caller]
@@ -2956,36 +2941,36 @@ impl Device {
     ///    VkBufferCollectionFUCHSIA                   collection,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the [`BufferCollectionFUCHSIA`]
     /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
     /// - [`p_allocator`] is a pointer to a [`AllocationCallbacks`] structure controlling host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation) chapter
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`Image`] and [`Buffer`] objects that referenced [`collection`] upon creation by inclusion
     ///   of a [`BufferCollectionImageCreateInfoFUCHSIA`] or
     ///   [`BufferCollectionBufferCreateInfoFUCHSIA`] chained to their [`ImageCreateInfo`] or
     ///   [`BufferCreateInfo`] structures respectively,  **may**  outlive [`collection`].
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
     /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
     ///   [`AllocationCallbacks`] structure
     /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
-    /// # Related
+    ///# Related
     /// - [`VK_FUCHSIA_buffer_collection`]
     /// - [`AllocationCallbacks`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyBufferCollectionFUCHSIA")]
     #[track_caller]
@@ -3035,57 +3020,57 @@ impl Device {
     ///    VkBufferCollectionFUCHSIA                   collection,
     ///    VkBufferCollectionPropertiesFUCHSIA*        pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device handle
     /// - [`collection`] is the [`BufferCollectionFUCHSIA`] handle
     /// - [`p_properties`] is a pointer to the retrieved [`BufferCollectionPropertiesFUCHSIA`]
     ///   struct
-    /// # Description
-    /// For image-based buffer collections, upon calling
-    /// [`get_buffer_collection_properties_fuchsia`], Sysmem will choose an element
-    /// of the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos`
-    /// established by the preceding call to
-    /// [`set_buffer_collection_image_constraints_fuchsia`].
-    /// The index of the element chosen is stored in and can be retrieved from
-    /// [`BufferCollectionPropertiesFUCHSIA::create_info_index`].For buffer-based buffer
+    ///# Description
+    ///For image-based buffer collections, upon calling
+    ///[`get_buffer_collection_properties_fuchsia`], Sysmem will choose an element
+    ///of the [`ImageConstraintsInfoFUCHSIA`]`::pImageCreateInfos`
+    ///established by the preceding call to
+    ///[`set_buffer_collection_image_constraints_fuchsia`].
+    ///The index of the element chosen is stored in and can be retrieved from
+    ///[`BufferCollectionPropertiesFUCHSIA::create_info_index`].For buffer-based buffer
     /// collections, a single [`BufferCreateInfo`] is
-    /// specified as [`BufferConstraintsInfoFUCHSIA::create_info`].
-    /// [`BufferCollectionPropertiesFUCHSIA::create_info_index`] will
-    /// therefore always be zero.[`get_buffer_collection_properties_fuchsia`] **may**  fail if
+    ///specified as [`BufferConstraintsInfoFUCHSIA::create_info`].
+    ///[`BufferCollectionPropertiesFUCHSIA::create_info_index`] will
+    ///therefore always be zero.[`get_buffer_collection_properties_fuchsia`] **may**  fail if
     /// Sysmem is unable
-    /// to resolve the constraints of all of the participants in the buffer
-    /// collection.
-    /// If that occurs, [`get_buffer_collection_properties_fuchsia`] will return
-    /// `VK_ERROR_INITIALIZATION_FAILED`.
-    /// ## Valid Usage
+    ///to resolve the constraints of all of the participants in the buffer
+    ///collection.
+    ///If that occurs, [`get_buffer_collection_properties_fuchsia`] will return
+    ///`VK_ERROR_INITIALIZATION_FAILED`.
+    ///## Valid Usage
     /// - Prior to calling [`get_buffer_collection_properties_fuchsia`], the constraints on the
     ///   buffer collection  **must**  have been set by either
     ///   [`set_buffer_collection_image_constraints_fuchsia`] or
     ///   [`set_buffer_collection_buffer_constraints_fuchsia`].
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
     /// - [`p_properties`] **must**  be a valid pointer to a [`BufferCollectionPropertiesFUCHSIA`]
     ///   structure
     /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-    /// # Related
+    ///# Related
     /// - [`VK_FUCHSIA_buffer_collection`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`BufferCollectionPropertiesFUCHSIA`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetBufferCollectionPropertiesFUCHSIA")]
     #[track_caller]
@@ -3135,7 +3120,7 @@ impl Device {
 ///// Provided by VK_FUCHSIA_buffer_collection
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkBufferCollectionFUCHSIA)
 ///```
-/// # Related
+///# Related
 /// - [`VK_FUCHSIA_buffer_collection`]
 /// - [`BufferCollectionBufferCreateInfoFUCHSIA`]
 /// - [`BufferCollectionImageCreateInfoFUCHSIA`]
@@ -3146,16 +3131,15 @@ impl Device {
 /// - [`set_buffer_collection_buffer_constraints_fuchsia`]
 /// - [`set_buffer_collection_image_constraints_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionFUCHSIA")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct BufferCollectionFUCHSIA(pub u64);
 impl BufferCollectionFUCHSIA {

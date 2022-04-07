@@ -90,8 +90,6 @@ use crate::{
     },
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
@@ -115,26 +113,25 @@ pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV = 2,
 ///} VkAccelerationStructureMotionInstanceTypeNV;
 ///```
-/// # Description
+///# Description
 /// - [`STATIC`] specifies that the instance is a static instance with no instance motion.
 /// - [`MATRIX_MOTION`] specifies that the instance is a motion instance with motion specified by
 ///   interpolation between two matrices.
 /// - [`SRT_MOTION`] specifies that the instance is a motion instance with motion specified by
 ///   interpolation in the SRT decomposition.
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMotionInstanceTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureMotionInstanceTypeNV(i32);
@@ -180,19 +177,18 @@ impl AccelerationStructureMotionInstanceTypeNV {
 ///// Provided by VK_NV_ray_tracing_motion_blur
 ///typedef VkFlags VkAccelerationStructureMotionInfoFlagsNV;
 ///```
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureMotionInfoFlagsNV(u32);
@@ -214,19 +210,18 @@ impl std::fmt::Debug for AccelerationStructureMotionInfoFlagsNV {
 ///// Provided by VK_NV_ray_tracing_motion_blur
 ///typedef VkFlags VkAccelerationStructureMotionInstanceFlagsNV;
 ///```
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureMotionInstanceFlagsNV(u32);
@@ -255,41 +250,40 @@ impl std::fmt::Debug for AccelerationStructureMotionInstanceFlagsNV {
 ///    VkBool32           rayTracingMotionBlurPipelineTraceRaysIndirect;
 ///} VkPhysicalDeviceRayTracingMotionBlurFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`ray_tracing_motion_blur`] indicates whether the implementation supports the motion blur
 ///   feature.
 /// - [`ray_tracing_motion_blur_pipeline_trace_rays_indirect`] indicates whether the implementation
 ///   supports indirect ray tracing commands with the motion blur feature enabled.
-/// If the [`PhysicalDeviceRayTracingMotionBlurFeaturesNV`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceRayTracingMotionBlurFeaturesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceRayTracingMotionBlurFeaturesNV`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceRayTracingMotionBlurFeaturesNV`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingMotionBlurFeaturesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
     ///Lifetime field
@@ -446,39 +440,38 @@ impl<'lt> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt> {
 ///    VkDeviceOrHostAddressConstKHR    vertexData;
 ///} VkAccelerationStructureGeometryMotionTrianglesDataNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`vertex_data`] is a pointer to vertex data for this geometry at time 1.0
-/// # Description
-/// If [`AccelerationStructureGeometryMotionTrianglesDataNV`] is included in
-/// the [`p_next`] chain of a
-/// [`AccelerationStructureGeometryTrianglesDataKHR`] structure, the basic
-/// vertex positions are used for the position of the triangles in the geometry
-/// at time 0.0 and the [`vertex_data`] in
-/// [`AccelerationStructureGeometryMotionTrianglesDataNV`] is used for the
-/// vertex positions at time 1.0, with positions linearly interpolated at
-/// intermediate times.Indexing for
+///# Description
+///If [`AccelerationStructureGeometryMotionTrianglesDataNV`] is included in
+///the [`p_next`] chain of a
+///[`AccelerationStructureGeometryTrianglesDataKHR`] structure, the basic
+///vertex positions are used for the position of the triangles in the geometry
+///at time 0.0 and the [`vertex_data`] in
+///[`AccelerationStructureGeometryMotionTrianglesDataNV`] is used for the
+///vertex positions at time 1.0, with positions linearly interpolated at
+///intermediate times.Indexing for
 /// [`AccelerationStructureGeometryMotionTrianglesDataNV`][`vertex_data`] is equivalent to the basic
 /// vertex position data.
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`DeviceOrHostAddressConstKHR`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryMotionTrianglesDataNV")]
 #[derive(Clone, Copy)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
     ///Lifetime field
@@ -566,31 +559,30 @@ impl<'lt> AccelerationStructureGeometryMotionTrianglesDataNV<'lt> {
 ///    VkAccelerationStructureMotionInfoFlagsNV    flags;
 ///} VkAccelerationStructureMotionInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_instances`] is the maximum number of instances that  **may**  be used in the motion
 ///   top-level acceleration structure.
 /// - [`flags`] is 0 and reserved for future use.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MOTION_INFO_NV`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInfoFlagsNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMotionInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureMotionInfoNV<'lt> {
     ///Lifetime field
@@ -706,7 +698,7 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///    float    tz;
 ///} VkSRTDataNV;
 ///```
-/// # Members
+///# Members
 /// - [`sx`] is the x component of the scale of the transform
 /// - [`a`] is one component of the shear for the transform
 /// - [`b`] is one component of the shear for the transform
@@ -723,11 +715,11 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// - [`tx`] is the x component of the post-rotation translation
 /// - [`ty`] is the y component of the post-rotation translation
 /// - [`tz`] is the z component of the post-rotation translation
-/// # Description
-/// This transform decomposition consists of three elements.
-/// The first is a matrix S, consisting of a scale, shear, and translation,
-/// usually used to define the pivot point of the following rotation.
-/// This matrix is constructed from the parameters above by:<span class="katex"><span
+///# Description
+///This transform decomposition consists of three elements.
+///The first is a matrix S, consisting of a scale, shear, and translation,
+///usually used to define the pivot point of the following rotation.
+///This matrix is constructed from the parameters above by:<span class="katex"><span
 /// aria-hidden="true" class="katex-html"><span class="base"><span
 /// style="height:0.68333em;vertical-align:0em;" class="strut"></span><span
 /// style="margin-right:0.05764em;" class="mord mathdefault">S</span><span class="mspace"
@@ -735,100 +727,100 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
 /// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
-/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
-/// style="top:-2.2500000000000004em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
+/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
+/// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.55002em;"
 /// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
 /// class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">s</span><span class="mord mathdefault">x</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
+/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
 /// style="width:0.5em;"></span><span style="width:0.5em;" class="arraycolsep"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">s</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">y</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
-/// class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span><span
+/// style="margin-right:0.04398em;" class="mord mathdefault">z</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// style="width:0.5em;" class="arraycolsep"></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// style="width:0.5em;" class="arraycolsep"></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord
-/// mathdefault">p</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">v</span><span class="mord
-/// mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">p</span><span style="margin-right:0.03588em;" class="mord
+/// mathdefault">v</span><span class="mord mathdefault">x</span></span></span><span
+/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
+/// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">v</span><span style="margin-right:0.03588em;" class="mord
+/// mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
-/// class="mord mathdefault" style="margin-right:0.03588em;">v</span><span
-/// style="margin-right:0.03588em;" class="mord mathdefault">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord mathdefault">p</span><span style="margin-right:0.03588em;"
-/// class="mord mathdefault">v</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;" class="mord mathdefault">v</span><span class="mord mathdefault"
 /// style="margin-right:0.04398em;">z</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
 /// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span
+/// style="height:2.05002em;" class="vlist"><span style="top:-2.2500000000000004em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.55002em;"
 /// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
 /// rotation quaternion is defined as:
 /// * `R` = [ [`qx`], [`qy`], [`qz`], [`qw`] ]
-/// This is a rotation around a conceptual normalized axis [ ax, ay, az ]
-/// of amount `theta` such that:
+///This is a rotation around a conceptual normalized axis [ ax, ay, az ]
+///of amount `theta` such that:
 /// * [ [`qx`], [`qy`], [`qz`] ] = sin(`theta`/2) × [ `ax`, `ay`, `az` ]
-/// and
+///and
 /// * [`qw`] = cos(`theta`/2)
-/// Finally, the transform has a translation T constructed from the parameters
-/// above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
-/// class="base"><span style="height:0.68333em;vertical-align:0em;" class="strut"></span><span
-/// style="margin-right:0.13889em;" class="mord mathdefault">T</span><span class="mspace"
+///Finally, the transform has a translation T constructed from the parameters
+///above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
+/// class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
+/// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace"
 /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
+/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
 /// class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
 /// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
 /// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
 /// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span
 /// class="mord">1</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
@@ -837,36 +829,36 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// style="width:0.5em;" class="arraycolsep"></span><span class="arraycolsep"
+/// class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep"
 /// style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
 /// class="pstrut" style="height:3em;"></span><span class="mord"><span
 /// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
 /// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
-/// class="pstrut" style="height:3em;"></span><span class="mord"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span
 /// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">1</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span style="width:0.5em;" class="arraycolsep"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
-/// class="pstrut"></span><span class="mord"><span class="mord mathdefault">t</span><span
+/// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
+/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span
 /// class="mord mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">t</span><span style="margin-right:0.03588em;" class="mord
+/// mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">t</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">y</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord mathdefault">t</span><span class="mord mathdefault"
 /// style="margin-right:0.04398em;">z</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
@@ -875,7 +867,7 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
 /// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
@@ -883,20 +875,19 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
 /// effective derived transform is then given by
 /// * `T` × `R` × `S`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureSrtMotionInstanceNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSRTDataNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct SrtDataNV {
@@ -1180,7 +1171,7 @@ impl SrtDataNV {
 ///    uint64_t                      accelerationStructureReference;
 ///} VkAccelerationStructureSRTMotionInstanceNV;
 ///```
-/// # Members
+///# Members
 /// - [`transform_t_0`] is a [`SrtDataNV`] structure describing a transformation to be applied to
 ///   the acceleration structure at time 0.
 /// - [`transform_t_1`] is a [`SrtDataNV`] structure describing a transformation to be applied to
@@ -1198,11 +1189,11 @@ impl SrtDataNV {
 ///   [`get_acceleration_structure_handle_nv`]      (used by device operations which reference
 ///   acceleration structures) or,  - a [`AccelerationStructureKHR`] object (used by host operations
 ///   which reference acceleration structures).
-/// # Description
-/// The C language specification does not define the ordering of bit-fields, but
-/// in practice, this struct produces the correct layout with existing
-/// compilers.
-/// The intended bit pattern is for the following:
+///# Description
+///The C language specification does not define the ordering of bit-fields, but
+///in practice, this struct produces the correct layout with existing
+///compilers.
+///The intended bit pattern is for the following:
 /// - [`instance_custom_index`] and [`mask`] occupy the same memory as if a single `uint32_t` was
 ///   specified in their place  - [`instance_custom_index`] occupies the 24 least significant bits
 ///   of that memory  - [`mask`] occupies the 8 most significant bits of that memory
@@ -1210,31 +1201,30 @@ impl SrtDataNV {
 ///   single `uint32_t` was specified in their place  -
 ///   [`instance_shader_binding_table_record_offset`] occupies the 24 least significant bits of that
 ///   memory  - [`flags`] occupies the 8 most significant bits of that memory
-/// If a compiler produces code that diverges from that pattern, applications
+///If a compiler produces code that diverges from that pattern, applications
 /// **must**  employ another method to set values according to the correct bit
-/// pattern.The transform for a SRT motion instance at a point in time is derived from
-/// component-wise linear interpolation of the two SRT transforms.
-/// That is, for a `time` in [0,1] the resulting transform is
+///pattern.The transform for a SRT motion instance at a point in time is derived from
+///component-wise linear interpolation of the two SRT transforms.
+///That is, for a `time` in [0,1] the resulting transform is
 /// * [`transform_t_0`] × (1 - `time`) +  [`transform_t_1`] × `time`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceDataNV`]
 /// - [`GeometryInstanceFlagsKHR`]
 /// - [`SrtDataNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureSRTMotionInstanceNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureSrtMotionInstanceNV {
@@ -1388,7 +1378,7 @@ impl AccelerationStructureSrtMotionInstanceNV {
 ///    uint64_t                      accelerationStructureReference;
 ///} VkAccelerationStructureMatrixMotionInstanceNV;
 ///```
-/// # Members
+///# Members
 /// - [`transform_t_0`] is a [`TransformMatrixKHR`] structure describing a transformation to be
 ///   applied to the acceleration structure at time 0.
 /// - [`transform_t_1`] is a [`TransformMatrixKHR`] structure describing a transformation to be
@@ -1406,11 +1396,11 @@ impl AccelerationStructureSrtMotionInstanceNV {
 ///   [`get_acceleration_structure_handle_nv`]      (used by device operations which reference
 ///   acceleration structures) or,  - a [`AccelerationStructureKHR`] object (used by host operations
 ///   which reference acceleration structures).
-/// # Description
-/// The C language specification does not define the ordering of bit-fields, but
-/// in practice, this struct produces the correct layout with existing
-/// compilers.
-/// The intended bit pattern is for the following:
+///# Description
+///The C language specification does not define the ordering of bit-fields, but
+///in practice, this struct produces the correct layout with existing
+///compilers.
+///The intended bit pattern is for the following:
 /// - [`instance_custom_index`] and [`mask`] occupy the same memory as if a single `uint32_t` was
 ///   specified in their place  - [`instance_custom_index`] occupies the 24 least significant bits
 ///   of that memory  - [`mask`] occupies the 8 most significant bits of that memory
@@ -1418,31 +1408,30 @@ impl AccelerationStructureSrtMotionInstanceNV {
 ///   single `uint32_t` was specified in their place  -
 ///   [`instance_shader_binding_table_record_offset`] occupies the 24 least significant bits of that
 ///   memory  - [`flags`] occupies the 8 most significant bits of that memory
-/// If a compiler produces code that diverges from that pattern, applications
+///If a compiler produces code that diverges from that pattern, applications
 /// **must**  employ another method to set values according to the correct bit
-/// pattern.The transform for a matrix motion instance at a point in time is derived by
-/// component-wise linear interpolation of the two transforms.
-/// That is, for a `time` in [0,1] the resulting transform is
+///pattern.The transform for a matrix motion instance at a point in time is derived by
+///component-wise linear interpolation of the two transforms.
+///That is, for a `time` in [0,1] the resulting transform is
 /// * [`transform_t_0`] × (1 - `time`) +  [`transform_t_1`] × `time`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceDataNV`]
 /// - [`GeometryInstanceFlagsKHR`]
 /// - [`TransformMatrixKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMatrixMotionInstanceNV")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(C)]
 pub struct AccelerationStructureMatrixMotionInstanceNV {
@@ -1603,14 +1592,14 @@ impl AccelerationStructureMatrixMotionInstanceNV {
 ///    VkAccelerationStructureMotionInstanceDataNV     data;
 ///} VkAccelerationStructureMotionInstanceNV;
 ///```
-/// # Members
+///# Members
 /// - [`type_`] is a [`AccelerationStructureMotionInstanceTypeNV`] enumerant identifying which type
 ///   of motion instance this is and which type of the union is valid.
 /// - [`flags`] is currently unused, but is required to keep natural alignment of [`data`].
 /// - [`data`] is a [`AccelerationStructureMotionInstanceDataNV`] containing motion instance data
 ///   for this instance.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`type_`] **must**  be a valid [`AccelerationStructureMotionInstanceTypeNV`] value
 /// - [`flags`] **must**  be `0`
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV`, the
@@ -1622,22 +1611,21 @@ impl AccelerationStructureMatrixMotionInstanceNV {
 /// - If [`type_`] is `VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV`, the
 ///   `srtMotionInstance` member of [`data`] **must**  be a valid
 ///   [`AccelerationStructureSrtMotionInstanceNV`] structure
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureMotionInstanceDataNV`]
 /// - [`AccelerationStructureMotionInstanceFlagsNV`]
 /// - [`AccelerationStructureMotionInstanceTypeNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMotionInstanceNV")]
 #[derive(Clone, Copy)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureMotionInstanceNV {
     ///[`type_`] is a [`AccelerationStructureMotionInstanceTypeNV`]
@@ -1721,30 +1709,29 @@ impl AccelerationStructureMotionInstanceNV {
 ///    VkAccelerationStructureSRTMotionInstanceNV       srtMotionInstance;
 ///} VkAccelerationStructureMotionInstanceDataNV;
 ///```
-/// # Members
+///# Members
 /// - [`static_instance`] is a [`AccelerationStructureInstanceKHR`] structure containing data for a
 ///   static instance.
 /// - [`matrix_motion_instance`] is a [`AccelerationStructureMatrixMotionInstanceNV`] structure
 ///   containing data for a matrix motion instance.
 /// - [`srt_motion_instance`] is a [`AccelerationStructureSrtMotionInstanceNV`] structure containing
 ///   data for an SRT motion instance.
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]
 /// - [`AccelerationStructureInstanceKHR`]
 /// - [`AccelerationStructureMatrixMotionInstanceNV`]
 /// - [`AccelerationStructureMotionInstanceNV`]
 /// - [`AccelerationStructureSrtMotionInstanceNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMotionInstanceDataNV")]
 #[derive(Clone, Copy)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub union AccelerationStructureMotionInstanceDataNV {
     ///[`static_instance`] is a [`AccelerationStructureInstanceKHR`]

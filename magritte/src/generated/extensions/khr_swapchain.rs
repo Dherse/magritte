@@ -548,8 +548,6 @@ use crate::{
     },
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
@@ -581,87 +579,87 @@ pub const KHR_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_swa
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSwapchainKHR*                             pSwapchain);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device to create the swapchain for.
 /// - [`p_create_info`] is a pointer to a [`SwapchainCreateInfoKHR`] structure specifying the
 ///   parameters of the created swapchain.
 /// - [`p_allocator`] is the allocator used for host memory allocated for the swapchain object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
 /// - [`p_swapchain`] is a pointer to a [`SwapchainKHR`] handle in which the created swapchain
 ///   object will be returned.
-/// # Description
-/// As mentioned above, if [`create_swapchain_khr`] succeeds, it will return a
-/// handle to a swapchain containing an array of at least
-/// `pCreateInfo->minImageCount` presentable images.While acquired by the application, presentable
+///# Description
+///As mentioned above, if [`create_swapchain_khr`] succeeds, it will return a
+///handle to a swapchain containing an array of at least
+///`pCreateInfo->minImageCount` presentable images.While acquired by the application, presentable
 /// images  **can**  be used in any
-/// way that equivalent non-presentable images  **can**  be used.
-/// A presentable image is equivalent to a non-presentable image created with
-/// the following [`ImageCreateInfo`] parameters:The `pCreateInfo->surface` **must**  not be
+///way that equivalent non-presentable images  **can**  be used.
+///A presentable image is equivalent to a non-presentable image created with
+///the following [`ImageCreateInfo`] parameters:The `pCreateInfo->surface` **must**  not be
 /// destroyed until after the
-/// swapchain is destroyed.If `pCreateInfo->oldSwapchain` is [`crate::Handle::null`], and the native
-/// window referred to by `pCreateInfo->surface` is already associated with
-/// a Vulkan swapchain, `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be
-/// returned.If the native window referred to by `pCreateInfo->surface` is already
-/// associated with a non-Vulkan graphics API surface,
-/// `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be returned.The native window referred to by
+///swapchain is destroyed.If `pCreateInfo->oldSwapchain` is [`crate::Handle::null`], and the native
+///window referred to by `pCreateInfo->surface` is already associated with
+///a Vulkan swapchain, `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be
+///returned.If the native window referred to by `pCreateInfo->surface` is already
+///associated with a non-Vulkan graphics API surface,
+///`VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be returned.The native window referred to by
 /// `pCreateInfo->surface` **must**  not become
-/// associated with a non-Vulkan graphics API surface before all associated
-/// Vulkan swapchains have been destroyed.[`create_swapchain_khr`] will return
+///associated with a non-Vulkan graphics API surface before all associated
+///Vulkan swapchains have been destroyed.[`create_swapchain_khr`] will return
 /// `VK_ERROR_DEVICE_LOST` if the
-/// logical device was lost.
-/// The [`SwapchainKHR`] is a child of the [`device`], and  **must**  not be
-/// destroyed before the [`device`].
-/// However, [`SurfaceKHR`] is not a child of any [`Device`] and is not
-/// affected by the lost device.
-/// After successfully recreating a [`Device`], the same [`SurfaceKHR`] **can**  be used to create a
+///logical device was lost.
+///The [`SwapchainKHR`] is a child of the [`device`], and  **must**  not be
+///destroyed before the [`device`].
+///However, [`SurfaceKHR`] is not a child of any [`Device`] and is not
+///affected by the lost device.
+///After successfully recreating a [`Device`], the same [`SurfaceKHR`] **can**  be used to create a
 /// new [`SwapchainKHR`], provided the previous one
-/// was destroyed.If the `oldSwapchain` parameter of [`p_create_info`] is a valid
-/// swapchain, which has exclusive full-screen access, that access is released
-/// from `pCreateInfo->oldSwapchain`.
-/// If the command succeeds in this case, the newly created swapchain will
-/// automatically acquire exclusive full-screen access from
-/// `pCreateInfo->oldSwapchain`.In some cases, swapchain creation  **may**  fail if exclusive
+///was destroyed.If the `oldSwapchain` parameter of [`p_create_info`] is a valid
+///swapchain, which has exclusive full-screen access, that access is released
+///from `pCreateInfo->oldSwapchain`.
+///If the command succeeds in this case, the newly created swapchain will
+///automatically acquire exclusive full-screen access from
+///`pCreateInfo->oldSwapchain`.In some cases, swapchain creation  **may**  fail if exclusive
 /// full-screen mode is
-/// requested for application control, but for some implementation-specific
-/// reason exclusive full-screen access is unavailable for the particular
-/// combination of parameters provided.
-/// If this occurs, `VK_ERROR_INITIALIZATION_FAILED` will be returned.When the [`SurfaceKHR`] in
+///requested for application control, but for some implementation-specific
+///reason exclusive full-screen access is unavailable for the particular
+///combination of parameters provided.
+///If this occurs, `VK_ERROR_INITIALIZATION_FAILED` will be returned.When the [`SurfaceKHR`] in
 /// [`SwapchainCreateInfoKHR`] is a display
-/// surface, then the [`DisplayModeKHR`] in display surface’s
-/// [`DisplaySurfaceCreateInfoKHR`] is associated with a particular
-/// [`DisplayKHR`].
-/// Swapchain creation  **may**  fail if that [`DisplayKHR`] is not acquired by
-/// the application.
-/// In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
-/// ## Valid Usage (Implicit)
+///surface, then the [`DisplayModeKHR`] in display surface’s
+///[`DisplaySurfaceCreateInfoKHR`] is associated with a particular
+///[`DisplayKHR`].
+///Swapchain creation  **may**  fail if that [`DisplayKHR`] is not acquired by
+///the application.
+///In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`SwapchainCreateInfoKHR`] structure
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`p_swapchain`] **must**  be a valid pointer to a [`SwapchainKHR`] handle
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to `pCreateInfo->surface` **must**  be externally synchronized
 /// - Host access to `pCreateInfo->oldSwapchain` **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///   - `VK_ERROR_SURFACE_LOST_KHR`  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SwapchainCreateInfoKHR`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateSwapchainKHR")]
 pub type FNCreateSwapchainKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -681,38 +679,38 @@ pub type FNCreateSwapchainKhr = Option<
 ///    VkSwapchainKHR                              swapchain,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the [`Device`] associated with [`swapchain`].
 /// - [`swapchain`] is the swapchain to destroy.
 /// - [`p_allocator`] is the allocator used for host memory allocated for the swapchain object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
-/// # Description
-/// The application  **must**  not destroy a swapchain until after completion of all
-/// outstanding operations on images that were acquired from the swapchain.
-/// [`swapchain`] and all associated [`Image`] handles are destroyed, and
+///# Description
+///The application  **must**  not destroy a swapchain until after completion of all
+///outstanding operations on images that were acquired from the swapchain.
+///[`swapchain`] and all associated [`Image`] handles are destroyed, and
 /// **must**  not be acquired or used any more by the application.
-/// The memory of each [`Image`] will only be freed after that image is no
-/// longer used by the presentation engine.
-/// For example, if one image of the swapchain is being displayed in a window,
-/// the memory for that image  **may**  not be freed until the window is destroyed,
-/// or another swapchain is created for the window.
-/// Destroying the swapchain does not invalidate the parent [`SurfaceKHR`],
-/// and a new swapchain  **can**  be created with it.When a swapchain associated with a display
+///The memory of each [`Image`] will only be freed after that image is no
+///longer used by the presentation engine.
+///For example, if one image of the swapchain is being displayed in a window,
+///the memory for that image  **may**  not be freed until the window is destroyed,
+///or another swapchain is created for the window.
+///Destroying the swapchain does not invalidate the parent [`SurfaceKHR`],
+///and a new swapchain  **can**  be created with it.When a swapchain associated with a display
 /// surface is destroyed, if the
-/// image most recently presented to the display surface is from the swapchain
-/// being destroyed, then either any display resources modified by presenting
-/// images from any swapchain associated with the display surface  **must**  be
-/// reverted by the implementation to their state prior to the first present
-/// performed on one of these swapchains, or such resources  **must**  be left in
-/// their current state.If [`swapchain`] has exclusive full-screen access, it is released before
-/// the swapchain is destroyed.
-/// ## Valid Usage
+///image most recently presented to the display surface is from the swapchain
+///being destroyed, then either any display resources modified by presenting
+///images from any swapchain associated with the display surface  **must**  be
+///reverted by the implementation to their state prior to the first present
+///performed on one of these swapchains, or such resources  **must**  be left in
+///their current state.If [`swapchain`] has exclusive full-screen access, it is released before
+///the swapchain is destroyed.
+///## Valid Usage
 /// - All uses of presentable images acquired from [`swapchain`] **must**  have completed execution
 /// - If [`AllocationCallbacks`] were provided when [`swapchain`] was created, a compatible set of
 ///   callbacks  **must**  be provided here
 /// - If no [`AllocationCallbacks`] were provided when [`swapchain`] was created, [`p_allocator`]
 ///   **must**  be `NULL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`swapchain`] is not [`crate::Handle::null`], [`swapchain`] **must**  be a valid
 ///   [`SwapchainKHR`] handle
@@ -721,21 +719,21 @@ pub type FNCreateSwapchainKhr = Option<
 /// - Both of [`device`], and [`swapchain`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroySwapchainKHR")]
 pub type FNDestroySwapchainKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -755,25 +753,25 @@ pub type FNDestroySwapchainKhr = Option<
 ///    uint32_t*                                   pSwapchainImageCount,
 ///    VkImage*                                    pSwapchainImages);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device associated with [`swapchain`].
 /// - [`swapchain`] is the swapchain to query.
 /// - [`p_swapchain_image_count`] is a pointer to an integer related to the number of presentable
 ///   images available or queried, as described below.
 /// - [`p_swapchain_images`] is either `NULL` or a pointer to an array of [`Image`] handles.
-/// # Description
-/// If [`p_swapchain_images`] is `NULL`, then the number of presentable images
-/// for [`swapchain`] is returned in [`p_swapchain_image_count`].
-/// Otherwise, [`p_swapchain_image_count`] **must**  point to a variable set by the
-/// user to the number of elements in the [`p_swapchain_images`] array, and on
-/// return the variable is overwritten with the number of structures actually
-/// written to [`p_swapchain_images`].
-/// If the value of [`p_swapchain_image_count`] is less than the number of
-/// presentable images for [`swapchain`], at most [`p_swapchain_image_count`]
-/// structures will be written, and `VK_INCOMPLETE` will be returned instead
-/// of `VK_SUCCESS`, to indicate that not all the available presentable
-/// images were returned.
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`p_swapchain_images`] is `NULL`, then the number of presentable images
+///for [`swapchain`] is returned in [`p_swapchain_image_count`].
+///Otherwise, [`p_swapchain_image_count`] **must**  point to a variable set by the
+///user to the number of elements in the [`p_swapchain_images`] array, and on
+///return the variable is overwritten with the number of structures actually
+///written to [`p_swapchain_images`].
+///If the value of [`p_swapchain_image_count`] is less than the number of
+///presentable images for [`swapchain`], at most [`p_swapchain_image_count`]
+///structures will be written, and `VK_INCOMPLETE` will be returned instead
+///of `VK_SUCCESS`, to indicate that not all the available presentable
+///images were returned.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - [`p_swapchain_image_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -783,22 +781,22 @@ pub type FNDestroySwapchainKhr = Option<
 /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`Device`]
 /// - [`Image`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetSwapchainImagesKHR")]
 pub type FNGetSwapchainImagesKhr = Option<
     unsafe extern "system" fn(
@@ -822,7 +820,7 @@ pub type FNGetSwapchainImagesKhr = Option<
 ///    VkFence                                     fence,
 ///    uint32_t*                                   pImageIndex);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device associated with [`swapchain`].
 /// - [`swapchain`] is the non-retired swapchain from which an image is being acquired.
 /// - [`timeout`] specifies how long the function waits, in nanoseconds, if no image is available.
@@ -830,8 +828,8 @@ pub type FNGetSwapchainImagesKhr = Option<
 /// - [`fence`] is [`crate::Handle::null`] or a fence to signal.
 /// - [`p_image_index`] is a pointer to a `uint32_t` in which the index of the next image to use
 ///   (i.e. an index into the array of images returned by [`get_swapchain_images_khr`]) is returned.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`swapchain`] **must**  not be in the retired state
 /// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  be unsignaled
 /// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  not have any uncompleted signal
@@ -845,7 +843,7 @@ pub type FNGetSwapchainImagesKhr = Option<
 ///   used to create [`swapchain`], [`timeout`] **must**  not be `UINT64_MAX`
 /// - [`semaphore`] **must**  have a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - If [`semaphore`] is not [`crate::Handle::null`], [`semaphore`] **must**  be a valid
@@ -859,30 +857,30 @@ pub type FNGetSwapchainImagesKhr = Option<
 /// - Both of [`device`], and [`swapchain`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 /// - Host access to [`semaphore`] **must**  be externally synchronized
 /// - Host access to [`fence`] **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_TIMEOUT`  - `VK_NOT_READY`  - `VK_SUBOPTIMAL_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`Device`]
 /// - [`Fence`]
 /// - [`Semaphore`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquireNextImageKHR")]
 pub type FNAcquireNextImageKhr = Option<
     unsafe extern "system" fn(
@@ -904,13 +902,13 @@ pub type FNAcquireNextImageKhr = Option<
 ///    VkQueue                                     queue,
 ///    const VkPresentInfoKHR*                     pPresentInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`queue`] is a queue that is capable of presentation to the target surface’s platform on the
 ///   same device as the image’s swapchain.
 /// - [`p_present_info`] is a pointer to a [`PresentInfoKHR`] structure specifying parameters of the
 ///   presentation.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - Each element of `pSwapchains` member of [`p_present_info`] **must**  be a swapchain that is
 ///   created for a surface for which presentation is supported from [`queue`] as determined using a
 ///   call to [`get_physical_device_surface_support_khr`]
@@ -925,65 +923,65 @@ pub type FNAcquireNextImageKhr = Option<
 /// - All elements of the `pWaitSemaphores` member of [`p_present_info`] **must**  reference a
 ///   semaphore signal operation that has been submitted for execution and any semaphore signal
 ///   operations on which it depends (if any)  **must**  have also been submitted for execution
-/// Any writes to memory backing the images referenced by the
-/// `pImageIndices` and `pSwapchains` members of [`p_present_info`],
-/// that are available before [`queue_present_khr`] is executed, are
-/// automatically made visible to the read access performed by the presentation
-/// engine.
-/// This automatic visibility operation for an image happens-after the semaphore
-/// signal operation, and happens-before the presentation engine accesses the
-/// image.Queueing an image for presentation defines a set of *queue operations*,
-/// including waiting on the semaphores and submitting a presentation request to
-/// the presentation engine.
-/// However, the scope of this set of queue operations does not include the
-/// actual processing of the image by the presentation engine.If [`queue_present_khr`] fails to
+///Any writes to memory backing the images referenced by the
+///`pImageIndices` and `pSwapchains` members of [`p_present_info`],
+///that are available before [`queue_present_khr`] is executed, are
+///automatically made visible to the read access performed by the presentation
+///engine.
+///This automatic visibility operation for an image happens-after the semaphore
+///signal operation, and happens-before the presentation engine accesses the
+///image.Queueing an image for presentation defines a set of *queue operations*,
+///including waiting on the semaphores and submitting a presentation request to
+///the presentation engine.
+///However, the scope of this set of queue operations does not include the
+///actual processing of the image by the presentation engine.If [`queue_present_khr`] fails to
 /// enqueue the corresponding set of queue
-/// operations, it  **may**  return `VK_ERROR_OUT_OF_HOST_MEMORY` or
-/// `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
-/// If it does, the implementation  **must**  ensure that the state and contents of
-/// any resources or synchronization primitives referenced is unaffected by the
-/// call or its failure.If [`queue_present_khr`] fails in such a way that the implementation is
-/// unable to make that guarantee, the implementation  **must**  return
-/// `VK_ERROR_DEVICE_LOST`.However, if the presentation request is rejected by the presentation
+///operations, it  **may**  return `VK_ERROR_OUT_OF_HOST_MEMORY` or
+///`VK_ERROR_OUT_OF_DEVICE_MEMORY`.
+///If it does, the implementation  **must**  ensure that the state and contents of
+///any resources or synchronization primitives referenced is unaffected by the
+///call or its failure.If [`queue_present_khr`] fails in such a way that the implementation is
+///unable to make that guarantee, the implementation  **must**  return
+///`VK_ERROR_DEVICE_LOST`.However, if the presentation request is rejected by the presentation
 /// engine
-/// with an error `VK_ERROR_OUT_OF_DATE_KHR`,
-/// `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`,
-/// or `VK_ERROR_SURFACE_LOST_KHR`, the set of queue operations are still
-/// considered to be enqueued and thus any semaphore wait operation specified in
-/// [`PresentInfoKHR`] will execute when the corresponding queue operation
-/// is complete.Calls to [`queue_present_khr`] **may**  block, but  **must**  return in finite
-/// time.If any `swapchain` member of [`p_present_info`] was created with
-/// `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`,
-/// `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` will be returned if that
-/// swapchain does not have exclusive full-screen access, possibly for
-/// implementation-specific reasons outside of the application’s control.
-/// ## Valid Usage (Implicit)
+///with an error `VK_ERROR_OUT_OF_DATE_KHR`,
+///`VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`,
+///or `VK_ERROR_SURFACE_LOST_KHR`, the set of queue operations are still
+///considered to be enqueued and thus any semaphore wait operation specified in
+///[`PresentInfoKHR`] will execute when the corresponding queue operation
+///is complete.Calls to [`queue_present_khr`] **may**  block, but  **must**  return in finite
+///time.If any `swapchain` member of [`p_present_info`] was created with
+///`VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`,
+///`VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` will be returned if that
+///swapchain does not have exclusive full-screen access, possibly for
+///implementation-specific reasons outside of the application’s control.
+///## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - [`p_present_info`] **must**  be a valid pointer to a valid [`PresentInfoKHR`] structure
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`queue`] **must**  be externally synchronized
 /// - Host access to `pPresentInfo->pWaitSemaphores`[]  **must**  be externally synchronized
 /// - Host access to `pPresentInfo->pSwapchains`[]  **must**  be externally synchronized
 ///
-/// ## Command Properties
-/// ## Return Codes
+///## Command Properties
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_SUBOPTIMAL_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`PresentInfoKHR`]
 /// - [`Queue`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkQueuePresentKHR")]
 pub type FNQueuePresentKhr = Option<
     for<'lt> unsafe extern "system" fn(queue: Queue, p_present_info: *const PresentInfoKHR<'lt>) -> VulkanResultCodes,
@@ -999,7 +997,7 @@ pub type FNQueuePresentKhr = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkImageView*                                pView);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the image view.
 /// - [`p_create_info`] is a pointer to a [`ImageViewCreateInfo`] structure containing parameters to
 ///   be used to create the image view.
@@ -1007,31 +1005,31 @@ pub type FNQueuePresentKhr = Option<
 ///   chapter.
 /// - [`p_view`] is a pointer to a [`ImageView`] handle in which the resulting image view object is
 ///   returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`ImageViewCreateInfo`] structure
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`p_view`] **must**  be a valid pointer to a [`ImageView`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_0`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`ImageView`]
 /// - [`ImageViewCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateImageView")]
 pub type FNCreateSwapchainImageView = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1056,7 +1054,7 @@ pub type FNCreateSwapchainImageView = Option<
 ///    VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR = 0x00000004,
 ///} VkSwapchainCreateFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`SPLIT_INSTANCE_BIND_REGIONS`] specifies that images created from the swapchain (i.e. with
 ///   the `swapchain` member of [`ImageSwapchainCreateInfoKHR`] set to this swapchain’s handle)
 ///   **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
@@ -1068,20 +1066,19 @@ pub type FNCreateSwapchainImageView = Option<
 ///   the swapchain  **can**  be created with usage flags that are not supported for the format the
 ///   swapchain is created with but are supported for at least one of the allowed image view
 ///   formats.
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`SwapchainCreateFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCreateFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SwapchainCreateFlagBitsKHR(u32);
@@ -1150,7 +1147,7 @@ impl SwapchainCreateFlagBitsKHR {
 ///    VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR = 0x00000004,
 ///} VkSwapchainCreateFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`SPLIT_INSTANCE_BIND_REGIONS`] specifies that images created from the swapchain (i.e. with
 ///   the `swapchain` member of [`ImageSwapchainCreateInfoKHR`] set to this swapchain’s handle)
 ///   **must**  use `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`.
@@ -1162,20 +1159,19 @@ impl SwapchainCreateFlagBitsKHR {
 ///   the swapchain  **can**  be created with usage flags that are not supported for the format the
 ///   swapchain is created with but are supported for at least one of the allowed image view
 ///   formats.
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`SwapchainCreateFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCreateFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SwapchainCreateFlagsKHR(u32);
@@ -1494,7 +1490,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 ///    VkSwapchainKHR                   oldSwapchain;
 ///} VkSwapchainCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`SwapchainCreateFlagBitsKHR`] indicating parameters of the
@@ -1544,19 +1540,19 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 ///   associated with [`surface`]. Providing a valid [`old_swapchain`] **may**  aid in the resource
 ///   reuse, and also allows the application to still present any images that are already acquired
 ///   from it.
-/// # Description
-/// Upon calling [`create_swapchain_khr`] with an [`old_swapchain`] that is
-/// not [`crate::Handle::null`], [`old_swapchain`] is retired — even if creation
-/// of the new swapchain fails.
-/// The new swapchain is created in the non-retired state whether or not
-/// [`old_swapchain`] is [`crate::Handle::null`].Upon calling [`create_swapchain_khr`] with an
+///# Description
+///Upon calling [`create_swapchain_khr`] with an [`old_swapchain`] that is
+///not [`crate::Handle::null`], [`old_swapchain`] is retired — even if creation
+///of the new swapchain fails.
+///The new swapchain is created in the non-retired state whether or not
+///[`old_swapchain`] is [`crate::Handle::null`].Upon calling [`create_swapchain_khr`] with an
 /// [`old_swapchain`] that is
-/// not [`crate::Handle::null`], any images from [`old_swapchain`] that are not
-/// acquired by the application  **may**  be freed by the implementation, which  **may**
-/// occur even if creation of the new swapchain fails.
-/// The application  **can**  destroy [`old_swapchain`] to free all memory
-/// associated with [`old_swapchain`].
-/// ## Valid Usage
+///not [`crate::Handle::null`], any images from [`old_swapchain`] that are not
+///acquired by the application  **may**  be freed by the implementation, which  **may**
+///occur even if creation of the new swapchain fails.
+///The application  **can**  destroy [`old_swapchain`] to free all memory
+///associated with [`old_swapchain`].
+///## Valid Usage
 /// - [`surface`] **must**  be a surface that is supported by the device as determined using
 ///   [`get_physical_device_surface_support_khr`]
 /// - [`min_image_count`] **must**  be less than or equal to the value returned in the
@@ -1632,7 +1628,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 ///   [`SurfaceFullScreenExclusiveWin32InfoEXT`] structure  **must**  be included in the [`p_next`]
 ///   chain
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`DeviceGroupSwapchainCreateInfoKHR`],
@@ -1656,7 +1652,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 ///   retrieved from [`surface`]
 /// - Both of [`old_swapchain`], and [`surface`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`Bool32`]
 /// - [`ColorSpaceKHR`]
@@ -1674,16 +1670,15 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 /// - [`create_shared_swapchains_khr`]
 /// - [`create_swapchain_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2086,7 +2081,7 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 ///    VkResult*                pResults;
 ///} VkPresentInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`wait_semaphore_count`] is the number of semaphores to wait for before issuing the present
@@ -2105,13 +2100,13 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 ///   `NULL` for [`results`]. If non-`NULL`, each entry in [`results`] will be set to the
 ///   [`VulkanResultCodes`] for presenting the swapchain corresponding to the same index in
 ///   [`swapchains`].
-/// # Description
-/// Before an application  **can**  present an image, the image’s layout  **must**  be
-/// transitioned to the `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
-/// layout, or for a shared presentable image the
-/// `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
-/// layout.
-/// ## Valid Usage
+///# Description
+///Before an application  **can**  present an image, the image’s layout  **must**  be
+///transitioned to the `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
+///layout, or for a shared presentable image the
+///`VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
+///layout.
+///## Valid Usage
 /// - Each element of [`image_indices`] **must**  be the index of a presentable image acquired from
 ///   the swapchain specified by the corresponding element of the [`swapchains`] array, and the
 ///   presented image subresource  **must**  be in the `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR` or
@@ -2120,7 +2115,7 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 /// - If a [`PresentIdKHR`] structure is included in the [`p_next`] chain, and the [`presentId`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentId)
 ///   feature is not enabled, each `presentIds` entry in that structure  **must**  be NULL
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`DeviceGroupPresentInfoKHR`],
@@ -2139,7 +2134,7 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 /// - Both of the elements of [`swapchains`], and the elements of [`wait_semaphores`] that are valid
 ///   handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from
 ///   the same [`Instance`]
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`VulkanResultCodes`]
 /// - [`Semaphore`]
@@ -2147,16 +2142,15 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
 /// - [`SwapchainKHR`]
 /// - [`queue_present_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PresentInfoKHR<'lt> {
     ///Lifetime field
@@ -2388,59 +2382,59 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSwapchainKHR*                             pSwapchain);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device to create the swapchain for.
     /// - [`p_create_info`] is a pointer to a [`SwapchainCreateInfoKHR`] structure specifying the
     ///   parameters of the created swapchain.
     /// - [`p_allocator`] is the allocator used for host memory allocated for the swapchain object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
     /// - [`p_swapchain`] is a pointer to a [`SwapchainKHR`] handle in which the created swapchain
     ///   object will be returned.
-    /// # Description
-    /// As mentioned above, if [`create_swapchain_khr`] succeeds, it will return a
-    /// handle to a swapchain containing an array of at least
-    /// `pCreateInfo->minImageCount` presentable images.While acquired by the application,
+    ///# Description
+    ///As mentioned above, if [`create_swapchain_khr`] succeeds, it will return a
+    ///handle to a swapchain containing an array of at least
+    ///`pCreateInfo->minImageCount` presentable images.While acquired by the application,
     /// presentable images  **can**  be used in any
-    /// way that equivalent non-presentable images  **can**  be used.
-    /// A presentable image is equivalent to a non-presentable image created with
-    /// the following [`ImageCreateInfo`] parameters:The `pCreateInfo->surface` **must**  not be
+    ///way that equivalent non-presentable images  **can**  be used.
+    ///A presentable image is equivalent to a non-presentable image created with
+    ///the following [`ImageCreateInfo`] parameters:The `pCreateInfo->surface` **must**  not be
     /// destroyed until after the
-    /// swapchain is destroyed.If `pCreateInfo->oldSwapchain` is [`crate::Handle::null`], and the
+    ///swapchain is destroyed.If `pCreateInfo->oldSwapchain` is [`crate::Handle::null`], and the
     /// native
-    /// window referred to by `pCreateInfo->surface` is already associated with
-    /// a Vulkan swapchain, `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be
-    /// returned.If the native window referred to by `pCreateInfo->surface` is already
-    /// associated with a non-Vulkan graphics API surface,
-    /// `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be returned.The native window referred to by
+    ///window referred to by `pCreateInfo->surface` is already associated with
+    ///a Vulkan swapchain, `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be
+    ///returned.If the native window referred to by `pCreateInfo->surface` is already
+    ///associated with a non-Vulkan graphics API surface,
+    ///`VK_ERROR_NATIVE_WINDOW_IN_USE_KHR` **must**  be returned.The native window referred to by
     /// `pCreateInfo->surface` **must**  not become
-    /// associated with a non-Vulkan graphics API surface before all associated
-    /// Vulkan swapchains have been destroyed.[`create_swapchain_khr`] will return
+    ///associated with a non-Vulkan graphics API surface before all associated
+    ///Vulkan swapchains have been destroyed.[`create_swapchain_khr`] will return
     /// `VK_ERROR_DEVICE_LOST` if the
-    /// logical device was lost.
-    /// The [`SwapchainKHR`] is a child of the [`device`], and  **must**  not be
-    /// destroyed before the [`device`].
-    /// However, [`SurfaceKHR`] is not a child of any [`Device`] and is not
-    /// affected by the lost device.
-    /// After successfully recreating a [`Device`], the same [`SurfaceKHR`] **can**  be used to
+    ///logical device was lost.
+    ///The [`SwapchainKHR`] is a child of the [`device`], and  **must**  not be
+    ///destroyed before the [`device`].
+    ///However, [`SurfaceKHR`] is not a child of any [`Device`] and is not
+    ///affected by the lost device.
+    ///After successfully recreating a [`Device`], the same [`SurfaceKHR`] **can**  be used to
     /// create a new [`SwapchainKHR`], provided the previous one
-    /// was destroyed.If the `oldSwapchain` parameter of [`p_create_info`] is a valid
-    /// swapchain, which has exclusive full-screen access, that access is released
-    /// from `pCreateInfo->oldSwapchain`.
-    /// If the command succeeds in this case, the newly created swapchain will
-    /// automatically acquire exclusive full-screen access from
-    /// `pCreateInfo->oldSwapchain`.In some cases, swapchain creation  **may**  fail if exclusive
+    ///was destroyed.If the `oldSwapchain` parameter of [`p_create_info`] is a valid
+    ///swapchain, which has exclusive full-screen access, that access is released
+    ///from `pCreateInfo->oldSwapchain`.
+    ///If the command succeeds in this case, the newly created swapchain will
+    ///automatically acquire exclusive full-screen access from
+    ///`pCreateInfo->oldSwapchain`.In some cases, swapchain creation  **may**  fail if exclusive
     /// full-screen mode is
-    /// requested for application control, but for some implementation-specific
-    /// reason exclusive full-screen access is unavailable for the particular
-    /// combination of parameters provided.
-    /// If this occurs, `VK_ERROR_INITIALIZATION_FAILED` will be returned.When the [`SurfaceKHR`] in
+    ///requested for application control, but for some implementation-specific
+    ///reason exclusive full-screen access is unavailable for the particular
+    ///combination of parameters provided.
+    ///If this occurs, `VK_ERROR_INITIALIZATION_FAILED` will be returned.When the [`SurfaceKHR`] in
     /// [`SwapchainCreateInfoKHR`] is a display
-    /// surface, then the [`DisplayModeKHR`] in display surface’s
-    /// [`DisplaySurfaceCreateInfoKHR`] is associated with a particular
-    /// [`DisplayKHR`].
-    /// Swapchain creation  **may**  fail if that [`DisplayKHR`] is not acquired by
-    /// the application.
-    /// In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
-    /// ## Valid Usage (Implicit)
+    ///surface, then the [`DisplayModeKHR`] in display surface’s
+    ///[`DisplaySurfaceCreateInfoKHR`] is associated with a particular
+    ///[`DisplayKHR`].
+    ///Swapchain creation  **may**  fail if that [`DisplayKHR`] is not acquired by
+    ///the application.
+    ///In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`SwapchainCreateInfoKHR`]
     ///   structure
@@ -2448,29 +2442,29 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_swapchain`] **must**  be a valid pointer to a [`SwapchainKHR`] handle
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to `pCreateInfo->surface` **must**  be externally synchronized
     /// - Host access to `pCreateInfo->oldSwapchain` **must**  be externally synchronized
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`  - `VK_ERROR_INITIALIZATION_FAILED`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_swapchain`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SwapchainCreateInfoKHR`]
     /// - [`SwapchainKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateSwapchainKHR")]
     #[track_caller]
@@ -2521,31 +2515,31 @@ impl Device {
     ///    VkSwapchainKHR                              swapchain,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the [`Device`] associated with [`swapchain`].
     /// - [`swapchain`] is the swapchain to destroy.
     /// - [`p_allocator`] is the allocator used for host memory allocated for the swapchain object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
-    /// # Description
-    /// The application  **must**  not destroy a swapchain until after completion of all
-    /// outstanding operations on images that were acquired from the swapchain.
-    /// [`swapchain`] and all associated [`Image`] handles are destroyed, and
+    ///# Description
+    ///The application  **must**  not destroy a swapchain until after completion of all
+    ///outstanding operations on images that were acquired from the swapchain.
+    ///[`swapchain`] and all associated [`Image`] handles are destroyed, and
     /// **must**  not be acquired or used any more by the application.
-    /// The memory of each [`Image`] will only be freed after that image is no
-    /// longer used by the presentation engine.
-    /// For example, if one image of the swapchain is being displayed in a window,
-    /// the memory for that image  **may**  not be freed until the window is destroyed,
-    /// or another swapchain is created for the window.
-    /// Destroying the swapchain does not invalidate the parent [`SurfaceKHR`],
-    /// and a new swapchain  **can**  be created with it.When a swapchain associated with a display
+    ///The memory of each [`Image`] will only be freed after that image is no
+    ///longer used by the presentation engine.
+    ///For example, if one image of the swapchain is being displayed in a window,
+    ///the memory for that image  **may**  not be freed until the window is destroyed,
+    ///or another swapchain is created for the window.
+    ///Destroying the swapchain does not invalidate the parent [`SurfaceKHR`],
+    ///and a new swapchain  **can**  be created with it.When a swapchain associated with a display
     /// surface is destroyed, if the
-    /// image most recently presented to the display surface is from the swapchain
-    /// being destroyed, then either any display resources modified by presenting
-    /// images from any swapchain associated with the display surface  **must**  be
-    /// reverted by the implementation to their state prior to the first present
-    /// performed on one of these swapchains, or such resources  **must**  be left in
-    /// their current state.If [`swapchain`] has exclusive full-screen access, it is released before
-    /// the swapchain is destroyed.
-    /// ## Valid Usage
+    ///image most recently presented to the display surface is from the swapchain
+    ///being destroyed, then either any display resources modified by presenting
+    ///images from any swapchain associated with the display surface  **must**  be
+    ///reverted by the implementation to their state prior to the first present
+    ///performed on one of these swapchains, or such resources  **must**  be left in
+    ///their current state.If [`swapchain`] has exclusive full-screen access, it is released before
+    ///the swapchain is destroyed.
+    ///## Valid Usage
     /// - All uses of presentable images acquired from [`swapchain`] **must**  have completed
     ///   execution
     /// - If [`AllocationCallbacks`] were provided when [`swapchain`] was created, a compatible set
@@ -2553,7 +2547,7 @@ impl Device {
     /// - If no [`AllocationCallbacks`] were provided when [`swapchain`] was created,
     ///   [`p_allocator`] **must**  be `NULL`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`swapchain`] is not [`crate::Handle::null`], [`swapchain`] **must**  be a valid
     ///   [`SwapchainKHR`] handle
@@ -2562,21 +2556,21 @@ impl Device {
     /// - Both of [`device`], and [`swapchain`] that are valid handles of non-ignored parameters
     ///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`swapchain`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_swapchain`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroySwapchainKHR")]
     #[track_caller]
@@ -2620,25 +2614,25 @@ impl SwapchainKHR {
     ///    uint32_t*                                   pSwapchainImageCount,
     ///    VkImage*                                    pSwapchainImages);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device associated with [`swapchain`].
     /// - [`swapchain`] is the swapchain to query.
     /// - [`p_swapchain_image_count`] is a pointer to an integer related to the number of
     ///   presentable images available or queried, as described below.
     /// - [`p_swapchain_images`] is either `NULL` or a pointer to an array of [`Image`] handles.
-    /// # Description
-    /// If [`p_swapchain_images`] is `NULL`, then the number of presentable images
-    /// for [`swapchain`] is returned in [`p_swapchain_image_count`].
-    /// Otherwise, [`p_swapchain_image_count`] **must**  point to a variable set by the
-    /// user to the number of elements in the [`p_swapchain_images`] array, and on
-    /// return the variable is overwritten with the number of structures actually
-    /// written to [`p_swapchain_images`].
-    /// If the value of [`p_swapchain_image_count`] is less than the number of
-    /// presentable images for [`swapchain`], at most [`p_swapchain_image_count`]
-    /// structures will be written, and `VK_INCOMPLETE` will be returned instead
-    /// of `VK_SUCCESS`, to indicate that not all the available presentable
-    /// images were returned.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///If [`p_swapchain_images`] is `NULL`, then the number of presentable images
+    ///for [`swapchain`] is returned in [`p_swapchain_image_count`].
+    ///Otherwise, [`p_swapchain_image_count`] **must**  point to a variable set by the
+    ///user to the number of elements in the [`p_swapchain_images`] array, and on
+    ///return the variable is overwritten with the number of structures actually
+    ///written to [`p_swapchain_images`].
+    ///If the value of [`p_swapchain_image_count`] is less than the number of
+    ///presentable images for [`swapchain`], at most [`p_swapchain_image_count`]
+    ///structures will be written, and `VK_INCOMPLETE` will be returned instead
+    ///of `VK_SUCCESS`, to indicate that not all the available presentable
+    ///images were returned.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
     /// - [`p_swapchain_image_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -2648,22 +2642,22 @@ impl SwapchainKHR {
     /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
     ///   from the same [`Instance`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_swapchain`]
     /// - [`Device`]
     /// - [`Image`]
     /// - [`SwapchainKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetSwapchainImagesKHR")]
     #[track_caller]
@@ -2730,7 +2724,7 @@ impl Device {
     ///    VkFence                                     fence,
     ///    uint32_t*                                   pImageIndex);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device associated with [`swapchain`].
     /// - [`swapchain`] is the non-retired swapchain from which an image is being acquired.
     /// - [`timeout`] specifies how long the function waits, in nanoseconds, if no image is
@@ -2740,8 +2734,8 @@ impl Device {
     /// - [`p_image_index`] is a pointer to a `uint32_t` in which the index of the next image to use
     ///   (i.e. an index into the array of images returned by [`get_swapchain_images_khr`]) is
     ///   returned.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`swapchain`] **must**  not be in the retired state
     /// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  be unsignaled
     /// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  not have any uncompleted
@@ -2757,7 +2751,7 @@ impl Device {
     ///   [`swapchain`], [`timeout`] **must**  not be `UINT64_MAX`
     /// - [`semaphore`] **must**  have a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
     /// - If [`semaphore`] is not [`crate::Handle::null`], [`semaphore`] **must**  be a valid
@@ -2772,30 +2766,30 @@ impl Device {
     /// - Both of [`device`], and [`swapchain`] that are valid handles of non-ignored parameters
     ///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`swapchain`] **must**  be externally synchronized
     /// - Host access to [`semaphore`] **must**  be externally synchronized
     /// - Host access to [`fence`] **must**  be externally synchronized
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_TIMEOUT`  - `VK_NOT_READY`  - `VK_SUBOPTIMAL_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_swapchain`]
     /// - [`Device`]
     /// - [`Fence`]
     /// - [`Semaphore`]
     /// - [`SwapchainKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkAcquireNextImageKHR")]
     #[track_caller]
@@ -2849,7 +2843,7 @@ impl SwapchainImage {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkImageView*                                pView);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the image view.
     /// - [`p_create_info`] is a pointer to a [`ImageViewCreateInfo`] structure containing
     ///   parameters to be used to create the image view.
@@ -2857,8 +2851,8 @@ impl SwapchainImage {
     ///   chapter.
     /// - [`p_view`] is a pointer to a [`ImageView`] handle in which the resulting image view object
     ///   is returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`ImageViewCreateInfo`]
     ///   structure
@@ -2866,23 +2860,23 @@ impl SwapchainImage {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_view`] **must**  be a valid pointer to a [`ImageView`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_0`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`ImageView`]
     /// - [`ImageViewCreateInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateImageView")]
     #[track_caller]
@@ -2934,13 +2928,13 @@ impl Queue {
     ///    VkQueue                                     queue,
     ///    const VkPresentInfoKHR*                     pPresentInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`queue`] is a queue that is capable of presentation to the target surface’s platform on
     ///   the same device as the image’s swapchain.
     /// - [`p_present_info`] is a pointer to a [`PresentInfoKHR`] structure specifying parameters of
     ///   the presentation.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - Each element of `pSwapchains` member of [`p_present_info`] **must**  be a swapchain that
     ///   is created for a surface for which presentation is supported from [`queue`] as determined
     ///   using a call to [`get_physical_device_surface_support_khr`]
@@ -2957,65 +2951,65 @@ impl Queue {
     /// - All elements of the `pWaitSemaphores` member of [`p_present_info`] **must**  reference a
     ///   semaphore signal operation that has been submitted for execution and any semaphore signal
     ///   operations on which it depends (if any)  **must**  have also been submitted for execution
-    /// Any writes to memory backing the images referenced by the
-    /// `pImageIndices` and `pSwapchains` members of [`p_present_info`],
-    /// that are available before [`queue_present_khr`] is executed, are
-    /// automatically made visible to the read access performed by the presentation
-    /// engine.
-    /// This automatic visibility operation for an image happens-after the semaphore
-    /// signal operation, and happens-before the presentation engine accesses the
-    /// image.Queueing an image for presentation defines a set of *queue operations*,
-    /// including waiting on the semaphores and submitting a presentation request to
-    /// the presentation engine.
-    /// However, the scope of this set of queue operations does not include the
-    /// actual processing of the image by the presentation engine.If [`queue_present_khr`] fails to
+    ///Any writes to memory backing the images referenced by the
+    ///`pImageIndices` and `pSwapchains` members of [`p_present_info`],
+    ///that are available before [`queue_present_khr`] is executed, are
+    ///automatically made visible to the read access performed by the presentation
+    ///engine.
+    ///This automatic visibility operation for an image happens-after the semaphore
+    ///signal operation, and happens-before the presentation engine accesses the
+    ///image.Queueing an image for presentation defines a set of *queue operations*,
+    ///including waiting on the semaphores and submitting a presentation request to
+    ///the presentation engine.
+    ///However, the scope of this set of queue operations does not include the
+    ///actual processing of the image by the presentation engine.If [`queue_present_khr`] fails to
     /// enqueue the corresponding set of queue
-    /// operations, it  **may**  return `VK_ERROR_OUT_OF_HOST_MEMORY` or
-    /// `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
-    /// If it does, the implementation  **must**  ensure that the state and contents of
-    /// any resources or synchronization primitives referenced is unaffected by the
-    /// call or its failure.If [`queue_present_khr`] fails in such a way that the implementation is
-    /// unable to make that guarantee, the implementation  **must**  return
-    /// `VK_ERROR_DEVICE_LOST`.However, if the presentation request is rejected by the presentation
+    ///operations, it  **may**  return `VK_ERROR_OUT_OF_HOST_MEMORY` or
+    ///`VK_ERROR_OUT_OF_DEVICE_MEMORY`.
+    ///If it does, the implementation  **must**  ensure that the state and contents of
+    ///any resources or synchronization primitives referenced is unaffected by the
+    ///call or its failure.If [`queue_present_khr`] fails in such a way that the implementation is
+    ///unable to make that guarantee, the implementation  **must**  return
+    ///`VK_ERROR_DEVICE_LOST`.However, if the presentation request is rejected by the presentation
     /// engine
-    /// with an error `VK_ERROR_OUT_OF_DATE_KHR`,
-    /// `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`,
-    /// or `VK_ERROR_SURFACE_LOST_KHR`, the set of queue operations are still
-    /// considered to be enqueued and thus any semaphore wait operation specified in
-    /// [`PresentInfoKHR`] will execute when the corresponding queue operation
-    /// is complete.Calls to [`queue_present_khr`] **may**  block, but  **must**  return in finite
-    /// time.If any `swapchain` member of [`p_present_info`] was created with
-    /// `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`,
-    /// `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` will be returned if that
-    /// swapchain does not have exclusive full-screen access, possibly for
-    /// implementation-specific reasons outside of the application’s control.
-    /// ## Valid Usage (Implicit)
+    ///with an error `VK_ERROR_OUT_OF_DATE_KHR`,
+    ///`VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`,
+    ///or `VK_ERROR_SURFACE_LOST_KHR`, the set of queue operations are still
+    ///considered to be enqueued and thus any semaphore wait operation specified in
+    ///[`PresentInfoKHR`] will execute when the corresponding queue operation
+    ///is complete.Calls to [`queue_present_khr`] **may**  block, but  **must**  return in finite
+    ///time.If any `swapchain` member of [`p_present_info`] was created with
+    ///`VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`,
+    ///`VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` will be returned if that
+    ///swapchain does not have exclusive full-screen access, possibly for
+    ///implementation-specific reasons outside of the application’s control.
+    ///## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - [`p_present_info`] **must**  be a valid pointer to a valid [`PresentInfoKHR`] structure
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`queue`] **must**  be externally synchronized
     /// - Host access to `pPresentInfo->pWaitSemaphores`[]  **must**  be externally synchronized
     /// - Host access to `pPresentInfo->pSwapchains`[]  **must**  be externally synchronized
     ///
-    /// ## Command Properties
-    /// ## Return Codes
+    ///## Command Properties
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_SUBOPTIMAL_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_swapchain`]
     /// - [`PresentInfoKHR`]
     /// - [`Queue`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueuePresentKHR")]
     #[track_caller]
@@ -3054,7 +3048,7 @@ impl Queue {
 ///// Provided by VK_KHR_swapchain
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSwapchainKHR)
 ///```
-/// # Related
+///# Related
 /// - [`VK_KHR_swapchain`]
 /// - [`AcquireNextImageInfoKHR`]
 /// - [`BindImageMemorySwapchainInfoKHR`]
@@ -3077,16 +3071,15 @@ impl Queue {
 /// - [`set_local_dimming_amd`]
 /// - [`wait_for_present_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct SwapchainKHR(pub u64);
 impl SwapchainKHR {
@@ -3172,7 +3165,7 @@ impl Unique<SwapchainKHR> {
 ///// Provided by VK_VERSION_1_0
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkImage)
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_0`]
 /// - [`BindImageMemoryInfo`]
 /// - [`BlitImageInfo2`]
@@ -3205,16 +3198,15 @@ impl Unique<SwapchainKHR> {
 /// - [`get_image_subresource_layout`]
 /// - [`get_swapchain_images_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImage")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct SwapchainImage(pub u64);
 impl SwapchainImage {
@@ -3298,7 +3290,7 @@ impl Unique<SwapchainImage> {
 ///// Provided by VK_VERSION_1_0
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkImageView)
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_0`]
 /// - [`DescriptorImageInfo`]
 /// - [`FramebufferCreateInfo`]
@@ -3314,16 +3306,15 @@ impl Unique<SwapchainImage> {
 /// - [`destroy_image_view`]
 /// - [`get_image_view_address_nvx`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageView")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct SwapchainImageView(pub u64);
 impl SwapchainImageView {

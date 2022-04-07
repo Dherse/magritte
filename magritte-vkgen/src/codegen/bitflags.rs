@@ -63,9 +63,8 @@ impl<'a> BitFlag<'a> {
         // the name as an identifier
         let name = self.as_ident();
 
-        // import serde and bytemuck if needed
+        // import serde if needed
         imports.serde();
-        imports.bytemuck();
 
         // generate the doc for the bitflag
         let variant_docs = self.generate_doc(source, doc, out).unwrap_or_default();
@@ -90,7 +89,6 @@ impl<'a> BitFlag<'a> {
             out
 
             #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]
             pub struct #name(#ty);

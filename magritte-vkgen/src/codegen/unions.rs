@@ -50,7 +50,6 @@ impl<'a> Union<'a> {
             out
 
             #copy
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[repr(C)]
             pub union #name #lifetime {
                 #(#fields),*

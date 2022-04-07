@@ -21,6 +21,16 @@ impl Unique<SwapchainImage> {
     }
 }
 
+
+#[cfg(feature = "VK_KHR_swapchain")]
+impl Unique<SwapchainImageView> {
+    /// Transforms a swapchain image into a regular image
+    #[inline]
+    pub const fn as_raw_image_view(&self) -> ImageView {
+        ImageView(self.this.0)
+    }
+}
+
 #[cfg(feature = "VK_KHR_swapchain")]
 impl Unique<ImageView> {
     pub fn to_swapchain_view(self, swapchain: &Unique<SwapchainImage>) -> Unique<SwapchainImageView> {

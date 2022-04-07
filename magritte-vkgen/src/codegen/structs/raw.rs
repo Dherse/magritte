@@ -109,7 +109,6 @@ impl<'a> Struct<'a> {
             #eq_ord
             #partial_eq_ord
             #hash
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #serde
             #[repr(C)]
             pub struct #name #lifetime {

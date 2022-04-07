@@ -48,6 +48,11 @@ features = [
     'union',
 ]
 optional = true
+
+[dependencies.bytemuck]
+version = '1.9.1'
+features = [ ]
+
 [build-dependencies.bindgen]
 version = '0.59.2'
 features = []

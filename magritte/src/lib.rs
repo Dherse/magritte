@@ -18,10 +18,13 @@ pub mod helpers;
 #[cfg(feature = "libloading")]
 pub mod loading;
 pub mod results;
+pub mod size;
 #[cfg(feature = "validation")]
 pub mod validation;
 #[cfg(feature = "window")]
 pub mod window;
+pub mod memory;
+pub mod spv;
 
 use generated::vulkan1_0::VulkanResultCodes;
 pub use generated::{extensions::Extensions, *};

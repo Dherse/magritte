@@ -36,6 +36,9 @@ pub struct Vulkan {
 
     /// The graphics queue we will render on
     pub graphics_queue: Unique<Queue>,
+
+    /// The index of the queue family
+    pub queue_family_index: u32,
 }
 
 impl Vulkan {
@@ -140,8 +143,9 @@ impl Vulkan {
         // We give it the extra parameter `extensions` as it will keep it as a "metadata".
         let instance = unsafe { entry.create_instance(&instance_create_info, None, extensions)? };
 
-        // What is that `as_raw`??? It's simple, Magritte wraps Vulkan structures into a `Unique` which helps
-        // to enforce most (**not** all) lifetimes. `as_raw` simply lets you get back to the original Vulkan value.
+        // What is that `as_raw`??? It's simple, Magritte wraps Vulkan structures into a `Unique` which
+        // helps to enforce most (**not** all) lifetimes. `as_raw` simply lets you get back to the
+        // original Vulkan value.
         info!("We have created the instance: {:?}", instance.as_raw());
 
         // The final step in getting debug messages: creating the debug utils messenger.
@@ -247,6 +251,7 @@ impl Vulkan {
                 physical_device,
                 device,
                 graphics_queue,
+                queue_family_index,
             },
             surface,
         ))
@@ -280,5 +285,10 @@ impl Vulkan {
     /// Get a reference to the vulkan's graphics queue.
     pub fn graphics_queue(&self) -> &Unique<Queue> {
         &self.graphics_queue
+    }
+
+    /// Get a reference to the vulkan's queue family index.
+    pub fn queue_family_index(&self) -> u32 {
+        self.queue_family_index
     }
 }

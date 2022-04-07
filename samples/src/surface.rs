@@ -1,31 +1,46 @@
-use std::sync::Arc;
-
 use log::info;
 use magritte::{
     extensions::{
         khr_display::SurfaceTransformFlagsKHR,
         khr_surface::{CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR},
-        khr_swapchain::{SwapchainCreateInfoKHR, SwapchainKHR},
+        khr_swapchain::{SwapchainCreateInfoKHR, SwapchainKHR, SwapchainImage, SwapchainImageView},
     },
-    vulkan1_0::{Extent2D, ImageUsageFlags, SharingMode, VulkanResultCodes},
-    AsRaw, Unique,
+    vulkan1_0::{Extent2D, ImageUsageFlags, SharingMode, VulkanResultCodes, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags, Format, Semaphore},
+    AsRaw, Unique, SmallVec,
 };
 
 use crate::vulkan::Vulkan;
 
+/// Helper for dealing with the surface and the swapchain
 pub struct Surface {
-    /// The reference to the base state
-    pub vulkan: Arc<Vulkan>,
-
     /// The surface we will draw on
     pub surface: Unique<SurfaceKHR>,
 
     /// The swapchain we will draw with
     pub swapchain: Option<Unique<SwapchainKHR>>,
+
+    /// The swapchain images
+    pub swapchain_images: SmallVec<Unique<SwapchainImage>>,
+
+    /// The swapchain image views
+    pub swapchain_image_views: SmallVec<Unique<SwapchainImageView>>,
+
+    /// The size of the surface
+    pub extent: Extent2D,
+
+    /// The format of the surface
+    pub format: Format,
 }
 
 impl Drop for Surface {
     fn drop(&mut self) {
+        // First we destroy the views
+        self.swapchain_image_views.clear();
+
+        // Then the associated images
+        self.swapchain_images.clear();
+
+        // Then the swapchain itself
         // This simply ensures that the swapchain is destroyed before the rest of this structure.
         self.swapchain.take();
     }
@@ -33,7 +48,7 @@ impl Drop for Surface {
 
 impl Surface {
     /// Creates a new easier to use wrapper for surfaces and swapchains
-    pub fn new(vulkan: &Arc<Vulkan>, surface: Unique<SurfaceKHR>) -> Result<Self, VulkanResultCodes> {
+    pub fn new(vulkan: &Vulkan, surface: Unique<SurfaceKHR>) -> Result<Self, VulkanResultCodes> {
         // First we want to list the supported format to find the one we want to use.
         let (mut surface_formats, _) = unsafe {
             vulkan
@@ -145,25 +160,108 @@ impl Surface {
 
         info!("We have created the swapchain: {:?}", swapchain.as_raw());
 
+        // Now we get the images (allocated by Vulkan) that are associated with the swapchain
+        let (swapchain_images, _) = unsafe { swapchain.get_swapchain_images_khr(swapchain.as_raw(), None)? };
+        
+        info!("We have {} swapchain images", swapchain_images.len());
+        
+        // Now we need to create the swapchain image views
+        // For this we need the following for each image:
+        // - The view type, that is, how we think the image will be layed out (in 2D in our case)
+        // - The format (essentially, how many bytes per pixel and the color depth of each pixel)
+        // - How to map the components, you can exchange red and blue for example and look at the result
+        // - What parts of the image we want the view to point to, in this case:
+        //  - the color information
+        //  - at the first mipmap level (since we have only one anyway)
+        //  - in the first array layer (since we have only one anyway)
+        let swapchain_image_views = swapchain_images
+        .iter()
+        .map(|image| {
+            let create_view_info = ImageViewCreateInfo::default()
+                .set_view_type(ImageViewType::_2_D)
+                .set_format(surface_format.format)
+                .set_components(ComponentMapping {
+                    r: ComponentSwizzle::R,
+                    g: ComponentSwizzle::G,
+                    b: ComponentSwizzle::B,
+                    a: ComponentSwizzle::A,
+                })
+                .set_subresource_range(ImageSubresourceRange {
+                    aspect_mask: ImageAspectFlags::COLOR,
+                    base_mip_level: 0,
+                    level_count: 1,
+                    base_array_layer: 0,
+                    layer_count: 1,
+                })
+                .set_image(image.as_raw_image());
+
+            unsafe { image.create_swapchain_image_view(&create_view_info, None).result() }
+        })
+        .collect::<Result<SmallVec<_>, _>>()?;
+
         Ok(Self {
-            vulkan: vulkan.clone(),
             surface,
             swapchain: Some(swapchain),
+            swapchain_images,
+            swapchain_image_views,
+            extent: surface_resolution,
+            format: surface_format.format(),
         })
     }
 
-    /// Get a reference to the surface's vulkan.
-    pub fn vulkan(&self) -> &Vulkan {
-        self.vulkan.as_ref()
+    /// Acquires the next image
+    #[inline]
+    pub fn acquire_next_image(&self, semaphore: &Unique<Semaphore>,) -> Result<usize, VulkanResultCodes> {
+        let (present_index, _) = unsafe {
+            self.swapchain().device().acquire_next_image_khr(
+                self.swapchain().as_raw(),
+                Some(std::u64::MAX),
+                Some(semaphore.as_raw()),
+                None
+            )?
+        };
+
+        Ok(present_index as usize)
     }
 
     /// Get a reference to the surface's surface.
+    #[inline]
     pub fn surface(&self) -> &Unique<SurfaceKHR> {
         &self.surface
     }
 
     /// Get a reference to the surface's swapchain.
-    pub fn swapchain(&self) -> Option<&Unique<SwapchainKHR>> {
-        self.swapchain.as_ref()
+    #[inline]
+    pub fn swapchain(&self) -> &Unique<SwapchainKHR> {
+        self.swapchain.as_ref().unwrap()
+    }
+
+    /// Get a reference to the surface's swapchain images.
+    #[inline]
+    pub fn swapchain_images(&self) -> &SmallVec<Unique<SwapchainImage>> {
+        &self.swapchain_images
+    }
+
+    /// Get a reference to the surface's swapchain image views.
+    #[inline]
+    pub fn swapchain_image_views(&self) -> &SmallVec<Unique<SwapchainImageView>> {
+        &self.swapchain_image_views
+    }
+
+    /// Get a reference to the surface's extent.
+    #[inline]
+    pub fn extent(&self) -> Extent2D {
+        self.extent
+    }
+
+    /// Gets the number of images in the swapchain
+    #[inline]
+    pub fn image_count(&self) -> usize {
+        self.swapchain_images().len()
+    }
+
+    /// Get a reference to the surface's format.
+    pub fn format(&self) -> Format {
+        self.format
     }
 }

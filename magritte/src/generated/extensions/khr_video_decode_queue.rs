@@ -78,8 +78,6 @@ use crate::{
     },
     AsRaw, Unique,
 };
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
@@ -104,12 +102,12 @@ pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkVideoDecodeInfoKHR*                 pFrameInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer to be filled with this function for decode frame
 ///   command.
 /// - [`p_frame_info`] is a pointer to a [`VideoDecodeInfoKHR`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_frame_info`] **must**  be a valid pointer to a valid [`VideoDecodeInfoKHR`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -118,23 +116,23 @@ pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - This command  **must**  only be called outside of a render pass instance
 /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`CommandBuffer`]
 /// - [`VideoDecodeInfoKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDecodeVideoKHR")]
 pub type FNCmdDecodeVideoKhr = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_frame_info: *const VideoDecodeInfoKHR<'lt>),
@@ -151,27 +149,26 @@ pub type FNCmdDecodeVideoKhr = Option<
 ///    VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR = 0x00000002,
 ///} VkVideoDecodeCapabilityFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DPB_AND_OUTPUT_COINCIDE`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
 /// - [`DPB_AND_OUTPUT_DISTINCT`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
-/// An implementation  **must**  report at least one of
-/// [`DPB_AND_OUTPUT_COINCIDE`] or
-/// [`DPB_AND_OUTPUT_DISTINCT`] as
-/// supported.
-/// # Related
+///An implementation  **must**  report at least one of
+///[`DPB_AND_OUTPUT_COINCIDE`] or
+///[`DPB_AND_OUTPUT_DISTINCT`] as
+///supported.
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`VideoDecodeCapabilityFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeCapabilityFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(u32);
@@ -223,22 +220,21 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 ///    VK_VIDEO_DECODE_RESERVED_0_BIT_KHR = 0x00000001,
 ///} VkVideoDecodeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
-/// # Related
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`VideoDecodeFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeFlagBitsKHR(u32);
@@ -284,27 +280,26 @@ impl VideoDecodeFlagBitsKHR {
 ///    VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR = 0x00000002,
 ///} VkVideoDecodeCapabilityFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DPB_AND_OUTPUT_COINCIDE`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
 /// - [`DPB_AND_OUTPUT_DISTINCT`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
-/// An implementation  **must**  report at least one of
-/// [`DPB_AND_OUTPUT_COINCIDE`] or
-/// [`DPB_AND_OUTPUT_DISTINCT`] as
-/// supported.
-/// # Related
+///An implementation  **must**  report at least one of
+///[`DPB_AND_OUTPUT_COINCIDE`] or
+///[`DPB_AND_OUTPUT_DISTINCT`] as
+///supported.
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`VideoDecodeCapabilityFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeCapabilityFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeCapabilityFlagsKHR(u32);
@@ -593,22 +588,21 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
 ///    VK_VIDEO_DECODE_RESERVED_0_BIT_KHR = 0x00000001,
 ///} VkVideoDecodeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
-/// # Related
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`VideoDecodeFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeFlagsKHR(u32);
@@ -883,29 +877,28 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
 ///    VkVideoDecodeCapabilityFlagsKHR    flags;
 ///} VkVideoDecodeCapabilitiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`VideoDecodeCapabilityFlagBitsKHR`] describing supported decoding
 ///   features.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`StructureType`]
 /// - [`VideoDecodeCapabilityFlagsKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeCapabilitiesKHR<'lt> {
     ///Lifetime field
@@ -1008,7 +1001,7 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 ///    const VkVideoReferenceSlotKHR*    pReferenceSlots;
 ///} VkVideoDecodeInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure. All the codec
 ///   specific structures related to each frame(picture parameters, quantization matrix, etc.)
@@ -1042,8 +1035,8 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 /// - [`reference_slots`] is a pointer to an array of [`VideoReferenceSlotKHR`] structures
 ///   specifying the DPB Reference pictures that will be used when this decoding operation is
 ///   executing.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`VideoDecodeH264PictureInfoEXT`] or
@@ -1056,7 +1049,7 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 ///   structure
 /// - If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an
 ///   array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
-/// # Related
+///# Related
 /// - [`VK_KHR_video_decode_queue`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
@@ -1068,16 +1061,15 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
 /// - [`VideoReferenceSlotKHR`]
 /// - [`cmd_decode_video_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeInfoKHR<'lt> {
     ///Lifetime field
@@ -1360,12 +1352,12 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkVideoDecodeInfoKHR*                 pFrameInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer to be filled with this function for decode frame
     ///   command.
     /// - [`p_frame_info`] is a pointer to a [`VideoDecodeInfoKHR`] structure.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_frame_info`] **must**  be a valid pointer to a valid [`VideoDecodeInfoKHR`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -1374,23 +1366,23 @@ impl CommandBuffer {
     /// - This command  **must**  only be called outside of a render pass instance
     /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_video_decode_queue`]
     /// - [`CommandBuffer`]
     /// - [`VideoDecodeInfoKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDecodeVideoKHR")]
     #[track_caller]

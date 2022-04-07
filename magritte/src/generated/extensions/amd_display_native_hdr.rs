@@ -74,32 +74,32 @@ pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkSwapchainKHR                              swapChain,
 ///    VkBool32                                    localDimmingEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device associated with [`swap_chain`].
 /// - [`swap_chain`] handle to enable local dimming.
 /// - [`local_dimming_enable`] specifies whether local dimming is enabled for the swapchain.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swap_chain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - Both of [`device`], and [`swap_chain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-/// ## Valid Usage
+///## Valid Usage
 /// - [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
-/// # Related
+///# Related
 /// - [`VK_AMD_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetLocalDimmingAMD")]
 pub type FNSetLocalDimmingAmd =
     Option<unsafe extern "system" fn(device: Device, swap_chain: SwapchainKHR, local_dimming_enable: Bool32)>;
@@ -114,31 +114,30 @@ pub type FNSetLocalDimmingAmd =
 ///    VkBool32           localDimmingSupport;
 ///} VkDisplayNativeHdrSurfaceCapabilitiesAMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`local_dimming_support`] specifies whether the surface supports local dimming. If this is
 ///   [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to explicitly enable or
 ///   disable local dimming for the surface. Local dimming may also be overriden by
 ///   [`set_local_dimming_amd`] during the lifetime of the swapchain.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
-/// # Related
+///# Related
 /// - [`VK_AMD_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayNativeHdrSurfaceCapabilitiesAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
     ///Lifetime field
@@ -260,35 +259,34 @@ impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
 ///    VkBool32           localDimmingEnable;
 ///} VkSwapchainDisplayNativeHdrCreateInfoAMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`local_dimming_enable`] specifies whether local dimming is enabled for the swapchain.
-/// # Description
-/// If the [`p_next`] chain of [`SwapchainCreateInfoKHR`] does not include
-/// this structure, the default value for [`local_dimming_enable`] is
-/// [`TRUE`], meaning local dimming is initially enabled for the swapchain.
-/// ## Valid Usage (Implicit)
+///# Description
+///If the [`p_next`] chain of [`SwapchainCreateInfoKHR`] does not include
+///this structure, the default value for [`local_dimming_enable`] is
+///[`TRUE`], meaning local dimming is initially enabled for the swapchain.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`
 ///
-/// ## Valid Usage
+///## Valid Usage
 /// - It is only valid to set [`local_dimming_enable`] to [`TRUE`] if
 ///   [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] is supported
-/// # Related
+///# Related
 /// - [`VK_AMD_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainDisplayNativeHdrCreateInfoAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct SwapchainDisplayNativeHdrCreateInfoAMD<'lt> {
     ///Lifetime field
@@ -396,32 +394,32 @@ impl Device {
     ///    VkSwapchainKHR                              swapChain,
     ///    VkBool32                                    localDimmingEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device associated with [`swap_chain`].
     /// - [`swap_chain`] handle to enable local dimming.
     /// - [`local_dimming_enable`] specifies whether local dimming is enabled for the swapchain.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`swap_chain`] **must**  be a valid [`SwapchainKHR`] handle
     /// - Both of [`device`], and [`swap_chain`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Instance`]
     ///
-    /// ## Valid Usage
+    ///## Valid Usage
     /// - [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
-    /// # Related
+    ///# Related
     /// - [`VK_AMD_display_native_hdr`]
     /// - [`Bool32`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetLocalDimmingAMD")]
     #[track_caller]

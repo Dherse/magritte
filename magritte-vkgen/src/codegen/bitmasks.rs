@@ -180,7 +180,6 @@ impl<'a> Bitmask<'a> {
             out
 
             #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]
             pub struct #name(#ty);
@@ -498,7 +497,6 @@ impl<'a> Bitmask<'a> {
             out
 
             #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]
             pub struct #name(u32);

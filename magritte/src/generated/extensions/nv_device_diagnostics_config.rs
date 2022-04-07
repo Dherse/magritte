@@ -44,8 +44,6 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
@@ -73,27 +71,26 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 0x00000004,
 ///} VkDeviceDiagnosticsConfigFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`ENABLE_SHADER_DEBUG_INFO`] enables the generation of debug information for shaders.
 /// - [`ENABLE_RESOURCE_TRACKING`] enables driver side tracking of resources (images, buffers, etc.)
 ///   used to augment the device fault information.
 /// - [`ENABLE_AUTOMATIC_CHECKPOINTS`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints)
 ///   for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the
 ///   command will be associated as the marker data for the automatically inserted checkpoints.
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDiagnosticsConfigFlagBitsNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(u32);
@@ -148,27 +145,26 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
 ///    VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 0x00000004,
 ///} VkDeviceDiagnosticsConfigFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`ENABLE_SHADER_DEBUG_INFO`] enables the generation of debug information for shaders.
 /// - [`ENABLE_RESOURCE_TRACKING`] enables driver side tracking of resources (images, buffers, etc.)
 ///   used to augment the device fault information.
 /// - [`ENABLE_AUTOMATIC_CHECKPOINTS`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints)
 ///   for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the
 ///   command will be associated as the marker data for the automatically inserted checkpoints.
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDiagnosticsConfigFlagsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DeviceDiagnosticsConfigFlagsNV(u32);
@@ -471,37 +467,36 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
 ///    VkBool32           diagnosticsConfig;
 ///} VkPhysicalDeviceDiagnosticsConfigFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`diagnostics_config`] indicates whether the implementation supports the ability to configure
 ///   diagnostic tools.
-/// If the [`PhysicalDeviceDiagnosticsConfigFeaturesNV`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceDiagnosticsConfigFeaturesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceDiagnosticsConfigFeaturesNV`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceDiagnosticsConfigFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDiagnosticsConfigFeaturesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
     ///Lifetime field
@@ -618,30 +613,29 @@ impl<'lt> PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
 ///    VkDeviceDiagnosticsConfigFlagsNV    flags;
 ///} VkDeviceDiagnosticsConfigCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`DeviceDiagnosticsConfigFlagBitsNV`] specifying addtional
 ///   parameters for configuring diagnostic tools.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`
 /// - [`flags`] **must**  be a valid combination of [`DeviceDiagnosticsConfigFlagBitsNV`] values
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDiagnosticsConfigCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV<'lt> {
     ///Lifetime field

@@ -80,42 +80,42 @@ pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &'static CStr =
 ///    uint32_t*                                   pCheckpointDataCount,
 ///    VkCheckpointDataNV*                         pCheckpointData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
 /// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
 ///   markers available or queried, as described below.
 /// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointDataNV`]
 ///   structures.
-/// # Description
-/// If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
-/// available is returned in [`p_checkpoint_data_count`].Otherwise, [`p_checkpoint_data_count`]
+///# Description
+///If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+///available is returned in [`p_checkpoint_data_count`].Otherwise, [`p_checkpoint_data_count`]
 /// **must**  point to a variable set by the
-/// user to the number of elements in the [`p_checkpoint_data`] array, and on
-/// return the variable is overwritten with the number of structures actually
-/// written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+///user to the number of elements in the [`p_checkpoint_data`] array, and on
+///return the variable is overwritten with the number of structures actually
+///written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
 /// checkpoint markers
-/// available, at most [`p_checkpoint_data_count`] structures will be written.
-/// ## Valid Usage
+///available, at most [`p_checkpoint_data_count`] structures will be written.
+///## Valid Usage
 /// - The device that [`queue`] belongs to  **must**  be in the lost state
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and [`p_checkpoint_data`]
 ///   is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to an array of
 ///   [`p_checkpoint_data_count`][`CheckpointDataNV`] structures
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`CheckpointDataNV`]
 /// - [`Queue`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetQueueCheckpointDataNV")]
 pub type FNGetQueueCheckpointDataNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -134,34 +134,34 @@ pub type FNGetQueueCheckpointDataNv = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const void*                                 pCheckpointMarker);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer that will receive the marker
 /// - [`p_checkpoint_marker`] is an opaque application-provided value that will be associated with
 ///   the checkpoint.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics,
 ///   compute, or transfer operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetCheckpointNV")]
 pub type FNCmdSetCheckpointNv =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, p_checkpoint_marker: *const c_void)>;
@@ -176,32 +176,31 @@ pub type FNCmdSetCheckpointNv =
 ///    VkPipelineStageFlags    checkpointExecutionStageMask;
 ///} VkQueueFamilyCheckpointPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`checkpoint_execution_stage_mask`] is a mask indicating which pipeline stages the
 ///   implementation can execute checkpoint markers in.
-/// # Description
-/// Additional queue family information can be queried by setting
-/// [`QueueFamilyProperties2`]::[`p_next`] to point to a
-/// [`QueueFamilyCheckpointPropertiesNV`] structure.
-/// ## Valid Usage (Implicit)
+///# Description
+///Additional queue family information can be queried by setting
+///[`QueueFamilyProperties2`]::[`p_next`] to point to a
+///[`QueueFamilyCheckpointPropertiesNV`] structure.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyCheckpointPropertiesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct QueueFamilyCheckpointPropertiesNV<'lt> {
     ///Lifetime field
@@ -293,36 +292,35 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 ///    void*                      pCheckpointMarker;
 ///} VkCheckpointDataNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stage`] is a [`PipelineStageFlagBits`] value specifying which pipeline stage the checkpoint
 ///   marker data refers to.
 /// - [`checkpoint_marker`] contains the value of the last checkpoint marker executed in the stage
 ///   that [`stage`] refers to.
-/// # Description
-/// The stages at which a checkpoint marker  **can**  be executed are
-/// implementation-defined and  **can**  be queried by calling
-/// [`get_physical_device_queue_family_properties2`].
-/// ## Valid Usage (Implicit)
+///# Description
+///The stages at which a checkpoint marker  **can**  be executed are
+///implementation-defined and  **can**  be queried by calling
+///[`get_physical_device_queue_family_properties2`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_NV_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlagBits`]
 /// - [`StructureType`]
 /// - [`get_queue_checkpoint_data_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCheckpointDataNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct CheckpointDataNV<'lt> {
     ///Lifetime field
@@ -450,42 +448,42 @@ impl Queue {
     ///    uint32_t*                                   pCheckpointDataCount,
     ///    VkCheckpointDataNV*                         pCheckpointData);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
     /// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
     ///   markers available or queried, as described below.
     /// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointDataNV`]
     ///   structures.
-    /// # Description
-    /// If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
-    /// available is returned in [`p_checkpoint_data_count`].Otherwise, [`p_checkpoint_data_count`]
+    ///# Description
+    ///If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+    ///available is returned in [`p_checkpoint_data_count`].Otherwise, [`p_checkpoint_data_count`]
     /// **must**  point to a variable set by the
-    /// user to the number of elements in the [`p_checkpoint_data`] array, and on
-    /// return the variable is overwritten with the number of structures actually
-    /// written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+    ///user to the number of elements in the [`p_checkpoint_data`] array, and on
+    ///return the variable is overwritten with the number of structures actually
+    ///written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
     /// checkpoint markers
-    /// available, at most [`p_checkpoint_data_count`] structures will be written.
-    /// ## Valid Usage
+    ///available, at most [`p_checkpoint_data_count`] structures will be written.
+    ///## Valid Usage
     /// - The device that [`queue`] belongs to  **must**  be in the lost state
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and
     ///   [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to
     ///   an array of [`p_checkpoint_data_count`][`CheckpointDataNV`] structures
-    /// # Related
+    ///# Related
     /// - [`VK_NV_device_diagnostic_checkpoints`]
     /// - [`CheckpointDataNV`]
     /// - [`Queue`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetQueueCheckpointDataNV")]
     #[track_caller]
@@ -537,34 +535,34 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const void*                                 pCheckpointMarker);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer that will receive the marker
     /// - [`p_checkpoint_marker`] is an opaque application-provided value that will be associated
     ///   with the checkpoint.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, compute, or transfer operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_device_diagnostic_checkpoints`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetCheckpointNV")]
     #[track_caller]

@@ -51,8 +51,6 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, StructureType};
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
@@ -79,7 +77,7 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT = 4,
 ///} VkValidationFeatureEnableEXT;
 ///```
-/// # Description
+///# Description
 /// - [`GPU_ASSISTED`] specifies that GPU-assisted validation is enabled. Activating this feature
 ///   instruments shader programs to generate additional diagnostic data. This feature is disabled
 ///   by default.
@@ -97,20 +95,19 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   This feature reports resource access conflicts due to missing or incorrect synchronization
 ///   operations between actions (Draw, Copy, Dispatch, Blit) reading or writing the same regions of
 ///   memory. This feature is disabled by default.
-/// # Related
+///# Related
 /// - [`VK_EXT_validation_features`]
 /// - [`ValidationFeaturesEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureEnableEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ValidationFeatureEnableEXT(i32);
@@ -192,7 +189,7 @@ impl ValidationFeatureEnableEXT {
 ///    VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT = 7,
 ///} VkValidationFeatureDisableEXT;
 ///```
-/// # Description
+///# Description
 /// - [`ALL`] specifies that all validation checks are disabled.
 /// - [`SHADERS`] specifies that shader validation is disabled. This feature is enabled by default.
 /// - [`THREAD_SAFETY`] specifies that thread safety validation is disabled. This feature is enabled
@@ -209,20 +206,19 @@ impl ValidationFeatureEnableEXT {
 /// - [`SHADER_VALIDATION_CACHE`] specifies that there will be no caching of shader validation
 ///   results and every shader will be validated on every application execution. Shader validation
 ///   caching is enabled by default.
-/// # Related
+///# Related
 /// - [`VK_EXT_validation_features`]
 /// - [`ValidationFeaturesEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureDisableEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ValidationFeatureDisableEXT(i32);
@@ -303,7 +299,7 @@ impl ValidationFeatureDisableEXT {
 ///    const VkValidationFeatureDisableEXT*    pDisabledValidationFeatures;
 ///} VkValidationFeaturesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`enabled_validation_feature_count`] is the number of features to enable.
@@ -312,8 +308,8 @@ impl ValidationFeatureDisableEXT {
 /// - [`disabled_validation_feature_count`] is the number of features to disable.
 /// - [`disabled_validation_features`] is a pointer to an array of [`ValidationFeatureDisableEXT`]
 ///   values specifying the validation features to be disabled.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the [`enabled_validation_features`] array contains
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT`, then it  **must**  also
 ///   contain `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
@@ -321,7 +317,7 @@ impl ValidationFeatureDisableEXT {
 ///   `VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT`, then it  **must**  not contain
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
 /// - If [`enabled_validation_feature_count`] is not `0`, [`enabled_validation_features`] **must**
 ///   be a valid pointer to an array of [`enabled_validation_feature_count`] valid
@@ -329,22 +325,21 @@ impl ValidationFeatureDisableEXT {
 /// - If [`disabled_validation_feature_count`] is not `0`, [`disabled_validation_features`] **must**
 ///   be a valid pointer to an array of [`disabled_validation_feature_count`] valid
 ///   [`ValidationFeatureDisableEXT`] values
-/// # Related
+///# Related
 /// - [`VK_EXT_validation_features`]
 /// - [`StructureType`]
 /// - [`ValidationFeatureDisableEXT`]
 /// - [`ValidationFeatureEnableEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct ValidationFeaturesEXT<'lt> {
     ///Lifetime field

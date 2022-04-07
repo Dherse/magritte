@@ -207,8 +207,6 @@ use crate::{
     vulkan1_1::MemoryRequirements2,
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
@@ -238,36 +236,36 @@ pub const NV_RAY_TRACING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_ray
 ///    VkPipeline                                  pipeline,
 ///    uint32_t                                    shader);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device containing the ray tracing pipeline.
 /// - [`pipeline`] is the ray tracing pipeline object containing the shaders.
 /// - [`shader`] is the index of the shader to compile.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`pipeline`] **must**  be a ray tracing pipeline
 /// - [`pipeline`] **must**  have been created with `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`
 /// - [`shader`] **must**  not have been called as a deferred compile before
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`Device`]
 /// - [`Pipeline`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCompileDeferredNV")]
 pub type FNCompileDeferredNv =
     Option<unsafe extern "system" fn(device: Device, pipeline: Pipeline, shader: u32) -> VulkanResultCodes>;
@@ -282,7 +280,7 @@ pub type FNCompileDeferredNv =
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkAccelerationStructureNV*                  pAccelerationStructure);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the buffer object.
 /// - [`p_create_info`] is a pointer to a [`AccelerationStructureCreateInfoNV`] structure containing
 ///   parameters affecting creation of the acceleration structure.
@@ -290,17 +288,17 @@ pub type FNCompileDeferredNv =
 ///   chapter.
 /// - [`p_acceleration_structure`] is a pointer to a [`AccelerationStructureNV`] handle in which the
 ///   resulting acceleration structure object is returned.
-/// # Description
-/// Similarly to other objects in Vulkan, the acceleration structure creation
-/// merely creates an object with a specific “shape” as specified by the
-/// information in [`AccelerationStructureInfoNV`] and `compactedSize`
-/// in [`p_create_info`].
-/// Populating the data in the object after allocating and binding memory is
-/// done with [`cmd_build_acceleration_structure_nv`] and
-/// [`cmd_copy_acceleration_structure_nv`].Acceleration structure creation uses the count and type
+///# Description
+///Similarly to other objects in Vulkan, the acceleration structure creation
+///merely creates an object with a specific “shape” as specified by the
+///information in [`AccelerationStructureInfoNV`] and `compactedSize`
+///in [`p_create_info`].
+///Populating the data in the object after allocating and binding memory is
+///done with [`cmd_build_acceleration_structure_nv`] and
+///[`cmd_copy_acceleration_structure_nv`].Acceleration structure creation uses the count and type
 /// information from the
-/// geometries, but does not use the data references in the structures.
-/// ## Valid Usage (Implicit)
+///geometries, but does not use the data references in the structures.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid
 ///   [`AccelerationStructureCreateInfoNV`] structure
@@ -309,23 +307,23 @@ pub type FNCompileDeferredNv =
 /// - [`p_acceleration_structure`] **must**  be a valid pointer to a [`AccelerationStructureNV`]
 ///   handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureCreateInfoNV`]
 /// - [`AccelerationStructureNV`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateAccelerationStructureNV")]
 pub type FNCreateAccelerationStructureNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -345,13 +343,13 @@ pub type FNCreateAccelerationStructureNv = Option<
 ///    VkAccelerationStructureNV                   accelerationStructure,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that destroys the buffer.
 /// - [`acceleration_structure`] is the acceleration structure to destroy.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - All submitted commands that refer to [`acceleration_structure`] **must**  have completed
 ///   execution
 /// - If [`AllocationCallbacks`] were provided when [`acceleration_structure`] was created, a
@@ -359,7 +357,7 @@ pub type FNCreateAccelerationStructureNv = Option<
 /// - If no [`AllocationCallbacks`] were provided when [`acceleration_structure`] was created,
 ///   [`p_allocator`] **must**  be `NULL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`acceleration_structure`] is not [`crate::Handle::null`], [`acceleration_structure`]
 ///   **must**  be a valid [`AccelerationStructureNV`] handle
@@ -368,21 +366,21 @@ pub type FNCreateAccelerationStructureNv = Option<
 /// - If [`acceleration_structure`] is a valid handle, it  **must**  have been created, allocated,
 ///   or retrieved from [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`acceleration_structure`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyAccelerationStructureNV")]
 pub type FNDestroyAccelerationStructureNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -410,32 +408,32 @@ pub type FNDestroyAccelerationStructureNv = Option<
 ///    const VkAccelerationStructureMemoryRequirementsInfoNV* pInfo,
 ///    VkMemoryRequirements2KHR*                   pMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device on which the acceleration structure was created.
 /// - [`p_info`] is a pointer to a [`AccelerationStructureMemoryRequirementsInfoNV`] structure
 ///   specifying the acceleration structure to get memory requirements for.
 /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2KHR`] structure in which the
 ///   requested acceleration structure memory requirements are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid
 ///   [`AccelerationStructureMemoryRequirementsInfoNV`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2KHR`]
 ///   structure
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
 /// - [`Device`]
 /// - [`MemoryRequirements2KHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetAccelerationStructureMemoryRequirementsNV")]
 pub type FNGetAccelerationStructureMemoryRequirementsNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -454,33 +452,33 @@ pub type FNGetAccelerationStructureMemoryRequirementsNv = Option<
 ///    uint32_t                                    bindInfoCount,
 ///    const VkBindAccelerationStructureMemoryInfoNV* pBindInfos);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the acceleration structures and memory.
 /// - [`bind_info_count`] is the number of elements in [`p_bind_infos`].
 /// - [`p_bind_infos`] is a pointer to an array of [`BindAccelerationStructureMemoryInfoNV`]
 ///   structures describing acceleration structures and memory to bind.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_bind_infos`] **must**  be a valid pointer to an array of [`bind_info_count`] valid
 ///   [`BindAccelerationStructureMemoryInfoNV`] structures
 /// - [`bind_info_count`] **must**  be greater than `0`
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`BindAccelerationStructureMemoryInfoNV`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkBindAccelerationStructureMemoryNV")]
 pub type FNBindAccelerationStructureMemoryNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -503,18 +501,18 @@ pub type FNBindAccelerationStructureMemoryNv = Option<
 ///    size_t                                      dataSize,
 ///    void*                                       pData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the acceleration structures.
 /// - [`acceleration_structure`] is the acceleration structure.
 /// - [`data_size`] is the size in bytes of the buffer pointed to by [`p_data`].
 /// - [`p_data`] is a pointer to a user-allocated buffer where the results will be written.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`data_size`] **must**  be large enough to contain the result of the query, as described above
 /// - [`acceleration_structure`] **must**  be bound completely and contiguously to a single
 ///   [`DeviceMemory`] object via [`bind_acceleration_structure_memory_nv`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
 /// - [`p_data`] **must**  be a valid pointer to an array of [`data_size`] bytes
@@ -522,21 +520,21 @@ pub type FNBindAccelerationStructureMemoryNv = Option<
 /// - [`acceleration_structure`] **must**  have been created, allocated, or retrieved from
 ///   [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetAccelerationStructureHandleNV")]
 pub type FNGetAccelerationStructureHandleNv = Option<
     unsafe extern "system" fn(
@@ -559,7 +557,7 @@ pub type FNGetAccelerationStructureHandleNv = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkPipeline*                                 pPipelines);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the ray tracing pipelines.
 /// - [`pipeline_cache`] is either [`crate::Handle::null`], indicating that pipeline caching is disabled, or the handle of a valid [pipeline cache](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-cache) object, in which case use of that cache is enabled for the duration of the command.
 /// - [`create_info_count`] is the length of the [`p_create_infos`] and [`p_pipelines`] arrays.
@@ -568,8 +566,8 @@ pub type FNGetAccelerationStructureHandleNv = Option<
 ///   chapter.
 /// - [`p_pipelines`] is a pointer to an array in which the resulting ray tracing pipeline objects
 ///   are returned.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the `flags` member of any element of [`p_create_infos`] contains the
 ///   `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and the `basePipelineIndex` member of that same
 ///   element is not `-1`, `basePipelineIndex` **must**  be less than the index into
@@ -581,7 +579,7 @@ pub type FNGetAccelerationStructureHandleNv = Option<
 /// - If [`pipeline_cache`] was created with `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`,
 ///   host access to [`pipeline_cache`] **must**  be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fundamentals-threadingbehavior)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`pipeline_cache`] is not [`crate::Handle::null`], [`pipeline_cache`] **must**  be a valid
 ///   [`PipelineCache`] handle
@@ -595,11 +593,11 @@ pub type FNGetAccelerationStructureHandleNv = Option<
 /// - If [`pipeline_cache`] is a valid handle, it  **must**  have been created, allocated, or
 ///   retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INVALID_SHADER_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -607,13 +605,13 @@ pub type FNGetAccelerationStructureHandleNv = Option<
 /// - [`PipelineCache`]
 /// - [`RayTracingPipelineCreateInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateRayTracingPipelinesNV")]
 pub type FNCreateRayTracingPipelinesNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -636,19 +634,19 @@ pub type FNCreateRayTracingPipelinesNv = Option<
 ///    VkAccelerationStructureNV                   src,
 ///    VkCopyAccelerationStructureModeKHR          mode);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`dst`] is the target acceleration structure for the copy.
 /// - [`src`] is the source acceleration structure for the copy.
 /// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations to
 ///   perform during the copy.
-/// # Description
-/// Accesses to [`src`] and [`dst`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
-/// `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
-/// [access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
-/// `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
-/// `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR` as appropriate.
-/// ## Valid Usage
+///# Description
+///Accesses to [`src`] and [`dst`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
+///`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
+///[access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
+///`VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
+///`VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR` as appropriate.
+///## Valid Usage
 /// - [`mode`] **must**  be `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` or
 ///   `VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR`
 /// - The source acceleration structure [`src`] **must**  have been constructed prior to the
@@ -658,7 +656,7 @@ pub type FNCreateRayTracingPipelinesNv = Option<
 /// - The `buffer` used to create [`src`] **must**  be bound to device memory
 /// - The `buffer` used to create [`dst`] **must**  be bound to device memory
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`dst`] **must**  be a valid [`AccelerationStructureNV`] handle
 /// - [`src`] **must**  be a valid [`AccelerationStructureNV`] handle
@@ -670,25 +668,25 @@ pub type FNCreateRayTracingPipelinesNv = Option<
 /// - Each of [`command_buffer`], [`dst`], and [`src`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`CommandBuffer`]
 /// - [`CopyAccelerationStructureModeKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdCopyAccelerationStructureNV")]
 pub type FNCmdCopyAccelerationStructureNv = Option<
     unsafe extern "system" fn(
@@ -711,7 +709,7 @@ pub type FNCmdCopyAccelerationStructureNv = Option<
 ///    VkQueryPool                                 queryPool,
 ///    uint32_t                                    firstQuery);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`acceleration_structure_count`] is the count of acceleration structures for which to query
 ///   the property.
@@ -721,13 +719,13 @@ pub type FNCmdCopyAccelerationStructureNv = Option<
 /// - [`query_pool`] is the query pool that will manage the results of the query.
 /// - [`first_query`] is the first query index within the query pool that will contain the
 ///   [`acceleration_structure_count`] number of results.
-/// # Description
-/// Accesses to any of the acceleration structures listed in
-/// [`p_acceleration_structures`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
-/// `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
-/// [access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
-/// `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`.
-/// ## Valid Usage
+///# Description
+///Accesses to any of the acceleration structures listed in
+///[`p_acceleration_structures`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
+///`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
+///[access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
+///`VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`.
+///## Valid Usage
 /// - [`query_pool`] **must**  have been created with a [`query_type`] matching [`query_type`]
 /// - The queries identified by [`query_pool`] and [`first_query`] **must**  be *unavailable*
 /// - `accelerationStructure` **must**  be bound completely and contiguously to a single
@@ -739,7 +737,7 @@ pub type FNCmdCopyAccelerationStructureNv = Option<
 ///   `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV`
 /// - [`query_type`] **must**  be `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_acceleration_structures`] **must**  be a valid pointer to an array of
 ///   [`acceleration_structure_count`] valid [`AccelerationStructureNV`] handles
@@ -753,26 +751,26 @@ pub type FNCmdCopyAccelerationStructureNv = Option<
 /// - Each of [`command_buffer`], [`query_pool`], and the elements of [`p_acceleration_structures`]
 ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`CommandBuffer`]
 /// - [`QueryPool`]
 /// - [`QueryType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdWriteAccelerationStructuresPropertiesNV")]
 pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
     unsafe extern "system" fn(
@@ -800,7 +798,7 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
 ///    VkBuffer                                    scratch,
 ///    VkDeviceSize                                scratchOffset);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_info`] contains the shared information for the acceleration structure’s structure.
 /// - [`instance_data`] is the buffer containing an array of [`AccelerationStructureInstanceKHR`]
@@ -816,14 +814,14 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
 /// - [`scratch`] is the [`Buffer`] that will be used as scratch memory for the build.
 /// - [`scratch_offset`] is the offset in bytes relative to the start of [`scratch`] that will be
 ///   used as a scratch memory.
-/// # Description
-/// Accesses to [`dst`], [`src`], and [`scratch`] **must**  be
-/// [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
-/// `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
-/// [access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
-/// `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
-/// `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`.
-/// ## Valid Usage
+///# Description
+///Accesses to [`dst`], [`src`], and [`scratch`] **must**  be
+///[synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
+///`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
+///[access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
+///`VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
+///`VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`.
+///## Valid Usage
 /// - `geometryCount` **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPropertiesNV::max_geometry_count`]
 /// - [`dst`] **must**  have been created with compatible [`AccelerationStructureInfoNV`] where
@@ -858,7 +856,7 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
 /// -    If [`update`] is [`TRUE`], then objects that were previously inactive  **must**  not be made active as per [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
 /// -    If [`update`] is [`TRUE`], the [`src`] and [`dst`] objects  **must**  either be the same object or not have any [memory aliasing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-memory-aliasing)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`AccelerationStructureInfoNV`] structure
 /// - If [`instance_data`] is not [`crate::Handle::null`], [`instance_data`] **must**  be a valid
@@ -875,13 +873,13 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
 ///   valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
 /// - [`AccelerationStructureNV`]
@@ -890,13 +888,13 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBuildAccelerationStructureNV")]
 pub type FNCmdBuildAccelerationStructureNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -933,7 +931,7 @@ pub type FNCmdBuildAccelerationStructureNv = Option<
 ///    uint32_t                                    height,
 ///    uint32_t                                    depth);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`raygen_shader_binding_table_buffer`] is the buffer object that holds the shader binding
 ///   table data for the ray generation shader stage.
@@ -960,10 +958,10 @@ pub type FNCmdBuildAccelerationStructureNv = Option<
 /// - [`width`] is the width of the ray trace query dimensions.
 /// - [`height`] is height of the ray trace query dimensions.
 /// - [`depth`] is depth of the ray trace query dimensions.
-/// # Description
-/// When the command is executed, a ray generation group of [`width`]
-/// × [`height`] × [`depth`] rays is assembled.
-/// ## Valid Usage
+///# Description
+///When the command is executed, a ray generation group of [`width`]
+///× [`height`] × [`depth`] rays is assembled.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -1125,7 +1123,7 @@ pub type FNCmdBuildAccelerationStructureNv = Option<
 /// - [`depth`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_compute_work_group_count`][2]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`raygen_shader_binding_table_buffer`] **must**  be a valid [`Buffer`] handle
 /// - If [`miss_shader_binding_table_buffer`] is not [`crate::Handle::null`],
@@ -1143,25 +1141,25 @@ pub type FNCmdBuildAccelerationStructureNv = Option<
 ///   [`raygen_shader_binding_table_buffer`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdTraceRaysNV")]
 pub type FNCmdTraceRaysNv = Option<
     unsafe extern "system" fn(
@@ -1194,24 +1192,23 @@ pub type FNCmdTraceRaysNv = Option<
 ///    VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV = 2,
 ///} VkAccelerationStructureMemoryRequirementsTypeNV;
 ///```
-/// # Description
+///# Description
 /// - [`OBJECT`] requests the memory requirement for the [`AccelerationStructureNV`] backing store.
 /// - [`BUILD_SCRATCH`] requests the memory requirement for scratch space during the initial build.
 /// - [`UPDATE_SCRATCH`] requests the memory requirement for scratch space during an update.
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureMemoryRequirementsTypeNV(i32);
@@ -1266,7 +1263,7 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///    uint32_t                          intersectionShader;
 ///} VkRayTracingShaderGroupCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] is the type of hit group specified in this structure.
@@ -1287,8 +1284,8 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///   [`RayTracingPipelineCreateInfoNV::stages`] in the group if the shader group has [`type_`] of
 ///   `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_NV`, and [`SHADER_UNUSED_NV`]
 ///   otherwise.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_NV` then [`general_shader`] **must**
 ///   be a valid index into [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_RAYGEN_BIT_NV`, `VK_SHADER_STAGE_MISS_BIT_NV`, or
@@ -1308,26 +1305,25 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///   [`RayTracingPipelineCreateInfoNV::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_ANY_HIT_BIT_NV`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`RayTracingShaderGroupTypeKHR`] value
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`RayTracingPipelineCreateInfoNV`]
 /// - [`RayTracingShaderGroupTypeKHR`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
     ///Lifetime field
@@ -1504,7 +1500,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 ///    int32_t                                       basePipelineIndex;
 ///} VkRayTracingPipelineCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`PipelineCreateFlagBits`] specifying how the pipeline will be
@@ -1523,11 +1519,11 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - [`base_pipeline_handle`] is a pipeline to derive from.
 /// - [`base_pipeline_index`] is an index into the `pCreateInfos` parameter to use as a pipeline to
 ///   derive from.
-/// # Description
-/// The parameters [`base_pipeline_handle`] and [`base_pipeline_index`] are
-/// described in more detail in [Pipeline
-/// Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives).
-/// ## Valid Usage
+///# Description
+///The parameters [`base_pipeline_handle`] and [`base_pipeline_index`] are
+///described in more detail in [Pipeline
+///Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives).
+///## Valid Usage
 /// - If [`flags`] contains the `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and
 ///   [`base_pipeline_index`] is `-1`, [`base_pipeline_handle`] **must**  be a valid handle to a ray
 ///   tracing [`Pipeline`]
@@ -1570,7 +1566,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - [`flags`] **must**  not include both `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV` and
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT` at the same time
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`PipelineCreationFeedbackCreateInfo`]
@@ -1585,7 +1581,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - [`group_count`] **must**  be greater than `0`
 /// - Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`Pipeline`]
 /// - [`PipelineCreateFlags`]
@@ -1595,16 +1591,15 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - [`StructureType`]
 /// - [`create_ray_tracing_pipelines_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV<'lt> {
     ///Lifetime field
@@ -1860,7 +1855,7 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 ///    VkDeviceSize       transformOffset;
 ///} VkGeometryTrianglesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`vertex_data`] is the buffer containing vertex data for this geometry.
@@ -1878,12 +1873,12 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 ///   defining a transformation to be applied to this geometry.
 /// - [`transform_offset`] is the offset in bytes in [`transform_data`] of the transform information
 ///   described above.
-/// # Description
-/// If [`index_type`] is `VK_INDEX_TYPE_NONE_NV`, then this structure
-/// describes a set of triangles determined by [`vertex_count`].
-/// Otherwise, this structure describes a set of indexed triangles determined by
-/// [`index_count`].
-/// ## Valid Usage
+///# Description
+///If [`index_type`] is `VK_INDEX_TYPE_NONE_NV`, then this structure
+///describes a set of triangles determined by [`vertex_count`].
+///Otherwise, this structure describes a set of indexed triangles determined by
+///[`index_count`].
+///## Valid Usage
 /// - [`vertex_offset`] **must**  be less than the size of [`vertex_data`]
 /// - [`vertex_offset`] **must**  be a multiple of the component size of [`vertex_format`]
 /// - [`vertex_format`] **must**  be one of `VK_FORMAT_R32G32B32_SFLOAT`, `VK_FORMAT_R32G32_SFLOAT`,
@@ -1902,7 +1897,7 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 /// - [`transform_offset`] **must**  be less than the size of [`transform_data`]
 /// - [`transform_offset`] **must**  be a multiple of `16`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GEOMETRY_TRIANGLES_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - If [`vertex_data`] is not [`crate::Handle::null`], [`vertex_data`] **must**  be a valid
@@ -1916,7 +1911,7 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 /// - Each of [`index_data`], [`transform_data`], and [`vertex_data`] that are valid handles of
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
@@ -1925,16 +1920,15 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
 /// - [`IndexType`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryTrianglesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryTrianglesNV<'lt> {
     ///Lifetime field
@@ -2188,43 +2182,42 @@ impl<'lt> GeometryTrianglesNV<'lt> {
 ///    VkDeviceSize       offset;
 ///} VkGeometryAABBNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`aabb_data`] is the buffer containing axis-aligned bounding box data.
 /// - [`num_aab_bs`] is the number of AABBs in this geometry.
 /// - [`stride`] is the stride in bytes between AABBs in [`aabb_data`].
 /// - [`offset`] is the offset in bytes of the first AABB in [`aabb_data`].
-/// # Description
-/// The AABB data in memory is six 32-bit floats consisting of the minimum x, y,
-/// and z values followed by the maximum x, y, and z values.
-/// ## Valid Usage
+///# Description
+///The AABB data in memory is six 32-bit floats consisting of the minimum x, y,
+///and z values followed by the maximum x, y, and z values.
+///## Valid Usage
 /// - [`offset`] **must**  be less than the size of [`aabb_data`]
 /// - [`offset`] **must**  be a multiple of `8`
 /// - [`stride`] **must**  be a multiple of `8`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GEOMETRY_AABB_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - If [`aabb_data`] is not [`crate::Handle::null`], [`aabb_data`] **must**  be a valid [`Buffer`]
 ///   handle
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`GeometryDataNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryAABBNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryAabbNV<'lt> {
     ///Lifetime field
@@ -2355,31 +2348,30 @@ impl<'lt> GeometryAabbNV<'lt> {
 ///    VkGeometryAABBNV         aabbs;
 ///} VkGeometryDataNV;
 ///```
-/// # Members
+///# Members
 /// - [`triangles`] contains triangle data if [`GeometryNV::geometry_type`] is
 ///   `VK_GEOMETRY_TYPE_TRIANGLES_NV`.
 /// - [`aabbs`] contains axis-aligned bounding box data if [`GeometryNV::geometry_type`] is
 ///   `VK_GEOMETRY_TYPE_AABBS_NV`.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`triangles`] **must**  be a valid [`GeometryTrianglesNV`] structure
 /// - [`aabbs`] **must**  be a valid [`GeometryAabbNV`] structure
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`GeometryAabbNV`]
 /// - [`GeometryNV`]
 /// - [`GeometryTrianglesNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryDataNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryDataNV<'lt> {
     ///Lifetime field
@@ -2444,23 +2436,23 @@ impl<'lt> GeometryDataNV<'lt> {
 ///    VkGeometryFlagsKHR    flags;
 ///} VkGeometryNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`geometry_type`] specifies the [`GeometryTypeKHR`] which this geometry refers to.
 /// - [`geometry`] contains the geometry data as described in [`GeometryDataNV`].
 /// - [`flags`] has [`GeometryFlagBitsKHR`] describing options for this geometry.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`geometry_type`] **must**  be `VK_GEOMETRY_TYPE_TRIANGLES_NV` or `VK_GEOMETRY_TYPE_AABBS_NV`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GEOMETRY_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`geometry_type`] **must**  be a valid [`GeometryTypeKHR`] value
 /// - [`geometry`] **must**  be a valid [`GeometryDataNV`] structure
 /// - [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
 /// - [`GeometryDataNV`]
@@ -2468,16 +2460,15 @@ impl<'lt> GeometryDataNV<'lt> {
 /// - [`GeometryTypeKHR`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct GeometryNV<'lt> {
     ///Lifetime field
@@ -2599,7 +2590,7 @@ impl<'lt> GeometryNV<'lt> {
 ///    const VkGeometryNV*                    pGeometries;
 ///} VkAccelerationStructureInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] is a [`AccelerationStructureTypeNV`] value specifying the type of acceleration
@@ -2612,13 +2603,13 @@ impl<'lt> GeometryNV<'lt> {
 ///   structure.
 /// - [`geometries`] is a pointer to an array of [`geometry_count`][`GeometryNV`] structures
 ///   containing the scene data being passed into the acceleration structure.
-/// # Description
-/// [`AccelerationStructureInfoNV`] contains information that is used both
-/// for acceleration structure creation with
-/// [`create_acceleration_structure_nv`] and in combination with the actual
-/// geometric data to build the acceleration structure with
-/// [`cmd_build_acceleration_structure_nv`].
-/// ## Valid Usage
+///# Description
+///[`AccelerationStructureInfoNV`] contains information that is used both
+///for acceleration structure creation with
+///[`create_acceleration_structure_nv`] and in combination with the actual
+///geometric data to build the acceleration structure with
+///[`cmd_build_acceleration_structure_nv`].
+///## Valid Usage
 /// - [`geometry_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPropertiesNV::max_geometry_count`]
 /// - [`instance_count`] **must**  be less than or equal to
@@ -2638,14 +2629,14 @@ impl<'lt> GeometryNV<'lt> {
 /// - If `instanceData` is not [`crate::Handle::null`], `instanceData` **must**  have been created
 ///   with `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` usage flag
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`AccelerationStructureTypeNV`] value
 /// - [`flags`] **must**  be a valid combination of [`BuildAccelerationStructureFlagBitsNV`] values
 /// - If [`geometry_count`] is not `0`, [`geometries`] **must**  be a valid pointer to an array of
 ///   [`geometry_count`] valid [`GeometryNV`] structures
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureCreateInfoNV`]
 /// - [`AccelerationStructureTypeNV`]
@@ -2654,16 +2645,15 @@ impl<'lt> GeometryNV<'lt> {
 /// - [`StructureType`]
 /// - [`cmd_build_acceleration_structure_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureInfoNV<'lt> {
     ///Lifetime field
@@ -2833,7 +2823,7 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 ///    VkAccelerationStructureInfoNV    info;
 ///} VkAccelerationStructureCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`compacted_size`] is the size from the result of
@@ -2841,32 +2831,31 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 ///   be the target of a compacting copy.
 /// - [`info`] is the [`AccelerationStructureInfoNV`] structure specifying further parameters of the
 ///   created acceleration structure.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`compacted_size`] is not `0` then both `info.geometryCount` and `info.instanceCount`
 ///   **must**  be `0`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`info`] **must**  be a valid [`AccelerationStructureInfoNV`] structure
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 /// - [`create_acceleration_structure_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV<'lt> {
     ///Lifetime field
@@ -2972,7 +2961,7 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 ///    const uint32_t*              pDeviceIndices;
 ///} VkBindAccelerationStructureMemoryInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`acceleration_structure`] is the acceleration structure to be attached to memory.
@@ -2983,8 +2972,8 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 ///   acceleration structure.
 /// - [`device_index_count`] is the number of elements in [`device_indices`].
 /// - [`device_indices`] is a pointer to an array of device indices.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`acceleration_structure`] **must**  not already be backed by a memory object
 /// - [`memory_offset`] **must**  be less than the size of [`memory`]
 /// - [`memory`] **must**  have been allocated using one of the memory types allowed in the
@@ -3000,7 +2989,7 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 ///   `type` of `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV` **must**  be less
 ///   than or equal to the size of [`memory`] minus [`memory_offset`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
@@ -3009,7 +2998,7 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 ///   array of [`device_index_count`]`uint32_t` values
 /// - Both of [`acceleration_structure`], and [`memory`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`DeviceMemory`]
@@ -3017,16 +3006,15 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 /// - [`StructureType`]
 /// - [`bind_acceleration_structure_memory_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindAccelerationStructureMemoryInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
     ///Lifetime field
@@ -3197,14 +3185,14 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 ///    const VkAccelerationStructureNV*    pAccelerationStructures;
 ///} VkWriteDescriptorSetAccelerationStructureNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`acceleration_structure_count`] is the number of elements in [`acceleration_structures`].
 /// - [`acceleration_structures`] is a pointer to an array of [`AccelerationStructureNV`] structures
 ///   specifying the acceleration structures to update.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`acceleration_structure_count`] **must**  be equal to `descriptorCount` in the extended
 ///   structure
 /// - Each acceleration structure in [`acceleration_structures`] **must**  have been created with
@@ -3213,27 +3201,26 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 ///   feature is not enabled, each member of [`acceleration_structures`] **must**  not be
 ///   [`crate::Handle::null`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV`
 /// - [`acceleration_structures`] **must**  be a valid pointer to an array of
 ///   [`acceleration_structure_count`] valid or [`crate::Handle::null`][`AccelerationStructureNV`]
 ///   handles
 /// - [`acceleration_structure_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWriteDescriptorSetAccelerationStructureNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
     ///Lifetime field
@@ -3351,7 +3338,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 ///    VkAccelerationStructureNV                          accelerationStructure;
 ///} VkAccelerationStructureMemoryRequirementsInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] selects the type of memory requirement being queried.
@@ -3362,29 +3349,28 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 ///   requirements for the scratch memory when doing an update.
 /// - [`acceleration_structure`] is the acceleration structure to be queried for memory
 ///   requirements.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`AccelerationStructureMemoryRequirementsTypeNV`] value
 /// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsTypeNV`]
 /// - [`AccelerationStructureNV`]
 /// - [`StructureType`]
 /// - [`get_acceleration_structure_memory_requirements_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     ///Lifetime field
@@ -3505,7 +3491,7 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///    uint32_t           maxDescriptorSetAccelerationStructures;
 ///} VkPhysicalDeviceRayTracingPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_group_handle_size`] is the size in bytes of the shader header.
@@ -3523,34 +3509,33 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///   level acceleration structure.
 /// - [`max_descriptor_set_acceleration_structures`] is the maximum number of acceleration structure
 ///   descriptors that are allowed in a descriptor set.
-/// # Description
-/// Due to the fact that the geometry, instance, and triangle counts are
-/// specified at acceleration structure creation as 32-bit values,
-/// [`max_geometry_count`], [`max_instance_count`], and [`max_triangle_count`] **must**  not exceed
+///# Description
+///Due to the fact that the geometry, instance, and triangle counts are
+///specified at acceleration structure creation as 32-bit values,
+///[`max_geometry_count`], [`max_instance_count`], and [`max_triangle_count`] **must**  not exceed
 /// 2<sup>32</sup>-1.If the [`PhysicalDeviceRayTracingPropertiesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.Limits specified by this structure  **must**
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.Limits specified by this structure  **must**
 /// match those specified with the same
-/// name in [`PhysicalDeviceAccelerationStructurePropertiesKHR`] and
-/// [`PhysicalDeviceRayTracingPipelinePropertiesKHR`].
-/// ## Valid Usage (Implicit)
+///name in [`PhysicalDeviceAccelerationStructurePropertiesKHR`] and
+///[`PhysicalDeviceRayTracingPipelinePropertiesKHR`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPropertiesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
     ///Lifetime field
@@ -3760,36 +3745,36 @@ impl Device {
     ///    VkPipeline                                  pipeline,
     ///    uint32_t                                    shader);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device containing the ray tracing pipeline.
     /// - [`pipeline`] is the ray tracing pipeline object containing the shaders.
     /// - [`shader`] is the index of the shader to compile.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`pipeline`] **must**  be a ray tracing pipeline
     /// - [`pipeline`] **must**  have been created with `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`
     /// - [`shader`] **must**  not have been called as a deferred compile before
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
     /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`Device`]
     /// - [`Pipeline`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCompileDeferredNV")]
     #[track_caller]
@@ -3830,7 +3815,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkAccelerationStructureNV*                  pAccelerationStructure);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the buffer object.
     /// - [`p_create_info`] is a pointer to a [`AccelerationStructureCreateInfoNV`] structure
     ///   containing parameters affecting creation of the acceleration structure.
@@ -3838,17 +3823,17 @@ impl Device {
     ///   chapter.
     /// - [`p_acceleration_structure`] is a pointer to a [`AccelerationStructureNV`] handle in which
     ///   the resulting acceleration structure object is returned.
-    /// # Description
-    /// Similarly to other objects in Vulkan, the acceleration structure creation
-    /// merely creates an object with a specific “shape” as specified by the
-    /// information in [`AccelerationStructureInfoNV`] and `compactedSize`
-    /// in [`p_create_info`].
-    /// Populating the data in the object after allocating and binding memory is
-    /// done with [`cmd_build_acceleration_structure_nv`] and
-    /// [`cmd_copy_acceleration_structure_nv`].Acceleration structure creation uses the count and
+    ///# Description
+    ///Similarly to other objects in Vulkan, the acceleration structure creation
+    ///merely creates an object with a specific “shape” as specified by the
+    ///information in [`AccelerationStructureInfoNV`] and `compactedSize`
+    ///in [`p_create_info`].
+    ///Populating the data in the object after allocating and binding memory is
+    ///done with [`cmd_build_acceleration_structure_nv`] and
+    ///[`cmd_copy_acceleration_structure_nv`].Acceleration structure creation uses the count and
     /// type information from the
-    /// geometries, but does not use the data references in the structures.
-    /// ## Valid Usage (Implicit)
+    ///geometries, but does not use the data references in the structures.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`AccelerationStructureCreateInfoNV`] structure
@@ -3857,23 +3842,23 @@ impl Device {
     /// - [`p_acceleration_structure`] **must**  be a valid pointer to a [`AccelerationStructureNV`]
     ///   handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureCreateInfoNV`]
     /// - [`AccelerationStructureNV`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateAccelerationStructureNV")]
     #[track_caller]
@@ -3924,13 +3909,13 @@ impl Device {
     ///    VkAccelerationStructureNV                   accelerationStructure,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that destroys the buffer.
     /// - [`acceleration_structure`] is the acceleration structure to destroy.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - All submitted commands that refer to [`acceleration_structure`] **must**  have completed
     ///   execution
     /// - If [`AllocationCallbacks`] were provided when [`acceleration_structure`] was created, a
@@ -3938,7 +3923,7 @@ impl Device {
     /// - If no [`AllocationCallbacks`] were provided when [`acceleration_structure`] was created,
     ///   [`p_allocator`] **must**  be `NULL`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`acceleration_structure`] is not [`crate::Handle::null`], [`acceleration_structure`]
     ///   **must**  be a valid [`AccelerationStructureNV`] handle
@@ -3947,21 +3932,21 @@ impl Device {
     /// - If [`acceleration_structure`] is a valid handle, it  **must**  have been created,
     ///   allocated, or retrieved from [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`acceleration_structure`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyAccelerationStructureNV")]
     #[track_caller]
@@ -4013,32 +3998,32 @@ impl Device {
     ///    const VkAccelerationStructureMemoryRequirementsInfoNV* pInfo,
     ///    VkMemoryRequirements2KHR*                   pMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device on which the acceleration structure was created.
     /// - [`p_info`] is a pointer to a [`AccelerationStructureMemoryRequirementsInfoNV`] structure
     ///   specifying the acceleration structure to get memory requirements for.
     /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2KHR`] structure in which
     ///   the requested acceleration structure memory requirements are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid
     ///   [`AccelerationStructureMemoryRequirementsInfoNV`] structure
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2KHR`]
     ///   structure
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
     /// - [`Device`]
     /// - [`MemoryRequirements2KHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetAccelerationStructureMemoryRequirementsNV")]
     #[track_caller]
@@ -4083,33 +4068,33 @@ impl Device {
     ///    uint32_t                                    bindInfoCount,
     ///    const VkBindAccelerationStructureMemoryInfoNV* pBindInfos);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the acceleration structures and memory.
     /// - [`bind_info_count`] is the number of elements in [`p_bind_infos`].
     /// - [`p_bind_infos`] is a pointer to an array of [`BindAccelerationStructureMemoryInfoNV`]
     ///   structures describing acceleration structures and memory to bind.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_bind_infos`] **must**  be a valid pointer to an array of [`bind_info_count`] valid
     ///   [`BindAccelerationStructureMemoryInfoNV`] structures
     /// - [`bind_info_count`] **must**  be greater than `0`
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`BindAccelerationStructureMemoryInfoNV`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkBindAccelerationStructureMemoryNV")]
     #[track_caller]
@@ -4153,19 +4138,19 @@ impl Device {
     ///    size_t                                      dataSize,
     ///    void*                                       pData);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the acceleration structures.
     /// - [`acceleration_structure`] is the acceleration structure.
     /// - [`data_size`] is the size in bytes of the buffer pointed to by [`p_data`].
     /// - [`p_data`] is a pointer to a user-allocated buffer where the results will be written.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`data_size`] **must**  be large enough to contain the result of the query, as described
     ///   above
     /// - [`acceleration_structure`] **must**  be bound completely and contiguously to a single
     ///   [`DeviceMemory`] object via [`bind_acceleration_structure_memory_nv`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
     /// - [`p_data`] **must**  be a valid pointer to an array of [`data_size`] bytes
@@ -4173,21 +4158,21 @@ impl Device {
     /// - [`acceleration_structure`] **must**  have been created, allocated, or retrieved from
     ///   [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetAccelerationStructureHandleNV")]
     #[track_caller]
@@ -4231,7 +4216,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkPipeline*                                 pPipelines);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the ray tracing pipelines.
     /// - [`pipeline_cache`] is either [`crate::Handle::null`], indicating that pipeline caching is disabled, or the handle of a valid [pipeline cache](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-cache) object, in which case use of that cache is enabled for the duration of the command.
     /// - [`create_info_count`] is the length of the [`p_create_infos`] and [`p_pipelines`] arrays.
@@ -4241,8 +4226,8 @@ impl Device {
     ///   chapter.
     /// - [`p_pipelines`] is a pointer to an array in which the resulting ray tracing pipeline
     ///   objects are returned.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - If the `flags` member of any element of [`p_create_infos`] contains the
     ///   `VK_PIPELINE_CREATE_DERIVATIVE_BIT` flag, and the `basePipelineIndex` member of that same
     ///   element is not `-1`, `basePipelineIndex` **must**  be less than the index into
@@ -4253,7 +4238,7 @@ impl Device {
     /// - `flags` **must**  not contain the `VK_PIPELINE_CREATE_DISPATCH_BASE` flag
     /// -    If [`pipeline_cache`] was created with `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`, host access to [`pipeline_cache`] **must**  be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fundamentals-threadingbehavior)
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`pipeline_cache`] is not [`crate::Handle::null`], [`pipeline_cache`] **must**  be a
     ///   valid [`PipelineCache`] handle
@@ -4267,11 +4252,11 @@ impl Device {
     /// - If [`pipeline_cache`] is a valid handle, it  **must**  have been created, allocated, or
     ///   retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_PIPELINE_COMPILE_REQUIRED_EXT`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INVALID_SHADER_NV`
-    /// # Related
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -4279,13 +4264,13 @@ impl Device {
     /// - [`PipelineCache`]
     /// - [`RayTracingPipelineCreateInfoNV`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateRayTracingPipelinesNV")]
     #[track_caller]
@@ -4344,19 +4329,19 @@ impl CommandBuffer {
     ///    VkAccelerationStructureNV                   src,
     ///    VkCopyAccelerationStructureModeKHR          mode);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`dst`] is the target acceleration structure for the copy.
     /// - [`src`] is the source acceleration structure for the copy.
     /// - [`mode`] is a [`CopyAccelerationStructureModeKHR`] value specifying additional operations
     ///   to perform during the copy.
-    /// # Description
-    /// Accesses to [`src`] and [`dst`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
-    /// `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
-    /// [access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
-    /// `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
-    /// `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR` as appropriate.
-    /// ## Valid Usage
+    ///# Description
+    ///Accesses to [`src`] and [`dst`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
+    ///`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
+    ///[access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
+    ///`VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
+    ///`VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR` as appropriate.
+    ///## Valid Usage
     /// - [`mode`] **must**  be `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` or
     ///   `VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR`
     /// - The source acceleration structure [`src`] **must**  have been constructed prior to the
@@ -4367,7 +4352,7 @@ impl CommandBuffer {
     /// - The `buffer` used to create [`src`] **must**  be bound to device memory
     /// - The `buffer` used to create [`dst`] **must**  be bound to device memory
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`dst`] **must**  be a valid [`AccelerationStructureNV`] handle
     /// - [`src`] **must**  be a valid [`AccelerationStructureNV`] handle
@@ -4379,25 +4364,25 @@ impl CommandBuffer {
     /// - Each of [`command_buffer`], [`dst`], and [`src`] **must**  have been created, allocated,
     ///   or retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`CommandBuffer`]
     /// - [`CopyAccelerationStructureModeKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyAccelerationStructureNV")]
     #[track_caller]
@@ -4440,7 +4425,7 @@ impl CommandBuffer {
     ///    VkQueryPool                                 queryPool,
     ///    uint32_t                                    firstQuery);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`acceleration_structure_count`] is the count of acceleration structures for which to
     ///   query the property.
@@ -4451,13 +4436,13 @@ impl CommandBuffer {
     /// - [`query_pool`] is the query pool that will manage the results of the query.
     /// - [`first_query`] is the first query index within the query pool that will contain the
     ///   [`acceleration_structure_count`] number of results.
-    /// # Description
-    /// Accesses to any of the acceleration structures listed in
-    /// [`p_acceleration_structures`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
-    /// `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
-    /// [access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
-    /// `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`.
-    /// ## Valid Usage
+    ///# Description
+    ///Accesses to any of the acceleration structures listed in
+    ///[`p_acceleration_structures`] **must**  be [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
+    ///`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
+    ///[access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
+    ///`VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`.
+    ///## Valid Usage
     /// - [`query_pool`] **must**  have been created with a [`query_type`] matching [`query_type`]
     /// - The queries identified by [`query_pool`] and [`first_query`] **must**  be *unavailable*
     /// - `accelerationStructure` **must**  be bound completely and contiguously to a single
@@ -4469,7 +4454,7 @@ impl CommandBuffer {
     ///   `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV`
     /// - [`query_type`] **must**  be `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_NV`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_acceleration_structures`] **must**  be a valid pointer to an array of
     ///   [`acceleration_structure_count`] valid [`AccelerationStructureNV`] handles
@@ -4484,26 +4469,26 @@ impl CommandBuffer {
     ///   [`p_acceleration_structures`] **must**  have been created, allocated, or retrieved from
     ///   the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`CommandBuffer`]
     /// - [`QueryPool`]
     /// - [`QueryType`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdWriteAccelerationStructuresPropertiesNV")]
     #[track_caller]
@@ -4558,7 +4543,7 @@ impl CommandBuffer {
     ///    VkBuffer                                    scratch,
     ///    VkDeviceSize                                scratchOffset);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_info`] contains the shared information for the acceleration structure’s structure.
     /// - [`instance_data`] is the buffer containing an array of
@@ -4574,14 +4559,14 @@ impl CommandBuffer {
     /// - [`scratch`] is the [`Buffer`] that will be used as scratch memory for the build.
     /// - [`scratch_offset`] is the offset in bytes relative to the start of [`scratch`] that will
     ///   be used as a scratch memory.
-    /// # Description
-    /// Accesses to [`dst`], [`src`], and [`scratch`] **must**  be
-    /// [synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
-    /// `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
-    /// [access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
-    /// `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
-    /// `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`.
-    /// ## Valid Usage
+    ///# Description
+    ///Accesses to [`dst`], [`src`], and [`scratch`] **must**  be
+    ///[synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies) with the
+    ///`VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`[pipeline stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages) and an
+    ///[access type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types) of
+    ///`VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR` or
+    ///`VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`.
+    ///## Valid Usage
     /// - `geometryCount` **must**  be less than or equal to
     ///   [`PhysicalDeviceRayTracingPropertiesNV::max_geometry_count`]
     /// - [`dst`] **must**  have been created with compatible [`AccelerationStructureInfoNV`] where
@@ -4618,7 +4603,7 @@ impl CommandBuffer {
     /// -    If [`update`] is [`TRUE`], then objects that were previously inactive  **must**  not be made active as per [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
     /// -    If [`update`] is [`TRUE`], the [`src`] and [`dst`] objects  **must**  either be the same object or not have any [memory aliasing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-memory-aliasing)
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`AccelerationStructureInfoNV`]
     ///   structure
@@ -4636,13 +4621,13 @@ impl CommandBuffer {
     ///   valid handles of non-ignored parameters  **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`AccelerationStructureInfoNV`]
     /// - [`AccelerationStructureNV`]
@@ -4651,13 +4636,13 @@ impl CommandBuffer {
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBuildAccelerationStructureNV")]
     #[track_caller]
@@ -4724,7 +4709,7 @@ impl CommandBuffer {
     ///    uint32_t                                    height,
     ///    uint32_t                                    depth);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`raygen_shader_binding_table_buffer`] is the buffer object that holds the shader binding
     ///   table data for the ray generation shader stage.
@@ -4752,10 +4737,10 @@ impl CommandBuffer {
     /// - [`width`] is the width of the ray trace query dimensions.
     /// - [`height`] is height of the ray trace query dimensions.
     /// - [`depth`] is depth of the ray trace query dimensions.
-    /// # Description
-    /// When the command is executed, a ray generation group of [`width`]
-    /// × [`height`] × [`depth`] rays is assembled.
-    /// ## Valid Usage
+    ///# Description
+    ///When the command is executed, a ray generation group of [`width`]
+    ///× [`height`] × [`depth`] rays is assembled.
+    ///## Valid Usage
     /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
     ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
     ///   command, then the image view’s [format features]() **must**  contain
@@ -4918,7 +4903,7 @@ impl CommandBuffer {
     /// - [`depth`] **must**  be less than or equal to
     ///   [`PhysicalDeviceLimits::max_compute_work_group_count`][2]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`raygen_shader_binding_table_buffer`] **must**  be a valid [`Buffer`] handle
     /// - If [`miss_shader_binding_table_buffer`] is not [`crate::Handle::null`],
@@ -4936,25 +4921,25 @@ impl CommandBuffer {
     ///   [`raygen_shader_binding_table_buffer`] that are valid handles of non-ignored parameters
     ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_ray_tracing`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdTraceRaysNV")]
     #[track_caller]
@@ -5018,7 +5003,7 @@ impl CommandBuffer {
 ///// Provided by VK_NV_ray_tracing
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureNV)
 ///```
-/// # Related
+///# Related
 /// - [`VK_NV_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
 /// - [`BindAccelerationStructureMemoryInfoNV`]
@@ -5030,16 +5015,15 @@ impl CommandBuffer {
 /// - [`destroy_acceleration_structure_nv`]
 /// - [`get_acceleration_structure_handle_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct AccelerationStructureNV(pub u64);
 impl AccelerationStructureNV {

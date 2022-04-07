@@ -80,8 +80,6 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 use crate::vulkan1_0::{BaseInStructure, StructureType};
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{ffi::CStr, marker::PhantomData};
@@ -105,23 +103,22 @@ pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VK_RASTERIZATION_ORDER_RELAXED_AMD = 1,
 ///} VkRasterizationOrderAMD;
 ///```
-/// # Description
+///# Description
 /// - [`STRICT`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
 /// - [`RELAXED`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
-/// # Related
+///# Related
 /// - [`VK_AMD_rasterization_order`]
 /// - [`PipelineRasterizationStateRasterizationOrderAMD`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRasterizationOrderAMD")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct RasterizationOrderAMD(i32);
@@ -171,36 +168,35 @@ impl RasterizationOrderAMD {
 ///    VkRasterizationOrderAMD    rasterizationOrder;
 ///} VkPipelineRasterizationStateRasterizationOrderAMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`rasterization_order`] is a [`RasterizationOrderAMD`] value specifying the primitive
 ///   rasterization order to use.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD`
 /// - [`rasterization_order`] **must**  be a valid [`RasterizationOrderAMD`] value
-/// If the `[`VK_AMD_rasterization_order`]` device extension is not enabled
-/// or the application does not request a particular rasterization order through
-/// specifying a [`PipelineRasterizationStateRasterizationOrderAMD`]
-/// structure then the rasterization order used by the graphics pipeline
-/// defaults to `VK_RASTERIZATION_ORDER_STRICT_AMD`.
-/// # Related
+///If the `[`VK_AMD_rasterization_order`]` device extension is not enabled
+///or the application does not request a particular rasterization order through
+///specifying a [`PipelineRasterizationStateRasterizationOrderAMD`]
+///structure then the rasterization order used by the graphics pipeline
+///defaults to `VK_RASTERIZATION_ORDER_STRICT_AMD`.
+///# Related
 /// - [`VK_AMD_rasterization_order`]
 /// - [`RasterizationOrderAMD`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationStateRasterizationOrderAMD")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PipelineRasterizationStateRasterizationOrderAMD<'lt> {
     ///Lifetime field

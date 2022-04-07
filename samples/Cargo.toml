@@ -11,6 +11,11 @@ path = "src/bins/simple.rs"
 winit = "0.26.1"
 log = "0.4.16"
 pretty_env_logger = "0.4.0"
+crossbeam-channel = "0.5.4"
+
+[dependencies.bytemuck]
+version = '1.9.1'
+features = [ "derive" ]
 
 [dependencies.magritte]
 path = "../magritte"
@@ -18,7 +23,7 @@ features = [
     "libloading", 
     "validation",
     "smallvec", 
-    "window", 
+    "window",
     "VK_KHR_swapchain",
     "VK_EXT_debug_utils"
 ]

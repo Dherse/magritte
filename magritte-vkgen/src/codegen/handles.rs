@@ -309,7 +309,6 @@ impl<'a> Handle<'a> {
             out
 
             #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[repr(transparent)]
             pub struct #name(pub #ty);
 

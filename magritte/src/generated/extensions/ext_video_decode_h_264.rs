@@ -77,8 +77,6 @@ use crate::{
     },
     vulkan1_0::{BaseInStructure, BaseOutStructure, Offset2D, StructureType},
 };
-#[cfg(feature = "bytemuck")]
-use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 use std::{
@@ -106,7 +104,7 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_BIT_EXT = 0x00000002,
 ///} VkVideoDecodeH264PictureLayoutFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`PROGRESSIVE`] specifies support for progressive content. This flag has the value `0`.
 /// - [`INTERLACED_INTERLEAVED_LINES`] specifies support for or use of a picture layout for
 ///   interlaced content where all lines belonging to the first field are decoded to the
@@ -115,20 +113,19 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`INTERLACED_SEPARATE_PLANES`] specifies support for or use of a picture layout for interlaced
 ///   content where all lines belonging to the first field are grouped together in a single plane,
 ///   followed by another plane containing all lines belonging to the second field.
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264PictureLayoutFlagBitsEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsEXT(u32);
@@ -186,7 +183,7 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
 ///    VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_BIT_EXT = 0x00000002,
 ///} VkVideoDecodeH264PictureLayoutFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`PROGRESSIVE`] specifies support for progressive content. This flag has the value `0`.
 /// - [`INTERLACED_INTERLEAVED_LINES`] specifies support for or use of a picture layout for
 ///   interlaced content where all lines belonging to the first field are decoded to the
@@ -195,20 +192,19 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
 /// - [`INTERLACED_SEPARATE_PLANES`] specifies support for or use of a picture layout for interlaced
 ///   content where all lines belonging to the first field are grouped together in a single plane,
 ///   followed by another plane containing all lines belonging to the second field.
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264PictureLayoutFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeH264PictureLayoutFlagsEXT(u32);
@@ -511,7 +507,7 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
 ///    VkVideoDecodeH264PictureLayoutFlagsEXT    pictureLayout;
 ///} VkVideoDecodeH264ProfileEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_profile_idc`] is a [`StdVideoH264ProfileIdc`] value specifying the H.264 codec profile
@@ -519,8 +515,8 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
 /// - [`picture_layout`] is a bitmask of [`VideoDecodeH264PictureLayoutFlagBitsEXT`] specifying the
 ///   layout of the decoded picture’s contents depending on the nature (progressive vs. interlaced)
 ///   of the input content.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the [`VideoDecodeH264ProfileEXT`] structure is included in the [`p_next`] chain of the
 ///   [`VideoCapabilitiesKHR`] structure passed to [`get_physical_device_video_capabilities_khr`],
 ///   the value in [`picture_layout`] is treated as a bitmask of requested picture layouts. It is
@@ -533,22 +529,21 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
 ///   `VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_BIT_EXT` or
 ///   `VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_BIT_EXT`.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264ProfileEXT")]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264ProfileEXT<'lt> {
     ///Lifetime field
@@ -664,38 +659,37 @@ impl<'lt> VideoDecodeH264ProfileEXT<'lt> {
 ///    VkOffset2D         fieldOffsetGranularity;
 ///} VkVideoDecodeH264CapabilitiesEXT;
 ///```
-/// # Members
-/// When using [`get_physical_device_video_capabilities_khr`] to query the
-/// capabilities for the input `pVideoProfile` with
-/// `videoCodecOperation` specified as
-/// `VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT`, a
-/// [`VideoDecodeH264CapabilitiesEXT`] structure  **must**  be chained to
-/// [`VideoCapabilitiesKHR`] to get this H.264 decode profile specific
-/// capabilities.
-/// # Description
+///# Members
+///When using [`get_physical_device_video_capabilities_khr`] to query the
+///capabilities for the input `pVideoProfile` with
+///`videoCodecOperation` specified as
+///`VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT`, a
+///[`VideoDecodeH264CapabilitiesEXT`] structure  **must**  be chained to
+///[`VideoCapabilitiesKHR`] to get this H.264 decode profile specific
+///capabilities.
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_level`] is the maximum H.264 level supported by the device.
 /// - [`field_offset_granularity`] - if Interlaced Video Content is suported, the maximum field
 ///   offset granularity supported for the picture resource.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`Offset2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264CapabilitiesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264CapabilitiesEXT<'lt> {
     ///Lifetime field
@@ -806,7 +800,7 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
 ///    const StdVideoH264PictureParameterSet*     pPpsStd;
 ///} VkVideoDecodeH264SessionParametersAddInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sps_std_count`] is the number of SPS elements in [`sps_std`]. Its value  **must**  be less
@@ -819,8 +813,8 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
 /// - [`pps_std`] is a pointer to an array of [`StdVideoH264PictureParameterSet`] structures
 ///   representing H.264 picture parameter sets. Each element of the array  **must**  have a unique
 ///   H.264 SPS-PPS ID pair.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The values of [`sps_std_count`] and [`pps_std_count`] **must**  be less than or equal to the
 ///   values of `maxSpsStdCount` and `maxPpsStdCount`, respectively
 /// - When the `maxSpsStdCount` number of parameters of type StdVideoH264SequenceParameterSet in the
@@ -841,7 +835,7 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
 /// - SPS/PPS parameters  **must**  comply with the limits specified in
 ///   [`VideoSessionCreateInfoKHR`] during Video Session creation
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`
 /// - If [`sps_std`] is not `NULL`, [`sps_std`] **must**  be a valid pointer to an array of
 ///   [`sps_std_count`][`StdVideoH264SequenceParameterSet`] values
@@ -849,21 +843,20 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
 ///   [`pps_std_count`][`StdVideoH264PictureParameterSet`] values
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH264SessionParametersCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264SessionParametersAddInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
     ///Lifetime field
@@ -999,16 +992,16 @@ impl<'lt> VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
 ///    const VkVideoDecodeH264SessionParametersAddInfoEXT*    pParametersAddInfo;
 ///} VkVideoDecodeH264SessionParametersCreateInfoEXT;
 ///```
-/// # Members
-/// A [`VideoDecodeH264SessionParametersCreateInfoEXT`] structure holding
-/// one H.264 SPS and at least one H.264 PPS paramater set  **must**  be chained to
-/// [`VideoSessionParametersCreateInfoKHR`] when calling
-/// [`create_video_session_parameters_khr`] to store these parameter set(s) with
-/// the decoder parameter set object for later reference.
-/// The provided H.264 SPS/PPS parameters  **must**  be within the limits specified
-/// during decoder creation for the decoder specified in
-/// [`VideoSessionParametersCreateInfoKHR`].
-/// # Description
+///# Members
+///A [`VideoDecodeH264SessionParametersCreateInfoEXT`] structure holding
+///one H.264 SPS and at least one H.264 PPS paramater set  **must**  be chained to
+///[`VideoSessionParametersCreateInfoKHR`] when calling
+///[`create_video_session_parameters_khr`] to store these parameter set(s) with
+///the decoder parameter set object for later reference.
+///The provided H.264 SPS/PPS parameters  **must**  be within the limits specified
+///during decoder creation for the decoder specified in
+///[`VideoSessionParametersCreateInfoKHR`].
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_sps_std_count`] is the maximum number of SPS parameters that the
@@ -1019,26 +1012,25 @@ impl<'lt> VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
 ///   [`VideoDecodeH264SessionParametersAddInfoEXT`] structure specifying H.264 parameters to add
 ///   upon object creation.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoDecodeH264SessionParametersAddInfoEXT`] structure
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH264SessionParametersAddInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264SessionParametersCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -1174,7 +1166,7 @@ impl<'lt> VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
 ///    const uint32_t*                         pSlicesDataOffsets;
 ///} VkVideoDecodeH264PictureInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_picture_info`] is a pointer to a [`StdVideoDecodeH264PictureInfo`] structure specifying
@@ -1182,28 +1174,27 @@ impl<'lt> VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
 /// - [`slices_count`] is the number of slices in this picture.
 /// - [`slices_data_offsets`] is a pointer to an array of [`slices_count`] offsets indicating the
 ///   start offset of each slice within the bitstream buffer.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PICTURE_INFO_EXT`
 /// - [`std_picture_info`] **must**  be a valid pointer to a valid [`StdVideoDecodeH264PictureInfo`]
 ///   value
 /// - [`slices_data_offsets`] **must**  be a valid pointer to an array of [`slices_count`]`uint32_t`
 ///   values
 /// - [`slices_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264PictureInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264PictureInfoEXT<'lt> {
     ///Lifetime field
@@ -1330,30 +1321,29 @@ impl<'lt> VideoDecodeH264PictureInfoEXT<'lt> {
 ///    const StdVideoDecodeH264ReferenceInfo*    pStdReferenceInfo;
 ///} VkVideoDecodeH264DpbSlotInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`std_reference_info`] is a pointer to a [`StdVideoDecodeH264ReferenceInfo`] structure
 ///   specifying the codec standard specific picture reference information from the H.264
 ///   specification.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_DPB_SLOT_INFO_EXT`
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoDecodeH264ReferenceInfo`] value
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264DpbSlotInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264DpbSlotInfoEXT<'lt> {
     ///Lifetime field
@@ -1434,31 +1424,30 @@ impl<'lt> VideoDecodeH264DpbSlotInfoEXT<'lt> {
 ///    const StdVideoDecodeH264Mvc*    pStdMvc;
 ///} VkVideoDecodeH264MvcEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_mvc`] is a pointer to a [`StdVideoDecodeH264Mvc`] structure specifying H.264 codec
 ///   specification information for MVC.
-/// # Description
-/// When the content type is H.264 MVC, a [`VideoDecodeH264MvcEXT`]
-/// structure  **must**  be chained to [`VideoDecodeH264PictureInfoEXT`].
-/// ## Valid Usage (Implicit)
+///# Description
+///When the content type is H.264 MVC, a [`VideoDecodeH264MvcEXT`]
+///structure  **must**  be chained to [`VideoDecodeH264PictureInfoEXT`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT`
 /// - [`std_mvc`] **must**  be a valid pointer to a valid [`StdVideoDecodeH264Mvc`] value
-/// # Related
+///# Related
 /// - [`VK_EXT_video_decode_h264`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264MvcEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct VideoDecodeH264MvcEXT<'lt> {
     ///Lifetime field

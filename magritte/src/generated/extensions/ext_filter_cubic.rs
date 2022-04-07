@@ -69,29 +69,28 @@ pub const EXT_FILTER_CUBIC_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///    VkImageViewType    imageViewType;
 ///} VkPhysicalDeviceImageViewImageFormatInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_view_type`] is a [`ImageViewType`] value specifying the type of the image view.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT`
 /// - [`image_view_type`] **must**  be a valid [`ImageViewType`] value
-/// # Related
+///# Related
 /// - [`VK_EXT_filter_cubic`]
 /// - [`ImageViewType`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageViewImageFormatInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
     ///Lifetime field
@@ -184,7 +183,7 @@ impl<'lt> PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
 ///    VkBool32           filterCubicMinmax;
 ///} VkFilterCubicImageViewImageFormatPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`filter_cubic`] tells if image format, image type and image view type  **can**  be used with
@@ -192,32 +191,31 @@ impl<'lt> PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
 /// - [`filter_cubic_minmax`] tells if image format, image type and image view type  **can**  be
 ///   used with cubic filtering and minmax filtering. This field is set by the implementation.
 ///   User-specified value is ignored.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT`
 ///
-/// ## Valid Usage
+///## Valid Usage
 /// - If the [`p_next`] chain of the [`ImageFormatProperties2`] structure includes a
 ///   [`FilterCubicImageViewImageFormatPropertiesEXT`] structure, the [`p_next`] chain of the
 ///   [`PhysicalDeviceImageFormatInfo2`] structure  **must**  include a
 ///   [`PhysicalDeviceImageViewImageFormatInfoEXT`] structure with an `imageViewType` that is
 ///   compatible with `imageType`
-/// # Related
+///# Related
 /// - [`VK_EXT_filter_cubic`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFilterCubicImageViewImageFormatPropertiesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
 pub struct FilterCubicImageViewImageFormatPropertiesEXT<'lt> {
     ///Lifetime field

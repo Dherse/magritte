@@ -62,9 +62,8 @@ impl<'a> Enum<'a> {
         // the name as an identifier
         let name = self.as_ident();
 
-        // import serde and bytemuck if needed
+        // import serde if needed
         imports.serde();
-        imports.bytemuck();
 
         // generate the doc for the enum
         let variant_docs = self.generate_doc(source, doc, out).unwrap_or_default();
@@ -83,7 +82,6 @@ impl<'a> Enum<'a> {
             out
 
             #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
-            #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]
             pub struct #name(i32);
