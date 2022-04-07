@@ -8,8 +8,8 @@ use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Function, Handle, Source, CommandAlias},
-    ty::{Ty, Mutability},
+    source::{CommandAlias, Function, Handle, Source},
+    ty::{Mutability, Ty},
 };
 
 pub mod field;
@@ -17,11 +17,7 @@ pub mod raw;
 pub mod wrapped;
 
 impl<'a> CommandAlias<'a> {
-    fn function_getter(
-        &self,
-        source: &Source<'a>,
-        handle: &Handle<'a>
-    ) -> TokenStream {
+    fn function_getter(&self, source: &Source<'a>, handle: &Handle<'a>) -> TokenStream {
         let name = self.as_ident();
         let loader = match handle.name() {
             "Device" | "Instance" => None,
@@ -47,12 +43,7 @@ impl<'a> CommandAlias<'a> {
 }
 
 impl<'a> Function<'a> {
-    fn function_getter(
-        &self,
-        parent: &Origin<'a>,
-        source: &Source<'a>,
-        handle: &Handle<'a>
-    ) -> TokenStream {
+    fn function_getter(&self, parent: &Origin<'a>, source: &Source<'a>, handle: &Handle<'a>) -> TokenStream {
         let name = self.as_ident();
         let loader = match self.original_name() {
             "vkGetInstanceProcAddr" => Some(quote! { .entry() }),
@@ -81,13 +72,12 @@ impl<'a> Function<'a> {
             .map(|alias| source.command_aliases.get_by_name(&**alias).unwrap())
             .map(|alias| alias.conditional_compilation(parent, source));
 
-
         let condition_nots = self
             .aliases()
             .iter()
             .map(|alias| source.command_aliases.get_by_name(&**alias).unwrap())
             .map(|alias| alias.conditional_compilation_not(parent, source));
-        
+
         if self.original_name() == "vkGetInstanceProcAddr" {
             quote! {
                 self
@@ -145,7 +135,6 @@ impl<'a> Function<'a> {
 
             change = Some(new_handle);
         }
-
 
         let name = self.as_ident();
 
@@ -247,7 +236,7 @@ impl<'a> Function<'a> {
 
         let generics = if is_lifetime {
             Some(quote! {
-                'lt,
+                <'lt>
             })
         } else {
             None
@@ -258,13 +247,15 @@ impl<'a> Function<'a> {
         // let unsafe_ = if gen.unsafe_ { Some(quote! { unsafe }) } else { None };
         let function_getter = self.function_getter(handle.origin(), source, handle);
 
-        let mut aliases = vec![ self.original_name() ];
+        let mut aliases = vec![self.original_name()];
         aliases.extend(self.aliases().iter().map(|s| &**s));
 
         let ident = handle.as_ident();
+
+        // TODO: make mut actually mut (locking?)
         let this = match gen.this {
-            Mutability::Mutable => quote! { self: &'this mut Unique<'a, #ident> },
-            Mutability::Const => quote! { self: &'this Unique<'a, #ident> },
+            Mutability::Mutable => quote! { self: &Unique<#ident> },
+            Mutability::Const => quote! { self: &Unique<#ident> },
         };
 
         quote_each_token! {
@@ -275,7 +266,7 @@ impl<'a> Function<'a> {
             )*
             #[track_caller]
             #[inline]
-            pub unsafe fn #name <'a: 'this, 'this, #generics>(
+            pub unsafe fn #name #generics(
                 #this,
                 #(#params),*
             ) -> #return_ty {

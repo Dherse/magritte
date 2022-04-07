@@ -105,6 +105,11 @@ impl<'a> Handle<'a> {
         self.parent.as_ref().map(|s| &**s)
     }
 
+    /// Get a mutable reference to the handle's fields.
+    pub fn parent_mut(&mut self) -> &mut Option<Cow<'a, str>> {
+        &mut self.parent
+    }
+
     /// Is the handle dispatchable (an opaque pointer) or non-dispatchable (a 64 bit integer)
     #[inline]
     pub fn dispatchable(&self) -> bool {

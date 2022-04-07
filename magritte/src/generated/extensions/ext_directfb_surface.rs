@@ -52,7 +52,7 @@ use crate::{
     },
     AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit, sync::atomic::AtomicBool};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DIRECTFB_SURFACE_SPEC_VERSION")]
@@ -72,15 +72,15 @@ pub const EXT_DIRECTFB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSurfaceKHR*                               pSurface);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`instance`] is the instance to associate the surface with.
 /// - [`p_create_info`] is a pointer to a [`DirectFBSurfaceCreateInfoEXT`] structure containing
 ///   parameters affecting the creation of the surface object.
 /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
 /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
 ///   returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`DirectFBSurfaceCreateInfoEXT`]
 ///   structure
@@ -88,23 +88,23 @@ pub const EXT_DIRECTFB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///   [`AllocationCallbacks`] structure
 /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_EXT_directfb_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`DirectFBSurfaceCreateInfoEXT`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateDirectFBSurfaceEXT")]
 pub type FNCreateDirectFbSurfaceExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -125,30 +125,30 @@ pub type FNCreateDirectFbSurfaceExt = Option<
 ///    uint32_t                                    queueFamilyIndex,
 ///    IDirectFB*                                  dfb);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] is the physical device.
 /// - [`queue_family_index`] is the queue family index.
 /// - [`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
-///# Description
-///This platform-specific function  **can**  be called prior to creating a surface.
-///## Valid Usage
+/// # Description
+/// This platform-specific function  **can**  be called prior to creating a surface.
+/// ## Valid Usage
 /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
 ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`dfb`] **must**  be a valid pointer to an [`IDirectFB`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_directfb_surface`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceDirectFBPresentationSupportEXT")]
 pub type FNGetPhysicalDeviceDirectFbPresentationSupportExt = Option<
     unsafe extern "system" fn(physical_device: PhysicalDevice, queue_family_index: u32, dfb: *mut IDirectFB) -> Bool32,
@@ -159,17 +159,17 @@ pub type FNGetPhysicalDeviceDirectFbPresentationSupportExt = Option<
 ///// Provided by VK_EXT_directfb_surface
 ///typedef VkFlags VkDirectFBSurfaceCreateFlagsEXT;
 ///```
-///# Related
+/// # Related
 /// - [`VK_EXT_directfb_surface`]
 /// - [`DirectFBSurfaceCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -200,34 +200,34 @@ impl std::fmt::Debug for DirectFBSurfaceCreateFlagsEXT {
 ///    IDirectFBSurface*                  surface;
 ///} VkDirectFBSurfaceCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
 /// - [`surface`] is a pointer to a [`IDirectFBSurface`] surface interface.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`dfb`] **must**  point to a valid DirectFB [`IDirectFB`]
 /// - [`surface`] **must**  point to a valid DirectFB [`IDirectFBSurface`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_directfb_surface`]
 /// - [`DirectFBSurfaceCreateFlagsEXT`]
 /// - [`StructureType`]
 /// - [`create_direct_fb_surface_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDirectFBSurfaceCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -352,15 +352,15 @@ impl Instance {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSurfaceKHR*                               pSurface);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`instance`] is the instance to associate the surface with.
     /// - [`p_create_info`] is a pointer to a [`DirectFBSurfaceCreateInfoEXT`] structure containing
     ///   parameters affecting the creation of the surface object.
     /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
     /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
     ///   is returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`DirectFBSurfaceCreateInfoEXT`]
     ///   structure
@@ -368,32 +368,32 @@ impl Instance {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_directfb_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`DirectFBSurfaceCreateInfoEXT`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateDirectFBSurfaceEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_direct_fb_surface_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Instance>,
+    pub unsafe fn create_direct_fb_surface_ext<'lt>(
+        self: &Unique<Instance>,
         p_create_info: &DirectFBSurfaceCreateInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, SurfaceKHR>> {
+    ) -> VulkanResult<Unique<SurfaceKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -416,9 +416,10 @@ impl Instance {
             p_surface.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_surface.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(self, p_surface.assume_init(), AtomicBool::default()),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -435,36 +436,36 @@ impl PhysicalDevice {
     ///    uint32_t                                    queueFamilyIndex,
     ///    IDirectFB*                                  dfb);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`physical_device`] is the physical device.
     /// - [`queue_family_index`] is the queue family index.
     /// - [`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
-    ///# Description
-    ///This platform-specific function  **can**  be called prior to creating a surface.
-    ///## Valid Usage
+    /// # Description
+    /// This platform-specific function  **can**  be called prior to creating a surface.
+    /// ## Valid Usage
     /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
     ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`dfb`] **must**  be a valid pointer to an [`IDirectFB`] value
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_directfb_surface`]
     /// - [`PhysicalDevice`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceDirectFBPresentationSupportEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_direct_fb_presentation_support_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_direct_fb_presentation_support_ext(
+        self: &Unique<PhysicalDevice>,
         queue_family_index: Option<u32>,
     ) -> (IDirectFB, bool) {
         #[cfg(any(debug_assertions, feature = "assertions"))]

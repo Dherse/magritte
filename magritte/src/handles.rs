@@ -3,22 +3,47 @@
 
 use std::{
     fmt::Debug,
-    ops::{Deref, DerefMut},
+    ops::Deref,
+    ptr::NonNull,
+    sync::{
+        atomic::{AtomicUsize, Ordering},
+        Arc,
+    },
 };
 
-use tracing::debug;
+#[cfg(not(sanitize = "thread"))]
+macro_rules! acquire {
+    ($x:expr) => {
+        std::sync::atomic::fence(Ordering::Acquire)
+    };
+}
+
+// ThreadSanitizer does not support memory fences. To avoid false positive
+// reports in Arc / Weak implementation use atomic loads for synchronization
+// instead.
+#[cfg(sanitize = "thread")]
+macro_rules! acquire {
+    ($x:expr) => {
+        $x.load(Ordering::Acquire)
+    };
+}
 
 use crate::entry::{Entry, EntryVTable};
 
-#[derive(Debug)]
-pub struct Unique<'a, T: Handle> {
-    pub(crate) parent: &'a T::Parent<'a>,
+pub(crate) struct Inner<T: Handle> {
+    pub(crate) parent: T::Parent,
     pub(crate) vtable: T::VTable,
     pub(crate) metadata: T::Metadata,
+    pub(crate) strong: AtomicUsize,
+}
+
+#[derive(Debug)]
+pub struct Unique<T: Handle> {
+    pub(crate) inner: NonNull<Inner<T>>,
     pub(crate) this: T,
 }
 
-impl<'a, T: Handle> Deref for Unique<'a, T> {
+impl<T: Handle> Deref for Unique<T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -26,58 +51,60 @@ impl<'a, T: Handle> Deref for Unique<'a, T> {
     }
 }
 
-impl<'a, T: Handle> DerefMut for Unique<'a, T> {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.this
-    }
-}
+unsafe impl<T: Handle + Send> Send for Unique<T> {}
+unsafe impl<T: Handle + Send> Sync for Unique<T> {}
 
-unsafe impl<'a, T: Handle + Send> Send for Unique<'a, T> {}
-unsafe impl<'a, T: Handle + Send> Sync for Unique<'a, T> {}
-
-impl<'a, T: Handle> Unique<'a, T> {
+impl<T: Handle> Unique<T> {
     /// Creates a new unique pointer
     ///
     /// # Safety
     /// Cannot prove that the value is unique.
     #[inline]
-    pub unsafe fn new<'b: 'a>(parent: &'a T::Parent<'b>, this: T, metadata: T::Metadata) -> Self {
+    pub unsafe fn new(parent: &T::Parent, this: T, metadata: T::Metadata) -> Self {
         let vtable = this.load_vtable(parent, &metadata);
 
-        Self {
-            parent: std::mem::transmute(parent),
-            this,
-            metadata,
+        let inner = Box::new(Inner {
+            parent: parent.clone(),
             vtable,
+            metadata,
+            strong: AtomicUsize::new(1),
+        });
+
+        Self {
+            inner: NonNull::new_unchecked(Box::leak(inner) as *mut Inner<T>),
+            this,
         }
+    }
+
+    /// Gets the inner storage of this value
+    #[inline]
+    fn inner(&self) -> &Inner<T> {
+        unsafe { self.inner.as_ref() }
     }
 
     /// Gets a reference to the parent
     #[inline]
-    pub fn parent(&self) -> &'a T::Parent<'a> {
-        self.parent
+    pub fn parent(&self) -> &T::Parent {
+        &self.inner().parent
     }
 
     /// Gets the V-Table of this handle
     #[inline]
     pub fn vtable(&self) -> &T::VTable {
-        &self.vtable
+        &self.inner().vtable
     }
 
     /// Gets a reference to the metadata of this handle
     #[inline]
     pub fn metadata(&self) -> &T::Metadata {
-        &self.metadata
-    }
-
-    /// Gets a mutable reference to the metadata of this handle
-    #[inline]
-    pub fn metadata_mut(&mut self) -> &mut T::Metadata {
-        &mut self.metadata
+        &self.inner().metadata
     }
 }
 
-impl<'a, T: Handle> AsRaw for Unique<'a, T> {
+impl<T: Handle> AsRaw for Unique<T>
+where
+    T: Copy,
+{
     type Raw = T;
 
     fn as_raw(&self) -> Self::Raw {
@@ -85,18 +112,35 @@ impl<'a, T: Handle> AsRaw for Unique<'a, T> {
     }
 }
 
-impl<'a, T: Handle> Drop for Unique<'a, T> {
+impl<T: Handle> Drop for Unique<T> {
     fn drop(&mut self) {
-        debug!("Dropping {}", std::any::type_name::<T>());
+        if self.inner().strong.fetch_sub(1, Ordering::Release) != 1 {
+            return;
+        }
+
+        acquire!(self.inner().strong);
 
         unsafe {
             T::destroy(self);
+            Box::from_raw(self.inner.as_ptr());
         }
     }
 }
-pub trait Handle: Copy {
+
+impl<T: Handle> Clone for Unique<T> {
+    fn clone(&self) -> Self {
+        self.inner().strong.fetch_add(1, Ordering::Relaxed);
+
+        Self {
+            inner: self.inner.clone(),
+            this: self.this.clone(),
+        }
+    }
+}
+
+pub trait Handle: Clone {
     /// The parent of this handle
-    type Parent<'a>: Send + Sync + 'a;
+    type Parent: Send + Sync + Clone;
 
     /// The associated V-Table
     type VTable: Send + Sync;
@@ -110,7 +154,7 @@ pub trait Handle: Copy {
     /// Destroy tha handle, only called on `drop`
     /// The function is unsafe because it cannot be proven
     /// it has only be called once.
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>);
+    unsafe fn destroy(self: &mut Unique<Self>);
 
     #[doc(hidden)]
     fn as_raw(self) -> Self::Raw;
@@ -119,7 +163,7 @@ pub trait Handle: Copy {
     unsafe fn from_raw(this: Self::Raw) -> Self;
 
     /// Loads the V-Table of this handle.
-    unsafe fn load_vtable<'a>(&self, parent: &Self::Parent<'a>, metadata: &Self::Metadata) -> Self::VTable;
+    unsafe fn load_vtable(&self, parent: &Self::Parent, metadata: &Self::Metadata) -> Self::VTable;
 
     #[inline]
     #[doc(hidden)]
@@ -129,7 +173,7 @@ pub trait Handle: Copy {
 }
 
 impl Handle for () {
-    type Parent<'a> = ();
+    type Parent = ();
 
     type VTable = ();
 
@@ -137,12 +181,11 @@ impl Handle for () {
 
     type Raw = ();
 
+    #[inline]
+    unsafe fn destroy(self: &mut Unique<Self>) {}
 
     #[inline]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
-
-    #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {
         ()
     }
 
@@ -155,8 +198,8 @@ impl Handle for () {
     }
 }
 
-impl Handle for Entry {
-    type Parent<'a> = ();
+impl Handle for Arc<Entry> {
+    type Parent = ();
 
     type VTable = EntryVTable;
 
@@ -165,10 +208,10 @@ impl Handle for Entry {
     type Raw = ();
 
     #[inline]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {}
+    unsafe fn destroy(self: &mut Unique<Self>) {}
 
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {
         self.0
     }
 

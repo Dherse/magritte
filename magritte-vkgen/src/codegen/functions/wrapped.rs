@@ -134,7 +134,9 @@ impl StatefulFunctionGeneratorState {
                 ArgKind::This(arg) => this.push_this(arg),
                 ArgKind::Passthrough(arg) => this.push_passthrough(source, imports, arg),
                 ArgKind::CStr(arg) => this.push_cstr(imports, arg, &state_lifetime),
-                ArgKind::ValueWrittenTo(arg, inner) => this.push_value_written_to(source, imports, handle, &fun, arg, inner),
+                ArgKind::ValueWrittenTo(arg, inner) => {
+                    this.push_value_written_to(source, imports, handle, &fun, arg, inner)
+                },
                 ArgKind::ValueWrittenToChained(arg, inner) => {
                     this.push_value_written_to_chained(source, imports, arg, inner)
                 },
@@ -309,17 +311,18 @@ impl StatefulFunctionGeneratorState {
                             "VkDisplayKHR" => box |_| quote! { self.display_khr().as_raw() },
                             "VkSurfaceKHR" => box |_| quote! { self.surface_khr().as_raw() },
                             "VideoSessionKHR" => box |_| quote! { self.video_session_khr().as_raw() },
-                            other => unreachable!("don't know how to get: {}", other)
+                            other => unreachable!("don't know how to get: {}", other),
                         };
                     }
                 }
 
                 ty = quote! {
-                    Unique<'this, #ty>
+                    Unique<#ty>
                 };
 
+                imports.push("std::sync::atomic::AtomicBool");
                 *self.return_values.last_mut().unwrap() = quote! {
-                    #ret_ident.into_iter().map(|i| Unique::new(self, i, true)).collect()
+                    #ret_ident.into_iter().map(|i| Unique::new(self, i, AtomicBool::default())).collect()
                 };
             }
         }
@@ -438,24 +441,26 @@ impl StatefulFunctionGeneratorState {
                                 "VkDisplayKHR" => box |_| quote! { self.display_khr().as_raw() },
                                 "VkSurfaceKHR" => box |_| quote! { self.surface_khr().as_raw() },
                                 "VideoSessionKHR" => box |_| quote! { self.video_session_khr().as_raw() },
-                                other => unreachable!("don't know how to get: {}", other)
+                                other => unreachable!("don't know how to get: {}", other),
                             };
                         }
                     }
-                    
+
                     let last = self.return_types.pop().unwrap();
                     self.return_types.push(quote! {
-                        Unique<'this, #last>
+                        Unique<#last>
                     });
-                    
+
                     // For handle, we just contain a `u64` so we can just use uninitialized value, it
                     // doesn't matter.
                     self.return_initializations.push(quote! {
                         let mut #ret_ident = MaybeUninit::<#ty>::uninit();
                     });
 
+                    imports.push("std::sync::atomic::AtomicBool");
+
                     self.return_values
-                        .push(quote! { Unique::new(self, #ret_ident.assume_init(), true) });
+                        .push(quote! { Unique::new(self, #ret_ident.assume_init(), AtomicBool::default()) });
 
                     self.call_args.push(box move |_| quote! { #ret_ident.as_mut_ptr() });
                 },

@@ -1,6 +1,8 @@
 //! # Small helpers
-//! 
 
+use std::sync::atomic::AtomicBool;
+
+use crate::Handle;
 #[cfg(feature = "VK_KHR_swapchain")]
 use crate::Unique;
 
@@ -8,10 +10,10 @@ use crate::Unique;
 use crate::extensions::khr_swapchain::{SwapchainImage, SwapchainImageView};
 
 #[cfg(feature = "VK_KHR_swapchain")]
-use crate::vulkan1_0::{ImageView, Image};
+use crate::vulkan1_0::{Image, ImageView};
 
 #[cfg(feature = "VK_KHR_swapchain")]
-impl<'a> Unique<'a, SwapchainImage> {
+impl Unique<SwapchainImage> {
     /// Transforms a swapchain image into a regular image
     #[inline]
     pub const fn as_raw_image(&self) -> Image {
@@ -20,15 +22,16 @@ impl<'a> Unique<'a, SwapchainImage> {
 }
 
 #[cfg(feature = "VK_KHR_swapchain")]
-impl<'a> Unique<'a, ImageView> {
-    pub fn to_swapchain_view<'new, 'b>(self, swapchain: &'new Unique<'b, SwapchainImage>) -> Unique<'new, SwapchainImageView> where 'a: 'b, 'b: 'new {
+impl Unique<ImageView> {
+    pub fn to_swapchain_view(self, swapchain: &Unique<SwapchainImage>) -> Unique<SwapchainImageView> {
+        self.disable_drop();
+
         unsafe {
-            Unique {
-                parent: std::mem::transmute(swapchain),
-                vtable: (),
-                metadata: true,
-                this: SwapchainImageView(self.disable_drop().this.0)
-            }
+            Unique::new(
+                swapchain,
+                self.this.coerce::<SwapchainImageView>(),
+                AtomicBool::new(false),
+            )
         }
     }
 }

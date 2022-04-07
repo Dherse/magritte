@@ -3,13 +3,7 @@
 //! Inspired by wgpu-rs but designed for native Desktop use instead of
 //! compatibility with `WebGPU`. The final API will be designed to enabled
 //! high performance graphics and compute applications with the latest features.
-#![feature(
-    const_trait_impl,
-    const_mut_refs,
-    generic_associated_types,
-    arbitrary_self_types,
-    try_trait_v2
-)]
+#![feature(const_trait_impl, const_mut_refs, arbitrary_self_types, try_trait_v2, cfg_sanitize)]
 #![warn(clippy::pedantic, clippy::cargo)]
 // #![deny(missing_docs)]
 
@@ -20,12 +14,14 @@ pub mod video;
 
 pub mod entry;
 pub mod handles;
+pub mod helpers;
 #[cfg(feature = "libloading")]
 pub mod loading;
 pub mod results;
+#[cfg(feature = "validation")]
+pub mod validation;
 #[cfg(feature = "window")]
 pub mod window;
-pub mod helpers;
 
 use generated::vulkan1_0::VulkanResultCodes;
 pub use generated::{extensions::Extensions, *};

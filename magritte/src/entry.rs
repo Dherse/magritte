@@ -3,7 +3,7 @@
 //! required to load all other Vulkan functions. It can optionally be used to dynamically
 //! load Vulkan.
 
-use std::ffi::CStr;
+use std::{any::Any, ffi::CStr, sync::Arc};
 
 use crate::{
     vulkan1_0::{
@@ -15,8 +15,10 @@ use crate::{
     Extensions, Unique, Version,
 };
 
-#[derive(Clone, Copy, Default)]
-pub struct Entry(pub EntryVTable);
+pub struct Entry(pub EntryVTable, pub Box<dyn Any + Send + Sync>);
+
+unsafe impl Send for Entry {}
+unsafe impl Sync for Entry {}
 
 impl Entry {
     /// Gets the V-Table
@@ -28,11 +30,11 @@ impl Entry {
     /// Creates a Vulkan instance.
     /// See [`FNCreateInstance`] for more information.
     pub unsafe fn create_instance<'lt>(
-        &self,
+        self: &Arc<Self>,
         instance_create_info: &InstanceCreateInfo<'lt>,
         allocation_callback: Option<&AllocationCallbacks<'lt>>,
         extensions: Extensions,
-    ) -> Result<Unique<'_, Instance>, VulkanResultCodes> {
+    ) -> Result<Unique<Instance>, VulkanResultCodes> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let fn_ = self.vtable().create_instance().unwrap();
 

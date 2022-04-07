@@ -83,25 +83,25 @@ pub const EXT_VIDEO_DECODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    StdVideoH265ProfileIdc    stdProfileIdc;
 ///} VkVideoDecodeH265ProfileEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_profile_idc`] is a [`StdVideoH265ProfileIdc`] value specifying the H.265 codec profile
 ///   IDC.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265ProfileEXT")]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(C)]
@@ -196,31 +196,31 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 ///    uint32_t           maxLevel;
 ///} VkVideoDecodeH265CapabilitiesEXT;
 ///```
-///# Members
-///When using [`get_physical_device_video_capabilities_khr`] to query the
-///capabilities for the parameter `videoCodecOperation` specified as
-///`VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT`, a
-///[`VideoDecodeH265CapabilitiesEXT`] structure  **can**  be chained to
-///[`VideoCapabilitiesKHR`] to return this H.265 extension specific
-///capabilities.
-///# Description
+/// # Members
+/// When using [`get_physical_device_video_capabilities_khr`] to query the
+/// capabilities for the parameter `videoCodecOperation` specified as
+/// `VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT`, a
+/// [`VideoDecodeH265CapabilitiesEXT`] structure  **can**  be chained to
+/// [`VideoCapabilitiesKHR`] to return this H.265 extension specific
+/// capabilities.
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_level`] is the maximum H.265 level supported by the device.
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265CapabilitiesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -319,7 +319,7 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 ///    const StdVideoH265PictureParameterSet*     pPpsStd;
 ///} VkVideoDecodeH265SessionParametersAddInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`vps_std_count`] is the number of VPS elements in [`vps_std`].
@@ -335,8 +335,8 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 /// - [`pps_std`] is a pointer to an array of [`StdVideoH265PictureParameterSet`] structures
 ///   representing H.265 picture parameter sets. Each element of the array entry  **must**  have a
 ///   unique H.265 VPS-SPS-PPS ID tuple.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - The values of [`vps_std_count`], [`sps_std_count`] and [`pps_std_count`] **must**  be less
 ///   than or equal to the values of `maxVpsStdCount`, `maxSpsStdCount` and `maxPpsStdCount`,
 ///   respectively
@@ -362,7 +362,7 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 /// - VPS/SPS/PPS parameters  **must**  comply with the limits specified in
 ///   [`VideoSessionCreateInfoKHR`] during Video Session creation
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_EXT`
 /// - If [`vps_std`] is not `NULL`, [`vps_std`] **must**  be a valid pointer to an array of
 ///   [`vps_std_count`][`StdVideoH265VideoParameterSet`] values
@@ -373,18 +373,18 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 /// - [`vps_std_count`] **must**  be greater than `0`
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH265SessionParametersCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265SessionParametersAddInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -554,7 +554,7 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 ///    const VkVideoDecodeH265SessionParametersAddInfoEXT*    pParametersAddInfo;
 ///} VkVideoDecodeH265SessionParametersCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_vps_std_count`] is the maximum number of entries of type
@@ -566,41 +566,41 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 /// - [`parameters_add_info`] is `NULL` or a pointer to a
 ///   [`VideoDecodeH265SessionParametersAddInfoEXT`] structure specifying H.265 parameters to add
 ///   upon object creation.
-///# Description
-///When a [`VideoSessionParametersKHR`] object contains
-///[`max_vps_std_count`][`StdVideoH265VideoParameterSet`] entries, no
-///additional [`StdVideoH265VideoParameterSet`] entries can be added to it,
-///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
-///to add these entries.
-///When a [`VideoSessionParametersKHR`] object contains
-///[`max_sps_std_count`][`StdVideoH265SequenceParameterSet`] entries, no
-///additional [`StdVideoH265SequenceParameterSet`] entries can be added to it,
-///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
-///to add these entries.
-///When a [`VideoSessionParametersKHR`] object contains
-///[`max_pps_std_count`][`StdVideoH265PictureParameterSet`] entries, no
-///additional [`StdVideoH265PictureParameterSet`] entries can be added to it,
-///and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
-///to add these entries.The provided H.265 VPS/SPS/PPS parameters  **must**  be within the limits
-///specified during decoder creation for the decoder specified in
-///[`VideoSessionParametersCreateInfoKHR`].
-///## Valid Usage (Implicit)
+/// # Description
+/// When a [`VideoSessionParametersKHR`] object contains
+/// [`max_vps_std_count`][`StdVideoH265VideoParameterSet`] entries, no
+/// additional [`StdVideoH265VideoParameterSet`] entries can be added to it,
+/// and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
+/// to add these entries.
+/// When a [`VideoSessionParametersKHR`] object contains
+/// [`max_sps_std_count`][`StdVideoH265SequenceParameterSet`] entries, no
+/// additional [`StdVideoH265SequenceParameterSet`] entries can be added to it,
+/// and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
+/// to add these entries.
+/// When a [`VideoSessionParametersKHR`] object contains
+/// [`max_pps_std_count`][`StdVideoH265PictureParameterSet`] entries, no
+/// additional [`StdVideoH265PictureParameterSet`] entries can be added to it,
+/// and `VK_ERROR_TOO_MANY_OBJECTS` will be returned if an attempt is made
+/// to add these entries.The provided H.265 VPS/SPS/PPS parameters  **must**  be within the limits
+/// specified during decoder creation for the decoder specified in
+/// [`VideoSessionParametersCreateInfoKHR`].
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoDecodeH265SessionParametersAddInfoEXT`] structure
-///# Related
+/// # Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH265SessionParametersAddInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265SessionParametersCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -756,7 +756,7 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
 ///    const uint32_t*                   pSlicesDataOffsets;
 ///} VkVideoDecodeH265PictureInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_picture_info`] is a pointer to a [`StdVideoDecodeH265PictureInfo`] structure specifying
@@ -764,24 +764,24 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
 /// - [`slices_count`] is the number of slices in this picture.
 /// - [`slices_data_offsets`] is a pointer to an array of [`slices_count`] offsets indicating the
 ///   start offset of each slice within the bitstream buffer.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PICTURE_INFO_EXT`
 /// - [`std_picture_info`] **must**  be a valid pointer to a [`StdVideoDecodeH265PictureInfo`] value
 /// - [`slices_data_offsets`] **must**  be a valid pointer to an array of [`slices_count`]`uint32_t`
 ///   values
 /// - [`slices_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265PictureInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -917,28 +917,28 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
 ///    const StdVideoDecodeH265ReferenceInfo*    pStdReferenceInfo;
 ///} VkVideoDecodeH265DpbSlotInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_reference_info`] is a pointer to a [`StdVideoDecodeH265ReferenceInfo`] structure
 ///   specifying the codec standard specific picture reference information from the H.264
 ///   specification.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_DPB_SLOT_INFO_EXT`
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoDecodeH265ReferenceInfo`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_video_decode_h265`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH265DpbSlotInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]

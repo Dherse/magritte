@@ -102,34 +102,34 @@ pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &'static CStr =
 ///    VkDeviceMemory                              memory,
 ///    float                                       priority);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that owns the memory.
 /// - [`memory`] is the [`DeviceMemory`] object to which the new priority will be applied.
 /// - [`priority`] is a floating-point value between `0` and `1`, indicating the priority of the
 ///   allocation relative to other memory allocations. Larger values are higher priority. The
 ///   granularity of the priorities is implementation-dependent.
-///# Description
-///Memory allocations with higher priority  **may**  be more likely to stay in
-///device-local memory when the system is under memory pressure.
-///## Valid Usage
+/// # Description
+/// Memory allocations with higher priority  **may**  be more likely to stay in
+/// device-local memory when the system is under memory pressure.
+/// ## Valid Usage
 /// - [`priority`] **must**  be between `0` and `1`, inclusive
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
-///# Related
+/// # Related
 /// - [`VK_EXT_pageable_device_local_memory`]
 /// - [`Device`]
 /// - [`DeviceMemory`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetDeviceMemoryPriorityEXT")]
 pub type FNSetDeviceMemoryPriorityExt =
     Option<unsafe extern "system" fn(device: Device, memory: DeviceMemory, priority: f32)>;
@@ -145,37 +145,37 @@ pub type FNSetDeviceMemoryPriorityExt =
 ///    VkBool32           pageableDeviceLocalMemory;
 ///} VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pageable_device_local_memory`] indicates that the implementation supports pageable
 ///   device-local memory and  **may**  transparently move device-local memory allocations to
 ///   host-local memory to better share device-local memory with other applications.
-///If the [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`] structure is included in the
+/// If the [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`] **can**  also be used in the [`p_next`]
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_pageable_device_local_memory`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -295,40 +295,40 @@ impl Device {
     ///    VkDeviceMemory                              memory,
     ///    float                                       priority);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device that owns the memory.
     /// - [`memory`] is the [`DeviceMemory`] object to which the new priority will be applied.
     /// - [`priority`] is a floating-point value between `0` and `1`, indicating the priority of the
     ///   allocation relative to other memory allocations. Larger values are higher priority. The
     ///   granularity of the priorities is implementation-dependent.
-    ///# Description
-    ///Memory allocations with higher priority  **may**  be more likely to stay in
-    ///device-local memory when the system is under memory pressure.
-    ///## Valid Usage
+    /// # Description
+    /// Memory allocations with higher priority  **may**  be more likely to stay in
+    /// device-local memory when the system is under memory pressure.
+    /// ## Valid Usage
     /// - [`priority`] **must**  be between `0` and `1`, inclusive
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
     /// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_pageable_device_local_memory`]
     /// - [`Device`]
     /// - [`DeviceMemory`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetDeviceMemoryPriorityEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn set_device_memory_priority_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn set_device_memory_priority_ext(
+        self: &Unique<Device>,
         memory: DeviceMemory,
         priority: Option<f32>,
     ) -> () {

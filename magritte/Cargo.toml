@@ -25,6 +25,11 @@ version = '0.7.3'
 features = []
 optional = true
 
+[dependencies.log]
+version = '0.4.16'
+features = []
+optional = true
+
 [dependencies.parking_lot]
 version = '0.12.0'
 features = []
@@ -43,11 +48,6 @@ features = [
     'union',
 ]
 optional = true
-
-[dependencies.tracing]
-version = '0.1.31'
-features = []
-optional = false
 [build-dependencies.bindgen]
 version = '0.59.2'
 features = []
@@ -728,7 +728,9 @@ default = [
     'libloading',
     'smallvec',
     'window',
+    'validation',
 ]
+validation = ['log']
 window = [
     'raw-window-handle',
     'VK_KHR_surface',

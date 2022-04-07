@@ -4,16 +4,16 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, path::PathBuf, ops::Not};
+use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, ops::Not, path::PathBuf};
 
 use cargo_toml::Manifest;
+use clap::Parser;
 use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
 use mimalloc::MiMalloc;
 use quote::ToTokens;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use tracing::{info, span, Level};
 use tracing_subscriber::{fmt::time::UtcTime, EnvFilter};
-use clap::Parser;
 
 #[global_allocator]
 static GLOBAL: MiMalloc = MiMalloc;
@@ -56,7 +56,10 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     let registry_thread = std::thread::spawn(move || parse_registry(&vk_xml));
 
-    let documentation_thread = args.no_doc.not().then(|| std::thread::spawn(move || parse_documentation(DOC_IN_PATH)));
+    let documentation_thread = args
+        .no_doc
+        .not()
+        .then(|| std::thread::spawn(move || parse_documentation(DOC_IN_PATH)));
 
     let registry = registry_thread.join().expect("failed to wait for thread")?;
 
@@ -136,9 +139,16 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
             ],
         );
 
+        features.insert("validation".to_string(), vec!["log".to_string()]);
+
         features.insert(
             "default".to_string(),
-            vec!["libloading".to_string(), "smallvec".to_string(), "window".to_string()],
+            vec![
+                "libloading".to_string(),
+                "smallvec".to_string(),
+                "window".to_string(),
+                "validation".to_string(),
+            ],
         );
 
         source.generate_feature_set(&mut features);

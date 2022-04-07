@@ -286,8 +286,8 @@ impl<'a> Source<'a> {
             #![doc = "# Extensions"]
             #![doc = "This module contains all of the registered extensions gated by relevant feature gates."]
             
-            use std::ffi::CStr;
-            use crate::cstr;
+            use crate::cstr_ptr;
+            use std::os::raw::c_char;
         "##
         );
 

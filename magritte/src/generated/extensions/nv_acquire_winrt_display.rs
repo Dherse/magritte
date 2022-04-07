@@ -108,7 +108,7 @@ use crate::{
     vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
     AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, mem::MaybeUninit};
+use std::{ffi::CStr, mem::MaybeUninit, sync::atomic::AtomicBool};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION")]
@@ -127,40 +127,40 @@ pub const NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkDisplayKHR                                display);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] The physical device the display is on.
 /// - [`display`] The display the caller wishes to control in Vulkan.
-///# Description
-///All permissions necessary to control the display are granted to the Vulkan
-///instance associated with [`physical_device`] until the display is released
-///or the application is terminated.
-///Permission to access the display  **may**  be revoked by events that cause
-///Windows 10 itself to lose access to [`display`].
-///If this has happened, operations which require access to the display  **must**
-///fail with an appropriate error code.
-///If permission to access [`display`] has already been acquired by another
-///entity, the call  **must**  return the error code
-///`VK_ERROR_INITIALIZATION_FAILED`.
-///## Valid Usage (Implicit)
+/// # Description
+/// All permissions necessary to control the display are granted to the Vulkan
+/// instance associated with [`physical_device`] until the display is released
+/// or the application is terminated.
+/// Permission to access the display  **may**  be revoked by events that cause
+/// Windows 10 itself to lose access to [`display`].
+/// If this has happened, operations which require access to the display  **must**
+/// fail with an appropriate error code.
+/// If permission to access [`display`] has already been acquired by another
+/// entity, the call  **must**  return the error code
+/// `VK_ERROR_INITIALIZATION_FAILED`.
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
 /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`VK_NV_acquire_winrt_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquireWinrtDisplayNV")]
 pub type FNAcquireWinrtDisplayNv =
     Option<unsafe extern "system" fn(physical_device: PhysicalDevice, display: DisplayKHR) -> VulkanResultCodes>;
@@ -178,7 +178,7 @@ pub type FNAcquireWinrtDisplayNv =
 ///    uint32_t                                    deviceRelativeId,
 ///    VkDisplayKHR*                               pDisplay);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] The physical device on which to query the display handle.
 /// - [`device_relative_id`] The value of the [“AdapterRelativeId”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget.adapterrelativeid)
 ///   property of a [“DisplayTarget”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget)
@@ -187,29 +187,29 @@ pub type FNAcquireWinrtDisplayNv =
 ///   property matching the `deviceLUID` property of a [`PhysicalDeviceIdProperties`] for
 ///   [`physical_device`].
 /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
-///# Description
-///If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
-///[`physical_device`], [`crate::Handle::null`] **must**  be returned in
-///[`p_display`].
-///## Valid Usage (Implicit)
+/// # Description
+/// If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
+/// [`physical_device`], [`crate::Handle::null`] **must**  be returned in
+/// [`p_display`].
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`VK_NV_acquire_winrt_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetWinrtDisplayNV")]
 pub type FNGetWinrtDisplayNv = Option<
     unsafe extern "system" fn(
@@ -229,49 +229,46 @@ impl PhysicalDevice {
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkDisplayKHR                                display);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`physical_device`] The physical device the display is on.
     /// - [`display`] The display the caller wishes to control in Vulkan.
-    ///# Description
-    ///All permissions necessary to control the display are granted to the Vulkan
-    ///instance associated with [`physical_device`] until the display is released
-    ///or the application is terminated.
-    ///Permission to access the display  **may**  be revoked by events that cause
-    ///Windows 10 itself to lose access to [`display`].
-    ///If this has happened, operations which require access to the display  **must**
-    ///fail with an appropriate error code.
-    ///If permission to access [`display`] has already been acquired by another
-    ///entity, the call  **must**  return the error code
-    ///`VK_ERROR_INITIALIZATION_FAILED`.
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// All permissions necessary to control the display are granted to the Vulkan
+    /// instance associated with [`physical_device`] until the display is released
+    /// or the application is terminated.
+    /// Permission to access the display  **may**  be revoked by events that cause
+    /// Windows 10 itself to lose access to [`display`].
+    /// If this has happened, operations which require access to the display  **must**
+    /// fail with an appropriate error code.
+    /// If permission to access [`display`] has already been acquired by another
+    /// entity, the call  **must**  return the error code
+    /// `VK_ERROR_INITIALIZATION_FAILED`.
+    /// ## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
     /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
-    ///# Related
+    /// # Related
     /// - [`VK_NV_acquire_winrt_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkAcquireWinrtDisplayNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_winrt_display_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
-        display: DisplayKHR,
-    ) -> VulkanResult<()> {
+    pub unsafe fn acquire_winrt_display_nv(self: &Unique<PhysicalDevice>, display: DisplayKHR) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -308,7 +305,7 @@ impl PhysicalDevice {
     ///    uint32_t                                    deviceRelativeId,
     ///    VkDisplayKHR*                               pDisplay);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`physical_device`] The physical device on which to query the display handle.
     /// - [`device_relative_id`] The value of the [“AdapterRelativeId”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget.adapterrelativeid)
     ///   property of a [“DisplayTarget”](https://docs.microsoft.com/en-us/uwp/api/windows.devices.display.core.displaytarget)
@@ -317,38 +314,38 @@ impl PhysicalDevice {
     ///   property matching the `deviceLUID` property of a [`PhysicalDeviceIdProperties`] for
     ///   [`physical_device`].
     /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
-    ///# Description
-    ///If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
-    ///[`physical_device`], [`crate::Handle::null`] **must**  be returned in
-    ///[`p_display`].
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
+    /// [`physical_device`], [`crate::Handle::null`] **must**  be returned in
+    /// [`p_display`].
+    /// ## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
-    ///# Related
+    /// # Related
     /// - [`VK_NV_acquire_winrt_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetWinrtDisplayNV")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_winrt_display_nv<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_winrt_display_nv(
+        self: &Unique<PhysicalDevice>,
         device_relative_id: Option<u32>,
-    ) -> VulkanResult<Unique<'this, DisplayKHR>> {
+    ) -> VulkanResult<Unique<DisplayKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -370,9 +367,10 @@ impl PhysicalDevice {
             p_display.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_display.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(self, p_display.assume_init(), AtomicBool::default()),
+            ),
             e => VulkanResult::Err(e),
         }
     }

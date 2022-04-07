@@ -195,13 +195,13 @@ impl<'a> Extension<'a> {
                 )*
 
                 #[doc = "Gets the list of extension names to use when creating the [`crate::vulkan1_0::Device`"]
-                pub fn device_extension_names(&self) -> Vec<&'static CStr> {
+                pub fn device_extension_names(&self) -> Vec<*const c_char> {
                     let mut out = Vec::with_capacity(#device_ext_len);
 
                     #(
                         #[cfg(feature = #device_names)]
                         if self.#device_extensions() {
-                            out.push(cstr!(#device_names));
+                            out.push(cstr_ptr!(#device_names));
                         }
                     )*
 
@@ -209,13 +209,13 @@ impl<'a> Extension<'a> {
                 }
 
                 #[doc = "Gets the list of extension names to use when creating the [`crate::vulkan1_0::Instance`"]
-                pub fn instance_extension_names(&self) -> Vec<&'static CStr> {
+                pub fn instance_extension_names(&self) -> Vec<*const c_char> {
                     let mut out = Vec::with_capacity(#instance_ext_len);
 
                     #(
                         #[cfg(feature = #instance_names)]
                         if self.#instance_extensions() {
-                            out.push(cstr!(#instance_names));
+                            out.push(cstr_ptr!(#instance_names));
                         }
                     )*
 

@@ -89,7 +89,7 @@ use crate::{
 use bytemuck::{Pod, Zeroable};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit};
+use std::{ffi::CStr, marker::PhantomData, mem::MaybeUninit, sync::atomic::AtomicBool};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_DISPLAY_CONTROL_SPEC_VERSION")]
@@ -108,13 +108,13 @@ pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 ///    VkDisplayKHR                                display,
 ///    const VkDisplayPowerInfoEXT*                pDisplayPowerInfo);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is a logical device associated with [`display`].
 /// - [`display`] is the display whose power state is modified.
 /// - [`p_display_power_info`] is a pointer to a [`DisplayPowerInfoEXT`] structure specifying the
 ///   new power state of [`display`].
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
 /// - [`p_display_power_info`] **must**  be a valid pointer to a valid [`DisplayPowerInfoEXT`]
@@ -122,22 +122,22 @@ pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 /// - Both of [`device`], and [`display`] **must**  have been created, allocated, or retrieved from
 ///   the same [`PhysicalDevice`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`Device`]
 /// - [`DisplayKHR`]
 /// - [`DisplayPowerInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDisplayPowerControlEXT")]
 pub type FNDisplayPowerControlExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -158,15 +158,15 @@ pub type FNDisplayPowerControlExt = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkFence*                                    pFence);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is a logical device on which the event  **may**  occur.
 /// - [`p_device_event_info`] is a pointer to a [`DeviceEventInfoEXT`] structure describing the
 ///   event of interest to the application.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
 /// - [`p_fence`] is a pointer to a handle in which the resulting fence object is returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_device_event_info`] **must**  be a valid pointer to a valid [`DeviceEventInfoEXT`]
 ///   structure
@@ -174,23 +174,23 @@ pub type FNDisplayPowerControlExt = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`p_fence`] **must**  be a valid pointer to a [`Fence`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`DeviceEventInfoEXT`]
 /// - [`Fence`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkRegisterDeviceEventEXT")]
 pub type FNRegisterDeviceEventExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -213,7 +213,7 @@ pub type FNRegisterDeviceEventExt = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkFence*                                    pFence);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is a logical device associated with [`display`]
 /// - [`display`] is the display on which the event  **may**  occur.
 /// - [`p_display_event_info`] is a pointer to a [`DisplayEventInfoEXT`] structure describing the
@@ -221,8 +221,8 @@ pub type FNRegisterDeviceEventExt = Option<
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
 /// - [`p_fence`] is a pointer to a handle in which the resulting fence object is returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
 /// - [`p_display_event_info`] **must**  be a valid pointer to a valid [`DisplayEventInfoEXT`]
@@ -233,10 +233,10 @@ pub type FNRegisterDeviceEventExt = Option<
 /// - Both of [`device`], and [`display`] **must**  have been created, allocated, or retrieved from
 ///   the same [`PhysicalDevice`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -244,13 +244,13 @@ pub type FNRegisterDeviceEventExt = Option<
 /// - [`DisplayKHR`]
 /// - [`Fence`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkRegisterDisplayEventEXT")]
 pub type FNRegisterDisplayEventExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -274,19 +274,19 @@ pub type FNRegisterDisplayEventExt = Option<
 ///    VkSurfaceCounterFlagBitsEXT                 counter,
 ///    uint64_t*                                   pCounterValue);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the [`Device`] associated with [`swapchain`].
 /// - [`swapchain`] is the swapchain from which to query the counter value.
 /// - [`counter`] is a [`SurfaceCounterFlagBitsEXT`] value specifying the counter to query.
 /// - [`p_counter_value`] will return the current value of the counter.
-///# Description
-///If a counter is not available because the swapchain is out of date, the
-///implementation  **may**  return `VK_ERROR_OUT_OF_DATE_KHR`.
-///## Valid Usage
+/// # Description
+/// If a counter is not available because the swapchain is out of date, the
+/// implementation  **may**  return `VK_ERROR_OUT_OF_DATE_KHR`.
+/// ## Valid Usage
 /// - One or more present commands on [`swapchain`] **must**  have been processed by the
 ///   presentation engine
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - [`counter`] **must**  be a valid [`SurfaceCounterFlagBitsEXT`] value
@@ -294,22 +294,22 @@ pub type FNRegisterDisplayEventExt = Option<
 /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`Device`]
 /// - [`SurfaceCounterFlagBitsEXT`]
 /// - [`SwapchainKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetSwapchainCounterEXT")]
 pub type FNGetSwapchainCounterExt = Option<
     unsafe extern "system" fn(
@@ -331,23 +331,23 @@ pub type FNGetSwapchainCounterExt = Option<
 ///    VK_DISPLAY_POWER_STATE_ON_EXT = 2,
 ///} VkDisplayPowerStateEXT;
 ///```
-///# Description
+/// # Description
 /// - [`OFF`] specifies that the display is powered down.
 /// - [`SUSPEND`] specifies that the display is put into a low power mode, from which it  **may**
 ///   be able to transition back to [`ON`] more quickly than if it were in [`OFF`]. This state
 ///   **may**  be the same as [`OFF`].
 /// - [`ON`] specifies that the display is powered on.
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayPowerInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPowerStateEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -401,21 +401,21 @@ impl DisplayPowerStateEXT {
 ///    VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT = 0,
 ///} VkDeviceEventTypeEXT;
 ///```
-///# Description
+/// # Description
 /// - [`DISPLAY_HOTPLUG`] specifies that the fence is signaled when a display is plugged into or
 ///   unplugged from the specified device. Applications  **can**  use this notification to determine
 ///   when they need to re-enumerate the available displays on a device.
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`DeviceEventInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceEventTypeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -463,20 +463,20 @@ impl DeviceEventTypeEXT {
 ///    VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT = 0,
 ///} VkDisplayEventTypeEXT;
 ///```
-///# Description
+/// # Description
 /// - [`FIRST_PIXEL_OUT`] specifies that the fence is signaled when the first pixel of the next
 ///   display refresh cycle leaves the display engine for the display.
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayEventInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayEventTypeEXT")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -523,29 +523,29 @@ impl DisplayEventTypeEXT {
 ///    VkDisplayPowerStateEXT    powerState;
 ///} VkDisplayPowerInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`power_state`] is a [`DisplayPowerStateEXT`] value specifying the new power state of the
 ///   display.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`power_state`] **must**  be a valid [`DisplayPowerStateEXT`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayPowerStateEXT`]
 /// - [`StructureType`]
 /// - [`display_power_control_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPowerInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -632,28 +632,28 @@ impl<'lt> DisplayPowerInfoEXT<'lt> {
 ///    VkDeviceEventTypeEXT    deviceEvent;
 ///} VkDeviceEventInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - `device` is a [`DeviceEventTypeEXT`] value specifying when the fence will be signaled.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`device_event`] **must**  be a valid [`DeviceEventTypeEXT`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`DeviceEventTypeEXT`]
 /// - [`StructureType`]
 /// - [`register_device_event_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceEventInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -739,28 +739,28 @@ impl<'lt> DeviceEventInfoEXT<'lt> {
 ///    VkDisplayEventTypeEXT    displayEvent;
 ///} VkDisplayEventInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_event`] is a [`DisplayEventTypeEXT`] specifying when the fence will be signaled.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`display_event`] **must**  be a valid [`DisplayEventTypeEXT`] value
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`DisplayEventTypeEXT`]
 /// - [`StructureType`]
 /// - [`register_display_event_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayEventInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -850,32 +850,32 @@ impl<'lt> DisplayEventInfoEXT<'lt> {
 ///    VkSurfaceCounterFlagsEXT    surfaceCounters;
 ///} VkSwapchainCounterCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`surface_counters`] is a bitmask of [`SurfaceCounterFlagBitsEXT`] specifying surface counters
 ///   to enable for the swapchain.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - The bits in [`surface_counters`] **must**  be supported by
 ///   [`SwapchainCreateInfoKHR::surface`], as reported by
 ///   [`get_physical_device_surface_capabilities2_ext`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT`
 /// - [`surface_counters`] **must**  be a valid combination of [`SurfaceCounterFlagBitsEXT`] values
-///# Related
+/// # Related
 /// - [`VK_EXT_display_control`]
 /// - [`StructureType`]
 /// - [`SurfaceCounterFlagsEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCounterCreateInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -965,13 +965,13 @@ impl Device {
     ///    VkDisplayKHR                                display,
     ///    const VkDisplayPowerInfoEXT*                pDisplayPowerInfo);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is a logical device associated with [`display`].
     /// - [`display`] is the display whose power state is modified.
     /// - [`p_display_power_info`] is a pointer to a [`DisplayPowerInfoEXT`] structure specifying
     ///   the new power state of [`display`].
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
     /// - [`p_display_power_info`] **must**  be a valid pointer to a valid [`DisplayPowerInfoEXT`]
@@ -979,28 +979,28 @@ impl Device {
     /// - Both of [`device`], and [`display`] **must**  have been created, allocated, or retrieved
     ///   from the same [`PhysicalDevice`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_display_control`]
     /// - [`Device`]
     /// - [`DisplayKHR`]
     /// - [`DisplayPowerInfoEXT`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDisplayPowerControlEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn display_power_control_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn display_power_control_ext<'lt>(
+        self: &Unique<Device>,
         display: DisplayKHR,
         p_display_power_info: &DisplayPowerInfoEXT<'lt>,
     ) -> VulkanResult<()> {
@@ -1040,15 +1040,15 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkFence*                                    pFence);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is a logical device on which the event  **may**  occur.
     /// - [`p_device_event_info`] is a pointer to a [`DeviceEventInfoEXT`] structure describing the
     ///   event of interest to the application.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
     /// - [`p_fence`] is a pointer to a handle in which the resulting fence object is returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_device_event_info`] **must**  be a valid pointer to a valid [`DeviceEventInfoEXT`]
     ///   structure
@@ -1056,32 +1056,32 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_fence`] **must**  be a valid pointer to a [`Fence`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_display_control`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`DeviceEventInfoEXT`]
     /// - [`Fence`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkRegisterDeviceEventEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn register_device_event_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn register_device_event_ext<'lt>(
+        self: &Unique<Device>,
         p_device_event_info: &DeviceEventInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, Fence>> {
+    ) -> VulkanResult<Unique<Fence>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1105,7 +1105,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), true))
+                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), AtomicBool::default()))
             },
             e => VulkanResult::Err(e),
         }
@@ -1125,7 +1125,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkFence*                                    pFence);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is a logical device associated with [`display`]
     /// - [`display`] is the display on which the event  **may**  occur.
     /// - [`p_display_event_info`] is a pointer to a [`DisplayEventInfoEXT`] structure describing
@@ -1133,8 +1133,8 @@ impl Device {
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
     /// - [`p_fence`] is a pointer to a handle in which the resulting fence object is returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
     /// - [`p_display_event_info`] **must**  be a valid pointer to a valid [`DisplayEventInfoEXT`]
@@ -1145,10 +1145,10 @@ impl Device {
     /// - Both of [`device`], and [`display`] **must**  have been created, allocated, or retrieved
     ///   from the same [`PhysicalDevice`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_display_control`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -1156,23 +1156,23 @@ impl Device {
     /// - [`DisplayKHR`]
     /// - [`Fence`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkRegisterDisplayEventEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn register_display_event_ext<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn register_display_event_ext<'lt>(
+        self: &Unique<Device>,
         display: DisplayKHR,
         p_display_event_info: &DisplayEventInfoEXT<'lt>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, Fence>> {
+    ) -> VulkanResult<Unique<Fence>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1197,7 +1197,7 @@ impl Device {
         );
         match _return {
             VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), true))
+                VulkanResult::Success(_return, Unique::new(self, p_fence.assume_init(), AtomicBool::default()))
             },
             e => VulkanResult::Err(e),
         }
@@ -1217,19 +1217,19 @@ impl Device {
     ///    VkSurfaceCounterFlagBitsEXT                 counter,
     ///    uint64_t*                                   pCounterValue);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the [`Device`] associated with [`swapchain`].
     /// - [`swapchain`] is the swapchain from which to query the counter value.
     /// - [`counter`] is a [`SurfaceCounterFlagBitsEXT`] value specifying the counter to query.
     /// - [`p_counter_value`] will return the current value of the counter.
-    ///# Description
-    ///If a counter is not available because the swapchain is out of date, the
-    ///implementation  **may**  return `VK_ERROR_OUT_OF_DATE_KHR`.
-    ///## Valid Usage
+    /// # Description
+    /// If a counter is not available because the swapchain is out of date, the
+    /// implementation  **may**  return `VK_ERROR_OUT_OF_DATE_KHR`.
+    /// ## Valid Usage
     /// - One or more present commands on [`swapchain`] **must**  have been processed by the
     ///   presentation engine
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
     /// - [`counter`] **must**  be a valid [`SurfaceCounterFlagBitsEXT`] value
@@ -1237,28 +1237,28 @@ impl Device {
     /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
     ///   from the same [`Instance`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_display_control`]
     /// - [`Device`]
     /// - [`SurfaceCounterFlagBitsEXT`]
     /// - [`SwapchainKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetSwapchainCounterEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_swapchain_counter_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_swapchain_counter_ext(
+        self: &Unique<Device>,
         swapchain: SwapchainKHR,
         counter: SurfaceCounterFlagBitsEXT,
     ) -> VulkanResult<u64> {

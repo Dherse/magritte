@@ -17,11 +17,11 @@ use crate::{
 /// In order for the created [`SurfaceKHR`] to be valid for the duration of its
 /// usage, the [`Instance`] this was called on must be dropped later than the
 /// resulting [`SurfaceKHR`].
-pub unsafe fn create_surface<'a: 'b, 'b>(
-    instance: &'b Unique<'a, Instance>,
+pub unsafe fn create_surface(
+    instance: &Unique<Instance>,
     window_handle: &dyn HasRawWindowHandle,
     allocation_callbacks: Option<&AllocationCallbacks>,
-) -> VulkanResult<Unique<'b, SurfaceKHR>> {
+) -> VulkanResult<Unique<SurfaceKHR>> {
     match window_handle.raw_window_handle() {
         #[cfg(target_os = "windows")]
         RawWindowHandle::Win32(handle) => {

@@ -157,21 +157,21 @@ pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 ///    VkDevice                                    device,
 ///    VkDeviceGroupPresentCapabilitiesKHR*        pDeviceGroupPresentCapabilities);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device.
 /// - [`p_device_group_present_capabilities`] is a pointer to a
 ///   [`DeviceGroupPresentCapabilitiesKHR`] structure in which the device’s capabilities are
 ///   returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_device_group_present_capabilities`] **must**  be a valid pointer to a
 ///   [`DeviceGroupPresentCapabilitiesKHR`] structure
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
 /// - [`VK_KHR_swapchain`]
@@ -179,13 +179,13 @@ pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 /// - [`Device`]
 /// - [`DeviceGroupPresentCapabilitiesKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceGroupPresentCapabilitiesKHR")]
 pub type FNGetDeviceGroupPresentCapabilitiesKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -205,36 +205,36 @@ pub type FNGetDeviceGroupPresentCapabilitiesKhr = Option<
 ///    VkSurfaceKHR                                surface,
 ///    VkDeviceGroupPresentModeFlagsKHR*           pModes);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device.
 /// - [`surface`] is the surface.
 /// - [`p_modes`] is a pointer to a [`DeviceGroupPresentModeFlagsKHR`] in which the supported device
 ///   group present modes for the surface are returned.
-///# Description
-///The modes returned by this command are not invariant, and  **may**  change in
-///response to the surface being moved, resized, or occluded.
-///These modes  **must**  be a subset of the modes returned by
-///[`get_device_group_present_capabilities_khr`].
-///## Valid Usage
+/// # Description
+/// The modes returned by this command are not invariant, and  **may**  change in
+/// response to the surface being moved, resized, or occluded.
+/// These modes  **must**  be a subset of the modes returned by
+/// [`get_device_group_present_capabilities_khr`].
+/// ## Valid Usage
 /// - [`surface`] **must**  be supported by all physical devices associated with [`device`], as
 ///   reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific
 ///   mechanism
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - [`p_modes`] **must**  be a valid pointer to a [`DeviceGroupPresentModeFlagsKHR`] value
 /// - Both of [`device`], and [`surface`] **must**  have been created, allocated, or retrieved from
 ///   the same [`Instance`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`surface`] **must**  be externally synchronized
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
 /// - [`VK_KHR_swapchain`]
@@ -243,13 +243,13 @@ pub type FNGetDeviceGroupPresentCapabilitiesKhr = Option<
 /// - [`DeviceGroupPresentModeFlagsKHR`]
 /// - [`SurfaceKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceGroupSurfacePresentModesKHR")]
 pub type FNGetDeviceGroupSurfacePresentModesKhr = Option<
     unsafe extern "system" fn(
@@ -269,45 +269,45 @@ pub type FNGetDeviceGroupSurfacePresentModesKhr = Option<
 ///    const VkAcquireNextImageInfoKHR*            pAcquireInfo,
 ///    uint32_t*                                   pImageIndex);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device associated with `swapchain`.
 /// - [`p_acquire_info`] is a pointer to a [`AcquireNextImageInfoKHR`] structure containing
 ///   parameters of the acquire.
 /// - [`p_image_index`] is a pointer to a `uint32_t` that is set to the index of the next image to
 ///   use.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - If the number of currently acquired images is greater than the difference between the number
 ///   of images in the `swapchain` member of [`p_acquire_info`] and the value of
 ///   [`SurfaceCapabilitiesKHR::min_image_count`] as returned by a call to
 ///   [`get_physical_device_surface_capabilities2_khr`] with the `surface` used to create
 ///   `swapchain`, the `timeout` member of [`p_acquire_info`] **must**  not be `UINT64_MAX`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_acquire_info`] **must**  be a valid pointer to a valid [`AcquireNextImageInfoKHR`]
 ///   structure
 /// - [`p_image_index`] **must**  be a valid pointer to a `uint32_t` value
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`  - `VK_TIMEOUT`  - `VK_NOT_READY`  - `VK_SUBOPTIMAL_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`AcquireNextImageInfoKHR`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquireNextImage2KHR")]
 pub type FNAcquireNextImage2Khr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -333,31 +333,31 @@ pub type FNAcquireNextImage2Khr = Option<
 ///    uint32_t*                                   pRectCount,
 ///    VkRect2D*                                   pRects);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] is the physical device.
 /// - [`surface`] is the surface.
 /// - [`p_rect_count`] is a pointer to an integer related to the number of rectangles available or
 ///   queried, as described below.
 /// - [`p_rects`] is either `NULL` or a pointer to an array of [`Rect2D`] structures.
-///# Description
-///If [`p_rects`] is `NULL`, then the number of rectangles used when
-///presenting the given [`surface`] is returned in [`p_rect_count`].
-///Otherwise, [`p_rect_count`] **must**  point to a variable set by the user to the
-///number of elements in the [`p_rects`] array, and on return the variable is
-///overwritten with the number of structures actually written to [`p_rects`].
-///If the value of [`p_rect_count`] is less than the number of rectangles, at
-///most [`p_rect_count`] structures will be written, and `VK_INCOMPLETE`
-///will be returned instead of `VK_SUCCESS`, to indicate that not all the
-///available rectangles were returned.The values returned by this command are not invariant, and
+/// # Description
+/// If [`p_rects`] is `NULL`, then the number of rectangles used when
+/// presenting the given [`surface`] is returned in [`p_rect_count`].
+/// Otherwise, [`p_rect_count`] **must**  point to a variable set by the user to the
+/// number of elements in the [`p_rects`] array, and on return the variable is
+/// overwritten with the number of structures actually written to [`p_rects`].
+/// If the value of [`p_rect_count`] is less than the number of rectangles, at
+/// most [`p_rect_count`] structures will be written, and `VK_INCOMPLETE`
+/// will be returned instead of `VK_SUCCESS`, to indicate that not all the
+/// available rectangles were returned.The values returned by this command are not invariant, and
 /// **may**  change in
-///response to the surface being moved, resized, or occluded.The rectangles returned by this
+/// response to the surface being moved, resized, or occluded.The rectangles returned by this
 /// command  **must**  not overlap.
-///## Valid Usage
+/// ## Valid Usage
 /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - [`surface`] **must**  be supported by [`physical_device`], as reported by
 ///   [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - [`p_rect_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -366,13 +366,13 @@ pub type FNAcquireNextImage2Khr = Option<
 /// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Instance`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`surface`] **must**  be externally synchronized
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
 /// - [`VK_KHR_swapchain`]
@@ -381,13 +381,13 @@ pub type FNAcquireNextImage2Khr = Option<
 /// - [`Rect2D`]
 /// - [`SurfaceKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDevicePresentRectanglesKHR")]
 pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
     unsafe extern "system" fn(
@@ -411,7 +411,7 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 ///    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 0x00000008,
 ///} VkDeviceGroupPresentModeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`LOCAL`] specifies that any physical device with a presentation engine  **can**  present its
 ///   own swapchain images.
 /// - [`REMOTE`] specifies that any physical device with a presentation engine  **can**  present
@@ -420,7 +420,7 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 ///   sum of swapchain images from any physical devices in its `presentMask`.
 /// - [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine
 ///   **can**  each present their own swapchain images.
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
 /// - [`VK_KHR_swapchain`]
@@ -428,13 +428,13 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 /// - [`DeviceGroupPresentInfoKHR`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentModeFlagBitsKHR")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -508,7 +508,7 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 ///    VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 0x00000008,
 ///} VkDeviceGroupPresentModeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`LOCAL`] specifies that any physical device with a presentation engine  **can**  present its
 ///   own swapchain images.
 /// - [`REMOTE`] specifies that any physical device with a presentation engine  **can**  present
@@ -517,7 +517,7 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 ///   sum of swapchain images from any physical devices in its `presentMask`.
 /// - [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine
 ///   **can**  each present their own swapchain images.
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
 /// - [`VK_KHR_swapchain`]
@@ -525,13 +525,13 @@ impl DeviceGroupPresentModeFlagBitsKHR {
 /// - [`DeviceGroupPresentInfoKHR`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentModeFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -860,7 +860,7 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 ///    VkDeviceGroupPresentModeFlagsKHR    modes;
 ///} VkDeviceGroupPresentCapabilitiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`present_mask`] is an array of [`MAX_DEVICE_GROUP_SIZE`]`uint32_t` masks, where the mask at
@@ -869,15 +869,15 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 ///   element i is non-zero, then bit i **must**  be set.
 /// - [`modes`] is a bitmask of [`DeviceGroupPresentModeFlagBitsKHR`] indicating which device group
 ///   presentation modes are supported.
-///# Description
-///[`modes`] always has `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR` set.The present mode flags are
+/// # Description
+/// [`modes`] always has `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR` set.The present mode flags are
 /// also used when presenting an image, in
-///[`DeviceGroupPresentInfoKHR::mode`].If a device group only includes a single physical device,
+/// [`DeviceGroupPresentInfoKHR::mode`].If a device group only includes a single physical device,
 /// then [`modes`] **must**  equal `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`.
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_surface`]
 /// - [`VK_KHR_swapchain`]
@@ -886,13 +886,13 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 /// - [`StructureType`]
 /// - [`get_device_group_present_capabilities_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentCapabilitiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1009,33 +1009,33 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
 ///    VkSwapchainKHR     swapchain;
 ///} VkImageSwapchainCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain`] is [`crate::Handle::null`] or a handle of a swapchain that the image will be
 ///   bound to.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// -    If [`swapchain`] is not [`crate::Handle::null`], the fields of [`ImageCreateInfo`] **must**  match the [implied image creation parameters](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#swapchain-wsi-image-create-info) of the swapchain
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
 /// - If [`swapchain`] is not [`crate::Handle::null`], [`swapchain`] **must**  be a valid
 ///   [`SwapchainKHR`] handle
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 /// - [`SwapchainKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageSwapchainCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1127,41 +1127,41 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
 ///    uint32_t           imageIndex;
 ///} VkBindImageMemorySwapchainInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain`] is [`crate::Handle::null`] or a swapchain handle.
 /// - [`image_index`] is an image index within [`swapchain`].
-///# Description
-///If [`swapchain`] is not `NULL`, the [`swapchain`] and [`image_index`]
-///are used to determine the memory that the image is bound to, instead of
-///`memory` and `memoryOffset`.Memory  **can**  be bound to a swapchain and use the
+/// # Description
+/// If [`swapchain`] is not `NULL`, the [`swapchain`] and [`image_index`]
+/// are used to determine the memory that the image is bound to, instead of
+/// `memory` and `memoryOffset`.Memory  **can**  be bound to a swapchain and use the
 /// `pDeviceIndices` or
-///`pSplitInstanceBindRegions` members of
-///[`BindImageMemoryDeviceGroupInfo`].
-///## Valid Usage
+/// `pSplitInstanceBindRegions` members of
+/// [`BindImageMemoryDeviceGroupInfo`].
+/// ## Valid Usage
 /// - [`image_index`] **must**  be less than the number of images in [`swapchain`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR`
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 /// - [`SwapchainKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImageMemorySwapchainInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1267,7 +1267,7 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 ///    uint32_t           deviceMask;
 ///} VkAcquireNextImageInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain`] is a non-retired swapchain from which an image is acquired.
@@ -1276,10 +1276,10 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - [`fence`] is [`crate::Handle::null`] or a fence to signal.
 /// - [`device_mask`] is a mask of physical devices for which the swapchain image will be ready to
 ///   use when the semaphore or fence is signaled.
-///# Description
-///If [`acquire_next_image_khr`] is used, the device mask is considered to
-///include all physical devices in the logical device.
-///## Valid Usage
+/// # Description
+/// If [`acquire_next_image_khr`] is used, the device mask is considered to
+/// include all physical devices in the logical device.
+/// ## Valid Usage
 /// - [`swapchain`] **must**  not be in the retired state
 /// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  be unsignaled
 /// - If [`semaphore`] is not [`crate::Handle::null`] it  **must**  not have any uncompleted signal
@@ -1291,7 +1291,7 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - [`device_mask`] **must**  not be zero
 /// - [`semaphore`] **must**  have a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
@@ -1301,11 +1301,11 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - Each of [`fence`], [`semaphore`], and [`swapchain`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Instance`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 /// - Host access to [`semaphore`] **must**  be externally synchronized
 /// - Host access to [`fence`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_swapchain`]
 /// - [`crate::vulkan1_1`]
@@ -1315,13 +1315,13 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - [`SwapchainKHR`]
 /// - [`acquire_next_image2_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireNextImageInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1479,7 +1479,7 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 ///    VkDeviceGroupPresentModeFlagBitsKHR    mode;
 ///} VkDeviceGroupPresentInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is zero or the number of elements in [`device_masks`].
@@ -1487,38 +1487,38 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 ///   [`PresentInfoKHR`]::pSwapchains.
 /// - [`mode`] is a [`DeviceGroupPresentModeFlagBitsKHR`] value specifying the device group present
 ///   mode that will be used for this present.
-///# Description
-///If [`mode`] is `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`, then each
-///element of [`device_masks`] selects which instance of the swapchain image
-///is presented.
-///Each element of [`device_masks`] **must**  have exactly one bit set, and the
-///corresponding physical device  **must**  have a presentation engine as reported
-///by [`DeviceGroupPresentCapabilitiesKHR`].If [`mode`] is
+/// # Description
+/// If [`mode`] is `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`, then each
+/// element of [`device_masks`] selects which instance of the swapchain image
+/// is presented.
+/// Each element of [`device_masks`] **must**  have exactly one bit set, and the
+/// corresponding physical device  **must**  have a presentation engine as reported
+/// by [`DeviceGroupPresentCapabilitiesKHR`].If [`mode`] is
 /// `VK_DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR`, then
-///each element of [`device_masks`] selects which instance of the swapchain
-///image is presented.
-///Each element of [`device_masks`] **must**  have exactly one bit set, and some
-///physical device in the logical device  **must**  include that bit in its
-///[`DeviceGroupPresentCapabilitiesKHR::present_mask`].If [`mode`] is
+/// each element of [`device_masks`] selects which instance of the swapchain
+/// image is presented.
+/// Each element of [`device_masks`] **must**  have exactly one bit set, and some
+/// physical device in the logical device  **must**  include that bit in its
+/// [`DeviceGroupPresentCapabilitiesKHR::present_mask`].If [`mode`] is
 /// `VK_DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR`, then each
-///element of [`device_masks`] selects which instances of the swapchain image
-///are component-wise summed and the sum of those images is presented.
-///If the sum in any component is outside the representable range, the value of
-///that component is undefined.
-///Each element of [`device_masks`] **must**  have a value for which all set bits
-///are set in one of the elements of
-///[`DeviceGroupPresentCapabilitiesKHR::present_mask`].If [`mode`] is
-///`VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR`, then each
-///element of [`device_masks`] selects which instance(s) of the swapchain
-///images are presented.
-///For each bit set in each element of [`device_masks`], the corresponding
-///physical device  **must**  have a presentation engine as reported by
-///[`DeviceGroupPresentCapabilitiesKHR`].If [`DeviceGroupPresentInfoKHR`] is not provided or
+/// element of [`device_masks`] selects which instances of the swapchain image
+/// are component-wise summed and the sum of those images is presented.
+/// If the sum in any component is outside the representable range, the value of
+/// that component is undefined.
+/// Each element of [`device_masks`] **must**  have a value for which all set bits
+/// are set in one of the elements of
+/// [`DeviceGroupPresentCapabilitiesKHR::present_mask`].If [`mode`] is
+/// `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR`, then each
+/// element of [`device_masks`] selects which instance(s) of the swapchain
+/// images are presented.
+/// For each bit set in each element of [`device_masks`], the corresponding
+/// physical device  **must**  have a presentation engine as reported by
+/// [`DeviceGroupPresentCapabilitiesKHR`].If [`DeviceGroupPresentInfoKHR`] is not provided or
 /// [`swapchain_count`]
-///is zero then the masks are considered to be `1`.
-///If [`DeviceGroupPresentInfoKHR`] is not provided, [`mode`] is
-///considered to be `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`.
-///## Valid Usage
+/// is zero then the masks are considered to be `1`.
+/// If [`DeviceGroupPresentInfoKHR`] is not provided, [`mode`] is
+/// considered to be `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`.
+/// ## Valid Usage
 /// - [`swapchain_count`] **must**  equal `0` or [`PresentInfoKHR`]::[`swapchain_count`]
 /// - If [`mode`] is `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`, then each element of
 ///   [`device_masks`] **must**  have exactly one bit set, and the corresponding element of
@@ -1537,25 +1537,25 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 /// - [`mode`] **must**  have exactly one bit set, and that bit  **must**  have been included in
 ///   [`DeviceGroupSwapchainCreateInfoKHR::modes`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR`
 /// - If [`swapchain_count`] is not `0`, [`device_masks`] **must**  be a valid pointer to an array
 ///   of [`swapchain_count`]`uint32_t` values
 /// - [`mode`] **must**  be a valid [`DeviceGroupPresentModeFlagBitsKHR`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentModeFlagBitsKHR`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1691,31 +1691,31 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
 ///    VkDeviceGroupPresentModeFlagsKHR    modes;
 ///} VkDeviceGroupSwapchainCreateInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`modes`] is a bitfield of modes that the swapchain  **can**  be used with.
-///# Description
-///If this structure is not present, [`modes`] is considered to be
-///`VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`.
-///## Valid Usage (Implicit)
+/// # Description
+/// If this structure is not present, [`modes`] is considered to be
+/// `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR`
 /// - [`modes`] **must**  be a valid combination of [`DeviceGroupPresentModeFlagBitsKHR`] values
 /// - [`modes`] **must**  not be `0`
-///# Related
+/// # Related
 /// - [`VK_KHR_device_group`]
 /// - [`VK_KHR_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupSwapchainCreateInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1808,31 +1808,31 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pRectCount,
     ///    VkRect2D*                                   pRects);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`physical_device`] is the physical device.
     /// - [`surface`] is the surface.
     /// - [`p_rect_count`] is a pointer to an integer related to the number of rectangles available
     ///   or queried, as described below.
     /// - [`p_rects`] is either `NULL` or a pointer to an array of [`Rect2D`] structures.
-    ///# Description
-    ///If [`p_rects`] is `NULL`, then the number of rectangles used when
-    ///presenting the given [`surface`] is returned in [`p_rect_count`].
-    ///Otherwise, [`p_rect_count`] **must**  point to a variable set by the user to the
-    ///number of elements in the [`p_rects`] array, and on return the variable is
-    ///overwritten with the number of structures actually written to [`p_rects`].
-    ///If the value of [`p_rect_count`] is less than the number of rectangles, at
-    ///most [`p_rect_count`] structures will be written, and `VK_INCOMPLETE`
-    ///will be returned instead of `VK_SUCCESS`, to indicate that not all the
-    ///available rectangles were returned.The values returned by this command are not invariant,
+    /// # Description
+    /// If [`p_rects`] is `NULL`, then the number of rectangles used when
+    /// presenting the given [`surface`] is returned in [`p_rect_count`].
+    /// Otherwise, [`p_rect_count`] **must**  point to a variable set by the user to the
+    /// number of elements in the [`p_rects`] array, and on return the variable is
+    /// overwritten with the number of structures actually written to [`p_rects`].
+    /// If the value of [`p_rect_count`] is less than the number of rectangles, at
+    /// most [`p_rect_count`] structures will be written, and `VK_INCOMPLETE`
+    /// will be returned instead of `VK_SUCCESS`, to indicate that not all the
+    /// available rectangles were returned.The values returned by this command are not invariant,
     /// and  **may**  change in
-    ///response to the surface being moved, resized, or occluded.The rectangles returned by this
+    /// response to the surface being moved, resized, or occluded.The rectangles returned by this
     /// command  **must**  not overlap.
-    ///## Valid Usage
+    /// ## Valid Usage
     /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
     /// - [`surface`] **must**  be supported by [`physical_device`], as reported by
     ///   [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
     /// - [`p_rect_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -1842,13 +1842,13 @@ impl PhysicalDevice {
     /// - Both of [`physical_device`], and [`surface`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Instance`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`surface`] **must**  be externally synchronized
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_device_group`]
     /// - [`VK_KHR_surface`]
     /// - [`VK_KHR_swapchain`]
@@ -1857,19 +1857,19 @@ impl PhysicalDevice {
     /// - [`Rect2D`]
     /// - [`SurfaceKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDevicePresentRectanglesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_physical_device_present_rectangles_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_physical_device_present_rectangles_khr(
+        self: &Unique<PhysicalDevice>,
         surface: SurfaceKHR,
         p_rect_count: Option<usize>,
     ) -> VulkanResult<SmallVec<Rect2D>> {
@@ -1915,21 +1915,21 @@ impl Device {
     ///    VkDevice                                    device,
     ///    VkDeviceGroupPresentCapabilitiesKHR*        pDeviceGroupPresentCapabilities);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device.
     /// - [`p_device_group_present_capabilities`] is a pointer to a
     ///   [`DeviceGroupPresentCapabilitiesKHR`] structure in which the device’s capabilities are
     ///   returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_device_group_present_capabilities`] **must**  be a valid pointer to a
     ///   [`DeviceGroupPresentCapabilitiesKHR`] structure
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_device_group`]
     /// - [`VK_KHR_surface`]
     /// - [`VK_KHR_swapchain`]
@@ -1937,19 +1937,19 @@ impl Device {
     /// - [`Device`]
     /// - [`DeviceGroupPresentCapabilitiesKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceGroupPresentCapabilitiesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_group_present_capabilities_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_group_present_capabilities_khr<'lt>(
+        self: &Unique<Device>,
         p_device_group_present_capabilities: Option<DeviceGroupPresentCapabilitiesKHR<'lt>>,
     ) -> VulkanResult<DeviceGroupPresentCapabilitiesKHR<'lt>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1988,36 +1988,36 @@ impl Device {
     ///    VkSurfaceKHR                                surface,
     ///    VkDeviceGroupPresentModeFlagsKHR*           pModes);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device.
     /// - [`surface`] is the surface.
     /// - [`p_modes`] is a pointer to a [`DeviceGroupPresentModeFlagsKHR`] in which the supported
     ///   device group present modes for the surface are returned.
-    ///# Description
-    ///The modes returned by this command are not invariant, and  **may**  change in
-    ///response to the surface being moved, resized, or occluded.
-    ///These modes  **must**  be a subset of the modes returned by
-    ///[`get_device_group_present_capabilities_khr`].
-    ///## Valid Usage
+    /// # Description
+    /// The modes returned by this command are not invariant, and  **may**  change in
+    /// response to the surface being moved, resized, or occluded.
+    /// These modes  **must**  be a subset of the modes returned by
+    /// [`get_device_group_present_capabilities_khr`].
+    /// ## Valid Usage
     /// - [`surface`] **must**  be supported by all physical devices associated with [`device`], as
     ///   reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific
     ///   mechanism
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`surface`] **must**  be a valid [`SurfaceKHR`] handle
     /// - [`p_modes`] **must**  be a valid pointer to a [`DeviceGroupPresentModeFlagsKHR`] value
     /// - Both of [`device`], and [`surface`] **must**  have been created, allocated, or retrieved
     ///   from the same [`Instance`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`surface`] **must**  be externally synchronized
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_device_group`]
     /// - [`VK_KHR_surface`]
     /// - [`VK_KHR_swapchain`]
@@ -2026,19 +2026,19 @@ impl Device {
     /// - [`DeviceGroupPresentModeFlagsKHR`]
     /// - [`SurfaceKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceGroupSurfacePresentModesKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_device_group_surface_present_modes_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_device_group_surface_present_modes_khr(
+        self: &Unique<Device>,
         surface: SurfaceKHR,
         p_modes: &mut DeviceGroupPresentModeFlagsKHR,
     ) -> VulkanResult<()> {
@@ -2074,51 +2074,51 @@ impl Device {
     ///    const VkAcquireNextImageInfoKHR*            pAcquireInfo,
     ///    uint32_t*                                   pImageIndex);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device associated with `swapchain`.
     /// - [`p_acquire_info`] is a pointer to a [`AcquireNextImageInfoKHR`] structure containing
     ///   parameters of the acquire.
     /// - [`p_image_index`] is a pointer to a `uint32_t` that is set to the index of the next image
     ///   to use.
-    ///# Description
-    ///## Valid Usage
+    /// # Description
+    /// ## Valid Usage
     /// - If the number of currently acquired images is greater than the difference between the
     ///   number of images in the `swapchain` member of [`p_acquire_info`] and the value of
     ///   [`SurfaceCapabilitiesKHR::min_image_count`] as returned by a call to
     ///   [`get_physical_device_surface_capabilities2_khr`] with the `surface` used to create
     ///   `swapchain`, the `timeout` member of [`p_acquire_info`] **must**  not be `UINT64_MAX`
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_acquire_info`] **must**  be a valid pointer to a valid [`AcquireNextImageInfoKHR`]
     ///   structure
     /// - [`p_image_index`] **must**  be a valid pointer to a `uint32_t` value
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`  - `VK_TIMEOUT`  - `VK_NOT_READY`  - `VK_SUBOPTIMAL_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_device_group`]
     /// - [`VK_KHR_swapchain`]
     /// - [`crate::vulkan1_1`]
     /// - [`AcquireNextImageInfoKHR`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkAcquireNextImage2KHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_next_image2_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_next_image2_khr<'lt>(
+        self: &Unique<Device>,
         p_acquire_info: &AcquireNextImageInfoKHR<'lt>,
     ) -> VulkanResult<u32> {
         #[cfg(any(debug_assertions, feature = "assertions"))]

@@ -57,7 +57,7 @@ use crate::{
     vulkan1_0::{Instance, PhysicalDevice, VulkanResultCodes},
     AsRaw, Unique, VulkanResult,
 };
-use std::{ffi::CStr, mem::MaybeUninit};
+use std::{ffi::CStr, mem::MaybeUninit, sync::atomic::AtomicBool};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION")]
@@ -77,43 +77,43 @@ pub const EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    Display*                                    dpy,
 ///    VkDisplayKHR                                display);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] The physical device the display is on.
 /// - [`dpy`] A connection to the X11 server that currently owns [`display`].
 /// - [`display`] The display the caller wishes to control in Vulkan.
-///# Description
-///All permissions necessary to control the display are granted to the Vulkan
-///instance associated with [`physical_device`] until the display is released
-///or the X11 connection specified by [`dpy`] is terminated.
-///Permission to access the display  **may**  be temporarily revoked during periods
-///when the X11 server from which control was acquired itself loses access to
-///[`display`].
-///During such periods, operations which require access to the display  **must**
-///fail with an approriate error code.
-///If the X11 server associated with [`dpy`] does not own [`display`], or
-///if permission to access it has already been acquired by another entity, the
-///call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
-///## Valid Usage (Implicit)
+/// # Description
+/// All permissions necessary to control the display are granted to the Vulkan
+/// instance associated with [`physical_device`] until the display is released
+/// or the X11 connection specified by [`dpy`] is terminated.
+/// Permission to access the display  **may**  be temporarily revoked during periods
+/// when the X11 server from which control was acquired itself loses access to
+/// [`display`].
+/// During such periods, operations which require access to the display  **must**
+/// fail with an approriate error code.
+/// If the X11 server associated with [`dpy`] does not own [`display`], or
+/// if permission to access it has already been acquired by another entity, the
+/// call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
 /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
 /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`VK_EXT_acquire_xlib_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquireXlibDisplayEXT")]
 pub type FNAcquireXlibDisplayExt = Option<
     unsafe extern "system" fn(
@@ -137,35 +137,35 @@ pub type FNAcquireXlibDisplayExt = Option<
 ///    RROutput                                    rrOutput,
 ///    VkDisplayKHR*                               pDisplay);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`physical_device`] The physical device to query the display handle on.
 /// - [`dpy`] A connection to the X11 server from which [`rr_output`] was queried.
 /// - [`rr_output`] An X11 RandR output ID.
 /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
-///# Description
-///If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
-///[`physical_device`], [`crate::Handle::null`] **must**  be returned in
-///[`p_display`].
-///## Valid Usage (Implicit)
+/// # Description
+/// If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
+/// [`physical_device`], [`crate::Handle::null`] **must**  be returned in
+/// [`p_display`].
+/// ## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
 /// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_EXT_acquire_xlib_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetRandROutputDisplayEXT")]
 pub type FNGetRandROutputDisplayExt = Option<
     unsafe extern "system" fn(
@@ -187,49 +187,49 @@ impl PhysicalDevice {
     ///    Display*                                    dpy,
     ///    VkDisplayKHR                                display);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`physical_device`] The physical device the display is on.
     /// - [`dpy`] A connection to the X11 server that currently owns [`display`].
     /// - [`display`] The display the caller wishes to control in Vulkan.
-    ///# Description
-    ///All permissions necessary to control the display are granted to the Vulkan
-    ///instance associated with [`physical_device`] until the display is released
-    ///or the X11 connection specified by [`dpy`] is terminated.
-    ///Permission to access the display  **may**  be temporarily revoked during periods
-    ///when the X11 server from which control was acquired itself loses access to
-    ///[`display`].
-    ///During such periods, operations which require access to the display  **must**
-    ///fail with an approriate error code.
-    ///If the X11 server associated with [`dpy`] does not own [`display`], or
-    ///if permission to access it has already been acquired by another entity, the
-    ///call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// All permissions necessary to control the display are granted to the Vulkan
+    /// instance associated with [`physical_device`] until the display is released
+    /// or the X11 connection specified by [`dpy`] is terminated.
+    /// Permission to access the display  **may**  be temporarily revoked during periods
+    /// when the X11 server from which control was acquired itself loses access to
+    /// [`display`].
+    /// During such periods, operations which require access to the display  **must**
+    /// fail with an approriate error code.
+    /// If the X11 server associated with [`dpy`] does not own [`display`], or
+    /// if permission to access it has already been acquired by another entity, the
+    /// call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
+    /// ## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
     /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
     /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_acquire_xlib_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkAcquireXlibDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_xlib_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn acquire_xlib_display_ext(
+        self: &Unique<PhysicalDevice>,
         display: DisplayKHR,
     ) -> VulkanResult<Display> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -270,43 +270,43 @@ impl PhysicalDevice {
     ///    RROutput                                    rrOutput,
     ///    VkDisplayKHR*                               pDisplay);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`physical_device`] The physical device to query the display handle on.
     /// - [`dpy`] A connection to the X11 server from which [`rr_output`] was queried.
     /// - [`rr_output`] An X11 RandR output ID.
     /// - [`p_display`] The corresponding [`DisplayKHR`] handle will be returned here.
-    ///# Description
-    ///If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
-    ///[`physical_device`], [`crate::Handle::null`] **must**  be returned in
-    ///[`p_display`].
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
+    /// [`physical_device`], [`crate::Handle::null`] **must**  be returned in
+    /// [`p_display`].
+    /// ## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
     /// - [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_EXT_acquire_xlib_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetRandROutputDisplayEXT")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_rand_r_output_display_ext<'a: 'this, 'this>(
-        self: &'this Unique<'a, PhysicalDevice>,
+    pub unsafe fn get_rand_r_output_display_ext(
+        self: &Unique<PhysicalDevice>,
         rr_output: RROutput,
-    ) -> VulkanResult<(Display, Unique<'this, DisplayKHR>)> {
+    ) -> VulkanResult<(Display, Unique<DisplayKHR>)> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -325,9 +325,10 @@ impl PhysicalDevice {
         let mut p_display = MaybeUninit::<DisplayKHR>::uninit();
         let _return = _function(self.as_raw(), &mut dpy, rr_output, p_display.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, (dpy, Unique::new(self, p_display.assume_init(), true)))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                (dpy, Unique::new(self, p_display.assume_init(), AtomicBool::default())),
+            ),
             e => VulkanResult::Err(e),
         }
     }

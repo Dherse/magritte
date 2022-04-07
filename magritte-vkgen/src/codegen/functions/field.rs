@@ -1,6 +1,6 @@
 use std::ops::Deref;
 
-use proc_macro2::{TokenStream, Span, Ident};
+use proc_macro2::{Ident, Span, TokenStream};
 use quote::quote;
 
 use crate::{
@@ -146,7 +146,6 @@ impl<'a> Function<'a> {
     }
 }
 
-
 impl<'a> CommandAlias<'a> {
     /// Turns this function into an equivalent function pointer name
     pub fn as_fn_pointer_name(&self, source: &Source<'a>) -> String {
@@ -155,7 +154,12 @@ impl<'a> CommandAlias<'a> {
             .get_by_name(self.of())
             .or_else(|| source.commands.get_by_name(self.of()).map(Deref::deref))
             .map(Function::as_fn_pointer_name)
-            .or_else(|| source.command_aliases.get_by_name(self.of()).map(|alias| alias.as_fn_pointer_name(source)))
+            .or_else(|| {
+                source
+                    .command_aliases
+                    .get_by_name(self.of())
+                    .map(|alias| alias.as_fn_pointer_name(source))
+            })
             .unwrap()
     }
 
@@ -163,7 +167,6 @@ impl<'a> CommandAlias<'a> {
     pub fn as_fn_pointer_ident(&self, source: &Source<'a>) -> Ident {
         Ident::new(&self.as_fn_pointer_name(source), Span::call_site())
     }
-
 
     /// Gets the conditional compilation tokens for this function
     pub fn conditional_compilation(&self, parent: &Origin<'a>, source: &Source<'a>) -> Option<TokenStream> {
@@ -173,7 +176,6 @@ impl<'a> CommandAlias<'a> {
             self.origin().condition()
         }
     }
-
 
     /// Gets the conditional compilation tokens for this function
     pub fn conditional_compilation_not(&self, parent: &Origin<'a>, source: &Source<'a>) -> Option<TokenStream> {
@@ -201,7 +203,11 @@ impl<'a> CommandAlias<'a> {
 
     /// Imports the function pointer type
     pub fn import_function_pointer_ty(&self, source: &Source<'a>, imports: &Imports) {
-        if let Some(fun) = source.functions.get_by_name(self.of()).or_else(|| source.commands.get_by_name(self.of()).map(Deref::deref)) {
+        if let Some(fun) = source
+            .functions
+            .get_by_name(self.of())
+            .or_else(|| source.commands.get_by_name(self.of()).map(Deref::deref))
+        {
             imports.push_origin(fun.origin(), fun.as_fn_pointer_ident());
         } else if let Some(alias) = source.command_aliases.get_by_name(self.of()) {
             alias.import_function_pointer_ty(source, imports);

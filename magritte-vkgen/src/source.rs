@@ -400,7 +400,14 @@ impl<'a> Source<'a> {
         func.rename = Some(Cow::Borrowed("vkCreateSwapchainImageView"));
         func.name = "create_swapchain_image_view".to_string();
         func.origin = this.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone();
-        *func.arguments_mut().last_mut().unwrap().ty_mut().as_ptr_mut().1.as_named_mut() = Cow::Borrowed("VkSwapchainImageView");
+        *func
+            .arguments_mut()
+            .last_mut()
+            .unwrap()
+            .ty_mut()
+            .as_ptr_mut()
+            .1
+            .as_named_mut() = Cow::Borrowed("VkSwapchainImageView");
 
         this.functions.push(func);
 
@@ -419,7 +426,8 @@ impl<'a> Source<'a> {
                     if let Some(handle) = this.handles.get_by_name_mut(name) {
                         handle.add_function(<Function<'a> as SymbolName<'a>>::name(function));
                     } else {
-                        this.loader_functions.push(<Function<'a> as SymbolName<'a>>::name(function));
+                        this.loader_functions
+                            .push(<Function<'a> as SymbolName<'a>>::name(function));
                     }
                 },
                 other => {
@@ -429,7 +437,8 @@ impl<'a> Source<'a> {
                         function.original_name()
                     );
 
-                    this.loader_functions.push(<Function<'a> as SymbolName<'a>>::name(function));
+                    this.loader_functions
+                        .push(<Function<'a> as SymbolName<'a>>::name(function));
                 },
             }
 

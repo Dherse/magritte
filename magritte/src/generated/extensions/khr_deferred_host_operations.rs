@@ -75,7 +75,14 @@ use crate::{
     vulkan1_0::{AllocationCallbacks, Device, Instance, PhysicalDevice, VulkanResultCodes},
     AsRaw, Handle, Unique, VulkanResult,
 };
-use std::{ffi::CStr, mem::MaybeUninit};
+use std::{
+    ffi::CStr,
+    mem::MaybeUninit,
+    sync::{
+        atomic::{AtomicBool, Ordering},
+        Arc,
+    },
+};
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
 #[doc(alias = "VK_KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION")]
@@ -94,35 +101,35 @@ pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &'static CStr = crate::cs
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkDeferredOperationKHR*                     pDeferredOperation);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device which owns `operation`.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
 /// - [`p_deferred_operation`] is a pointer to a handle in which the created
 ///   [`DeferredOperationKHR`] is returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`p_deferred_operation`] **must**  be a valid pointer to a [`DeferredOperationKHR`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_deferred_host_operations`]
 /// - [`AllocationCallbacks`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateDeferredOperationKHR")]
 pub type FNCreateDeferredOperationKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -142,20 +149,20 @@ pub type FNCreateDeferredOperationKhr = Option<
 ///    VkDeferredOperationKHR                      operation,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device which owns [`operation`].
 /// - [`operation`] is the completed operation to be destroyed.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - If [`AllocationCallbacks`] were provided when [`operation`] was created, a compatible set of
 ///   callbacks  **must**  be provided here
 /// - If no [`AllocationCallbacks`] were provided when [`operation`] was created, [`p_allocator`]
 ///   **must**  be `NULL`
 /// - [`operation`] **must**  be completed
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`operation`] is not [`crate::Handle::null`], [`operation`] **must**  be a valid
 ///   [`DeferredOperationKHR`] handle
@@ -164,21 +171,21 @@ pub type FNCreateDeferredOperationKhr = Option<
 /// - If [`operation`] is a valid handle, it  **must**  have been created, allocated, or retrieved
 ///   from [`device`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`operation`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`VK_KHR_deferred_host_operations`]
 /// - [`AllocationCallbacks`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyDeferredOperationKHR")]
 pub type FNDestroyDeferredOperationKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -197,48 +204,48 @@ pub type FNDestroyDeferredOperationKhr = Option<
 ///    VkDevice                                    device,
 ///    VkDeferredOperationKHR                      operation);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device which owns [`operation`].
 /// - [`operation`] is the deferred operation to be queried.
-///# Description
-///The returned value is the maximum number of threads that can usefully
-///execute a deferred operation concurrently, reported for the state of the
-///deferred operation at the point this command is called.
-///This value is intended to be used to better schedule work onto available
-///threads.
-///Applications  **can**  join any number of threads to the deferred operation and
-///expect it to eventually complete, though excessive joins  **may**  return
-///`VK_THREAD_DONE_KHR` immediately, performing no useful work.If [`operation`] is complete,
-///[`get_deferred_operation_max_concurrency_khr`] returns zero.If [`operation`] is currently joined
+/// # Description
+/// The returned value is the maximum number of threads that can usefully
+/// execute a deferred operation concurrently, reported for the state of the
+/// deferred operation at the point this command is called.
+/// This value is intended to be used to better schedule work onto available
+/// threads.
+/// Applications  **can**  join any number of threads to the deferred operation and
+/// expect it to eventually complete, though excessive joins  **may**  return
+/// `VK_THREAD_DONE_KHR` immediately, performing no useful work.If [`operation`] is complete,
+/// [`get_deferred_operation_max_concurrency_khr`] returns zero.If [`operation`] is currently joined
 /// to any threads, the value returned by
-///this command  **may**  immediately be out of date.If [`operation`] is pending, implementations
+/// this command  **may**  immediately be out of date.If [`operation`] is pending, implementations
 /// **must**  not return zero unless
-///at least one thread is currently executing [`deferred_operation_join_khr`]
-///on [`operation`].
-///If there are such threads, the implementation  **should**  return an estimate of
-///the number of additional threads which it could profitably use.Implementations  **may**  return
+/// at least one thread is currently executing [`deferred_operation_join_khr`]
+/// on [`operation`].
+/// If there are such threads, the implementation  **should**  return an estimate of
+/// the number of additional threads which it could profitably use.Implementations  **may**  return
 /// 2<sup>32</sup>-1 to indicate that the maximum
-///concurrency is unknown and cannot be easily derived.
-///Implementations  **may**  return values larger than the maximum concurrency
-///available on the host CPU.
-///In these situations, an application  **should**  clamp the return value rather
-///than oversubscribing the machine.
-///## Valid Usage (Implicit)
+/// concurrency is unknown and cannot be easily derived.
+/// Implementations  **may**  return values larger than the maximum concurrency
+/// available on the host CPU.
+/// In these situations, an application  **should**  clamp the return value rather
+/// than oversubscribing the machine.
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
 /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
-///# Related
+/// # Related
 /// - [`VK_KHR_deferred_host_operations`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeferredOperationMaxConcurrencyKHR")]
 pub type FNGetDeferredOperationMaxConcurrencyKhr =
     Option<unsafe extern "system" fn(device: Device, operation: DeferredOperationKHR) -> u32>;
@@ -251,36 +258,36 @@ pub type FNGetDeferredOperationMaxConcurrencyKhr =
 ///    VkDevice                                    device,
 ///    VkDeferredOperationKHR                      operation);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device which owns [`operation`].
 /// - [`operation`] is the operation whose deferred result is being queried.
-///# Description
-///If no command has been deferred on [`operation`],
-///[`get_deferred_operation_result_khr`] returns `VK_SUCCESS`.If the deferred operation is pending,
+/// # Description
+/// If no command has been deferred on [`operation`],
+/// [`get_deferred_operation_result_khr`] returns `VK_SUCCESS`.If the deferred operation is pending,
 /// [`get_deferred_operation_result_khr`]
-///returns `VK_NOT_READY`.If the deferred operation is complete, it returns the appropriate return
-///value from the original command.
-///This value  **must**  be one of the [`VulkanResultCodes`] values which could have been
-///returned by the original command if the operation had not been deferred.
-///## Valid Usage (Implicit)
+/// returns `VK_NOT_READY`.If the deferred operation is complete, it returns the appropriate return
+/// value from the original command.
+/// This value  **must**  be one of the [`VulkanResultCodes`] values which could have been
+/// returned by the original command if the operation had not been deferred.
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
 /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`  - `VK_NOT_READY`
-///# Related
+/// # Related
 /// - [`VK_KHR_deferred_host_operations`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeferredOperationResultKHR")]
 pub type FNGetDeferredOperationResultKhr =
     Option<unsafe extern "system" fn(device: Device, operation: DeferredOperationKHR) -> VulkanResultCodes>;
@@ -293,12 +300,12 @@ pub type FNGetDeferredOperationResultKhr =
 ///    VkDevice                                    device,
 ///    VkDeferredOperationKHR                      operation);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device which owns [`operation`].
 /// - [`operation`] is the deferred operation that the calling thread should work on.
-///# Description
-///The [`deferred_operation_join_khr`] command will execute a portion of the
-///deferred operation on the calling thread.The return value will be one of the following:
+/// # Description
+/// The [`deferred_operation_join_khr`] command will execute a portion of the
+/// deferred operation on the calling thread.The return value will be one of the following:
 /// - A return value of `VK_SUCCESS` indicates that [`operation`] is complete. The application
 ///   **should**  use [`get_deferred_operation_result_khr`] to retrieve the result of [`operation`].
 /// - A return value of `VK_THREAD_DONE_KHR` indicates that the deferred operation is not complete,
@@ -314,33 +321,33 @@ pub type FNGetDeferredOperationResultKhr =
 ///   for parallelism will emerge as execution progresses, and that future calls to
 ///   [`deferred_operation_join_khr`] **can**  be beneficial. In the meantime, the application
 ///   **can**  perform other work on the calling thread.
-///Implementations  **must**  guarantee forward progress by enforcing the following
-///invariants:
-///0. If only one thread has invoked [`deferred_operation_join_khr`] on a given operation, that
+/// Implementations  **must**  guarantee forward progress by enforcing the following
+/// invariants:
+/// 0. If only one thread has invoked [`deferred_operation_join_khr`] on a given operation, that
 /// thread  **must**  execute the operation to completion and return `VK_SUCCESS`.
-///1. If multiple threads have concurrently invoked [`deferred_operation_join_khr`] on the same
+/// 1. If multiple threads have concurrently invoked [`deferred_operation_join_khr`] on the same
 /// operation, then at least one of them  **must**  complete the operation and return `VK_SUCCESS`.
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
 /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`  - `VK_THREAD_DONE_KHR`  - `VK_THREAD_IDLE_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_deferred_host_operations`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDeferredOperationJoinKHR")]
 pub type FNDeferredOperationJoinKhr =
     Option<unsafe extern "system" fn(device: Device, operation: DeferredOperationKHR) -> VulkanResultCodes>;
@@ -355,43 +362,43 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkDeferredOperationKHR*                     pDeferredOperation);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device which owns `operation`.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
     /// - [`p_deferred_operation`] is a pointer to a handle in which the created
     ///   [`DeferredOperationKHR`] is returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
     ///   [`AllocationCallbacks`] structure
     /// - [`p_deferred_operation`] **must**  be a valid pointer to a [`DeferredOperationKHR`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_deferred_host_operations`]
     /// - [`AllocationCallbacks`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateDeferredOperationKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn create_deferred_operation_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn create_deferred_operation_khr<'lt>(
+        self: &Unique<Device>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
-    ) -> VulkanResult<Unique<'this, DeferredOperationKHR>> {
+    ) -> VulkanResult<Unique<DeferredOperationKHR>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -413,9 +420,10 @@ impl Device {
             p_deferred_operation.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_deferred_operation.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(self, p_deferred_operation.assume_init(), AtomicBool::default()),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -432,20 +440,20 @@ impl Device {
     ///    VkDeferredOperationKHR                      operation,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device which owns [`operation`].
     /// - [`operation`] is the completed operation to be destroyed.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
-    ///# Description
-    ///## Valid Usage
+    /// # Description
+    /// ## Valid Usage
     /// - If [`AllocationCallbacks`] were provided when [`operation`] was created, a compatible set
     ///   of callbacks  **must**  be provided here
     /// - If no [`AllocationCallbacks`] were provided when [`operation`] was created,
     ///   [`p_allocator`] **must**  be `NULL`
     /// - [`operation`] **must**  be completed
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`operation`] is not [`crate::Handle::null`], [`operation`] **must**  be a valid
     ///   [`DeferredOperationKHR`] handle
@@ -454,27 +462,27 @@ impl Device {
     /// - If [`operation`] is a valid handle, it  **must**  have been created, allocated, or
     ///   retrieved from [`device`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`operation`] **must**  be externally synchronized
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_deferred_host_operations`]
     /// - [`AllocationCallbacks`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyDeferredOperationKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn destroy_deferred_operation_khr<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn destroy_deferred_operation_khr<'lt>(
+        self: &Unique<Device>,
         operation: Option<DeferredOperationKHR>,
         p_allocator: Option<&AllocationCallbacks<'lt>>,
     ) -> () {
@@ -511,54 +519,54 @@ impl Device {
     ///    VkDevice                                    device,
     ///    VkDeferredOperationKHR                      operation);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device which owns [`operation`].
     /// - [`operation`] is the deferred operation to be queried.
-    ///# Description
-    ///The returned value is the maximum number of threads that can usefully
-    ///execute a deferred operation concurrently, reported for the state of the
-    ///deferred operation at the point this command is called.
-    ///This value is intended to be used to better schedule work onto available
-    ///threads.
-    ///Applications  **can**  join any number of threads to the deferred operation and
-    ///expect it to eventually complete, though excessive joins  **may**  return
-    ///`VK_THREAD_DONE_KHR` immediately, performing no useful work.If [`operation`] is complete,
-    ///[`get_deferred_operation_max_concurrency_khr`] returns zero.If [`operation`] is currently
+    /// # Description
+    /// The returned value is the maximum number of threads that can usefully
+    /// execute a deferred operation concurrently, reported for the state of the
+    /// deferred operation at the point this command is called.
+    /// This value is intended to be used to better schedule work onto available
+    /// threads.
+    /// Applications  **can**  join any number of threads to the deferred operation and
+    /// expect it to eventually complete, though excessive joins  **may**  return
+    /// `VK_THREAD_DONE_KHR` immediately, performing no useful work.If [`operation`] is complete,
+    /// [`get_deferred_operation_max_concurrency_khr`] returns zero.If [`operation`] is currently
     /// joined to any threads, the value returned by
-    ///this command  **may**  immediately be out of date.If [`operation`] is pending,
+    /// this command  **may**  immediately be out of date.If [`operation`] is pending,
     /// implementations  **must**  not return zero unless
-    ///at least one thread is currently executing [`deferred_operation_join_khr`]
-    ///on [`operation`].
-    ///If there are such threads, the implementation  **should**  return an estimate of
-    ///the number of additional threads which it could profitably use.Implementations  **may**
+    /// at least one thread is currently executing [`deferred_operation_join_khr`]
+    /// on [`operation`].
+    /// If there are such threads, the implementation  **should**  return an estimate of
+    /// the number of additional threads which it could profitably use.Implementations  **may**
     /// return 2<sup>32</sup>-1 to indicate that the maximum
-    ///concurrency is unknown and cannot be easily derived.
-    ///Implementations  **may**  return values larger than the maximum concurrency
-    ///available on the host CPU.
-    ///In these situations, an application  **should**  clamp the return value rather
-    ///than oversubscribing the machine.
-    ///## Valid Usage (Implicit)
+    /// concurrency is unknown and cannot be easily derived.
+    /// Implementations  **may**  return values larger than the maximum concurrency
+    /// available on the host CPU.
+    /// In these situations, an application  **should**  clamp the return value rather
+    /// than oversubscribing the machine.
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
     /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_deferred_host_operations`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeferredOperationMaxConcurrencyKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_deferred_operation_max_concurrency_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_deferred_operation_max_concurrency_khr(
+        self: &Unique<Device>,
         operation: DeferredOperationKHR,
     ) -> u32 {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -587,43 +595,43 @@ impl Device {
     ///    VkDevice                                    device,
     ///    VkDeferredOperationKHR                      operation);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device which owns [`operation`].
     /// - [`operation`] is the operation whose deferred result is being queried.
-    ///# Description
-    ///If no command has been deferred on [`operation`],
-    ///[`get_deferred_operation_result_khr`] returns `VK_SUCCESS`.If the deferred operation is
+    /// # Description
+    /// If no command has been deferred on [`operation`],
+    /// [`get_deferred_operation_result_khr`] returns `VK_SUCCESS`.If the deferred operation is
     /// pending, [`get_deferred_operation_result_khr`]
-    ///returns `VK_NOT_READY`.If the deferred operation is complete, it returns the appropriate
+    /// returns `VK_NOT_READY`.If the deferred operation is complete, it returns the appropriate
     /// return
-    ///value from the original command.
-    ///This value  **must**  be one of the [`VulkanResultCodes`] values which could have been
-    ///returned by the original command if the operation had not been deferred.
-    ///## Valid Usage (Implicit)
+    /// value from the original command.
+    /// This value  **must**  be one of the [`VulkanResultCodes`] values which could have been
+    /// returned by the original command if the operation had not been deferred.
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
     /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`  - `VK_NOT_READY`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_deferred_host_operations`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeferredOperationResultKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_deferred_operation_result_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_deferred_operation_result_khr(
+        self: &Unique<Device>,
         operation: DeferredOperationKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -655,12 +663,12 @@ impl Device {
     ///    VkDevice                                    device,
     ///    VkDeferredOperationKHR                      operation);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device which owns [`operation`].
     /// - [`operation`] is the deferred operation that the calling thread should work on.
-    ///# Description
-    ///The [`deferred_operation_join_khr`] command will execute a portion of the
-    ///deferred operation on the calling thread.The return value will be one of the following:
+    /// # Description
+    /// The [`deferred_operation_join_khr`] command will execute a portion of the
+    /// deferred operation on the calling thread.The return value will be one of the following:
     /// - A return value of `VK_SUCCESS` indicates that [`operation`] is complete. The application
     ///   **should**  use [`get_deferred_operation_result_khr`] to retrieve the result of
     ///   [`operation`].
@@ -677,40 +685,40 @@ impl Device {
     ///   expects that more opportunities for parallelism will emerge as execution progresses, and
     ///   that future calls to [`deferred_operation_join_khr`] **can**  be beneficial. In the
     ///   meantime, the application  **can**  perform other work on the calling thread.
-    ///Implementations  **must**  guarantee forward progress by enforcing the following
-    ///invariants:
-    ///0. If only one thread has invoked [`deferred_operation_join_khr`] on a given operation, that
+    /// Implementations  **must**  guarantee forward progress by enforcing the following
+    /// invariants:
+    /// 0. If only one thread has invoked [`deferred_operation_join_khr`] on a given operation, that
     /// thread  **must**  execute the operation to completion and return `VK_SUCCESS`.
-    ///1. If multiple threads have concurrently invoked [`deferred_operation_join_khr`] on the same
+    /// 1. If multiple threads have concurrently invoked [`deferred_operation_join_khr`] on the same
     /// operation, then at least one of them  **must**  complete the operation and return
     /// `VK_SUCCESS`.
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
     /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`  - `VK_THREAD_DONE_KHR`  - `VK_THREAD_IDLE_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_deferred_host_operations`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDeferredOperationJoinKHR")]
     #[track_caller]
     #[inline]
-    pub unsafe fn deferred_operation_join_khr<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn deferred_operation_join_khr(
+        self: &Unique<Device>,
         operation: DeferredOperationKHR,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -741,7 +749,7 @@ impl Device {
 ///// Provided by VK_KHR_deferred_host_operations
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDeferredOperationKHR)
 ///```
-///# Related
+/// # Related
 /// - [`VK_KHR_deferred_host_operations`]
 /// - [`build_acceleration_structures_khr`]
 /// - [`copy_acceleration_structure_khr`]
@@ -754,13 +762,13 @@ impl Device {
 /// - [`get_deferred_operation_max_concurrency_khr`]
 /// - [`get_deferred_operation_result_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeferredOperationKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -790,9 +798,9 @@ impl Default for DeferredOperationKHR {
     }
 }
 impl Handle for DeferredOperationKHR {
-    type Parent<'a> = Unique<'a, Device>;
+    type Parent = Unique<Device>;
     type VTable = ();
-    type Metadata = bool;
+    type Metadata = AtomicBool;
     type Raw = u64;
     #[inline]
     fn as_raw(self) -> Self::Raw {
@@ -804,41 +812,40 @@ impl Handle for DeferredOperationKHR {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        if *self.metadata() {
+    unsafe fn destroy(self: &mut Unique<Self>) {
+        if !self.metadata().load(Ordering::Acquire) {
             self.device()
                 .destroy_deferred_operation_khr(Some(self.as_raw().coerce()), None);
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, DeferredOperationKHR> {
+impl Unique<DeferredOperationKHR> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Arc<Entry> {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
     #[inline]
-    pub fn disable_drop(mut self) -> Self {
-        self.metadata = false;
-        self
+    pub fn disable_drop(&self) {
+        self.metadata().store(true, Ordering::Relaxed);
     }
 }
 ///The V-table of [`Device`] for functions from `VK_KHR_deferred_host_operations`

@@ -110,6 +110,10 @@ use std::{
     marker::PhantomData,
     mem::MaybeUninit,
     os::raw::c_char,
+    sync::{
+        atomic::{AtomicBool, Ordering},
+        Arc,
+    },
 };
 ///This element is not documented in the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html).
 ///See the module level documentation where a description may be given.
@@ -129,31 +133,31 @@ pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VkDevice                                    device,
 ///    const VkInitializePerformanceApiInfoINTEL*  pInitializeInfo);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device used for the queries.
 /// - [`p_initialize_info`] is a pointer to a [`InitializePerformanceApiInfoINTEL`] structure
 ///   specifying initialization parameters.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_initialize_info`] **must**  be a valid pointer to a valid
 ///   [`InitializePerformanceApiInfoINTEL`] structure
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Device`]
 /// - [`InitializePerformanceApiInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkInitializePerformanceApiINTEL")]
 pub type FNInitializePerformanceApiIntel = Option<
     for<'lt> unsafe extern "system" fn(
@@ -170,22 +174,22 @@ pub type FNInitializePerformanceApiIntel = Option<
 ///void vkUninitializePerformanceApiINTEL(
 ///    VkDevice                                    device);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device used for the queries.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkUninitializePerformanceApiINTEL")]
 pub type FNUninitializePerformanceApiIntel = Option<unsafe extern "system" fn(device: Device)>;
 ///[vkAcquirePerformanceConfigurationINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkAcquirePerformanceConfigurationINTEL.html) - Acquire the performance query capability
@@ -198,35 +202,35 @@ pub type FNUninitializePerformanceApiIntel = Option<unsafe extern "system" fn(de
 ///    const VkPerformanceConfigurationAcquireInfoINTEL* pAcquireInfo,
 ///    VkPerformanceConfigurationINTEL*            pConfiguration);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that the performance query commands will be submitted to.
 /// - [`p_acquire_info`] is a pointer to a [`PerformanceConfigurationAcquireInfoINTEL`] structure,
 ///   specifying the performance configuration to acquire.
 /// - [`p_configuration`] is a pointer to a [`PerformanceConfigurationINTEL`] handle in which the
 ///   resulting configuration object is returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_acquire_info`] **must**  be a valid pointer to a valid
 ///   [`PerformanceConfigurationAcquireInfoINTEL`] structure
 /// - [`p_configuration`] **must**  be a valid pointer to a [`PerformanceConfigurationINTEL`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Device`]
 /// - [`PerformanceConfigurationAcquireInfoINTEL`]
 /// - [`PerformanceConfigurationINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkAcquirePerformanceConfigurationINTEL")]
 pub type FNAcquirePerformanceConfigurationIntel = Option<
     for<'lt> unsafe extern "system" fn(
@@ -244,38 +248,38 @@ pub type FNAcquirePerformanceConfigurationIntel = Option<
 ///    VkDevice                                    device,
 ///    VkPerformanceConfigurationINTEL             configuration);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device associated to the configuration object to release.
 /// - [`configuration`] is the configuration object to release.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// -  [`configuration`] **must**  not be released before all command buffers submitted while the configuration was set are in [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`configuration`] is not [`crate::Handle::null`], [`configuration`] **must**  be a valid
 ///   [`PerformanceConfigurationINTEL`] handle
 /// - If [`configuration`] is a valid handle, it  **must**  have been created, allocated, or
 ///   retrieved from [`device`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`configuration`] **must**  be externally synchronized
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Device`]
 /// - [`PerformanceConfigurationINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkReleasePerformanceConfigurationINTEL")]
 pub type FNReleasePerformanceConfigurationIntel = Option<
     unsafe extern "system" fn(device: Device, configuration: PerformanceConfigurationINTEL) -> VulkanResultCodes,
@@ -289,32 +293,32 @@ pub type FNReleasePerformanceConfigurationIntel = Option<
 ///    VkQueue                                     queue,
 ///    VkPerformanceConfigurationINTEL             configuration);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`queue`] is the queue on which the configuration will be used.
 /// - [`configuration`] is the configuration to use.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - [`configuration`] **must**  be a valid [`PerformanceConfigurationINTEL`] handle
 /// - Both of [`configuration`], and [`queue`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///
-///## Command Properties
-///## Return Codes
+/// ## Command Properties
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceConfigurationINTEL`]
 /// - [`Queue`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkQueueSetPerformanceConfigurationINTEL")]
 pub type FNQueueSetPerformanceConfigurationIntel =
     Option<unsafe extern "system" fn(queue: Queue, configuration: PerformanceConfigurationINTEL) -> VulkanResultCodes>;
@@ -328,33 +332,33 @@ pub type FNQueueSetPerformanceConfigurationIntel =
 ///    VkPerformanceParameterTypeINTEL             parameter,
 ///    VkPerformanceValueINTEL*                    pValue);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device to query.
 /// - [`parameter`] is the parameter to query.
 /// - [`p_value`] is a pointer to a [`PerformanceValueINTEL`] structure in which the type and value
 ///   of the parameter are returned.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`parameter`] **must**  be a valid [`PerformanceParameterTypeINTEL`] value
 /// - [`p_value`] **must**  be a valid pointer to a [`PerformanceValueINTEL`] structure
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Device`]
 /// - [`PerformanceParameterTypeINTEL`]
 /// - [`PerformanceValueINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPerformanceParameterINTEL")]
 pub type FNGetPerformanceParameterIntel = Option<
     unsafe extern "system" fn(
@@ -374,11 +378,11 @@ pub type FNGetPerformanceParameterIntel = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkPerformanceMarkerInfoINTEL*         pMarkerInfo);
 ///```
-///# Parameters
-///The last marker set onto a command buffer before the end of a query will be
-///part of the query result.
-///# Description
-///## Valid Usage (Implicit)
+/// # Parameters
+/// The last marker set onto a command buffer before the end of a query will be
+/// part of the query result.
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_marker_info`] **must**  be a valid pointer to a valid [`PerformanceMarkerInfoINTEL`]
 ///   structure
@@ -386,27 +390,27 @@ pub type FNGetPerformanceParameterIntel = Option<
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics,
 ///   compute, or transfer operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///## Return Codes
+/// ## Command Properties
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`CommandBuffer`]
 /// - [`PerformanceMarkerInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetPerformanceMarkerINTEL")]
 pub type FNCmdSetPerformanceMarkerIntel = Option<
     for<'lt> unsafe extern "system" fn(
@@ -427,8 +431,8 @@ pub type FNCmdSetPerformanceMarkerIntel = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkPerformanceStreamMarkerInfoINTEL*   pMarkerInfo);
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_marker_info`] **must**  be a valid pointer to a valid [`PerformanceStreamMarkerInfoINTEL`]
 ///   structure
@@ -436,27 +440,27 @@ pub type FNCmdSetPerformanceMarkerIntel = Option<
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics,
 ///   compute, or transfer operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///## Return Codes
+/// ## Command Properties
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`CommandBuffer`]
 /// - [`PerformanceStreamMarkerInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetPerformanceStreamMarkerINTEL")]
 pub type FNCmdSetPerformanceStreamMarkerIntel = Option<
     for<'lt> unsafe extern "system" fn(
@@ -475,16 +479,16 @@ pub type FNCmdSetPerformanceStreamMarkerIntel = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkPerformanceOverrideInfoINTEL*       pOverrideInfo);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer where the override takes place.
 /// - [`p_override_info`] is a pointer to a [`PerformanceOverrideInfoINTEL`] structure selecting the
 ///   parameter to override.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`p_override_info`] **must**  not be used with a [`PerformanceOverrideTypeINTEL`] that is not
 ///   reported available by [`get_performance_parameter_intel`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_override_info`] **must**  be a valid pointer to a valid [`PerformanceOverrideInfoINTEL`]
 ///   structure
@@ -492,27 +496,27 @@ pub type FNCmdSetPerformanceStreamMarkerIntel = Option<
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics,
 ///   compute, or transfer operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///## Return Codes
+/// ## Command Properties
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`CommandBuffer`]
 /// - [`PerformanceOverrideInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetPerformanceOverrideINTEL")]
 pub type FNCmdSetPerformanceOverrideIntel = Option<
     for<'lt> unsafe extern "system" fn(
@@ -531,17 +535,17 @@ pub type FNCmdSetPerformanceOverrideIntel = Option<
 ///    VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL = 0,
 ///} VkPerformanceConfigurationTypeINTEL;
 ///```
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceConfigurationAcquireInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -586,20 +590,20 @@ impl PerformanceConfigurationTypeINTEL {
 ///    VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL = 0,
 ///} VkQueryPoolSamplingModeINTEL;
 ///```
-///# Description
+/// # Description
 /// - [`MANUAL`] is the default mode in which the application calls [`cmd_begin_query`] and
 ///   [`cmd_end_query`] to record performance data.
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolSamplingModeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -646,21 +650,21 @@ impl QueryPoolSamplingModeINTEL {
 ///    VK_PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL = 1,
 ///} VkPerformanceOverrideTypeINTEL;
 ///```
-///# Description
+/// # Description
 /// - [`NULL_HARDWARE`] turns all rendering operations into noop.
 /// - [`FLUSH_GPU_CACHES`] stalls the stream of commands until all previously emitted commands have
 ///   completed and all caches been flushed and invalidated.
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceOverrideInfoINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceOverrideTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -710,22 +714,22 @@ impl PerformanceOverrideTypeINTEL {
 ///    VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL = 1,
 ///} VkPerformanceParameterTypeINTEL;
 ///```
-///# Description
+/// # Description
 /// - [`HW_COUNTERS_SUPPORTED`] has a boolean result which tells whether hardware counters can be
 ///   captured.
 /// - [`STREAM_MARKER_VALID_BITS`] has a 32 bits integer result which tells how many bits can be
 ///   written into the [`PerformanceValueINTEL`] value.
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`get_performance_parameter_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceParameterTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -786,17 +790,17 @@ impl PerformanceParameterTypeINTEL {
 ///    VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL = 4,
 ///} VkPerformanceValueTypeINTEL;
 ///```
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceValueINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueTypeINTEL")]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -848,27 +852,27 @@ impl PerformanceValueTypeINTEL {
 ///    VkPerformanceValueDataINTEL    data;
 ///} VkPerformanceValueINTEL;
 ///```
-///# Members
+/// # Members
 /// - [`type_`] is a [`PerformanceValueTypeINTEL`] value specifying the type of the returned data.
 /// - [`data`] is a [`PerformanceValueDataINTEL`] union specifying the value of the returned data.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`type_`] **must**  be a valid [`PerformanceValueTypeINTEL`] value
 /// - If [`type_`] is `VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL`, the `valueString` member of [`data`]
 ///   **must**  be a null-terminated UTF-8 string
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceValueDataINTEL`]
 /// - [`PerformanceValueTypeINTEL`]
 /// - [`get_performance_parameter_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueINTEL")]
 #[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -928,26 +932,26 @@ impl PerformanceValueINTEL {
 ///    void*              pUserData;
 ///} VkInitializePerformanceApiInfoINTEL;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`user_data`] is a pointer for application data.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`StructureType`]
 /// - [`initialize_performance_api_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkInitializePerformanceApiInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1049,37 +1053,36 @@ impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
 ///    VkQueryPoolSamplingModeINTEL    performanceCountersSampling;
 ///} VkQueryPoolPerformanceQueryCreateInfoINTEL;
 ///```
-///
-///```c
+/// ```c
 ///// Provided by VK_INTEL_performance_query
 ///typedef VkQueryPoolPerformanceQueryCreateInfoINTEL VkQueryPoolCreateInfoINTEL;
 ///```
-///# Members
-///To create a pool for Intel performance queries, set
-///[`QueryPoolCreateInfo::query_type`] to
-///`VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL` and add a
-///[`QueryPoolPerformanceQueryCreateInfoINTEL`] structure to the
-///[`p_next`] chain of the [`QueryPoolCreateInfo`] structure.
-///# Description
+/// # Members
+/// To create a pool for Intel performance queries, set
+/// [`QueryPoolCreateInfo::query_type`] to
+/// `VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL` and add a
+/// [`QueryPoolPerformanceQueryCreateInfoINTEL`] structure to the
+/// [`p_next`] chain of the [`QueryPoolCreateInfo`] structure.
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`performance_counters_sampling`] describe how performance queries should be captured.
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
 /// - [`performance_counters_sampling`] **must**  be a valid [`QueryPoolSamplingModeINTEL`] value
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`QueryPoolSamplingModeINTEL`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolPerformanceQueryCreateInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1169,26 +1172,26 @@ impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 ///    uint64_t           marker;
 ///} VkPerformanceMarkerInfoINTEL;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`marker`] is the marker value that will be recorded into the opaque query results.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`StructureType`]
 /// - [`cmd_set_performance_marker_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceMarkerInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1275,32 +1278,32 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
 ///    uint32_t           marker;
 ///} VkPerformanceStreamMarkerInfoINTEL;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`marker`] is the marker value that will be recorded into the reports consumed by an external
 ///   application.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - The value written by the application into [`marker`] **must**  only used the valid bits as
 ///   reported by [`get_performance_parameter_intel`] with the
 ///   `VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`StructureType`]
 /// - [`cmd_set_performance_stream_marker_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceStreamMarkerInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1389,29 +1392,29 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
 ///    uint64_t                          parameter;
 ///} VkPerformanceOverrideInfoINTEL;
 ///```
-///# Members
+/// # Members
 /// - [`type_`] is the particular [`PerformanceOverrideTypeINTEL`] to set.
 /// - [`enable`] defines whether the override is enabled.
 /// - [`parameter`] is a potential required parameter for the override.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_OVERRIDE_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`PerformanceOverrideTypeINTEL`] value
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Bool32`]
 /// - [`PerformanceOverrideTypeINTEL`]
 /// - [`StructureType`]
 /// - [`cmd_set_performance_override_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceOverrideInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1553,29 +1556,29 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
 ///    VkPerformanceConfigurationTypeINTEL    type;
 ///} VkPerformanceConfigurationAcquireInfoINTEL;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`type_`] is one of the [`PerformanceConfigurationTypeINTEL`] type of performance
 ///   configuration that will be acquired.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`PerformanceConfigurationTypeINTEL`] value
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`PerformanceConfigurationTypeINTEL`]
 /// - [`StructureType`]
 /// - [`acquire_performance_configuration_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationAcquireInfoINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1667,27 +1670,27 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
 ///    const char*    valueString;
 ///} VkPerformanceValueDataINTEL;
 ///```
-///# Members
+/// # Members
 /// - `data.value32` represents 32-bit integer data.
 /// - `data.value64` represents 64-bit integer data.
 /// - `data.valueFloat` represents floating-point data.
 /// - `data.valueBool` represents [`Bool32`] data.
 /// - `data.valueString` represents a pointer to a null-terminated UTF-8 string.
-///# Description
-///The correct member of the union is determined by the associated
-///[`PerformanceValueTypeINTEL`] value.
-///# Related
+/// # Description
+/// The correct member of the union is determined by the associated
+/// [`PerformanceValueTypeINTEL`] value.
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`Bool32`]
 /// - [`PerformanceValueINTEL`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueDataINTEL")]
 #[derive(Clone, Copy)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -1720,37 +1723,37 @@ impl Device {
     ///    VkDevice                                    device,
     ///    const VkInitializePerformanceApiInfoINTEL*  pInitializeInfo);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device used for the queries.
     /// - [`p_initialize_info`] is a pointer to a [`InitializePerformanceApiInfoINTEL`] structure
     ///   specifying initialization parameters.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_initialize_info`] **must**  be a valid pointer to a valid
     ///   [`InitializePerformanceApiInfoINTEL`] structure
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`Device`]
     /// - [`InitializePerformanceApiInfoINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkInitializePerformanceApiINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn initialize_performance_api_intel<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn initialize_performance_api_intel<'lt>(
+        self: &Unique<Device>,
         p_initialize_info: &InitializePerformanceApiInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1785,27 +1788,27 @@ impl Device {
     ///void vkUninitializePerformanceApiINTEL(
     ///    VkDevice                                    device);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device used for the queries.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkUninitializePerformanceApiINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn uninitialize_performance_api_intel<'a: 'this, 'this>(self: &'this Unique<'a, Device>) -> () {
+    pub unsafe fn uninitialize_performance_api_intel(self: &Unique<Device>) -> () {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1833,44 +1836,44 @@ impl Device {
     ///    const VkPerformanceConfigurationAcquireInfoINTEL* pAcquireInfo,
     ///    VkPerformanceConfigurationINTEL*            pConfiguration);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device that the performance query commands will be submitted to.
     /// - [`p_acquire_info`] is a pointer to a [`PerformanceConfigurationAcquireInfoINTEL`]
     ///   structure, specifying the performance configuration to acquire.
     /// - [`p_configuration`] is a pointer to a [`PerformanceConfigurationINTEL`] handle in which
     ///   the resulting configuration object is returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_acquire_info`] **must**  be a valid pointer to a valid
     ///   [`PerformanceConfigurationAcquireInfoINTEL`] structure
     /// - [`p_configuration`] **must**  be a valid pointer to a [`PerformanceConfigurationINTEL`]
     ///   handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`Device`]
     /// - [`PerformanceConfigurationAcquireInfoINTEL`]
     /// - [`PerformanceConfigurationINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkAcquirePerformanceConfigurationINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn acquire_performance_configuration_intel<'a: 'this, 'this, 'lt>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn acquire_performance_configuration_intel<'lt>(
+        self: &Unique<Device>,
         p_acquire_info: &PerformanceConfigurationAcquireInfoINTEL<'lt>,
-    ) -> VulkanResult<Unique<'this, PerformanceConfigurationINTEL>> {
+    ) -> VulkanResult<Unique<PerformanceConfigurationINTEL>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -1890,9 +1893,10 @@ impl Device {
             p_configuration.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => {
-                VulkanResult::Success(_return, Unique::new(self, p_configuration.assume_init(), true))
-            },
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                Unique::new(self, p_configuration.assume_init(), AtomicBool::default()),
+            ),
             e => VulkanResult::Err(e),
         }
     }
@@ -1907,45 +1911,45 @@ impl Device {
     ///    VkDevice                                    device,
     ///    VkPerformanceConfigurationINTEL             configuration);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device associated to the configuration object to release.
     /// - [`configuration`] is the configuration object to release.
-    ///# Description
-    ///## Valid Usage
+    /// # Description
+    /// ## Valid Usage
     /// - [`configuration`] **must**  not be released before all command buffers submitted while the
     ///   configuration was set are in [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`configuration`] is not [`crate::Handle::null`], [`configuration`] **must**  be a
     ///   valid [`PerformanceConfigurationINTEL`] handle
     /// - If [`configuration`] is a valid handle, it  **must**  have been created, allocated, or
     ///   retrieved from [`device`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`configuration`] **must**  be externally synchronized
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`Device`]
     /// - [`PerformanceConfigurationINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkReleasePerformanceConfigurationINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn release_performance_configuration_intel<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn release_performance_configuration_intel(
+        self: &Unique<Device>,
         configuration: Option<PerformanceConfigurationINTEL>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -1978,39 +1982,39 @@ impl Device {
     ///    VkPerformanceParameterTypeINTEL             parameter,
     ///    VkPerformanceValueINTEL*                    pValue);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device to query.
     /// - [`parameter`] is the parameter to query.
     /// - [`p_value`] is a pointer to a [`PerformanceValueINTEL`] structure in which the type and
     ///   value of the parameter are returned.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`parameter`] **must**  be a valid [`PerformanceParameterTypeINTEL`] value
     /// - [`p_value`] **must**  be a valid pointer to a [`PerformanceValueINTEL`] structure
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`Device`]
     /// - [`PerformanceParameterTypeINTEL`]
     /// - [`PerformanceValueINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPerformanceParameterINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn get_performance_parameter_intel<'a: 'this, 'this>(
-        self: &'this Unique<'a, Device>,
+    pub unsafe fn get_performance_parameter_intel(
+        self: &Unique<Device>,
         parameter: PerformanceParameterTypeINTEL,
     ) -> VulkanResult<PerformanceValueINTEL> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2043,38 +2047,38 @@ impl Queue {
     ///    VkQueue                                     queue,
     ///    VkPerformanceConfigurationINTEL             configuration);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`queue`] is the queue on which the configuration will be used.
     /// - [`configuration`] is the configuration to use.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - [`configuration`] **must**  be a valid [`PerformanceConfigurationINTEL`] handle
     /// - Both of [`configuration`], and [`queue`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    ///## Command Properties
-    ///## Return Codes
+    /// ## Command Properties
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`PerformanceConfigurationINTEL`]
     /// - [`Queue`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueueSetPerformanceConfigurationINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn queue_set_performance_configuration_intel<'a: 'this, 'this>(
-        self: &'this Unique<'a, Queue>,
+    pub unsafe fn queue_set_performance_configuration_intel(
+        self: &Unique<Queue>,
         configuration: PerformanceConfigurationINTEL,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2110,11 +2114,11 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkPerformanceMarkerInfoINTEL*         pMarkerInfo);
     ///```
-    ///# Parameters
-    ///The last marker set onto a command buffer before the end of a query will be
-    ///part of the query result.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Parameters
+    /// The last marker set onto a command buffer before the end of a query will be
+    /// part of the query result.
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_marker_info`] **must**  be a valid pointer to a valid [`PerformanceMarkerInfoINTEL`]
     ///   structure
@@ -2122,33 +2126,33 @@ impl CommandBuffer {
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, compute, or transfer operations
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///## Return Codes
+    /// ## Command Properties
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`CommandBuffer`]
     /// - [`PerformanceMarkerInfoINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPerformanceMarkerINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_performance_marker_intel<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_performance_marker_intel<'lt>(
+        self: &Unique<CommandBuffer>,
         p_marker_info: &PerformanceMarkerInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2186,8 +2190,8 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkPerformanceStreamMarkerInfoINTEL*   pMarkerInfo);
     ///```
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_marker_info`] **must**  be a valid pointer to a valid
     ///   [`PerformanceStreamMarkerInfoINTEL`] structure
@@ -2195,33 +2199,33 @@ impl CommandBuffer {
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, compute, or transfer operations
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///## Return Codes
+    /// ## Command Properties
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`CommandBuffer`]
     /// - [`PerformanceStreamMarkerInfoINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPerformanceStreamMarkerINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_performance_stream_marker_intel<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_performance_stream_marker_intel<'lt>(
+        self: &Unique<CommandBuffer>,
         p_marker_info: &PerformanceStreamMarkerInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2260,16 +2264,16 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkPerformanceOverrideInfoINTEL*       pOverrideInfo);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`command_buffer`] is the command buffer where the override takes place.
     /// - [`p_override_info`] is a pointer to a [`PerformanceOverrideInfoINTEL`] structure selecting
     ///   the parameter to override.
-    ///# Description
-    ///## Valid Usage
+    /// # Description
+    /// ## Valid Usage
     /// - [`p_override_info`] **must**  not be used with a [`PerformanceOverrideTypeINTEL`] that is
     ///   not reported available by [`get_performance_parameter_intel`]
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_override_info`] **must**  be a valid pointer to a valid
     ///   [`PerformanceOverrideInfoINTEL`] structure
@@ -2277,33 +2281,33 @@ impl CommandBuffer {
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, compute, or transfer operations
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///## Return Codes
+    /// ## Command Properties
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_INTEL_performance_query`]
     /// - [`CommandBuffer`]
     /// - [`PerformanceOverrideInfoINTEL`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPerformanceOverrideINTEL")]
     #[track_caller]
     #[inline]
-    pub unsafe fn cmd_set_performance_override_intel<'a: 'this, 'this, 'lt>(
-        self: &'this mut Unique<'a, CommandBuffer>,
+    pub unsafe fn cmd_set_performance_override_intel<'lt>(
+        self: &Unique<CommandBuffer>,
         p_override_info: &PerformanceOverrideInfoINTEL<'lt>,
     ) -> VulkanResult<()> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
@@ -2341,19 +2345,19 @@ impl CommandBuffer {
 ///// Provided by VK_INTEL_performance_query
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkPerformanceConfigurationINTEL)
 ///```
-///# Related
+/// # Related
 /// - [`VK_INTEL_performance_query`]
 /// - [`acquire_performance_configuration_intel`]
 /// - [`queue_set_performance_configuration_intel`]
 /// - [`release_performance_configuration_intel`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationINTEL")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
@@ -2383,9 +2387,9 @@ impl Default for PerformanceConfigurationINTEL {
     }
 }
 impl Handle for PerformanceConfigurationINTEL {
-    type Parent<'a> = Unique<'a, Device>;
+    type Parent = Unique<Device>;
     type VTable = ();
-    type Metadata = bool;
+    type Metadata = AtomicBool;
     type Raw = u64;
     #[inline]
     fn as_raw(self) -> Self::Raw {
@@ -2397,41 +2401,40 @@ impl Handle for PerformanceConfigurationINTEL {
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
-        if *self.metadata() {
+    unsafe fn destroy(self: &mut Unique<Self>) {
+        if !self.metadata().load(Ordering::Acquire) {
             self.device()
                 .release_performance_configuration_intel(Some(self.as_raw().coerce()));
         }
     }
     #[inline]
-    unsafe fn load_vtable<'a>(&self, _: &Self::Parent<'a>, _: &Self::Metadata) -> Self::VTable {}
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }
-impl<'a> Unique<'a, PerformanceConfigurationINTEL> {
+impl Unique<PerformanceConfigurationINTEL> {
     ///Gets the reference to the [`Entry`]
     #[inline]
-    pub fn entry(&self) -> &'a Entry {
+    pub fn entry(&self) -> &Arc<Entry> {
         self.parent().parent().parent().parent()
     }
     ///Gets the reference to the [`Instance`]
     #[inline]
-    pub fn instance(&self) -> &'a Unique<'a, Instance> {
+    pub fn instance(&self) -> &Unique<Instance> {
         self.parent().parent().parent()
     }
     ///Gets the reference to the [`PhysicalDevice`]
     #[inline]
-    pub fn physical_device(&self) -> &'a Unique<'a, PhysicalDevice> {
+    pub fn physical_device(&self) -> &Unique<PhysicalDevice> {
         self.parent().parent()
     }
     ///Gets the reference to the [`Device`]
     #[inline]
-    pub fn device(&self) -> &'a Unique<'a, Device> {
+    pub fn device(&self) -> &Unique<Device> {
         self.parent()
     }
     ///Disables the base dropping behaviour of this handle
     #[inline]
-    pub fn disable_drop(mut self) -> Self {
-        self.metadata = false;
-        self
+    pub fn disable_drop(&self) {
+        self.metadata().store(true, Ordering::Relaxed);
     }
 }
 ///The V-table of [`Device`] for functions from `VK_INTEL_performance_query`

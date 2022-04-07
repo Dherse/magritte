@@ -102,13 +102,13 @@ pub fn enum_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option
         }
 
         cases
-            .trim_start_matches(
-                &parent.to_case(Case::ScreamingSnake),
-            )
+            .trim_start_matches(&parent.to_case(Case::ScreamingSnake))
             .to_string()
     } else {
         cases
-    }.trim_start_matches('_').to_string();
+    }
+    .trim_start_matches('_')
+    .to_string();
 
     deal_with_numbers(&mut out);
 
@@ -139,13 +139,13 @@ pub fn bit_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<
         }
 
         cases
-            .trim_start_matches(
-                &parent.to_case(Case::ScreamingSnake),
-            )
+            .trim_start_matches(&parent.to_case(Case::ScreamingSnake))
             .to_string()
     } else {
         cases
-    }.trim_start_matches('_').to_string();
+    }
+    .trim_start_matches('_')
+    .to_string();
 
     deal_with_numbers(&mut out);
 

@@ -56,11 +56,12 @@ impl<'a> Handle<'a> {
             let ident = handle.as_ident();
 
             quote! {
-                Unique<'a, #ident>
+                Unique<#ident>
             }
         } else {
             imports.push("crate::entry::Entry");
-            quote! { Entry }
+            imports.push("std::sync::Arc");
+            quote! { Arc<Entry> }
         };
 
         let mut ancestors = Vec::new();
@@ -79,7 +80,7 @@ impl<'a> Handle<'a> {
             quote! {
                 #[doc = #doc_str]
                 #[inline]
-                pub fn #func_name(&self) -> &'a Unique<'a, #ident> {
+                pub fn #func_name(&self) -> &Unique<#ident> {
                     self #(
                         .#ancestors()
                     )*
@@ -90,10 +91,11 @@ impl<'a> Handle<'a> {
         let entry_count = self.find_entry_ancestors(source);
         let entry_ancestors = (0..entry_count).into_iter().map(|_| quote! { parent });
         imports.push("crate::entry::Entry");
+        imports.push("std::sync::Arc");
         ancestors.push(quote! {
             #[doc = "Gets the reference to the [`Entry`]"]
             #[inline]
-            pub fn entry(&self) -> &'a Entry {
+            pub fn entry(&self) -> &Arc<Entry> {
                 self #(
                     .#entry_ancestors()
                 )*
@@ -142,7 +144,8 @@ impl<'a> Handle<'a> {
             imports.push("crate::extensions::Extensions");
             quote! { Extensions }
         } else {
-            quote! { bool }
+            imports.push("std::sync::atomic::AtomicBool");
+            quote! { AtomicBool }
         };
 
         let load_vtable = if self.is_loader() {
@@ -209,7 +212,7 @@ impl<'a> Handle<'a> {
                         if func.original_name() == "vkReleaseDisplayEXT" {
                             quote! {
                                 #[cfg(feature = "VK_EXT_direct_mode_display")]
-                                if *self.metadata() {
+                                if !self.metadata().load(Ordering::Acquire) {
                                     self.parent().#destroyer(
                                         self.as_raw().coerce()
                                     );
@@ -217,7 +220,7 @@ impl<'a> Handle<'a> {
                             }
                         } else if self.original_name() == "VkPerformanceConfigurationINTEL" {
                             quote! {
-                                if *self.metadata() {
+                                if !self.metadata().load(Ordering::Acquire) {
                                     self.device().#destroyer(
                                         Some(self.as_raw().coerce())
                                     );
@@ -225,7 +228,7 @@ impl<'a> Handle<'a> {
                             }
                         } else {
                             quote! {
-                                if *self.metadata() {
+                                if !self.metadata().load(Ordering::Acquire) {
                                     self.#destroyer(
                                         None
                                     );
@@ -244,7 +247,7 @@ impl<'a> Handle<'a> {
                         .contains(&self.original_name())
                         {
                             quote! {
-                                if *self.metadata() {
+                                if !self.metadata().load(Ordering::Acquire) {
                                     self.#owner_getter().#destroyer(
                                         self.as_raw().coerce(),
                                         None
@@ -253,7 +256,7 @@ impl<'a> Handle<'a> {
                             }
                         } else {
                             quote! {
-                                if *self.metadata() {
+                                if !self.metadata().load(Ordering::Acquire) {
                                     self.#owner_getter().#destroyer(
                                         Some(self.as_raw().coerce()),
                                         None
@@ -264,7 +267,7 @@ impl<'a> Handle<'a> {
                     },
                     4 => {
                         quote! {
-                            if *self.metadata() {
+                            if !self.metadata().load(Ordering::Acquire) {
                                 self.#owner_getter().#destroyer(
                                     self.parent().as_raw(),
                                     &[
@@ -291,17 +294,17 @@ impl<'a> Handle<'a> {
         };
 
         if self.name() != "Instance" {
+            imports.push("std::sync::atomic::Ordering");
+
             ancestors.push(quote! {
                 #[doc = "Disables the base dropping behaviour of this handle"]
                 #[inline]
-                pub fn disable_drop(mut self) -> Self {
-                    self.metadata = false;
-    
-                    self
+                pub fn disable_drop(&self) {
+                    self.metadata().store(true, Ordering::Relaxed);
                 }
             });
         }
-        
+
         quote_each_token! {
             out
 
@@ -328,8 +331,6 @@ impl<'a> Handle<'a> {
                 pub fn raw(&self) -> #ty {
                     self.0
                 }
-
-                // #fns
             }
 
             unsafe impl Send for #name {}
@@ -341,7 +342,7 @@ impl<'a> Handle<'a> {
             }
 
             impl Handle for #name {
-                type Parent<'a> = #parent;
+                type Parent = #parent;
 
                 type VTable = #vtable;
 
@@ -353,7 +354,7 @@ impl<'a> Handle<'a> {
                 fn as_raw(self) -> Self::Raw {
                     self.0
                 }
-            
+
                 #[inline]
                 unsafe fn from_raw(this: Self::Raw) -> Self {
                     Self(this)
@@ -361,17 +362,17 @@ impl<'a> Handle<'a> {
 
                 #[inline]
                 #[track_caller]
-                unsafe fn destroy<'a>(self: &mut Unique<'a, Self>) {
+                unsafe fn destroy(self: &mut Unique<Self>) {
                     #destroy
                 }
 
                 #[inline]
-                unsafe fn load_vtable<'a>(&self, #parent_ident: &Self::Parent<'a>, #metadata_ident: &Self::Metadata) -> Self::VTable {
+                unsafe fn load_vtable(&self, #parent_ident: &Self::Parent, #metadata_ident: &Self::Metadata) -> Self::VTable {
                     #load_vtable
                 }
             }
 
-            impl<'a> Unique<'a, #name> {
+            impl Unique<#name> {
                 #(#ancestors)*
             }
         }
@@ -418,7 +419,7 @@ impl<'a> Handle<'a> {
         let mut handle_ident = self.as_ident();
 
         let mut function_code = TokenStream::default();
-        
+
         // this is a dirty hack, but it really makes my life a lot easier, sorry
         // TODO: improve this
         if let Some(change) = fn_.generate_code(source, imports, doc, self, &mut function_code) {
@@ -437,6 +438,5 @@ impl<'a> Handle<'a> {
                 #function_code
             }
         }
-
     }
 }
