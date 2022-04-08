@@ -11,7 +11,7 @@ use magritte::{
         PhysicalDeviceFeatures, Queue, QueueFlags,
     },
     window::{create_surface, enable_required_extensions},
-    AsRaw, Extensions, Unique, Version,
+    AsRaw, Extensions, Unique, Version, vulkan1_1::PhysicalDeviceProperties2,
 };
 use winit::window::Window;
 
@@ -98,7 +98,9 @@ impl Vulkan {
         // - we need a swapchain to actually display things on screen
         // - we need an annoying set of extensions for showing the window, this is why Magritte comes with
         //   `enable_required_extensions` that will automatically deal with extensions for your window!
-        let mut extensions = enable_required_extensions(window, extensions)?.enable_khr_swapchain();
+        let mut extensions = enable_required_extensions(window, extensions)?
+            .enable_khr_swapchain()
+            .enable_khr_get_physical_device_properties_2();
 
         // If we have the validation layers, enable the extension (optional)
         if validation {
@@ -217,6 +219,16 @@ impl Vulkan {
             physical_device.as_raw(),
             queue_family_index
         );
+
+        let mut properties = PhysicalDeviceProperties2::default();
+        
+        let properties = unsafe {
+            physical_device.get_physical_device_properties2(
+                Some(properties),
+            )
+        };
+
+        println!("{:#?}", properties);
 
         // We get the properties of the device just so we can get its name.
         let properties = unsafe { physical_device.get_physical_device_properties() };
