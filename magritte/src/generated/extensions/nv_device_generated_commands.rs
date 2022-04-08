@@ -1071,7 +1071,7 @@ pub type FNCmdBindPipelineShaderGroupNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsTokenTypeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct IndirectCommandsTokenTypeNV(i32);
@@ -1116,6 +1116,44 @@ impl IndirectCommandsTokenTypeNV {
         Self(bits)
     }
 }
+impl std::fmt::Debug for IndirectCommandsTokenTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(IndirectCommandsTokenTypeNV))
+            .field(match *self {
+                Self::SHADER_GROUP => &"SHADER_GROUP",
+                Self::STATE_FLAGS => &"STATE_FLAGS",
+                Self::INDEX_BUFFER => &"INDEX_BUFFER",
+                Self::VERTEX_BUFFER => &"VERTEX_BUFFER",
+                Self::PUSH_CONSTANT => &"PUSH_CONSTANT",
+                Self::DRAW_INDEXED => &"DRAW_INDEXED",
+                Self::DRAW => &"DRAW",
+                Self::DRAW_TASKS => &"DRAW_TASKS",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(IndirectCommandsTokenTypeNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for IndirectCommandsTokenTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::SHADER_GROUP => &"SHADER_GROUP",
+            Self::STATE_FLAGS => &"STATE_FLAGS",
+            Self::INDEX_BUFFER => &"INDEX_BUFFER",
+            Self::VERTEX_BUFFER => &"VERTEX_BUFFER",
+            Self::PUSH_CONSTANT => &"PUSH_CONSTANT",
+            Self::DRAW_INDEXED => &"DRAW_INDEXED",
+            Self::DRAW => &"DRAW",
+            Self::DRAW_TASKS => &"DRAW_TASKS",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(IndirectCommandsTokenTypeNV), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkIndirectCommandsLayoutUsageFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutUsageFlagBitsNV.html) - Bitmask specifying allowed usage of an indirect commands layout
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -1150,7 +1188,7 @@ impl IndirectCommandsTokenTypeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutUsageFlagBitsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct IndirectCommandsLayoutUsageFlagBitsNV(u32);
@@ -1195,6 +1233,42 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
         Self(bits)
     }
 }
+impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(IndirectCommandsLayoutUsageFlagBitsNV))
+            .field(match *self {
+                Self::EXPLICIT_PREPROCESS => &"EXPLICIT_PREPROCESS",
+                Self::INDEXED_SEQUENCES => &"INDEXED_SEQUENCES",
+                Self::UNORDERED_SEQUENCES => &"UNORDERED_SEQUENCES",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(IndirectCommandsLayoutUsageFlagBitsNV),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for IndirectCommandsLayoutUsageFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::EXPLICIT_PREPROCESS => &"EXPLICIT_PREPROCESS",
+            Self::INDEXED_SEQUENCES => &"INDEXED_SEQUENCES",
+            Self::UNORDERED_SEQUENCES => &"UNORDERED_SEQUENCES",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(IndirectCommandsLayoutUsageFlagBitsNV),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkIndirectStateFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectStateFlagBitsNV.html) - Bitmask specifiying state that can be altered on the device
 ///# C Specifications
 ///A subset of the graphics pipeline state  **can**  be altered using indirect state
@@ -1220,7 +1294,7 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectStateFlagBitsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct IndirectStateFlagBitsNV(u32);
@@ -1250,6 +1324,30 @@ impl IndirectStateFlagBitsNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for IndirectStateFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(IndirectStateFlagBitsNV))
+            .field(match *self {
+                Self::FLAG_FRONTFACE => &"FLAG_FRONTFACE",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(IndirectStateFlagBitsNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for IndirectStateFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FLAG_FRONTFACE => &"FLAG_FRONTFACE",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(IndirectStateFlagBitsNV), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkIndirectCommandsLayoutUsageFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutUsageFlagBitsNV.html) - Bitmask specifying allowed usage of an indirect commands layout

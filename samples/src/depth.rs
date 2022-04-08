@@ -1,8 +1,17 @@
-use log::{info, error, trace};
-use magritte::{vulkan1_0::{DeviceMemory, ImageView, Image, VulkanResultCodes, ImageCreateInfo, ImageType, Format, SampleCountFlagBits, ImageTiling, ImageUsageFlags, SharingMode, Extent3D, MemoryPropertyFlags, MemoryAllocateInfo, AccessFlags, ImageSubresourceRange, ImageAspectFlags, ImageLayout, ImageMemoryBarrier, PipelineStageFlags, DependencyFlags, ImageViewCreateInfo, ImageViewType}, Unique, AsRaw, size::Size, memory::find_memory_type_index};
+use log::{error, info, trace};
+use magritte::{
+    memory::find_memory_type_index,
+    size::Size,
+    vulkan1_0::{
+        AccessFlags, DependencyFlags, DeviceMemory, Extent3D, Format, Image, ImageAspectFlags, ImageCreateInfo,
+        ImageLayout, ImageMemoryBarrier, ImageSubresourceRange, ImageTiling, ImageType, ImageUsageFlags, ImageView,
+        ImageViewCreateInfo, ImageViewType, MemoryAllocateInfo, MemoryPropertyFlags, PipelineStageFlags,
+        SampleCountFlagBits, SharingMode, VulkanResultCodes,
+    },
+    AsRaw, Unique,
+};
 
-use crate::{vulkan::Vulkan, surface::Surface, commands::Commands};
-
+use crate::{commands::Commands, surface::Surface, vulkan::Vulkan};
 
 /// A simple container for a depth buffer and its memory.
 pub struct Depth {
@@ -13,7 +22,7 @@ pub struct Depth {
     pub image_view: Unique<ImageView>,
 
     /// The memory backing the depth buffer
-    pub image_memory: Unique<DeviceMemory>
+    pub image_memory: Unique<DeviceMemory>,
 }
 
 impl Depth {
@@ -62,12 +71,10 @@ impl Depth {
     fn create_new_image_view_memory(
         vulkan: &Vulkan,
         commands: &Commands,
-        surface: &Surface
+        surface: &Surface,
     ) -> Result<(Unique<Image>, Unique<ImageView>, Unique<DeviceMemory>), VulkanResultCodes> {
-        // First we get the memory properties, we will use this when allocating our image 
-        let memory_properties = unsafe {
-            vulkan.physical_device().get_physical_device_memory_properties()
-        };
+        // First we get the memory properties, we will use this when allocating our image
+        let memory_properties = unsafe { vulkan.physical_device().get_physical_device_memory_properties() };
 
         // We need to create an Image, that being a Vulkan handle of an image, for this we need:
         // - Type type of image (2-dimensional in this case)
@@ -95,18 +102,14 @@ impl Depth {
             .set_sharing_mode(SharingMode::EXCLUSIVE);
 
         // Here we create the image
-        let (image, _) = unsafe {
-            vulkan.device().create_image(&image_create_info, None)?
-        };
+        let (image, _) = unsafe { vulkan.device().create_image(&image_create_info, None)? };
 
         info!("Created the depth image: {:?}", image.as_raw());
 
         // We want to know how much space we need to allocate the image.
         // We can do this by hand but it is **very** tedious, so instead Vulkan
         // provides a function to quickly get the memory requirements.
-        let memory_requirements = unsafe {
-            vulkan.device().get_image_memory_requirements(image.as_raw())
-        };
+        let memory_requirements = unsafe { vulkan.device().get_image_memory_requirements(image.as_raw()) };
 
         // `Size` is a little helper for pretty-priting memory sized!
         // Let's give it a try!
@@ -140,14 +143,14 @@ impl Depth {
             .set_memory_type_index(memory_index);
 
         // Now, we allocate the memory
-        let (image_memory, _) = unsafe {
-            vulkan.device().allocate_memory(&image_allocate_info, None)?
-        };
+        let (image_memory, _) = unsafe { vulkan.device().allocate_memory(&image_allocate_info, None)? };
 
         // Here we bind the memory, this means that the image must now live longer than its memory!
         // ⚠ We need to ensure this is the case.
         unsafe {
-            vulkan.device().bind_image_memory(image.as_raw(), image_memory.as_raw(), 0)?;
+            vulkan
+                .device()
+                .bind_image_memory(image.as_raw(), image_memory.as_raw(), 0)?;
         }
 
         // TODO: explain this more.
@@ -156,13 +159,12 @@ impl Depth {
             let layout_transition_barriers = ImageMemoryBarrier::default()
                 .set_image(image.as_raw())
                 .set_dst_access_mask(
-                    AccessFlags::DEPTH_STENCIL_ATTACHMENT_READ
-                        | AccessFlags::DEPTH_STENCIL_ATTACHMENT_WRITE,
+                    AccessFlags::DEPTH_STENCIL_ATTACHMENT_READ | AccessFlags::DEPTH_STENCIL_ATTACHMENT_WRITE,
                 )
                 .set_new_layout(ImageLayout::DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
                 .set_old_layout(ImageLayout::UNDEFINED)
                 .set_subresource_range(
-                   ImageSubresourceRange::default()
+                    ImageSubresourceRange::default()
                         .set_aspect_mask(ImageAspectFlags::DEPTH)
                         .set_layer_count(1)
                         .set_level_count(1),
@@ -176,7 +178,7 @@ impl Depth {
                     DependencyFlags::empty(),
                     &[],
                     &[],
-                    std::slice::from_ref(&layout_transition_barriers)
+                    std::slice::from_ref(&layout_transition_barriers),
                 );
             }
 
@@ -196,14 +198,8 @@ impl Depth {
             .set_format(image_create_info.format())
             .set_view_type(ImageViewType::_2_D);
 
-        let (image_view, _) = unsafe {
-            image.create_image_view(&image_view_info, None)?
-        };
+        let (image_view, _) = unsafe { image.create_image_view(&image_view_info, None)? };
 
-        Ok((
-            image,
-            image_view,
-            image_memory,
-        ))
+        Ok((image, image_view, image_memory))
     }
 }

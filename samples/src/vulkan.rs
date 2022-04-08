@@ -173,6 +173,19 @@ impl Vulkan {
 
         info!("We have {} physical devices", physical_devices.len());
 
+        // Completely optional property printing
+        for physical_device in &physical_devices {
+            let properties = unsafe { physical_device.get_physical_device_properties() };
+
+            debug!(
+                " - {}, type: {:?}, max vulkan version: {}, driver version: {}",
+                properties.device_name().as_cstr().to_string_lossy(),
+                properties.device_type(),
+                Version(properties.api_version()),
+                Version(properties.driver_version())
+            );
+        }
+
         // We want to try and find a device that:
         // - Has a graphics submission queue (should be the case on most platforms)
         // - Is capable of supporting our surface
@@ -203,6 +216,16 @@ impl Vulkan {
             "We have chosen a physical device and queue family: {:?} and {}",
             physical_device.as_raw(),
             queue_family_index
+        );
+
+        // We get the properties of the device just so we can get its name.
+        let properties = unsafe { physical_device.get_physical_device_properties() };
+
+        info!(
+            "Selected GPU: {}, max vulkan version: {}, driver version: {}",
+            properties.device_name().as_cstr().to_string_lossy(),
+            Version(properties.api_version()),
+            Version(properties.driver_version())
         );
 
         // We need to tell Vulkan that we want a queue from a certain family.

@@ -1,12 +1,15 @@
-use log::info;
+use log::{info, warn};
 use magritte::{
     extensions::{
         khr_display::SurfaceTransformFlagsKHR,
         khr_surface::{CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR},
-        khr_swapchain::{SwapchainCreateInfoKHR, SwapchainKHR, SwapchainImage, SwapchainImageView},
+        khr_swapchain::{SwapchainCreateInfoKHR, SwapchainImage, SwapchainImageView, SwapchainKHR},
     },
-    vulkan1_0::{Extent2D, ImageUsageFlags, SharingMode, VulkanResultCodes, ImageViewCreateInfo, ImageViewType, ComponentMapping, ComponentSwizzle, ImageSubresourceRange, ImageAspectFlags, Format, Semaphore},
-    AsRaw, Unique, SmallVec,
+    vulkan1_0::{
+        ComponentMapping, ComponentSwizzle, Extent2D, Format, ImageAspectFlags, ImageSubresourceRange, ImageUsageFlags,
+        ImageViewCreateInfo, ImageViewType, Semaphore, SharingMode, VulkanResultCodes,
+    },
+    AsRaw, SmallVec, Unique,
 };
 
 use crate::vulkan::Vulkan;
@@ -162,9 +165,9 @@ impl Surface {
 
         // Now we get the images (allocated by Vulkan) that are associated with the swapchain
         let (swapchain_images, _) = unsafe { swapchain.get_swapchain_images_khr(swapchain.as_raw(), None)? };
-        
+
         info!("We have {} swapchain images", swapchain_images.len());
-        
+
         // Now we need to create the swapchain image views
         // For this we need the following for each image:
         // - The view type, that is, how we think the image will be layed out (in 2D in our case)
@@ -175,29 +178,29 @@ impl Surface {
         //  - at the first mipmap level (since we have only one anyway)
         //  - in the first array layer (since we have only one anyway)
         let swapchain_image_views = swapchain_images
-        .iter()
-        .map(|image| {
-            let create_view_info = ImageViewCreateInfo::default()
-                .set_view_type(ImageViewType::_2_D)
-                .set_format(surface_format.format)
-                .set_components(ComponentMapping {
-                    r: ComponentSwizzle::R,
-                    g: ComponentSwizzle::G,
-                    b: ComponentSwizzle::B,
-                    a: ComponentSwizzle::A,
-                })
-                .set_subresource_range(ImageSubresourceRange {
-                    aspect_mask: ImageAspectFlags::COLOR,
-                    base_mip_level: 0,
-                    level_count: 1,
-                    base_array_layer: 0,
-                    layer_count: 1,
-                })
-                .set_image(image.as_raw_image());
+            .iter()
+            .map(|image| {
+                let create_view_info = ImageViewCreateInfo::default()
+                    .set_view_type(ImageViewType::_2_D)
+                    .set_format(surface_format.format)
+                    .set_components(ComponentMapping {
+                        r: ComponentSwizzle::R,
+                        g: ComponentSwizzle::G,
+                        b: ComponentSwizzle::B,
+                        a: ComponentSwizzle::A,
+                    })
+                    .set_subresource_range(ImageSubresourceRange {
+                        aspect_mask: ImageAspectFlags::COLOR,
+                        base_mip_level: 0,
+                        level_count: 1,
+                        base_array_layer: 0,
+                        layer_count: 1,
+                    })
+                    .set_image(image.as_raw_image());
 
-            unsafe { image.create_swapchain_image_view(&create_view_info, None).result() }
-        })
-        .collect::<Result<SmallVec<_>, _>>()?;
+                unsafe { image.create_swapchain_image_view(&create_view_info, None).result() }
+            })
+            .collect::<Result<SmallVec<_>, _>>()?;
 
         Ok(Self {
             surface,
@@ -211,15 +214,19 @@ impl Surface {
 
     /// Acquires the next image
     #[inline]
-    pub fn acquire_next_image(&self, semaphore: &Unique<Semaphore>,) -> Result<usize, VulkanResultCodes> {
-        let (present_index, _) = unsafe {
+    pub fn acquire_next_image(&self, semaphore: &Unique<Semaphore>) -> Result<usize, VulkanResultCodes> {
+        let (present_index, result) = unsafe {
             self.swapchain().device().acquire_next_image_khr(
                 self.swapchain().as_raw(),
                 Some(std::u64::MAX),
                 Some(semaphore.as_raw()),
-                None
+                None,
             )?
         };
+
+        if result == VulkanResultCodes::SUBOPTIMAL_KHR {
+            warn!("Suboptimal swapchain");
+        }
 
         Ok(present_index as usize)
     }

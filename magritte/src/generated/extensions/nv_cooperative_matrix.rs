@@ -170,7 +170,7 @@ pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkScopeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ScopeNV(i32);
@@ -206,6 +206,30 @@ impl ScopeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ScopeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ScopeNV))
+            .field(match *self {
+                Self::DEVICE => &"DEVICE",
+                Self::WORKGROUP => &"WORKGROUP",
+                Self::SUBGROUP => &"SUBGROUP",
+                Self::QUEUE_FAMILY => &"QUEUE_FAMILY",
+                other => unreachable!(concat!("invalid value for", stringify!(ScopeNV), ": {:?}"), other),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ScopeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEVICE => &"DEVICE",
+            Self::WORKGROUP => &"WORKGROUP",
+            Self::SUBGROUP => &"SUBGROUP",
+            Self::QUEUE_FAMILY => &"QUEUE_FAMILY",
+            other => unreachable!(concat!("invalid value for", stringify!(ScopeNV), ": {:?}"), other),
+        })
     }
 }
 ///[VkComponentTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkComponentTypeNV.html) - Specify SPIR-V cooperative matrix component type
@@ -251,7 +275,7 @@ impl ScopeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkComponentTypeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ComponentTypeNV(i32);
@@ -309,6 +333,50 @@ impl ComponentTypeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ComponentTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ComponentTypeNV))
+            .field(match *self {
+                Self::FLOAT16 => &"FLOAT16",
+                Self::FLOAT32 => &"FLOAT32",
+                Self::FLOAT64 => &"FLOAT64",
+                Self::SINT8 => &"SINT8",
+                Self::SINT16 => &"SINT16",
+                Self::SINT32 => &"SINT32",
+                Self::SINT64 => &"SINT64",
+                Self::UINT8 => &"UINT8",
+                Self::UINT16 => &"UINT16",
+                Self::UINT32 => &"UINT32",
+                Self::UINT64 => &"UINT64",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ComponentTypeNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ComponentTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FLOAT16 => &"FLOAT16",
+            Self::FLOAT32 => &"FLOAT32",
+            Self::FLOAT64 => &"FLOAT64",
+            Self::SINT8 => &"SINT8",
+            Self::SINT16 => &"SINT16",
+            Self::SINT32 => &"SINT32",
+            Self::SINT64 => &"SINT64",
+            Self::UINT8 => &"UINT8",
+            Self::UINT16 => &"UINT16",
+            Self::UINT32 => &"UINT32",
+            Self::UINT64 => &"UINT64",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ComponentTypeNV), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPhysicalDeviceCooperativeMatrixFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html) - Structure describing cooperative matrix features that can be supported by an implementation

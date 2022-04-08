@@ -263,7 +263,7 @@ pub type FNCmdSetFragmentShadingRateEnumNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct FragmentShadingRateNV(i32);
@@ -333,6 +333,52 @@ impl FragmentShadingRateNV {
         Self(bits)
     }
 }
+impl std::fmt::Debug for FragmentShadingRateNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(FragmentShadingRateNV))
+            .field(match *self {
+                Self::_1_INVOCATION_PER_PIXEL => &"1_INVOCATION_PER_PIXEL",
+                Self::_1_INVOCATION_PER1_X_2_PIXELS => &"1_INVOCATION_PER1_X_2_PIXELS",
+                Self::_1_INVOCATION_PER2_X_1_PIXELS => &"1_INVOCATION_PER2_X_1_PIXELS",
+                Self::_1_INVOCATION_PER2_X_2_PIXELS => &"1_INVOCATION_PER2_X_2_PIXELS",
+                Self::_1_INVOCATION_PER2_X_4_PIXELS => &"1_INVOCATION_PER2_X_4_PIXELS",
+                Self::_1_INVOCATION_PER4_X_2_PIXELS => &"1_INVOCATION_PER4_X_2_PIXELS",
+                Self::_1_INVOCATION_PER4_X_4_PIXELS => &"1_INVOCATION_PER4_X_4_PIXELS",
+                Self::_2_INVOCATIONS_PER_PIXEL => &"2_INVOCATIONS_PER_PIXEL",
+                Self::_4_INVOCATIONS_PER_PIXEL => &"4_INVOCATIONS_PER_PIXEL",
+                Self::_8_INVOCATIONS_PER_PIXEL => &"8_INVOCATIONS_PER_PIXEL",
+                Self::_16_INVOCATIONS_PER_PIXEL => &"16_INVOCATIONS_PER_PIXEL",
+                Self::NO_INVOCATIONS => &"NO_INVOCATIONS",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(FragmentShadingRateNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for FragmentShadingRateNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::_1_INVOCATION_PER_PIXEL => &"1_INVOCATION_PER_PIXEL",
+            Self::_1_INVOCATION_PER1_X_2_PIXELS => &"1_INVOCATION_PER1_X_2_PIXELS",
+            Self::_1_INVOCATION_PER2_X_1_PIXELS => &"1_INVOCATION_PER2_X_1_PIXELS",
+            Self::_1_INVOCATION_PER2_X_2_PIXELS => &"1_INVOCATION_PER2_X_2_PIXELS",
+            Self::_1_INVOCATION_PER2_X_4_PIXELS => &"1_INVOCATION_PER2_X_4_PIXELS",
+            Self::_1_INVOCATION_PER4_X_2_PIXELS => &"1_INVOCATION_PER4_X_2_PIXELS",
+            Self::_1_INVOCATION_PER4_X_4_PIXELS => &"1_INVOCATION_PER4_X_4_PIXELS",
+            Self::_2_INVOCATIONS_PER_PIXEL => &"2_INVOCATIONS_PER_PIXEL",
+            Self::_4_INVOCATIONS_PER_PIXEL => &"4_INVOCATIONS_PER_PIXEL",
+            Self::_8_INVOCATIONS_PER_PIXEL => &"8_INVOCATIONS_PER_PIXEL",
+            Self::_16_INVOCATIONS_PER_PIXEL => &"16_INVOCATIONS_PER_PIXEL",
+            Self::NO_INVOCATIONS => &"NO_INVOCATIONS",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(FragmentShadingRateNV), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkFragmentShadingRateTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateTypeNV.html) - Enumeration with fragment shading rate types
 ///# C Specifications
 ///The [`FragmentShadingRateTypeNV`] enumerated type specifies whether a
@@ -367,7 +413,7 @@ impl FragmentShadingRateNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateTypeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct FragmentShadingRateTypeNV(i32);
@@ -410,6 +456,32 @@ impl FragmentShadingRateTypeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for FragmentShadingRateTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(FragmentShadingRateTypeNV))
+            .field(match *self {
+                Self::FRAGMENT_SIZE => &"FRAGMENT_SIZE",
+                Self::ENUMS => &"ENUMS",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(FragmentShadingRateTypeNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for FragmentShadingRateTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FRAGMENT_SIZE => &"FRAGMENT_SIZE",
+            Self::ENUMS => &"ENUMS",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(FragmentShadingRateTypeNV), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html) - Structure indicating support for fragment shading rate enums

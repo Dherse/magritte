@@ -265,6 +265,7 @@ use crate::{
         DeviceSize, Pipeline, PipelineCache, PipelineCreateFlags, PipelineDynamicStateCreateInfo, PipelineLayout,
         PipelineShaderStageCreateInfo, StructureType, VulkanResultCodes,
     },
+    vulkan1_3::PipelineCreationFeedbackCreateInfo,
     AsRaw, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "serde")]
@@ -1258,7 +1259,7 @@ pub type FNCmdSetRayTracingPipelineStackSizeKhr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupTypeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct RayTracingShaderGroupTypeKHR(i32);
@@ -1301,6 +1302,34 @@ impl RayTracingShaderGroupTypeKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for RayTracingShaderGroupTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(RayTracingShaderGroupTypeKHR))
+            .field(match *self {
+                Self::GENERAL => &"GENERAL",
+                Self::TRIANGLES_HIT_GROUP => &"TRIANGLES_HIT_GROUP",
+                Self::PROCEDURAL_HIT_GROUP => &"PROCEDURAL_HIT_GROUP",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(RayTracingShaderGroupTypeKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for RayTracingShaderGroupTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::GENERAL => &"GENERAL",
+            Self::TRIANGLES_HIT_GROUP => &"TRIANGLES_HIT_GROUP",
+            Self::PROCEDURAL_HIT_GROUP => &"PROCEDURAL_HIT_GROUP",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(RayTracingShaderGroupTypeKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkShaderGroupShaderKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderGroupShaderKHR.html) - Shader group shaders
 ///# C Specifications
 ///Possible values of `groupShader` in
@@ -1335,7 +1364,7 @@ impl RayTracingShaderGroupTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderGroupShaderKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ShaderGroupShaderKHR(i32);
@@ -1378,6 +1407,36 @@ impl ShaderGroupShaderKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ShaderGroupShaderKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ShaderGroupShaderKHR))
+            .field(match *self {
+                Self::GENERAL => &"GENERAL",
+                Self::CLOSEST_HIT => &"CLOSEST_HIT",
+                Self::ANY_HIT => &"ANY_HIT",
+                Self::INTERSECTION => &"INTERSECTION",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ShaderGroupShaderKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ShaderGroupShaderKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::GENERAL => &"GENERAL",
+            Self::CLOSEST_HIT => &"CLOSEST_HIT",
+            Self::ANY_HIT => &"ANY_HIT",
+            Self::INTERSECTION => &"INTERSECTION",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ShaderGroupShaderKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkRayTracingShaderGroupCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoKHR.html) - Structure specifying shaders in a shader group
@@ -2180,6 +2239,7 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for RayTracingPipelineCreateInfoKHR<'lt> {}
 ///[VkPhysicalDeviceRayTracingPipelineFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html) - Structure describing the ray tracing features that can be supported by an implementation
 ///# C Specifications
 ///The [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] structure is defined

@@ -83,7 +83,7 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryOverallocationBehaviorAMD")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct MemoryOverallocationBehaviorAMD(i32);
@@ -122,6 +122,42 @@ impl MemoryOverallocationBehaviorAMD {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for MemoryOverallocationBehaviorAMD {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(MemoryOverallocationBehaviorAMD))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::ALLOWED => &"ALLOWED",
+                Self::DISALLOWED => &"DISALLOWED",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(MemoryOverallocationBehaviorAMD),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for MemoryOverallocationBehaviorAMD {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::ALLOWED => &"ALLOWED",
+            Self::DISALLOWED => &"DISALLOWED",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(MemoryOverallocationBehaviorAMD),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkDeviceMemoryOverallocationCreateInfoAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html) - Specify memory overallocation behavior for a Vulkan device

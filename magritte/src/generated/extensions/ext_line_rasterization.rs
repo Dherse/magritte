@@ -166,7 +166,7 @@ pub type FNCmdSetLineStippleExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkLineRasterizationModeEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct LineRasterizationModeEXT(i32);
@@ -212,6 +212,36 @@ impl LineRasterizationModeEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for LineRasterizationModeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(LineRasterizationModeEXT))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::RECTANGULAR => &"RECTANGULAR",
+                Self::BRESENHAM => &"BRESENHAM",
+                Self::RECTANGULAR_SMOOTH => &"RECTANGULAR_SMOOTH",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(LineRasterizationModeEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for LineRasterizationModeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::RECTANGULAR => &"RECTANGULAR",
+            Self::BRESENHAM => &"BRESENHAM",
+            Self::RECTANGULAR_SMOOTH => &"RECTANGULAR_SMOOTH",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(LineRasterizationModeEXT), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPhysicalDeviceLineRasterizationFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html) - Structure describing the line rasterization features that can be supported by an implementation

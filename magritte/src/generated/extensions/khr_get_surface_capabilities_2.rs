@@ -64,6 +64,18 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+#[cfg(feature = "VK_AMD_display_native_hdr")]
+pub use crate::extensions::amd_display_native_hdr::DisplayNativeHdrSurfaceCapabilitiesAMD;
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+pub use crate::extensions::ext_full_screen_exclusive::SurfaceCapabilitiesFullScreenExclusiveEXT;
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveInfoEXT;
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveWin32InfoEXT;
+#[cfg(feature = "VK_KHR_shared_presentable_image")]
+pub use crate::extensions::khr_shared_presentable_image::SharedPresentSurfaceCapabilitiesKHR;
+#[cfg(feature = "VK_KHR_surface_protected_capabilities")]
+pub use crate::extensions::khr_surface_protected_capabilities::SurfaceProtectedCapabilitiesKHR;
 use crate::{
     extensions::khr_surface::{SurfaceCapabilitiesKHR, SurfaceFormatKHR, SurfaceKHR},
     vulkan1_0::{BaseInStructure, BaseOutStructure, Instance, PhysicalDevice, StructureType, VulkanResultCodes},
@@ -368,6 +380,10 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveInfoEXT<'lt>> for PhysicalDeviceSurfaceInfo2KHR<'lt> {}
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> for PhysicalDeviceSurfaceInfo2KHR<'lt> {}
 ///[VkSurfaceCapabilities2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCapabilities2KHR.html) - Structure describing capabilities of a surface
 ///# C Specifications
 ///The [`SurfaceCapabilities2KHR`] structure is defined as:
@@ -486,6 +502,14 @@ impl<'lt> SurfaceCapabilities2KHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_AMD_display_native_hdr")]
+unsafe impl<'lt> crate::Chain<'lt, DisplayNativeHdrSurfaceCapabilitiesAMD<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+#[cfg(feature = "VK_KHR_shared_presentable_image")]
+unsafe impl<'lt> crate::Chain<'lt, SharedPresentSurfaceCapabilitiesKHR<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+#[cfg(feature = "VK_KHR_surface_protected_capabilities")]
+unsafe impl<'lt> crate::Chain<'lt, SurfaceProtectedCapabilitiesKHR<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+unsafe impl<'lt> crate::Chain<'lt, SurfaceCapabilitiesFullScreenExclusiveEXT<'lt>> for SurfaceCapabilities2KHR<'lt> {}
 ///[VkSurfaceFormat2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormat2KHR.html) - Structure describing a supported swapchain format tuple
 ///# C Specifications
 ///The [`SurfaceFormat2KHR`] structure is defined as:

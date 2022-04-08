@@ -434,7 +434,7 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentModeFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DeviceGroupPresentModeFlagBitsKHR(u32);
@@ -489,6 +489,52 @@ impl DeviceGroupPresentModeFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DeviceGroupPresentModeFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DeviceGroupPresentModeFlagBitsKHR))
+            .field(match *self {
+                #[cfg(feature = "VK_KHR_swapchain")]
+                Self::LOCAL => &"LOCAL",
+                #[cfg(feature = "VK_KHR_swapchain")]
+                Self::REMOTE => &"REMOTE",
+                #[cfg(feature = "VK_KHR_swapchain")]
+                Self::SUM => &"SUM",
+                #[cfg(feature = "VK_KHR_swapchain")]
+                Self::LOCAL_MULTI_DEVICE => &"LOCAL_MULTI_DEVICE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(DeviceGroupPresentModeFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DeviceGroupPresentModeFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::LOCAL => &"LOCAL",
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::REMOTE => &"REMOTE",
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SUM => &"SUM",
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::LOCAL_MULTI_DEVICE => &"LOCAL_MULTI_DEVICE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(DeviceGroupPresentModeFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkDeviceGroupPresentModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentModeFlagBitsKHR.html) - Bitmask specifying supported device group present modes

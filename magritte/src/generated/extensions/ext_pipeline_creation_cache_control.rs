@@ -97,7 +97,7 @@ pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCacheCreateFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PipelineCacheCreateFlagBits(u32);
@@ -133,5 +133,29 @@ impl PipelineCacheCreateFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PipelineCacheCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PipelineCacheCreateFlagBits))
+            .field(match *self {
+                Self::EXTERNALLY_SYNCHRONIZED => &"EXTERNALLY_SYNCHRONIZED",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PipelineCacheCreateFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PipelineCacheCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::EXTERNALLY_SYNCHRONIZED => &"EXTERNALLY_SYNCHRONIZED",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PipelineCacheCreateFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }

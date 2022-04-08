@@ -98,6 +98,44 @@ impl<'a> Struct<'a> {
             .iter()
             .map(|field| field.generate_default(source, imports));
 
+        let extender_conditions = self
+            .extended()
+            .into_iter()
+            .map(|name| source.structs.get_by_name(name).unwrap())
+            .map(|struct_| {
+                if struct_.origin() != self.origin() && !self.origin().requires(source, struct_.origin()) {
+                    if let Some(cond) = struct_.origin().feature_gate() {
+                        imports.push_str(&format!(
+                            r##"
+                                {}
+                                pub use {}::{};
+                            "##,
+                            cond,
+                            struct_.origin().as_path_str(),
+                            struct_.name()
+                        ));
+                    } else {
+                        imports.push_origin(struct_.origin(), struct_.name());
+                    }
+
+                    struct_.origin().condition()
+                } else {
+                    imports.push_origin(struct_.origin(), struct_.name());
+
+                    None
+                }
+            });
+
+        let extenders = self.extended().into_iter().map(|name| source.structs.get_by_name(name).unwrap()).map(Struct::as_ident);
+
+        let extender_lifetimes = self.extended().into_iter().map(|name| source.structs.get_by_name(name).unwrap()).map(|struct_|
+            struct_.has_lifetime(source).then(|| {
+                quote! {
+                    <#lt>
+                }
+            })
+        );
+
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
@@ -132,6 +170,11 @@ impl<'a> Struct<'a> {
                 #(#pretty_mut_getters)*
                 #(#pretty_setters)*
             }
+
+            #(
+                #extender_conditions
+                unsafe impl<'lt> crate::Chain<'lt, #extenders #extender_lifetimes> for #name #lifetime {}
+            )*
         }
     }
 

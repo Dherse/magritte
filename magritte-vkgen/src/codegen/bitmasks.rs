@@ -157,9 +157,9 @@ impl<'a> Bitmask<'a> {
                 if let Some(condition) = bit_flag.origin().condition() {
                     imports.push_str(&format!(
                         r##"
-                    {}
-                    pub use {}::{};
-                "##,
+                            {}
+                            pub use {}::{};
+                        "##,
                         bit_flag.origin().feature_gate().unwrap_or_default(),
                         bit_flag.origin().as_path_str(),
                         bit_flag.name()

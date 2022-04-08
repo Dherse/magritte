@@ -1,6 +1,5 @@
 use std::{borrow::Cow, hint::unreachable_unchecked};
 
-use ahash::AHashSet;
 use convert_case::{Case, Casing};
 use proc_macro2::{Ident, Span};
 use tracing::{info, span, Level};
@@ -25,7 +24,7 @@ pub struct Struct<'a> {
     pub name: String,
 
     /// The names of the types this structure extends.
-    pub extends: AHashSet<Cow<'a, str>>,
+    pub extends: Vec<Cow<'a, str>>,
 
     /// Is this type always returned (never constructed)
     pub always_returned: bool,
@@ -35,6 +34,9 @@ pub struct Struct<'a> {
 
     /// The origin (extension or Vulkan version)
     pub origin: Origin<'a>,
+
+    /// Structures that extend this structure
+    pub extended: Vec<Cow<'a, str>>,
 }
 
 impl<'a> Struct<'a> {
@@ -43,7 +45,7 @@ impl<'a> Struct<'a> {
     pub fn new(
         original_name: &'a str,
         name: String,
-        extends: AHashSet<Cow<'a, str>>,
+        extends: Vec<Cow<'a, str>>,
         always_returned: bool,
         fields: SymbolTable<'a, Field<'a>>,
         origin: Origin<'a>,
@@ -55,6 +57,7 @@ impl<'a> Struct<'a> {
             always_returned,
             fields,
             origin,
+            extended: Vec::new()
         }
     }
 
@@ -63,7 +66,7 @@ impl<'a> Struct<'a> {
     pub fn new_no_origin(
         original_name: &'a str,
         name: String,
-        extends: AHashSet<Cow<'a, str>>,
+        extends: Vec<Cow<'a, str>>,
         always_returned: bool,
         fields: SymbolTable<'a, Field<'a>>,
     ) -> Self {
@@ -86,7 +89,7 @@ impl<'a> Struct<'a> {
     }
 
     /// Get a reference to the struct's extends.
-    pub fn extends(&self) -> &AHashSet<Cow<'a, str>> {
+    pub fn extends(&self) -> &Vec<Cow<'a, str>> {
         &self.extends
     }
 
@@ -171,6 +174,21 @@ impl<'a> Struct<'a> {
     pub fn has_generics(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_generics(source))
     }*/
+
+    /// Get a reference to the struct's extended.
+    pub fn extended(&self) -> &[Cow<str>] {
+        self.extended.as_ref()
+    }
+
+    /// Get a mutable reference to the struct's extended.
+    pub fn extended_mut(&mut self) -> &mut Vec<Cow<'a, str>> {
+        &mut self.extended
+    }
+
+    /// Adds to the list of structs that extend this struct
+    pub fn add_extended(&mut self, extended: Cow<'a, str>) {
+        self.extended_mut().push(extended);
+    }
 }
 
 impl<'a> SymbolName<'a> for Struct<'a> {

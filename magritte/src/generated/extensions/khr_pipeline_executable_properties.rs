@@ -371,7 +371,7 @@ pub type FNGetPipelineExecutableInternalRepresentationsKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticFormatKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PipelineExecutableStatisticFormatKHR(i32);
@@ -417,6 +417,44 @@ impl PipelineExecutableStatisticFormatKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PipelineExecutableStatisticFormatKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PipelineExecutableStatisticFormatKHR))
+            .field(match *self {
+                Self::BOOL32 => &"BOOL32",
+                Self::INT64 => &"INT64",
+                Self::UINT64 => &"UINT64",
+                Self::FLOAT64 => &"FLOAT64",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(PipelineExecutableStatisticFormatKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PipelineExecutableStatisticFormatKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::BOOL32 => &"BOOL32",
+            Self::INT64 => &"INT64",
+            Self::UINT64 => &"UINT64",
+            Self::FLOAT64 => &"FLOAT64",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(PipelineExecutableStatisticFormatKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html) - Structure describing whether pipeline executable properties are available

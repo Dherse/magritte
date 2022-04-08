@@ -112,7 +112,7 @@ pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoverageModulationModeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct CoverageModulationModeNV(i32);
@@ -151,6 +151,36 @@ impl CoverageModulationModeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for CoverageModulationModeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(CoverageModulationModeNV))
+            .field(match *self {
+                Self::NONE => &"NONE",
+                Self::RGB => &"RGB",
+                Self::ALPHA => &"ALPHA",
+                Self::RGBA => &"RGBA",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(CoverageModulationModeNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for CoverageModulationModeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::NONE => &"NONE",
+            Self::RGB => &"RGB",
+            Self::ALPHA => &"ALPHA",
+            Self::RGBA => &"RGBA",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(CoverageModulationModeNV), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPipelineCoverageModulationStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageModulationStateCreateFlagsNV.html) - Reserved for future use

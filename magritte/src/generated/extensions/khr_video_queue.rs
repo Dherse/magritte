@@ -162,6 +162,42 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264DpbSlotInfoEXT;
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264ProfileEXT;
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264SessionParametersAddInfoEXT;
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264SessionParametersCreateInfoEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265DpbSlotInfoEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265ProfileEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265SessionParametersAddInfoEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265SessionParametersCreateInfoEXT;
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+pub use crate::extensions::ext_video_encode_h_264::VideoEncodeH264ProfileEXT;
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+pub use crate::extensions::ext_video_encode_h_264::VideoEncodeH264SessionParametersAddInfoEXT;
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+pub use crate::extensions::ext_video_encode_h_264::VideoEncodeH264SessionParametersCreateInfoEXT;
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+pub use crate::extensions::ext_video_encode_h_265::VideoEncodeH265ProfileEXT;
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+pub use crate::extensions::ext_video_encode_h_265::VideoEncodeH265SessionParametersAddInfoEXT;
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+pub use crate::extensions::ext_video_encode_h_265::VideoEncodeH265SessionParametersCreateInfoEXT;
+#[cfg(feature = "VK_KHR_video_decode_queue")]
+pub use crate::extensions::khr_video_decode_queue::VideoDecodeCapabilitiesKHR;
+#[cfg(feature = "VK_KHR_video_encode_queue")]
+pub use crate::extensions::khr_video_encode_queue::VideoEncodeCapabilitiesKHR;
+#[cfg(feature = "VK_KHR_video_encode_queue")]
+pub use crate::extensions::khr_video_encode_queue::VideoEncodeRateControlInfoKHR;
+#[cfg(feature = "VK_KHR_video_encode_queue")]
+pub use crate::extensions::khr_video_encode_queue::VideoEncodeRateControlLayerInfoKHR;
 use crate::{
     entry::Entry,
     vulkan1_0::{
@@ -870,7 +906,7 @@ pub type FNCmdEndVideoCodingKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryResultStatusKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct QueryResultStatusKHR(i32);
@@ -906,6 +942,34 @@ impl QueryResultStatusKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for QueryResultStatusKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(QueryResultStatusKHR))
+            .field(match *self {
+                Self::ERROR => &"ERROR",
+                Self::NOT_READY => &"NOT_READY",
+                Self::COMPLETE => &"COMPLETE",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(QueryResultStatusKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for QueryResultStatusKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ERROR => &"ERROR",
+            Self::NOT_READY => &"NOT_READY",
+            Self::COMPLETE => &"COMPLETE",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(QueryResultStatusKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoCodecOperationFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html) - Video codec operation types
@@ -954,7 +1018,7 @@ impl QueryResultStatusKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodecOperationFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoCodecOperationFlagBitsKHR(u32);
@@ -1009,6 +1073,54 @@ impl VideoCodecOperationFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoCodecOperationFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoCodecOperationFlagBitsKHR))
+            .field(match *self {
+                Self::INVALID => &"INVALID",
+                #[cfg(feature = "VK_EXT_video_encode_h264")]
+                Self::ENCODE_H264_EXT => &"ENCODE_H264_EXT",
+                #[cfg(feature = "VK_EXT_video_encode_h265")]
+                Self::ENCODE_H265_EXT => &"ENCODE_H265_EXT",
+                #[cfg(feature = "VK_EXT_video_decode_h264")]
+                Self::DECODE_H264_EXT => &"DECODE_H264_EXT",
+                #[cfg(feature = "VK_EXT_video_decode_h265")]
+                Self::DECODE_H265_EXT => &"DECODE_H265_EXT",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoCodecOperationFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoCodecOperationFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::INVALID => &"INVALID",
+            #[cfg(feature = "VK_EXT_video_encode_h264")]
+            Self::ENCODE_H264_EXT => &"ENCODE_H264_EXT",
+            #[cfg(feature = "VK_EXT_video_encode_h265")]
+            Self::ENCODE_H265_EXT => &"ENCODE_H265_EXT",
+            #[cfg(feature = "VK_EXT_video_decode_h264")]
+            Self::DECODE_H264_EXT => &"DECODE_H264_EXT",
+            #[cfg(feature = "VK_EXT_video_decode_h265")]
+            Self::DECODE_H265_EXT => &"DECODE_H265_EXT",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoCodecOperationFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoChromaSubsamplingFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoChromaSubsamplingFlagBitsKHR.html) - Video chroma subsampling
 ///# C Specifications
 ///The video format chroma subsampling is defined with the following enums:
@@ -1042,7 +1154,7 @@ impl VideoCodecOperationFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoChromaSubsamplingFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoChromaSubsamplingFlagBitsKHR(u32);
@@ -1091,6 +1203,46 @@ impl VideoChromaSubsamplingFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoChromaSubsamplingFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoChromaSubsamplingFlagBitsKHR))
+            .field(match *self {
+                Self::INVALID => &"INVALID",
+                Self::MONOCHROME => &"MONOCHROME",
+                Self::_420 => &"420",
+                Self::_422 => &"422",
+                Self::_444 => &"444",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoChromaSubsamplingFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoChromaSubsamplingFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::INVALID => &"INVALID",
+            Self::MONOCHROME => &"MONOCHROME",
+            Self::_420 => &"420",
+            Self::_422 => &"422",
+            Self::_444 => &"444",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoChromaSubsamplingFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoComponentBitDepthFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoComponentBitDepthFlagBitsKHR.html) - Video component bit depth
 ///# C Specifications
 ///The video format component bit depth is defined with the following enums:
@@ -1119,7 +1271,7 @@ impl VideoChromaSubsamplingFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoComponentBitDepthFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoComponentBitDepthFlagBitsKHR(u32);
@@ -1159,6 +1311,44 @@ impl VideoComponentBitDepthFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoComponentBitDepthFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoComponentBitDepthFlagBitsKHR))
+            .field(match *self {
+                Self::VIDEO_COMPONENT_DEPTH_INVALID => &"VIDEO_COMPONENT_DEPTH_INVALID",
+                Self::VIDEO_COMPONENT_DEPTH8 => &"VIDEO_COMPONENT_DEPTH8",
+                Self::VIDEO_COMPONENT_DEPTH10 => &"VIDEO_COMPONENT_DEPTH10",
+                Self::VIDEO_COMPONENT_DEPTH12 => &"VIDEO_COMPONENT_DEPTH12",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoComponentBitDepthFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoComponentBitDepthFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::VIDEO_COMPONENT_DEPTH_INVALID => &"VIDEO_COMPONENT_DEPTH_INVALID",
+            Self::VIDEO_COMPONENT_DEPTH8 => &"VIDEO_COMPONENT_DEPTH8",
+            Self::VIDEO_COMPONENT_DEPTH10 => &"VIDEO_COMPONENT_DEPTH10",
+            Self::VIDEO_COMPONENT_DEPTH12 => &"VIDEO_COMPONENT_DEPTH12",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoComponentBitDepthFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilityFlagBitsKHR.html) - Video Decode and Encode Capability Flags
 ///# C Specifications
 ///The [`VideoCapabilitiesKHR`] flags are defined with the following
@@ -1188,7 +1378,7 @@ impl VideoComponentBitDepthFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilityFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoCapabilityFlagBitsKHR(u32);
@@ -1226,6 +1416,32 @@ impl VideoCapabilityFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoCapabilityFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoCapabilityFlagBitsKHR))
+            .field(match *self {
+                Self::PROTECTED_CONTENT => &"PROTECTED_CONTENT",
+                Self::SEPARATE_REFERENCE_IMAGES => &"SEPARATE_REFERENCE_IMAGES",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(VideoCapabilityFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoCapabilityFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::PROTECTED_CONTENT => &"PROTECTED_CONTENT",
+            Self::SEPARATE_REFERENCE_IMAGES => &"SEPARATE_REFERENCE_IMAGES",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(VideoCapabilityFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoSessionCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateFlagBitsKHR.html) - Video decode or encode video session creation flags
 ///# C Specifications
 ///The decode or encode session creation flags defined with the following
@@ -1251,7 +1467,7 @@ impl VideoCapabilityFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoSessionCreateFlagBitsKHR(u32);
@@ -1285,6 +1501,32 @@ impl VideoSessionCreateFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoSessionCreateFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoSessionCreateFlagBitsKHR))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::PROTECTED_CONTENT => &"PROTECTED_CONTENT",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(VideoSessionCreateFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoSessionCreateFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::PROTECTED_CONTENT => &"PROTECTED_CONTENT",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(VideoSessionCreateFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoCodingQualityPresetFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingQualityPresetFlagBitsKHR.html) - Video codec profile types
 ///# C Specifications
 ///The decode preset types are defined with the following:
@@ -1312,7 +1554,7 @@ impl VideoSessionCreateFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingQualityPresetFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoCodingQualityPresetFlagBitsKHR(u32);
@@ -1348,6 +1590,42 @@ impl VideoCodingQualityPresetFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for VideoCodingQualityPresetFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoCodingQualityPresetFlagBitsKHR))
+            .field(match *self {
+                Self::NORMAL => &"NORMAL",
+                Self::POWER => &"POWER",
+                Self::QUALITY => &"QUALITY",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoCodingQualityPresetFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoCodingQualityPresetFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::NORMAL => &"NORMAL",
+            Self::POWER => &"POWER",
+            Self::QUALITY => &"QUALITY",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoCodingQualityPresetFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoCodingControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html) - Video Coding Control Command Flags
@@ -1389,7 +1667,7 @@ impl VideoCodingQualityPresetFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoCodingControlFlagBitsKHR(u32);
@@ -1424,6 +1702,32 @@ impl VideoCodingControlFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for VideoCodingControlFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoCodingControlFlagBitsKHR))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::RESET => &"RESET",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(VideoCodingControlFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoCodingControlFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::RESET => &"RESET",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(VideoCodingControlFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoCodecOperationFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html) - Video codec operation types
@@ -4582,6 +4886,14 @@ impl<'lt> VideoProfileKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264ProfileEXT<'lt>> for VideoProfileKHR<'lt> {}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265ProfileEXT<'lt>> for VideoProfileKHR<'lt> {}
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH264ProfileEXT<'lt>> for VideoProfileKHR<'lt> {}
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265ProfileEXT<'lt>> for VideoProfileKHR<'lt> {}
 ///[VkVideoCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilitiesKHR.html) - Structure specifying parameters of video capabilities
 ///# C Specifications
 ///The [`VideoCapabilitiesKHR`] structure is defined as:
@@ -4865,6 +5177,10 @@ impl<'lt> VideoCapabilitiesKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_KHR_video_decode_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeCapabilitiesKHR<'lt>> for VideoCapabilitiesKHR<'lt> {}
+#[cfg(feature = "VK_KHR_video_encode_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeCapabilitiesKHR<'lt>> for VideoCapabilitiesKHR<'lt> {}
 ///[VkVideoGetMemoryPropertiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoGetMemoryPropertiesKHR.html) - Structure specifying video session required memory heap type
 ///# C Specifications
 ///The [`VideoGetMemoryPropertiesKHR`] structure is defined as:
@@ -5490,6 +5806,10 @@ impl<'lt> VideoReferenceSlotKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264DpbSlotInfoEXT<'lt>> for VideoReferenceSlotKHR<'lt> {}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265DpbSlotInfoEXT<'lt>> for VideoReferenceSlotKHR<'lt> {}
 ///[VkVideoSessionCreateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateInfoKHR.html) - Structure specifying parameters of a newly created video decode session
 ///# C Specifications
 ///The [`VideoSessionCreateInfoKHR`] structure is defined as:
@@ -5985,6 +6305,26 @@ impl<'lt> VideoSessionParametersCreateInfoKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264SessionParametersCreateInfoEXT<'lt>>
+    for VideoSessionParametersCreateInfoKHR<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265SessionParametersCreateInfoEXT<'lt>>
+    for VideoSessionParametersCreateInfoKHR<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH264SessionParametersCreateInfoEXT<'lt>>
+    for VideoSessionParametersCreateInfoKHR<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265SessionParametersCreateInfoEXT<'lt>>
+    for VideoSessionParametersCreateInfoKHR<'lt>
+{
+}
 ///[VkVideoSessionParametersUpdateInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersUpdateInfoKHR.html) - Structure to update video session parameters
 ///# C Specifications
 ///The [`VideoSessionParametersUpdateInfoKHR`] structure is defined as:
@@ -6097,6 +6437,26 @@ impl<'lt> VideoSessionParametersUpdateInfoKHR<'lt> {
         self.update_sequence_count = value;
         self
     }
+}
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264SessionParametersAddInfoEXT<'lt>>
+    for VideoSessionParametersUpdateInfoKHR<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265SessionParametersAddInfoEXT<'lt>>
+    for VideoSessionParametersUpdateInfoKHR<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH264SessionParametersAddInfoEXT<'lt>>
+    for VideoSessionParametersUpdateInfoKHR<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265SessionParametersAddInfoEXT<'lt>>
+    for VideoSessionParametersUpdateInfoKHR<'lt>
+{
 }
 ///[VkVideoBeginCodingInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoBeginCodingInfoKHR.html) - Structure specifying parameters of decode starts
 ///# C Specifications
@@ -6588,6 +6948,10 @@ impl<'lt> VideoCodingControlInfoKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_KHR_video_encode_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeRateControlInfoKHR<'lt>> for VideoCodingControlInfoKHR<'lt> {}
+#[cfg(feature = "VK_KHR_video_encode_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeRateControlLayerInfoKHR<'lt>> for VideoCodingControlInfoKHR<'lt> {}
 impl PhysicalDevice {
     ///[vkGetPhysicalDeviceVideoCapabilitiesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoCapabilitiesKHR.html) - Query video decode or encode capabilities
     ///# C Specifications

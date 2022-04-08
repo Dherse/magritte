@@ -238,7 +238,7 @@ pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_N
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkViewportCoordinateSwizzleNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ViewportCoordinateSwizzleNV(i32);
@@ -281,6 +281,44 @@ impl ViewportCoordinateSwizzleNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ViewportCoordinateSwizzleNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ViewportCoordinateSwizzleNV))
+            .field(match *self {
+                Self::POSITIVE_X => &"POSITIVE_X",
+                Self::NEGATIVE_X => &"NEGATIVE_X",
+                Self::POSITIVE_Y => &"POSITIVE_Y",
+                Self::NEGATIVE_Y => &"NEGATIVE_Y",
+                Self::POSITIVE_Z => &"POSITIVE_Z",
+                Self::NEGATIVE_Z => &"NEGATIVE_Z",
+                Self::POSITIVE_W => &"POSITIVE_W",
+                Self::NEGATIVE_W => &"NEGATIVE_W",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ViewportCoordinateSwizzleNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ViewportCoordinateSwizzleNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::POSITIVE_X => &"POSITIVE_X",
+            Self::NEGATIVE_X => &"NEGATIVE_X",
+            Self::POSITIVE_Y => &"POSITIVE_Y",
+            Self::NEGATIVE_Y => &"NEGATIVE_Y",
+            Self::POSITIVE_Z => &"POSITIVE_Z",
+            Self::NEGATIVE_Z => &"NEGATIVE_Z",
+            Self::POSITIVE_W => &"POSITIVE_W",
+            Self::NEGATIVE_W => &"NEGATIVE_W",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ViewportCoordinateSwizzleNV), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPipelineViewportSwizzleStateCreateFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportSwizzleStateCreateFlagsNV.html) - Reserved for future use

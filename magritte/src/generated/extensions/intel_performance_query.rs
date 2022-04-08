@@ -545,7 +545,7 @@ pub type FNCmdSetPerformanceOverrideIntel = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationTypeINTEL")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceConfigurationTypeINTEL(i32);
@@ -576,6 +576,38 @@ impl PerformanceConfigurationTypeINTEL {
         Self(bits)
     }
 }
+impl std::fmt::Debug for PerformanceConfigurationTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceConfigurationTypeINTEL))
+            .field(match *self {
+                Self::COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED => &"COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(PerformanceConfigurationTypeINTEL),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceConfigurationTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED => &"COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(PerformanceConfigurationTypeINTEL),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkQueryPoolSamplingModeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueryPoolSamplingModeINTEL.html) - Enum specifying how performance queries should be captured
 ///# C Specifications
 ///Possible values of
@@ -602,7 +634,7 @@ impl PerformanceConfigurationTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolSamplingModeINTEL")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct QueryPoolSamplingModeINTEL(i32);
@@ -635,6 +667,30 @@ impl QueryPoolSamplingModeINTEL {
         Self(bits)
     }
 }
+impl std::fmt::Debug for QueryPoolSamplingModeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(QueryPoolSamplingModeINTEL))
+            .field(match *self {
+                Self::MANUAL => &"MANUAL",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(QueryPoolSamplingModeINTEL), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for QueryPoolSamplingModeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::MANUAL => &"MANUAL",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(QueryPoolSamplingModeINTEL), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkPerformanceOverrideTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceOverrideTypeINTEL.html) - Performance override type
 ///# C Specifications
 ///Possible values of [`PerformanceOverrideInfoINTEL::type_`],
@@ -662,7 +718,7 @@ impl QueryPoolSamplingModeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceOverrideTypeINTEL")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceOverrideTypeINTEL(i32);
@@ -698,6 +754,32 @@ impl PerformanceOverrideTypeINTEL {
         Self(bits)
     }
 }
+impl std::fmt::Debug for PerformanceOverrideTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceOverrideTypeINTEL))
+            .field(match *self {
+                Self::NULL_HARDWARE => &"NULL_HARDWARE",
+                Self::FLUSH_GPU_CACHES => &"FLUSH_GPU_CACHES",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PerformanceOverrideTypeINTEL), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceOverrideTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::NULL_HARDWARE => &"NULL_HARDWARE",
+            Self::FLUSH_GPU_CACHES => &"FLUSH_GPU_CACHES",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PerformanceOverrideTypeINTEL), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkPerformanceParameterTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceParameterTypeINTEL.html) - Parameters that can be queried
 ///# C Specifications
 ///Possible values of [`get_performance_parameter_intel`]`::parameter`,
@@ -726,7 +808,7 @@ impl PerformanceOverrideTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceParameterTypeINTEL")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceParameterTypeINTEL(i32);
@@ -760,6 +842,32 @@ impl PerformanceParameterTypeINTEL {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PerformanceParameterTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceParameterTypeINTEL))
+            .field(match *self {
+                Self::HW_COUNTERS_SUPPORTED => &"HW_COUNTERS_SUPPORTED",
+                Self::STREAM_MARKER_VALID_BITS => &"STREAM_MARKER_VALID_BITS",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PerformanceParameterTypeINTEL), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceParameterTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::HW_COUNTERS_SUPPORTED => &"HW_COUNTERS_SUPPORTED",
+            Self::STREAM_MARKER_VALID_BITS => &"STREAM_MARKER_VALID_BITS",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PerformanceParameterTypeINTEL), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPerformanceValueTypeINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueTypeINTEL.html) - Type of the parameters that can be queried
@@ -796,7 +904,7 @@ impl PerformanceParameterTypeINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceValueTypeINTEL")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceValueTypeINTEL(i32);
@@ -833,6 +941,38 @@ impl PerformanceValueTypeINTEL {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PerformanceValueTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceValueTypeINTEL))
+            .field(match *self {
+                Self::UINT32 => &"UINT32",
+                Self::UINT64 => &"UINT64",
+                Self::FLOAT => &"FLOAT",
+                Self::BOOL => &"BOOL",
+                Self::STRING => &"STRING",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PerformanceValueTypeINTEL), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceValueTypeINTEL {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::UINT32 => &"UINT32",
+            Self::UINT64 => &"UINT64",
+            Self::FLOAT => &"FLOAT",
+            Self::BOOL => &"BOOL",
+            Self::STRING => &"STRING",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PerformanceValueTypeINTEL), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPerformanceValueINTEL](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceValueINTEL.html) - Container for value and types of parameters that can be queried

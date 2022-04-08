@@ -205,6 +205,7 @@ use crate::{
         PipelineLayout, PipelineShaderStageCreateInfo, QueryPool, QueryType, StructureType, VulkanResultCodes,
     },
     vulkan1_1::MemoryRequirements2,
+    vulkan1_3::PipelineCreationFeedbackCreateInfo,
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "serde")]
@@ -1208,7 +1209,7 @@ pub type FNCmdTraceRaysNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureMemoryRequirementsTypeNV(i32);
@@ -1246,6 +1247,42 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for AccelerationStructureMemoryRequirementsTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AccelerationStructureMemoryRequirementsTypeNV))
+            .field(match *self {
+                Self::OBJECT => &"OBJECT",
+                Self::BUILD_SCRATCH => &"BUILD_SCRATCH",
+                Self::UPDATE_SCRATCH => &"UPDATE_SCRATCH",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(AccelerationStructureMemoryRequirementsTypeNV),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AccelerationStructureMemoryRequirementsTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OBJECT => &"OBJECT",
+            Self::BUILD_SCRATCH => &"BUILD_SCRATCH",
+            Self::UPDATE_SCRATCH => &"UPDATE_SCRATCH",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(AccelerationStructureMemoryRequirementsTypeNV),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkRayTracingShaderGroupCreateInfoNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html) - Structure specifying shaders in a shader group
@@ -1833,6 +1870,7 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for RayTracingPipelineCreateInfoNV<'lt> {}
 ///[VkGeometryTrianglesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html) - Structure specifying a triangle geometry in a bottom-level acceleration structure
 ///# C Specifications
 ///The [`GeometryTrianglesNV`] structure specifies triangle geometry in a

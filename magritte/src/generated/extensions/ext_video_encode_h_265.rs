@@ -248,7 +248,7 @@ pub const EXT_VIDEO_ENCODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265CapabilityFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoEncodeH265CapabilityFlagBitsEXT(u32);
@@ -400,6 +400,84 @@ impl VideoEncodeH265CapabilityFlagBitsEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoEncodeH265CapabilityFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEncodeH265CapabilityFlagBitsEXT))
+            .field(match *self {
+                Self::SEPARATE_COLOUR_PLANE => &"SEPARATE_COLOUR_PLANE",
+                Self::SCALING_LISTS => &"SCALING_LISTS",
+                Self::SAMPLE_ADAPTIVE_OFFSET_ENABLED => &"SAMPLE_ADAPTIVE_OFFSET_ENABLED",
+                Self::PCM_ENABLE => &"PCM_ENABLE",
+                Self::SPS_TEMPORAL_MVP_ENABLED => &"SPS_TEMPORAL_MVP_ENABLED",
+                Self::HRD_COMPLIANCE => &"HRD_COMPLIANCE",
+                Self::INIT_QP_MINUS26 => &"INIT_QP_MINUS26",
+                Self::LOG2_PARALLEL_MERGE_LEVEL_MINUS_2 => &"LOG2_PARALLEL_MERGE_LEVEL_MINUS_2",
+                Self::SIGN_DATA_HIDING_ENABLED => &"SIGN_DATA_HIDING_ENABLED",
+                Self::TRANSFORM_SKIP_ENABLED => &"TRANSFORM_SKIP_ENABLED",
+                Self::PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT => &"PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT",
+                Self::WEIGHTED_PRED => &"WEIGHTED_PRED",
+                Self::WEIGHTED_BIPRED => &"WEIGHTED_BIPRED",
+                Self::WEIGHTED_PRED_NO_TABLE => &"WEIGHTED_PRED_NO_TABLE",
+                Self::TRANSQUANT_BYPASS_ENABLED => &"TRANSQUANT_BYPASS_ENABLED",
+                Self::ENTROPY_CODING_SYNC_ENABLED => &"ENTROPY_CODING_SYNC_ENABLED",
+                Self::DEBLOCKING_FILTER_OVERRIDE_ENABLED => &"DEBLOCKING_FILTER_OVERRIDE_ENABLED",
+                Self::MULTIPLE_TILE_PER_FRAME => &"MULTIPLE_TILE_PER_FRAME",
+                Self::MULTIPLE_SLICE_PER_TILE => &"MULTIPLE_SLICE_PER_TILE",
+                Self::MULTIPLE_TILE_PER_SLICE => &"MULTIPLE_TILE_PER_SLICE",
+                Self::SLICE_SEGMENT_CTB_COUNT => &"SLICE_SEGMENT_CTB_COUNT",
+                Self::ROW_UNALIGNED_SLICE_SEGMENT => &"ROW_UNALIGNED_SLICE_SEGMENT",
+                Self::DEPENDENT_SLICE_SEGMENT => &"DEPENDENT_SLICE_SEGMENT",
+                Self::DIFFERENT_SLICE_TYPE => &"DIFFERENT_SLICE_TYPE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoEncodeH265CapabilityFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoEncodeH265CapabilityFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::SEPARATE_COLOUR_PLANE => &"SEPARATE_COLOUR_PLANE",
+            Self::SCALING_LISTS => &"SCALING_LISTS",
+            Self::SAMPLE_ADAPTIVE_OFFSET_ENABLED => &"SAMPLE_ADAPTIVE_OFFSET_ENABLED",
+            Self::PCM_ENABLE => &"PCM_ENABLE",
+            Self::SPS_TEMPORAL_MVP_ENABLED => &"SPS_TEMPORAL_MVP_ENABLED",
+            Self::HRD_COMPLIANCE => &"HRD_COMPLIANCE",
+            Self::INIT_QP_MINUS26 => &"INIT_QP_MINUS26",
+            Self::LOG2_PARALLEL_MERGE_LEVEL_MINUS_2 => &"LOG2_PARALLEL_MERGE_LEVEL_MINUS_2",
+            Self::SIGN_DATA_HIDING_ENABLED => &"SIGN_DATA_HIDING_ENABLED",
+            Self::TRANSFORM_SKIP_ENABLED => &"TRANSFORM_SKIP_ENABLED",
+            Self::PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT => &"PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT",
+            Self::WEIGHTED_PRED => &"WEIGHTED_PRED",
+            Self::WEIGHTED_BIPRED => &"WEIGHTED_BIPRED",
+            Self::WEIGHTED_PRED_NO_TABLE => &"WEIGHTED_PRED_NO_TABLE",
+            Self::TRANSQUANT_BYPASS_ENABLED => &"TRANSQUANT_BYPASS_ENABLED",
+            Self::ENTROPY_CODING_SYNC_ENABLED => &"ENTROPY_CODING_SYNC_ENABLED",
+            Self::DEBLOCKING_FILTER_OVERRIDE_ENABLED => &"DEBLOCKING_FILTER_OVERRIDE_ENABLED",
+            Self::MULTIPLE_TILE_PER_FRAME => &"MULTIPLE_TILE_PER_FRAME",
+            Self::MULTIPLE_SLICE_PER_TILE => &"MULTIPLE_SLICE_PER_TILE",
+            Self::MULTIPLE_TILE_PER_SLICE => &"MULTIPLE_TILE_PER_SLICE",
+            Self::SLICE_SEGMENT_CTB_COUNT => &"SLICE_SEGMENT_CTB_COUNT",
+            Self::ROW_UNALIGNED_SLICE_SEGMENT => &"ROW_UNALIGNED_SLICE_SEGMENT",
+            Self::DEPENDENT_SLICE_SEGMENT => &"DEPENDENT_SLICE_SEGMENT",
+            Self::DIFFERENT_SLICE_TYPE => &"DIFFERENT_SLICE_TYPE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoEncodeH265CapabilityFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoEncodeH265InputModeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265InputModeFlagBitsEXT.html) - Video encode H.265 input modes
 ///# C Specifications
 ///Bits which  **may**  be set in
@@ -443,7 +521,7 @@ impl VideoEncodeH265CapabilityFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265InputModeFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoEncodeH265InputModeFlagBitsEXT(u32);
@@ -486,6 +564,42 @@ impl VideoEncodeH265InputModeFlagBitsEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for VideoEncodeH265InputModeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEncodeH265InputModeFlagBitsEXT))
+            .field(match *self {
+                Self::FRAME => &"FRAME",
+                Self::SLICE_SEGMENT => &"SLICE_SEGMENT",
+                Self::NON_VCL => &"NON_VCL",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoEncodeH265InputModeFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoEncodeH265InputModeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FRAME => &"FRAME",
+            Self::SLICE_SEGMENT => &"SLICE_SEGMENT",
+            Self::NON_VCL => &"NON_VCL",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoEncodeH265InputModeFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoEncodeH265OutputModeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265OutputModeFlagBitsEXT.html) - Video encode H.265 output modes
@@ -543,7 +657,7 @@ impl VideoEncodeH265InputModeFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265OutputModeFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoEncodeH265OutputModeFlagBitsEXT(u32);
@@ -590,6 +704,42 @@ impl VideoEncodeH265OutputModeFlagBitsEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoEncodeH265OutputModeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEncodeH265OutputModeFlagBitsEXT))
+            .field(match *self {
+                Self::FRAME => &"FRAME",
+                Self::SLICE_SEGMENT => &"SLICE_SEGMENT",
+                Self::NON_VCL => &"NON_VCL",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoEncodeH265OutputModeFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoEncodeH265OutputModeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FRAME => &"FRAME",
+            Self::SLICE_SEGMENT => &"SLICE_SEGMENT",
+            Self::NON_VCL => &"NON_VCL",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoEncodeH265OutputModeFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoEncodeH265RateControlStructureFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265RateControlStructureFlagBitsEXT.html) - Video encode H.265 rate control structure flags
 ///# C Specifications
 ///Possible values of
@@ -622,7 +772,7 @@ impl VideoEncodeH265OutputModeFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265RateControlStructureFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoEncodeH265RateControlStructureFlagBitsEXT(u32);
@@ -661,6 +811,42 @@ impl VideoEncodeH265RateControlStructureFlagBitsEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoEncodeH265RateControlStructureFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEncodeH265RateControlStructureFlagBitsEXT))
+            .field(match *self {
+                Self::UNKNOWN => &"UNKNOWN",
+                Self::FLAT => &"FLAT",
+                Self::DYADIC => &"DYADIC",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoEncodeH265RateControlStructureFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoEncodeH265RateControlStructureFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::UNKNOWN => &"UNKNOWN",
+            Self::FLAT => &"FLAT",
+            Self::DYADIC => &"DYADIC",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoEncodeH265RateControlStructureFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoEncodeH265CtbSizeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265CtbSizeFlagBitsEXT.html) - Supported CTB sizes for H.265 video encode
 ///# C Specifications
 ///Bits which  **may**  be set in
@@ -690,7 +876,7 @@ impl VideoEncodeH265RateControlStructureFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265CtbSizeFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoEncodeH265CtbSizeFlagBitsEXT(u32);
@@ -728,6 +914,42 @@ impl VideoEncodeH265CtbSizeFlagBitsEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoEncodeH265CtbSizeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEncodeH265CtbSizeFlagBitsEXT))
+            .field(match *self {
+                Self::_16 => &"16",
+                Self::_32 => &"32",
+                Self::_64 => &"64",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoEncodeH265CtbSizeFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoEncodeH265CtbSizeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::_16 => &"16",
+            Self::_32 => &"32",
+            Self::_64 => &"64",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoEncodeH265CtbSizeFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoEncodeH265TransformBlockSizeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265TransformBlockSizeFlagBitsEXT.html) - Supported transform block sizes for H.265 video encode
 ///# C Specifications
 ///Bits which  **may**  be set in
@@ -759,7 +981,7 @@ impl VideoEncodeH265CtbSizeFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265TransformBlockSizeFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoEncodeH265TransformBlockSizeFlagBitsEXT(u32);
@@ -798,6 +1020,44 @@ impl VideoEncodeH265TransformBlockSizeFlagBitsEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoEncodeH265TransformBlockSizeFlagBitsEXT))
+            .field(match *self {
+                Self::_4 => &"4",
+                Self::_8 => &"8",
+                Self::_16 => &"16",
+                Self::_32 => &"32",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoEncodeH265TransformBlockSizeFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoEncodeH265TransformBlockSizeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::_4 => &"4",
+            Self::_8 => &"8",
+            Self::_16 => &"16",
+            Self::_32 => &"32",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoEncodeH265TransformBlockSizeFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoEncodeH265CapabilityFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeH265CapabilityFlagBitsEXT.html) - Video encode H.265 capability flags

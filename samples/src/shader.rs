@@ -1,7 +1,12 @@
 use std::error::Error;
 
 use log::info;
-use magritte::{vulkan1_0::{ShaderModuleCreateInfo, ShaderModule, ShaderStageFlagBits, PipelineShaderStageCreateInfo}, AsRaw, Unique, cstr_ptr, spv::read_spv};
+use magritte::{
+    cstr_ptr,
+    spv::read_spv,
+    vulkan1_0::{PipelineShaderStageCreateInfo, ShaderModule, ShaderModuleCreateInfo, ShaderStageFlagBits},
+    AsRaw, Unique,
+};
 
 use crate::vulkan::Vulkan;
 
@@ -15,11 +20,7 @@ pub struct Shader {
 }
 
 impl Shader {
-    pub fn new(
-        vulkan: &Vulkan,
-        code: &[u8],
-        stage: ShaderStageFlagBits,
-    ) -> Result<Self, Box<dyn Error>> {
+    pub fn new(vulkan: &Vulkan, code: &[u8], stage: ShaderStageFlagBits) -> Result<Self, Box<dyn Error>> {
         // First, we use bytemuck to cast the code into a slice of [`u32`].
         // We use a helper from Magritte for this
         let code = read_spv(code)?;
@@ -28,16 +29,11 @@ impl Shader {
         // This structure can be extended using the pointer chain.
         let module_create_info = ShaderModuleCreateInfo::default().set_code(&code);
 
-        let (module, _) = unsafe {
-            vulkan.device().create_shader_module(&module_create_info, None)?
-        };
+        let (module, _) = unsafe { vulkan.device().create_shader_module(&module_create_info, None)? };
 
         info!("Created shader module: {:?}", module.as_raw());
 
-        Ok(Self {
-            module,
-            stage,
-        })
+        Ok(Self { module, stage })
     }
 
     /// Get a reference to the shader's module.

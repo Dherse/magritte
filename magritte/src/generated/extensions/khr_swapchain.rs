@@ -537,6 +537,28 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+#[cfg(feature = "VK_AMD_display_native_hdr")]
+pub use crate::extensions::amd_display_native_hdr::SwapchainDisplayNativeHdrCreateInfoAMD;
+#[cfg(feature = "VK_EXT_display_control")]
+pub use crate::extensions::ext_display_control::SwapchainCounterCreateInfoEXT;
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveInfoEXT;
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveWin32InfoEXT;
+#[cfg(feature = "VK_GGP_frame_token")]
+pub use crate::extensions::ggp_frame_token::PresentFrameTokenGGP;
+#[cfg(feature = "VK_GOOGLE_display_timing")]
+pub use crate::extensions::google_display_timing::PresentTimesInfoGOOGLE;
+#[cfg(feature = "VK_KHR_device_group")]
+pub use crate::extensions::khr_device_group::DeviceGroupPresentInfoKHR;
+#[cfg(feature = "VK_KHR_device_group")]
+pub use crate::extensions::khr_device_group::DeviceGroupSwapchainCreateInfoKHR;
+#[cfg(feature = "VK_KHR_display_swapchain")]
+pub use crate::extensions::khr_display_swapchain::DisplayPresentInfoKHR;
+#[cfg(feature = "VK_KHR_incremental_present")]
+pub use crate::extensions::khr_incremental_present::PresentRegionsKHR;
+#[cfg(feature = "VK_KHR_present_id")]
+pub use crate::extensions::khr_present_id::PresentIdKHR;
 use crate::{
     entry::Entry,
     extensions::khr_surface::{
@@ -546,6 +568,7 @@ use crate::{
         AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, ImageUsageFlags,
         ImageViewCreateInfo, Instance, PhysicalDevice, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
     },
+    vulkan1_2::ImageFormatListCreateInfo,
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
 #[cfg(feature = "serde")]
@@ -1078,7 +1101,7 @@ pub type FNCreateSwapchainImageView = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCreateFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SwapchainCreateFlagBitsKHR(u32);
@@ -1130,6 +1153,38 @@ impl SwapchainCreateFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SwapchainCreateFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SwapchainCreateFlagBitsKHR))
+            .field(match *self {
+                #[cfg(feature = "VK_KHR_device_group")]
+                Self::SPLIT_INSTANCE_BIND_REGIONS => &"SPLIT_INSTANCE_BIND_REGIONS",
+                Self::PROTECTED => &"PROTECTED",
+                #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
+                Self::MUTABLE_FORMAT => &"MUTABLE_FORMAT",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SwapchainCreateFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SwapchainCreateFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            #[cfg(feature = "VK_KHR_device_group")]
+            Self::SPLIT_INSTANCE_BIND_REGIONS => &"SPLIT_INSTANCE_BIND_REGIONS",
+            Self::PROTECTED => &"PROTECTED",
+            #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
+            Self::MUTABLE_FORMAT => &"MUTABLE_FORMAT",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SwapchainCreateFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkSwapchainCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html) - Bitmask controlling swapchain creation
@@ -2065,6 +2120,17 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_display_control")]
+unsafe impl<'lt> crate::Chain<'lt, SwapchainCounterCreateInfoEXT<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+#[cfg(feature = "VK_KHR_device_group")]
+unsafe impl<'lt> crate::Chain<'lt, DeviceGroupSwapchainCreateInfoKHR<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+#[cfg(feature = "VK_AMD_display_native_hdr")]
+unsafe impl<'lt> crate::Chain<'lt, SwapchainDisplayNativeHdrCreateInfoAMD<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, ImageFormatListCreateInfo<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveInfoEXT<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+#[cfg(feature = "VK_EXT_full_screen_exclusive")]
+unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> for SwapchainCreateInfoKHR<'lt> {}
 ///[VkPresentInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentInfoKHR.html) - Structure describing parameters of a queue presentation
 ///# C Specifications
 ///The [`PresentInfoKHR`] structure is defined as:
@@ -2370,6 +2436,18 @@ impl<'lt> PresentInfoKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_KHR_display_swapchain")]
+unsafe impl<'lt> crate::Chain<'lt, DisplayPresentInfoKHR<'lt>> for PresentInfoKHR<'lt> {}
+#[cfg(feature = "VK_KHR_incremental_present")]
+unsafe impl<'lt> crate::Chain<'lt, PresentRegionsKHR<'lt>> for PresentInfoKHR<'lt> {}
+#[cfg(feature = "VK_KHR_device_group")]
+unsafe impl<'lt> crate::Chain<'lt, DeviceGroupPresentInfoKHR<'lt>> for PresentInfoKHR<'lt> {}
+#[cfg(feature = "VK_KHR_present_id")]
+unsafe impl<'lt> crate::Chain<'lt, PresentIdKHR<'lt>> for PresentInfoKHR<'lt> {}
+#[cfg(feature = "VK_GOOGLE_display_timing")]
+unsafe impl<'lt> crate::Chain<'lt, PresentTimesInfoGOOGLE<'lt>> for PresentInfoKHR<'lt> {}
+#[cfg(feature = "VK_GGP_frame_token")]
+unsafe impl<'lt> crate::Chain<'lt, PresentFrameTokenGGP<'lt>> for PresentInfoKHR<'lt> {}
 impl Device {
     ///[vkCreateSwapchainKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateSwapchainKHR.html) - Create a swapchain
     ///# C Specifications

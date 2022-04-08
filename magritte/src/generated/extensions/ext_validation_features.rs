@@ -107,7 +107,7 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureEnableEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ValidationFeatureEnableEXT(i32);
@@ -171,6 +171,38 @@ impl ValidationFeatureEnableEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ValidationFeatureEnableEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ValidationFeatureEnableEXT))
+            .field(match *self {
+                Self::GPU_ASSISTED => &"GPU_ASSISTED",
+                Self::GPU_ASSISTED_RESERVE_BINDING_SLOT => &"GPU_ASSISTED_RESERVE_BINDING_SLOT",
+                Self::BEST_PRACTICES => &"BEST_PRACTICES",
+                Self::DEBUG_PRINTF => &"DEBUG_PRINTF",
+                Self::SYNCHRONIZATION_VALIDATION => &"SYNCHRONIZATION_VALIDATION",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ValidationFeatureEnableEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ValidationFeatureEnableEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::GPU_ASSISTED => &"GPU_ASSISTED",
+            Self::GPU_ASSISTED_RESERVE_BINDING_SLOT => &"GPU_ASSISTED_RESERVE_BINDING_SLOT",
+            Self::BEST_PRACTICES => &"BEST_PRACTICES",
+            Self::DEBUG_PRINTF => &"DEBUG_PRINTF",
+            Self::SYNCHRONIZATION_VALIDATION => &"SYNCHRONIZATION_VALIDATION",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ValidationFeatureEnableEXT), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkValidationFeatureDisableEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFeatureDisableEXT.html) - Specify validation features to disable
 ///# C Specifications
 ///Possible values of elements of the
@@ -218,7 +250,7 @@ impl ValidationFeatureEnableEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureDisableEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ValidationFeatureDisableEXT(i32);
@@ -280,6 +312,44 @@ impl ValidationFeatureDisableEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ValidationFeatureDisableEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ValidationFeatureDisableEXT))
+            .field(match *self {
+                Self::ALL => &"ALL",
+                Self::SHADERS => &"SHADERS",
+                Self::THREAD_SAFETY => &"THREAD_SAFETY",
+                Self::API_PARAMETERS => &"API_PARAMETERS",
+                Self::OBJECT_LIFETIMES => &"OBJECT_LIFETIMES",
+                Self::CORE_CHECKS => &"CORE_CHECKS",
+                Self::UNIQUE_HANDLES => &"UNIQUE_HANDLES",
+                Self::SHADER_VALIDATION_CACHE => &"SHADER_VALIDATION_CACHE",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ValidationFeatureDisableEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ValidationFeatureDisableEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ALL => &"ALL",
+            Self::SHADERS => &"SHADERS",
+            Self::THREAD_SAFETY => &"THREAD_SAFETY",
+            Self::API_PARAMETERS => &"API_PARAMETERS",
+            Self::OBJECT_LIFETIMES => &"OBJECT_LIFETIMES",
+            Self::CORE_CHECKS => &"CORE_CHECKS",
+            Self::UNIQUE_HANDLES => &"UNIQUE_HANDLES",
+            Self::SHADER_VALIDATION_CACHE => &"SHADER_VALIDATION_CACHE",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ValidationFeatureDisableEXT), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkValidationFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkValidationFeaturesEXT.html) - Specify validation features to enable or disable for a Vulkan instance

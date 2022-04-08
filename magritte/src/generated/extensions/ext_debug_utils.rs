@@ -785,7 +785,7 @@ pub type FNCmdInsertDebugUtilsLabelExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageSeverityFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DebugUtilsMessageSeverityFlagBitsEXT(u32);
@@ -834,6 +834,44 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DebugUtilsMessageSeverityFlagBitsEXT))
+            .field(match *self {
+                Self::VERBOSE => &"VERBOSE",
+                Self::INFO => &"INFO",
+                Self::WARNING => &"WARNING",
+                Self::ERROR => &"ERROR",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(DebugUtilsMessageSeverityFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DebugUtilsMessageSeverityFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::VERBOSE => &"VERBOSE",
+            Self::INFO => &"INFO",
+            Self::WARNING => &"WARNING",
+            Self::ERROR => &"ERROR",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(DebugUtilsMessageSeverityFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkDebugUtilsMessageTypeFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageTypeFlagBitsEXT.html) - Bitmask specifying which types of events cause a debug messenger callback
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -867,7 +905,7 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageTypeFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DebugUtilsMessageTypeFlagBitsEXT(u32);
@@ -908,6 +946,42 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DebugUtilsMessageTypeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DebugUtilsMessageTypeFlagBitsEXT))
+            .field(match *self {
+                Self::GENERAL => &"GENERAL",
+                Self::VALIDATION => &"VALIDATION",
+                Self::PERFORMANCE => &"PERFORMANCE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(DebugUtilsMessageTypeFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DebugUtilsMessageTypeFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::GENERAL => &"GENERAL",
+            Self::VALIDATION => &"VALIDATION",
+            Self::PERFORMANCE => &"PERFORMANCE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(DebugUtilsMessageTypeFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkDebugUtilsMessageSeverityFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageSeverityFlagBitsEXT.html) - Bitmask specifying which severities of events cause a debug messenger callback

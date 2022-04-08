@@ -90,7 +90,7 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cs
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDiagnosticsConfigFlagBitsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DeviceDiagnosticsConfigFlagBitsNV(u32);
@@ -131,6 +131,42 @@ impl DeviceDiagnosticsConfigFlagBitsNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DeviceDiagnosticsConfigFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DeviceDiagnosticsConfigFlagBitsNV))
+            .field(match *self {
+                Self::ENABLE_SHADER_DEBUG_INFO => &"ENABLE_SHADER_DEBUG_INFO",
+                Self::ENABLE_RESOURCE_TRACKING => &"ENABLE_RESOURCE_TRACKING",
+                Self::ENABLE_AUTOMATIC_CHECKPOINTS => &"ENABLE_AUTOMATIC_CHECKPOINTS",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(DeviceDiagnosticsConfigFlagBitsNV),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DeviceDiagnosticsConfigFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ENABLE_SHADER_DEBUG_INFO => &"ENABLE_SHADER_DEBUG_INFO",
+            Self::ENABLE_RESOURCE_TRACKING => &"ENABLE_RESOURCE_TRACKING",
+            Self::ENABLE_AUTOMATIC_CHECKPOINTS => &"ENABLE_AUTOMATIC_CHECKPOINTS",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(DeviceDiagnosticsConfigFlagBitsNV),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkDeviceDiagnosticsConfigFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigFlagBitsNV.html) - Bitmask specifying diagnostics flags

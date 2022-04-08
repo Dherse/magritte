@@ -4,7 +4,7 @@ use crossbeam_channel::{bounded, Sender};
 use log::error;
 use magritte::{
     extensions::khr_swapchain::PresentInfoKHR,
-    vulkan1_0::{Fence, Queue as VkQueue, SubmitInfo, VulkanResultCodes, Device},
+    vulkan1_0::{Device, Fence, Queue as VkQueue, SubmitInfo, VulkanResultCodes},
     AsRaw, Unique,
 };
 
@@ -85,7 +85,11 @@ impl Queue {
         let (forth, back) = bounded(0);
 
         self.sender
-            .send(QueueMessage::Submit(unsafe { std::mem::transmute(submit_info) }, fence.as_raw(), forth))
+            .send(QueueMessage::Submit(
+                unsafe { std::mem::transmute(submit_info) },
+                fence.as_raw(),
+                forth,
+            ))
             .expect("Queue thread is dead");
 
         back.recv().expect("failed to wait for queue")

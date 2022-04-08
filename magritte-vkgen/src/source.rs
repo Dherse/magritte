@@ -23,7 +23,6 @@ use std::{
     ops::{Deref, Not},
 };
 
-use ahash::AHashSet;
 use convert_case::{Case, Casing};
 use smallvec::SmallVec;
 use tracing::{debug, error, info, span, warn, Level};
@@ -507,6 +506,19 @@ impl<'a> Source<'a> {
                 command.aliases_mut().push(alias.original_name.clone());
             } else {
                 error!("unknwon alias: {} of {}", alias.original_name(), alias.of());
+            }
+        }
+
+        for i in 0..this.structs.len() {
+            if this.structs[i].origin().is_disabled() {
+                continue;
+            }
+
+            for j in 0..this.structs[i].extends().len() {
+                let extended = this.structs[i].extends()[j].clone();
+                let extender = this.structs[i].original_name.clone();
+
+                this.structs.get_by_name_mut(&extended).unwrap().add_extended(extender);
             }
         }
 
@@ -1541,7 +1553,7 @@ impl<'a> Source<'a> {
         let extends = ty
             .structextends
             .as_ref()
-            .map_or_else(AHashSet::new, |s| s.split(',').map(Cow::Borrowed).collect());
+            .map_or_else(Vec::new, |s| s.split(',').map(Cow::Borrowed).collect());
 
         info!(?extends, "extends");
 

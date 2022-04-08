@@ -380,7 +380,7 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterScopeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceCounterScopeKHR(i32);
@@ -418,6 +418,34 @@ impl PerformanceCounterScopeKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PerformanceCounterScopeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceCounterScopeKHR))
+            .field(match *self {
+                Self::COMMAND_BUFFER => &"COMMAND_BUFFER",
+                Self::RENDER_PASS => &"RENDER_PASS",
+                Self::COMMAND => &"COMMAND",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PerformanceCounterScopeKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceCounterScopeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::COMMAND_BUFFER => &"COMMAND_BUFFER",
+            Self::RENDER_PASS => &"RENDER_PASS",
+            Self::COMMAND => &"COMMAND",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PerformanceCounterScopeKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPerformanceCounterUnitKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterUnitKHR.html) - Supported counter unit types
@@ -466,7 +494,7 @@ impl PerformanceCounterScopeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterUnitKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceCounterUnitKHR(i32);
@@ -528,6 +556,50 @@ impl PerformanceCounterUnitKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for PerformanceCounterUnitKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceCounterUnitKHR))
+            .field(match *self {
+                Self::GENERIC => &"GENERIC",
+                Self::PERCENTAGE => &"PERCENTAGE",
+                Self::NANOSECONDS => &"NANOSECONDS",
+                Self::BYTES => &"BYTES",
+                Self::BYTES_PER_SECOND => &"BYTES_PER_SECOND",
+                Self::KELVIN => &"KELVIN",
+                Self::WATTS => &"WATTS",
+                Self::VOLTS => &"VOLTS",
+                Self::AMPS => &"AMPS",
+                Self::HERTZ => &"HERTZ",
+                Self::CYCLES => &"CYCLES",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PerformanceCounterUnitKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceCounterUnitKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::GENERIC => &"GENERIC",
+            Self::PERCENTAGE => &"PERCENTAGE",
+            Self::NANOSECONDS => &"NANOSECONDS",
+            Self::BYTES => &"BYTES",
+            Self::BYTES_PER_SECOND => &"BYTES_PER_SECOND",
+            Self::KELVIN => &"KELVIN",
+            Self::WATTS => &"WATTS",
+            Self::VOLTS => &"VOLTS",
+            Self::AMPS => &"AMPS",
+            Self::HERTZ => &"HERTZ",
+            Self::CYCLES => &"CYCLES",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PerformanceCounterUnitKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkPerformanceCounterStorageKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterStorageKHR.html) - Supported counter storage types
 ///# C Specifications
 ///Performance counters have an associated storage.
@@ -564,7 +636,7 @@ impl PerformanceCounterUnitKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterStorageKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceCounterStorageKHR(i32);
@@ -611,6 +683,40 @@ impl PerformanceCounterStorageKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for PerformanceCounterStorageKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceCounterStorageKHR))
+            .field(match *self {
+                Self::INT32 => &"INT32",
+                Self::INT64 => &"INT64",
+                Self::UINT32 => &"UINT32",
+                Self::UINT64 => &"UINT64",
+                Self::FLOAT32 => &"FLOAT32",
+                Self::FLOAT64 => &"FLOAT64",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PerformanceCounterStorageKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceCounterStorageKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::INT32 => &"INT32",
+            Self::INT64 => &"INT64",
+            Self::UINT32 => &"UINT32",
+            Self::UINT64 => &"UINT64",
+            Self::FLOAT32 => &"FLOAT32",
+            Self::FLOAT64 => &"FLOAT64",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PerformanceCounterStorageKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkPerformanceCounterDescriptionFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html) - Bitmask specifying usage behavior for a counter
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -644,7 +750,7 @@ impl PerformanceCounterStorageKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PerformanceCounterDescriptionFlagBitsKHR(u32);
@@ -681,6 +787,40 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for PerformanceCounterDescriptionFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PerformanceCounterDescriptionFlagBitsKHR))
+            .field(match *self {
+                Self::PERFORMANCE_IMPACTING => &"PERFORMANCE_IMPACTING",
+                Self::CONCURRENTLY_IMPACTED => &"CONCURRENTLY_IMPACTED",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(PerformanceCounterDescriptionFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PerformanceCounterDescriptionFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::PERFORMANCE_IMPACTING => &"PERFORMANCE_IMPACTING",
+            Self::CONCURRENTLY_IMPACTED => &"CONCURRENTLY_IMPACTED",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(PerformanceCounterDescriptionFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkAcquireProfilingLockFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockFlagBitsKHR.html) - Reserved for future use
 ///# C Specifications
 ///```c
@@ -700,7 +840,7 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AcquireProfilingLockFlagBitsKHR(u32);
@@ -727,6 +867,36 @@ impl AcquireProfilingLockFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for AcquireProfilingLockFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AcquireProfilingLockFlagBitsKHR))
+            .field(match *self {
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(AcquireProfilingLockFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AcquireProfilingLockFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(AcquireProfilingLockFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkPerformanceCounterDescriptionFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html) - Bitmask specifying usage behavior for a counter

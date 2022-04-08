@@ -499,6 +499,10 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+#[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+pub use crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureGeometryMotionTrianglesDataNV;
+#[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+pub use crate::extensions::nv_ray_tracing_motion_blur::AccelerationStructureMotionInfoNV;
 use crate::{
     entry::Entry,
     extensions::khr_deferred_host_operations::DeferredOperationKHR,
@@ -2517,7 +2521,7 @@ pub type FNCmdBuildAccelerationStructuresIndirectKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyAccelerationStructureModeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct CopyAccelerationStructureModeKHR(i32);
@@ -2572,6 +2576,44 @@ impl CopyAccelerationStructureModeKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for CopyAccelerationStructureModeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(CopyAccelerationStructureModeKHR))
+            .field(match *self {
+                Self::CLONE => &"CLONE",
+                Self::COMPACT => &"COMPACT",
+                Self::SERIALIZE => &"SERIALIZE",
+                Self::DESERIALIZE => &"DESERIALIZE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(CopyAccelerationStructureModeKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for CopyAccelerationStructureModeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::CLONE => &"CLONE",
+            Self::COMPACT => &"COMPACT",
+            Self::SERIALIZE => &"SERIALIZE",
+            Self::DESERIALIZE => &"DESERIALIZE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(CopyAccelerationStructureModeKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkBuildAccelerationStructureModeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuildAccelerationStructureModeKHR.html) - Enum specifying the type of build operation to perform
 ///# C Specifications
 ///The [`BuildAccelerationStructureModeKHR`] enumeration is defined as:
@@ -2599,7 +2641,7 @@ impl CopyAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBuildAccelerationStructureModeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct BuildAccelerationStructureModeKHR(i32);
@@ -2634,6 +2676,40 @@ impl BuildAccelerationStructureModeKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for BuildAccelerationStructureModeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(BuildAccelerationStructureModeKHR))
+            .field(match *self {
+                Self::BUILD => &"BUILD",
+                Self::UPDATE => &"UPDATE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(BuildAccelerationStructureModeKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for BuildAccelerationStructureModeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::BUILD => &"BUILD",
+            Self::UPDATE => &"UPDATE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(BuildAccelerationStructureModeKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkAccelerationStructureTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureTypeKHR.html) - Type of acceleration structure
@@ -2683,7 +2759,7 @@ impl BuildAccelerationStructureModeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureTypeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureTypeKHR(i32);
@@ -2724,6 +2800,34 @@ impl AccelerationStructureTypeKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for AccelerationStructureTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AccelerationStructureTypeKHR))
+            .field(match *self {
+                Self::TOP_LEVEL => &"TOP_LEVEL",
+                Self::BOTTOM_LEVEL => &"BOTTOM_LEVEL",
+                Self::GENERIC => &"GENERIC",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(AccelerationStructureTypeKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AccelerationStructureTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::TOP_LEVEL => &"TOP_LEVEL",
+            Self::BOTTOM_LEVEL => &"BOTTOM_LEVEL",
+            Self::GENERIC => &"GENERIC",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(AccelerationStructureTypeKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkGeometryTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTypeKHR.html) - Enum specifying which type of geometry is provided
 ///# C Specifications
 ///Geometry types are specified by [`GeometryTypeKHR`], which takes values:
@@ -2762,7 +2866,7 @@ impl AccelerationStructureTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryTypeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct GeometryTypeKHR(i32);
@@ -2800,6 +2904,34 @@ impl GeometryTypeKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for GeometryTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(GeometryTypeKHR))
+            .field(match *self {
+                Self::TRIANGLES => &"TRIANGLES",
+                Self::AABBS => &"AABBS",
+                Self::INSTANCES => &"INSTANCES",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(GeometryTypeKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for GeometryTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::TRIANGLES => &"TRIANGLES",
+            Self::AABBS => &"AABBS",
+            Self::INSTANCES => &"INSTANCES",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(GeometryTypeKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkAccelerationStructureBuildTypeKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureBuildTypeKHR.html) - Acceleration structure build type
 ///# C Specifications
 ///Possible values of `buildType` in
@@ -2829,7 +2961,7 @@ impl GeometryTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildTypeKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureBuildTypeKHR(i32);
@@ -2868,6 +3000,42 @@ impl AccelerationStructureBuildTypeKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for AccelerationStructureBuildTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AccelerationStructureBuildTypeKHR))
+            .field(match *self {
+                Self::HOST => &"HOST",
+                Self::DEVICE => &"DEVICE",
+                Self::HOST_OR_DEVICE => &"HOST_OR_DEVICE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(AccelerationStructureBuildTypeKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AccelerationStructureBuildTypeKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::HOST => &"HOST",
+            Self::DEVICE => &"DEVICE",
+            Self::HOST_OR_DEVICE => &"HOST_OR_DEVICE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(AccelerationStructureBuildTypeKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkAccelerationStructureCompatibilityKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCompatibilityKHR.html) - Acceleration structure compatibility
 ///# C Specifications
 ///Possible values of `pCompatibility` returned by
@@ -2896,7 +3064,7 @@ impl AccelerationStructureBuildTypeKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCompatibilityKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureCompatibilityKHR(i32);
@@ -2931,6 +3099,40 @@ impl AccelerationStructureCompatibilityKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for AccelerationStructureCompatibilityKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AccelerationStructureCompatibilityKHR))
+            .field(match *self {
+                Self::COMPATIBLE => &"COMPATIBLE",
+                Self::INCOMPATIBLE => &"INCOMPATIBLE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(AccelerationStructureCompatibilityKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AccelerationStructureCompatibilityKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::COMPATIBLE => &"COMPATIBLE",
+            Self::INCOMPATIBLE => &"INCOMPATIBLE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(AccelerationStructureCompatibilityKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkGeometryInstanceFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryInstanceFlagBitsKHR.html) - Instance flag bits
@@ -2990,7 +3192,7 @@ impl AccelerationStructureCompatibilityKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryInstanceFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct GeometryInstanceFlagBitsKHR(u32);
@@ -3039,6 +3241,36 @@ impl GeometryInstanceFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for GeometryInstanceFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(GeometryInstanceFlagBitsKHR))
+            .field(match *self {
+                Self::TRIANGLE_FACING_CULL_DISABLE => &"TRIANGLE_FACING_CULL_DISABLE",
+                Self::TRIANGLE_FLIP_FACING => &"TRIANGLE_FLIP_FACING",
+                Self::FORCE_OPAQUE => &"FORCE_OPAQUE",
+                Self::FORCE_NO_OPAQUE => &"FORCE_NO_OPAQUE",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(GeometryInstanceFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for GeometryInstanceFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::TRIANGLE_FACING_CULL_DISABLE => &"TRIANGLE_FACING_CULL_DISABLE",
+            Self::TRIANGLE_FLIP_FACING => &"TRIANGLE_FLIP_FACING",
+            Self::FORCE_OPAQUE => &"FORCE_OPAQUE",
+            Self::FORCE_NO_OPAQUE => &"FORCE_NO_OPAQUE",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(GeometryInstanceFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkGeometryFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryFlagBitsKHR.html) - Bitmask specifying additional parameters for a geometry
 ///# C Specifications
 ///Bits specifying additional parameters for geometries in acceleration
@@ -3079,7 +3311,7 @@ impl GeometryInstanceFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct GeometryFlagBitsKHR(u32);
@@ -3115,6 +3347,32 @@ impl GeometryFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for GeometryFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(GeometryFlagBitsKHR))
+            .field(match *self {
+                Self::OPAQUE => &"OPAQUE",
+                Self::NO_DUPLICATE_ANY_HIT_INVOCATION => &"NO_DUPLICATE_ANY_HIT_INVOCATION",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(GeometryFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for GeometryFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OPAQUE => &"OPAQUE",
+            Self::NO_DUPLICATE_ANY_HIT_INVOCATION => &"NO_DUPLICATE_ANY_HIT_INVOCATION",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(GeometryFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkBuildAccelerationStructureFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBuildAccelerationStructureFlagBitsKHR.html) - Bitmask specifying additional parameters for acceleration structure builds
@@ -3185,7 +3443,7 @@ impl GeometryFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBuildAccelerationStructureFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct BuildAccelerationStructureFlagBitsKHR(u32);
@@ -3247,6 +3505,50 @@ impl BuildAccelerationStructureFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for BuildAccelerationStructureFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(BuildAccelerationStructureFlagBitsKHR))
+            .field(match *self {
+                Self::ALLOW_UPDATE => &"ALLOW_UPDATE",
+                Self::ALLOW_COMPACTION => &"ALLOW_COMPACTION",
+                Self::PREFER_FAST_TRACE => &"PREFER_FAST_TRACE",
+                Self::PREFER_FAST_BUILD => &"PREFER_FAST_BUILD",
+                Self::LOW_MEMORY => &"LOW_MEMORY",
+                #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+                Self::MOTION_NV => &"MOTION_NV",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(BuildAccelerationStructureFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for BuildAccelerationStructureFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ALLOW_UPDATE => &"ALLOW_UPDATE",
+            Self::ALLOW_COMPACTION => &"ALLOW_COMPACTION",
+            Self::PREFER_FAST_TRACE => &"PREFER_FAST_TRACE",
+            Self::PREFER_FAST_BUILD => &"PREFER_FAST_BUILD",
+            Self::LOW_MEMORY => &"LOW_MEMORY",
+            #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+            Self::MOTION_NV => &"MOTION_NV",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(BuildAccelerationStructureFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkAccelerationStructureCreateFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateFlagBitsKHR.html) - Bitmask specifying additional creation parameters for acceleration structure
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -3275,7 +3577,7 @@ impl BuildAccelerationStructureFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCreateFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureCreateFlagBitsKHR(u32);
@@ -3311,6 +3613,42 @@ impl AccelerationStructureCreateFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for AccelerationStructureCreateFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AccelerationStructureCreateFlagBitsKHR))
+            .field(match *self {
+                Self::DEVICE_ADDRESS_CAPTURE_REPLAY => &"DEVICE_ADDRESS_CAPTURE_REPLAY",
+                #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+                Self::MOTION_NV => &"MOTION_NV",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(AccelerationStructureCreateFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AccelerationStructureCreateFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEVICE_ADDRESS_CAPTURE_REPLAY => &"DEVICE_ADDRESS_CAPTURE_REPLAY",
+            #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+            Self::MOTION_NV => &"MOTION_NV",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(AccelerationStructureCreateFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkGeometryFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryFlagBitsKHR.html) - Bitmask specifying additional parameters for a geometry
@@ -5721,6 +6059,11 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureGeometryMotionTrianglesDataNV<'lt>>
+    for AccelerationStructureGeometryTrianglesDataKHR<'lt>
+{
+}
 ///[VkAccelerationStructureGeometryAabbsDataKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html) - Structure specifying axis-aligned bounding box geometry in a bottom-level acceleration structure
 ///# C Specifications
 ///The [`AccelerationStructureGeometryAabbsDataKHR`] structure is defined
@@ -7020,6 +7363,8 @@ impl<'lt> AccelerationStructureCreateInfoKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureMotionInfoNV<'lt>> for AccelerationStructureCreateInfoKHR<'lt> {}
 ///[VkAabbPositionsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAabbPositionsKHR.html) - Structure specifying two opposing corners of an axis-aligned bounding box
 ///# C Specifications
 ///The [`AabbPositionsKHR`] structure is defined as:
@@ -7564,17 +7909,17 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
 ///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
-///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
-///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
-///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span></span><span class="base"><span class="strut"
+///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
+///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span
+///   class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span
+///   class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`VK_KHR_acceleration_structure`]

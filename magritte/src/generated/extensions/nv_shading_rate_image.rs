@@ -444,7 +444,7 @@ pub type FNCmdSetCoarseSampleOrderNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShadingRatePaletteEntryNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ShadingRatePaletteEntryNV(i32);
@@ -497,6 +497,52 @@ impl ShadingRatePaletteEntryNV {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ShadingRatePaletteEntryNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ShadingRatePaletteEntryNV))
+            .field(match *self {
+                Self::NO_INVOCATIONS => &"NO_INVOCATIONS",
+                Self::_16_INVOCATIONS_PER_PIXEL => &"16_INVOCATIONS_PER_PIXEL",
+                Self::_8_INVOCATIONS_PER_PIXEL => &"8_INVOCATIONS_PER_PIXEL",
+                Self::_4_INVOCATIONS_PER_PIXEL => &"4_INVOCATIONS_PER_PIXEL",
+                Self::_2_INVOCATIONS_PER_PIXEL => &"2_INVOCATIONS_PER_PIXEL",
+                Self::_1_INVOCATION_PER_PIXEL => &"1_INVOCATION_PER_PIXEL",
+                Self::_1_INVOCATION_PER2_X_1_PIXELS => &"1_INVOCATION_PER2_X_1_PIXELS",
+                Self::_1_INVOCATION_PER1_X_2_PIXELS => &"1_INVOCATION_PER1_X_2_PIXELS",
+                Self::_1_INVOCATION_PER2_X_2_PIXELS => &"1_INVOCATION_PER2_X_2_PIXELS",
+                Self::_1_INVOCATION_PER4_X_2_PIXELS => &"1_INVOCATION_PER4_X_2_PIXELS",
+                Self::_1_INVOCATION_PER2_X_4_PIXELS => &"1_INVOCATION_PER2_X_4_PIXELS",
+                Self::_1_INVOCATION_PER4_X_4_PIXELS => &"1_INVOCATION_PER4_X_4_PIXELS",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ShadingRatePaletteEntryNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ShadingRatePaletteEntryNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::NO_INVOCATIONS => &"NO_INVOCATIONS",
+            Self::_16_INVOCATIONS_PER_PIXEL => &"16_INVOCATIONS_PER_PIXEL",
+            Self::_8_INVOCATIONS_PER_PIXEL => &"8_INVOCATIONS_PER_PIXEL",
+            Self::_4_INVOCATIONS_PER_PIXEL => &"4_INVOCATIONS_PER_PIXEL",
+            Self::_2_INVOCATIONS_PER_PIXEL => &"2_INVOCATIONS_PER_PIXEL",
+            Self::_1_INVOCATION_PER_PIXEL => &"1_INVOCATION_PER_PIXEL",
+            Self::_1_INVOCATION_PER2_X_1_PIXELS => &"1_INVOCATION_PER2_X_1_PIXELS",
+            Self::_1_INVOCATION_PER1_X_2_PIXELS => &"1_INVOCATION_PER1_X_2_PIXELS",
+            Self::_1_INVOCATION_PER2_X_2_PIXELS => &"1_INVOCATION_PER2_X_2_PIXELS",
+            Self::_1_INVOCATION_PER4_X_2_PIXELS => &"1_INVOCATION_PER4_X_2_PIXELS",
+            Self::_1_INVOCATION_PER2_X_4_PIXELS => &"1_INVOCATION_PER2_X_4_PIXELS",
+            Self::_1_INVOCATION_PER4_X_4_PIXELS => &"1_INVOCATION_PER4_X_4_PIXELS",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ShadingRatePaletteEntryNV), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkCoarseSampleOrderTypeNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleOrderTypeNV.html) - Shading rate image sample ordering types
 ///# C Specifications
 ///The type [`CoarseSampleOrderTypeNV`] specifies the technique used to
@@ -535,7 +581,7 @@ impl ShadingRatePaletteEntryNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCoarseSampleOrderTypeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct CoarseSampleOrderTypeNV(i32);
@@ -581,6 +627,36 @@ impl CoarseSampleOrderTypeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for CoarseSampleOrderTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(CoarseSampleOrderTypeNV))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::CUSTOM => &"CUSTOM",
+                Self::PIXEL_MAJOR => &"PIXEL_MAJOR",
+                Self::SAMPLE_MAJOR => &"SAMPLE_MAJOR",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(CoarseSampleOrderTypeNV), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for CoarseSampleOrderTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::CUSTOM => &"CUSTOM",
+            Self::PIXEL_MAJOR => &"PIXEL_MAJOR",
+            Self::SAMPLE_MAJOR => &"SAMPLE_MAJOR",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(CoarseSampleOrderTypeNV), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkShadingRatePaletteNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShadingRatePaletteNV.html) - Structure specifying a single shading rate palette

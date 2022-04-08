@@ -78,6 +78,13 @@ impl<'a> BitFlag<'a> {
             .filter(|v| !v.origin().is_disabled())
             .map(|v| v.generate_bitflag_variant(source, self.origin(), &variant_docs));
 
+        let debugs = self
+            .bits()
+            .iter()
+            .filter(|v| !v.origin().is_disabled())
+            .map(|bit| bit.generate_debug_variant(source, self.origin()))
+            .collect::<Vec<_>>();
+
         // get the underlying bit type
         let ty = match self.width() {
             4 => quote! { u32 },
@@ -88,7 +95,7 @@ impl<'a> BitFlag<'a> {
         quote::quote_each_token! {
             out
 
-            #[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+            #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
             #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
             #[repr(transparent)]
             pub struct #name(#ty);
@@ -123,6 +130,26 @@ impl<'a> BitFlag<'a> {
                 #[inline]
                 pub const unsafe fn from_bits_unchecked(bits: #ty) -> Self {
                     Self(bits)
+                }
+            }
+
+            impl std::fmt::Debug for #name {
+                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                    f.debug_tuple(stringify!(#name))
+                        .field(match *self {
+                            #(#debugs,)*
+                            other => unreachable!(concat!("invalid value for", stringify!(#name), ": {:?}"), other),
+                        })
+                        .finish()
+                }
+            }
+
+            impl std::fmt::Display for #name {
+                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                    f.write_str(match *self {
+                        #(#debugs,)*
+                        other => unreachable!(concat!("invalid value for", stringify!(#name), ": {:?}"), other),
+                    })
                 }
             }
         }

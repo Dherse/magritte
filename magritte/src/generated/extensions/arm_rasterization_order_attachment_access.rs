@@ -105,7 +105,7 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineColorBlendStateCreateFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PipelineColorBlendStateCreateFlagBits(u32);
@@ -141,6 +141,38 @@ impl PipelineColorBlendStateCreateFlagBits {
         Self(bits)
     }
 }
+impl std::fmt::Debug for PipelineColorBlendStateCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PipelineColorBlendStateCreateFlagBits))
+            .field(match *self {
+                Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM => &"RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(PipelineColorBlendStateCreateFlagBits),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PipelineColorBlendStateCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM => &"RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(PipelineColorBlendStateCreateFlagBits),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkPipelineDepthStencilStateCreateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineDepthStencilStateCreateFlagBits.html) - Bitmask specifying additional depth/stencil state information.
 ///# C Specifications
 ///Bits which  **can**  be set in the
@@ -174,7 +206,7 @@ impl PipelineColorBlendStateCreateFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineDepthStencilStateCreateFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PipelineDepthStencilStateCreateFlagBits(u32);
@@ -213,6 +245,46 @@ impl PipelineDepthStencilStateCreateFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PipelineDepthStencilStateCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PipelineDepthStencilStateCreateFlagBits))
+            .field(match *self {
+                Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM => {
+                    &"RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM"
+                },
+                Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM => {
+                    &"RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM"
+                },
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(PipelineDepthStencilStateCreateFlagBits),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PipelineDepthStencilStateCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM => &"RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_ARM",
+            Self::RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM => {
+                &"RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM"
+            },
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(PipelineDepthStencilStateCreateFlagBits),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.html) - Structure describing whether rasterization order attachment access can be supported by an implementation

@@ -123,7 +123,7 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkProvokingVertexModeEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ProvokingVertexModeEXT(i32);
@@ -158,6 +158,32 @@ impl ProvokingVertexModeEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ProvokingVertexModeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ProvokingVertexModeEXT))
+            .field(match *self {
+                Self::FIRST_VERTEX => &"FIRST_VERTEX",
+                Self::LAST_VERTEX => &"LAST_VERTEX",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ProvokingVertexModeEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ProvokingVertexModeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FIRST_VERTEX => &"FIRST_VERTEX",
+            Self::LAST_VERTEX => &"LAST_VERTEX",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ProvokingVertexModeEXT), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPhysicalDeviceProvokingVertexFeaturesEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html) - Structure describing the provoking vertex features that can be supported by an implementation

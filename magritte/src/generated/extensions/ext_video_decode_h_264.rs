@@ -125,7 +125,7 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeH264PictureLayoutFlagBitsEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeH264PictureLayoutFlagBitsEXT(u32);
@@ -169,6 +169,42 @@ impl VideoDecodeH264PictureLayoutFlagBitsEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoDecodeH264PictureLayoutFlagBitsEXT))
+            .field(match *self {
+                Self::PROGRESSIVE => &"PROGRESSIVE",
+                Self::INTERLACED_INTERLEAVED_LINES => &"INTERLACED_INTERLEAVED_LINES",
+                Self::INTERLACED_SEPARATE_PLANES => &"INTERLACED_SEPARATE_PLANES",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoDecodeH264PictureLayoutFlagBitsEXT),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoDecodeH264PictureLayoutFlagBitsEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::PROGRESSIVE => &"PROGRESSIVE",
+            Self::INTERLACED_INTERLEAVED_LINES => &"INTERLACED_INTERLEAVED_LINES",
+            Self::INTERLACED_SEPARATE_PLANES => &"INTERLACED_SEPARATE_PLANES",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoDecodeH264PictureLayoutFlagBitsEXT),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoDecodeH264PictureLayoutFlagBitsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264PictureLayoutFlagBitsEXT.html) - H.264 video decode picture layout flags
@@ -1309,6 +1345,7 @@ impl<'lt> VideoDecodeH264PictureInfoEXT<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264MvcEXT<'lt>> for VideoDecodeH264PictureInfoEXT<'lt> {}
 ///[VkVideoDecodeH264DpbSlotInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264DpbSlotInfoEXT.html) - Structure specifies H.264 decode DPB picture information
 ///# C Specifications
 ///The [`VideoDecodeH264DpbSlotInfoEXT`] structure correlates a DPB Slot

@@ -301,7 +301,7 @@ pub type FNGetCalibratedTimestampsExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTimeDomainEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct TimeDomainEXT(i32);
@@ -355,6 +355,30 @@ impl TimeDomainEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for TimeDomainEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(TimeDomainEXT))
+            .field(match *self {
+                Self::DEVICE => &"DEVICE",
+                Self::CLOCK_MONOTONIC => &"CLOCK_MONOTONIC",
+                Self::CLOCK_MONOTONIC_RAW => &"CLOCK_MONOTONIC_RAW",
+                Self::QUERY_PERFORMANCE_COUNTER => &"QUERY_PERFORMANCE_COUNTER",
+                other => unreachable!(concat!("invalid value for", stringify!(TimeDomainEXT), ": {:?}"), other),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for TimeDomainEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEVICE => &"DEVICE",
+            Self::CLOCK_MONOTONIC => &"CLOCK_MONOTONIC",
+            Self::CLOCK_MONOTONIC_RAW => &"CLOCK_MONOTONIC_RAW",
+            Self::QUERY_PERFORMANCE_COUNTER => &"QUERY_PERFORMANCE_COUNTER",
+            other => unreachable!(concat!("invalid value for", stringify!(TimeDomainEXT), ": {:?}"), other),
+        })
     }
 }
 ///[VkCalibratedTimestampInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCalibratedTimestampInfoEXT.html) - Structure specifying the input parameters of a calibrated timestamp query

@@ -423,7 +423,7 @@ pub type FNCmdDebugMarkerInsertExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportObjectTypeEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DebugReportObjectTypeEXT(i32);
@@ -612,6 +612,118 @@ impl DebugReportObjectTypeEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DebugReportObjectTypeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DebugReportObjectTypeEXT))
+            .field(match *self {
+                Self::UNKNOWN => &"UNKNOWN",
+                Self::INSTANCE => &"INSTANCE",
+                Self::PHYSICAL_DEVICE => &"PHYSICAL_DEVICE",
+                Self::DEVICE => &"DEVICE",
+                Self::QUEUE => &"QUEUE",
+                Self::SEMAPHORE => &"SEMAPHORE",
+                Self::COMMAND_BUFFER => &"COMMAND_BUFFER",
+                Self::FENCE => &"FENCE",
+                Self::DEVICE_MEMORY => &"DEVICE_MEMORY",
+                Self::BUFFER => &"BUFFER",
+                Self::IMAGE => &"IMAGE",
+                Self::EVENT => &"EVENT",
+                Self::QUERY_POOL => &"QUERY_POOL",
+                Self::BUFFER_VIEW => &"BUFFER_VIEW",
+                Self::IMAGE_VIEW => &"IMAGE_VIEW",
+                Self::SHADER_MODULE => &"SHADER_MODULE",
+                Self::PIPELINE_CACHE => &"PIPELINE_CACHE",
+                Self::PIPELINE_LAYOUT => &"PIPELINE_LAYOUT",
+                Self::RENDER_PASS => &"RENDER_PASS",
+                Self::PIPELINE => &"PIPELINE",
+                Self::DESCRIPTOR_SET_LAYOUT => &"DESCRIPTOR_SET_LAYOUT",
+                Self::SAMPLER => &"SAMPLER",
+                Self::DESCRIPTOR_POOL => &"DESCRIPTOR_POOL",
+                Self::DESCRIPTOR_SET => &"DESCRIPTOR_SET",
+                Self::FRAMEBUFFER => &"FRAMEBUFFER",
+                Self::COMMAND_POOL => &"COMMAND_POOL",
+                Self::SURFACE_KHR => &"SURFACE_KHR",
+                Self::SWAPCHAIN_KHR => &"SWAPCHAIN_KHR",
+                Self::DEBUG_REPORT_CALLBACK => &"DEBUG_REPORT_CALLBACK",
+                Self::DISPLAY_KHR => &"DISPLAY_KHR",
+                Self::DISPLAY_MODE_KHR => &"DISPLAY_MODE_KHR",
+                Self::VALIDATION_CACHE => &"VALIDATION_CACHE",
+                #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+                Self::SAMPLER_YCBCR_CONVERSION => &"SAMPLER_YCBCR_CONVERSION",
+                Self::DESCRIPTOR_UPDATE_TEMPLATE => &"DESCRIPTOR_UPDATE_TEMPLATE",
+                #[cfg(feature = "VK_NVX_binary_import")]
+                Self::CU_MODULE_NVX => &"CU_MODULE_NVX",
+                #[cfg(feature = "VK_NVX_binary_import")]
+                Self::CU_FUNCTION_NVX => &"CU_FUNCTION_NVX",
+                #[cfg(feature = "VK_KHR_acceleration_structure")]
+                Self::ACCELERATION_STRUCTURE_KHR => &"ACCELERATION_STRUCTURE_KHR",
+                #[cfg(feature = "VK_NV_ray_tracing")]
+                Self::ACCELERATION_STRUCTURE_NV => &"ACCELERATION_STRUCTURE_NV",
+                #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+                Self::BUFFER_COLLECTION_FUCHSIA => &"BUFFER_COLLECTION_FUCHSIA",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DebugReportObjectTypeEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DebugReportObjectTypeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::UNKNOWN => &"UNKNOWN",
+            Self::INSTANCE => &"INSTANCE",
+            Self::PHYSICAL_DEVICE => &"PHYSICAL_DEVICE",
+            Self::DEVICE => &"DEVICE",
+            Self::QUEUE => &"QUEUE",
+            Self::SEMAPHORE => &"SEMAPHORE",
+            Self::COMMAND_BUFFER => &"COMMAND_BUFFER",
+            Self::FENCE => &"FENCE",
+            Self::DEVICE_MEMORY => &"DEVICE_MEMORY",
+            Self::BUFFER => &"BUFFER",
+            Self::IMAGE => &"IMAGE",
+            Self::EVENT => &"EVENT",
+            Self::QUERY_POOL => &"QUERY_POOL",
+            Self::BUFFER_VIEW => &"BUFFER_VIEW",
+            Self::IMAGE_VIEW => &"IMAGE_VIEW",
+            Self::SHADER_MODULE => &"SHADER_MODULE",
+            Self::PIPELINE_CACHE => &"PIPELINE_CACHE",
+            Self::PIPELINE_LAYOUT => &"PIPELINE_LAYOUT",
+            Self::RENDER_PASS => &"RENDER_PASS",
+            Self::PIPELINE => &"PIPELINE",
+            Self::DESCRIPTOR_SET_LAYOUT => &"DESCRIPTOR_SET_LAYOUT",
+            Self::SAMPLER => &"SAMPLER",
+            Self::DESCRIPTOR_POOL => &"DESCRIPTOR_POOL",
+            Self::DESCRIPTOR_SET => &"DESCRIPTOR_SET",
+            Self::FRAMEBUFFER => &"FRAMEBUFFER",
+            Self::COMMAND_POOL => &"COMMAND_POOL",
+            Self::SURFACE_KHR => &"SURFACE_KHR",
+            Self::SWAPCHAIN_KHR => &"SWAPCHAIN_KHR",
+            Self::DEBUG_REPORT_CALLBACK => &"DEBUG_REPORT_CALLBACK",
+            Self::DISPLAY_KHR => &"DISPLAY_KHR",
+            Self::DISPLAY_MODE_KHR => &"DISPLAY_MODE_KHR",
+            Self::VALIDATION_CACHE => &"VALIDATION_CACHE",
+            #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+            Self::SAMPLER_YCBCR_CONVERSION => &"SAMPLER_YCBCR_CONVERSION",
+            Self::DESCRIPTOR_UPDATE_TEMPLATE => &"DESCRIPTOR_UPDATE_TEMPLATE",
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CU_MODULE_NVX => &"CU_MODULE_NVX",
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CU_FUNCTION_NVX => &"CU_FUNCTION_NVX",
+            #[cfg(feature = "VK_KHR_acceleration_structure")]
+            Self::ACCELERATION_STRUCTURE_KHR => &"ACCELERATION_STRUCTURE_KHR",
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            Self::ACCELERATION_STRUCTURE_NV => &"ACCELERATION_STRUCTURE_NV",
+            #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+            Self::BUFFER_COLLECTION_FUCHSIA => &"BUFFER_COLLECTION_FUCHSIA",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DebugReportObjectTypeEXT), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkDebugMarkerObjectNameInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html) - Specify parameters of a name to give to an object

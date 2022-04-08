@@ -1,10 +1,11 @@
-use log::{info, trace, error};
+use log::{error, info, trace};
 use magritte::{
     vulkan1_0::{
-        CommandBufferAllocateInfo, CommandBufferLevel, CommandPool, CommandPoolCreateFlags, CommandPoolCreateInfo,
-        VulkanResultCodes, CommandBuffer, Fence, FenceCreateInfo, FenceCreateFlags, PipelineStageFlags, Semaphore, CommandBufferResetFlags, CommandBufferBeginInfo, CommandBufferUsageFlags, SubmitInfo,
+        CommandBuffer, CommandBufferAllocateInfo, CommandBufferBeginInfo, CommandBufferLevel, CommandBufferResetFlags,
+        CommandBufferUsageFlags, CommandPool, CommandPoolCreateFlags, CommandPoolCreateInfo, Fence, FenceCreateFlags,
+        FenceCreateInfo, PipelineStageFlags, Semaphore, SubmitInfo, VulkanResultCodes,
     },
-    AsRaw, Unique, SmallVec,
+    AsRaw, SmallVec, Unique,
 };
 
 use crate::queue::Queue;
@@ -52,24 +53,36 @@ impl Commands {
     pub fn wait_and_reset_all(&mut self) -> Result<(), VulkanResultCodes> {
         // First we wait on **all** the fences to make sure they are done executing
         unsafe {
-            self.setup_reuse_fence.device().wait_for_fences(&[ self.setup_reuse_fence.as_raw() ], true, Some(std::u64::MAX));
-        
+            self.setup_reuse_fence.device().wait_for_fences(
+                &[self.setup_reuse_fence.as_raw()],
+                true,
+                Some(std::u64::MAX),
+            );
+
             // self.setup_reuse_fence.device().reset_fences(&[ self.setup_reuse_fence.as_raw() ])?;
         }
 
         unsafe {
-            let fences = self.draw_reuse_fences.iter().map(AsRaw::as_raw).collect::<SmallVec<_>>();
-            self.setup_reuse_fence.device().wait_for_fences(&fences, true, Some(std::u64::MAX));
+            let fences = self
+                .draw_reuse_fences
+                .iter()
+                .map(AsRaw::as_raw)
+                .collect::<SmallVec<_>>();
+            self.setup_reuse_fence
+                .device()
+                .wait_for_fences(&fences, true, Some(std::u64::MAX));
             // self.setup_reuse_fence.device().reset_fences(&fences)?;
         }
 
         // Then we reset all of the command buffers releasing all of their ownerships
 
-        for cmd in self.draw_command_buffers.iter().chain(std::iter::once(&self.setup_command_buffer)) {
+        for cmd in self
+            .draw_command_buffers
+            .iter()
+            .chain(std::iter::once(&self.setup_command_buffer))
+        {
             unsafe {
-                cmd.reset_command_buffer(
-                    CommandBufferResetFlags::RELEASE_RESOURCES,
-                )?;
+                cmd.reset_command_buffer(CommandBufferResetFlags::RELEASE_RESOURCES)?;
             }
         }
 
@@ -129,9 +142,9 @@ impl Commands {
 
         let (setup_reuse_fence, _) = unsafe { queue.device().create_fence(&fence_create_info, None)? };
 
-        let draw_reuse_fences = (0..frame_count).map(|_|
-            unsafe { queue.device().create_fence(&fence_create_info, None).result() }
-        ).collect::<Result<SmallVec<_>, _>>()?;
+        let draw_reuse_fences = (0..frame_count)
+            .map(|_| unsafe { queue.device().create_fence(&fence_create_info, None).result() })
+            .collect::<Result<SmallVec<_>, _>>()?;
 
         info!("Created {} fences", frame_count + 1);
 
@@ -209,7 +222,10 @@ impl Commands {
         wait_semaphores: &[Semaphore],
         signal_semaphores: &[Semaphore],
         function: F,
-    ) -> Result<(), VulkanResultCodes> where F: FnOnce(&Unique<CommandBuffer>) -> Result<(), VulkanResultCodes> {
+    ) -> Result<(), VulkanResultCodes>
+    where
+        F: FnOnce(&Unique<CommandBuffer>) -> Result<(), VulkanResultCodes>,
+    {
         Self::record_and_submit(
             self.setup_command_buffer(),
             self.setup_reuse_fence(),
@@ -217,7 +233,7 @@ impl Commands {
             wait_mask,
             wait_semaphores,
             signal_semaphores,
-            function
+            function,
         )
     }
 
@@ -227,7 +243,10 @@ impl Commands {
         wait_semaphores: &[Semaphore],
         signal_semaphores: &[Semaphore],
         function: F,
-    ) -> Result<(), VulkanResultCodes> where F: FnOnce(&Unique<CommandBuffer>) -> Result<(), VulkanResultCodes> {
+    ) -> Result<(), VulkanResultCodes>
+    where
+        F: FnOnce(&Unique<CommandBuffer>) -> Result<(), VulkanResultCodes>,
+    {
         Self::record_and_submit(
             &self.draw_command_buffers()[self.frame_index()],
             &self.draw_reuse_fences()[self.frame_index()],
@@ -235,7 +254,7 @@ impl Commands {
             wait_mask,
             wait_semaphores,
             signal_semaphores,
-            function
+            function,
         )
     }
 
@@ -247,29 +266,32 @@ impl Commands {
         wait_semaphores: &[Semaphore],
         signal_semaphores: &[Semaphore],
         function: F,
-    ) -> Result<(), VulkanResultCodes> where F: FnOnce(&Unique<CommandBuffer>) -> Result<(), VulkanResultCodes> {
+    ) -> Result<(), VulkanResultCodes>
+    where
+        F: FnOnce(&Unique<CommandBuffer>) -> Result<(), VulkanResultCodes>,
+    {
         unsafe {
             // We wait for the reuse fence
-            command_buffer.device().wait_for_fences(&[ wait_fence.as_raw() ], true, Some(std::u64::MAX))?;
+            command_buffer
+                .device()
+                .wait_for_fences(&[wait_fence.as_raw()], true, Some(std::u64::MAX))?;
 
             trace!("Waited for reuse fence");
 
             // We reset the reuse fence
-            command_buffer.device().reset_fences(&[ wait_fence.as_raw() ])?;
+            command_buffer.device().reset_fences(&[wait_fence.as_raw()])?;
 
             trace!("Reuse fence reset");
 
             // We reset the command buffer releasing the ownership of all of its resources
-            command_buffer.reset_command_buffer(
-                CommandBufferResetFlags::RELEASE_RESOURCES,
-            )?;
+            command_buffer.reset_command_buffer(CommandBufferResetFlags::RELEASE_RESOURCES)?;
 
             trace!("Command buffer reset");
 
-            // We tell Vulkan that we will begin recording commands for a one time submission, we 
+            // We tell Vulkan that we will begin recording commands for a one time submission, we
             // will not be reusing the commands
-            let command_buffer_begin_info = CommandBufferBeginInfo::default()
-                .set_flags(CommandBufferUsageFlags::ONE_TIME_SUBMIT);
+            let command_buffer_begin_info =
+                CommandBufferBeginInfo::default().set_flags(CommandBufferUsageFlags::ONE_TIME_SUBMIT);
 
             // We begin a new command buffer, i.e we set it in a mode where it can record commands
             command_buffer.begin_command_buffer(&command_buffer_begin_info)?;
@@ -292,10 +314,7 @@ impl Commands {
                 .set_command_buffers(std::slice::from_ref(&raw))
                 .set_signal_semaphores(signal_semaphores);
 
-            queue.submit(
-                &[ submit_info],
-                wait_fence
-            )?;
+            queue.submit(&[submit_info], wait_fence)?;
         }
 
         Ok(())

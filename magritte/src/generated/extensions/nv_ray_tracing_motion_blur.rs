@@ -131,7 +131,7 @@ pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMotionInstanceTypeNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct AccelerationStructureMotionInstanceTypeNV(i32);
@@ -169,6 +169,42 @@ impl AccelerationStructureMotionInstanceTypeNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for AccelerationStructureMotionInstanceTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(AccelerationStructureMotionInstanceTypeNV))
+            .field(match *self {
+                Self::STATIC => &"STATIC",
+                Self::MATRIX_MOTION => &"MATRIX_MOTION",
+                Self::SRT_MOTION => &"SRT_MOTION",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(AccelerationStructureMotionInstanceTypeNV),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for AccelerationStructureMotionInstanceTypeNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::STATIC => &"STATIC",
+            Self::MATRIX_MOTION => &"MATRIX_MOTION",
+            Self::SRT_MOTION => &"SRT_MOTION",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(AccelerationStructureMotionInstanceTypeNV),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkAccelerationStructureMotionInfoFlagsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInfoFlagsNV.html) - Reserved for future use
@@ -720,78 +756,80 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///The first is a matrix S, consisting of a scale, shear, and translation,
 ///usually used to define the pivot point of the following rotation.
 ///This matrix is constructed from the parameters above by:<span class="katex"><span
-/// aria-hidden="true" class="katex-html"><span class="base"><span
-/// style="height:0.68333em;vertical-align:0em;" class="strut"></span><span
-/// style="margin-right:0.05764em;" class="mord mathdefault">S</span><span class="mspace"
+/// class="katex-html" aria-hidden="true"><span class="base"><span
+/// style="height:0.68333em;vertical-align:0em;" class="strut"></span><span class="mord mathdefault"
+/// style="margin-right:0.05764em;">S</span><span class="mspace"
 /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-/// class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-/// style="height:3.60004em;vertical-align:-1.55002em;" class="strut"></span><span
+/// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
+/// class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
-/// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
-/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
-/// class="pstrut"></span><span class="delimsizinginner
-/// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
+/// style="top:-2.2500000000000004em;"><span class="pstrut"
 /// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span><span class="mord"><span
-/// class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span><span
+/// class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span
 /// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">s</span><span class="mord mathdefault">x</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
+/// style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span
 /// class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
-/// class="mord"><span class="mord">0</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
-/// style="width:0.5em;"></span><span style="width:0.5em;" class="arraycolsep"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
-/// class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">s</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">y</span></span></span><span
 /// style="top:-1.8099999999999994em;"><span style="height:3em;" class="pstrut"></span><span
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
+/// mathdefault">a</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">s</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">y</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord">0</span></span></span></span><span
+/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span style="height:3em;"
+/// class="pstrut"></span><span class="mord"><span class="mord
 /// mathdefault">b</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord
 /// mathdefault">c</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">s</span><span
-/// style="margin-right:0.04398em;" class="mord mathdefault">z</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-/// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// style="width:0.5em;" class="arraycolsep"></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
-/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
-/// mathdefault">p</span><span style="margin-right:0.03588em;" class="mord
-/// mathdefault">v</span><span class="mord mathdefault">x</span></span></span><span
-/// style="top:-3.0099999999999993em;"><span style="height:3em;" class="pstrut"></span><span
-/// class="mord"><span class="mord mathdefault">p</span><span class="mord mathdefault"
-/// style="margin-right:0.03588em;">v</span><span style="margin-right:0.03588em;" class="mord
-/// mathdefault">y</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
-/// style="margin-right:0.03588em;" class="mord mathdefault">v</span><span class="mord mathdefault"
-/// style="margin-right:0.04398em;">z</span></span></span></span><span
+/// class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
-/// class="vlist"><span></span></span></span></span></span></span></span><span class="mclose"><span
-/// class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05002em;" class="vlist"><span style="top:-2.2500000000000004em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// class="vlist"><span></span></span></span></span></span><span class="arraycolsep"
+/// style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">p</span><span
+/// class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord
+/// mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
+/// mathdefault">p</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">v</span><span class="mord mathdefault"
+/// style="margin-right:0.03588em;">y</span></span></span><span
+/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
+/// class="mord"><span class="mord mathdefault">p</span><span style="margin-right:0.03588em;"
+/// class="mord mathdefault">v</span><span style="margin-right:0.04398em;" class="mord
+/// mathdefault">z</span></span></span></span><span class="vlist-s">​</span></span><span
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></
+/// span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
+/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
+/// class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎠</span></span></span><span style="top:-2.8100000000000005em;"><span
 /// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
-/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
+/// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
+/// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span style="height:1.55002em;"
 /// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
@@ -803,20 +841,20 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 ///and
 /// * [`qw`] = cos(`theta`/2)
 ///Finally, the transform has a translation T constructed from the parameters
-///above by:<span class="katex"><span aria-hidden="true" class="katex-html"><span
+///above by:<span class="katex"><span class="katex-html" aria-hidden="true"><span
 /// class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span
-/// class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace"
+/// style="margin-right:0.13889em;" class="mord mathdefault">T</span><span class="mspace"
 /// style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
 /// style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
 /// class="strut" style="height:3.60004em;vertical-align:-1.55002em;"></span><span
 /// class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t
-/// vlist-t2"><span class="vlist-r"><span style="height:2.05002em;" class="vlist"><span
-/// style="top:-2.2500000000000004em;"><span style="height:3.1550000000000002em;"
-/// class="pstrut"></span><span class="delimsizinginner
+/// vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span
+/// style="top:-2.2500000000000004em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎝</span></span></span><span style="top:-2.8100000000000005em;"><span
-/// class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner
-/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
+/// delim-size4"><span>⎜</span></span></span><span style="top:-4.05002em;"><span class="pstrut"
+/// style="height:3.1550000000000002em;"></span><span class="delimsizinginner
 /// delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span
 /// class="vlist-r"><span class="vlist"
 /// style="height:1.55002em;"><span></span></span></span></span></span></span><span
@@ -839,19 +877,20 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// class="mord"><span class="mord">0</span></span></span></span><span
 /// class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 /// style="height:1.5500000000000007em;"><span></span></span></span></span></span><span
-/// class="arraycolsep" style="width:0.5em;"></span><span style="width:0.5em;"
+/// style="width:0.5em;" class="arraycolsep"></span><span style="width:0.5em;"
 /// class="arraycolsep"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span
-/// class="vlist-r"><span style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span
+/// class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span
-/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut"
-/// style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span
-/// style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span
-/// class="mord"><span class="mord">1</span></span></span></span><span
-/// class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.5500000000000007em;"
+/// class="mord">0</span></span></span><span style="top:-3.0099999999999993em;"><span
+/// style="height:3em;" class="pstrut"></span><span class="mord"><span
+/// class="mord">0</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut"
+/// style="height:3em;"></span><span class="mord"><span
+/// class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span
+/// class="vlist-r"><span style="height:1.5500000000000007em;"
 /// class="vlist"><span></span></span></span></span></span><span style="width:0.5em;"
-/// class="arraycolsep"></span><span class="arraycolsep" style="width:0.5em;"></span><span
-/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-/// style="height:2.05em;" class="vlist"><span style="top:-4.21em;"><span class="pstrut"
+/// class="arraycolsep"></span><span style="width:0.5em;" class="arraycolsep"></span><span
+/// class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+/// style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut"
 /// style="height:3em;"></span><span class="mord"><span class="mord mathdefault">t</span><span
 /// class="mord mathdefault">x</span></span></span><span style="top:-3.0099999999999993em;"><span
 /// style="height:3em;" class="pstrut"></span><span class="mord"><span class="mord
@@ -871,9 +910,9 @@ impl<'lt> AccelerationStructureMotionInfoNV<'lt> {
 /// delim-size4"><span>⎟</span></span></span><span style="top:-4.05002em;"><span
 /// style="height:3.1550000000000002em;" class="pstrut"></span><span class="delimsizinginner
 /// delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span
-/// class="vlist-r"><span style="height:1.55002em;"
-/// class="vlist"><span></span></span></span></span></span></span></span></span></span></span>The
-/// effective derived transform is then given by
+/// class="vlist-r"><span class="vlist"
+/// style="height:1.55002em;"><span></span></span></span></span></span></span></span></span></
+/// span></span>The effective derived transform is then given by
 /// * `T` × `R` × `S`
 ///# Related
 /// - [`VK_NV_ray_tracing_motion_blur`]

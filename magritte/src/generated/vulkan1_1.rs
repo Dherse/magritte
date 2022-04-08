@@ -1,3 +1,263 @@
+#[cfg(feature = "VK_AMD_device_coherent_memory")]
+pub use crate::extensions::amd_device_coherent_memory::PhysicalDeviceCoherentMemoryFeaturesAMD;
+#[cfg(feature = "VK_AMD_shader_core_properties")]
+pub use crate::extensions::amd_shader_core_properties::PhysicalDeviceShaderCorePropertiesAMD;
+#[cfg(feature = "VK_AMD_shader_core_properties2")]
+pub use crate::extensions::amd_shader_core_properties_2::PhysicalDeviceShaderCoreProperties2AMD;
+#[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
+pub use crate::extensions::amd_texture_gather_bias_lod::TextureLodGatherFormatPropertiesAMD;
+#[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+pub use crate::extensions::android_external_memory_android_hardware_buffer::AndroidHardwareBufferUsageANDROID;
+#[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+pub use crate::extensions::android_external_memory_android_hardware_buffer::ExternalFormatANDROID;
+#[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
+pub use crate::extensions::arm_rasterization_order_attachment_access::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM;
+#[cfg(feature = "VK_EXT_4444_formats")]
+pub use crate::extensions::ext_4444_formats::PhysicalDevice4444FormatsFeaturesEXT;
+#[cfg(feature = "VK_EXT_astc_decode_mode")]
+pub use crate::extensions::ext_astc_decode_mode::PhysicalDeviceAstcDecodeFeaturesEXT;
+#[cfg(feature = "VK_EXT_blend_operation_advanced")]
+pub use crate::extensions::ext_blend_operation_advanced::PhysicalDeviceBlendOperationAdvancedFeaturesEXT;
+#[cfg(feature = "VK_EXT_blend_operation_advanced")]
+pub use crate::extensions::ext_blend_operation_advanced::PhysicalDeviceBlendOperationAdvancedPropertiesEXT;
+#[cfg(feature = "VK_EXT_border_color_swizzle")]
+pub use crate::extensions::ext_border_color_swizzle::PhysicalDeviceBorderColorSwizzleFeaturesEXT;
+#[cfg(feature = "VK_EXT_buffer_device_address")]
+pub use crate::extensions::ext_buffer_device_address::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
+#[cfg(feature = "VK_EXT_color_write_enable")]
+pub use crate::extensions::ext_color_write_enable::PhysicalDeviceColorWriteEnableFeaturesEXT;
+#[cfg(feature = "VK_EXT_conditional_rendering")]
+pub use crate::extensions::ext_conditional_rendering::PhysicalDeviceConditionalRenderingFeaturesEXT;
+#[cfg(feature = "VK_EXT_conservative_rasterization")]
+pub use crate::extensions::ext_conservative_rasterization::PhysicalDeviceConservativeRasterizationPropertiesEXT;
+#[cfg(feature = "VK_EXT_custom_border_color")]
+pub use crate::extensions::ext_custom_border_color::PhysicalDeviceCustomBorderColorFeaturesEXT;
+#[cfg(feature = "VK_EXT_custom_border_color")]
+pub use crate::extensions::ext_custom_border_color::PhysicalDeviceCustomBorderColorPropertiesEXT;
+#[cfg(feature = "VK_EXT_depth_clip_control")]
+pub use crate::extensions::ext_depth_clip_control::PhysicalDeviceDepthClipControlFeaturesEXT;
+#[cfg(feature = "VK_EXT_depth_clip_enable")]
+pub use crate::extensions::ext_depth_clip_enable::PhysicalDeviceDepthClipEnableFeaturesEXT;
+#[cfg(feature = "VK_EXT_device_memory_report")]
+pub use crate::extensions::ext_device_memory_report::PhysicalDeviceDeviceMemoryReportFeaturesEXT;
+#[cfg(feature = "VK_EXT_discard_rectangles")]
+pub use crate::extensions::ext_discard_rectangles::PhysicalDeviceDiscardRectanglePropertiesEXT;
+#[cfg(feature = "VK_EXT_extended_dynamic_state")]
+pub use crate::extensions::ext_extended_dynamic_state::PhysicalDeviceExtendedDynamicStateFeaturesEXT;
+#[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+pub use crate::extensions::ext_extended_dynamic_state_2::PhysicalDeviceExtendedDynamicState2FeaturesEXT;
+#[cfg(feature = "VK_EXT_external_memory_host")]
+pub use crate::extensions::ext_external_memory_host::PhysicalDeviceExternalMemoryHostPropertiesEXT;
+#[cfg(feature = "VK_EXT_filter_cubic")]
+pub use crate::extensions::ext_filter_cubic::FilterCubicImageViewImageFormatPropertiesEXT;
+#[cfg(feature = "VK_EXT_filter_cubic")]
+pub use crate::extensions::ext_filter_cubic::PhysicalDeviceImageViewImageFormatInfoEXT;
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+pub use crate::extensions::ext_fragment_density_map::PhysicalDeviceFragmentDensityMapFeaturesEXT;
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+pub use crate::extensions::ext_fragment_density_map::PhysicalDeviceFragmentDensityMapPropertiesEXT;
+#[cfg(feature = "VK_EXT_fragment_density_map2")]
+pub use crate::extensions::ext_fragment_density_map_2::PhysicalDeviceFragmentDensityMap2FeaturesEXT;
+#[cfg(feature = "VK_EXT_fragment_density_map2")]
+pub use crate::extensions::ext_fragment_density_map_2::PhysicalDeviceFragmentDensityMap2PropertiesEXT;
+#[cfg(feature = "VK_EXT_fragment_shader_interlock")]
+pub use crate::extensions::ext_fragment_shader_interlock::PhysicalDeviceFragmentShaderInterlockFeaturesEXT;
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+pub use crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesList2EXT;
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+pub use crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesListEXT;
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+pub use crate::extensions::ext_image_drm_format_modifier::PhysicalDeviceImageDrmFormatModifierInfoEXT;
+#[cfg(feature = "VK_EXT_image_view_min_lod")]
+pub use crate::extensions::ext_image_view_min_lod::PhysicalDeviceImageViewMinLodFeaturesEXT;
+#[cfg(feature = "VK_EXT_index_type_uint8")]
+pub use crate::extensions::ext_index_type_uint_8::PhysicalDeviceIndexTypeUint8FeaturesEXT;
+#[cfg(feature = "VK_EXT_line_rasterization")]
+pub use crate::extensions::ext_line_rasterization::PhysicalDeviceLineRasterizationFeaturesEXT;
+#[cfg(feature = "VK_EXT_line_rasterization")]
+pub use crate::extensions::ext_line_rasterization::PhysicalDeviceLineRasterizationPropertiesEXT;
+#[cfg(feature = "VK_EXT_memory_budget")]
+pub use crate::extensions::ext_memory_budget::PhysicalDeviceMemoryBudgetPropertiesEXT;
+#[cfg(feature = "VK_EXT_memory_priority")]
+pub use crate::extensions::ext_memory_priority::PhysicalDeviceMemoryPriorityFeaturesEXT;
+#[cfg(feature = "VK_EXT_multi_draw")]
+pub use crate::extensions::ext_multi_draw::PhysicalDeviceMultiDrawFeaturesEXT;
+#[cfg(feature = "VK_EXT_multi_draw")]
+pub use crate::extensions::ext_multi_draw::PhysicalDeviceMultiDrawPropertiesEXT;
+#[cfg(feature = "VK_EXT_pageable_device_local_memory")]
+pub use crate::extensions::ext_pageable_device_local_memory::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT;
+#[cfg(feature = "VK_EXT_pci_bus_info")]
+pub use crate::extensions::ext_pci_bus_info::PhysicalDevicePciBusInfoPropertiesEXT;
+#[cfg(feature = "VK_EXT_physical_device_drm")]
+pub use crate::extensions::ext_physical_device_drm::PhysicalDeviceDrmPropertiesEXT;
+#[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
+pub use crate::extensions::ext_primitive_topology_list_restart::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT;
+#[cfg(feature = "VK_EXT_provoking_vertex")]
+pub use crate::extensions::ext_provoking_vertex::PhysicalDeviceProvokingVertexFeaturesEXT;
+#[cfg(feature = "VK_EXT_provoking_vertex")]
+pub use crate::extensions::ext_provoking_vertex::PhysicalDeviceProvokingVertexPropertiesEXT;
+#[cfg(feature = "VK_EXT_rgba10x6_formats")]
+pub use crate::extensions::ext_rgba_10_x_6_formats::PhysicalDeviceRgba10X6FormatsFeaturesEXT;
+#[cfg(feature = "VK_EXT_robustness2")]
+pub use crate::extensions::ext_robustness_2::PhysicalDeviceRobustness2FeaturesEXT;
+#[cfg(feature = "VK_EXT_robustness2")]
+pub use crate::extensions::ext_robustness_2::PhysicalDeviceRobustness2PropertiesEXT;
+#[cfg(feature = "VK_EXT_sample_locations")]
+pub use crate::extensions::ext_sample_locations::PhysicalDeviceSampleLocationsPropertiesEXT;
+#[cfg(feature = "VK_EXT_shader_atomic_float")]
+pub use crate::extensions::ext_shader_atomic_float::PhysicalDeviceShaderAtomicFloatFeaturesEXT;
+#[cfg(feature = "VK_EXT_shader_atomic_float2")]
+pub use crate::extensions::ext_shader_atomic_float_2::PhysicalDeviceShaderAtomicFloat2FeaturesEXT;
+#[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
+pub use crate::extensions::ext_shader_image_atomic_int_64::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT;
+#[cfg(feature = "VK_EXT_texel_buffer_alignment")]
+pub use crate::extensions::ext_texel_buffer_alignment::PhysicalDeviceTexelBufferAlignmentFeaturesEXT;
+#[cfg(feature = "VK_EXT_transform_feedback")]
+pub use crate::extensions::ext_transform_feedback::PhysicalDeviceTransformFeedbackFeaturesEXT;
+#[cfg(feature = "VK_EXT_transform_feedback")]
+pub use crate::extensions::ext_transform_feedback::PhysicalDeviceTransformFeedbackPropertiesEXT;
+#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+pub use crate::extensions::ext_vertex_attribute_divisor::PhysicalDeviceVertexAttributeDivisorFeaturesEXT;
+#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+pub use crate::extensions::ext_vertex_attribute_divisor::PhysicalDeviceVertexAttributeDivisorPropertiesEXT;
+#[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
+pub use crate::extensions::ext_vertex_input_dynamic_state::PhysicalDeviceVertexInputDynamicStateFeaturesEXT;
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264ProfileEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265ProfileEXT;
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+pub use crate::extensions::ext_video_encode_h_264::VideoEncodeH264ProfileEXT;
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+pub use crate::extensions::ext_video_encode_h_265::VideoEncodeH265ProfileEXT;
+#[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
+pub use crate::extensions::ext_ycbcr_2_plane_444_formats::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT;
+#[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
+pub use crate::extensions::ext_ycbcr_image_arrays::PhysicalDeviceYcbcrImageArraysFeaturesEXT;
+#[cfg(feature = "VK_HUAWEI_invocation_mask")]
+pub use crate::extensions::huawei_invocation_mask::PhysicalDeviceInvocationMaskFeaturesHUAWEI;
+#[cfg(feature = "VK_HUAWEI_subpass_shading")]
+pub use crate::extensions::huawei_subpass_shading::PhysicalDeviceSubpassShadingFeaturesHUAWEI;
+#[cfg(feature = "VK_HUAWEI_subpass_shading")]
+pub use crate::extensions::huawei_subpass_shading::PhysicalDeviceSubpassShadingPropertiesHUAWEI;
+#[cfg(feature = "VK_INTEL_shader_integer_functions2")]
+pub use crate::extensions::intel_shader_integer_functions_2::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL;
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+pub use crate::extensions::khr_acceleration_structure::PhysicalDeviceAccelerationStructureFeaturesKHR;
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+pub use crate::extensions::khr_acceleration_structure::PhysicalDeviceAccelerationStructurePropertiesKHR;
+#[cfg(feature = "VK_KHR_device_group")]
+pub use crate::extensions::khr_device_group::BindImageMemorySwapchainInfoKHR;
+#[cfg(feature = "VK_KHR_fragment_shading_rate")]
+pub use crate::extensions::khr_fragment_shading_rate::PhysicalDeviceFragmentShadingRateFeaturesKHR;
+#[cfg(feature = "VK_KHR_fragment_shading_rate")]
+pub use crate::extensions::khr_fragment_shading_rate::PhysicalDeviceFragmentShadingRatePropertiesKHR;
+#[cfg(feature = "VK_KHR_global_priority")]
+pub use crate::extensions::khr_global_priority::PhysicalDeviceGlobalPriorityQueryFeaturesKHR;
+#[cfg(feature = "VK_KHR_global_priority")]
+pub use crate::extensions::khr_global_priority::QueueFamilyGlobalPriorityPropertiesKHR;
+#[cfg(feature = "VK_KHR_performance_query")]
+pub use crate::extensions::khr_performance_query::PhysicalDevicePerformanceQueryFeaturesKHR;
+#[cfg(feature = "VK_KHR_performance_query")]
+pub use crate::extensions::khr_performance_query::PhysicalDevicePerformanceQueryPropertiesKHR;
+#[cfg(feature = "VK_KHR_pipeline_executable_properties")]
+pub use crate::extensions::khr_pipeline_executable_properties::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR;
+#[cfg(feature = "VK_KHR_portability_subset")]
+pub use crate::extensions::khr_portability_subset::PhysicalDevicePortabilitySubsetFeaturesKHR;
+#[cfg(feature = "VK_KHR_portability_subset")]
+pub use crate::extensions::khr_portability_subset::PhysicalDevicePortabilitySubsetPropertiesKHR;
+#[cfg(feature = "VK_KHR_present_id")]
+pub use crate::extensions::khr_present_id::PhysicalDevicePresentIdFeaturesKHR;
+#[cfg(feature = "VK_KHR_present_wait")]
+pub use crate::extensions::khr_present_wait::PhysicalDevicePresentWaitFeaturesKHR;
+#[cfg(feature = "VK_KHR_push_descriptor")]
+pub use crate::extensions::khr_push_descriptor::PhysicalDevicePushDescriptorPropertiesKHR;
+#[cfg(feature = "VK_KHR_ray_query")]
+pub use crate::extensions::khr_ray_query::PhysicalDeviceRayQueryFeaturesKHR;
+#[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
+pub use crate::extensions::khr_ray_tracing_pipeline::PhysicalDeviceRayTracingPipelineFeaturesKHR;
+#[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
+pub use crate::extensions::khr_ray_tracing_pipeline::PhysicalDeviceRayTracingPipelinePropertiesKHR;
+#[cfg(feature = "VK_KHR_shader_clock")]
+pub use crate::extensions::khr_shader_clock::PhysicalDeviceShaderClockFeaturesKHR;
+#[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
+pub use crate::extensions::khr_shader_subgroup_uniform_control_flow::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR;
+#[cfg(feature = "VK_KHR_synchronization2")]
+pub use crate::extensions::khr_synchronization_2::QueueFamilyCheckpointProperties2NV;
+#[cfg(feature = "VK_KHR_video_queue")]
+pub use crate::extensions::khr_video_queue::QueueFamilyQueryResultStatusProperties2KHR;
+#[cfg(feature = "VK_KHR_video_queue")]
+pub use crate::extensions::khr_video_queue::VideoProfileKHR;
+#[cfg(feature = "VK_KHR_video_queue")]
+pub use crate::extensions::khr_video_queue::VideoProfilesKHR;
+#[cfg(feature = "VK_KHR_video_queue")]
+pub use crate::extensions::khr_video_queue::VideoQueueFamilyProperties2KHR;
+#[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
+pub use crate::extensions::khr_workgroup_memory_explicit_layout::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR;
+#[cfg(feature = "VK_NV_compute_shader_derivatives")]
+pub use crate::extensions::nv_compute_shader_derivatives::PhysicalDeviceComputeShaderDerivativesFeaturesNV;
+#[cfg(feature = "VK_NV_cooperative_matrix")]
+pub use crate::extensions::nv_cooperative_matrix::PhysicalDeviceCooperativeMatrixFeaturesNV;
+#[cfg(feature = "VK_NV_cooperative_matrix")]
+pub use crate::extensions::nv_cooperative_matrix::PhysicalDeviceCooperativeMatrixPropertiesNV;
+#[cfg(feature = "VK_NV_corner_sampled_image")]
+pub use crate::extensions::nv_corner_sampled_image::PhysicalDeviceCornerSampledImageFeaturesNV;
+#[cfg(feature = "VK_NV_coverage_reduction_mode")]
+pub use crate::extensions::nv_coverage_reduction_mode::PhysicalDeviceCoverageReductionModeFeaturesNV;
+#[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
+pub use crate::extensions::nv_dedicated_allocation_image_aliasing::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV;
+#[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
+pub use crate::extensions::nv_device_diagnostic_checkpoints::QueueFamilyCheckpointPropertiesNV;
+#[cfg(feature = "VK_NV_device_diagnostics_config")]
+pub use crate::extensions::nv_device_diagnostics_config::PhysicalDeviceDiagnosticsConfigFeaturesNV;
+#[cfg(feature = "VK_NV_device_generated_commands")]
+pub use crate::extensions::nv_device_generated_commands::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV;
+#[cfg(feature = "VK_NV_device_generated_commands")]
+pub use crate::extensions::nv_device_generated_commands::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV;
+#[cfg(feature = "VK_NV_external_memory_rdma")]
+pub use crate::extensions::nv_external_memory_rdma::PhysicalDeviceExternalMemoryRdmaFeaturesNV;
+#[cfg(feature = "VK_NV_fragment_shader_barycentric")]
+pub use crate::extensions::nv_fragment_shader_barycentric::PhysicalDeviceFragmentShaderBarycentricFeaturesNV;
+#[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
+pub use crate::extensions::nv_fragment_shading_rate_enums::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV;
+#[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
+pub use crate::extensions::nv_fragment_shading_rate_enums::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV;
+#[cfg(feature = "VK_NV_inherited_viewport_scissor")]
+pub use crate::extensions::nv_inherited_viewport_scissor::PhysicalDeviceInheritedViewportScissorFeaturesNV;
+#[cfg(feature = "VK_NV_linear_color_attachment")]
+pub use crate::extensions::nv_linear_color_attachment::PhysicalDeviceLinearColorAttachmentFeaturesNV;
+#[cfg(feature = "VK_NV_mesh_shader")]
+pub use crate::extensions::nv_mesh_shader::PhysicalDeviceMeshShaderFeaturesNV;
+#[cfg(feature = "VK_NV_mesh_shader")]
+pub use crate::extensions::nv_mesh_shader::PhysicalDeviceMeshShaderPropertiesNV;
+#[cfg(feature = "VK_NV_ray_tracing")]
+pub use crate::extensions::nv_ray_tracing::PhysicalDeviceRayTracingPropertiesNV;
+#[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+pub use crate::extensions::nv_ray_tracing_motion_blur::PhysicalDeviceRayTracingMotionBlurFeaturesNV;
+#[cfg(feature = "VK_NV_representative_fragment_test")]
+pub use crate::extensions::nv_representative_fragment_test::PhysicalDeviceRepresentativeFragmentTestFeaturesNV;
+#[cfg(feature = "VK_NV_scissor_exclusive")]
+pub use crate::extensions::nv_scissor_exclusive::PhysicalDeviceExclusiveScissorFeaturesNV;
+#[cfg(feature = "VK_NV_shader_image_footprint")]
+pub use crate::extensions::nv_shader_image_footprint::PhysicalDeviceShaderImageFootprintFeaturesNV;
+#[cfg(feature = "VK_NV_shader_sm_builtins")]
+pub use crate::extensions::nv_shader_sm_builtins::PhysicalDeviceShaderSmBuiltinsFeaturesNV;
+#[cfg(feature = "VK_NV_shader_sm_builtins")]
+pub use crate::extensions::nv_shader_sm_builtins::PhysicalDeviceShaderSmBuiltinsPropertiesNV;
+#[cfg(feature = "VK_NV_shading_rate_image")]
+pub use crate::extensions::nv_shading_rate_image::PhysicalDeviceShadingRateImageFeaturesNV;
+#[cfg(feature = "VK_NV_shading_rate_image")]
+pub use crate::extensions::nv_shading_rate_image::PhysicalDeviceShadingRateImagePropertiesNV;
+#[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
+pub use crate::extensions::nvx_multiview_per_view_attributes::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX;
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+pub use crate::extensions::qcom_fragment_density_map_offset::PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM;
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+pub use crate::extensions::qcom_fragment_density_map_offset::PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM;
+#[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
+pub use crate::extensions::valve_descriptor_set_host_mapping::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
+#[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
+pub use crate::extensions::valve_mutable_descriptor_type::PhysicalDeviceMutableDescriptorTypeFeaturesVALVE;
 use crate::{
     core::UUID_SIZE,
     entry::Entry,
@@ -10,6 +270,32 @@ use crate::{
         PhysicalDeviceFeatures, PhysicalDeviceMemoryProperties, PhysicalDeviceProperties, PipelineBindPoint,
         PipelineLayout, Queue, QueueFamilyProperties, Rect2D, SampleCountFlagBits, ShaderStageFlags,
         SparseImageFormatProperties, SparseImageMemoryRequirements, StructureType, VulkanResultCodes,
+    },
+    vulkan1_2::{
+        DescriptorSetVariableDescriptorCountLayoutSupport, ImageFormatListCreateInfo, ImageStencilUsageCreateInfo,
+        PhysicalDevice8BitStorageFeatures, PhysicalDeviceBufferDeviceAddressFeatures,
+        PhysicalDeviceDepthStencilResolveProperties, PhysicalDeviceDescriptorIndexingFeatures,
+        PhysicalDeviceDescriptorIndexingProperties, PhysicalDeviceDriverProperties,
+        PhysicalDeviceFloatControlsProperties, PhysicalDeviceHostQueryResetFeatures,
+        PhysicalDeviceImagelessFramebufferFeatures, PhysicalDeviceSamplerFilterMinmaxProperties,
+        PhysicalDeviceScalarBlockLayoutFeatures, PhysicalDeviceSeparateDepthStencilLayoutsFeatures,
+        PhysicalDeviceShaderAtomicInt64Features, PhysicalDeviceShaderFloat16Int8Features,
+        PhysicalDeviceShaderSubgroupExtendedTypesFeatures, PhysicalDeviceTimelineSemaphoreFeatures,
+        PhysicalDeviceTimelineSemaphoreProperties, PhysicalDeviceUniformBufferStandardLayoutFeatures,
+        PhysicalDeviceVulkan11Features, PhysicalDeviceVulkan11Properties, PhysicalDeviceVulkan12Features,
+        PhysicalDeviceVulkan12Properties, PhysicalDeviceVulkanMemoryModelFeatures, SemaphoreTypeCreateInfo,
+    },
+    vulkan1_3::{
+        FormatProperties3, PhysicalDeviceDynamicRenderingFeatures, PhysicalDeviceImageRobustnessFeatures,
+        PhysicalDeviceInlineUniformBlockFeatures, PhysicalDeviceInlineUniformBlockProperties,
+        PhysicalDeviceMaintenance4Features, PhysicalDeviceMaintenance4Properties,
+        PhysicalDevicePipelineCreationCacheControlFeatures, PhysicalDevicePrivateDataFeatures,
+        PhysicalDeviceShaderDemoteToHelperInvocationFeatures, PhysicalDeviceShaderIntegerDotProductFeatures,
+        PhysicalDeviceShaderIntegerDotProductProperties, PhysicalDeviceShaderTerminateInvocationFeatures,
+        PhysicalDeviceSubgroupSizeControlFeatures, PhysicalDeviceSubgroupSizeControlProperties,
+        PhysicalDeviceSynchronization2Features, PhysicalDeviceTexelBufferAlignmentProperties,
+        PhysicalDeviceTextureCompressionAstchdrFeatures, PhysicalDeviceVulkan13Features,
+        PhysicalDeviceVulkan13Properties, PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures,
     },
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
 };
@@ -2009,7 +2295,7 @@ pub type FNCmdDispatchBase = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateType")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DescriptorUpdateTemplateType(i32);
@@ -2047,6 +2333,34 @@ impl DescriptorUpdateTemplateType {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DescriptorUpdateTemplateType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DescriptorUpdateTemplateType))
+            .field(match *self {
+                Self::DESCRIPTOR_SET => &"DESCRIPTOR_SET",
+                #[cfg(feature = "VK_KHR_descriptor_update_template")]
+                Self::PUSH_DESCRIPTORS_KHR => &"PUSH_DESCRIPTORS_KHR",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DescriptorUpdateTemplateType), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DescriptorUpdateTemplateType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DESCRIPTOR_SET => &"DESCRIPTOR_SET",
+            #[cfg(feature = "VK_KHR_descriptor_update_template")]
+            Self::PUSH_DESCRIPTORS_KHR => &"PUSH_DESCRIPTORS_KHR",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DescriptorUpdateTemplateType), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPointClippingBehavior](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPointClippingBehavior.html) - Enum specifying the point clipping behavior
@@ -2090,7 +2404,7 @@ impl DescriptorUpdateTemplateType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPointClippingBehavior")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PointClippingBehavior(i32);
@@ -2125,6 +2439,32 @@ impl PointClippingBehavior {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PointClippingBehavior {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PointClippingBehavior))
+            .field(match *self {
+                Self::ALL_CLIP_PLANES => &"ALL_CLIP_PLANES",
+                Self::USER_CLIP_PLANES_ONLY => &"USER_CLIP_PLANES_ONLY",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PointClippingBehavior), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PointClippingBehavior {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ALL_CLIP_PLANES => &"ALL_CLIP_PLANES",
+            Self::USER_CLIP_PLANES_ONLY => &"USER_CLIP_PLANES_ONLY",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PointClippingBehavior), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkTessellationDomainOrigin](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkTessellationDomainOrigin.html) - Enum describing tessellation domain origin
@@ -2165,7 +2505,7 @@ impl PointClippingBehavior {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTessellationDomainOrigin")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct TessellationDomainOrigin(i32);
@@ -2200,6 +2540,32 @@ impl TessellationDomainOrigin {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for TessellationDomainOrigin {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(TessellationDomainOrigin))
+            .field(match *self {
+                Self::UPPER_LEFT => &"UPPER_LEFT",
+                Self::LOWER_LEFT => &"LOWER_LEFT",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(TessellationDomainOrigin), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for TessellationDomainOrigin {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::UPPER_LEFT => &"UPPER_LEFT",
+            Self::LOWER_LEFT => &"LOWER_LEFT",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(TessellationDomainOrigin), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkSamplerYcbcrModelConversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrModelConversion.html) - Color model component of a color space
@@ -2272,7 +2638,7 @@ impl TessellationDomainOrigin {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrModelConversion")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SamplerYcbcrModelConversion(i32);
@@ -2320,6 +2686,38 @@ impl SamplerYcbcrModelConversion {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SamplerYcbcrModelConversion {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SamplerYcbcrModelConversion))
+            .field(match *self {
+                Self::RGB_IDENTITY => &"RGB_IDENTITY",
+                Self::YCBCR_IDENTITY => &"YCBCR_IDENTITY",
+                Self::YCBCR709 => &"YCBCR709",
+                Self::YCBCR601 => &"YCBCR601",
+                Self::YCBCR2020 => &"YCBCR2020",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SamplerYcbcrModelConversion), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SamplerYcbcrModelConversion {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::RGB_IDENTITY => &"RGB_IDENTITY",
+            Self::YCBCR_IDENTITY => &"YCBCR_IDENTITY",
+            Self::YCBCR709 => &"YCBCR709",
+            Self::YCBCR601 => &"YCBCR601",
+            Self::YCBCR2020 => &"YCBCR2020",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SamplerYcbcrModelConversion), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkSamplerYcbcrRange](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerYcbcrRange.html) - Range of encoded values in a color space
@@ -2370,7 +2768,7 @@ impl SamplerYcbcrModelConversion {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrRange")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SamplerYcbcrRange(i32);
@@ -2406,6 +2804,32 @@ impl SamplerYcbcrRange {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SamplerYcbcrRange {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SamplerYcbcrRange))
+            .field(match *self {
+                Self::ITU_FULL => &"ITU_FULL",
+                Self::ITU_NARROW => &"ITU_NARROW",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SamplerYcbcrRange), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SamplerYcbcrRange {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ITU_FULL => &"ITU_FULL",
+            Self::ITU_NARROW => &"ITU_NARROW",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SamplerYcbcrRange), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkChromaLocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkChromaLocation.html) - Position of downsampled chroma samples
@@ -2448,7 +2872,7 @@ impl SamplerYcbcrRange {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkChromaLocation")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ChromaLocation(i32);
@@ -2484,6 +2908,32 @@ impl ChromaLocation {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ChromaLocation {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ChromaLocation))
+            .field(match *self {
+                Self::COSITED_EVEN => &"COSITED_EVEN",
+                Self::MIDPOINT => &"MIDPOINT",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ChromaLocation), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ChromaLocation {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::COSITED_EVEN => &"COSITED_EVEN",
+            Self::MIDPOINT => &"MIDPOINT",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ChromaLocation), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkDeviceQueueCreateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueCreateFlagBits.html) - Bitmask specifying behavior of the queue
 ///# C Specifications
 ///Bits which  **can**  be set in [`DeviceQueueCreateInfo::flags`],
@@ -2509,7 +2959,7 @@ impl ChromaLocation {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceQueueCreateFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DeviceQueueCreateFlagBits(u32);
@@ -2539,6 +2989,30 @@ impl DeviceQueueCreateFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DeviceQueueCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DeviceQueueCreateFlagBits))
+            .field(match *self {
+                Self::PROTECTED => &"PROTECTED",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DeviceQueueCreateFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DeviceQueueCreateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::PROTECTED => &"PROTECTED",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DeviceQueueCreateFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkSubgroupFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubgroupFeatureFlagBits.html) - Bitmask describing what group operations are supported with subgroup scope
@@ -2595,7 +3069,7 @@ impl DeviceQueueCreateFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubgroupFeatureFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SubgroupFeatureFlagBits(u32);
@@ -2661,6 +3135,48 @@ impl SubgroupFeatureFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SubgroupFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SubgroupFeatureFlagBits))
+            .field(match *self {
+                Self::BASIC => &"BASIC",
+                Self::VOTE => &"VOTE",
+                Self::ARITHMETIC => &"ARITHMETIC",
+                Self::BALLOT => &"BALLOT",
+                Self::SHUFFLE => &"SHUFFLE",
+                Self::SHUFFLE_RELATIVE => &"SHUFFLE_RELATIVE",
+                Self::CLUSTERED => &"CLUSTERED",
+                Self::QUAD => &"QUAD",
+                #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
+                Self::PARTITIONED_NV => &"PARTITIONED_NV",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SubgroupFeatureFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SubgroupFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::BASIC => &"BASIC",
+            Self::VOTE => &"VOTE",
+            Self::ARITHMETIC => &"ARITHMETIC",
+            Self::BALLOT => &"BALLOT",
+            Self::SHUFFLE => &"SHUFFLE",
+            Self::SHUFFLE_RELATIVE => &"SHUFFLE_RELATIVE",
+            Self::CLUSTERED => &"CLUSTERED",
+            Self::QUAD => &"QUAD",
+            #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
+            Self::PARTITIONED_NV => &"PARTITIONED_NV",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SubgroupFeatureFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkExternalMemoryHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBits.html) - Bit specifying external memory handle types
@@ -2786,7 +3302,7 @@ impl SubgroupFeatureFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalMemoryHandleTypeFlagBits(u32);
@@ -2911,6 +3427,74 @@ impl ExternalMemoryHandleTypeFlagBits {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ExternalMemoryHandleTypeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalMemoryHandleTypeFlagBits))
+            .field(match *self {
+                Self::OPAQUE_FD => &"OPAQUE_FD",
+                Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+                Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+                Self::D3_D_11_TEXTURE => &"D3_D_11_TEXTURE",
+                Self::D3_D_11_TEXTURE_KMT => &"D3_D_11_TEXTURE_KMT",
+                Self::D3_D_12_HEAP => &"D3_D_12_HEAP",
+                Self::D3_D_12_RESOURCE => &"D3_D_12_RESOURCE",
+                #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
+                Self::DMA_BUF_EXT => &"DMA_BUF_EXT",
+                #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+                Self::ANDROID_HARDWARE_BUFFER_ANDROID => &"ANDROID_HARDWARE_BUFFER_ANDROID",
+                #[cfg(feature = "VK_EXT_external_memory_host")]
+                Self::HOST_ALLOCATION_EXT => &"HOST_ALLOCATION_EXT",
+                #[cfg(feature = "VK_EXT_external_memory_host")]
+                Self::HOST_MAPPED_FOREIGN_MEMORY_EXT => &"HOST_MAPPED_FOREIGN_MEMORY_EXT",
+                #[cfg(feature = "VK_FUCHSIA_external_memory")]
+                Self::ZIRCON_VMO_FUCHSIA => &"ZIRCON_VMO_FUCHSIA",
+                #[cfg(feature = "VK_NV_external_memory_rdma")]
+                Self::RDMA_ADDRESS_NV => &"RDMA_ADDRESS_NV",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ExternalMemoryHandleTypeFlagBits),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalMemoryHandleTypeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OPAQUE_FD => &"OPAQUE_FD",
+            Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+            Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+            Self::D3_D_11_TEXTURE => &"D3_D_11_TEXTURE",
+            Self::D3_D_11_TEXTURE_KMT => &"D3_D_11_TEXTURE_KMT",
+            Self::D3_D_12_HEAP => &"D3_D_12_HEAP",
+            Self::D3_D_12_RESOURCE => &"D3_D_12_RESOURCE",
+            #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
+            Self::DMA_BUF_EXT => &"DMA_BUF_EXT",
+            #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+            Self::ANDROID_HARDWARE_BUFFER_ANDROID => &"ANDROID_HARDWARE_BUFFER_ANDROID",
+            #[cfg(feature = "VK_EXT_external_memory_host")]
+            Self::HOST_ALLOCATION_EXT => &"HOST_ALLOCATION_EXT",
+            #[cfg(feature = "VK_EXT_external_memory_host")]
+            Self::HOST_MAPPED_FOREIGN_MEMORY_EXT => &"HOST_MAPPED_FOREIGN_MEMORY_EXT",
+            #[cfg(feature = "VK_FUCHSIA_external_memory")]
+            Self::ZIRCON_VMO_FUCHSIA => &"ZIRCON_VMO_FUCHSIA",
+            #[cfg(feature = "VK_NV_external_memory_rdma")]
+            Self::RDMA_ADDRESS_NV => &"RDMA_ADDRESS_NV",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ExternalMemoryHandleTypeFlagBits),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkExternalMemoryFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBits.html) - Bitmask specifying features of an external memory handle type
 ///# C Specifications
 ///Bits which  **may**  be set in
@@ -2974,7 +3558,7 @@ impl ExternalMemoryHandleTypeFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalMemoryFeatureFlagBits(u32);
@@ -3013,6 +3597,34 @@ impl ExternalMemoryFeatureFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ExternalMemoryFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalMemoryFeatureFlagBits))
+            .field(match *self {
+                Self::DEDICATED_ONLY => &"DEDICATED_ONLY",
+                Self::EXPORTABLE => &"EXPORTABLE",
+                Self::IMPORTABLE => &"IMPORTABLE",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ExternalMemoryFeatureFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalMemoryFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEDICATED_ONLY => &"DEDICATED_ONLY",
+            Self::EXPORTABLE => &"EXPORTABLE",
+            Self::IMPORTABLE => &"IMPORTABLE",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ExternalMemoryFeatureFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkExternalSemaphoreHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreHandleTypeFlagBits.html) - Bitmask of valid external semaphore handle types
@@ -3108,7 +3720,7 @@ impl ExternalMemoryFeatureFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreHandleTypeFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalSemaphoreHandleTypeFlagBits(u32);
@@ -3193,6 +3805,50 @@ impl ExternalSemaphoreHandleTypeFlagBits {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalSemaphoreHandleTypeFlagBits))
+            .field(match *self {
+                Self::OPAQUE_FD => &"OPAQUE_FD",
+                Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+                Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+                Self::D3_D_12_FENCE => &"D3_D_12_FENCE",
+                Self::SYNC_FD => &"SYNC_FD",
+                #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
+                Self::ZIRCON_EVENT_FUCHSIA => &"ZIRCON_EVENT_FUCHSIA",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ExternalSemaphoreHandleTypeFlagBits),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalSemaphoreHandleTypeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OPAQUE_FD => &"OPAQUE_FD",
+            Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+            Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+            Self::D3_D_12_FENCE => &"D3_D_12_FENCE",
+            Self::SYNC_FD => &"SYNC_FD",
+            #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
+            Self::ZIRCON_EVENT_FUCHSIA => &"ZIRCON_EVENT_FUCHSIA",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ExternalSemaphoreHandleTypeFlagBits),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkExternalSemaphoreFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreFeatureFlagBits.html) - Bitfield describing features of an external semaphore handle type
 ///# C Specifications
 ///Bits which  **may**  be set in
@@ -3233,7 +3889,7 @@ impl ExternalSemaphoreHandleTypeFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreFeatureFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalSemaphoreFeatureFlagBits(u32);
@@ -3266,6 +3922,40 @@ impl ExternalSemaphoreFeatureFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ExternalSemaphoreFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalSemaphoreFeatureFlagBits))
+            .field(match *self {
+                Self::EXPORTABLE => &"EXPORTABLE",
+                Self::IMPORTABLE => &"IMPORTABLE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ExternalSemaphoreFeatureFlagBits),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalSemaphoreFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::EXPORTABLE => &"EXPORTABLE",
+            Self::IMPORTABLE => &"IMPORTABLE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ExternalSemaphoreFeatureFlagBits),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkSemaphoreImportFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreImportFlagBits.html) - Bitmask specifying additional parameters of semaphore payload import
@@ -3303,7 +3993,7 @@ impl ExternalSemaphoreFeatureFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreImportFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SemaphoreImportFlagBits(u32);
@@ -3335,6 +4025,30 @@ impl SemaphoreImportFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SemaphoreImportFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SemaphoreImportFlagBits))
+            .field(match *self {
+                Self::TEMPORARY => &"TEMPORARY",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SemaphoreImportFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SemaphoreImportFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::TEMPORARY => &"TEMPORARY",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SemaphoreImportFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkExternalFenceHandleTypeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceHandleTypeFlagBits.html) - Bitmask of valid external fence handle types
@@ -3410,7 +4124,7 @@ impl SemaphoreImportFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceHandleTypeFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalFenceHandleTypeFlagBits(u32);
@@ -3476,6 +4190,44 @@ impl ExternalFenceHandleTypeFlagBits {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ExternalFenceHandleTypeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalFenceHandleTypeFlagBits))
+            .field(match *self {
+                Self::OPAQUE_FD => &"OPAQUE_FD",
+                Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+                Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+                Self::SYNC_FD => &"SYNC_FD",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ExternalFenceHandleTypeFlagBits),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalFenceHandleTypeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OPAQUE_FD => &"OPAQUE_FD",
+            Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+            Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+            Self::SYNC_FD => &"SYNC_FD",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ExternalFenceHandleTypeFlagBits),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkExternalFenceFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalFenceFeatureFlagBits.html) - Bitfield describing features of an external fence handle type
 ///# C Specifications
 ///Bits which  **may**  be set in
@@ -3512,7 +4264,7 @@ impl ExternalFenceHandleTypeFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceFeatureFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalFenceFeatureFlagBits(u32);
@@ -3545,6 +4297,32 @@ impl ExternalFenceFeatureFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ExternalFenceFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalFenceFeatureFlagBits))
+            .field(match *self {
+                Self::EXPORTABLE => &"EXPORTABLE",
+                Self::IMPORTABLE => &"IMPORTABLE",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ExternalFenceFeatureFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalFenceFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::EXPORTABLE => &"EXPORTABLE",
+            Self::IMPORTABLE => &"IMPORTABLE",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ExternalFenceFeatureFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkFenceImportFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFenceImportFlagBits.html) - Bitmask specifying additional parameters of fence payload import
@@ -3582,7 +4360,7 @@ impl ExternalFenceFeatureFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFenceImportFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct FenceImportFlagBits(u32);
@@ -3614,6 +4392,30 @@ impl FenceImportFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for FenceImportFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(FenceImportFlagBits))
+            .field(match *self {
+                Self::TEMPORARY => &"TEMPORARY",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(FenceImportFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for FenceImportFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::TEMPORARY => &"TEMPORARY",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(FenceImportFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkPeerMemoryFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPeerMemoryFeatureFlagBits.html) - Bitmask specifying supported peer memory features
@@ -3672,7 +4474,7 @@ impl FenceImportFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPeerMemoryFeatureFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct PeerMemoryFeatureFlagBits(u32);
@@ -3712,6 +4514,36 @@ impl PeerMemoryFeatureFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for PeerMemoryFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(PeerMemoryFeatureFlagBits))
+            .field(match *self {
+                Self::COPY_SRC => &"COPY_SRC",
+                Self::COPY_DST => &"COPY_DST",
+                Self::GENERIC_SRC => &"GENERIC_SRC",
+                Self::GENERIC_DST => &"GENERIC_DST",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(PeerMemoryFeatureFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for PeerMemoryFeatureFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::COPY_SRC => &"COPY_SRC",
+            Self::COPY_DST => &"COPY_DST",
+            Self::GENERIC_SRC => &"GENERIC_SRC",
+            Self::GENERIC_DST => &"GENERIC_DST",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(PeerMemoryFeatureFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkMemoryAllocateFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryAllocateFlagBits.html) - Bitmask specifying flags for a device memory allocation
@@ -3762,7 +4594,7 @@ impl PeerMemoryFeatureFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryAllocateFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct MemoryAllocateFlagBits(u32);
@@ -3808,6 +4640,34 @@ impl MemoryAllocateFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for MemoryAllocateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(MemoryAllocateFlagBits))
+            .field(match *self {
+                Self::DEVICE_MASK => &"DEVICE_MASK",
+                Self::DEVICE_ADDRESS => &"DEVICE_ADDRESS",
+                Self::DEVICE_ADDRESS_CAPTURE_REPLAY => &"DEVICE_ADDRESS_CAPTURE_REPLAY",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(MemoryAllocateFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for MemoryAllocateFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEVICE_MASK => &"DEVICE_MASK",
+            Self::DEVICE_ADDRESS => &"DEVICE_ADDRESS",
+            Self::DEVICE_ADDRESS_CAPTURE_REPLAY => &"DEVICE_ADDRESS_CAPTURE_REPLAY",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(MemoryAllocateFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkSubgroupFeatureFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubgroupFeatureFlagBits.html) - Bitmask describing what group operations are supported with subgroup scope
@@ -8044,6 +8904,308 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_NV_device_generated_commands")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePrivateDataFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVariablePointersFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiviewFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_present_id")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePresentIdFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_present_wait")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePresentWaitFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevice16BitStorageFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSamplerYcbcrConversionFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProtectedMemoryFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_blend_operation_advanced")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_multi_draw")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiDrawFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInlineUniformBlockFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMaintenance4Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderDrawParametersFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderFloat16Int8Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceHostQueryResetFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_global_priority")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_device_memory_report")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDescriptorIndexingFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTimelineSemaphoreFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevice8BitStorageFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_conditional_rendering")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceConditionalRenderingFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkanMemoryModelFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderAtomicInt64Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_shader_atomic_float")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_shader_atomic_float2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_astc_decode_mode")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceAstcDecodeFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_transform_feedback")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTransformFeedbackFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_representative_fragment_test")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_scissor_exclusive")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExclusiveScissorFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_corner_sampled_image")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCornerSampledImageFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_compute_shader_derivatives")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceComputeShaderDerivativesFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_fragment_shader_barycentric")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_shader_image_footprint")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderImageFootprintFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_shading_rate_image")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShadingRateImageFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_HUAWEI_invocation_mask")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_mesh_shader")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMeshShaderFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceAccelerationStructureFeaturesKHR<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_ray_query")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayQueryFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_fragment_density_map2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceScalarBlockLayoutFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_depth_clip_enable")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDepthClipEnableFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_memory_priority")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMemoryPriorityFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_pageable_device_local_memory")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBufferDeviceAddressFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_buffer_device_address")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImagelessFramebufferFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTextureCompressionAstchdrFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_cooperative_matrix")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCooperativeMatrixFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_performance_query")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePerformanceQueryFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_coverage_reduction_mode")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCoverageReductionModeFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_INTEL_shader_integer_functions2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_shader_clock")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderClockFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_index_type_uint8")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceIndexTypeUint8FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_shader_sm_builtins")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_fragment_shader_interlock")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_pipeline_executable_properties")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_texel_buffer_alignment")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubgroupSizeControlFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_line_rasterization")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceLineRasterizationFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePipelineCreationCacheControlFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan11Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan12Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan13Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_AMD_device_coherent_memory")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCoherentMemoryFeaturesAMD<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_custom_border_color")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCustomBorderColorFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_border_color_swizzle")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_extended_dynamic_state")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExtendedDynamicState2FeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_device_diagnostics_config")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_robustness2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRobustness2FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageRobustnessFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_portability_subset")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePortabilitySubsetFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_4444_formats")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevice4444FormatsFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_HUAWEI_subpass_shading")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_fragment_shading_rate")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderTerminateInvocationFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_depth_clip_control")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDepthClipControlFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_external_memory_rdma")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_color_write_enable")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceColorWriteEnableFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSynchronization2Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_NV_inherited_viewport_scissor")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_provoking_vertex")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProvokingVertexFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderIntegerDotProductFeatures<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_rgba10x6_formats")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRgba10X6FormatsFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDynamicRenderingFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_EXT_image_view_min_lod")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageViewMinLodFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+#[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_linear_color_attachment")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceLinearColorAttachmentFeaturesNV<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
+#[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt>>
+    for PhysicalDeviceFeatures2<'lt>
+{
+}
 ///[VkPhysicalDeviceProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProperties2.html) - Structure specifying physical device properties
 ///# C Specifications
 ///The [`PhysicalDeviceProperties2`] structure is defined as:
@@ -8209,6 +9371,172 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_NV_device_generated_commands")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_multi_draw")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiDrawPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_push_descriptor")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePushDescriptorPropertiesKHR<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDriverProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceIdProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiviewProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_discard_rectangles")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDiscardRectanglePropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubgroupProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePointClippingProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProtectedMemoryProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSamplerFilterMinmaxProperties<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_sample_locations")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSampleLocationsPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_blend_operation_advanced")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInlineUniformBlockProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMaintenance3Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMaintenance4Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFloatControlsProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_external_memory_host")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_conservative_rasterization")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_AMD_shader_core_properties")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderCorePropertiesAMD<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_AMD_shader_core_properties2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderCoreProperties2AMD<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDescriptorIndexingProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTimelineSemaphoreProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_pci_bus_info")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePciBusInfoPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDepthStencilResolveProperties<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_transform_feedback")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTransformFeedbackPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_shading_rate_image")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShadingRateImagePropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_NV_mesh_shader")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMeshShaderPropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceAccelerationStructurePropertiesKHR<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_ray_tracing")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingPropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_fragment_density_map2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_cooperative_matrix")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCooperativeMatrixPropertiesNV<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_performance_query")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePerformanceQueryPropertiesKHR<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_shader_sm_builtins")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTexelBufferAlignmentProperties<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubgroupSizeControlProperties<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_HUAWEI_subpass_shading")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_line_rasterization")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceLineRasterizationPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan11Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan12Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan13Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_custom_border_color")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCustomBorderColorPropertiesEXT<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_robustness2")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRobustness2PropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_portability_subset")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePortabilitySubsetPropertiesKHR<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_KHR_fragment_shading_rate")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_provoking_vertex")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProvokingVertexPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderIntegerDotProductProperties<'lt>>
+    for PhysicalDeviceProperties2<'lt>
+{
+}
+#[cfg(feature = "VK_EXT_physical_device_drm")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDrmPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
 ///[VkFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties2.html) - Structure specifying image format properties
 ///# C Specifications
 ///The [`FormatProperties2`] structure is defined as:
@@ -8334,6 +9662,23 @@ impl<'lt> FormatProperties2<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+unsafe impl<'lt> crate::Chain<'lt, DrmFormatModifierPropertiesListEXT<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_video_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoProfilesKHR<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_video_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoProfileKHR<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_video_encode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH264ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_video_encode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, FormatProperties3<'lt>> for FormatProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+unsafe impl<'lt> crate::Chain<'lt, DrmFormatModifierPropertiesList2EXT<'lt>> for FormatProperties2<'lt> {}
 ///[VkImageFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties2.html) - Structure specifying an image format properties
 ///# C Specifications
 ///The [`ImageFormatProperties2`] structure is defined as:
@@ -8467,6 +9812,14 @@ impl<'lt> ImageFormatProperties2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, ExternalImageFormatProperties<'lt>> for ImageFormatProperties2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, SamplerYcbcrConversionImageFormatProperties<'lt>> for ImageFormatProperties2<'lt> {}
+#[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
+unsafe impl<'lt> crate::Chain<'lt, TextureLodGatherFormatPropertiesAMD<'lt>> for ImageFormatProperties2<'lt> {}
+#[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferUsageANDROID<'lt>> for ImageFormatProperties2<'lt> {}
+#[cfg(feature = "VK_EXT_filter_cubic")]
+unsafe impl<'lt> crate::Chain<'lt, FilterCubicImageViewImageFormatPropertiesEXT<'lt>> for ImageFormatProperties2<'lt> {}
 ///[VkPhysicalDeviceImageFormatInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html) - Structure specifying image creation parameters
 ///# C Specifications
 ///The [`PhysicalDeviceImageFormatInfo2`] structure is defined as:
@@ -8692,6 +10045,19 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExternalImageFormatInfo<'lt>> for PhysicalDeviceImageFormatInfo2<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, ImageFormatListCreateInfo<'lt>> for PhysicalDeviceImageFormatInfo2<'lt> {}
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt>>
+    for PhysicalDeviceImageFormatInfo2<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, ImageStencilUsageCreateInfo<'lt>> for PhysicalDeviceImageFormatInfo2<'lt> {}
+#[cfg(feature = "VK_EXT_filter_cubic")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageViewImageFormatInfoEXT<'lt>>
+    for PhysicalDeviceImageFormatInfo2<'lt>
+{
+}
 ///[VkQueueFamilyProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyProperties2.html) - Structure providing information about a queue family
 ///# C Specifications
 ///The [`QueueFamilyProperties2`] structure is defined as:
@@ -8817,6 +10183,16 @@ impl<'lt> QueueFamilyProperties2<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_KHR_global_priority")]
+unsafe impl<'lt> crate::Chain<'lt, QueueFamilyGlobalPriorityPropertiesKHR<'lt>> for QueueFamilyProperties2<'lt> {}
+#[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
+unsafe impl<'lt> crate::Chain<'lt, QueueFamilyCheckpointPropertiesNV<'lt>> for QueueFamilyProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_synchronization2")]
+unsafe impl<'lt> crate::Chain<'lt, QueueFamilyCheckpointProperties2NV<'lt>> for QueueFamilyProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_video_queue")]
+unsafe impl<'lt> crate::Chain<'lt, VideoQueueFamilyProperties2KHR<'lt>> for QueueFamilyProperties2<'lt> {}
+#[cfg(feature = "VK_KHR_video_queue")]
+unsafe impl<'lt> crate::Chain<'lt, QueueFamilyQueryResultStatusProperties2KHR<'lt>> for QueueFamilyProperties2<'lt> {}
 ///[VkPhysicalDeviceMemoryProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryProperties2.html) - Structure specifying physical device memory properties
 ///# C Specifications
 ///The [`PhysicalDeviceMemoryProperties2`] structure is defined as:
@@ -8939,6 +10315,11 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
         self.memory_properties = value;
         self
     }
+}
+#[cfg(feature = "VK_EXT_memory_budget")]
+unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMemoryBudgetPropertiesEXT<'lt>>
+    for PhysicalDeviceMemoryProperties2<'lt>
+{
 }
 ///[VkSparseImageFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties2.html) - Structure specifying sparse image format properties
 ///# C Specifications
@@ -10843,6 +12224,7 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, SemaphoreTypeCreateInfo<'lt>> for PhysicalDeviceExternalSemaphoreInfo<'lt> {}
 ///[VkExternalSemaphoreProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreProperties.html) - Structure describing supported external semaphore handle features
 ///# C Specifications
 ///The [`ExternalSemaphoreProperties`] structure is defined as:
@@ -12838,6 +14220,7 @@ impl<'lt> BindBufferMemoryInfo<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, BindBufferMemoryDeviceGroupInfo<'lt>> for BindBufferMemoryInfo<'lt> {}
 ///[VkBindBufferMemoryDeviceGroupInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html) - Structure specifying device within a group to bind to
 ///# C Specifications
 ///The [`BindBufferMemoryDeviceGroupInfo`] structure is defined as:
@@ -13261,6 +14644,10 @@ impl<'lt> BindImageMemoryInfo<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, BindImageMemoryDeviceGroupInfo<'lt>> for BindImageMemoryInfo<'lt> {}
+#[cfg(feature = "VK_KHR_device_group")]
+unsafe impl<'lt> crate::Chain<'lt, BindImageMemorySwapchainInfoKHR<'lt>> for BindImageMemoryInfo<'lt> {}
+unsafe impl<'lt> crate::Chain<'lt, BindImagePlaneMemoryInfo<'lt>> for BindImageMemoryInfo<'lt> {}
 ///[VkBindImageMemoryDeviceGroupInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html) - Structure specifying device within a group to bind to
 ///# C Specifications
 ///The [`BindImageMemoryDeviceGroupInfo`] structure is defined as:
@@ -15973,6 +17360,7 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, ImagePlaneMemoryRequirementsInfo<'lt>> for ImageMemoryRequirementsInfo2<'lt> {}
 ///[VkImageSparseMemoryRequirementsInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html) - (None)
 ///# C Specifications
 ///The [`ImageSparseMemoryRequirementsInfo2`] structure is defined as:
@@ -16215,6 +17603,7 @@ impl<'lt> MemoryRequirements2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, MemoryDedicatedRequirements<'lt>> for MemoryRequirements2<'lt> {}
 ///[VkSparseImageMemoryRequirements2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements2.html) - (None)
 ///# C Specifications
 ///The [`SparseImageMemoryRequirements2`] structure is defined as:
@@ -17566,6 +18955,8 @@ impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+unsafe impl<'lt> crate::Chain<'lt, ExternalFormatANDROID<'lt>> for SamplerYcbcrConversionCreateInfo<'lt> {}
 ///[VkBindImagePlaneMemoryInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImagePlaneMemoryInfo.html) - Structure specifying how to bind an image plane to memory
 ///# C Specifications
 ///In order to bind *planes* of a *disjoint image*, add a
@@ -18968,6 +20359,10 @@ impl<'lt> DescriptorSetLayoutSupport<'lt> {
         self.supported = value as u8 as u32;
         self
     }
+}
+unsafe impl<'lt> crate::Chain<'lt, DescriptorSetVariableDescriptorCountLayoutSupport<'lt>>
+    for DescriptorSetLayoutSupport<'lt>
+{
 }
 ///[VkPhysicalDeviceShaderDrawParametersFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html) - Structure describing shader draw parameter features that can be supported by an implementation
 ///# C Specifications

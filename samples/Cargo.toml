@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "simple"
-path = "src/bins/simple.rs"
+name = "triangle"
+path = "src/bins/triangle.rs"
+
+[[bin]]
+name = "texture"
+path = "src/bins/texture.rs"
 
 [dependencies]
 winit = "0.26.1"

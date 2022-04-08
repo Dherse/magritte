@@ -175,7 +175,7 @@ Here are the following families that need to be implemented in the code generato
 - [x] Opaque types (aliases of `c_void`)
 - [x] ~Type aliases~
 - [x] Structs
-- [ ] Structure pointer chains
+- [x] Structure pointer chains
 - [x] ~Struct builders~
 - [x] Unions
 - [x] Function pointers
@@ -193,8 +193,8 @@ Here are the following families that need to be implemented in the code generato
 - [x] Dedicated `VkImage` for `VkSwapchainKHR`
 - [x] ~Remove `khr` in function name~
 - [x] Function alias flattening (**huge milestone**)
-- [ ] Implement Debug for enums and bitflags.
+- [x] Implement Debug for enums and bitflags.
 - [ ] Refactor the code generator to group all edge-cases into one easily accessible module, currently edge cases are spread throughout the project.
-- [ ] Refactor function generation to make it cleaner and integrated within `Function`,  `FunctionArgument`.
-- [ ] Fix Debug of flags which is broken
+- [ ] Refactor function generation to make it cleaner and integrated within `Function`, `FunctionArgument`.
+- [x] Fix Debug of masks which is broken
 - [ ] Improve flag/bit/enum naming when numbers are involved, it's a huge mess right now

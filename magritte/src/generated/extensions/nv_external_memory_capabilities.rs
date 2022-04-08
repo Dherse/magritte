@@ -214,7 +214,7 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlagBitsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalMemoryHandleTypeFlagBitsNV(u32);
@@ -258,6 +258,44 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ExternalMemoryHandleTypeFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalMemoryHandleTypeFlagBitsNV))
+            .field(match *self {
+                Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+                Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+                Self::D3_D_11_IMAGE => &"D3_D_11_IMAGE",
+                Self::D3_D_11_IMAGE_KMT => &"D3_D_11_IMAGE_KMT",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ExternalMemoryHandleTypeFlagBitsNV),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalMemoryHandleTypeFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OPAQUE_WIN32 => &"OPAQUE_WIN32",
+            Self::OPAQUE_WIN32_KMT => &"OPAQUE_WIN32_KMT",
+            Self::D3_D_11_IMAGE => &"D3_D_11_IMAGE",
+            Self::D3_D_11_IMAGE_KMT => &"D3_D_11_IMAGE_KMT",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ExternalMemoryHandleTypeFlagBitsNV),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkExternalMemoryFeatureFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBitsNV.html) - Bitmask specifying external memory features
 ///# C Specifications
 ///Bits which  **can**  be set in
@@ -292,7 +330,7 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlagBitsNV")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ExternalMemoryFeatureFlagBitsNV(u32);
@@ -329,6 +367,42 @@ impl ExternalMemoryFeatureFlagBitsNV {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ExternalMemoryFeatureFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ExternalMemoryFeatureFlagBitsNV))
+            .field(match *self {
+                Self::DEDICATED_ONLY => &"DEDICATED_ONLY",
+                Self::EXPORTABLE => &"EXPORTABLE",
+                Self::IMPORTABLE => &"IMPORTABLE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ExternalMemoryFeatureFlagBitsNV),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ExternalMemoryFeatureFlagBitsNV {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEDICATED_ONLY => &"DEDICATED_ONLY",
+            Self::EXPORTABLE => &"EXPORTABLE",
+            Self::IMPORTABLE => &"IMPORTABLE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ExternalMemoryFeatureFlagBitsNV),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkExternalMemoryHandleTypeFlagBitsNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBitsNV.html) - Bitmask specifying external memory handle types

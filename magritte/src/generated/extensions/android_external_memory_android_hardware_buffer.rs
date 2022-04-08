@@ -711,6 +711,14 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferFormatPropertiesANDROID<'lt>>
+    for AndroidHardwareBufferPropertiesANDROID<'lt>
+{
+}
+unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferFormatProperties2ANDROID<'lt>>
+    for AndroidHardwareBufferPropertiesANDROID<'lt>
+{
+}
 ///[VkMemoryGetAndroidHardwareBufferInfoANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetAndroidHardwareBufferInfoANDROID.html) - Structure describing an Android hardware buffer memory export operation
 ///# C Specifications
 ///The [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure is defined

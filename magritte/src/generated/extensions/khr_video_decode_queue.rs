@@ -71,6 +71,14 @@
 //!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264CapabilitiesEXT;
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+pub use crate::extensions::ext_video_decode_h_264::VideoDecodeH264PictureInfoEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265CapabilitiesEXT;
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+pub use crate::extensions::ext_video_decode_h_265::VideoDecodeH265PictureInfoEXT;
 use crate::{
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
     vulkan1_0::{
@@ -168,7 +176,7 @@ pub type FNCmdDecodeVideoKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeCapabilityFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeCapabilityFlagBitsKHR(u32);
@@ -209,6 +217,42 @@ impl VideoDecodeCapabilityFlagBitsKHR {
         Self(bits)
     }
 }
+impl std::fmt::Debug for VideoDecodeCapabilityFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoDecodeCapabilityFlagBitsKHR))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::DPB_AND_OUTPUT_COINCIDE => &"DPB_AND_OUTPUT_COINCIDE",
+                Self::DPB_AND_OUTPUT_DISTINCT => &"DPB_AND_OUTPUT_DISTINCT",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(VideoDecodeCapabilityFlagBitsKHR),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoDecodeCapabilityFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::DPB_AND_OUTPUT_COINCIDE => &"DPB_AND_OUTPUT_COINCIDE",
+            Self::DPB_AND_OUTPUT_DISTINCT => &"DPB_AND_OUTPUT_DISTINCT",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(VideoDecodeCapabilityFlagBitsKHR),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkVideoDecodeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeFlagBitsKHR.html) - Video Decode Command Flags
 ///# C Specifications
 ///The [`cmd_decode_video_khr`] flags are defined with the following
@@ -234,7 +278,7 @@ impl VideoDecodeCapabilityFlagBitsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeFlagBitsKHR")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct VideoDecodeFlagBitsKHR(u32);
@@ -266,6 +310,32 @@ impl VideoDecodeFlagBitsKHR {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for VideoDecodeFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(VideoDecodeFlagBitsKHR))
+            .field(match *self {
+                Self::DEFAULT => &"DEFAULT",
+                Self::RESERVED0 => &"RESERVED0",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(VideoDecodeFlagBitsKHR), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for VideoDecodeFlagBitsKHR {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DEFAULT => &"DEFAULT",
+            Self::RESERVED0 => &"RESERVED0",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(VideoDecodeFlagBitsKHR), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkVideoDecodeCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeCapabilityFlagBitsKHR.html) - Video decode capability flags
@@ -981,6 +1051,10 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264CapabilitiesEXT<'lt>> for VideoDecodeCapabilitiesKHR<'lt> {}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265CapabilitiesEXT<'lt>> for VideoDecodeCapabilitiesKHR<'lt> {}
 ///[VkVideoDecodeInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeInfoKHR.html) - Structure specifying parameters of decoding a frame
 ///# C Specifications
 ///The [`VideoDecodeInfoKHR`] structure is defined as:
@@ -1342,6 +1416,10 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_video_decode_h264")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264PictureInfoEXT<'lt>> for VideoDecodeInfoKHR<'lt> {}
+#[cfg(feature = "VK_EXT_video_decode_h265")]
+unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265PictureInfoEXT<'lt>> for VideoDecodeInfoKHR<'lt> {}
 impl CommandBuffer {
     ///[vkCmdDecodeVideoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDecodeVideoKHR.html) - Decode a frame
     ///# C Specifications

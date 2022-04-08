@@ -1,8 +1,16 @@
 use std::{marker::PhantomData, mem::size_of};
 
-use bytemuck::{Pod, Zeroable, cast_slice};
-use log::{info, error};
-use magritte::{vulkan1_0::{Buffer as VkBuffer, DeviceMemory, VulkanResultCodes, BufferCreateInfo, BufferUsageFlags, SharingMode, MemoryPropertyFlags, MemoryAllocateInfo}, Unique, AsRaw, size::Size, memory::find_memory_type_index};
+use bytemuck::{cast_slice, Pod, Zeroable};
+use log::{error, info};
+use magritte::{
+    memory::find_memory_type_index,
+    size::Size,
+    vulkan1_0::{
+        Buffer as VkBuffer, BufferCreateInfo, BufferUsageFlags, DeviceMemory, MemoryAllocateInfo, MemoryPropertyFlags,
+        SharingMode, VulkanResultCodes,
+    },
+    AsRaw, Unique,
+};
 
 use crate::vulkan::Vulkan;
 
@@ -16,18 +24,15 @@ pub struct Buffer<C: Pod + Zeroable> {
     pub _phantom: PhantomData<C>,
 }
 
-impl<C> Buffer<C> where C: Pod + Zeroable {
+impl<C> Buffer<C>
+where
+    C: Pod + Zeroable,
+{
     /// Creates a new buffer
     #[inline]
-    pub fn new(
-        vulkan: &Vulkan, 
-        usage: BufferUsageFlags,
-        data: &[C]
-    ) -> Result<Self, VulkanResultCodes> {
-        // First we get the memory properties, we will use this when allocating our image 
-        let memory_properties = unsafe {
-            vulkan.physical_device().get_physical_device_memory_properties()
-        };
+    pub fn new(vulkan: &Vulkan, usage: BufferUsageFlags, data: &[C]) -> Result<Self, VulkanResultCodes> {
+        // First we get the memory properties, we will use this when allocating our image
+        let memory_properties = unsafe { vulkan.physical_device().get_physical_device_memory_properties() };
 
         // We compute the number of bytes we need
         let size = (size_of::<C>() * data.len()) as u64;
@@ -43,9 +48,7 @@ impl<C> Buffer<C> where C: Pod + Zeroable {
             .set_sharing_mode(SharingMode::EXCLUSIVE);
 
         // We create the buffer handle
-        let (buffer, _) = unsafe {
-            vulkan.device().create_buffer(&buffer_info, None)?
-        };
+        let (buffer, _) = unsafe { vulkan.device().create_buffer(&buffer_info, None)? };
 
         info!(
             "Created buffer: {:?} of size: {} and usage: {:?}",
@@ -55,9 +58,7 @@ impl<C> Buffer<C> where C: Pod + Zeroable {
         );
 
         // We get the memory requirements for this buffer
-        let memory_requirements = unsafe {
-            vulkan.device().get_buffer_memory_requirements(buffer.as_raw())
-        };
+        let memory_requirements = unsafe { vulkan.device().get_buffer_memory_requirements(buffer.as_raw()) };
 
         info!(
             "Got the memory requirements: size = {}, alignment = {}, memory type = {:032b}",
@@ -80,11 +81,14 @@ impl<C> Buffer<C> where C: Pod + Zeroable {
             &memory_requirements,
             &memory_properties,
             MemoryPropertyFlags::HOST_VISIBLE | MemoryPropertyFlags::HOST_COHERENT | MemoryPropertyFlags::DEVICE_LOCAL,
-        ).or_else(|| find_memory_type_index(
-            &memory_requirements,
-            &memory_properties,
-            MemoryPropertyFlags::HOST_VISIBLE | MemoryPropertyFlags::HOST_COHERENT,
-        )) {
+        )
+        .or_else(|| {
+            find_memory_type_index(
+                &memory_requirements,
+                &memory_properties,
+                MemoryPropertyFlags::HOST_VISIBLE | MemoryPropertyFlags::HOST_COHERENT,
+            )
+        }) {
             index
         } else {
             error!("Could not find suitable memory");
@@ -93,7 +97,7 @@ impl<C> Buffer<C> where C: Pod + Zeroable {
         };
 
         info!(
-            "Got the memory index: {} with the flags: {:?}", 
+            "Got the memory index: {} with the flags: {:?}",
             memory_index,
             memory_properties.memory_types()[memory_index as usize].property_flags
         );
@@ -105,30 +109,29 @@ impl<C> Buffer<C> where C: Pod + Zeroable {
             .set_memory_type_index(memory_index);
 
         // Now, we allocate the memory
-        let (buffer_memory, _) = unsafe {
-            vulkan.device().allocate_memory(&allocate_info, None)?
-        };
+        let (buffer_memory, _) = unsafe { vulkan.device().allocate_memory(&allocate_info, None)? };
 
         // We map the memory into the CPU address space, thuse we get a mutable pointer to the memory.
         let mut ptr = std::ptr::null_mut();
         unsafe {
-            vulkan.device().map_memory(buffer_memory.as_raw(), 0, size, Default::default(), &mut ptr).result()?;
+            vulkan
+                .device()
+                .map_memory(buffer_memory.as_raw(), 0, size, Default::default(), &mut ptr)
+                .result()?;
         }
 
         // We check if the pointer is null for improved safety.
         if ptr.is_null() {
             error!("Did not map successfully");
-            
+
             return Err(VulkanResultCodes::ERROR_INITIALIZATION_FAILED);
         }
 
         // We make it have the shortest lifetime possible to avoid any potential errors!
         {
             // We map the pointer into a slice of the right slice.
-            let byte_slice: &mut [u8] = unsafe {
-                std::slice::from_raw_parts_mut(ptr.cast(), size as usize)
-            };
-    
+            let byte_slice: &mut [u8] = unsafe { std::slice::from_raw_parts_mut(ptr.cast(), size as usize) };
+
             // Here, we copy the data inside of the slice.
             // We use [`bytemuck::cast_slice`] to transform the slice of `C` into a slice of [`u8`]
             byte_slice.copy_from_slice(cast_slice(data));
@@ -142,7 +145,9 @@ impl<C> Buffer<C> where C: Pod + Zeroable {
         // Here we bind the memory, this means that the image must now live longer than its memory!
         // ⚠ We need to ensure this is the case.
         unsafe {
-            vulkan.device().bind_buffer_memory(buffer.as_raw(), buffer_memory.as_raw(), 0)?;
+            vulkan
+                .device()
+                .bind_buffer_memory(buffer.as_raw(), buffer_memory.as_raw(), 0)?;
         }
 
         Ok(Self {

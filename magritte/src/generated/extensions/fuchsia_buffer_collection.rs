@@ -483,7 +483,7 @@ pub type FNGetBufferCollectionPropertiesFuchsia = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageConstraintsInfoFlagBitsFUCHSIA")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ImageConstraintsInfoFlagBitsFUCHSIA(u32);
@@ -521,6 +521,46 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ImageConstraintsInfoFlagBitsFUCHSIA {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ImageConstraintsInfoFlagBitsFUCHSIA))
+            .field(match *self {
+                Self::CPU_READ_RARELY => &"CPU_READ_RARELY",
+                Self::CPU_READ_OFTEN => &"CPU_READ_OFTEN",
+                Self::CPU_WRITE_RARELY => &"CPU_WRITE_RARELY",
+                Self::CPU_WRITE_OFTEN => &"CPU_WRITE_OFTEN",
+                Self::PROTECTED_OPTIONAL => &"PROTECTED_OPTIONAL",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ImageConstraintsInfoFlagBitsFUCHSIA),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ImageConstraintsInfoFlagBitsFUCHSIA {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::CPU_READ_RARELY => &"CPU_READ_RARELY",
+            Self::CPU_READ_OFTEN => &"CPU_READ_OFTEN",
+            Self::CPU_WRITE_RARELY => &"CPU_WRITE_RARELY",
+            Self::CPU_WRITE_OFTEN => &"CPU_WRITE_OFTEN",
+            Self::PROTECTED_OPTIONAL => &"PROTECTED_OPTIONAL",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ImageConstraintsInfoFlagBitsFUCHSIA),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
     }
 }
 ///[VkImageFormatConstraintsFlagsFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatConstraintsFlagsFUCHSIA.html) - Reserved for future use

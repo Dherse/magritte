@@ -21,7 +21,6 @@ impl Unique<SwapchainImage> {
     }
 }
 
-
 #[cfg(feature = "VK_KHR_swapchain")]
 impl Unique<SwapchainImageView> {
     /// Transforms a swapchain image into a regular image

@@ -1,3 +1,9 @@
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+pub use crate::extensions::ext_fragment_density_map::RenderPassFragmentDensityMapCreateInfoEXT;
+#[cfg(feature = "VK_KHR_fragment_shading_rate")]
+pub use crate::extensions::khr_fragment_shading_rate::FragmentShadingRateAttachmentInfoKHR;
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+pub use crate::extensions::qcom_fragment_density_map_offset::SubpassFragmentDensityMapOffsetEndInfoQCOM;
 use crate::{
     core::UUID_SIZE,
     vulkan1_0::{
@@ -9,6 +15,7 @@ use crate::{
         SubpassDescriptionFlags, VulkanResultCodes,
     },
     vulkan1_1::{PointClippingBehavior, SubgroupFeatureFlags, LUID_SIZE},
+    vulkan1_3::MemoryBarrier2,
     AsRaw, Unique, VulkanResult,
 };
 #[cfg(feature = "serde")]
@@ -1865,7 +1872,7 @@ pub type FNCmdDrawIndexedIndirectCount = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreType")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SemaphoreType(i32);
@@ -1904,6 +1911,26 @@ impl SemaphoreType {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SemaphoreType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SemaphoreType))
+            .field(match *self {
+                Self::BINARY => &"BINARY",
+                Self::TIMELINE => &"TIMELINE",
+                other => unreachable!(concat!("invalid value for", stringify!(SemaphoreType), ": {:?}"), other),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SemaphoreType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::BINARY => &"BINARY",
+            Self::TIMELINE => &"TIMELINE",
+            other => unreachable!(concat!("invalid value for", stringify!(SemaphoreType), ": {:?}"), other),
+        })
     }
 }
 ///[VkSamplerReductionMode](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSamplerReductionMode.html) - Specify reduction mode for texture filtering
@@ -1948,7 +1975,7 @@ impl SemaphoreType {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerReductionMode")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SamplerReductionMode(i32);
@@ -1988,6 +2015,34 @@ impl SamplerReductionMode {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SamplerReductionMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SamplerReductionMode))
+            .field(match *self {
+                Self::WEIGHTED_AVERAGE => &"WEIGHTED_AVERAGE",
+                Self::MIN => &"MIN",
+                Self::MAX => &"MAX",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SamplerReductionMode), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SamplerReductionMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::WEIGHTED_AVERAGE => &"WEIGHTED_AVERAGE",
+            Self::MIN => &"MIN",
+            Self::MAX => &"MAX",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SamplerReductionMode), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkDriverId](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDriverId.html) - Khronos driver IDs
@@ -2064,7 +2119,7 @@ impl SamplerReductionMode {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDriverId")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DriverId(i32);
@@ -2137,6 +2192,66 @@ impl DriverId {
         Self(bits)
     }
 }
+impl std::fmt::Debug for DriverId {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DriverId))
+            .field(match *self {
+                Self::AMD_PROPRIETARY => &"AMD_PROPRIETARY",
+                Self::AMD_OPEN_SOURCE => &"AMD_OPEN_SOURCE",
+                Self::MESA_RADV => &"MESA_RADV",
+                Self::NVIDIA_PROPRIETARY => &"NVIDIA_PROPRIETARY",
+                Self::INTEL_PROPRIETARY_WINDOWS => &"INTEL_PROPRIETARY_WINDOWS",
+                Self::INTEL_OPEN_SOURCE_MESA => &"INTEL_OPEN_SOURCE_MESA",
+                Self::IMAGINATION_PROPRIETARY => &"IMAGINATION_PROPRIETARY",
+                Self::QUALCOMM_PROPRIETARY => &"QUALCOMM_PROPRIETARY",
+                Self::ARM_PROPRIETARY => &"ARM_PROPRIETARY",
+                Self::GOOGLE_SWIFTSHADER => &"GOOGLE_SWIFTSHADER",
+                Self::GGP_PROPRIETARY => &"GGP_PROPRIETARY",
+                Self::BROADCOM_PROPRIETARY => &"BROADCOM_PROPRIETARY",
+                Self::MESA_LLVMPIPE => &"MESA_LLVMPIPE",
+                Self::MOLTENVK => &"MOLTENVK",
+                Self::COREAVI_PROPRIETARY => &"COREAVI_PROPRIETARY",
+                Self::JUICE_PROPRIETARY => &"JUICE_PROPRIETARY",
+                Self::VERISILICON_PROPRIETARY => &"VERISILICON_PROPRIETARY",
+                Self::MESA_TURNIP => &"MESA_TURNIP",
+                Self::MESA_V3_DV => &"MESA_V3_DV",
+                Self::MESA_PANVK => &"MESA_PANVK",
+                Self::SAMSUNG_PROPRIETARY => &"SAMSUNG_PROPRIETARY",
+                Self::MESA_VENUS => &"MESA_VENUS",
+                other => unreachable!(concat!("invalid value for", stringify!(DriverId), ": {:?}"), other),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DriverId {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::AMD_PROPRIETARY => &"AMD_PROPRIETARY",
+            Self::AMD_OPEN_SOURCE => &"AMD_OPEN_SOURCE",
+            Self::MESA_RADV => &"MESA_RADV",
+            Self::NVIDIA_PROPRIETARY => &"NVIDIA_PROPRIETARY",
+            Self::INTEL_PROPRIETARY_WINDOWS => &"INTEL_PROPRIETARY_WINDOWS",
+            Self::INTEL_OPEN_SOURCE_MESA => &"INTEL_OPEN_SOURCE_MESA",
+            Self::IMAGINATION_PROPRIETARY => &"IMAGINATION_PROPRIETARY",
+            Self::QUALCOMM_PROPRIETARY => &"QUALCOMM_PROPRIETARY",
+            Self::ARM_PROPRIETARY => &"ARM_PROPRIETARY",
+            Self::GOOGLE_SWIFTSHADER => &"GOOGLE_SWIFTSHADER",
+            Self::GGP_PROPRIETARY => &"GGP_PROPRIETARY",
+            Self::BROADCOM_PROPRIETARY => &"BROADCOM_PROPRIETARY",
+            Self::MESA_LLVMPIPE => &"MESA_LLVMPIPE",
+            Self::MOLTENVK => &"MOLTENVK",
+            Self::COREAVI_PROPRIETARY => &"COREAVI_PROPRIETARY",
+            Self::JUICE_PROPRIETARY => &"JUICE_PROPRIETARY",
+            Self::VERISILICON_PROPRIETARY => &"VERISILICON_PROPRIETARY",
+            Self::MESA_TURNIP => &"MESA_TURNIP",
+            Self::MESA_V3_DV => &"MESA_V3_DV",
+            Self::MESA_PANVK => &"MESA_PANVK",
+            Self::SAMSUNG_PROPRIETARY => &"SAMSUNG_PROPRIETARY",
+            Self::MESA_VENUS => &"MESA_VENUS",
+            other => unreachable!(concat!("invalid value for", stringify!(DriverId), ": {:?}"), other),
+        })
+    }
+}
 ///[VkShaderFloatControlsIndependence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderFloatControlsIndependence.html) - Bitmask specifying whether, and how, shader float controls can be set separately
 ///# C Specifications
 ///Values which  **may**  be returned in the `denormBehaviorIndependence` and
@@ -2183,7 +2298,7 @@ impl DriverId {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderFloatControlsIndependence")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ShaderFloatControlsIndependence(i32);
@@ -2222,6 +2337,42 @@ impl ShaderFloatControlsIndependence {
         Self(bits)
     }
 }
+impl std::fmt::Debug for ShaderFloatControlsIndependence {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ShaderFloatControlsIndependence))
+            .field(match *self {
+                Self::_32_BIT_ONLY => &"32_BIT_ONLY",
+                Self::ALL => &"ALL",
+                Self::NONE => &"NONE",
+                other => unreachable!(
+                    concat!(
+                        "invalid value for",
+                        stringify!(ShaderFloatControlsIndependence),
+                        ": {:?}"
+                    ),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ShaderFloatControlsIndependence {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::_32_BIT_ONLY => &"32_BIT_ONLY",
+            Self::ALL => &"ALL",
+            Self::NONE => &"NONE",
+            other => unreachable!(
+                concat!(
+                    "invalid value for",
+                    stringify!(ShaderFloatControlsIndependence),
+                    ": {:?}"
+                ),
+                other
+            ),
+        })
+    }
+}
 ///[VkSemaphoreWaitFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitFlagBits.html) - Bitmask specifying additional parameters of a semaphore wait operation
 ///# C Specifications
 ///Bits which  **can**  be set in [`SemaphoreWaitInfo::flags`], specifying
@@ -2258,7 +2409,7 @@ impl ShaderFloatControlsIndependence {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreWaitFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct SemaphoreWaitFlagBits(u32);
@@ -2296,6 +2447,30 @@ impl SemaphoreWaitFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for SemaphoreWaitFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(SemaphoreWaitFlagBits))
+            .field(match *self {
+                Self::ANY => &"ANY",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(SemaphoreWaitFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for SemaphoreWaitFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::ANY => &"ANY",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(SemaphoreWaitFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkDescriptorBindingFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDescriptorBindingFlagBits.html) - Bitmask specifying descriptor set layout binding properties
@@ -2374,7 +2549,7 @@ impl SemaphoreWaitFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorBindingFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DescriptorBindingFlagBits(u32);
@@ -2455,6 +2630,36 @@ impl DescriptorBindingFlagBits {
         Self(bits)
     }
 }
+impl std::fmt::Debug for DescriptorBindingFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DescriptorBindingFlagBits))
+            .field(match *self {
+                Self::UPDATE_AFTER_BIND => &"UPDATE_AFTER_BIND",
+                Self::UPDATE_UNUSED_WHILE_PENDING => &"UPDATE_UNUSED_WHILE_PENDING",
+                Self::PARTIALLY_BOUND => &"PARTIALLY_BOUND",
+                Self::VARIABLE_DESCRIPTOR_COUNT => &"VARIABLE_DESCRIPTOR_COUNT",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DescriptorBindingFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DescriptorBindingFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::UPDATE_AFTER_BIND => &"UPDATE_AFTER_BIND",
+            Self::UPDATE_UNUSED_WHILE_PENDING => &"UPDATE_UNUSED_WHILE_PENDING",
+            Self::PARTIALLY_BOUND => &"PARTIALLY_BOUND",
+            Self::VARIABLE_DESCRIPTOR_COUNT => &"VARIABLE_DESCRIPTOR_COUNT",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DescriptorBindingFlagBits), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkResolveModeFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResolveModeFlagBits.html) - Bitmask indicating supported depth and stencil resolve modes
 ///# C Specifications
 ///Possible values of
@@ -2509,7 +2714,7 @@ impl DescriptorBindingFlagBits {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkResolveModeFlagBits")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct ResolveModeFlagBits(u32);
@@ -2550,6 +2755,38 @@ impl ResolveModeFlagBits {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for ResolveModeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(ResolveModeFlagBits))
+            .field(match *self {
+                Self::NONE => &"NONE",
+                Self::SAMPLE_ZERO => &"SAMPLE_ZERO",
+                Self::AVERAGE => &"AVERAGE",
+                Self::MIN => &"MIN",
+                Self::MAX => &"MAX",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(ResolveModeFlagBits), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for ResolveModeFlagBits {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::NONE => &"NONE",
+            Self::SAMPLE_ZERO => &"SAMPLE_ZERO",
+            Self::AVERAGE => &"AVERAGE",
+            Self::MIN => &"MIN",
+            Self::MAX => &"MAX",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(ResolveModeFlagBits), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkSemaphoreWaitFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSemaphoreWaitFlagBits.html) - Bitmask specifying additional parameters of a semaphore wait operation
@@ -4815,23 +5052,23 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float_16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -8575,6 +8812,7 @@ impl<'lt> AttachmentDescription2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, AttachmentDescriptionStencilLayout<'lt>> for AttachmentDescription2<'lt> {}
 ///[VkAttachmentReference2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReference2.html) - Structure specifying an attachment reference
 ///# C Specifications
 ///The [`AttachmentReference2`] structure is defined as:
@@ -8771,6 +9009,7 @@ impl<'lt> AttachmentReference2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, AttachmentReferenceStencilLayout<'lt>> for AttachmentReference2<'lt> {}
 ///[VkSubpassDescription2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescription2.html) - Structure specifying a subpass description
 ///# C Specifications
 ///The [`SubpassDescription2`] structure is defined as:
@@ -9226,6 +9465,9 @@ impl<'lt> SubpassDescription2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, SubpassDescriptionDepthStencilResolve<'lt>> for SubpassDescription2<'lt> {}
+#[cfg(feature = "VK_KHR_fragment_shading_rate")]
+unsafe impl<'lt> crate::Chain<'lt, FragmentShadingRateAttachmentInfoKHR<'lt>> for SubpassDescription2<'lt> {}
 ///[VkSubpassDependency2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDependency2.html) - Structure specifying a subpass dependency
 ///# C Specifications
 ///The [`SubpassDependency2`] structure is defined as:
@@ -9570,6 +9812,7 @@ impl<'lt> SubpassDependency2<'lt> {
         self
     }
 }
+unsafe impl<'lt> crate::Chain<'lt, MemoryBarrier2<'lt>> for SubpassDependency2<'lt> {}
 ///[VkRenderPassCreateInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassCreateInfo2.html) - Structure specifying parameters of a newly created render pass
 ///# C Specifications
 ///The [`RenderPassCreateInfo2`] structure is defined as:
@@ -9985,6 +10228,8 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+unsafe impl<'lt> crate::Chain<'lt, RenderPassFragmentDensityMapCreateInfoEXT<'lt>> for RenderPassCreateInfo2<'lt> {}
 ///[VkSubpassBeginInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassBeginInfo.html) - Structure specifying subpass begin information
 ///# C Specifications
 ///The [`SubpassBeginInfo`] structure is defined as:
@@ -10199,6 +10444,8 @@ impl<'lt> SubpassEndInfo<'lt> {
         self
     }
 }
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+unsafe impl<'lt> crate::Chain<'lt, SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt>> for SubpassEndInfo<'lt> {}
 ///[VkPhysicalDeviceTimelineSemaphoreFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html) - Structure describing timeline semaphore features that can be supported by an implementation
 ///# C Specifications
 ///The [`PhysicalDeviceTimelineSemaphoreFeatures`] structure is defined as:
@@ -18333,14 +18580,14 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float_64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point

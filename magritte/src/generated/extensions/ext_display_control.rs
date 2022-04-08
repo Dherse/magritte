@@ -347,7 +347,7 @@ pub type FNGetSwapchainCounterExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPowerStateEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DisplayPowerStateEXT(i32);
@@ -388,6 +388,34 @@ impl DisplayPowerStateEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for DisplayPowerStateEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DisplayPowerStateEXT))
+            .field(match *self {
+                Self::OFF => &"OFF",
+                Self::SUSPEND => &"SUSPEND",
+                Self::ON => &"ON",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DisplayPowerStateEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DisplayPowerStateEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::OFF => &"OFF",
+            Self::SUSPEND => &"SUSPEND",
+            Self::ON => &"ON",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DisplayPowerStateEXT), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkDeviceEventTypeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceEventTypeEXT.html) - Events that can occur on a device object
 ///# C Specifications
 ///Possible values of [`DeviceEventInfoEXT`]`::device`, specifying when
@@ -414,7 +442,7 @@ impl DisplayPowerStateEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceEventTypeEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DeviceEventTypeEXT(i32);
@@ -449,6 +477,30 @@ impl DeviceEventTypeEXT {
         Self(bits)
     }
 }
+impl std::fmt::Debug for DeviceEventTypeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DeviceEventTypeEXT))
+            .field(match *self {
+                Self::DISPLAY_HOTPLUG => &"DISPLAY_HOTPLUG",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DeviceEventTypeEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DeviceEventTypeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::DISPLAY_HOTPLUG => &"DISPLAY_HOTPLUG",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DeviceEventTypeEXT), ": {:?}"),
+                other
+            ),
+        })
+    }
+}
 ///[VkDisplayEventTypeEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayEventTypeEXT.html) - Events that can occur on a display object
 ///# C Specifications
 ///Possible values of [`DisplayEventInfoEXT::display_event`],
@@ -474,7 +526,7 @@ impl DeviceEventTypeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayEventTypeEXT")]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Ord, PartialOrd, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
 pub struct DisplayEventTypeEXT(i32);
@@ -505,6 +557,30 @@ impl DisplayEventTypeEXT {
     #[inline]
     pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
         Self(bits)
+    }
+}
+impl std::fmt::Debug for DisplayEventTypeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.debug_tuple(stringify!(DisplayEventTypeEXT))
+            .field(match *self {
+                Self::FIRST_PIXEL_OUT => &"FIRST_PIXEL_OUT",
+                other => unreachable!(
+                    concat!("invalid value for", stringify!(DisplayEventTypeEXT), ": {:?}"),
+                    other
+                ),
+            })
+            .finish()
+    }
+}
+impl std::fmt::Display for DisplayEventTypeEXT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        f.write_str(match *self {
+            Self::FIRST_PIXEL_OUT => &"FIRST_PIXEL_OUT",
+            other => unreachable!(
+                concat!("invalid value for", stringify!(DisplayEventTypeEXT), ": {:?}"),
+                other
+            ),
+        })
     }
 }
 ///[VkDisplayPowerInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDisplayPowerInfoEXT.html) - Describe the power state of a display
