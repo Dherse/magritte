@@ -1,4 +1,6 @@
-use log::{info, warn};
+use std::{error::Error, io::ErrorKind};
+
+use log::{error, info, warn};
 use magritte::{
     extensions::{
         khr_display::SurfaceTransformFlagsKHR,
@@ -51,7 +53,22 @@ impl Drop for Surface {
 
 impl Surface {
     /// Creates a new easier to use wrapper for surfaces and swapchains
-    pub fn new(vulkan: &Vulkan, surface: Unique<SurfaceKHR>) -> Result<Self, VulkanResultCodes> {
+    pub fn new(vulkan: &Vulkan, surface: Unique<SurfaceKHR>) -> Result<Self, Box<dyn Error>> {
+        // We make sure that the surface is supported
+        if unsafe {
+            !vulkan
+                .physical_device()
+                .get_physical_device_surface_support_khr(Some(vulkan.queue_family_index()), surface.as_raw())
+                .result()?
+        } {
+            error!("Surface not supported by the device!");
+
+            return Err(Box::new(std::io::Error::new(
+                ErrorKind::Other,
+                "Surface not supported".to_string(),
+            )));
+        }
+
         // First we want to list the supported format to find the one we want to use.
         let (mut surface_formats, _) = unsafe {
             vulkan
@@ -157,7 +174,7 @@ impl Surface {
         // ⚠ Note that here, things get a bit tricky, the swapchain **must** live longer than the
         // surface it was created for. **You** need to ensure this! Magritte currently cannot do
         // it. Probably in the future.
-        // ⚠ Note that the surface we are refering to is the one in the `SwapchainCreateInfoKHR`.
+        // ⚠ Note that the surface we are referring to is the one in the `SwapchainCreateInfoKHR`.
         // TODO: use metadata to implement double lifetimes.
         let (swapchain, _) = unsafe { vulkan.device().create_swapchain_khr(&swapchain_create_info, None)? };
 

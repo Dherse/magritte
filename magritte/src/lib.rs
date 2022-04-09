@@ -13,6 +13,7 @@ pub mod generated;
 pub mod version;
 pub mod video;
 
+pub mod chaining;
 pub mod entry;
 pub mod handles;
 pub mod helpers;
@@ -26,14 +27,13 @@ pub mod spv;
 pub mod validation;
 #[cfg(feature = "window")]
 pub mod window;
-pub mod chaining;
 
+pub use chaining::Chain;
 use generated::vulkan1_0::VulkanResultCodes;
 pub use generated::{extensions::Extensions, *};
 pub use handles::{AsRaw, Handle, Unique};
 pub use results::VulkanResult;
 pub use version::*;
-pub use chaining::Chain;
 
 #[cfg(feature = "smallvec")]
 pub type SmallVec<T> = smallvec::SmallVec<[T; 8]>;

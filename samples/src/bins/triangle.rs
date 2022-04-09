@@ -1,10 +1,10 @@
 #[path = "triangle/pipeline.rs"]
 mod pipeline;
 
-use std::{error::Error, mem::ManuallyDrop, time::Instant};
+use std::{error::Error, io::ErrorKind, mem::ManuallyDrop, time::Instant};
 
 use bytemuck::{Pod, Zeroable};
-use log::{error, info, trace};
+use log::{error, info, trace, LevelFilter};
 use magritte::{
     extensions::khr_swapchain::PresentInfoKHR,
     vulkan1_0::{
@@ -35,7 +35,9 @@ pub struct Vertex {
 
 pub fn main() -> Result<(), Box<dyn Error>> {
     // Initialization of logging
-    pretty_env_logger::init();
+    pretty_env_logger::formatted_builder()
+        .filter_level(LevelFilter::Info)
+        .init();
 
     // First we create the window and the event loop
     let event_loop = EventLoop::<()>::new();
@@ -89,6 +91,10 @@ pub fn main() -> Result<(), Box<dyn Error>> {
                 window.request_redraw();
             },
             Event::RedrawRequested(_) => {
+                if !renderer.rendering_enabled() {
+                    return;
+                }
+
                 trace!("Drawing...");
 
                 let frame = renderer.commands_mut().next_frame();
@@ -172,6 +178,9 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 }
 
 pub struct Renderer {
+    /// Is rendering enabled
+    rendering_enabled: bool,
+    
     /// The vulkan instance
     vulkan: Vulkan,
 
@@ -268,6 +277,7 @@ impl Renderer {
         let pipeline = Pipeline::new(&vulkan, &renderpass, &surface)?;
 
         Ok(Self {
+            rendering_enabled: true,
             vulkan,
             surface,
             commands: ManuallyDrop::new(commands),
@@ -282,9 +292,17 @@ impl Renderer {
     }
 
     pub fn resize(&mut self, window: &Window) -> Result<(), Box<dyn Error>> {
+        // On windows, when minimizing, a resize event is produces with size of (0, 0).
+        // This can cause the application to crash if we reallocate our buffers with that size.
+        // For this reason, we need a guard to protect us against this scenario.
+        // Instead, we will draw with a suboptimal swapchain.
+        // In this example, we disable the rendering.
         if window.inner_size().width == 0 || window.inner_size().height == 0 {
+            self.set_rendering_enabled(false);
             return Ok(());
         }
+
+        self.set_rendering_enabled(true);
 
         let start = Instant::now();
 
@@ -381,5 +399,15 @@ impl Renderer {
     /// Get a reference to the renderer's pipeline.
     pub fn pipeline(&self) -> &Pipeline {
         &self.pipeline
+    }
+
+    /// Get the renderer's rendering enabled.
+    pub fn rendering_enabled(&self) -> bool {
+        self.rendering_enabled
+    }
+
+    /// Set the renderer's rendering enabled.
+    pub fn set_rendering_enabled(&mut self, rendering_enabled: bool) {
+        self.rendering_enabled = rendering_enabled;
     }
 }

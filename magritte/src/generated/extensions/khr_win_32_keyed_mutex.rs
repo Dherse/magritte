@@ -74,7 +74,7 @@ pub const KHR_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    const uint64_t*          pReleaseKeys;
 ///} VkWin32KeyedMutexAcquireReleaseInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`acquire_count`] is the number of entries in the [`acquire_syncs`], [`acquire_keys`], and
@@ -93,14 +93,14 @@ pub const KHR_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`release_keys`] is a pointer to an array of mutex key values to set when the submitted work
 ///   has completed. Entries refer to the keyed mutex associated with the corresponding entries in
 ///   [`release_syncs`].
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - Each member of [`acquire_syncs`] and [`release_syncs`] **must**  be a device memory object
 ///   imported by setting [`ImportMemoryWin32HandleInfoKHR::handle_type`] to
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT` or
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR`
 /// - If [`acquire_count`] is not `0`, [`acquire_syncs`] **must**  be a valid pointer to an array of
 ///   [`acquire_count`] valid [`DeviceMemory`] handles
@@ -115,18 +115,18 @@ pub const KHR_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - Both of the elements of [`acquire_syncs`], and the elements of [`release_syncs`] that are
 ///   valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-///# Related
+/// # Related
 /// - [`VK_KHR_win32_keyed_mutex`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWin32KeyedMutexAcquireReleaseInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

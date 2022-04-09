@@ -126,15 +126,23 @@ impl<'a> Struct<'a> {
                 }
             });
 
-        let extenders = self.extended().into_iter().map(|name| source.structs.get_by_name(name).unwrap()).map(Struct::as_ident);
+        let extenders = self
+            .extended()
+            .into_iter()
+            .map(|name| source.structs.get_by_name(name).unwrap())
+            .map(Struct::as_ident);
 
-        let extender_lifetimes = self.extended().into_iter().map(|name| source.structs.get_by_name(name).unwrap()).map(|struct_|
-            struct_.has_lifetime(source).then(|| {
-                quote! {
-                    <#lt>
-                }
-            })
-        );
+        let extender_lifetimes = self
+            .extended()
+            .into_iter()
+            .map(|name| source.structs.get_by_name(name).unwrap())
+            .map(|struct_| {
+                struct_.has_lifetime(source).then(|| {
+                    quote! {
+                        <#lt>
+                    }
+                })
+            });
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);

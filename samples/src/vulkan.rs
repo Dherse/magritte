@@ -1,4 +1,4 @@
-use std::{error::Error, sync::Arc};
+use std::{error::Error, io::ErrorKind, sync::Arc};
 
 use log::{debug, error, info, trace, Level};
 use magritte::{
@@ -10,8 +10,9 @@ use magritte::{
         ApplicationInfo, Device, DeviceCreateInfo, DeviceQueueCreateInfo, Instance, InstanceCreateInfo, PhysicalDevice,
         PhysicalDeviceFeatures, Queue, QueueFlags,
     },
+    vulkan1_1::PhysicalDeviceProperties2,
     window::{create_surface, enable_required_extensions},
-    AsRaw, Extensions, Unique, Version, vulkan1_1::PhysicalDeviceProperties2,
+    AsRaw, Extensions, Unique, Version,
 };
 use winit::window::Window;
 
@@ -221,14 +222,10 @@ impl Vulkan {
         );
 
         let mut properties = PhysicalDeviceProperties2::default();
-        
-        let properties = unsafe {
-            physical_device.get_physical_device_properties2(
-                Some(properties),
-            )
-        };
 
-        println!("{:#?}", properties);
+        let properties = unsafe { physical_device.get_physical_device_properties2(Some(properties)) };
+
+        // println!("{:#?}", properties);
 
         // We get the properties of the device just so we can get its name.
         let properties = unsafe { physical_device.get_physical_device_properties() };

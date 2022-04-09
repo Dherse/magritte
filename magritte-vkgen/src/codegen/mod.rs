@@ -169,8 +169,6 @@ impl<'a> Source<'a> {
 
             handle.generate_code(self, imports, doc, out);
 
-            println!("{:#?}", handle.functions());
-
             handle
                 .functions()
                 .iter()

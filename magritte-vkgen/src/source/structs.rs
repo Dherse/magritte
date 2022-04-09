@@ -57,7 +57,7 @@ impl<'a> Struct<'a> {
             always_returned,
             fields,
             origin,
-            extended: Vec::new()
+            extended: Vec::new(),
         }
     }
 

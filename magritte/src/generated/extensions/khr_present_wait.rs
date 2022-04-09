@@ -104,69 +104,69 @@ pub const KHR_PRESENT_WAIT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 ///    uint64_t                                    presentId,
 ///    uint64_t                                    timeout);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the device associated with [`swapchain`].
 /// - [`swapchain`] is the non-retired swapchain on which an image was queued for presentation.
 /// - [`present_id`] is the presentation presentId to wait for.
 /// - [`timeout`] is the timeout period in units of nanoseconds. [`timeout`] is adjusted to the
 ///   closest value allowed by the implementation-dependent timeout accuracy, which  **may**  be
 ///   substantially longer than one nanosecond, and  **may**  be longer than the requested period.
-///# Description
-///[`wait_for_present_khr`] waits for the presentId associated with
-///[`swapchain`] to be increased in value so that it is at least equal to
-///[`present_id`].For `VK_PRESENT_MODE_MAILBOX_KHR` (or other present mode where images
-///may be replaced in the presentation queue) any wait of this type associated
-///with such an image  **must**  be signaled no later than a wait associated with
-///the replacing image would be signaled.When the presentation has completed, the presentId
+/// # Description
+/// [`wait_for_present_khr`] waits for the presentId associated with
+/// [`swapchain`] to be increased in value so that it is at least equal to
+/// [`present_id`].For `VK_PRESENT_MODE_MAILBOX_KHR` (or other present mode where images
+/// may be replaced in the presentation queue) any wait of this type associated
+/// with such an image  **must**  be signaled no later than a wait associated with
+/// the replacing image would be signaled.When the presentation has completed, the presentId
 /// associated with the
-///related `pSwapchains` entry will be increased in value so that it is at
-///least equal to the value provided in the [`PresentIdKHR`] structure.There is no requirement for
+/// related `pSwapchains` entry will be increased in value so that it is at
+/// least equal to the value provided in the [`PresentIdKHR`] structure.There is no requirement for
 /// any precise timing relationship between the
-///presentation of the image to the user and the update of the presentId value,
-///but implementations  **should**  make this as close as possible to the
-///presentation of the first pixel in the new image to the user.The call to
+/// presentation of the image to the user and the update of the presentId value,
+/// but implementations  **should**  make this as close as possible to the
+/// presentation of the first pixel in the new image to the user.The call to
 /// [`wait_for_present_khr`] will block until either the presentId
-///associated with [`swapchain`] is greater than or equal to [`present_id`],
-///or [`timeout`] nanoseconds passes.
-///When the swapchain becomes OUT_OF_DATE, the call will either return
-///`VK_SUCCESS` (if the image was delivered to the presentation engine and
-///may have been presented to the user) or will return early with status
-///`VK_ERROR_OUT_OF_DATE_KHR` (if the image was not presented to the user).As an exception to the
+/// associated with [`swapchain`] is greater than or equal to [`present_id`],
+/// or [`timeout`] nanoseconds passes.
+/// When the swapchain becomes OUT_OF_DATE, the call will either return
+/// `VK_SUCCESS` (if the image was delivered to the presentation engine and
+/// may have been presented to the user) or will return early with status
+/// `VK_ERROR_OUT_OF_DATE_KHR` (if the image was not presented to the user).As an exception to the
 /// normal rules for objects which are externally
-///synchronized, the [`swapchain`] passed to [`wait_for_present_khr`] **may**
-///be simultaneously used by other threads in calls to functions other than
-///[`destroy_swapchain_khr`].
-///Access to the swapchain data associated with this extension  **must**  be atomic
-///within the implementation.
-///## Valid Usage
+/// synchronized, the [`swapchain`] passed to [`wait_for_present_khr`] **may**
+/// be simultaneously used by other threads in calls to functions other than
+/// [`destroy_swapchain_khr`].
+/// Access to the swapchain data associated with this extension  **must**  be atomic
+/// within the implementation.
+/// ## Valid Usage
 /// - [`swapchain`] **must**  not be in the retired state
 /// - The [`presentWait`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentWait)
 ///   feature  **must**  be enabled
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`  - `VK_TIMEOUT`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
-///# Related
+/// # Related
 /// - [`VK_KHR_present_wait`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkWaitForPresentKHR")]
 pub type FNWaitForPresentKhr = Option<
     unsafe extern "system" fn(
@@ -187,33 +187,33 @@ pub type FNWaitForPresentKhr = Option<
 ///    VkBool32           presentWait;
 ///} VkPhysicalDevicePresentWaitFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`present_wait`] indicates that the implementation supports [`wait_for_present_khr`].
-///If the [`PhysicalDevicePresentWaitFeaturesKHR`] structure is included in the [`p_next`] chain of
+/// If the [`PhysicalDevicePresentWaitFeaturesKHR`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDevicePresentWaitFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDevicePresentWaitFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_present_wait`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePresentWaitFeaturesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -335,7 +335,7 @@ impl Device {
     ///    uint64_t                                    presentId,
     ///    uint64_t                                    timeout);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the device associated with [`swapchain`].
     /// - [`swapchain`] is the non-retired swapchain on which an image was queued for presentation.
     /// - [`present_id`] is the presentation presentId to wait for.
@@ -343,63 +343,63 @@ impl Device {
     ///   closest value allowed by the implementation-dependent timeout accuracy, which  **may**  be
     ///   substantially longer than one nanosecond, and  **may**  be longer than the requested
     ///   period.
-    ///# Description
-    ///[`wait_for_present_khr`] waits for the presentId associated with
-    ///[`swapchain`] to be increased in value so that it is at least equal to
-    ///[`present_id`].For `VK_PRESENT_MODE_MAILBOX_KHR` (or other present mode where images
-    ///may be replaced in the presentation queue) any wait of this type associated
-    ///with such an image  **must**  be signaled no later than a wait associated with
-    ///the replacing image would be signaled.When the presentation has completed, the presentId
+    /// # Description
+    /// [`wait_for_present_khr`] waits for the presentId associated with
+    /// [`swapchain`] to be increased in value so that it is at least equal to
+    /// [`present_id`].For `VK_PRESENT_MODE_MAILBOX_KHR` (or other present mode where images
+    /// may be replaced in the presentation queue) any wait of this type associated
+    /// with such an image  **must**  be signaled no later than a wait associated with
+    /// the replacing image would be signaled.When the presentation has completed, the presentId
     /// associated with the
-    ///related `pSwapchains` entry will be increased in value so that it is at
-    ///least equal to the value provided in the [`PresentIdKHR`] structure.There is no requirement
+    /// related `pSwapchains` entry will be increased in value so that it is at
+    /// least equal to the value provided in the [`PresentIdKHR`] structure.There is no requirement
     /// for any precise timing relationship between the
-    ///presentation of the image to the user and the update of the presentId value,
-    ///but implementations  **should**  make this as close as possible to the
-    ///presentation of the first pixel in the new image to the user.The call to
+    /// presentation of the image to the user and the update of the presentId value,
+    /// but implementations  **should**  make this as close as possible to the
+    /// presentation of the first pixel in the new image to the user.The call to
     /// [`wait_for_present_khr`] will block until either the presentId
-    ///associated with [`swapchain`] is greater than or equal to [`present_id`],
-    ///or [`timeout`] nanoseconds passes.
-    ///When the swapchain becomes OUT_OF_DATE, the call will either return
-    ///`VK_SUCCESS` (if the image was delivered to the presentation engine and
-    ///may have been presented to the user) or will return early with status
-    ///`VK_ERROR_OUT_OF_DATE_KHR` (if the image was not presented to the user).As an exception to
+    /// associated with [`swapchain`] is greater than or equal to [`present_id`],
+    /// or [`timeout`] nanoseconds passes.
+    /// When the swapchain becomes OUT_OF_DATE, the call will either return
+    /// `VK_SUCCESS` (if the image was delivered to the presentation engine and
+    /// may have been presented to the user) or will return early with status
+    /// `VK_ERROR_OUT_OF_DATE_KHR` (if the image was not presented to the user).As an exception to
     /// the normal rules for objects which are externally
-    ///synchronized, the [`swapchain`] passed to [`wait_for_present_khr`] **may**
-    ///be simultaneously used by other threads in calls to functions other than
-    ///[`destroy_swapchain_khr`].
-    ///Access to the swapchain data associated with this extension  **must**  be atomic
-    ///within the implementation.
-    ///## Valid Usage
+    /// synchronized, the [`swapchain`] passed to [`wait_for_present_khr`] **may**
+    /// be simultaneously used by other threads in calls to functions other than
+    /// [`destroy_swapchain_khr`].
+    /// Access to the swapchain data associated with this extension  **must**  be atomic
+    /// within the implementation.
+    /// ## Valid Usage
     /// - [`swapchain`] **must**  not be in the retired state
     /// - The [`presentWait`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentWait)
     ///   feature  **must**  be enabled
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
     /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
     ///   from the same [`Instance`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`swapchain`] **must**  be externally synchronized
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`  - `VK_TIMEOUT`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_present_wait`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkWaitForPresentKHR")]
     #[track_caller]

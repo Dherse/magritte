@@ -16,10 +16,7 @@ pub unsafe trait Chain<'lt, T>: Sized {
 }
 
 #[inline]
-pub unsafe fn insert_ptr_in_chain<'lt>(
-    mut host: *mut BaseOutStructure<'lt>,
-    mut addition: *mut BaseOutStructure<'lt>,
-) {
+pub unsafe fn insert_ptr_in_chain<'lt>(mut host: *mut BaseOutStructure<'lt>, mut addition: *mut BaseOutStructure<'lt>) {
     let old = (*host).next;
     (*addition).next = old;
     (*host).next = addition;

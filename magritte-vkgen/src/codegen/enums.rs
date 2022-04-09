@@ -50,11 +50,7 @@ impl<'a> Bit<'a> {
     }
 
     /// Generate the matching code for a debug of this variant/bit
-    pub fn generate_debug_variant(
-        &self,
-        source: &Source<'a>,
-        parent: &Origin<'a>,
-    ) -> TokenStream {
+    pub fn generate_debug_variant(&self, source: &Source<'a>, parent: &Origin<'a>) -> TokenStream {
         let name = self.as_ident();
         let name_as_str = self.name();
 
