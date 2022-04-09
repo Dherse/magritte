@@ -87,7 +87,7 @@ impl Depth {
         // - The usage (as a depth buffer attachment)
         // - The sharing mode (exclusive because only one queue will access this image at a time)
         let image_create_info = ImageCreateInfo::default()
-            .set_image_type(ImageType::_2_D)
+            .set_image_type(ImageType::_2D)
             .set_format(Format::D16_UNORM)
             .set_extent(Extent3D {
                 width: surface.extent().width(),
@@ -196,7 +196,7 @@ impl Depth {
             )
             .set_image(image.as_raw())
             .set_format(image_create_info.format())
-            .set_view_type(ImageViewType::_2_D);
+            .set_view_type(ImageViewType::_2D);
 
         let (image_view, _) = unsafe { image.create_image_view(&image_view_info, None)? };
 

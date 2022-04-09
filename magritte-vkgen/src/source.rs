@@ -23,8 +23,8 @@ use std::{
     ops::{Deref, Not},
 };
 
-use convert_case::{Case, Casing};
 use smallvec::SmallVec;
+use heck::ToSnakeCase;
 use tracing::{debug, error, info, span, warn, Level};
 use vk_parse::{
     CommandDefinition, Commands, CommentedChildren, EnumSpec, Enums, EnumsChild, ExtensionChild, Feature,
@@ -1402,7 +1402,7 @@ impl<'a> Source<'a> {
             .split(',')
             .map(|elements| Ty::new(elements, ""))
             .map(|(original_name, ty)| {
-                let name = original_name.to_case(Case::Snake);
+                let name = original_name.to_snake_case();
                 info!(?original_name, ?ty, ?name, "processed argument");
 
                 FunctionPointerArgument::new(original_name, name, ty)

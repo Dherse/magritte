@@ -1,0 +1,12 @@
+[package]
+name = "magritte-shaders"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Shader compiler
+shaderc = "0.7.4"
+
+# Code generation
+proc-macro2 = "1.0.37"
+quote = "1.0.17"

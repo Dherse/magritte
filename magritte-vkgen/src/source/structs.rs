@@ -1,6 +1,6 @@
 use std::{borrow::Cow, hint::unreachable_unchecked};
 
-use convert_case::{Case, Casing};
+use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span};
 use tracing::{info, span, Level};
 use vk_parse::{TypeMemberDefinition, TypeMemberMarkup};
@@ -261,7 +261,7 @@ impl<'a> Field<'a> {
         .simplify();
 
         let original_name = name.expect("missing name");
-        let mut name = original_name.to_case(Case::Snake);
+        let mut name = original_name.to_snake_case();
 
         let span = span!(Level::INFO, "field", ?original_name, ?name, ?ty);
         let _guard = span.enter();

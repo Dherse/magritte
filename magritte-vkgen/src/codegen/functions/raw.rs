@@ -1,5 +1,6 @@
-use convert_case::{Case, Casing};
+
 use proc_macro2::{Ident, Span, TokenStream};
+use heck::ToUpperCamelCase;
 
 use crate::{
     doc::Documentation,
@@ -10,7 +11,7 @@ use crate::{
 impl<'a> Function<'a> {
     /// Turns this function into an equivalent function pointer name
     pub fn as_fn_pointer_name(&self) -> String {
-        format!("FN{}", self.name().to_case(Case::UpperCamel))
+        format!("FN{}", self.name().to_upper_camel_case())
     }
 
     /// Turns this function into an equivalent function pointer identifier

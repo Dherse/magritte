@@ -75,57 +75,57 @@ pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VkBool32           sparseImageFloat32AtomicAdd;
 ///} VkPhysicalDeviceShaderAtomicFloatFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
-/// - [`shader_buffer_float_32_atomics`] indicates whether shaders  **can**  perform 32-bit
+/// - [`shader_buffer_float32_atomics`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point load, store and exchange atomic operations on storage buffers.
-/// - [`shader_buffer_float_32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
+/// - [`shader_buffer_float32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point add atomic operations on storage buffers.
-/// - [`shader_buffer_float_64_atomics`] indicates whether shaders  **can**  perform 64-bit
+/// - [`shader_buffer_float64_atomics`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point load, store and exchange atomic operations on storage buffers.
-/// - [`shader_buffer_float_64_atomic_add`] indicates whether shaders  **can**  perform 64-bit
+/// - [`shader_buffer_float64_atomic_add`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point add atomic operations on storage buffers.
-/// - [`shader_shared_float_32_atomics`] indicates whether shaders  **can**  perform 32-bit
+/// - [`shader_shared_float32_atomics`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point load, store and exchange atomic operations on shared memory.
-/// - [`shader_shared_float_32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
+/// - [`shader_shared_float32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point add atomic operations on shared memory.
-/// - [`shader_shared_float_64_atomics`] indicates whether shaders  **can**  perform 64-bit
+/// - [`shader_shared_float64_atomics`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point load, store and exchange atomic operations on shared memory.
-/// - [`shader_shared_float_64_atomic_add`] indicates whether shaders  **can**  perform 64-bit
+/// - [`shader_shared_float64_atomic_add`] indicates whether shaders  **can**  perform 64-bit
 ///   floating-point add atomic operations on shared memory.
-/// - [`shader_image_float_32_atomics`] indicates whether shaders  **can**  perform 32-bit
+/// - [`shader_image_float32_atomics`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point load, store and exchange atomic image operations.
-/// - [`shader_image_float_32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
+/// - [`shader_image_float32_atomic_add`] indicates whether shaders  **can**  perform 32-bit
 ///   floating-point add atomic image operations.
-/// - [`sparse_image_float_32_atomics`] indicates whether 32-bit floating-point load, store and
+/// - [`sparse_image_float32_atomics`] indicates whether 32-bit floating-point load, store and
 ///   exchange atomic operations  **can**  be used on sparse images.
-/// - [`sparse_image_float_32_atomic_add`] indicates whether 32-bit floating-point add atomic
+/// - [`sparse_image_float32_atomic_add`] indicates whether 32-bit floating-point add atomic
 ///   operations  **can**  be used on sparse images.
-/// If the [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_shader_atomic_float`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderAtomicFloatFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -137,48 +137,48 @@ pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *mut BaseOutStructure<'lt>,
-    ///[`shader_buffer_float_32_atomics`]
+    ///[`shader_buffer_float32_atomics`]
     ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic operations on storage buffers.
-    pub shader_buffer_float_32_atomics: Bool32,
-    ///[`shader_buffer_float_32_atomic_add`] indicates whether shaders  **can**
+    pub shader_buffer_float32_atomics: Bool32,
+    ///[`shader_buffer_float32_atomic_add`] indicates whether shaders  **can**
     ///perform 32-bit floating-point add atomic operations on storage buffers.
-    pub shader_buffer_float_32_atomic_add: Bool32,
-    ///[`shader_buffer_float_64_atomics`]
+    pub shader_buffer_float32_atomic_add: Bool32,
+    ///[`shader_buffer_float64_atomics`]
     ///indicates whether shaders  **can**  perform 64-bit floating-point load, store
     ///and exchange atomic operations on storage buffers.
-    pub shader_buffer_float_64_atomics: Bool32,
-    ///[`shader_buffer_float_64_atomic_add`] indicates whether shaders  **can**
+    pub shader_buffer_float64_atomics: Bool32,
+    ///[`shader_buffer_float64_atomic_add`] indicates whether shaders  **can**
     ///perform 64-bit floating-point add atomic operations on storage buffers.
-    pub shader_buffer_float_64_atomic_add: Bool32,
-    ///[`shader_shared_float_32_atomics`]
+    pub shader_buffer_float64_atomic_add: Bool32,
+    ///[`shader_shared_float32_atomics`]
     ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic operations on shared memory.
-    pub shader_shared_float_32_atomics: Bool32,
-    ///[`shader_shared_float_32_atomic_add`] indicates whether shaders  **can**
+    pub shader_shared_float32_atomics: Bool32,
+    ///[`shader_shared_float32_atomic_add`] indicates whether shaders  **can**
     ///perform 32-bit floating-point add atomic operations on shared memory.
-    pub shader_shared_float_32_atomic_add: Bool32,
-    ///[`shader_shared_float_64_atomics`]
+    pub shader_shared_float32_atomic_add: Bool32,
+    ///[`shader_shared_float64_atomics`]
     ///indicates whether shaders  **can**  perform 64-bit floating-point load, store
     ///and exchange atomic operations on shared memory.
-    pub shader_shared_float_64_atomics: Bool32,
-    ///[`shader_shared_float_64_atomic_add`] indicates whether shaders  **can**
+    pub shader_shared_float64_atomics: Bool32,
+    ///[`shader_shared_float64_atomic_add`] indicates whether shaders  **can**
     ///perform 64-bit floating-point add atomic operations on shared memory.
-    pub shader_shared_float_64_atomic_add: Bool32,
-    ///[`shader_image_float_32_atomics`]
+    pub shader_shared_float64_atomic_add: Bool32,
+    ///[`shader_image_float32_atomics`]
     ///indicates whether shaders  **can**  perform 32-bit floating-point load, store
     ///and exchange atomic image operations.
-    pub shader_image_float_32_atomics: Bool32,
-    ///[`shader_image_float_32_atomic_add`] indicates whether shaders  **can**  perform
+    pub shader_image_float32_atomics: Bool32,
+    ///[`shader_image_float32_atomic_add`] indicates whether shaders  **can**  perform
     ///32-bit floating-point add atomic image operations.
-    pub shader_image_float_32_atomic_add: Bool32,
-    ///[`sparse_image_float_32_atomics`]
+    pub shader_image_float32_atomic_add: Bool32,
+    ///[`sparse_image_float32_atomics`]
     ///indicates whether 32-bit floating-point load, store and exchange atomic
     ///operations  **can**  be used on sparse images.
-    pub sparse_image_float_32_atomics: Bool32,
-    ///[`sparse_image_float_32_atomic_add`] indicates whether 32-bit
+    pub sparse_image_float32_atomics: Bool32,
+    ///[`sparse_image_float32_atomic_add`] indicates whether 32-bit
     ///floating-point add atomic operations  **can**  be used on sparse images.
-    pub sparse_image_float_32_atomic_add: Bool32,
+    pub sparse_image_float32_atomic_add: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -186,18 +186,18 @@ impl<'lt> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             _lifetime: PhantomData,
             s_type: StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
-            shader_buffer_float_32_atomics: 0,
-            shader_buffer_float_32_atomic_add: 0,
-            shader_buffer_float_64_atomics: 0,
-            shader_buffer_float_64_atomic_add: 0,
-            shader_shared_float_32_atomics: 0,
-            shader_shared_float_32_atomic_add: 0,
-            shader_shared_float_64_atomics: 0,
-            shader_shared_float_64_atomic_add: 0,
-            shader_image_float_32_atomics: 0,
-            shader_image_float_32_atomic_add: 0,
-            sparse_image_float_32_atomics: 0,
-            sparse_image_float_32_atomic_add: 0,
+            shader_buffer_float32_atomics: 0,
+            shader_buffer_float32_atomic_add: 0,
+            shader_buffer_float64_atomics: 0,
+            shader_buffer_float64_atomic_add: 0,
+            shader_shared_float32_atomics: 0,
+            shader_shared_float32_atomic_add: 0,
+            shader_shared_float64_atomics: 0,
+            shader_shared_float64_atomic_add: 0,
+            shader_image_float32_atomics: 0,
+            shader_image_float32_atomic_add: 0,
+            sparse_image_float32_atomics: 0,
+            sparse_image_float32_atomic_add: 0,
         }
     }
 }
@@ -206,117 +206,117 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::shader_buffer_float_32_atomics`]
-    pub fn shader_buffer_float_32_atomics_raw(&self) -> Bool32 {
-        self.shader_buffer_float_32_atomics
+    ///Gets the raw value of [`Self::shader_buffer_float32_atomics`]
+    pub fn shader_buffer_float32_atomics_raw(&self) -> Bool32 {
+        self.shader_buffer_float32_atomics
     }
-    ///Gets the raw value of [`Self::shader_buffer_float_32_atomic_add`]
-    pub fn shader_buffer_float_32_atomic_add_raw(&self) -> Bool32 {
-        self.shader_buffer_float_32_atomic_add
+    ///Gets the raw value of [`Self::shader_buffer_float32_atomic_add`]
+    pub fn shader_buffer_float32_atomic_add_raw(&self) -> Bool32 {
+        self.shader_buffer_float32_atomic_add
     }
-    ///Gets the raw value of [`Self::shader_buffer_float_64_atomics`]
-    pub fn shader_buffer_float_64_atomics_raw(&self) -> Bool32 {
-        self.shader_buffer_float_64_atomics
+    ///Gets the raw value of [`Self::shader_buffer_float64_atomics`]
+    pub fn shader_buffer_float64_atomics_raw(&self) -> Bool32 {
+        self.shader_buffer_float64_atomics
     }
-    ///Gets the raw value of [`Self::shader_buffer_float_64_atomic_add`]
-    pub fn shader_buffer_float_64_atomic_add_raw(&self) -> Bool32 {
-        self.shader_buffer_float_64_atomic_add
+    ///Gets the raw value of [`Self::shader_buffer_float64_atomic_add`]
+    pub fn shader_buffer_float64_atomic_add_raw(&self) -> Bool32 {
+        self.shader_buffer_float64_atomic_add
     }
-    ///Gets the raw value of [`Self::shader_shared_float_32_atomics`]
-    pub fn shader_shared_float_32_atomics_raw(&self) -> Bool32 {
-        self.shader_shared_float_32_atomics
+    ///Gets the raw value of [`Self::shader_shared_float32_atomics`]
+    pub fn shader_shared_float32_atomics_raw(&self) -> Bool32 {
+        self.shader_shared_float32_atomics
     }
-    ///Gets the raw value of [`Self::shader_shared_float_32_atomic_add`]
-    pub fn shader_shared_float_32_atomic_add_raw(&self) -> Bool32 {
-        self.shader_shared_float_32_atomic_add
+    ///Gets the raw value of [`Self::shader_shared_float32_atomic_add`]
+    pub fn shader_shared_float32_atomic_add_raw(&self) -> Bool32 {
+        self.shader_shared_float32_atomic_add
     }
-    ///Gets the raw value of [`Self::shader_shared_float_64_atomics`]
-    pub fn shader_shared_float_64_atomics_raw(&self) -> Bool32 {
-        self.shader_shared_float_64_atomics
+    ///Gets the raw value of [`Self::shader_shared_float64_atomics`]
+    pub fn shader_shared_float64_atomics_raw(&self) -> Bool32 {
+        self.shader_shared_float64_atomics
     }
-    ///Gets the raw value of [`Self::shader_shared_float_64_atomic_add`]
-    pub fn shader_shared_float_64_atomic_add_raw(&self) -> Bool32 {
-        self.shader_shared_float_64_atomic_add
+    ///Gets the raw value of [`Self::shader_shared_float64_atomic_add`]
+    pub fn shader_shared_float64_atomic_add_raw(&self) -> Bool32 {
+        self.shader_shared_float64_atomic_add
     }
-    ///Gets the raw value of [`Self::shader_image_float_32_atomics`]
-    pub fn shader_image_float_32_atomics_raw(&self) -> Bool32 {
-        self.shader_image_float_32_atomics
+    ///Gets the raw value of [`Self::shader_image_float32_atomics`]
+    pub fn shader_image_float32_atomics_raw(&self) -> Bool32 {
+        self.shader_image_float32_atomics
     }
-    ///Gets the raw value of [`Self::shader_image_float_32_atomic_add`]
-    pub fn shader_image_float_32_atomic_add_raw(&self) -> Bool32 {
-        self.shader_image_float_32_atomic_add
+    ///Gets the raw value of [`Self::shader_image_float32_atomic_add`]
+    pub fn shader_image_float32_atomic_add_raw(&self) -> Bool32 {
+        self.shader_image_float32_atomic_add
     }
-    ///Gets the raw value of [`Self::sparse_image_float_32_atomics`]
-    pub fn sparse_image_float_32_atomics_raw(&self) -> Bool32 {
-        self.sparse_image_float_32_atomics
+    ///Gets the raw value of [`Self::sparse_image_float32_atomics`]
+    pub fn sparse_image_float32_atomics_raw(&self) -> Bool32 {
+        self.sparse_image_float32_atomics
     }
-    ///Gets the raw value of [`Self::sparse_image_float_32_atomic_add`]
-    pub fn sparse_image_float_32_atomic_add_raw(&self) -> Bool32 {
-        self.sparse_image_float_32_atomic_add
+    ///Gets the raw value of [`Self::sparse_image_float32_atomic_add`]
+    pub fn sparse_image_float32_atomic_add_raw(&self) -> Bool32 {
+        self.sparse_image_float32_atomic_add
     }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_buffer_float_32_atomics`]
-    pub fn set_shader_buffer_float_32_atomics_raw(mut self, value: Bool32) -> Self {
-        self.shader_buffer_float_32_atomics = value;
+    ///Sets the raw value of [`Self::shader_buffer_float32_atomics`]
+    pub fn set_shader_buffer_float32_atomics_raw(mut self, value: Bool32) -> Self {
+        self.shader_buffer_float32_atomics = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_buffer_float_32_atomic_add`]
-    pub fn set_shader_buffer_float_32_atomic_add_raw(mut self, value: Bool32) -> Self {
-        self.shader_buffer_float_32_atomic_add = value;
+    ///Sets the raw value of [`Self::shader_buffer_float32_atomic_add`]
+    pub fn set_shader_buffer_float32_atomic_add_raw(mut self, value: Bool32) -> Self {
+        self.shader_buffer_float32_atomic_add = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_buffer_float_64_atomics`]
-    pub fn set_shader_buffer_float_64_atomics_raw(mut self, value: Bool32) -> Self {
-        self.shader_buffer_float_64_atomics = value;
+    ///Sets the raw value of [`Self::shader_buffer_float64_atomics`]
+    pub fn set_shader_buffer_float64_atomics_raw(mut self, value: Bool32) -> Self {
+        self.shader_buffer_float64_atomics = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_buffer_float_64_atomic_add`]
-    pub fn set_shader_buffer_float_64_atomic_add_raw(mut self, value: Bool32) -> Self {
-        self.shader_buffer_float_64_atomic_add = value;
+    ///Sets the raw value of [`Self::shader_buffer_float64_atomic_add`]
+    pub fn set_shader_buffer_float64_atomic_add_raw(mut self, value: Bool32) -> Self {
+        self.shader_buffer_float64_atomic_add = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_shared_float_32_atomics`]
-    pub fn set_shader_shared_float_32_atomics_raw(mut self, value: Bool32) -> Self {
-        self.shader_shared_float_32_atomics = value;
+    ///Sets the raw value of [`Self::shader_shared_float32_atomics`]
+    pub fn set_shader_shared_float32_atomics_raw(mut self, value: Bool32) -> Self {
+        self.shader_shared_float32_atomics = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_shared_float_32_atomic_add`]
-    pub fn set_shader_shared_float_32_atomic_add_raw(mut self, value: Bool32) -> Self {
-        self.shader_shared_float_32_atomic_add = value;
+    ///Sets the raw value of [`Self::shader_shared_float32_atomic_add`]
+    pub fn set_shader_shared_float32_atomic_add_raw(mut self, value: Bool32) -> Self {
+        self.shader_shared_float32_atomic_add = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_shared_float_64_atomics`]
-    pub fn set_shader_shared_float_64_atomics_raw(mut self, value: Bool32) -> Self {
-        self.shader_shared_float_64_atomics = value;
+    ///Sets the raw value of [`Self::shader_shared_float64_atomics`]
+    pub fn set_shader_shared_float64_atomics_raw(mut self, value: Bool32) -> Self {
+        self.shader_shared_float64_atomics = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_shared_float_64_atomic_add`]
-    pub fn set_shader_shared_float_64_atomic_add_raw(mut self, value: Bool32) -> Self {
-        self.shader_shared_float_64_atomic_add = value;
+    ///Sets the raw value of [`Self::shader_shared_float64_atomic_add`]
+    pub fn set_shader_shared_float64_atomic_add_raw(mut self, value: Bool32) -> Self {
+        self.shader_shared_float64_atomic_add = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_image_float_32_atomics`]
-    pub fn set_shader_image_float_32_atomics_raw(mut self, value: Bool32) -> Self {
-        self.shader_image_float_32_atomics = value;
+    ///Sets the raw value of [`Self::shader_image_float32_atomics`]
+    pub fn set_shader_image_float32_atomics_raw(mut self, value: Bool32) -> Self {
+        self.shader_image_float32_atomics = value;
         self
     }
-    ///Sets the raw value of [`Self::shader_image_float_32_atomic_add`]
-    pub fn set_shader_image_float_32_atomic_add_raw(mut self, value: Bool32) -> Self {
-        self.shader_image_float_32_atomic_add = value;
+    ///Sets the raw value of [`Self::shader_image_float32_atomic_add`]
+    pub fn set_shader_image_float32_atomic_add_raw(mut self, value: Bool32) -> Self {
+        self.shader_image_float32_atomic_add = value;
         self
     }
-    ///Sets the raw value of [`Self::sparse_image_float_32_atomics`]
-    pub fn set_sparse_image_float_32_atomics_raw(mut self, value: Bool32) -> Self {
-        self.sparse_image_float_32_atomics = value;
+    ///Sets the raw value of [`Self::sparse_image_float32_atomics`]
+    pub fn set_sparse_image_float32_atomics_raw(mut self, value: Bool32) -> Self {
+        self.sparse_image_float32_atomics = value;
         self
     }
-    ///Sets the raw value of [`Self::sparse_image_float_32_atomic_add`]
-    pub fn set_sparse_image_float_32_atomic_add_raw(mut self, value: Bool32) -> Self {
-        self.sparse_image_float_32_atomic_add = value;
+    ///Sets the raw value of [`Self::sparse_image_float32_atomic_add`]
+    pub fn set_sparse_image_float32_atomic_add_raw(mut self, value: Bool32) -> Self {
+        self.sparse_image_float32_atomic_add = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -330,53 +330,53 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
         &*self.p_next
     }
-    ///Gets the value of [`Self::shader_buffer_float_32_atomics`]
-    pub fn shader_buffer_float_32_atomics(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_buffer_float_32_atomics as u8) }
+    ///Gets the value of [`Self::shader_buffer_float32_atomics`]
+    pub fn shader_buffer_float32_atomics(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_buffer_float32_atomics as u8) }
     }
-    ///Gets the value of [`Self::shader_buffer_float_32_atomic_add`]
-    pub fn shader_buffer_float_32_atomic_add(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_buffer_float_32_atomic_add as u8) }
+    ///Gets the value of [`Self::shader_buffer_float32_atomic_add`]
+    pub fn shader_buffer_float32_atomic_add(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_buffer_float32_atomic_add as u8) }
     }
-    ///Gets the value of [`Self::shader_buffer_float_64_atomics`]
-    pub fn shader_buffer_float_64_atomics(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_buffer_float_64_atomics as u8) }
+    ///Gets the value of [`Self::shader_buffer_float64_atomics`]
+    pub fn shader_buffer_float64_atomics(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_buffer_float64_atomics as u8) }
     }
-    ///Gets the value of [`Self::shader_buffer_float_64_atomic_add`]
-    pub fn shader_buffer_float_64_atomic_add(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_buffer_float_64_atomic_add as u8) }
+    ///Gets the value of [`Self::shader_buffer_float64_atomic_add`]
+    pub fn shader_buffer_float64_atomic_add(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_buffer_float64_atomic_add as u8) }
     }
-    ///Gets the value of [`Self::shader_shared_float_32_atomics`]
-    pub fn shader_shared_float_32_atomics(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_shared_float_32_atomics as u8) }
+    ///Gets the value of [`Self::shader_shared_float32_atomics`]
+    pub fn shader_shared_float32_atomics(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_shared_float32_atomics as u8) }
     }
-    ///Gets the value of [`Self::shader_shared_float_32_atomic_add`]
-    pub fn shader_shared_float_32_atomic_add(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_shared_float_32_atomic_add as u8) }
+    ///Gets the value of [`Self::shader_shared_float32_atomic_add`]
+    pub fn shader_shared_float32_atomic_add(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_shared_float32_atomic_add as u8) }
     }
-    ///Gets the value of [`Self::shader_shared_float_64_atomics`]
-    pub fn shader_shared_float_64_atomics(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_shared_float_64_atomics as u8) }
+    ///Gets the value of [`Self::shader_shared_float64_atomics`]
+    pub fn shader_shared_float64_atomics(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_shared_float64_atomics as u8) }
     }
-    ///Gets the value of [`Self::shader_shared_float_64_atomic_add`]
-    pub fn shader_shared_float_64_atomic_add(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_shared_float_64_atomic_add as u8) }
+    ///Gets the value of [`Self::shader_shared_float64_atomic_add`]
+    pub fn shader_shared_float64_atomic_add(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_shared_float64_atomic_add as u8) }
     }
-    ///Gets the value of [`Self::shader_image_float_32_atomics`]
-    pub fn shader_image_float_32_atomics(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_image_float_32_atomics as u8) }
+    ///Gets the value of [`Self::shader_image_float32_atomics`]
+    pub fn shader_image_float32_atomics(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_image_float32_atomics as u8) }
     }
-    ///Gets the value of [`Self::shader_image_float_32_atomic_add`]
-    pub fn shader_image_float_32_atomic_add(&self) -> bool {
-        unsafe { std::mem::transmute(self.shader_image_float_32_atomic_add as u8) }
+    ///Gets the value of [`Self::shader_image_float32_atomic_add`]
+    pub fn shader_image_float32_atomic_add(&self) -> bool {
+        unsafe { std::mem::transmute(self.shader_image_float32_atomic_add as u8) }
     }
-    ///Gets the value of [`Self::sparse_image_float_32_atomics`]
-    pub fn sparse_image_float_32_atomics(&self) -> bool {
-        unsafe { std::mem::transmute(self.sparse_image_float_32_atomics as u8) }
+    ///Gets the value of [`Self::sparse_image_float32_atomics`]
+    pub fn sparse_image_float32_atomics(&self) -> bool {
+        unsafe { std::mem::transmute(self.sparse_image_float32_atomics as u8) }
     }
-    ///Gets the value of [`Self::sparse_image_float_32_atomic_add`]
-    pub fn sparse_image_float_32_atomic_add(&self) -> bool {
-        unsafe { std::mem::transmute(self.sparse_image_float_32_atomic_add as u8) }
+    ///Gets the value of [`Self::sparse_image_float32_atomic_add`]
+    pub fn sparse_image_float32_atomic_add(&self) -> bool {
+        unsafe { std::mem::transmute(self.sparse_image_float32_atomic_add as u8) }
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -389,17 +389,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
         &mut *self.p_next
     }
-    ///Gets a mutable reference to the value of [`Self::shader_buffer_float_32_atomics`]
-    pub fn shader_buffer_float_32_atomics_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_buffer_float32_atomics`]
+    pub fn shader_buffer_float32_atomics_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_buffer_float_32_atomics as *mut Bool32)
+                &mut *(self.shader_buffer_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_buffer_float_32_atomics as *mut Bool32)
+                &mut *(self.shader_buffer_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -407,17 +407,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_buffer_float_32_atomic_add`]
-    pub fn shader_buffer_float_32_atomic_add_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_buffer_float32_atomic_add`]
+    pub fn shader_buffer_float32_atomic_add_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_buffer_float_32_atomic_add as *mut Bool32)
+                &mut *(self.shader_buffer_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_buffer_float_32_atomic_add as *mut Bool32)
+                &mut *(self.shader_buffer_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -425,17 +425,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_buffer_float_64_atomics`]
-    pub fn shader_buffer_float_64_atomics_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_buffer_float64_atomics`]
+    pub fn shader_buffer_float64_atomics_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_buffer_float_64_atomics as *mut Bool32)
+                &mut *(self.shader_buffer_float64_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_buffer_float_64_atomics as *mut Bool32)
+                &mut *(self.shader_buffer_float64_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -443,17 +443,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_buffer_float_64_atomic_add`]
-    pub fn shader_buffer_float_64_atomic_add_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_buffer_float64_atomic_add`]
+    pub fn shader_buffer_float64_atomic_add_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_buffer_float_64_atomic_add as *mut Bool32)
+                &mut *(self.shader_buffer_float64_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_buffer_float_64_atomic_add as *mut Bool32)
+                &mut *(self.shader_buffer_float64_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -461,17 +461,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_shared_float_32_atomics`]
-    pub fn shader_shared_float_32_atomics_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_shared_float32_atomics`]
+    pub fn shader_shared_float32_atomics_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_shared_float_32_atomics as *mut Bool32)
+                &mut *(self.shader_shared_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_shared_float_32_atomics as *mut Bool32)
+                &mut *(self.shader_shared_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -479,17 +479,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_shared_float_32_atomic_add`]
-    pub fn shader_shared_float_32_atomic_add_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_shared_float32_atomic_add`]
+    pub fn shader_shared_float32_atomic_add_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_shared_float_32_atomic_add as *mut Bool32)
+                &mut *(self.shader_shared_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_shared_float_32_atomic_add as *mut Bool32)
+                &mut *(self.shader_shared_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -497,17 +497,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_shared_float_64_atomics`]
-    pub fn shader_shared_float_64_atomics_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_shared_float64_atomics`]
+    pub fn shader_shared_float64_atomics_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_shared_float_64_atomics as *mut Bool32)
+                &mut *(self.shader_shared_float64_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_shared_float_64_atomics as *mut Bool32)
+                &mut *(self.shader_shared_float64_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -515,17 +515,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_shared_float_64_atomic_add`]
-    pub fn shader_shared_float_64_atomic_add_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_shared_float64_atomic_add`]
+    pub fn shader_shared_float64_atomic_add_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_shared_float_64_atomic_add as *mut Bool32)
+                &mut *(self.shader_shared_float64_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_shared_float_64_atomic_add as *mut Bool32)
+                &mut *(self.shader_shared_float64_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -533,17 +533,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_image_float_32_atomics`]
-    pub fn shader_image_float_32_atomics_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_image_float32_atomics`]
+    pub fn shader_image_float32_atomics_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_image_float_32_atomics as *mut Bool32)
+                &mut *(self.shader_image_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_image_float_32_atomics as *mut Bool32)
+                &mut *(self.shader_image_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -551,17 +551,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::shader_image_float_32_atomic_add`]
-    pub fn shader_image_float_32_atomic_add_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::shader_image_float32_atomic_add`]
+    pub fn shader_image_float32_atomic_add_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.shader_image_float_32_atomic_add as *mut Bool32)
+                &mut *(self.shader_image_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.shader_image_float_32_atomic_add as *mut Bool32)
+                &mut *(self.shader_image_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -569,17 +569,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::sparse_image_float_32_atomics`]
-    pub fn sparse_image_float_32_atomics_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::sparse_image_float32_atomics`]
+    pub fn sparse_image_float32_atomics_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.sparse_image_float_32_atomics as *mut Bool32)
+                &mut *(self.sparse_image_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.sparse_image_float_32_atomics as *mut Bool32)
+                &mut *(self.sparse_image_float32_atomics as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -587,17 +587,17 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::sparse_image_float_32_atomic_add`]
-    pub fn sparse_image_float_32_atomic_add_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::sparse_image_float32_atomic_add`]
+    pub fn sparse_image_float32_atomic_add_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.sparse_image_float_32_atomic_add as *mut Bool32)
+                &mut *(self.sparse_image_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.sparse_image_float_32_atomic_add as *mut Bool32)
+                &mut *(self.sparse_image_float32_atomic_add as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -615,64 +615,64 @@ impl<'lt> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the value of [`Self::shader_buffer_float_32_atomics`]
-    pub fn set_shader_buffer_float_32_atomics(mut self, value: bool) -> Self {
-        self.shader_buffer_float_32_atomics = value as u8 as u32;
+    ///Sets the value of [`Self::shader_buffer_float32_atomics`]
+    pub fn set_shader_buffer_float32_atomics(mut self, value: bool) -> Self {
+        self.shader_buffer_float32_atomics = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_buffer_float_32_atomic_add`]
-    pub fn set_shader_buffer_float_32_atomic_add(mut self, value: bool) -> Self {
-        self.shader_buffer_float_32_atomic_add = value as u8 as u32;
+    ///Sets the value of [`Self::shader_buffer_float32_atomic_add`]
+    pub fn set_shader_buffer_float32_atomic_add(mut self, value: bool) -> Self {
+        self.shader_buffer_float32_atomic_add = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_buffer_float_64_atomics`]
-    pub fn set_shader_buffer_float_64_atomics(mut self, value: bool) -> Self {
-        self.shader_buffer_float_64_atomics = value as u8 as u32;
+    ///Sets the value of [`Self::shader_buffer_float64_atomics`]
+    pub fn set_shader_buffer_float64_atomics(mut self, value: bool) -> Self {
+        self.shader_buffer_float64_atomics = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_buffer_float_64_atomic_add`]
-    pub fn set_shader_buffer_float_64_atomic_add(mut self, value: bool) -> Self {
-        self.shader_buffer_float_64_atomic_add = value as u8 as u32;
+    ///Sets the value of [`Self::shader_buffer_float64_atomic_add`]
+    pub fn set_shader_buffer_float64_atomic_add(mut self, value: bool) -> Self {
+        self.shader_buffer_float64_atomic_add = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_shared_float_32_atomics`]
-    pub fn set_shader_shared_float_32_atomics(mut self, value: bool) -> Self {
-        self.shader_shared_float_32_atomics = value as u8 as u32;
+    ///Sets the value of [`Self::shader_shared_float32_atomics`]
+    pub fn set_shader_shared_float32_atomics(mut self, value: bool) -> Self {
+        self.shader_shared_float32_atomics = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_shared_float_32_atomic_add`]
-    pub fn set_shader_shared_float_32_atomic_add(mut self, value: bool) -> Self {
-        self.shader_shared_float_32_atomic_add = value as u8 as u32;
+    ///Sets the value of [`Self::shader_shared_float32_atomic_add`]
+    pub fn set_shader_shared_float32_atomic_add(mut self, value: bool) -> Self {
+        self.shader_shared_float32_atomic_add = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_shared_float_64_atomics`]
-    pub fn set_shader_shared_float_64_atomics(mut self, value: bool) -> Self {
-        self.shader_shared_float_64_atomics = value as u8 as u32;
+    ///Sets the value of [`Self::shader_shared_float64_atomics`]
+    pub fn set_shader_shared_float64_atomics(mut self, value: bool) -> Self {
+        self.shader_shared_float64_atomics = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_shared_float_64_atomic_add`]
-    pub fn set_shader_shared_float_64_atomic_add(mut self, value: bool) -> Self {
-        self.shader_shared_float_64_atomic_add = value as u8 as u32;
+    ///Sets the value of [`Self::shader_shared_float64_atomic_add`]
+    pub fn set_shader_shared_float64_atomic_add(mut self, value: bool) -> Self {
+        self.shader_shared_float64_atomic_add = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_image_float_32_atomics`]
-    pub fn set_shader_image_float_32_atomics(mut self, value: bool) -> Self {
-        self.shader_image_float_32_atomics = value as u8 as u32;
+    ///Sets the value of [`Self::shader_image_float32_atomics`]
+    pub fn set_shader_image_float32_atomics(mut self, value: bool) -> Self {
+        self.shader_image_float32_atomics = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::shader_image_float_32_atomic_add`]
-    pub fn set_shader_image_float_32_atomic_add(mut self, value: bool) -> Self {
-        self.shader_image_float_32_atomic_add = value as u8 as u32;
+    ///Sets the value of [`Self::shader_image_float32_atomic_add`]
+    pub fn set_shader_image_float32_atomic_add(mut self, value: bool) -> Self {
+        self.shader_image_float32_atomic_add = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::sparse_image_float_32_atomics`]
-    pub fn set_sparse_image_float_32_atomics(mut self, value: bool) -> Self {
-        self.sparse_image_float_32_atomics = value as u8 as u32;
+    ///Sets the value of [`Self::sparse_image_float32_atomics`]
+    pub fn set_sparse_image_float32_atomics(mut self, value: bool) -> Self {
+        self.sparse_image_float32_atomics = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::sparse_image_float_32_atomic_add`]
-    pub fn set_sparse_image_float_32_atomic_add(mut self, value: bool) -> Self {
-        self.sparse_image_float_32_atomic_add = value as u8 as u32;
+    ///Sets the value of [`Self::sparse_image_float32_atomic_add`]
+    pub fn set_sparse_image_float32_atomic_add(mut self, value: bool) -> Self {
+        self.sparse_image_float32_atomic_add = value as u8 as u32;
         self
     }
 }

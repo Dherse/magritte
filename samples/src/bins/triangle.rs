@@ -104,7 +104,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
                 {
                     let clear_values = [
                         ClearValue {
-                            color: ClearColorValue { float_32: [0.0; 4] },
+                            color: ClearColorValue { float32: [0.0; 4] },
                         },
                         ClearValue {
                             depth_stencil: ClearDepthStencilValue { depth: 1.0, stencil: 0 },

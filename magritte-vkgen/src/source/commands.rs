@@ -1,6 +1,6 @@
 mod sync;
 
-use convert_case::{Case, Casing};
+use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span};
 pub use sync::ExternallySynced;
 use tracing::{info, span, Level};
@@ -222,7 +222,7 @@ impl<'a> FunctionArgument<'a> {
         let span = span!(Level::INFO, "argument", ?original_name);
         let _guard = span.enter();
 
-        let mut name = original_name.to_case(Case::Snake);
+        let mut name = original_name.to_snake_case();
         if name == "type" {
             name = "type_".to_string();
         }

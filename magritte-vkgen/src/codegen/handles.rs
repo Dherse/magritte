@@ -1,6 +1,6 @@
 pub mod loader;
 
-use convert_case::{Case, Casing};
+use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token, ToTokens};
 use tracing::warn;
@@ -69,7 +69,7 @@ impl<'a> Handle<'a> {
         let ancestor_fn = |count, name| {
             let doc_str = format!("Gets the reference to the [`{}`]", name);
             let ident = Ident::new(name, Span::call_site());
-            let func_name = Ident::new(&name.to_case(Case::Snake), Span::call_site());
+            let func_name = Ident::new(&name.to_snake_case(), Span::call_site());
 
             let origin = source.handles.get_by_either(name).unwrap().origin();
 

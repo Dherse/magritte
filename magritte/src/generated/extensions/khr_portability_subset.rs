@@ -103,9 +103,9 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkBool32           vertexAttributeAccessBeyondStride;
 ///} VkPhysicalDevicePortabilitySubsetFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`constant_alpha_color_blend_factors`] indicates whether this implementation supports constant
@@ -118,9 +118,9 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///   [`Image`].
 /// - [`image_view_format_swizzle`] indicates whether this implementation supports remapping format
 ///   components using [`ImageViewCreateInfo::components`].
-/// - [`image_view_2_d_on_3_d_image`] indicates whether this implementation supports a [`Image`]
-///   being created with the `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT` flag set, permitting a 2D or
-///   2D array image view to be created on a 3D [`Image`].
+/// - [`image_view2_d_on3_d_image`] indicates whether this implementation supports a [`Image`] being
+///   created with the `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT` flag set, permitting a 2D or 2D
+///   array image view to be created on a 3D [`Image`].
 /// - [`multisample_array_image`] indicates whether this implementation supports a [`Image`] being
 ///   created as a 2D array with multiple samples per texel.
 /// - [`mutable_comparison_samplers`] indicates whether this implementation allows descriptors with comparison samplers to be [updated](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-updates).
@@ -142,27 +142,27 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - [`vertex_attribute_access_beyond_stride`] indicates whether this implementation supports
 ///   accessing a vertex input attribute beyond the stride of the corresponding vertex input
 ///   binding.
-/// If the [`PhysicalDevicePortabilitySubsetFeaturesKHR`] structure is included in the [`p_next`]
+///If the [`PhysicalDevicePortabilitySubsetFeaturesKHR`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePortabilitySubsetFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePortabilitySubsetFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_portability_subset`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetFeaturesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -191,11 +191,11 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     ///indicates whether this implementation supports remapping format
     ///components using [`ImageViewCreateInfo`]::`components`.
     pub image_view_format_swizzle: Bool32,
-    ///[`image_view_2_d_on_3_d_image`] indicates
+    ///[`image_view2_d_on3_d_image`] indicates
     ///whether this implementation supports a [`Image`] being created with
     ///the `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT` flag set, permitting a
     ///2D or 2D array image view to be created on a 3D [`Image`].
-    pub image_view_2_d_on_3_d_image: Bool32,
+    pub image_view2_d_on3_d_image: Bool32,
     ///[`multisample_array_image`] indicates
     ///whether this implementation supports a [`Image`] being created as a
     ///2D array with multiple samples per texel.
@@ -254,7 +254,7 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
             events: 0,
             image_view_format_reinterpretation: 0,
             image_view_format_swizzle: 0,
-            image_view_2_d_on_3_d_image: 0,
+            image_view2_d_on3_d_image: 0,
             multisample_array_image: 0,
             mutable_comparison_samplers: 0,
             point_polygons: 0,
@@ -289,9 +289,9 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     pub fn image_view_format_swizzle_raw(&self) -> Bool32 {
         self.image_view_format_swizzle
     }
-    ///Gets the raw value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn image_view_2_d_on_3_d_image_raw(&self) -> Bool32 {
-        self.image_view_2_d_on_3_d_image
+    ///Gets the raw value of [`Self::image_view2_d_on3_d_image`]
+    pub fn image_view2_d_on3_d_image_raw(&self) -> Bool32 {
+        self.image_view2_d_on3_d_image
     }
     ///Gets the raw value of [`Self::multisample_array_image`]
     pub fn multisample_array_image_raw(&self) -> Bool32 {
@@ -358,9 +358,9 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
         self.image_view_format_swizzle = value;
         self
     }
-    ///Sets the raw value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn set_image_view_2_d_on_3_d_image_raw(mut self, value: Bool32) -> Self {
-        self.image_view_2_d_on_3_d_image = value;
+    ///Sets the raw value of [`Self::image_view2_d_on3_d_image`]
+    pub fn set_image_view2_d_on3_d_image_raw(mut self, value: Bool32) -> Self {
+        self.image_view2_d_on3_d_image = value;
         self
     }
     ///Sets the raw value of [`Self::multisample_array_image`]
@@ -440,9 +440,9 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     pub fn image_view_format_swizzle(&self) -> bool {
         unsafe { std::mem::transmute(self.image_view_format_swizzle as u8) }
     }
-    ///Gets the value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn image_view_2_d_on_3_d_image(&self) -> bool {
-        unsafe { std::mem::transmute(self.image_view_2_d_on_3_d_image as u8) }
+    ///Gets the value of [`Self::image_view2_d_on3_d_image`]
+    pub fn image_view2_d_on3_d_image(&self) -> bool {
+        unsafe { std::mem::transmute(self.image_view2_d_on3_d_image as u8) }
     }
     ///Gets the value of [`Self::multisample_array_image`]
     pub fn multisample_array_image(&self) -> bool {
@@ -564,17 +564,17 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn image_view_2_d_on_3_d_image_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::image_view2_d_on3_d_image`]
+    pub fn image_view2_d_on3_d_image_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.image_view_2_d_on_3_d_image as *mut Bool32)
+                &mut *(self.image_view2_d_on3_d_image as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.image_view_2_d_on_3_d_image as *mut Bool32)
+                &mut *(self.image_view2_d_on3_d_image as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -793,9 +793,9 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
         self.image_view_format_swizzle = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::image_view_2_d_on_3_d_image`]
-    pub fn set_image_view_2_d_on_3_d_image(mut self, value: bool) -> Self {
-        self.image_view_2_d_on_3_d_image = value as u8 as u32;
+    ///Sets the value of [`Self::image_view2_d_on3_d_image`]
+    pub fn set_image_view2_d_on3_d_image(mut self, value: bool) -> Self {
+        self.image_view2_d_on3_d_image = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::multisample_array_image`]
@@ -861,31 +861,31 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 ///    uint32_t           minVertexInputBindingStrideAlignment;
 ///} VkPhysicalDevicePortabilitySubsetPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_vertex_input_binding_stride_alignment`] indicates the minimum alignment for vertex input
 ///   strides. [`VertexInputBindingDescription::stride`] **must**  be a multiple of, and at least as
 ///   large as, this value. The value  **must**  be a power of two.
-/// # Description
-/// If the [`PhysicalDevicePortabilitySubsetPropertiesKHR`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDevicePortabilitySubsetPropertiesKHR`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_portability_subset`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetPropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

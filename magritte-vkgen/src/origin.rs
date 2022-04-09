@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use convert_case::{Case, Casing};
+use heck::{ToSnakeCase, ToLowerCamelCase};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 use syn::PathSegment;
@@ -97,7 +97,7 @@ impl<'a> Origin<'a> {
             Origin::Unknown => panic!("Unknown origin cannot be turned into a module"),
             Origin::Core => quote! { crate::core },
             Origin::Extension(ext, _, _) => {
-                let ext = Ident::new(&ext.to_case(Case::Snake), Span::call_site());
+                let ext = Ident::new(&ext.to_snake_case(), Span::call_site());
 
                 quote! { crate::extensions::#ext }
             },
@@ -116,7 +116,7 @@ impl<'a> Origin<'a> {
             Origin::Core => "crate::core".to_owned(),
             Origin::Extension(ext, _, _) => format!(
                 "crate::extensions::{}",
-                ext.trim_start_matches("VK_").to_case(Case::Snake)
+                ext.trim_start_matches("VK_").to_snake_case()
             ),
             Origin::Vulkan1_0 => "crate::vulkan1_0".to_owned(),
             Origin::Vulkan1_1 => "crate::vulkan1_1".to_owned(),
@@ -145,7 +145,7 @@ impl<'a> Origin<'a> {
         match self {
             Origin::Unknown | Origin::Opaque | Origin::Core | Origin::Vulkan1_0 => None,
             Origin::Extension(ext, _, _) => {
-                let ext_name = ext.trim_start_matches("VK_").to_case(Case::Snake);
+                let ext_name = ext.trim_start_matches("VK_").to_snake_case();
                 let check = Ident::new(&ext_name, Span::call_site());
 
                 Some(quote! {
@@ -189,7 +189,7 @@ impl<'a> Origin<'a> {
     pub fn as_try_tokens(&self, var: &Ident) -> TokenStream {
         match self {
             Origin::Extension(ext, _, _) => {
-                let ext_name = ext.trim_start_matches("VK_").to_case(Case::Snake);
+                let ext_name = ext.trim_start_matches("VK_").to_snake_case();
                 let check = Ident::new(&format!("is_{}", ext_name), Span::call_site());
 
                 quote! {
@@ -230,7 +230,7 @@ impl<'a> Origin<'a> {
                     PathSegment::from(Ident::new("crate", Span::call_site())),
                     PathSegment::from(Ident::new("extensions", Span::call_site())),
                     PathSegment::from(Ident::new(
-                        &name.trim_start_matches("VK_").to_case(Case::Snake),
+                        &name.trim_start_matches("VK_").to_snake_case(),
                         Span::call_site(),
                     )),
                 ]
@@ -295,7 +295,7 @@ impl<'a> Origin<'a> {
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
             Origin::Extension(ext, _, _) => path.push(format!(
                 "extensions/{}.rs",
-                ext.trim_start_matches("VK_").to_case(Case::Snake)
+                ext.trim_start_matches("VK_").to_snake_case()
             )),
             Origin::Vulkan1_0 => path.push("vulkan1_0.rs"),
             Origin::Vulkan1_1 => path.push("vulkan1_1.rs"),
@@ -327,7 +327,7 @@ impl<'a> Origin<'a> {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Core => "core".to_string(),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_case(Case::Snake),
+            Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_snake_case(),
             Origin::Vulkan1_0 => "vulkan1_0".to_string(),
             Origin::Vulkan1_1 => "vulkan1_1".to_string(),
             Origin::Vulkan1_2 => "vulkan1_2".to_string(),
@@ -342,7 +342,7 @@ impl<'a> Origin<'a> {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Core => "Core".to_string(),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_case(Case::Camel),
+            Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_lower_camel_case(),
             Origin::Vulkan1_0 => "V1_0".to_string(),
             Origin::Vulkan1_1 => "V1_1".to_string(),
             Origin::Vulkan1_2 => "V1_2".to_string(),

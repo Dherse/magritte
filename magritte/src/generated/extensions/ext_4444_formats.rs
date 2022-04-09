@@ -67,40 +67,40 @@ pub const EXT_4444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///    VkBool32           formatA4B4G4R4;
 ///} VkPhysicalDevice4444FormatsFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// - [`format_a_4_r_4_g_4_b_4`] indicates that the implementation  **must**  support using a
-///   [`Format`] of `VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT` with at least the following
-///   [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`  -
-///   `VK_FORMAT_FEATURE_BLIT_SRC_BIT`  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-/// - [`format_a_4_b_4_g_4_r_4`] indicates that the implementation  **must**  support using a
-///   [`Format`] of `VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT` with at least the following
-///   [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`  -
-///   `VK_FORMAT_FEATURE_BLIT_SRC_BIT`  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-/// If the [`PhysicalDevice4444FormatsFeaturesEXT`] structure is included in the [`p_next`] chain of
+/// - [`format_a4r4g4b4`] indicates that the implementation  **must**  support using a [`Format`] of
+///   `VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT` with at least the following [`FormatFeatureFlagBits`]:
+///   - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`  - `VK_FORMAT_FEATURE_BLIT_SRC_BIT`  -
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+/// - [`format_a4b4g4r4`] indicates that the implementation  **must**  support using a [`Format`] of
+///   `VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT` with at least the following [`FormatFeatureFlagBits`]:
+///   - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`  - `VK_FORMAT_FEATURE_BLIT_SRC_BIT`  -
+///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+///If the [`PhysicalDevice4444FormatsFeaturesEXT`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevice4444FormatsFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevice4444FormatsFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_4444_formats`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevice4444FormatsFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -112,22 +112,22 @@ pub struct PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     ///[`p_next`] is `NULL` or a pointer to a structure extending this
     ///structure.
     pub p_next: *mut BaseOutStructure<'lt>,
-    ///[`format_a_4_r_4_g_4_b_4`] indicates that the
+    ///[`format_a4r4g4b4`] indicates that the
     ///implementation  **must**  support using a [`Format`] of
     ///`VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT` with at least the following
     ///[`FormatFeatureFlagBits`]:
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`
     /// - `VK_FORMAT_FEATURE_BLIT_SRC_BIT`
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-    pub format_a_4_r_4_g_4_b_4: Bool32,
-    ///[`format_a_4_b_4_g_4_r_4`] indicates that the
+    pub format_a4r4g4b4: Bool32,
+    ///[`format_a4b4g4r4`] indicates that the
     ///implementation  **must**  support using a [`Format`] of
     ///`VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT` with at least the following
     ///[`FormatFeatureFlagBits`]:
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`
     /// - `VK_FORMAT_FEATURE_BLIT_SRC_BIT`
     /// - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
-    pub format_a_4_b_4_g_4_r_4: Bool32,
+    pub format_a4b4g4r4: Bool32,
 }
 impl<'lt> Default for PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     fn default() -> Self {
@@ -135,8 +135,8 @@ impl<'lt> Default for PhysicalDevice4444FormatsFeaturesEXT<'lt> {
             _lifetime: PhantomData,
             s_type: StructureType::PHYSICAL_DEVICE4444_FORMATS_FEATURES_EXT,
             p_next: std::ptr::null_mut(),
-            format_a_4_r_4_g_4_b_4: 0,
-            format_a_4_b_4_g_4_r_4: 0,
+            format_a4r4g4b4: 0,
+            format_a4b4g4r4: 0,
         }
     }
 }
@@ -145,27 +145,27 @@ impl<'lt> PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
     }
-    ///Gets the raw value of [`Self::format_a_4_r_4_g_4_b_4`]
-    pub fn format_a_4_r_4_g_4_b_4_raw(&self) -> Bool32 {
-        self.format_a_4_r_4_g_4_b_4
+    ///Gets the raw value of [`Self::format_a4r4g4b4`]
+    pub fn format_a4r4g4b4_raw(&self) -> Bool32 {
+        self.format_a4r4g4b4
     }
-    ///Gets the raw value of [`Self::format_a_4_b_4_g_4_r_4`]
-    pub fn format_a_4_b_4_g_4_r_4_raw(&self) -> Bool32 {
-        self.format_a_4_b_4_g_4_r_4
+    ///Gets the raw value of [`Self::format_a4b4g4r4`]
+    pub fn format_a4b4g4r4_raw(&self) -> Bool32 {
+        self.format_a4b4g4r4
     }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
-    ///Sets the raw value of [`Self::format_a_4_r_4_g_4_b_4`]
-    pub fn set_format_a_4_r_4_g_4_b_4_raw(mut self, value: Bool32) -> Self {
-        self.format_a_4_r_4_g_4_b_4 = value;
+    ///Sets the raw value of [`Self::format_a4r4g4b4`]
+    pub fn set_format_a4r4g4b4_raw(mut self, value: Bool32) -> Self {
+        self.format_a4r4g4b4 = value;
         self
     }
-    ///Sets the raw value of [`Self::format_a_4_b_4_g_4_r_4`]
-    pub fn set_format_a_4_b_4_g_4_r_4_raw(mut self, value: Bool32) -> Self {
-        self.format_a_4_b_4_g_4_r_4 = value;
+    ///Sets the raw value of [`Self::format_a4b4g4r4`]
+    pub fn set_format_a4b4g4r4_raw(mut self, value: Bool32) -> Self {
+        self.format_a4b4g4r4 = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -179,13 +179,13 @@ impl<'lt> PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     pub unsafe fn p_next(&self) -> &BaseOutStructure<'lt> {
         &*self.p_next
     }
-    ///Gets the value of [`Self::format_a_4_r_4_g_4_b_4`]
-    pub fn format_a_4_r_4_g_4_b_4(&self) -> bool {
-        unsafe { std::mem::transmute(self.format_a_4_r_4_g_4_b_4 as u8) }
+    ///Gets the value of [`Self::format_a4r4g4b4`]
+    pub fn format_a4r4g4b4(&self) -> bool {
+        unsafe { std::mem::transmute(self.format_a4r4g4b4 as u8) }
     }
-    ///Gets the value of [`Self::format_a_4_b_4_g_4_r_4`]
-    pub fn format_a_4_b_4_g_4_r_4(&self) -> bool {
-        unsafe { std::mem::transmute(self.format_a_4_b_4_g_4_r_4 as u8) }
+    ///Gets the value of [`Self::format_a4b4g4r4`]
+    pub fn format_a4b4g4r4(&self) -> bool {
+        unsafe { std::mem::transmute(self.format_a4b4g4r4 as u8) }
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -198,17 +198,17 @@ impl<'lt> PhysicalDevice4444FormatsFeaturesEXT<'lt> {
     pub unsafe fn p_next_mut(&mut self) -> &mut BaseOutStructure<'lt> {
         &mut *self.p_next
     }
-    ///Gets a mutable reference to the value of [`Self::format_a_4_r_4_g_4_b_4`]
-    pub fn format_a_4_r_4_g_4_b_4_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::format_a4r4g4b4`]
+    pub fn format_a4r4g4b4_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.format_a_4_r_4_g_4_b_4 as *mut Bool32)
+                &mut *(self.format_a4r4g4b4 as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.format_a_4_r_4_g_4_b_4 as *mut Bool32)
+                &mut *(self.format_a4r4g4b4 as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -216,17 +216,17 @@ impl<'lt> PhysicalDevice4444FormatsFeaturesEXT<'lt> {
             }
         }
     }
-    ///Gets a mutable reference to the value of [`Self::format_a_4_b_4_g_4_r_4`]
-    pub fn format_a_4_b_4_g_4_r_4_mut(&mut self) -> &mut bool {
+    ///Gets a mutable reference to the value of [`Self::format_a4b4g4r4`]
+    pub fn format_a4b4g4r4_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.format_a_4_b_4_g_4_r_4 as *mut Bool32)
+                &mut *(self.format_a4b4g4r4 as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.format_a_4_b_4_g_4_r_4 as *mut Bool32)
+                &mut *(self.format_a4b4g4r4 as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -244,14 +244,14 @@ impl<'lt> PhysicalDevice4444FormatsFeaturesEXT<'lt> {
         self.p_next = value as *mut _;
         self
     }
-    ///Sets the value of [`Self::format_a_4_r_4_g_4_b_4`]
-    pub fn set_format_a_4_r_4_g_4_b_4(mut self, value: bool) -> Self {
-        self.format_a_4_r_4_g_4_b_4 = value as u8 as u32;
+    ///Sets the value of [`Self::format_a4r4g4b4`]
+    pub fn set_format_a4r4g4b4(mut self, value: bool) -> Self {
+        self.format_a4r4g4b4 = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::format_a_4_b_4_g_4_r_4`]
-    pub fn set_format_a_4_b_4_g_4_r_4(mut self, value: bool) -> Self {
-        self.format_a_4_b_4_g_4_r_4 = value as u8 as u32;
+    ///Sets the value of [`Self::format_a4b4g4r4`]
+    pub fn set_format_a4b4g4r4(mut self, value: bool) -> Self {
+        self.format_a4b4g4r4 = value as u8 as u32;
         self
     }
 }

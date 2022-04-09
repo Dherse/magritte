@@ -328,35 +328,35 @@ pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cs
 ///    const VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the buffer.
 /// - [`p_info`] is a pointer to a [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
 ///   containing parameters required for the memory requirements query.
 /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   memory requirements of the buffer object are returned.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid
 ///   [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Device`]
 /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
 /// - [`MemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetGeneratedCommandsMemoryRequirementsNV")]
 pub type FNGetGeneratedCommandsMemoryRequirementsNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -376,7 +376,7 @@ pub type FNGetGeneratedCommandsMemoryRequirementsNv = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkIndirectCommandsLayoutNV*                 pIndirectCommandsLayout);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the indirect command layout.
 /// - [`p_create_info`] is a pointer to a [`IndirectCommandsLayoutCreateInfoNV`] structure
 ///   containing parameters affecting creation of the indirect command layout.
@@ -384,12 +384,12 @@ pub type FNGetGeneratedCommandsMemoryRequirementsNv = Option<
 ///   chapter.
 /// - [`p_indirect_commands_layout`] is a pointer to a [`IndirectCommandsLayoutNV`] handle in which
 ///   the resulting indirect command layout is returned.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid
 ///   [`IndirectCommandsLayoutCreateInfoNV`] structure
@@ -398,23 +398,23 @@ pub type FNGetGeneratedCommandsMemoryRequirementsNv = Option<
 /// - [`p_indirect_commands_layout`] **must**  be a valid pointer to a [`IndirectCommandsLayoutNV`]
 ///   handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`IndirectCommandsLayoutCreateInfoNV`]
 /// - [`IndirectCommandsLayoutNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateIndirectCommandsLayoutNV")]
 pub type FNCreateIndirectCommandsLayoutNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -434,13 +434,13 @@ pub type FNCreateIndirectCommandsLayoutNv = Option<
 ///    VkIndirectCommandsLayoutNV                  indirectCommandsLayout,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that destroys the layout.
 /// - [`indirect_commands_layout`] is the layout to destroy.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - All submitted commands that refer to [`indirect_commands_layout`] **must**  have completed
 ///   execution
 /// - If [`AllocationCallbacks`] were provided when [`indirect_commands_layout`] was created, a
@@ -450,7 +450,7 @@ pub type FNCreateIndirectCommandsLayoutNv = Option<
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`indirect_commands_layout`] is not [`crate::Handle::null`], [`indirect_commands_layout`]
 ///   **must**  be a valid [`IndirectCommandsLayoutNV`] handle
@@ -459,21 +459,21 @@ pub type FNCreateIndirectCommandsLayoutNv = Option<
 /// - If [`indirect_commands_layout`] is a valid handle, it  **must**  have been created, allocated,
 ///   or retrieved from [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`indirect_commands_layout`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`IndirectCommandsLayoutNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyIndirectCommandsLayoutNV")]
 pub type FNDestroyIndirectCommandsLayoutNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -493,15 +493,15 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///    VkBool32                                    isPreprocessed,
 ///    const VkGeneratedCommandsInfoNV*            pGeneratedCommandsInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`is_preprocessed`] represents whether the input data has already been preprocessed on the
 ///   device. If it is [`FALSE`] this command will implicitly trigger the preprocessing step,
 ///   otherwise not.
 /// - [`p_generated_commands_info`] is a pointer to a [`GeneratedCommandsInfoNV`] structure
 ///   containing parameters affecting the generation of commands.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -882,7 +882,7 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_generated_commands_info`] **must**  be a valid pointer to a valid
 ///   [`GeneratedCommandsInfoNV`] structure
@@ -891,25 +891,25 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   compute operations
 /// - This command  **must**  only be called inside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 /// - [`GeneratedCommandsInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdExecuteGeneratedCommandsNV")]
 pub type FNCmdExecuteGeneratedCommandsNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -927,19 +927,19 @@ pub type FNCmdExecuteGeneratedCommandsNv = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkGeneratedCommandsInfoNV*            pGeneratedCommandsInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer which does the preprocessing.
 /// - [`p_generated_commands_info`] is a pointer to a [`GeneratedCommandsInfoNV`] structure
 ///   containing parameters affecting the preprocessing step.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`command_buffer`] **must**  not be a protected command buffer
 /// - [`p_generated_commands_info`]`s `indirectCommandsLayout` **must**  have been created with the
 ///   `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV` bit set
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_generated_commands_info`] **must**  be a valid pointer to a valid
 ///   [`GeneratedCommandsInfoNV`] structure
@@ -948,24 +948,24 @@ pub type FNCmdExecuteGeneratedCommandsNv = Option<
 ///   compute operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`CommandBuffer`]
 /// - [`GeneratedCommandsInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdPreprocessGeneratedCommandsNV")]
 pub type FNCmdPreprocessGeneratedCommandsNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -987,14 +987,14 @@ pub type FNCmdPreprocessGeneratedCommandsNv = Option<
 ///    VkPipeline                                  pipeline,
 ///    uint32_t                                    groupIndex);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer that the pipeline will be bound to.
 /// - [`pipeline_bind_point`] is a [`PipelineBindPoint`] value specifying the bind point to which
 ///   the pipeline will be bound.
 /// - [`pipeline`] is the pipeline to be bound.
 /// - [`group_index`] is the shader group to be bound.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`group_index`] **must**  be `0` or less than the effective
 ///   [`GraphicsPipelineShaderGroupsCreateInfoNV::group_count`] including the referenced pipelines
 /// - The [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS`
@@ -1003,7 +1003,7 @@ pub type FNCmdPreprocessGeneratedCommandsNv = Option<
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
@@ -1013,25 +1013,25 @@ pub type FNCmdPreprocessGeneratedCommandsNv = Option<
 /// - Both of [`command_buffer`], and [`pipeline`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`CommandBuffer`]
 /// - [`Pipeline`]
 /// - [`PipelineBindPoint`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBindPipelineShaderGroupNV")]
 pub type FNCmdBindPipelineShaderGroupNv = Option<
     unsafe extern "system" fn(
@@ -1059,17 +1059,17 @@ pub type FNCmdBindPipelineShaderGroupNv = Option<
 ///    VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV = 7,
 ///} VkIndirectCommandsTokenTypeNV;
 ///```
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutTokenNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsTokenTypeNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1167,7 +1167,7 @@ impl std::fmt::Display for IndirectCommandsTokenTypeNV {
 ///    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = 0x00000004,
 ///} VkIndirectCommandsLayoutUsageFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`EXPLICIT_PREPROCESS`] specifies that the layout is always used with the manual preprocessing
 ///   step through calling [`cmd_preprocess_generated_commands_nv`] and executed by
 ///   [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
@@ -1176,17 +1176,17 @@ impl std::fmt::Display for IndirectCommandsTokenTypeNV {
 /// - [`UNORDERED_SEQUENCES`] specifies that the processing of sequences  **can**  happen at an
 ///   implementation-dependent order, which is not: guaranteed to be coherent using the same input
 ///   data.
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutUsageFlagBitsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1279,20 +1279,20 @@ impl std::fmt::Display for IndirectCommandsLayoutUsageFlagBitsNV {
 ///    VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = 0x00000001,
 ///} VkIndirectStateFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw
 ///   operations.
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectStateFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectStateFlagBitsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1363,7 +1363,7 @@ impl std::fmt::Display for IndirectStateFlagBitsNV {
 ///    VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = 0x00000004,
 ///} VkIndirectCommandsLayoutUsageFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`EXPLICIT_PREPROCESS`] specifies that the layout is always used with the manual preprocessing
 ///   step through calling [`cmd_preprocess_generated_commands_nv`] and executed by
 ///   [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
@@ -1372,17 +1372,17 @@ impl std::fmt::Display for IndirectStateFlagBitsNV {
 /// - [`UNORDERED_SEQUENCES`] specifies that the processing of sequences  **can**  happen at an
 ///   implementation-dependent order, which is not: guaranteed to be coherent using the same input
 ///   data.
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutUsageFlagsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1678,20 +1678,20 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
 ///    VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = 0x00000001,
 ///} VkIndirectStateFlagBitsNV;
 ///```
-/// # Description
+///# Description
 /// - [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw
 ///   operations.
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectStateFlagsNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectStateFlagsNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1952,35 +1952,35 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 ///    VkBool32           deviceGeneratedCommands;
 ///} VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_generated_commands`] indicates whether the implementation supports functionality to generate commands on the device. See [Device-Generated Commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-generated-commands).
-/// If the [`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`] structure is included in the
+///If the [`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2107,7 +2107,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 ///    uint32_t           minIndirectCommandsBufferOffsetAlignment;
 ///} VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_graphics_shader_group_count`] is the maximum number of shader groups in
@@ -2129,26 +2129,26 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// - [`min_indirect_commands_buffer_offset_alignment`] is the minimum alignment for memory
 ///   addresses used in [`IndirectCommandsStreamNV`], and as preprocess buffer in
 ///   [`GeneratedCommandsInfoNV`].
-/// # Description
-/// If the [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV`] structure is included in the
+///# Description
+///If the [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2391,7 +2391,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 ///    const VkPipelineTessellationStateCreateInfo*    pTessellationState;
 ///} VkGraphicsShaderGroupCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stage_count`] is the number of entries in the [`stages`] array.
@@ -2401,8 +2401,8 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 /// - [`tessellation_state`] is a pointer to a [`PipelineTessellationStateCreateInfo`] structure,
 ///   and is ignored if the shader group does not include a tessellation control shader stage and
 ///   tessellation evaluation shader stage.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - For [`stage_count`], the same restrictions as in
 ///   [`GraphicsPipelineCreateInfo`]::[`stage_count`] apply
 /// - For [`stages`], the same restrictions as in [`GraphicsPipelineCreateInfo`]::[`stages`] apply
@@ -2411,13 +2411,13 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 /// - For [`tessellation_state`], the same restrictions as in
 ///   [`GraphicsPipelineCreateInfo`]::[`tessellation_state`] apply
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`stages`] **must**  be a valid pointer to an array of [`stage_count`] valid
 ///   [`PipelineShaderStageCreateInfo`] structures
 /// - [`stage_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`GraphicsPipelineShaderGroupsCreateInfoNV`]
 /// - [`PipelineShaderStageCreateInfo`]
@@ -2425,13 +2425,13 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 /// - [`PipelineVertexInputStateCreateInfo`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGraphicsShaderGroupCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2607,7 +2607,7 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 ///    const VkPipeline*                           pPipelines;
 ///} VkGraphicsPipelineShaderGroupsCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`group_count`] is the number of elements in the [`groups`] array.
@@ -2617,15 +2617,15 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 /// - [`pipeline_count`] is the number of elements in the [`pipelines`] array.
 /// - [`pipelines`] is a pointer to an array of graphics [`Pipeline`] structures which are
 ///   referenced within the created pipeline, including all their shader groups.
-/// # Description
-/// When referencing shader groups by index, groups defined in the referenced
-/// pipelines are treated as if they were defined as additional entries in
-/// [`groups`].
-/// They are appended in the order they appear in the [`pipelines`] array and
-/// in the [`groups`] array when those pipelines were defined.The application  **must**  maintain
+///# Description
+///When referencing shader groups by index, groups defined in the referenced
+///pipelines are treated as if they were defined as additional entries in
+///[`groups`].
+///They are appended in the order they appear in the [`pipelines`] array and
+///in the [`groups`] array when those pipelines were defined.The application  **must**  maintain
 /// the lifetime of all such referenced pipelines
-/// based on the pipelines that make use of them.
-/// ## Valid Usage
+///based on the pipelines that make use of them.
+///## Valid Usage
 /// - [`group_count`] **must**  be at least `1` and as maximum
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_graphics_shader_group_count`]
 /// - The sum of [`group_count`] including those groups added from referenced [`pipelines`] **must**
@@ -2644,26 +2644,26 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV`
 /// - [`groups`] **must**  be a valid pointer to an array of [`group_count`] valid
 ///   [`GraphicsShaderGroupCreateInfoNV`] structures
 /// - If [`pipeline_count`] is not `0`, [`pipelines`] **must**  be a valid pointer to an array of
 ///   [`pipeline_count`] valid [`Pipeline`] handles
 /// - [`group_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`GraphicsShaderGroupCreateInfoNV`]
 /// - [`Pipeline`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGraphicsPipelineShaderGroupsCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2826,24 +2826,24 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
 ///    uint32_t    groupIndex;
 ///} VkBindShaderGroupIndirectCommandNV;
 ///```
-/// # Members
+///# Members
 /// - `index` specifies which shader group of the current bound graphics pipeline is used.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The current bound graphics pipeline, as well as the pipelines it may reference,  **must**
 ///   have been created with `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV`
 /// - The `index` **must**  be within range of the accessible shader groups of the current bound
 ///   graphics pipeline. See [`cmd_bind_pipeline_shader_group_nv`] for further details
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindShaderGroupIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2884,7 +2884,7 @@ impl BindShaderGroupIndirectCommandNV {
 ///    VkIndexType        indexType;
 ///} VkBindIndexBufferIndirectCommandNV;
 ///```
-/// # Members
+///# Members
 /// - [`buffer_address`] specifies a physical address of the [`Buffer`] used as index buffer.
 /// - [`size`] is the byte size range which is available for this operation from the provided
 ///   address.
@@ -2892,28 +2892,28 @@ impl BindShaderGroupIndirectCommandNV {
 ///   Vulkan enum values, a custom `uint32_t` value  **can**  be mapped to an [`IndexType`] by
 ///   specifying the [`IndirectCommandsLayoutTokenNV::index_types`] and
 ///   [`IndirectCommandsLayoutTokenNV::index_type_values`] arrays.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The buffer’s usage flag from which the address was acquired  **must**  have the
 ///   `VK_BUFFER_USAGE_INDEX_BUFFER_BIT` bit set
 /// - The [`buffer_address`] **must**  be aligned to the [`index_type`] used
 /// - Each element of the buffer from which the address was acquired and that is non-sparse
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`index_type`] **must**  be a valid [`IndexType`] value
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`DeviceAddress`]
 /// - [`IndexType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindIndexBufferIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2995,7 +2995,7 @@ impl BindIndexBufferIndirectCommandNV {
 ///    uint32_t           stride;
 ///} VkBindVertexBufferIndirectCommandNV;
 ///```
-/// # Members
+///# Members
 /// - [`buffer_address`] specifies a physical address of the [`Buffer`] used as vertex input
 ///   binding.
 /// - [`size`] is the byte size range which is available for this operation from the provided
@@ -3004,23 +3004,23 @@ impl BindIndexBufferIndirectCommandNV {
 ///   [`VertexInputBindingDescription`]::[`stride`]. It is only used if
 ///   [`IndirectCommandsLayoutTokenNV::vertex_dynamic_stride`] was set, otherwise the stride is
 ///   inherited from the current bound graphics pipeline.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The buffer’s usage flag from which the address was acquired  **must**  have the
 ///   `VK_BUFFER_USAGE_VERTEX_BUFFER_BIT` bit set
 /// - Each element of the buffer from which the address was acquired and that is non-sparse
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`DeviceAddress`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindVertexBufferIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3102,19 +3102,19 @@ impl BindVertexBufferIndirectCommandNV {
 ///    uint32_t    data;
 ///} VkSetStateFlagsIndirectCommandNV;
 ///```
-/// # Members
+///# Members
 /// - [`data`] encodes packed state that this command alters.  - Bit `0`: If set represents
 ///   `VK_FRONT_FACE_CLOCKWISE`, otherwise `VK_FRONT_FACE_COUNTER_CLOCKWISE`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSetStateFlagsIndirectCommandNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3156,12 +3156,12 @@ impl SetStateFlagsIndirectCommandNV {
 ///    VkDeviceSize    offset;
 ///} VkIndirectCommandsStreamNV;
 ///```
-/// # Members
+///# Members
 /// - [`buffer`] specifies the [`Buffer`] storing the functional arguments for each sequence. These
 ///   arguments  **can**  be written by the device.
 /// - [`offset`] specified an offset into [`buffer`] where the arguments start.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [`buffer`]’s usage flag  **must**  have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
 /// - The [`offset`] **must**  be aligned to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
@@ -3169,21 +3169,21 @@ impl SetStateFlagsIndirectCommandNV {
 /// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`GeneratedCommandsInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsStreamNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3256,7 +3256,7 @@ impl IndirectCommandsStreamNV {
 ///    const uint32_t*                  pIndexTypeValues;
 ///} VkIndirectCommandsLayoutTokenNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`token_type`] specifies the token command type.
@@ -3277,8 +3277,8 @@ impl IndirectCommandsStreamNV {
 ///   specific [`IndexType`].
 /// - [`index_types`] is the used [`IndexType`] for the corresponding `uint32_t` value entry in
 ///   [`index_type_values`].
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`stream`] **must**  be smaller than [`IndirectCommandsLayoutCreateInfoNV::stream_count`]
 /// - [`offset`] **must**  be less than or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_token_offset`]
@@ -3308,7 +3308,7 @@ impl IndirectCommandsStreamNV {
 /// - If [`token_type`] is `VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV`,
 ///   [`indirect_state_flags`] **must**  not be `0`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`token_type`] **must**  be a valid [`IndirectCommandsTokenTypeNV`] value
@@ -3322,7 +3322,7 @@ impl IndirectCommandsStreamNV {
 ///   of [`index_type_count`] valid [`IndexType`] values
 /// - If [`index_type_count`] is not `0`, [`index_type_values`] **must**  be a valid pointer to an
 ///   array of [`index_type_count`]`uint32_t` values
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Bool32`]
 /// - [`IndexType`]
@@ -3333,13 +3333,13 @@ impl IndirectCommandsStreamNV {
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutTokenNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3684,7 +3684,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///    const uint32_t*                           pStreamStrides;
 ///} VkIndirectCommandsLayoutCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pipeline_bind_point`] is the [`PipelineBindPoint`] that this layout targets.
@@ -3695,9 +3695,9 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///   [`IndirectCommandsTokenTypeNV`] and [`IndirectCommandsLayoutTokenNV`] below for details.
 /// - [`stream_count`] is the number of streams used to provide the token inputs.
 /// - [`stream_strides`] is an array defining the byte stride for each input stream.
-/// # Description
-/// The following code illustrates some of the flags:
-/// ```c
+///# Description
+///The following code illustrates some of the flags:
+///```c
 ///void cmdProcessAllSequences(cmd, pipeline, indirectCommandsLayout, pIndirectCommandsTokens,
 /// sequencesCount, indexbuffer, indexbufferOffset)
 ///{
@@ -3719,8 +3719,8 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///  }
 ///}
 ///```
-/// 
-/// ## Valid Usage
+///
+///## Valid Usage
 /// - The [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS`
 /// - [`token_count`] **must**  be greater than `0` and less than or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_token_count`]
@@ -3740,7 +3740,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_commands_stream_stride`].
 ///   Furthermore the alignment of each token input  **must**  be ensured
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`IndirectCommandsLayoutUsageFlagBitsNV`] values
@@ -3751,7 +3751,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 ///   values
 /// - [`token_count`] **must**  be greater than `0`
 /// - [`stream_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutTokenNV`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
@@ -3759,13 +3759,13 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 /// - [`StructureType`]
 /// - [`create_indirect_commands_layout_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3976,7 +3976,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///    VkDeviceSize                         sequencesIndexOffset;
 ///} VkGeneratedCommandsInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pipeline_bind_point`] is the [`PipelineBindPoint`] used for the [`pipeline`].
@@ -4005,8 +4005,8 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///   `uint32_t` array.
 /// - [`sequences_index_offset`] is the byte offset into [`sequences_index_buffer`] where the index
 ///   values start.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The provided [`pipeline`] **must**  match the pipeline bound at execution time
 /// - If the [`indirect_commands_layout`] uses a token of
 ///   `VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV`, then the [`pipeline`] **must**  have been
@@ -4055,7 +4055,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// - If [`sequences_index_buffer`] is not [`crate::Handle::null`] and is non-sparse then it
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
@@ -4073,7 +4073,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///   [`sequences_count_buffer`], and [`sequences_index_buffer`] that are valid handles of
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
@@ -4085,13 +4085,13 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// - [`cmd_execute_generated_commands_nv`]
 /// - [`cmd_preprocess_generated_commands_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeneratedCommandsInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -4404,7 +4404,7 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 ///    uint32_t                      maxSequencesCount;
 ///} VkGeneratedCommandsMemoryRequirementsInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pipeline_bind_point`] is the [`PipelineBindPoint`] of the [`pipeline`] that this buffer
@@ -4415,12 +4415,12 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 ///   intended to be used with.
 /// - [`max_sequences_count`] is the maximum number of sequences that this buffer memory in
 ///   combination with the other state provided  **can**  be used with.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`max_sequences_count`] **must**  be less or equal to
 ///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::max_indirect_sequence_count`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
@@ -4428,7 +4428,7 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 /// - [`indirect_commands_layout`] **must**  be a valid [`IndirectCommandsLayoutNV`] handle
 /// - Both of [`indirect_commands_layout`], and [`pipeline`] **must**  have been created, allocated,
 ///   or retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`IndirectCommandsLayoutNV`]
 /// - [`Pipeline`]
@@ -4436,13 +4436,13 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 /// - [`StructureType`]
 /// - [`get_generated_commands_memory_requirements_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeneratedCommandsMemoryRequirementsInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -4586,36 +4586,36 @@ impl Device {
     ///    const VkGeneratedCommandsMemoryRequirementsInfoNV* pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the buffer.
     /// - [`p_info`] is a pointer to a [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
     ///   containing parameters required for the memory requirements query.
     /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
     ///   memory requirements of the buffer object are returned.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid
     ///   [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
-    /// # Related
+    ///# Related
     /// - [`VK_NV_device_generated_commands`]
     /// - [`Device`]
     /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
     /// - [`MemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetGeneratedCommandsMemoryRequirementsNV")]
     #[track_caller]
@@ -4661,7 +4661,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkIndirectCommandsLayoutNV*                 pIndirectCommandsLayout);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the indirect command layout.
     /// - [`p_create_info`] is a pointer to a [`IndirectCommandsLayoutCreateInfoNV`] structure
     ///   containing parameters affecting creation of the indirect command layout.
@@ -4669,12 +4669,12 @@ impl Device {
     ///   chapter.
     /// - [`p_indirect_commands_layout`] is a pointer to a [`IndirectCommandsLayoutNV`] handle in
     ///   which the resulting indirect command layout is returned.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`IndirectCommandsLayoutCreateInfoNV`] structure
@@ -4683,23 +4683,23 @@ impl Device {
     /// - [`p_indirect_commands_layout`] **must**  be a valid pointer to a
     ///   [`IndirectCommandsLayoutNV`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_NV_device_generated_commands`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`IndirectCommandsLayoutCreateInfoNV`]
     /// - [`IndirectCommandsLayoutNV`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateIndirectCommandsLayoutNV")]
     #[track_caller]
@@ -4750,13 +4750,13 @@ impl Device {
     ///    VkIndirectCommandsLayoutNV                  indirectCommandsLayout,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that destroys the layout.
     /// - [`indirect_commands_layout`] is the layout to destroy.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - All submitted commands that refer to [`indirect_commands_layout`] **must**  have completed
     ///   execution
     /// - If [`AllocationCallbacks`] were provided when [`indirect_commands_layout`] was created, a
@@ -4766,7 +4766,7 @@ impl Device {
     /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`indirect_commands_layout`] is not [`crate::Handle::null`],
     ///   [`indirect_commands_layout`] **must**  be a valid [`IndirectCommandsLayoutNV`] handle
@@ -4775,21 +4775,21 @@ impl Device {
     /// - If [`indirect_commands_layout`] is a valid handle, it  **must**  have been created,
     ///   allocated, or retrieved from [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`indirect_commands_layout`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`VK_NV_device_generated_commands`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`IndirectCommandsLayoutNV`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyIndirectCommandsLayoutNV")]
     #[track_caller]
@@ -4833,15 +4833,15 @@ impl CommandBuffer {
     ///    VkBool32                                    isPreprocessed,
     ///    const VkGeneratedCommandsInfoNV*            pGeneratedCommandsInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`is_preprocessed`] represents whether the input data has already been preprocessed on the
     ///   device. If it is [`FALSE`] this command will implicitly trigger the preprocessing step,
     ///   otherwise not.
     /// - [`p_generated_commands_info`] is a pointer to a [`GeneratedCommandsInfoNV`] structure
     ///   containing parameters affecting the generation of commands.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
     ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
     ///   command, then the image view’s [format features]() **must**  contain
@@ -5236,7 +5236,7 @@ impl CommandBuffer {
     /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_generated_commands_info`] **must**  be a valid pointer to a valid
     ///   [`GeneratedCommandsInfoNV`] structure
@@ -5245,25 +5245,25 @@ impl CommandBuffer {
     ///   graphics, or compute operations
     /// - This command  **must**  only be called inside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_device_generated_commands`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     /// - [`GeneratedCommandsInfoNV`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdExecuteGeneratedCommandsNV")]
     #[track_caller]
@@ -5305,19 +5305,19 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkGeneratedCommandsInfoNV*            pGeneratedCommandsInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer which does the preprocessing.
     /// - [`p_generated_commands_info`] is a pointer to a [`GeneratedCommandsInfoNV`] structure
     ///   containing parameters affecting the preprocessing step.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`command_buffer`] **must**  not be a protected command buffer
     /// - [`p_generated_commands_info`]`s `indirectCommandsLayout` **must**  have been created with
     ///   the `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV` bit set
     /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_generated_commands_info`] **must**  be a valid pointer to a valid
     ///   [`GeneratedCommandsInfoNV`] structure
@@ -5326,24 +5326,24 @@ impl CommandBuffer {
     ///   graphics, or compute operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_device_generated_commands`]
     /// - [`CommandBuffer`]
     /// - [`GeneratedCommandsInfoNV`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdPreprocessGeneratedCommandsNV")]
     #[track_caller]
@@ -5388,14 +5388,14 @@ impl CommandBuffer {
     ///    VkPipeline                                  pipeline,
     ///    uint32_t                                    groupIndex);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer that the pipeline will be bound to.
     /// - [`pipeline_bind_point`] is a [`PipelineBindPoint`] value specifying the bind point to
     ///   which the pipeline will be bound.
     /// - [`pipeline`] is the pipeline to be bound.
     /// - [`group_index`] is the shader group to be bound.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`group_index`] **must**  be `0` or less than the effective
     ///   [`GraphicsPipelineShaderGroupsCreateInfoNV::group_count`] including the referenced
     ///   pipelines
@@ -5405,7 +5405,7 @@ impl CommandBuffer {
     /// - The [[`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::device_generated_commands`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-deviceGeneratedCommands)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`pipeline_bind_point`] **must**  be a valid [`PipelineBindPoint`] value
     /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
@@ -5415,25 +5415,25 @@ impl CommandBuffer {
     /// - Both of [`command_buffer`], and [`pipeline`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_NV_device_generated_commands`]
     /// - [`CommandBuffer`]
     /// - [`Pipeline`]
     /// - [`PipelineBindPoint`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBindPipelineShaderGroupNV")]
     #[track_caller]
@@ -5475,20 +5475,20 @@ impl CommandBuffer {
 ///// Provided by VK_NV_device_generated_commands
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkIndirectCommandsLayoutNV)
 ///```
-/// # Related
+///# Related
 /// - [`VK_NV_device_generated_commands`]
 /// - [`GeneratedCommandsInfoNV`]
 /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
 /// - [`create_indirect_commands_layout_nv`]
 /// - [`destroy_indirect_commands_layout_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]

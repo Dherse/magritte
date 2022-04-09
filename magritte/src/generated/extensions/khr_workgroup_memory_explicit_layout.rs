@@ -74,48 +74,48 @@ pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           workgroupMemoryExplicitLayout16BitAccess;
 ///} VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`workgroup_memory_explicit_layout`] indicates whether the implementation supports the SPIR-V
 ///   `WorkgroupMemoryExplicitLayoutKHR` capability.
 /// - [`workgroup_memory_explicit_layout_scalar_block_layout`] indicates whether the implementation
 ///   supports scalar alignment for laying out Workgroup Blocks.
-/// - [`workgroup_memory_explicit_layout_8_bit_access`] indicates whether objects in the `Workgroup`
+/// - [`workgroup_memory_explicit_layout8_bit_access`] indicates whether objects in the `Workgroup`
 ///   storage class with the `Block` decoration  **can**  have 8-bit integer members. If this
 ///   feature is not enabled, 8-bit integer members  **must**  not be used in such objects. This
 ///   also indicates whether shader modules  **can**  declare the
 ///   `WorkgroupMemoryExplicitLayout8BitAccessKHR` capability.
-/// - [`workgroup_memory_explicit_layout_16_bit_access`] indicates whether objects in the
-///   `Workgroup` storage class with the `Block` decoration  **can**  have 16-bit integer and 16-bit
+/// - [`workgroup_memory_explicit_layout16_bit_access`] indicates whether objects in the `Workgroup`
+///   storage class with the `Block` decoration  **can**  have 16-bit integer and 16-bit
 ///   floating-point members. If this feature is not enabled, 16-bit integer or 16-bit
 ///   floating-point members  **must**  not be used in such objects. This also indicates whether
 ///   shader modules  **can**  declare the `WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
-/// If the [`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`] structure is included in the
+///If the [`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`] **can**  also be used in the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`] **can**  also be used in the
 /// [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR`
-/// # Related
+///# Related
 /// - [`VK_KHR_workgroup_memory_explicit_layout`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -134,22 +134,22 @@ pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     ///the implementation supports scalar alignment for laying out Workgroup
     ///Blocks.
     pub workgroup_memory_explicit_layout_scalar_block_layout: Bool32,
-    ///[`workgroup_memory_explicit_layout_8_bit_access`] indicates whether objects
+    ///[`workgroup_memory_explicit_layout8_bit_access`] indicates whether objects
     ///in the `Workgroup` storage class with the `Block` decoration  **can**
     ///have 8-bit integer members.
     ///If this feature is not enabled, 8-bit integer members  **must**  not be used
     ///in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`WorkgroupMemoryExplicitLayout8BitAccessKHR` capability.
-    pub workgroup_memory_explicit_layout_8_bit_access: Bool32,
-    ///[`workgroup_memory_explicit_layout_16_bit_access`] indicates whether objects
+    pub workgroup_memory_explicit_layout8_bit_access: Bool32,
+    ///[`workgroup_memory_explicit_layout16_bit_access`] indicates whether objects
     ///in the `Workgroup` storage class with the `Block` decoration  **can**
     ///have 16-bit integer and 16-bit floating-point members.
     ///If this feature is not enabled, 16-bit integer or 16-bit floating-point
     ///members  **must**  not be used in such objects.
     ///This also indicates whether shader modules  **can**  declare the
     ///`WorkgroupMemoryExplicitLayout16BitAccessKHR` capability.
-    pub workgroup_memory_explicit_layout_16_bit_access: Bool32,
+    pub workgroup_memory_explicit_layout16_bit_access: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     fn default() -> Self {
@@ -159,8 +159,8 @@ impl<'lt> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt
             p_next: std::ptr::null_mut(),
             workgroup_memory_explicit_layout: 0,
             workgroup_memory_explicit_layout_scalar_block_layout: 0,
-            workgroup_memory_explicit_layout_8_bit_access: 0,
-            workgroup_memory_explicit_layout_16_bit_access: 0,
+            workgroup_memory_explicit_layout8_bit_access: 0,
+            workgroup_memory_explicit_layout16_bit_access: 0,
         }
     }
 }
@@ -177,13 +177,13 @@ impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     pub fn workgroup_memory_explicit_layout_scalar_block_layout_raw(&self) -> Bool32 {
         self.workgroup_memory_explicit_layout_scalar_block_layout
     }
-    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
-    pub fn workgroup_memory_explicit_layout_8_bit_access_raw(&self) -> Bool32 {
-        self.workgroup_memory_explicit_layout_8_bit_access
+    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout8_bit_access`]
+    pub fn workgroup_memory_explicit_layout8_bit_access_raw(&self) -> Bool32 {
+        self.workgroup_memory_explicit_layout8_bit_access
     }
-    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
-    pub fn workgroup_memory_explicit_layout_16_bit_access_raw(&self) -> Bool32 {
-        self.workgroup_memory_explicit_layout_16_bit_access
+    ///Gets the raw value of [`Self::workgroup_memory_explicit_layout16_bit_access`]
+    pub fn workgroup_memory_explicit_layout16_bit_access_raw(&self) -> Bool32 {
+        self.workgroup_memory_explicit_layout16_bit_access
     }
     ///Sets the raw value of [`Self::p_next`]
     pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
@@ -200,14 +200,14 @@ impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
         self.workgroup_memory_explicit_layout_scalar_block_layout = value;
         self
     }
-    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
-    pub fn set_workgroup_memory_explicit_layout_8_bit_access_raw(mut self, value: Bool32) -> Self {
-        self.workgroup_memory_explicit_layout_8_bit_access = value;
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout8_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout8_bit_access_raw(mut self, value: Bool32) -> Self {
+        self.workgroup_memory_explicit_layout8_bit_access = value;
         self
     }
-    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
-    pub fn set_workgroup_memory_explicit_layout_16_bit_access_raw(mut self, value: Bool32) -> Self {
-        self.workgroup_memory_explicit_layout_16_bit_access = value;
+    ///Sets the raw value of [`Self::workgroup_memory_explicit_layout16_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout16_bit_access_raw(mut self, value: Bool32) -> Self {
+        self.workgroup_memory_explicit_layout16_bit_access = value;
         self
     }
     ///Gets the value of [`Self::s_type`]
@@ -229,13 +229,13 @@ impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
     pub fn workgroup_memory_explicit_layout_scalar_block_layout(&self) -> bool {
         unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout_scalar_block_layout as u8) }
     }
-    ///Gets the value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
-    pub fn workgroup_memory_explicit_layout_8_bit_access(&self) -> bool {
-        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout_8_bit_access as u8) }
+    ///Gets the value of [`Self::workgroup_memory_explicit_layout8_bit_access`]
+    pub fn workgroup_memory_explicit_layout8_bit_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout8_bit_access as u8) }
     }
-    ///Gets the value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
-    pub fn workgroup_memory_explicit_layout_16_bit_access(&self) -> bool {
-        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout_16_bit_access as u8) }
+    ///Gets the value of [`Self::workgroup_memory_explicit_layout16_bit_access`]
+    pub fn workgroup_memory_explicit_layout16_bit_access(&self) -> bool {
+        unsafe { std::mem::transmute(self.workgroup_memory_explicit_layout16_bit_access as u8) }
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -286,17 +286,17 @@ impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
         }
     }
     ///Gets a mutable reference to the value of
-    /// [`Self::workgroup_memory_explicit_layout_8_bit_access`]
-    pub fn workgroup_memory_explicit_layout_8_bit_access_mut(&mut self) -> &mut bool {
+    /// [`Self::workgroup_memory_explicit_layout8_bit_access`]
+    pub fn workgroup_memory_explicit_layout8_bit_access_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.workgroup_memory_explicit_layout_8_bit_access as *mut Bool32)
+                &mut *(self.workgroup_memory_explicit_layout8_bit_access as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.workgroup_memory_explicit_layout_8_bit_access as *mut Bool32)
+                &mut *(self.workgroup_memory_explicit_layout8_bit_access as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -305,17 +305,17 @@ impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
         }
     }
     ///Gets a mutable reference to the value of
-    /// [`Self::workgroup_memory_explicit_layout_16_bit_access`]
-    pub fn workgroup_memory_explicit_layout_16_bit_access_mut(&mut self) -> &mut bool {
+    /// [`Self::workgroup_memory_explicit_layout16_bit_access`]
+    pub fn workgroup_memory_explicit_layout16_bit_access_mut(&mut self) -> &mut bool {
         unsafe {
             if cfg!(target_endian = "little") {
-                &mut *(self.workgroup_memory_explicit_layout_16_bit_access as *mut Bool32)
+                &mut *(self.workgroup_memory_explicit_layout16_bit_access as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .cast::<bool>()
             } else {
                 eprintln!("Big-endianess has not been tested!");
-                &mut *(self.workgroup_memory_explicit_layout_16_bit_access as *mut Bool32)
+                &mut *(self.workgroup_memory_explicit_layout16_bit_access as *mut Bool32)
                     .cast::<u32>()
                     .cast::<u8>()
                     .add(3)
@@ -343,14 +343,14 @@ impl<'lt> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt> {
         self.workgroup_memory_explicit_layout_scalar_block_layout = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::workgroup_memory_explicit_layout_8_bit_access`]
-    pub fn set_workgroup_memory_explicit_layout_8_bit_access(mut self, value: bool) -> Self {
-        self.workgroup_memory_explicit_layout_8_bit_access = value as u8 as u32;
+    ///Sets the value of [`Self::workgroup_memory_explicit_layout8_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout8_bit_access(mut self, value: bool) -> Self {
+        self.workgroup_memory_explicit_layout8_bit_access = value as u8 as u32;
         self
     }
-    ///Sets the value of [`Self::workgroup_memory_explicit_layout_16_bit_access`]
-    pub fn set_workgroup_memory_explicit_layout_16_bit_access(mut self, value: bool) -> Self {
-        self.workgroup_memory_explicit_layout_16_bit_access = value as u8 as u32;
+    ///Sets the value of [`Self::workgroup_memory_explicit_layout16_bit_access`]
+    pub fn set_workgroup_memory_explicit_layout16_bit_access(mut self, value: bool) -> Self {
+        self.workgroup_memory_explicit_layout16_bit_access = value as u8 as u32;
         self
     }
 }

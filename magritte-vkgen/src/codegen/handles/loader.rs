@@ -1,7 +1,7 @@
 use std::ops::Deref;
 
 use ahash::AHashMap;
-use convert_case::{Case, Casing};
+use heck::ToUpperCamelCase;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token};
 
@@ -278,7 +278,7 @@ impl<'a> Handle<'a> {
 
     /// Get the name of a vtable of a certain origin
     pub fn this_vtable_name(&self) -> String {
-        format!("{}_VTable", self.name()).to_case(Case::UpperCamel)
+        format!("{}_VTable", self.name()).to_upper_camel_case()
     }
 
     /// Get the ident of a vtable of a certain origin
@@ -288,7 +288,7 @@ impl<'a> Handle<'a> {
 
     /// Get the name of a vtable of a certain origin
     pub fn vtable_name(&self, origin: &Origin<'a>) -> String {
-        format!("{}_{}_VTable", self.name(), origin.as_short_name()).to_case(Case::UpperCamel)
+        format!("{}_{}_VTable", self.name(), origin.as_short_name()).to_upper_camel_case()
     }
 
     /// Get the ident of a vtable of a certain origin

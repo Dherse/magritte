@@ -1,8 +1,8 @@
 use ahash::AHashMap;
-use convert_case::{Case, Casing};
 use proc_macro2::{Ident, Literal, Span, TokenStream};
 use quote::quote;
 use tracing::warn;
+use heck::ToShoutySnakeCase;
 
 use crate::{
     codegen::alias_of,
@@ -15,12 +15,12 @@ use crate::{
 impl<'a> Bit<'a> {
     /// Generates an identifier for flags
     pub fn as_flag_ident(&self) -> Ident {
-        let name = self.name().to_case(Case::ScreamingSnake);
+        let name = self.name().to_shouty_snake_case();
         Ident::new(
             &if name.starts_with(char::is_numeric) {
-                format!("_{}", self.name().to_case(Case::ScreamingSnake))
+                format!("_{}", self.name().to_shouty_snake_case())
             } else {
-                self.name().to_case(Case::ScreamingSnake)
+                self.name().to_shouty_snake_case()
             },
             Span::call_site(),
         )

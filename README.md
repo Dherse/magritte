@@ -197,4 +197,4 @@ Here are the following families that need to be implemented in the code generato
 - [ ] Refactor the code generator to group all edge-cases into one easily accessible module, currently edge cases are spread throughout the project.
 - [ ] Refactor function generation to make it cleaner and integrated within `Function`, `FunctionArgument`.
 - [x] Fix Debug of masks which is broken
-- [ ] Improve flag/bit/enum naming when numbers are involved, it's a huge mess right now
+- [x] Improve flag/bit/enum naming when numbers are involved, it's a huge mess right now

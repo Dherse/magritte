@@ -91,41 +91,41 @@ pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    const VkMemoryGetFdInfoKHR*                 pGetFdInfo,
 ///    int*                                        pFd);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that created the device memory being exported.
 /// - [`p_get_fd_info`] is a pointer to a [`MemoryGetFdInfoKHR`] structure containing parameters of
 ///   the export operation.
 /// - [`p_fd`] will return a file descriptor referencing the payload of the device memory object.
-/// # Description
-/// Each call to [`get_memory_fd_khr`] **must**  create a new file descriptor
-/// holding a reference to the memory object’s payload and transfer ownership of
-/// the file descriptor to the application.
-/// To avoid leaking resources, the application  **must**  release ownership of the
-/// file descriptor using the `close` system call when it is no longer
-/// needed, or by importing a Vulkan memory object from it.
-/// Where supported by the operating system, the implementation  **must**  set the
-/// file descriptor to be closed automatically when an `execve` system call
-/// is made.
-/// ## Valid Usage (Implicit)
+///# Description
+///Each call to [`get_memory_fd_khr`] **must**  create a new file descriptor
+///holding a reference to the memory object’s payload and transfer ownership of
+///the file descriptor to the application.
+///To avoid leaking resources, the application  **must**  release ownership of the
+///file descriptor using the `close` system call when it is no longer
+///needed, or by importing a Vulkan memory object from it.
+///Where supported by the operating system, the implementation  **must**  set the
+///file descriptor to be closed automatically when an `execve` system call
+///is made.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_get_fd_info`] **must**  be a valid pointer to a valid [`MemoryGetFdInfoKHR`] structure
 /// - [`p_fd`] **must**  be a valid pointer to an `int` value
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`Device`]
 /// - [`MemoryGetFdInfoKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetMemoryFdKHR")]
 pub type FNGetMemoryFdKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -149,40 +149,40 @@ pub type FNGetMemoryFdKhr = Option<
 ///    int                                         fd,
 ///    VkMemoryFdPropertiesKHR*                    pMemoryFdProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that will be importing [`fd`].
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
 ///   handle [`fd`].
 /// - [`fd`] is the handle which will be imported.
 /// - [`p_memory_fd_properties`] is a pointer to a [`MemoryFdPropertiesKHR`] structure in which the
 ///   properties of the handle [`fd`] are returned.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`fd`] **must**  be an external memory handle created outside of the Vulkan API
 /// - [`handle_type`] **must**  not be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 /// - [`p_memory_fd_properties`] **must**  be a valid pointer to a [`MemoryFdPropertiesKHR`]
 ///   structure
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-/// # Related
+///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`Device`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`MemoryFdPropertiesKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetMemoryFdPropertiesKHR")]
 pub type FNGetMemoryFdPropertiesKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -207,24 +207,24 @@ pub type FNGetMemoryFdPropertiesKhr = Option<
 ///    int                                   fd;
 ///} VkImportMemoryFdInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the handle type of
 ///   [`fd`].
 /// - [`fd`] is the external handle to import.
-/// # Description
-/// Importing memory from a file descriptor transfers ownership of the file
-/// descriptor from the application to the Vulkan implementation.
-/// The application  **must**  not perform any operations on the file descriptor
-/// after a successful import.
-/// The imported memory object holds a reference to its payload.Applications  **can**  import the
+///# Description
+///Importing memory from a file descriptor transfers ownership of the file
+///descriptor from the application to the Vulkan implementation.
+///The application  **must**  not perform any operations on the file descriptor
+///after a successful import.
+///The imported memory object holds a reference to its payload.Applications  **can**  import the
 /// same payload into multiple instances of Vulkan,
-/// into the same instance from which it was exported, and multiple times into a
-/// given Vulkan instance.
-/// In all cases, each import operation  **must**  create a distinct
-/// [`DeviceMemory`] object.
-/// ## Valid Usage
+///into the same instance from which it was exported, and multiple times into a
+///given Vulkan instance.
+///In all cases, each import operation  **must**  create a distinct
+///[`DeviceMemory`] object.
+///## Valid Usage
 /// - If [`handle_type`] is not `0`, it  **must**  be supported for import, as reported by
 ///   [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
 /// - The memory from which [`fd`] was exported  **must**  have been created on the same underlying
@@ -237,22 +237,22 @@ pub type FNGetMemoryFdPropertiesKhr = Option<
 ///   that is compatible with `device` and [`handle_type`], as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
 /// -  [`fd`] **must**  obey any requirements listed for [`handle_type`] in [external memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR`
 /// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -354,27 +354,27 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
 ///    uint32_t           memoryTypeBits;
 ///} VkMemoryFdPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
 ///   specified file descriptor  **can**  be imported as.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`StructureType`]
 /// - [`get_memory_fd_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryFdPropertiesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -468,42 +468,42 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
 ///    VkExternalMemoryHandleTypeFlagBits    handleType;
 ///} VkMemoryGetFdInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] is the memory object from which the handle will be exported.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of handle
 ///   requested.
-/// # Description
-/// The properties of the file descriptor exported depend on the value of
-/// [`handle_type`].
-/// See [`ExternalMemoryHandleTypeFlagBits`] for a description of the
-/// properties of the defined external memory handle types.
-/// ## Valid Usage
+///# Description
+///The properties of the file descriptor exported depend on the value of
+///[`handle_type`].
+///See [`ExternalMemoryHandleTypeFlagBits`] for a description of the
+///properties of the defined external memory handle types.
+///## Valid Usage
 /// - [`handle_type`] **must**  have been included in [`ExportMemoryAllocateInfo::handle_types`]
 ///   when [`memory`] was created
 /// - [`handle_type`] **must**  be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT` or
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`VK_KHR_external_memory_fd`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_memory_fd_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -607,42 +607,42 @@ impl Device {
     ///    const VkMemoryGetFdInfoKHR*                 pGetFdInfo,
     ///    int*                                        pFd);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that created the device memory being exported.
     /// - [`p_get_fd_info`] is a pointer to a [`MemoryGetFdInfoKHR`] structure containing parameters
     ///   of the export operation.
     /// - [`p_fd`] will return a file descriptor referencing the payload of the device memory
     ///   object.
-    /// # Description
-    /// Each call to [`get_memory_fd_khr`] **must**  create a new file descriptor
-    /// holding a reference to the memory object’s payload and transfer ownership of
-    /// the file descriptor to the application.
-    /// To avoid leaking resources, the application  **must**  release ownership of the
-    /// file descriptor using the `close` system call when it is no longer
-    /// needed, or by importing a Vulkan memory object from it.
-    /// Where supported by the operating system, the implementation  **must**  set the
-    /// file descriptor to be closed automatically when an `execve` system call
-    /// is made.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///Each call to [`get_memory_fd_khr`] **must**  create a new file descriptor
+    ///holding a reference to the memory object’s payload and transfer ownership of
+    ///the file descriptor to the application.
+    ///To avoid leaking resources, the application  **must**  release ownership of the
+    ///file descriptor using the `close` system call when it is no longer
+    ///needed, or by importing a Vulkan memory object from it.
+    ///Where supported by the operating system, the implementation  **must**  set the
+    ///file descriptor to be closed automatically when an `execve` system call
+    ///is made.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_get_fd_info`] **must**  be a valid pointer to a valid [`MemoryGetFdInfoKHR`] structure
     /// - [`p_fd`] **must**  be a valid pointer to an `int` value
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_external_memory_fd`]
     /// - [`Device`]
     /// - [`MemoryGetFdInfoKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetMemoryFdKHR")]
     #[track_caller]
@@ -691,40 +691,40 @@ impl Device {
     ///    int                                         fd,
     ///    VkMemoryFdPropertiesKHR*                    pMemoryFdProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that will be importing [`fd`].
     /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of the
     ///   handle [`fd`].
     /// - [`fd`] is the handle which will be imported.
     /// - [`p_memory_fd_properties`] is a pointer to a [`MemoryFdPropertiesKHR`] structure in which
     ///   the properties of the handle [`fd`] are returned.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`fd`] **must**  be an external memory handle created outside of the Vulkan API
     /// - [`handle_type`] **must**  not be `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
     /// - [`p_memory_fd_properties`] **must**  be a valid pointer to a [`MemoryFdPropertiesKHR`]
     ///   structure
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_external_memory_fd`]
     /// - [`Device`]
     /// - [`ExternalMemoryHandleTypeFlagBits`]
     /// - [`MemoryFdPropertiesKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetMemoryFdPropertiesKHR")]
     #[track_caller]

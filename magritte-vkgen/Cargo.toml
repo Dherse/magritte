@@ -38,7 +38,7 @@ vk-parse = "0.7.0"
 regex = "1.5.4"
 
 # Convert name formatting
-convert_case = "0.5.0"
+heck = "0.4.0"
 
 # Expression parsing
 nom = "7.1.0"

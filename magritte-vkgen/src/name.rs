@@ -2,7 +2,7 @@
 
 use std::borrow::Cow;
 
-use convert_case::{Case, Casing};
+use heck::{ToUpperCamelCase, ToShoutySnakeCase, ToSnakeCase};
 use lazy_static::lazy_static;
 use regex::{Regex, Replacer};
 
@@ -31,7 +31,7 @@ pub fn type_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
         (trimmed, None)
     };
 
-    let mut trimmed = no_tag.to_case(Case::UpperCamel);
+    let mut trimmed = no_tag.to_upper_camel_case();
 
     // Special case for results
     if no_tag == "Result" {
@@ -89,7 +89,7 @@ pub fn enum_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option
     } else {
         &trimmed
     }
-    .to_case(Case::ScreamingSnake);
+    .to_shouty_snake_case();
 
     let mut out = if let Some(parent) = parent {
         let mut parent = parent
@@ -102,7 +102,7 @@ pub fn enum_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option
         }
 
         cases
-            .trim_start_matches(&parent.to_case(Case::ScreamingSnake))
+            .trim_start_matches(&parent.to_shouty_snake_case())
             .to_string()
     } else {
         cases
@@ -126,7 +126,7 @@ pub fn bit_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<
     } else {
         &trimmed
     }
-    .to_case(Case::ScreamingSnake);
+    .to_shouty_snake_case();
 
     let mut out = if let Some(parent) = parent {
         let mut parent = parent
@@ -139,7 +139,7 @@ pub fn bit_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<
         }
 
         cases
-            .trim_start_matches(&parent.to_case(Case::ScreamingSnake))
+            .trim_start_matches(&parent.to_shouty_snake_case())
             .to_string()
     } else {
         cases
@@ -174,7 +174,7 @@ pub fn funcpointer_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
         (trimmed, None)
     };
 
-    let mut trimmed = no_tag.to_case(Case::UpperCamel);
+    let mut trimmed = no_tag.to_upper_camel_case();
 
     if has_pfn {
         trimmed.insert_str(0, "PFN");
@@ -193,7 +193,7 @@ pub fn funcpointer_name<'a>(name: &'a str, tag_list: &[Tag<'a>]) -> String {
 pub fn function_name<'a>(name: &'a str, _: &[Tag<'a>]) -> String {
     let trimmed = name.trim_start_matches("vk");
 
-    let mut trimmed = trimmed.to_case(Case::Snake);
+    let mut trimmed = trimmed.to_snake_case();
 
     deal_with_numbers(&mut trimmed);
 

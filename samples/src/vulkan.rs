@@ -101,7 +101,7 @@ impl Vulkan {
         //   `enable_required_extensions` that will automatically deal with extensions for your window!
         let mut extensions = enable_required_extensions(window, extensions)?
             .enable_khr_swapchain()
-            .enable_khr_get_physical_device_properties_2();
+            .enable_khr_get_physical_device_properties2();
 
         // If we have the validation layers, enable the extension (optional)
         if validation {

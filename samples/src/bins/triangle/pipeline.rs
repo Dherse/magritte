@@ -69,13 +69,13 @@ impl Pipeline {
             VertexInputAttributeDescription {
                 location: 0,
                 binding: 0,
-                format: Format::R32_G_32_B_32_A_32_SFLOAT,
+                format: Format::R32G32B32A32_SFLOAT,
                 offset: offset_of!(Vertex, position) as u32,
             },
             VertexInputAttributeDescription {
                 location: 1,
                 binding: 0,
-                format: Format::R8_G_8_B_8_A_8_UNORM,
+                format: Format::R8G8B8A8_UNORM,
                 offset: offset_of!(Vertex, color) as u32,
             },
         ];

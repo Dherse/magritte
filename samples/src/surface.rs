@@ -198,7 +198,7 @@ impl Surface {
             .iter()
             .map(|image| {
                 let create_view_info = ImageViewCreateInfo::default()
-                    .set_view_type(ImageViewType::_2_D)
+                    .set_view_type(ImageViewType::_2D)
                     .set_format(surface_format.format)
                     .set_components(ComponentMapping {
                         r: ComponentSwizzle::R,
