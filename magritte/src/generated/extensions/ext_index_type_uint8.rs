@@ -56,34 +56,34 @@ pub const EXT_INDEX_TYPE_UINT8_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    VkBool32           indexTypeUint8;
 ///} VkPhysicalDeviceIndexTypeUint8FeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`index_type_uint8`] indicates that `VK_INDEX_TYPE_UINT8_EXT` can be used with
 ///   [`cmd_bind_index_buffer`].
-///If the [`PhysicalDeviceIndexTypeUint8FeaturesEXT`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceIndexTypeUint8FeaturesEXT`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceIndexTypeUint8FeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceIndexTypeUint8FeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_index_type_uint8`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceIndexTypeUint8FeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

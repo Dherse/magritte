@@ -63,34 +63,34 @@ pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 ///    VkBool32           memoryPriority;
 ///} VkPhysicalDeviceMemoryPriorityFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_priority`] indicates that the implementation supports memory priorities specified at
 ///   memory allocation time via [`MemoryPriorityAllocateInfoEXT`].
-///If the [`PhysicalDeviceMemoryPriorityFeaturesEXT`] structure is included in the [`p_next`] chain
+/// If the [`PhysicalDeviceMemoryPriorityFeaturesEXT`] structure is included in the [`p_next`] chain
 /// of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceMemoryPriorityFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceMemoryPriorityFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_memory_priority`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryPriorityFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -209,33 +209,33 @@ impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
 ///    float              priority;
 ///} VkMemoryPriorityAllocateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`priority`] is a floating-point value between `0` and `1`, indicating the priority of the
 ///   allocation relative to other memory allocations. Larger values are higher priority. The
 ///   granularity of the priorities is implementation-dependent.
-///# Description
-///Memory allocations with higher priority  **may**  be more likely to stay in
-///device-local memory when the system is under memory pressure.If this structure is not included,
+/// # Description
+/// Memory allocations with higher priority  **may**  be more likely to stay in
+/// device-local memory when the system is under memory pressure.If this structure is not included,
 /// it is as if the [`priority`] value were
-///`0.5`.
-///## Valid Usage
+/// `0.5`.
+/// ## Valid Usage
 /// - [`priority`] **must**  be between `0` and `1`, inclusive
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_memory_priority`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryPriorityAllocateInfoEXT")]
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 #[repr(C)]

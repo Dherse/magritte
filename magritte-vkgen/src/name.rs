@@ -2,7 +2,7 @@
 
 use std::borrow::Cow;
 
-use heck::{ToUpperCamelCase, ToShoutySnakeCase, ToSnakeCase};
+use heck::{ToShoutySnakeCase, ToSnakeCase, ToUpperCamelCase};
 use lazy_static::lazy_static;
 use regex::{Regex, Replacer};
 
@@ -101,9 +101,7 @@ pub fn enum_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option
             parent = parent.trim_end_matches(&***tag).to_string();
         }
 
-        cases
-            .trim_start_matches(&parent.to_shouty_snake_case())
-            .to_string()
+        cases.trim_start_matches(&parent.to_shouty_snake_case()).to_string()
     } else {
         cases
     }
@@ -138,9 +136,7 @@ pub fn bit_name<'a>(name: &'a str, parent_tag: Option<&Tag<'a>>, parent: Option<
             parent = parent.trim_end_matches(&***tag).to_string();
         }
 
-        cases
-            .trim_start_matches(&parent.to_shouty_snake_case())
-            .to_string()
+        cases.trim_start_matches(&parent.to_shouty_snake_case()).to_string()
     } else {
         cases
     }

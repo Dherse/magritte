@@ -1,8 +1,8 @@
 use ahash::AHashMap;
+use heck::ToShoutySnakeCase;
 use proc_macro2::{Ident, Literal, Span, TokenStream};
 use quote::quote;
 use tracing::warn;
-use heck::ToShoutySnakeCase;
 
 use crate::{
     codegen::alias_of,

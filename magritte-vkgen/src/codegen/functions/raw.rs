@@ -1,6 +1,5 @@
-
-use proc_macro2::{Ident, Span, TokenStream};
 use heck::ToUpperCamelCase;
+use proc_macro2::{Ident, Span, TokenStream};
 
 use crate::{
     doc::Documentation,

@@ -66,34 +66,34 @@ pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static CStr
 ///    VkBool32           shaderSubgroupUniformControlFlow;
 ///} VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`shader_subgroup_uniform_control_flow`] specifies whether the implementation supports the
 ///   shader execution mode `SubgroupUniformControlFlowKHR`
-///If the [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] structure is included in
+/// If the [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] structure is included in
 /// the [`p_next`] chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] **can**  also be used in the
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] **can**  also be used in the
 /// [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
-///# Related
+/// # Related
 /// - [`VK_KHR_shader_subgroup_uniform_control_flow`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

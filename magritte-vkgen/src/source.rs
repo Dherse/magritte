@@ -23,8 +23,8 @@ use std::{
     ops::{Deref, Not},
 };
 
-use smallvec::SmallVec;
 use heck::ToSnakeCase;
+use smallvec::SmallVec;
 use tracing::{debug, error, info, span, warn, Level};
 use vk_parse::{
     CommandDefinition, Commands, CommentedChildren, EnumSpec, Enums, EnumsChild, ExtensionChild, Feature,

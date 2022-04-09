@@ -93,28 +93,28 @@ pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV
 ///    VkExternalMemoryHandleTypeFlagsNV    handleTypes;
 ///} VkExternalMemoryImageCreateInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is zero, or a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] specifying
 ///   one or more external memory handle types.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
-///# Related
+/// # Related
 /// - [`VK_NV_external_memory`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryImageCreateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -204,30 +204,30 @@ impl<'lt> ExternalMemoryImageCreateInfoNV<'lt> {
 ///    VkExternalMemoryHandleTypeFlagsNV    handleTypes;
 ///} VkExportMemoryAllocateInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] specifying one or more
 ///   memory handle types that  **may**  be exported. Multiple handle types  **may**  be requested
 ///   for the same allocation as long as they are compatible, as reported by
 ///   [`get_physical_device_external_image_format_properties_nv`].
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
-///# Related
+/// # Related
 /// - [`VK_NV_external_memory`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportMemoryAllocateInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

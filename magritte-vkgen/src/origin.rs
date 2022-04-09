@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use heck::{ToSnakeCase, ToLowerCamelCase};
+use heck::{ToLowerCamelCase, ToSnakeCase};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 use syn::PathSegment;
@@ -114,10 +114,9 @@ impl<'a> Origin<'a> {
         match self {
             Origin::Unknown => panic!("Unknown origin cannot be turned into a module"),
             Origin::Core => "crate::core".to_owned(),
-            Origin::Extension(ext, _, _) => format!(
-                "crate::extensions::{}",
-                ext.trim_start_matches("VK_").to_snake_case()
-            ),
+            Origin::Extension(ext, _, _) => {
+                format!("crate::extensions::{}", ext.trim_start_matches("VK_").to_snake_case())
+            },
             Origin::Vulkan1_0 => "crate::vulkan1_0".to_owned(),
             Origin::Vulkan1_1 => "crate::vulkan1_1".to_owned(),
             Origin::Vulkan1_2 => "crate::vulkan1_2".to_owned(),

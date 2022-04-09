@@ -69,37 +69,37 @@ pub const EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           sparseImageInt64Atomics;
 ///} VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_image_int64_atomics`] indicates whether shaders  **can**  support 64-bit unsigned and
 ///   signed integer atomic operations on images.
 /// - [`sparse_image_int64_atomics`] indicates whether 64-bit integer atomics  **can**  be used on
 ///   sparse images.
-///If the `VkPhysicalDeviceShaderAtomicInt64FeaturesEXT` structure is included in the [`p_next`]
+/// If the `VkPhysicalDeviceShaderAtomicInt64FeaturesEXT` structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///`VkPhysicalDeviceShaderAtomicInt64FeaturesEXT` **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// `VkPhysicalDeviceShaderAtomicInt64FeaturesEXT` **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`VK_EXT_shader_image_atomic_int64`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

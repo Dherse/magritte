@@ -72,44 +72,44 @@ pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    const VkFenceGetFdInfoKHR*                  pGetFdInfo,
 ///    int*                                        pFd);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that created the fence being exported.
 /// - [`p_get_fd_info`] is a pointer to a [`FenceGetFdInfoKHR`] structure containing parameters of
 ///   the export operation.
 /// - [`p_fd`] will return the file descriptor representing the fence payload.
-///# Description
-///Each call to [`get_fence_fd_khr`] **must**  create a new file descriptor and
-///transfer ownership of it to the application.
-///To avoid leaking resources, the application  **must**  release ownership of the
-///file descriptor when it is no longer needed.If `pGetFdInfo->handleType` is
-///`VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT` and the fence is signaled at
-///the time [`get_fence_fd_khr`] is called, [`p_fd`] **may**  return the value
-///`-1` instead of a valid file descriptor.Where supported by the operating system, the
+/// # Description
+/// Each call to [`get_fence_fd_khr`] **must**  create a new file descriptor and
+/// transfer ownership of it to the application.
+/// To avoid leaking resources, the application  **must**  release ownership of the
+/// file descriptor when it is no longer needed.If `pGetFdInfo->handleType` is
+/// `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT` and the fence is signaled at
+/// the time [`get_fence_fd_khr`] is called, [`p_fd`] **may**  return the value
+/// `-1` instead of a valid file descriptor.Where supported by the operating system, the
 /// implementation  **must**  set the
-///file descriptor to be closed automatically when an `execve` system call
-///is made.Exporting a file descriptor from a fence  **may**  have side effects depending on
-///the transference of the specified handle type, as described in
-///[Importing Fence State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing).
-///## Valid Usage (Implicit)
+/// file descriptor to be closed automatically when an `execve` system call
+/// is made.Exporting a file descriptor from a fence  **may**  have side effects depending on
+/// the transference of the specified handle type, as described in
+/// [Importing Fence State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing).
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_get_fd_info`] **must**  be a valid pointer to a valid [`FenceGetFdInfoKHR`] structure
 /// - [`p_fd`] **must**  be a valid pointer to an `int` value
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`VK_KHR_external_fence_fd`]
 /// - [`Device`]
 /// - [`FenceGetFdInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetFenceFdKHR")]
 pub type FNGetFenceFdKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -127,42 +127,42 @@ pub type FNGetFenceFdKhr = Option<
 ///    VkDevice                                    device,
 ///    const VkImportFenceFdInfoKHR*               pImportFenceFdInfo);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that created the fence.
 /// - [`p_import_fence_fd_info`] is a pointer to a [`ImportFenceFdInfoKHR`] structure specifying the
 ///   fence and import parameters.
-///# Description
-///Importing a fence payload from a file descriptor transfers ownership of the
-///file descriptor from the application to the Vulkan implementation.
-///The application  **must**  not perform any operations on the file descriptor
-///after a successful import.Applications  **can**  import the same fence payload into multiple
+/// # Description
+/// Importing a fence payload from a file descriptor transfers ownership of the
+/// file descriptor from the application to the Vulkan implementation.
+/// The application  **must**  not perform any operations on the file descriptor
+/// after a successful import.Applications  **can**  import the same fence payload into multiple
 /// instances of
-///Vulkan, into the same instance from which it was exported, and multiple
-///times into a given Vulkan instance.
-///## Valid Usage
+/// Vulkan, into the same instance from which it was exported, and multiple
+/// times into a given Vulkan instance.
+/// ## Valid Usage
 /// - `fence` **must**  not be associated with any queue command that has not yet completed
 ///   execution on that queue
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_import_fence_fd_info`] **must**  be a valid pointer to a valid [`ImportFenceFdInfoKHR`]
 ///   structure
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-///# Related
+/// # Related
 /// - [`VK_KHR_external_fence_fd`]
 /// - [`Device`]
 /// - [`ImportFenceFdInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkImportFenceFdKHR")]
 pub type FNImportFenceFdKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -184,7 +184,7 @@ pub type FNImportFenceFdKhr = Option<
 ///    int                                  fd;
 ///} VkImportFenceFdInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fence`] is the fence into which the payload will be imported.
@@ -192,28 +192,28 @@ pub type FNImportFenceFdKhr = Option<
 ///   fence payload import operation.
 /// - [`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value specifying the type of [`fd`].
 /// - [`fd`] is the external handle to import.
-///# Description
-///The handle types supported by [`handle_type`] are:
-///## Valid Usage
+/// # Description
+/// The handle types supported by [`handle_type`] are:
+/// ## Valid Usage
 /// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportFenceFdInfoKHR`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fence-handletypes-fd)
 ///   table
 /// -  [`fd`] **must**  obey any requirements listed for [`handle_type`] in [external fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
-///If [`handle_type`] is `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT`, the
-///special value `-1` for [`fd`] is treated like a valid sync file descriptor
-///referring to an object that has already signaled.
-///The import operation will succeed and the [`Fence`] will have a
-///temporarily imported payload as if a valid file descriptor had been
-///provided.
-///## Valid Usage (Implicit)
+/// If [`handle_type`] is `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT`, the
+/// special value `-1` for [`fd`] is treated like a valid sync file descriptor
+/// referring to an object that has already signaled.
+/// The import operation will succeed and the [`Fence`] will have a
+/// temporarily imported payload as if a valid file descriptor had been
+/// provided.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`fence`] **must**  be a valid [`Fence`] handle
 /// - [`flags`] **must**  be a valid combination of [`FenceImportFlagBits`] values
 /// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`fence`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`VK_KHR_external_fence_fd`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`Fence`]
@@ -221,13 +221,13 @@ pub type FNImportFenceFdKhr = Option<
 /// - [`StructureType`]
 /// - [`import_fence_fd_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportFenceFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -363,18 +363,18 @@ impl<'lt> ImportFenceFdInfoKHR<'lt> {
 ///    VkExternalFenceHandleTypeFlagBits    handleType;
 ///} VkFenceGetFdInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fence`] is the fence from which state will be exported.
 /// - [`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value specifying the type of handle
 ///   requested.
-///# Description
-///The properties of the file descriptor returned depend on the value of
-///[`handle_type`].
-///See [`ExternalFenceHandleTypeFlagBits`] for a description of the
-///properties of the defined external fence handle types.
-///## Valid Usage
+/// # Description
+/// The properties of the file descriptor returned depend on the value of
+/// [`handle_type`].
+/// See [`ExternalFenceHandleTypeFlagBits`] for a description of the
+/// properties of the defined external fence handle types.
+/// ## Valid Usage
 /// - [`handle_type`] **must**  have been included in [`ExportFenceCreateInfo::handle_types`] when
 ///   [`fence`]’s current payload was created
 /// - If [`handle_type`] refers to a handle type with copy payload transference semantics, [`fence`]
@@ -383,25 +383,25 @@ impl<'lt> ImportFenceFdInfoKHR<'lt> {
 /// -  [`fence`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing) unless that imported payload’s handle type was included in [`ExternalFenceProperties::export_from_imported_handle_types`] for [`handle_type`]
 /// - [`handle_type`] **must**  be defined as a POSIX file descriptor handle
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`fence`] **must**  be a valid [`Fence`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`VK_KHR_external_fence_fd`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`Fence`]
 /// - [`StructureType`]
 /// - [`get_fence_fd_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFenceGetFdInfoKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -503,44 +503,44 @@ impl Device {
     ///    const VkFenceGetFdInfoKHR*                  pGetFdInfo,
     ///    int*                                        pFd);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device that created the fence being exported.
     /// - [`p_get_fd_info`] is a pointer to a [`FenceGetFdInfoKHR`] structure containing parameters
     ///   of the export operation.
     /// - [`p_fd`] will return the file descriptor representing the fence payload.
-    ///# Description
-    ///Each call to [`get_fence_fd_khr`] **must**  create a new file descriptor and
-    ///transfer ownership of it to the application.
-    ///To avoid leaking resources, the application  **must**  release ownership of the
-    ///file descriptor when it is no longer needed.If `pGetFdInfo->handleType` is
-    ///`VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT` and the fence is signaled at
-    ///the time [`get_fence_fd_khr`] is called, [`p_fd`] **may**  return the value
-    ///`-1` instead of a valid file descriptor.Where supported by the operating system, the
+    /// # Description
+    /// Each call to [`get_fence_fd_khr`] **must**  create a new file descriptor and
+    /// transfer ownership of it to the application.
+    /// To avoid leaking resources, the application  **must**  release ownership of the
+    /// file descriptor when it is no longer needed.If `pGetFdInfo->handleType` is
+    /// `VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT` and the fence is signaled at
+    /// the time [`get_fence_fd_khr`] is called, [`p_fd`] **may**  return the value
+    /// `-1` instead of a valid file descriptor.Where supported by the operating system, the
     /// implementation  **must**  set the
-    ///file descriptor to be closed automatically when an `execve` system call
-    ///is made.Exporting a file descriptor from a fence  **may**  have side effects depending on
-    ///the transference of the specified handle type, as described in
-    ///[Importing Fence State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing).
-    ///## Valid Usage (Implicit)
+    /// file descriptor to be closed automatically when an `execve` system call
+    /// is made.Exporting a file descriptor from a fence  **may**  have side effects depending on
+    /// the transference of the specified handle type, as described in
+    /// [Importing Fence State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing).
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_get_fd_info`] **must**  be a valid pointer to a valid [`FenceGetFdInfoKHR`] structure
     /// - [`p_fd`] **must**  be a valid pointer to an `int` value
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_external_fence_fd`]
     /// - [`Device`]
     /// - [`FenceGetFdInfoKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetFenceFdKHR")]
     #[track_caller]
@@ -579,42 +579,42 @@ impl Device {
     ///    VkDevice                                    device,
     ///    const VkImportFenceFdInfoKHR*               pImportFenceFdInfo);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device that created the fence.
     /// - [`p_import_fence_fd_info`] is a pointer to a [`ImportFenceFdInfoKHR`] structure specifying
     ///   the fence and import parameters.
-    ///# Description
-    ///Importing a fence payload from a file descriptor transfers ownership of the
-    ///file descriptor from the application to the Vulkan implementation.
-    ///The application  **must**  not perform any operations on the file descriptor
-    ///after a successful import.Applications  **can**  import the same fence payload into multiple
+    /// # Description
+    /// Importing a fence payload from a file descriptor transfers ownership of the
+    /// file descriptor from the application to the Vulkan implementation.
+    /// The application  **must**  not perform any operations on the file descriptor
+    /// after a successful import.Applications  **can**  import the same fence payload into multiple
     /// instances of
-    ///Vulkan, into the same instance from which it was exported, and multiple
-    ///times into a given Vulkan instance.
-    ///## Valid Usage
+    /// Vulkan, into the same instance from which it was exported, and multiple
+    /// times into a given Vulkan instance.
+    /// ## Valid Usage
     /// - `fence` **must**  not be associated with any queue command that has not yet completed
     ///   execution on that queue
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_import_fence_fd_info`] **must**  be a valid pointer to a valid
     ///   [`ImportFenceFdInfoKHR`] structure
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-    ///# Related
+    /// # Related
     /// - [`VK_KHR_external_fence_fd`]
     /// - [`Device`]
     /// - [`ImportFenceFdInfoKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkImportFenceFdKHR")]
     #[track_caller]

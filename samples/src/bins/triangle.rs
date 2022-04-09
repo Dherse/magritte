@@ -180,7 +180,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 pub struct Renderer {
     /// Is rendering enabled
     rendering_enabled: bool,
-    
+
     /// The vulkan instance
     vulkan: Vulkan,
 
