@@ -4,3 +4,6 @@
 [submodule "vendors/Vulkan-Docs"]
 	path = vendors/Vulkan-Docs
 	url = https://github.com/KhronosGroup/Vulkan-Docs
+[submodule "vendors/VulkanMemoryAllocator"]
+	path = vendors/VulkanMemoryAllocator
+	url = https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
