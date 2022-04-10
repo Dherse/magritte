@@ -2,6 +2,7 @@
 members = [
     "magritte",
     "magritte-vkgen",
+    "magritte-vma",
     "magritte-shaders",
     "samples",
 ]

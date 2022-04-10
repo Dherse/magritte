@@ -35,11 +35,6 @@ version = '0.4.16'
 features = []
 optional = true
 
-[dependencies.parking_lot]
-version = '0.12.0'
-features = []
-optional = false
-
 [dependencies.raw-window-handle]
 version = '0.4.3'
 features = []
@@ -735,7 +730,7 @@ default = [
     'window',
     'validation',
 ]
-validation = ['log']
+validation = ['log', 'VK_EXT_debug_utils']
 window = [
     'raw-window-handle',
     'VK_KHR_surface',

@@ -139,7 +139,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
             ],
         );
 
-        features.insert("validation".to_string(), vec!["log".to_string()]);
+        features.insert("validation".to_string(), vec!["log".to_string(), "VK_EXT_debug_utils".to_string()]);
 
         features.insert(
             "default".to_string(),

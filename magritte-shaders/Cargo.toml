@@ -10,3 +10,6 @@ shaderc = "0.7.4"
 # Code generation
 proc-macro2 = "1.0.37"
 quote = "1.0.17"
+
+# SPIR-V reflection
+spirq = "0.5.0"
