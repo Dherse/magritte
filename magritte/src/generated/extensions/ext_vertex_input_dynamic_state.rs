@@ -81,7 +81,7 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 ///    uint32_t                                    vertexAttributeDescriptionCount,
 ///    const VkVertexInputAttributeDescription2EXT* pVertexAttributeDescriptions);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`vertex_binding_description_count`] is the number of vertex binding descriptions provided in
 ///   [`p_vertex_binding_descriptions`].
@@ -91,19 +91,19 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 ///   in [`p_vertex_attribute_descriptions`].
 /// - [`p_vertex_attribute_descriptions`] is a pointer to an array of
 ///   [`VertexInputAttributeDescription2EXT`] structures.
-/// # Description
-/// This command sets the vertex input attribute and vertex input binding
-/// descriptions state for subsequent drawing commands when the graphics
-/// pipeline is created with `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`GraphicsPipelineCreateInfo::vertex_input_state`] values used to
-/// create the currently active pipeline.If the bound pipeline state object was also created with
+///# Description
+///This command sets the vertex input attribute and vertex input binding
+///descriptions state for subsequent drawing commands when the graphics
+///pipeline is created with `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`GraphicsPipelineCreateInfo::vertex_input_state`] values used to
+///create the currently active pipeline.If the bound pipeline state object was also created with
 /// the
-/// `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` dynamic state enabled,
-/// then [`cmd_bind_vertex_buffers2`] can be used instead of
-/// [`cmd_set_vertex_input_ext`] to dynamically set the stride.
-/// ## Valid Usage
+///`VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` dynamic state enabled,
+///then [`cmd_bind_vertex_buffers2`] can be used instead of
+///[`cmd_set_vertex_input_ext`] to dynamically set the stride.
+///## Valid Usage
 /// - The [vertexInputDynamicState](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexInputDynamicState)
 ///   feature  **must**  be enabled
 /// - [`vertex_binding_description_count`] **must**  be less than or equal to
@@ -117,7 +117,7 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 /// - All elements of [`p_vertex_attribute_descriptions`] **must**  describe distinct attribute
 ///   locations
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - If [`vertex_binding_description_count`] is not `0`, [`p_vertex_binding_descriptions`] **must**
 ///   be a valid pointer to an array of [`vertex_binding_description_count`] valid
@@ -129,25 +129,25 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
 /// - [`CommandBuffer`]
 /// - [`VertexInputAttributeDescription2EXT`]
 /// - [`VertexInputBindingDescription2EXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetVertexInputEXT")]
 pub type FNCmdSetVertexInputExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -170,36 +170,36 @@ pub type FNCmdSetVertexInputExt = Option<
 ///    VkBool32           vertexInputDynamicState;
 ///} VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`vertex_input_dynamic_state`] indicates that the implementation supports the following
 ///   dynamic states:  - `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
-/// If the [`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`] structure is included in the
+///If the [`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -319,7 +319,7 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 ///    uint32_t             divisor;
 ///} VkVertexInputBindingDescription2EXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`binding`] is the binding number that this structure describes.
@@ -327,8 +327,8 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// - [`input_rate`] is a [`VertexInputRate`] value specifying whether vertex attribute addressing
 ///   is a function of the vertex index or of the instance index.
 /// - [`divisor`] is the number of successive instances that will use the same value of the vertex attribute when instanced rendering is enabled. This member  **can**  be set to a value other than `1` if the [vertexAttributeInstanceRateDivisor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateDivisor) feature is enabled. For example, if the divisor is N, the same vertex attribute will be applied to N successive instances before moving on to the next vertex attribute. The maximum value of [`divisor`] is implementation-dependent and can be queried using [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT::max_vertex_attrib_divisor`]. A value of `0` **can**  be used for the divisor if the [`vertexAttributeInstanceRateZeroDivisor`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexAttributeInstanceRateZeroDivisor) feature is enabled. In this case, the same vertex attribute will be applied to all instances.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
 /// - [`stride`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_vertex_input_binding_stride`]
@@ -341,22 +341,22 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// - If [`divisor`] is not `1` then [`input_rate`] **must**  be of type
 ///   `VK_VERTEX_INPUT_RATE_INSTANCE`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT`
 /// - [`input_rate`] **must**  be a valid [`VertexInputRate`] value
-/// # Related
+///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
 /// - [`StructureType`]
 /// - [`VertexInputRate`]
 /// - [`cmd_set_vertex_input_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputBindingDescription2EXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -516,7 +516,7 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 ///    uint32_t           offset;
 ///} VkVertexInputAttributeDescription2EXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`location`] is the shader input location number for this attribute.
@@ -524,8 +524,8 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// - [`format`] is the size and type of the vertex attribute data.
 /// - [`offset`] is a byte offset of this attribute relative to the start of an element in the
 ///   vertex input binding.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`location`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_attributes`]
 /// - [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
 /// - [`offset`] **must**  be less than or equal to
@@ -539,22 +539,22 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 ///   [`format`] **must**  not be greater than `stride` in the [`VertexInputBindingDescription2EXT`]
 ///   referenced in [`binding`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT`
 /// - [`format`] **must**  be a valid [`Format`] value
-/// # Related
+///# Related
 /// - [`VK_EXT_vertex_input_dynamic_state`]
 /// - [`Format`]
 /// - [`StructureType`]
 /// - [`cmd_set_vertex_input_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputAttributeDescription2EXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -699,7 +699,7 @@ impl CommandBuffer {
     ///    uint32_t                                    vertexAttributeDescriptionCount,
     ///    const VkVertexInputAttributeDescription2EXT* pVertexAttributeDescriptions);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`vertex_binding_description_count`] is the number of vertex binding descriptions provided
     ///   in [`p_vertex_binding_descriptions`].
@@ -709,19 +709,19 @@ impl CommandBuffer {
     ///   provided in [`p_vertex_attribute_descriptions`].
     /// - [`p_vertex_attribute_descriptions`] is a pointer to an array of
     ///   [`VertexInputAttributeDescription2EXT`] structures.
-    /// # Description
-    /// This command sets the vertex input attribute and vertex input binding
-    /// descriptions state for subsequent drawing commands when the graphics
-    /// pipeline is created with `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`GraphicsPipelineCreateInfo::vertex_input_state`] values used to
-    /// create the currently active pipeline.If the bound pipeline state object was also created
+    ///# Description
+    ///This command sets the vertex input attribute and vertex input binding
+    ///descriptions state for subsequent drawing commands when the graphics
+    ///pipeline is created with `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`GraphicsPipelineCreateInfo::vertex_input_state`] values used to
+    ///create the currently active pipeline.If the bound pipeline state object was also created
     /// with the
-    /// `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` dynamic state enabled,
-    /// then [`cmd_bind_vertex_buffers2`] can be used instead of
-    /// [`cmd_set_vertex_input_ext`] to dynamically set the stride.
-    /// ## Valid Usage
+    ///`VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` dynamic state enabled,
+    ///then [`cmd_bind_vertex_buffers2`] can be used instead of
+    ///[`cmd_set_vertex_input_ext`] to dynamically set the stride.
+    ///## Valid Usage
     /// - The [vertexInputDynamicState](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-vertexInputDynamicState)
     ///   feature  **must**  be enabled
     /// - [`vertex_binding_description_count`] **must**  be less than or equal to
@@ -736,7 +736,7 @@ impl CommandBuffer {
     /// - All elements of [`p_vertex_attribute_descriptions`] **must**  describe distinct attribute
     ///   locations
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - If [`vertex_binding_description_count`] is not `0`, [`p_vertex_binding_descriptions`]
     ///   **must**  be a valid pointer to an array of [`vertex_binding_description_count`] valid
@@ -748,25 +748,25 @@ impl CommandBuffer {
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_vertex_input_dynamic_state`]
     /// - [`CommandBuffer`]
     /// - [`VertexInputAttributeDescription2EXT`]
     /// - [`VertexInputBindingDescription2EXT`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetVertexInputEXT")]
     #[track_caller]

@@ -4,9 +4,6 @@ use magritte::{Handle, Unique};
 
 use crate::allocator::VmaAllocator;
 
-
-
-
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]
 pub struct VmaPool(pub *mut ());
@@ -41,15 +38,15 @@ impl Handle for VmaPool {
     type Parent = Unique<VmaAllocator>;
     type VTable = ();
     type Metadata = ();
-    type Raw = *mut ();
+    type Storage = *mut ();
 
     #[inline]
-    fn as_raw(self) -> Self::Raw {
+    fn as_stored(self) -> Self::Storage {
         self.0
     }
 
     #[inline]
-    unsafe fn from_raw(this: Self::Raw) -> Self {
+    unsafe fn from_stored(this: Self::Storage) -> Self {
         Self(this)
     }
 

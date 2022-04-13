@@ -36,15 +36,15 @@ impl Handle for VmaVirtualBlock {
     type Parent = Unique<VmaAllocator>;
     type VTable = ();
     type Metadata = Option<Unique<VmaPool>>;
-    type Raw = *mut ();
+    type Storage = *mut ();
 
     #[inline]
-    fn as_raw(self) -> Self::Raw {
+    fn as_stored(self) -> Self::Storage {
         self.0
     }
 
     #[inline]
-    unsafe fn from_raw(this: Self::Raw) -> Self {
+    unsafe fn from_stored(this: Self::Storage) -> Self {
         Self(this)
     }
 

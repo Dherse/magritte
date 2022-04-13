@@ -53,40 +53,40 @@ use std::{
 ///    const VkDeviceBufferMemoryRequirements*     pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///void vkGetDeviceBufferMemoryRequirementsKHR(
 ///    VkDevice                                    device,
 ///    const VkDeviceBufferMemoryRequirements*     pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device intended to own the buffer.
 /// - [`p_info`] is a pointer to a [`DeviceBufferMemoryRequirements`] structure containing
 ///   parameters required for the memory requirements query.
 /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   memory requirements of the buffer object are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceBufferMemoryRequirements`]
 ///   structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`DeviceBufferMemoryRequirements`]
 /// - [`MemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceBufferMemoryRequirements")]
 pub type FNGetDeviceBufferMemoryRequirements = Option<
     for<'lt> unsafe extern "system" fn(
@@ -106,39 +106,39 @@ pub type FNGetDeviceBufferMemoryRequirements = Option<
 ///    const VkDeviceImageMemoryRequirements*      pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///void vkGetDeviceImageMemoryRequirementsKHR(
 ///    VkDevice                                    device,
 ///    const VkDeviceImageMemoryRequirements*      pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device intended to own the image.
 /// - [`p_info`] is a pointer to a [`DeviceImageMemoryRequirements`] structure containing parameters
 ///   required for the memory requirements query.
 /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   memory requirements of the image object are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`DeviceImageMemoryRequirements`]
 /// - [`MemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceImageMemoryRequirements")]
 pub type FNGetDeviceImageMemoryRequirements = Option<
     for<'lt> unsafe extern "system" fn(
@@ -159,8 +159,8 @@ pub type FNGetDeviceImageMemoryRequirements = Option<
 ///    uint32_t*                                   pSparseMemoryRequirementCount,
 ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///void vkGetDeviceImageSparseMemoryRequirementsKHR(
 ///    VkDevice                                    device,
@@ -168,7 +168,7 @@ pub type FNGetDeviceImageMemoryRequirements = Option<
 ///    uint32_t*                                   pSparseMemoryRequirementCount,
 ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device intended to own the image.
 /// - [`p_info`] is a pointer to a [`DeviceImageMemoryRequirements`] structure containing parameters
 ///   required for the memory requirements query.
@@ -176,8 +176,8 @@ pub type FNGetDeviceImageMemoryRequirements = Option<
 ///   sparse memory requirements available or queried, as described below.
 /// - [`p_sparse_memory_requirements`] is either `NULL` or a pointer to an array of
 ///   [`SparseImageMemoryRequirements2`] structures.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`] structure
 /// - [`p_sparse_memory_requirement_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -185,20 +185,20 @@ pub type FNGetDeviceImageMemoryRequirements = Option<
 ///   [`p_sparse_memory_requirements`] is not `NULL`, [`p_sparse_memory_requirements`] **must**  be
 ///   a valid pointer to an array of
 ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`DeviceImageMemoryRequirements`]
 /// - [`SparseImageMemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceImageSparseMemoryRequirements")]
 pub type FNGetDeviceImageSparseMemoryRequirements = Option<
     for<'lt> unsafe extern "system" fn(
@@ -219,56 +219,56 @@ pub type FNGetDeviceImageSparseMemoryRequirements = Option<
 ///    uint32_t*                                   pToolCount,
 ///    VkPhysicalDeviceToolProperties*             pToolProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_tooling_info
 ///VkResult vkGetPhysicalDeviceToolPropertiesEXT(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    uint32_t*                                   pToolCount,
 ///    VkPhysicalDeviceToolProperties*             pToolProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the handle to the physical device to query for active tools.
 /// - [`p_tool_count`] is a pointer to an integer describing the number of tools active on
 ///   [`physical_device`].
 /// - [`p_tool_properties`] is either `NULL` or a pointer to an array of
 ///   [`PhysicalDeviceToolProperties`] structures.
-/// # Description
-/// If [`p_tool_properties`] is `NULL`, then the number of tools currently
-/// active on [`physical_device`] is returned in [`p_tool_count`].
-/// Otherwise, [`p_tool_count`] **must**  point to a variable set by the user to the
-/// number of elements in the [`p_tool_properties`] array, and on return the
-/// variable is overwritten with the number of structures actually written to
-/// [`p_tool_properties`].
-/// If [`p_tool_count`] is less than the number of currently active tools, at
-/// most [`p_tool_count`] structures will be written.The count and properties of active tools
+///# Description
+///If [`p_tool_properties`] is `NULL`, then the number of tools currently
+///active on [`physical_device`] is returned in [`p_tool_count`].
+///Otherwise, [`p_tool_count`] **must**  point to a variable set by the user to the
+///number of elements in the [`p_tool_properties`] array, and on return the
+///variable is overwritten with the number of structures actually written to
+///[`p_tool_properties`].
+///If [`p_tool_count`] is less than the number of currently active tools, at
+///most [`p_tool_count`] structures will be written.The count and properties of active tools
 /// **may**  change in response to events
-/// outside the scope of the specification.
-/// An application  **should**  assume these properties might change at any given
-/// time.
-/// ## Valid Usage (Implicit)
+///outside the scope of the specification.
+///An application  **should**  assume these properties might change at any given
+///time.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_tool_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_tool_count`] is not `0`, and [`p_tool_properties`] is not
 ///   `NULL`, [`p_tool_properties`] **must**  be a valid pointer to an array of
 ///   [`p_tool_count`][`PhysicalDeviceToolProperties`] structures
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_EXT_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceToolProperties`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceToolProperties")]
 pub type FNGetPhysicalDeviceToolProperties = Option<
     for<'lt> unsafe extern "system" fn(
@@ -288,8 +288,8 @@ pub type FNGetPhysicalDeviceToolProperties = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkPrivateDataSlot*                          pPrivateDataSlot);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_private_data
 ///VkResult vkCreatePrivateDataSlotEXT(
 ///    VkDevice                                    device,
@@ -297,7 +297,7 @@ pub type FNGetPhysicalDeviceToolProperties = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkPrivateDataSlot*                          pPrivateDataSlot);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device associated with the creation of the object(s) holding the
 ///   private data slot.
 /// - [`p_create_info`] is a pointer to a [`PrivateDataSlotCreateInfo`]
@@ -305,12 +305,12 @@ pub type FNGetPhysicalDeviceToolProperties = Option<
 ///   chapter.
 /// - [`p_private_data_slot`] is a pointer to a [`PrivateDataSlot`] handle in which the resulting
 ///   private data slot is returned
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [`privateData`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-privateData)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`PrivateDataSlotCreateInfo`]
 ///   structure
@@ -318,10 +318,10 @@ pub type FNGetPhysicalDeviceToolProperties = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`p_private_data_slot`] **must**  be a valid pointer to a [`PrivateDataSlot`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`AllocationCallbacks`]
@@ -329,13 +329,13 @@ pub type FNGetPhysicalDeviceToolProperties = Option<
 /// - [`PrivateDataSlot`]
 /// - [`PrivateDataSlotCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreatePrivateDataSlot")]
 pub type FNCreatePrivateDataSlot = Option<
     for<'lt> unsafe extern "system" fn(
@@ -355,28 +355,28 @@ pub type FNCreatePrivateDataSlot = Option<
 ///    VkPrivateDataSlot                           privateDataSlot,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_private_data
 ///void vkDestroyPrivateDataSlotEXT(
 ///    VkDevice                                    device,
 ///    VkPrivateDataSlot                           privateDataSlot,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device associated with the creation of the object(s) holding the
 ///   private data slot.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
 /// - [`private_data_slot`] is the private data slot to destroy.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`AllocationCallbacks`] were provided when [`private_data_slot`] was created, a compatible
 ///   set of callbacks  **must**  be provided here
 /// - If no [`AllocationCallbacks`] were provided when [`private_data_slot`] was created,
 ///   [`p_allocator`] **must**  be `NULL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`private_data_slot`] is not [`crate::Handle::null`], [`private_data_slot`] **must**  be a
 ///   valid [`PrivateDataSlot`] handle
@@ -385,22 +385,22 @@ pub type FNCreatePrivateDataSlot = Option<
 /// - If [`private_data_slot`] is a valid handle, it  **must**  have been created, allocated, or
 ///   retrieved from [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`private_data_slot`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`PrivateDataSlot`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyPrivateDataSlot")]
 pub type FNDestroyPrivateDataSlot = Option<
     for<'lt> unsafe extern "system" fn(
@@ -421,8 +421,8 @@ pub type FNDestroyPrivateDataSlot = Option<
 ///    VkPrivateDataSlot                           privateDataSlot,
 ///    uint64_t                                    data);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_private_data
 ///VkResult vkSetPrivateDataEXT(
 ///    VkDevice                                    device,
@@ -431,7 +431,7 @@ pub type FNDestroyPrivateDataSlot = Option<
 ///    VkPrivateDataSlot                           privateDataSlot,
 ///    uint64_t                                    data);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device that created the object.
 /// - [`object_type`] is a [`ObjectType`] specifying the type of object to associate data with.
 /// - [`object_handle`] is a handle to the object to associate data with.
@@ -439,34 +439,34 @@ pub type FNDestroyPrivateDataSlot = Option<
 ///   storage.
 /// - [`data`] is user defined data to associate the object with. This data will be stored at
 ///   [`private_data_slot`].
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`object_handle`] **must**  be [`device`] or a child of [`device`]
 /// - [`object_handle`] **must**  be a valid handle to an object of type [`object_type`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`object_type`] **must**  be a valid [`ObjectType`] value
 /// - [`private_data_slot`] **must**  be a valid [`PrivateDataSlot`] handle
 /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`ObjectType`]
 /// - [`PrivateDataSlot`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetPrivateData")]
 pub type FNSetPrivateData = Option<
     unsafe extern "system" fn(
@@ -490,8 +490,8 @@ pub type FNSetPrivateData = Option<
 ///    VkPrivateDataSlot                           privateDataSlot,
 ///    uint64_t*                                   pData);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_private_data
 ///void vkGetPrivateDataEXT(
 ///    VkDevice                                    device,
@@ -500,7 +500,7 @@ pub type FNSetPrivateData = Option<
 ///    VkPrivateDataSlot                           privateDataSlot,
 ///    uint64_t*                                   pData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device that created the object
 /// - [`object_type`] is a [`ObjectType`] specifying the type of object data is associated with.
 /// - [`object_handle`] is a handle to the object data is associated with.
@@ -509,31 +509,31 @@ pub type FNSetPrivateData = Option<
 /// - [`p_data`] is a pointer to specify where user data is returned. `0` will be written in the
 ///   absence of a previous call to [`set_private_data`] using the object specified by
 ///   [`object_handle`].
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`object_type`] **must**  be `VK_OBJECT_TYPE_DEVICE`, or an object type whose parent is
 ///   [`Device`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`object_type`] **must**  be a valid [`ObjectType`] value
 /// - [`private_data_slot`] **must**  be a valid [`PrivateDataSlot`] handle
 /// - [`p_data`] **must**  be a valid pointer to a `uint64_t` value
 /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`ObjectType`]
 /// - [`PrivateDataSlot`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPrivateData")]
 pub type FNGetPrivateData = Option<
     unsafe extern "system" fn(
@@ -555,8 +555,8 @@ pub type FNGetPrivateData = Option<
 ///    const VkSubmitInfo2*                        pSubmits,
 ///    VkFence                                     fence);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///VkResult vkQueueSubmit2KHR(
 ///    VkQueue                                     queue,
@@ -564,38 +564,38 @@ pub type FNGetPrivateData = Option<
 ///    const VkSubmitInfo2*                        pSubmits,
 ///    VkFence                                     fence);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`queue`] is the queue that the command buffers will be submitted to.
 /// - [`submit_count`] is the number of elements in the [`p_submits`] array.
 /// - [`p_submits`] is a pointer to an array of [`SubmitInfo2`] structures, each specifying a
 ///   command buffer submission batch.
 /// - [`fence`] is an  **optional**  handle to a fence to be signaled once all submitted command buffers have completed execution. If [`fence`] is not [`crate::Handle::null`], it defines a [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling).
-/// # Description
-/// [`queue_submit2`] is a [queue submission
-/// command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission), with each batch defined by an element of [`p_submits`].Semaphore operations submitted with [`queue_submit2`] have additional
-/// ordering constraints compared to other submission commands, with
-/// dependencies involving previous and subsequent queue operations.
-/// Information about these additional constraints can be found in the
-/// [semaphore](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores) section of [the
-/// synchronization chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).If any command buffer submitted to this queue is in the
-/// [executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), it is moved to the
-/// [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
-/// Once execution of all submissions of a command buffer complete, it moves
-/// from the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), back to the
-/// [executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
-/// If a command buffer was recorded with the
-/// `VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT` flag, it instead moves
-/// back to the [invalid state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).If [`queue_submit2`] fails, it  **may**  return
-/// `VK_ERROR_OUT_OF_HOST_MEMORY` or `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
-/// If it does, the implementation  **must**  ensure that the state and contents of
-/// any resources or synchronization primitives referenced by the submitted
-/// command buffers and any semaphores referenced by [`p_submits`] is
-/// unaffected by the call or its failure.
-/// If [`queue_submit2`] fails in such a way that the implementation is
-/// unable to make that guarantee, the implementation  **must**  return
-/// `VK_ERROR_DEVICE_LOST`.
-/// See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device).
-/// ## Valid Usage
+///# Description
+///[`queue_submit2`] is a [queue submission
+///command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission), with each batch defined by an element of [`p_submits`].Semaphore operations submitted with [`queue_submit2`] have additional
+///ordering constraints compared to other submission commands, with
+///dependencies involving previous and subsequent queue operations.
+///Information about these additional constraints can be found in the
+///[semaphore](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores) section of [the
+///synchronization chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).If any command buffer submitted to this queue is in the
+///[executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), it is moved to the
+///[pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
+///Once execution of all submissions of a command buffer complete, it moves
+///from the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), back to the
+///[executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
+///If a command buffer was recorded with the
+///`VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT` flag, it instead moves
+///back to the [invalid state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).If [`queue_submit2`] fails, it  **may**  return
+///`VK_ERROR_OUT_OF_HOST_MEMORY` or `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
+///If it does, the implementation  **must**  ensure that the state and contents of
+///any resources or synchronization primitives referenced by the submitted
+///command buffers and any semaphores referenced by [`p_submits`] is
+///unaffected by the call or its failure.
+///If [`queue_submit2`] fails in such a way that the implementation is
+///unable to make that guarantee, the implementation  **must**  return
+///`VK_ERROR_DEVICE_LOST`.
+///See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device).
+///## Valid Usage
 /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be unsignaled
 /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  not be associated with any
 ///   other queue command that has not yet completed execution on that queue
@@ -635,7 +635,7 @@ pub type FNGetPrivateData = Option<
 /// - If [`queue`] was not created with `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT`, the `flags` member
 ///   of any element of [`p_submits`] **must**  not include `VK_SUBMIT_PROTECTED_BIT_KHR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - If [`submit_count`] is not `0`, [`p_submits`] **must**  be a valid pointer to an array of
 ///   [`submit_count`] valid [`SubmitInfo2`] structures
@@ -643,28 +643,28 @@ pub type FNGetPrivateData = Option<
 /// - Both of [`fence`], and [`queue`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`queue`] **must**  be externally synchronized
 /// - Host access to [`fence`] **must**  be externally synchronized
 ///
-/// ## Command Properties
-/// ## Return Codes
+///## Command Properties
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Fence`]
 /// - [`Queue`]
 /// - [`SubmitInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkQueueSubmit2")]
 pub type FNQueueSubmit2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -683,49 +683,49 @@ pub type FNQueueSubmit2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkCullModeFlags                             cullMode);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetCullModeEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkCullModeFlags                             cullMode);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`cull_mode`] specifies the cull mode property to use for drawing.
-/// # Description
-/// This command sets the cull mode for subsequent drawing commands when the
-/// graphics pipeline is created with `VK_DYNAMIC_STATE_CULL_MODE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineRasterizationStateCreateInfo`]::[`cull_mode`] value used to
-/// create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the cull mode for subsequent drawing commands when the
+///graphics pipeline is created with `VK_DYNAMIC_STATE_CULL_MODE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineRasterizationStateCreateInfo`]::[`cull_mode`] value used to
+///create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`cull_mode`] **must**  be a valid combination of [`CullModeFlagBits`] values
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CullModeFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetCullMode")]
 pub type FNCmdSetCullMode = Option<unsafe extern "system" fn(command_buffer: CommandBuffer, cull_mode: CullModeFlags)>;
 ///[vkCmdSetFrontFace](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetFrontFace.html) - Set front face orientation dynamically for a command buffer
@@ -738,50 +738,50 @@ pub type FNCmdSetCullMode = Option<unsafe extern "system" fn(command_buffer: Com
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkFrontFace                                 frontFace);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetFrontFaceEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkFrontFace                                 frontFace);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`front_face`] is a [`FrontFace`] value specifying the front-facing triangle orientation to be
 ///   used for culling.
-/// # Description
-/// This command sets the front face orientation for subsequent drawing commands
-/// when the graphics pipeline is created with `VK_DYNAMIC_STATE_FRONT_FACE`
-/// set in [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineRasterizationStateCreateInfo`]::[`front_face`] value used to
-/// create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the front face orientation for subsequent drawing commands
+///when the graphics pipeline is created with `VK_DYNAMIC_STATE_FRONT_FACE`
+///set in [`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineRasterizationStateCreateInfo`]::[`front_face`] value used to
+///create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`front_face`] **must**  be a valid [`FrontFace`] value
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`FrontFace`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetFrontFace")]
 pub type FNCmdSetFrontFace = Option<unsafe extern "system" fn(command_buffer: CommandBuffer, front_face: FrontFace)>;
 ///[vkCmdSetPrimitiveTopology](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetPrimitiveTopology.html) - Set primitive topology state dynamically for a command buffer
@@ -793,50 +793,50 @@ pub type FNCmdSetFrontFace = Option<unsafe extern "system" fn(command_buffer: Co
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkPrimitiveTopology                         primitiveTopology);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetPrimitiveTopologyEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkPrimitiveTopology                         primitiveTopology);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`primitive_topology`] specifies the primitive topology to use for drawing.
-/// # Description
-/// This command sets the primitive topology for subsequent drawing commands
-/// when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineInputAssemblyStateCreateInfo::topology`] value used to
-/// create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the primitive topology for subsequent drawing commands
+///when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineInputAssemblyStateCreateInfo::topology`] value used to
+///create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`primitive_topology`] **must**  be a valid [`PrimitiveTopology`] value
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`PrimitiveTopology`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetPrimitiveTopology")]
 pub type FNCmdSetPrimitiveTopology =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, primitive_topology: PrimitiveTopology)>;
@@ -851,27 +851,27 @@ pub type FNCmdSetPrimitiveTopology =
 ///    uint32_t                                    viewportCount,
 ///    const VkViewport*                           pViewports);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetViewportWithCountEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    uint32_t                                    viewportCount,
 ///    const VkViewport*                           pViewports);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`viewport_count`] specifies the viewport count.
 /// - [`p_viewports`] specifies the viewports to use for drawing.
-/// # Description
-/// This command sets the viewport count and viewports state for subsequent
-/// drawing commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the corresponding
-/// [`PipelineViewportStateCreateInfo`]::[`viewport_count`] and
-/// [`p_viewports`] values used to create the currently active pipeline.
-/// ## Valid Usage
+///# Description
+///This command sets the viewport count and viewports state for subsequent
+///drawing commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the corresponding
+///[`PipelineViewportStateCreateInfo`]::[`viewport_count`] and
+///[`p_viewports`] values used to create the currently active pipeline.
+///## Valid Usage
 /// - [`viewport_count`] **must**  be between `1` and [`PhysicalDeviceLimits::max_viewports`],
 ///   inclusive
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
@@ -879,7 +879,7 @@ pub type FNCmdSetPrimitiveTopology =
 /// - [`command_buffer`] **must**  not have
 ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor2_d`] enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_viewports`] **must**  be a valid pointer to an array of [`viewport_count`] valid
 ///   [`Viewport`] structures
@@ -888,25 +888,25 @@ pub type FNCmdSetPrimitiveTopology =
 ///   operations
 /// - [`viewport_count`] **must**  be greater than `0`
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`Viewport`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetViewportWithCount")]
 pub type FNCmdSetViewportWithCount =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, viewport_count: u32, p_viewports: *const Viewport)>;
@@ -921,27 +921,27 @@ pub type FNCmdSetViewportWithCount =
 ///    uint32_t                                    scissorCount,
 ///    const VkRect2D*                             pScissors);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetScissorWithCountEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    uint32_t                                    scissorCount,
 ///    const VkRect2D*                             pScissors);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`scissor_count`] specifies the scissor count.
 /// - [`p_scissors`] specifies the scissors to use for drawing.
-/// # Description
-/// This command sets the scissor count and scissor rectangular bounds state for
-/// subsequence drawing commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the corresponding
-/// [`PipelineViewportStateCreateInfo`]::[`scissor_count`] and
-/// [`p_scissors`] values used to create the currently active pipeline.
-/// ## Valid Usage
+///# Description
+///This command sets the scissor count and scissor rectangular bounds state for
+///subsequence drawing commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the corresponding
+///[`PipelineViewportStateCreateInfo`]::[`scissor_count`] and
+///[`p_scissors`] values used to create the currently active pipeline.
+///## Valid Usage
 /// - [`scissor_count`] **must**  be between `1` and [`PhysicalDeviceLimits::max_viewports`],
 ///   inclusive
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
@@ -955,7 +955,7 @@ pub type FNCmdSetViewportWithCount =
 /// - [`command_buffer`] **must**  not have
 ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor2_d`] enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_scissors`] **must**  be a valid pointer to an array of [`scissor_count`][`Rect2D`]
 ///   structures
@@ -964,25 +964,25 @@ pub type FNCmdSetViewportWithCount =
 ///   operations
 /// - [`scissor_count`] **must**  be greater than `0`
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`Rect2D`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetScissorWithCount")]
 pub type FNCmdSetScissorWithCount =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, scissor_count: u32, p_scissors: *const Rect2D)>;
@@ -1001,8 +1001,8 @@ pub type FNCmdSetScissorWithCount =
 ///    const VkDeviceSize*                         pSizes,
 ///    const VkDeviceSize*                         pStrides);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdBindVertexBuffers2EXT(
 ///    VkCommandBuffer                             commandBuffer,
@@ -1013,7 +1013,7 @@ pub type FNCmdSetScissorWithCount =
 ///    const VkDeviceSize*                         pSizes,
 ///    const VkDeviceSize*                         pStrides);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`first_binding`] is the index of the first vertex input binding whose state is updated by the
 ///   command.
@@ -1024,37 +1024,37 @@ pub type FNCmdSetScissorWithCount =
 /// - [`p_sizes`] is `NULL` or a pointer to an array of the size in bytes of vertex data bound from
 ///   [`p_buffers`].
 /// - [`p_strides`] is `NULL` or a pointer to an array of buffer strides.
-/// # Description
-/// The values taken from elements i of [`p_buffers`] and [`p_offsets`]
-/// replace the current state for the vertex input binding
-/// [`first_binding`] +  i, for i in [0,
-/// [`binding_count`]).
-/// The vertex input binding is updated to start at the offset indicated by
-/// [`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
-/// If [`p_sizes`] is not `NULL` then [`p_sizes`][i] specifies the bound size
-/// of the vertex buffer starting from the corresponding elements of
-/// [`p_buffers`][i] plus [`p_offsets`][i].
-/// All vertex input attributes that use each of these bindings will use these
-/// updated addresses in their address calculations for subsequent drawing
-/// commands.
-/// If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) feature is enabled,
-/// elements of [`p_buffers`] **can**  be [`crate::Handle::null`], and  **can**  be used by
-/// the vertex shader.
-/// If a vertex input attribute is bound to a vertex input binding that is
-/// [`crate::Handle::null`], the values taken from memory are considered to be
-/// zero, and missing G, B, or A components are
-/// [filled with (0,0,1)](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fxvertex-input-extraction).This command also [dynamically sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the byte
-/// strides between consecutive elements within buffer [`p_buffers`][i] to the
-/// corresponding [`p_strides`][i] value when the graphics pipeline is created
-/// with `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, strides are specified by the
-/// [`VertexInputBindingDescription::stride`] values used to create
-/// the currently active pipeline.If the bound pipeline state object was also created with the
-/// `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled then
-/// [`cmd_set_vertex_input_ext`] **can**  be used instead of
-/// [`cmd_bind_vertex_buffers2`] to set the stride.
-/// ## Valid Usage
+///# Description
+///The values taken from elements i of [`p_buffers`] and [`p_offsets`]
+///replace the current state for the vertex input binding
+///[`first_binding`] +  i, for i in [0,
+///[`binding_count`]).
+///The vertex input binding is updated to start at the offset indicated by
+///[`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
+///If [`p_sizes`] is not `NULL` then [`p_sizes`][i] specifies the bound size
+///of the vertex buffer starting from the corresponding elements of
+///[`p_buffers`][i] plus [`p_offsets`][i].
+///All vertex input attributes that use each of these bindings will use these
+///updated addresses in their address calculations for subsequent drawing
+///commands.
+///If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) feature is enabled,
+///elements of [`p_buffers`] **can**  be [`crate::Handle::null`], and  **can**  be used by
+///the vertex shader.
+///If a vertex input attribute is bound to a vertex input binding that is
+///[`crate::Handle::null`], the values taken from memory are considered to be
+///zero, and missing G, B, or A components are
+///[filled with (0,0,1)](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fxvertex-input-extraction).This command also [dynamically sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the byte
+///strides between consecutive elements within buffer [`p_buffers`][i] to the
+///corresponding [`p_strides`][i] value when the graphics pipeline is created
+///with `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, strides are specified by the
+///[`VertexInputBindingDescription::stride`] values used to create
+///the currently active pipeline.If the bound pipeline state object was also created with the
+///`VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled then
+///[`cmd_set_vertex_input_ext`] **can**  be used instead of
+///[`cmd_bind_vertex_buffers2`] to set the stride.
+///## Valid Usage
 /// - [`first_binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
 /// - The sum of [`first_binding`] and [`binding_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceLimits::max_vertex_input_bindings`]
@@ -1078,7 +1078,7 @@ pub type FNCmdSetScissorWithCount =
 ///   [`VertexInputAttributeDescription::offset`] plus [`VertexInputAttributeDescription::format`]
 ///   size
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_buffers`] **must**  be a valid pointer to an array of [`binding_count`] valid or
 ///   [`crate::Handle::null`][`Buffer`] handles
@@ -1097,26 +1097,26 @@ pub type FNCmdSetScissorWithCount =
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBindVertexBuffers2")]
 pub type FNCmdBindVertexBuffers2 = Option<
     unsafe extern "system" fn(
@@ -1139,49 +1139,49 @@ pub type FNCmdBindVertexBuffers2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthTestEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetDepthTestEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthTestEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`depth_test_enable`] specifies if the depth test is enabled.
-/// # Description
-/// This command sets the depth test enable for subsequent drawing commands when
-/// the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineDepthStencilStateCreateInfo`]::[`depth_test_enable`] value
-/// used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the depth test enable for subsequent drawing commands when
+///the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineDepthStencilStateCreateInfo`]::[`depth_test_enable`] value
+///used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetDepthTestEnable")]
 pub type FNCmdSetDepthTestEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, depth_test_enable: Bool32)>;
@@ -1195,49 +1195,49 @@ pub type FNCmdSetDepthTestEnable =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthWriteEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetDepthWriteEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthWriteEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`depth_write_enable`] specifies if depth writes are enabled.
-/// # Description
-/// This command sets the depth write enable for subsequent drawing commands
-/// when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineDepthStencilStateCreateInfo`]::[`depth_write_enable`] value
-/// used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the depth write enable for subsequent drawing commands
+///when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineDepthStencilStateCreateInfo`]::[`depth_write_enable`] value
+///used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetDepthWriteEnable")]
 pub type FNCmdSetDepthWriteEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, depth_write_enable: Bool32)>;
@@ -1251,50 +1251,50 @@ pub type FNCmdSetDepthWriteEnable =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkCompareOp                                 depthCompareOp);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetDepthCompareOpEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkCompareOp                                 depthCompareOp);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`depth_compare_op`] specifies the depth comparison operator.
-/// # Description
-/// This command sets the depth comparison operator for subsequent drawing
-/// commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_DEPTH_COMPARE_OP` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineDepthStencilStateCreateInfo`]::[`depth_compare_op`] value used
-/// to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the depth comparison operator for subsequent drawing
+///commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_DEPTH_COMPARE_OP` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineDepthStencilStateCreateInfo`]::[`depth_compare_op`] value used
+///to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`depth_compare_op`] **must**  be a valid [`CompareOp`] value
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CompareOp`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetDepthCompareOp")]
 pub type FNCmdSetDepthCompareOp =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, depth_compare_op: CompareOp)>;
@@ -1308,49 +1308,49 @@ pub type FNCmdSetDepthCompareOp =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthBoundsTestEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetDepthBoundsTestEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthBoundsTestEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`depth_bounds_test_enable`] specifies if the depth bounds test is enabled.
-/// # Description
-/// This command sets the depth bounds enable for subsequent drawing commands
-/// when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineDepthStencilStateCreateInfo`]::[`depth_bounds_test_enable`]
-/// value used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the depth bounds enable for subsequent drawing commands
+///when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineDepthStencilStateCreateInfo`]::[`depth_bounds_test_enable`]
+///value used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetDepthBoundsTestEnable")]
 pub type FNCmdSetDepthBoundsTestEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, depth_bounds_test_enable: Bool32)>;
@@ -1364,49 +1364,49 @@ pub type FNCmdSetDepthBoundsTestEnable =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    stencilTestEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetStencilTestEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    stencilTestEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`stencil_test_enable`] specifies if the stencil test is enabled.
-/// # Description
-/// This command sets the stencil test enable for subsequent drawing commands
-/// when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] value
-/// used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the stencil test enable for subsequent drawing commands
+///when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] value
+///used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetStencilTestEnable")]
 pub type FNCmdSetStencilTestEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, stencil_test_enable: Bool32)>;
@@ -1423,8 +1423,8 @@ pub type FNCmdSetStencilTestEnable =
 ///    VkStencilOp                                 depthFailOp,
 ///    VkCompareOp                                 compareOp);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state
 ///void vkCmdSetStencilOpEXT(
 ///    VkCommandBuffer                             commandBuffer,
@@ -1434,7 +1434,7 @@ pub type FNCmdSetStencilTestEnable =
 ///    VkStencilOp                                 depthFailOp,
 ///    VkCompareOp                                 compareOp);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`face_mask`] is a bitmask of [`StencilFaceFlagBits`] specifying the set of stencil state for
 ///   which to update the stencil operation.
@@ -1446,15 +1446,15 @@ pub type FNCmdSetStencilTestEnable =
 ///   pass the stencil test and fail the depth test.
 /// - [`compare_op`] is a [`CompareOp`] value specifying the comparison operator used in the stencil
 ///   test.
-/// # Description
-/// This command sets the stencil operation for subsequent drawing commands when
-/// the graphics pipeline is created with `VK_DYNAMIC_STATE_STENCIL_OP` set
-/// in [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the corresponding
-/// [`PipelineDepthStencilStateCreateInfo`]::[`fail_op`], [`pass_op`],
-/// [`depth_fail_op`], and [`compare_op`] values used to create the currently
-/// active pipeline, for both front and back faces.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the stencil operation for subsequent drawing commands when
+///the graphics pipeline is created with `VK_DYNAMIC_STATE_STENCIL_OP` set
+///in [`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the corresponding
+///[`PipelineDepthStencilStateCreateInfo`]::[`fail_op`], [`pass_op`],
+///[`depth_fail_op`], and [`compare_op`] values used to create the currently
+///active pipeline, for both front and back faces.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`face_mask`] **must**  be a valid combination of [`StencilFaceFlagBits`] values
 /// - [`face_mask`] **must**  not be `0`
@@ -1466,13 +1466,13 @@ pub type FNCmdSetStencilTestEnable =
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
@@ -1480,13 +1480,13 @@ pub type FNCmdSetStencilTestEnable =
 /// - [`StencilFaceFlags`]
 /// - [`StencilOp`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetStencilOp")]
 pub type FNCmdSetStencilOp = Option<
     unsafe extern "system" fn(
@@ -1508,50 +1508,50 @@ pub type FNCmdSetStencilOp = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    rasterizerDiscardEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state2
 ///void vkCmdSetRasterizerDiscardEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    rasterizerDiscardEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`rasterizer_discard_enable`] controls whether primitives are discarded immediately before the
 ///   rasterization stage.
-/// # Description
-/// This command sets the discard enable for subsequent drawing commands when
-/// the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineRasterizationStateCreateInfo`]::[`rasterizer_discard_enable`]
-/// value used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the discard enable for subsequent drawing commands when
+///the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineRasterizationStateCreateInfo`]::[`rasterizer_discard_enable`]
+///value used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetRasterizerDiscardEnable")]
 pub type FNCmdSetRasterizerDiscardEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, rasterizer_discard_enable: Bool32)>;
@@ -1565,49 +1565,49 @@ pub type FNCmdSetRasterizerDiscardEnable =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthBiasEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state2
 ///void vkCmdSetDepthBiasEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    depthBiasEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`depth_bias_enable`] controls whether to bias fragment depth values.
-/// # Description
-/// This command sets the depth bias enable for subsequent drawing commands when
-/// the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineRasterizationStateCreateInfo`]::[`depth_bias_enable`] value
-/// used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the depth bias enable for subsequent drawing commands when
+///the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineRasterizationStateCreateInfo`]::[`depth_bias_enable`] value
+///used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetDepthBiasEnable")]
 pub type FNCmdSetDepthBiasEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, depth_bias_enable: Bool32)>;
@@ -1621,51 +1621,51 @@ pub type FNCmdSetDepthBiasEnable =
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    primitiveRestartEnable);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_EXT_extended_dynamic_state2
 ///void vkCmdSetPrimitiveRestartEnableEXT(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkBool32                                    primitiveRestartEnable);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`primitive_restart_enable`] controls whether a special vertex index value is treated as
 ///   restarting the assembly of primitives. It behaves in the same way as
 ///   [`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
-/// # Description
-/// This command sets the primitive restart enable for subsequent drawing
-/// commands when the graphics pipeline is created with
-/// `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE` set in
-/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-/// Otherwise, this state is specified by the
-/// [`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
-/// value used to create the currently active pipeline.
-/// ## Valid Usage (Implicit)
+///# Description
+///This command sets the primitive restart enable for subsequent drawing
+///commands when the graphics pipeline is created with
+///`VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE` set in
+///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+///Otherwise, this state is specified by the
+///[`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
+///value used to create the currently active pipeline.
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_EXT_extended_dynamic_state2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetPrimitiveRestartEnable")]
 pub type FNCmdSetPrimitiveRestartEnable =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, primitive_restart_enable: Bool32)>;
@@ -1678,22 +1678,22 @@ pub type FNCmdSetPrimitiveRestartEnable =
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyBufferInfo2*                    pCopyBufferInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///void vkCmdCopyBuffer2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyBufferInfo2*                    pCopyBufferInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_copy_buffer_info`] is a pointer to a [`CopyBufferInfo2`] structure describing the copy
 ///   parameters.
-/// # Description
-/// This command is functionally identical to [`cmd_copy_buffer`], but
-/// includes extensible sub-structures that include `sType` and `pNext`
-/// parameters, allowing them to be more easily extended.
-/// ## Valid Usage
+///# Description
+///This command is functionally identical to [`cmd_copy_buffer`], but
+///includes extensible sub-structures that include `sType` and `pNext`
+///parameters, allowing them to be more easily extended.
+///## Valid Usage
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
 ///   supported, `srcBuffer` **must**  not be a protected buffer
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -1701,7 +1701,7 @@ pub type FNCmdSetPrimitiveRestartEnable =
 /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
 ///   supported, `dstBuffer` **must**  not be an unprotected buffer
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_copy_buffer_info`] **must**  be a valid pointer to a valid [`CopyBufferInfo2`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -1709,25 +1709,25 @@ pub type FNCmdSetPrimitiveRestartEnable =
 ///   graphics, or compute operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyBufferInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdCopyBuffer2")]
 pub type FNCmdCopyBuffer2 = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_copy_buffer_info: *const CopyBufferInfo2<'lt>),
@@ -1741,22 +1741,22 @@ pub type FNCmdCopyBuffer2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyImageInfo2*                     pCopyImageInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///void vkCmdCopyImage2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyImageInfo2*                     pCopyImageInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_copy_image_info`] is a pointer to a [`CopyImageInfo2`] structure describing the copy
 ///   parameters.
-/// # Description
-/// This command is functionally identical to [`cmd_copy_image`], but includes
-/// extensible sub-structures that include `sType` and `pNext`
-/// parameters, allowing them to be more easily extended.
-/// ## Valid Usage
+///# Description
+///This command is functionally identical to [`cmd_copy_image`], but includes
+///extensible sub-structures that include `sType` and `pNext`
+///parameters, allowing them to be more easily extended.
+///## Valid Usage
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
 ///   supported, `srcImage` **must**  not be a protected image
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -1764,7 +1764,7 @@ pub type FNCmdCopyBuffer2 = Option<
 /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
 ///   supported, `dstImage` **must**  not be an unprotected image
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_copy_image_info`] **must**  be a valid pointer to a valid [`CopyImageInfo2`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -1772,25 +1772,25 @@ pub type FNCmdCopyBuffer2 = Option<
 ///   graphics, or compute operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyImageInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdCopyImage2")]
 pub type FNCmdCopyImage2 = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_copy_image_info: *const CopyImageInfo2<'lt>),
@@ -1805,22 +1805,22 @@ pub type FNCmdCopyImage2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkBlitImageInfo2*                     pBlitImageInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///void vkCmdBlitImage2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkBlitImageInfo2*                     pBlitImageInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_blit_image_info`] is a pointer to a [`BlitImageInfo2`] structure describing the blit
 ///   parameters.
-/// # Description
-/// This command is functionally identical to [`cmd_blit_image`], but includes
-/// extensible sub-structures that include `sType` and `pNext`
-/// parameters, allowing them to be more easily extended.
-/// ## Valid Usage
+///# Description
+///This command is functionally identical to [`cmd_blit_image`], but includes
+///extensible sub-structures that include `sType` and `pNext`
+///parameters, allowing them to be more easily extended.
+///## Valid Usage
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
 ///   supported, `srcImage` **must**  not be a protected image
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -1828,7 +1828,7 @@ pub type FNCmdCopyImage2 = Option<
 /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
 ///   supported, `dstImage` **must**  not be an unprotected image
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_blit_image_info`] **must**  be a valid pointer to a valid [`BlitImageInfo2`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -1836,25 +1836,25 @@ pub type FNCmdCopyImage2 = Option<
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`BlitImageInfo2`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBlitImage2")]
 pub type FNCmdBlitImage2 = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_blit_image_info: *const BlitImageInfo2<'lt>),
@@ -1868,22 +1868,22 @@ pub type FNCmdBlitImage2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyBufferToImageInfo2*             pCopyBufferToImageInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///void vkCmdCopyBufferToImage2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyBufferToImageInfo2*             pCopyBufferToImageInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_copy_buffer_to_image_info`] is a pointer to a [`CopyBufferToImageInfo2`] structure
 ///   describing the copy parameters.
-/// # Description
-/// This command is functionally identical to [`cmd_copy_buffer_to_image`], but
-/// includes extensible sub-structures that include `sType` and `pNext`
-/// parameters, allowing them to be more easily extended.
-/// ## Valid Usage
+///# Description
+///This command is functionally identical to [`cmd_copy_buffer_to_image`], but
+///includes extensible sub-structures that include `sType` and `pNext`
+///parameters, allowing them to be more easily extended.
+///## Valid Usage
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
 ///   supported, `srcBuffer` **must**  not be a protected buffer
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -1891,7 +1891,7 @@ pub type FNCmdBlitImage2 = Option<
 /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
 ///   supported, `dstImage` **must**  not be an unprotected image
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_copy_buffer_to_image_info`] **must**  be a valid pointer to a valid
 ///   [`CopyBufferToImageInfo2`] structure
@@ -1900,25 +1900,25 @@ pub type FNCmdBlitImage2 = Option<
 ///   graphics, or compute operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyBufferToImageInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdCopyBufferToImage2")]
 pub type FNCmdCopyBufferToImage2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1935,22 +1935,22 @@ pub type FNCmdCopyBufferToImage2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyImageToBufferInfo2*             pCopyImageToBufferInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///void vkCmdCopyImageToBuffer2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCopyImageToBufferInfo2*             pCopyImageToBufferInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_copy_image_to_buffer_info`] is a pointer to a [`CopyImageToBufferInfo2`] structure
 ///   describing the copy parameters.
-/// # Description
-/// This command is functionally identical to [`cmd_copy_image_to_buffer`], but
-/// includes extensible sub-structures that include `sType` and `pNext`
-/// parameters, allowing them to be more easily extended.
-/// ## Valid Usage
+///# Description
+///This command is functionally identical to [`cmd_copy_image_to_buffer`], but
+///includes extensible sub-structures that include `sType` and `pNext`
+///parameters, allowing them to be more easily extended.
+///## Valid Usage
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
 ///   supported, `srcImage` **must**  not be a protected image
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -1958,7 +1958,7 @@ pub type FNCmdCopyBufferToImage2 = Option<
 /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
 ///   supported, `dstBuffer` **must**  not be an unprotected buffer
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_copy_image_to_buffer_info`] **must**  be a valid pointer to a valid
 ///   [`CopyImageToBufferInfo2`] structure
@@ -1967,25 +1967,25 @@ pub type FNCmdCopyBufferToImage2 = Option<
 ///   graphics, or compute operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyImageToBufferInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdCopyImageToBuffer2")]
 pub type FNCmdCopyImageToBuffer2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -2002,22 +2002,22 @@ pub type FNCmdCopyImageToBuffer2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkResolveImageInfo2*                  pResolveImageInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///void vkCmdResolveImage2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkResolveImageInfo2*                  pResolveImageInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`p_resolve_image_info`] is a pointer to a [`ResolveImageInfo2`] structure describing the
 ///   resolve parameters.
-/// # Description
-/// This command is functionally identical to [`cmd_resolve_image`], but
-/// includes extensible sub-structures that include `sType` and `pNext`
-/// parameters, allowing them to be more easily extended.
-/// ## Valid Usage
+///# Description
+///This command is functionally identical to [`cmd_resolve_image`], but
+///includes extensible sub-structures that include `sType` and `pNext`
+///parameters, allowing them to be more easily extended.
+///## Valid Usage
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
 ///   supported, `srcImage` **must**  not be a protected image
 /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -2025,7 +2025,7 @@ pub type FNCmdCopyImageToBuffer2 = Option<
 /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
 ///   supported, `dstImage` **must**  not be an unprotected image
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_resolve_image_info`] **must**  be a valid pointer to a valid [`ResolveImageInfo2`]
 ///   structure
@@ -2034,25 +2034,25 @@ pub type FNCmdCopyImageToBuffer2 = Option<
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`ResolveImageInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdResolveImage2")]
 pub type FNCmdResolveImage2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -2070,47 +2070,47 @@ pub type FNCmdResolveImage2 = Option<
 ///    VkEvent                                     event,
 ///    const VkDependencyInfo*                     pDependencyInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///void vkCmdSetEvent2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkEvent                                     event,
 ///    const VkDependencyInfo*                     pDependencyInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`event`] is the event that will be signaled.
 /// - [`p_dependency_info`] is a pointer to a [`DependencyInfo`] structure defining the first scopes
 ///   of this operation.
-/// # Description
-/// When [`cmd_set_event2`] is submitted to a queue, it defines the first half
-/// of memory dependencies defined by [`p_dependency_info`], as well as an event
-/// signal operation which sets the event to the signaled state.
-/// A memory dependency is defined between the event signal operation and
-/// commands that occur earlier in submission order.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-/// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are defined by
-/// the union of all the memory dependencies defined by [`p_dependency_info`],
-/// and are applied to all operations that occur earlier in
-/// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-/// [Queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
-/// [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
-/// defined by [`p_dependency_info`] are also included in the first scopes.The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// includes only the event signal operation, and any
-/// [queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
-/// [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
-/// defined by [`p_dependency_info`].The second [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes)
-/// includes only [queue family ownership
-/// transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout
-/// transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Future [`cmd_wait_events2`] commands rely on all values of each element in
-/// [`p_dependency_info`] matching exactly with those used to signal the
-/// corresponding event.
-/// [`cmd_wait_events`] **must**  not be used to wait on the result of a signal
-/// operation defined by [`cmd_set_event2`].If [`event`] is already in the signaled state when
+///# Description
+///When [`cmd_set_event2`] is submitted to a queue, it defines the first half
+///of memory dependencies defined by [`p_dependency_info`], as well as an event
+///signal operation which sets the event to the signaled state.
+///A memory dependency is defined between the event signal operation and
+///commands that occur earlier in submission order.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are defined by
+///the union of all the memory dependencies defined by [`p_dependency_info`],
+///and are applied to all operations that occur earlier in
+///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+///[Queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+///[image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
+///defined by [`p_dependency_info`] are also included in the first scopes.The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///includes only the event signal operation, and any
+///[queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+///[image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
+///defined by [`p_dependency_info`].The second [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes)
+///includes only [queue family ownership
+///transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout
+///transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Future [`cmd_wait_events2`] commands rely on all values of each element in
+///[`p_dependency_info`] matching exactly with those used to signal the
+///corresponding event.
+///[`cmd_wait_events`] **must**  not be used to wait on the result of a signal
+///operation defined by [`cmd_set_event2`].If [`event`] is already in the signaled state when
 /// [`cmd_set_event2`] is
-/// executed on the device, then [`cmd_set_event2`] has no effect, no event
-/// signal operation occurs, and no dependency is generated.
-/// ## Valid Usage
+///executed on the device, then [`cmd_set_event2`] has no effect, no event
+///signal operation occurs, and no dependency is generated.
+///## Valid Usage
 /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
 ///   feature  **must**  be enabled
 /// - The `dependencyFlags` member of [`p_dependency_info`] **must**  be `0`
@@ -2124,7 +2124,7 @@ pub type FNCmdResolveImage2 = Option<
 ///   valid for the queue family that was used to create the command pool that [`command_buffer`]
 ///   was allocated from
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`event`] **must**  be a valid [`Event`] handle
 /// - [`p_dependency_info`] **must**  be a valid pointer to a valid [`DependencyInfo`] structure
@@ -2135,26 +2135,26 @@ pub type FNCmdResolveImage2 = Option<
 /// - Both of [`command_buffer`], and [`event`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`DependencyInfo`]
 /// - [`Event`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetEvent2")]
 pub type FNCmdSetEvent2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -2173,32 +2173,32 @@ pub type FNCmdSetEvent2 = Option<
 ///    VkEvent                                     event,
 ///    VkPipelineStageFlags2                       stageMask);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///void vkCmdResetEvent2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    VkEvent                                     event,
 ///    VkPipelineStageFlags2                       stageMask);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`event`] is the event that will be unsignaled.
 /// - [`stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages used to determine the first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-/// # Description
-/// When [`cmd_reset_event2`] is submitted to a queue, it defines an execution
-/// dependency on commands that were submitted before it, and defines an event
-/// unsignal operation which resets the event to the unsignaled state.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// includes all commands that occur earlier in
-/// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-/// The synchronization scope is limited to operations by [`stage_mask`] or
-/// stages that are [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
-/// than [`stage_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// includes only the event unsignal operation.If [`event`] is already in the unsignaled state when
-/// [`cmd_reset_event2`] is executed on the device, then this command has no
-/// effect, no event unsignal operation occurs, and no execution dependency is
-/// generated.
-/// ## Valid Usage
+///# Description
+///When [`cmd_reset_event2`] is submitted to a queue, it defines an execution
+///dependency on commands that were submitted before it, and defines an event
+///unsignal operation which resets the event to the unsignaled state.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///includes all commands that occur earlier in
+///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+///The synchronization scope is limited to operations by [`stage_mask`] or
+///stages that are [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
+///than [`stage_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///includes only the event unsignal operation.If [`event`] is already in the unsignaled state when
+///[`cmd_reset_event2`] is executed on the device, then this command has no
+///effect, no event unsignal operation occurs, and no execution dependency is
+///generated.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -2239,7 +2239,7 @@ pub type FNCmdSetEvent2 = Option<
 ///   any [`cmd_wait_events2`] that includes [`event`] in its `pEvents` parameter
 /// - [`command_buffer`]’s current device mask  **must**  include exactly one physical device
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`event`] **must**  be a valid [`Event`] handle
 /// - [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
@@ -2250,26 +2250,26 @@ pub type FNCmdSetEvent2 = Option<
 /// - Both of [`command_buffer`], and [`event`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`Event`]
 /// - [`PipelineStageFlags2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdResetEvent2")]
 pub type FNCmdResetEvent2 =
     Option<unsafe extern "system" fn(command_buffer: CommandBuffer, event: Event, stage_mask: PipelineStageFlags2)>;
@@ -2285,8 +2285,8 @@ pub type FNCmdResetEvent2 =
 ///    const VkEvent*                              pEvents,
 ///    const VkDependencyInfo*                     pDependencyInfos);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///void vkCmdWaitEvents2KHR(
 ///    VkCommandBuffer                             commandBuffer,
@@ -2294,35 +2294,35 @@ pub type FNCmdResetEvent2 =
 ///    const VkEvent*                              pEvents,
 ///    const VkDependencyInfo*                     pDependencyInfos);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`event_count`] is the length of the [`p_events`] array.
 /// - [`p_events`] is a pointer to an array of [`event_count`] events to wait on.
 /// - [`p_dependency_infos`] is a pointer to an array of [`event_count`][`DependencyInfo`] structures, defining the second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-/// # Description
-/// When [`cmd_wait_events2`] is submitted to a queue, it inserts memory
-/// dependencies according to the elements of [`p_dependency_infos`] and each
-/// corresponding element of [`p_events`].
-/// [`cmd_wait_events2`] **must**  not be used to wait on event signal operations
-/// occurring on other queues, or signal operations executed by
-/// [`cmd_set_event`].The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-/// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
-/// dependency defined by any element i of [`p_dependency_infos`] are
-/// applied to operations that occurred earlier in
-/// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the last event
-/// signal operation on element i of [`p_events`].Signal operations for an event at index i are only
+///# Description
+///When [`cmd_wait_events2`] is submitted to a queue, it inserts memory
+///dependencies according to the elements of [`p_dependency_infos`] and each
+///corresponding element of [`p_events`].
+///[`cmd_wait_events2`] **must**  not be used to wait on event signal operations
+///occurring on other queues, or signal operations executed by
+///[`cmd_set_event`].The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
+///dependency defined by any element i of [`p_dependency_infos`] are
+///applied to operations that occurred earlier in
+///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the last event
+///signal operation on element i of [`p_events`].Signal operations for an event at index i are only
 /// included if:
 /// - The event was signaled by a [`cmd_set_event2`] command that occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order)
 ///   with a `dependencyInfo` parameter exactly equal to the element of [`p_dependency_infos`] at
 ///   index i ; or
 /// - The event was created without `VK_EVENT_CREATE_DEVICE_ONLY_BIT`, and the first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) defined by the element of [`p_dependency_infos`] at index i only includes host operations (`VK_PIPELINE_STAGE_2_HOST_BIT`).
-/// The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
-/// memory dependency defined by any element i of [`p_dependency_infos`]
-/// are applied to operations that occurred later in
-/// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than
-/// [`cmd_wait_events2`].
-/// ## Valid Usage
+///The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
+///memory dependency defined by any element i of [`p_dependency_infos`]
+///are applied to operations that occurred later in
+///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than
+///[`cmd_wait_events2`].
+///## Valid Usage
 /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
 ///   feature  **must**  be enabled
 /// - Members of [`p_events`] **must**  not have been signaled by [`cmd_set_event`]
@@ -2352,7 +2352,7 @@ pub type FNCmdResetEvent2 =
 ///   called inside a render pass instance
 /// - [`command_buffer`]’s current device mask  **must**  include exactly one physical device
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_events`] **must**  be a valid pointer to an array of [`event_count`] valid [`Event`]
 ///   handles
@@ -2365,26 +2365,26 @@ pub type FNCmdResetEvent2 =
 /// - Both of [`command_buffer`], and the elements of [`p_events`] **must**  have been created,
 ///   allocated, or retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`DependencyInfo`]
 /// - [`Event`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdWaitEvents2")]
 pub type FNCmdWaitEvents2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -2403,32 +2403,32 @@ pub type FNCmdWaitEvents2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkDependencyInfo*                     pDependencyInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///void vkCmdPipelineBarrier2KHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkDependencyInfo*                     pDependencyInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`p_dependency_info`] is a pointer to a [`DependencyInfo`] structure defining the scopes of
 ///   this operation.
-/// # Description
-/// When [`cmd_pipeline_barrier2`] is submitted to a queue, it defines memory
-/// dependencies between commands that were submitted before it, and those
-/// submitted after it.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-/// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
-/// dependency defined by [`p_dependency_info`] are applied to operations that
-/// occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
-/// memory dependency defined by [`p_dependency_info`] are applied to operations
-/// that occurred later in [submission
-/// order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).If [`cmd_pipeline_barrier2`] is recorded within a render pass instance,
-/// the synchronization scopes are
-/// [limited to
-/// operations within the same subpass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-barriers-subpass-self-dependencies).
-/// ## Valid Usage
+///# Description
+///When [`cmd_pipeline_barrier2`] is submitted to a queue, it defines memory
+///dependencies between commands that were submitted before it, and those
+///submitted after it.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
+///dependency defined by [`p_dependency_info`] are applied to operations that
+///occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
+///memory dependency defined by [`p_dependency_info`] are applied to operations
+///that occurred later in [submission
+///order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).If [`cmd_pipeline_barrier2`] is recorded within a render pass instance,
+///the synchronization scopes are
+///[limited to
+///operations within the same subpass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-barriers-subpass-self-dependencies).
+///## Valid Usage
 /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the render pass
 ///   **must**  have been created with at least one [`SubpassDependency`] instance in
 ///   [`RenderPassCreateInfo::dependencies`] that expresses a dependency from the current subpass to
@@ -2459,32 +2459,32 @@ pub type FNCmdWaitEvents2 = Option<
 ///   valid for the queue family that was used to create the command pool that [`command_buffer`]
 ///   was allocated from
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_dependency_info`] **must**  be a valid pointer to a valid [`DependencyInfo`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support transfer,
 ///   graphics, or compute operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`DependencyInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdPipelineBarrier2")]
 pub type FNCmdPipelineBarrier2 = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_dependency_info: *const DependencyInfo<'lt>),
@@ -2500,8 +2500,8 @@ pub type FNCmdPipelineBarrier2 = Option<
 ///    VkQueryPool                                 queryPool,
 ///    uint32_t                                    query);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///void vkCmdWriteTimestamp2KHR(
 ///    VkCommandBuffer                             commandBuffer,
@@ -2509,30 +2509,30 @@ pub type FNCmdPipelineBarrier2 = Option<
 ///    VkQueryPool                                 queryPool,
 ///    uint32_t                                    query);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`stage`] specifies a stage of the pipeline.
 /// - [`query_pool`] is the query pool that will manage the timestamp.
 /// - [`query`] is the query within the query pool that will contain the timestamp.
-/// # Description
-/// When [`cmd_write_timestamp2`] is submitted to a queue, it defines an
-/// execution dependency on commands that were submitted before it, and writes a
-/// timestamp to a query pool.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// includes all commands that occur earlier in
-/// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-/// The synchronization scope is limited to operations on the pipeline stage
-/// specified by [`stage`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// includes only the timestamp write operation.When the timestamp value is written, the
+///# Description
+///When [`cmd_write_timestamp2`] is submitted to a queue, it defines an
+///execution dependency on commands that were submitted before it, and writes a
+///timestamp to a query pool.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///includes all commands that occur earlier in
+///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+///The synchronization scope is limited to operations on the pipeline stage
+///specified by [`stage`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///includes only the timestamp write operation.When the timestamp value is written, the
 /// availability status of the query is
-/// set to available.Comparisons between timestamps are not meaningful if the timestamps are
-/// written by commands submitted to different queues.If [`cmd_write_timestamp2`] is called while
+///set to available.Comparisons between timestamps are not meaningful if the timestamps are
+///written by commands submitted to different queues.If [`cmd_write_timestamp2`] is called while
 /// executing a render pass
-/// instance that has multiview enabled, the timestamp uses N consecutive
-/// query indices in the query pool (starting at [`query`]) where N is
-/// the number of bits set in the view mask of the subpass the command is
-/// executed in.
-/// The resulting query values are determined by an implementation-dependent
-/// choice of one of the following behaviors:
+///instance that has multiview enabled, the timestamp uses N consecutive
+///query indices in the query pool (starting at [`query`]) where N is
+///the number of bits set in the view mask of the subpass the command is
+///executed in.
+///The resulting query values are determined by an implementation-dependent
+///choice of one of the following behaviors:
 /// - The first query is a timestamp value and (if more than one bit is set in the view mask) zero
 ///   is written to the remaining queries. If two timestamps are written in the same subpass, the
 ///   sum of the execution time of all views between those commands is the difference between the
@@ -2541,9 +2541,9 @@ pub type FNCmdPipelineBarrier2 = Option<
 ///   of the execution time of all views between those commands is the sum of the difference between
 ///   corresponding queries written by each command. The difference between corresponding queries
 ///   **may**  be the execution time of a single view.
-/// In either case, the application  **can**  sum the differences between all N
-/// queries to determine the total execution time.
-/// ## Valid Usage
+///In either case, the application  **can**  sum the differences between all N
+///queries to determine the total execution time.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`stage`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -2589,7 +2589,7 @@ pub type FNCmdPipelineBarrier2 = Option<
 ///   the number of bits set in the current subpass’s view mask  **must**  be less than or equal to
 ///   the number of queries in [`query_pool`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`stage`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
@@ -2599,26 +2599,26 @@ pub type FNCmdPipelineBarrier2 = Option<
 /// - Both of [`command_buffer`], and [`query_pool`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`PipelineStageFlags2`]
 /// - [`QueryPool`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdWriteTimestamp2")]
 pub type FNCmdWriteTimestamp2 = Option<
     unsafe extern "system" fn(
@@ -2637,29 +2637,29 @@ pub type FNCmdWriteTimestamp2 = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkRenderingInfo*                      pRenderingInfo);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///void vkCmdBeginRenderingKHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkRenderingInfo*                      pRenderingInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer in which to record the command.
 /// - [`p_rendering_info`] is a pointer to a [`RenderingInfo`] structure specifying details of the
 ///   render pass instance to begin.
-/// # Description
-/// After beginning a render pass instance, the command buffer is ready to
-/// record [draw commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing).If `pRenderingInfo->flags` includes `VK_RENDERING_RESUMING_BIT` then
-/// this render pass is resumed from a render pass instance that has been
-/// suspended earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-/// ## Valid Usage
+///# Description
+///After beginning a render pass instance, the command buffer is ready to
+///record [draw commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing).If `pRenderingInfo->flags` includes `VK_RENDERING_RESUMING_BIT` then
+///this render pass is resumed from a render pass instance that has been
+///suspended earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+///## Valid Usage
 /// - The [`dynamicRendering`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-dynamicRendering)
 ///   feature  **must**  be enabled
 /// - If [`command_buffer`] is a secondary command buffer, `pRenderingInfo->flags` **must**  not
 ///   include `VK_RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_rendering_info`] **must**  be a valid pointer to a valid [`RenderingInfo`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -2667,25 +2667,25 @@ pub type FNCmdWriteTimestamp2 = Option<
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`RenderingInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBeginRendering")]
 pub type FNCmdBeginRendering = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_rendering_info: *const RenderingInfo<'lt>),
@@ -2698,48 +2698,48 @@ pub type FNCmdBeginRendering = Option<
 ///void vkCmdEndRendering(
 ///    VkCommandBuffer                             commandBuffer);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///void vkCmdEndRenderingKHR(
 ///    VkCommandBuffer                             commandBuffer);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer in which to record the command.
-/// # Description
-/// If the value of `pRenderingInfo->flags` used to begin this render pass
-/// instance included `VK_RENDERING_SUSPENDING_BIT`, then this render pass
-/// is suspended and will be resumed later in
-/// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-/// ## Valid Usage
+///# Description
+///If the value of `pRenderingInfo->flags` used to begin this render pass
+///instance included `VK_RENDERING_SUSPENDING_BIT`, then this render pass
+///is suspended and will be resumed later in
+///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+///## Valid Usage
 /// - The current render pass instance  **must**  have been begun with [`cmd_begin_rendering`]
 /// - The current render pass instance  **must**  have been begun in [`command_buffer`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 /// - This command  **must**  only be called inside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdEndRendering")]
 pub type FNCmdEndRendering = Option<unsafe extern "system" fn(command_buffer: CommandBuffer)>;
 ///[VkPipelineCreationFeedbackFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineCreationFeedbackFlagBits.html) - Bitmask specifying pipeline or pipeline stage creation feedback
@@ -2759,12 +2759,12 @@ pub type FNCmdEndRendering = Option<unsafe extern "system" fn(command_buffer: Co
 /// VK_PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT,
 ///} VkPipelineCreationFeedbackFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_pipeline_creation_feedback
 ///typedef VkPipelineCreationFeedbackFlagBits VkPipelineCreationFeedbackFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`VALID`] indicates that the feedback information is valid.
 /// - [`APPLICATION_PIPELINE_CACHE_HIT`] indicates that a readily usable pipeline or pipeline stage
 ///   was found in the `pipelineCache` specified by the application in the pipeline creation
@@ -2779,20 +2779,20 @@ pub type FNCmdEndRendering = Option<unsafe extern "system" fn(command_buffer: Co
 ///   was used to accelerate the creation of the pipeline.An implementation  **should**  set the
 ///   [`BASE_PIPELINE_ACCELERATION`] bit if it was able to avoid a significant amount of work by
 ///   using the base pipeline.
-/// # Related
+///# Related
 /// - [`VK_EXT_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineCreationFeedback`]
 /// - [`PipelineCreationFeedbackCreateInfo`]
 /// - [`PipelineCreationFeedbackFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedbackFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2910,12 +2910,12 @@ impl std::fmt::Display for PipelineCreationFeedbackFlagBits {
 ///    VK_TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT = VK_TOOL_PURPOSE_MODIFYING_FEATURES_BIT,
 ///} VkToolPurposeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_tooling_info
 ///typedef VkToolPurposeFlagBits VkToolPurposeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`VALIDATION`] specifies that the tool provides validation of API usage.
 /// - [`PROFILING`] specifies that the tool provides profiling of API usage.
 /// - [`TRACING`] specifies that the tool is capturing data about the application’s API usage,
@@ -2931,18 +2931,18 @@ impl std::fmt::Display for PipelineCreationFeedbackFlagBits {
 ///   or [object debug annotation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-debug-annotation),
 ///   [queue labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-queue-labels),
 ///   or [command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
-/// # Related
+///# Related
 /// - [`VK_EXT_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`ToolPurposeFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkToolPurposeFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3156,12 +3156,12 @@ impl std::fmt::Display for ToolPurposeFlagBits {
 ///// Provided by VK_HUAWEI_invocation_mask
 ///static const VkAccessFlagBits2 VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI = 0x8000000000ULL;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkAccessFlagBits2 VkAccessFlagBits2KHR;
 ///```
-/// # Description
+///# Description
 /// - [`ACCESS2_NONE`] specifies no accesses.
 /// - [`ACCESS2_MEMORY_READ`] specifies all read accesses. It is always valid in any access mask,
 ///   and is treated as equivalent to setting all `READ` access flags that are valid where it is
@@ -3279,17 +3279,17 @@ impl std::fmt::Display for ToolPurposeFlagBits {
 ///   of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations).
 ///   Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
 /// - [`ACCESS2_VIDEO_ENCODE_WRITE_KHR`] specifies write access to an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations). Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccessFlagBits2")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3853,12 +3853,12 @@ impl std::fmt::Display for AccessFlagBits2 {
 ///static const VkPipelineStageFlagBits2 VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI =
 /// 0x10000000000ULL;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkPipelineStageFlagBits2 VkPipelineStageFlagBits2KHR;
 ///```
-/// # Description
+///# Description
 /// - [`PIPELINE_STAGE2_NONE`] specifies no stages of execution.
 /// - [`PIPELINE_STAGE2_DRAW_INDIRECT`] specifies the stage of the pipeline where indirect command
 ///   parameters are consumed. This stage also includes reading commands written by
@@ -3937,17 +3937,17 @@ impl std::fmt::Display for AccessFlagBits2 {
 /// - [`PIPELINE_STAGE2_BOTTOM_OF_PIPE`] is equivalent to [`PIPELINE_STAGE2_ALL_COMMANDS`] with
 ///   [`AccessFlags2`] set to `0` when specified in the first synchronization scope, but equivalent
 ///   to [`PIPELINE_STAGE2_NONE`] in the second scope.
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineStageFlagBits2")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4332,25 +4332,25 @@ impl std::fmt::Display for PipelineStageFlagBits2 {
 ///    VK_SUBMIT_PROTECTED_BIT_KHR = VK_SUBMIT_PROTECTED_BIT,
 ///} VkSubmitFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkSubmitFlagBits VkSubmitFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PROTECTED`] specifies that this batch is a protected submission.
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`SubmitFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubmitFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4547,18 +4547,18 @@ impl std::fmt::Display for SubmitFlagBits {
 ///static const VkFormatFeatureFlagBits2 VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV =
 /// 0x4000000000ULL;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_format_feature_flags2
 ///typedef VkFormatFeatureFlagBits2 VkFormatFeatureFlagBits2KHR;
 ///```
-/// # Description
-/// The following bits  **may**  be set in `linearTilingFeatures` and
-/// `optimalTilingFeatures`, specifying that the features are supported by
-/// [`Image`] or [`ImageView`]
-/// or [`SamplerYcbcrConversion`]
-/// created with the queried
-/// [`get_physical_device_format_properties2`]`::format`:
+///# Description
+///The following bits  **may**  be set in `linearTilingFeatures` and
+///`optimalTilingFeatures`, specifying that the features are supported by
+///[`Image`] or [`ImageView`]
+///or [`SamplerYcbcrConversion`]
+///created with the queried
+///[`get_physical_device_format_properties2`]`::format`:
 /// - [`FORMAT_FEATURE2_SAMPLED_IMAGE`] specifies that an image view  **can**  be [sampled from](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage).
 /// - [`FORMAT_FEATURE2_STORAGE_IMAGE`] specifies that an image view  **can**  be used as a [storage
 ///   image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage).
@@ -4632,9 +4632,9 @@ impl std::fmt::Display for SubmitFlagBits {
 /// - [`FORMAT_FEATURE2_SAMPLED_IMAGE_DEPTH_COMPARISON`] specifies that image views created with
 ///   this format  **can**  be used for depth comparison performed by `OpImage*Dref*` instructions.
 /// - [`FORMAT_FEATURE2_LINEAR_COLOR_ATTACHMENT_NV`] specifies that    the format is supported as a renderable [Linear Color    Attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary).    This bit will be set for renderable color formats in the    `linearTilingFeatures`. This  **must**  not be set in the `optimalTilingFeatures` or `bufferFeatures` members.
-/// The following bits  **may**  be set in `bufferFeatures`, specifying that the
-/// features are supported by [`Buffer`] or [`BufferView`] created with the queried
-/// [`get_physical_device_format_properties2`]`::format`:
+///The following bits  **may**  be set in `bufferFeatures`, specifying that the
+///features are supported by [`Buffer`] or [`BufferView`] created with the queried
+///[`get_physical_device_format_properties2`]`::format`:
 /// - [`FORMAT_FEATURE2_UNIFORM_TEXEL_BUFFER`] specifies that the format  **can**  be used to create
 ///   a buffer view that  **can**  be bound to a `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`
 ///   descriptor.
@@ -4646,17 +4646,17 @@ impl std::fmt::Display for SubmitFlagBits {
 /// - [`FORMAT_FEATURE2_VERTEX_BUFFER`] specifies that the format  **can**  be used as a vertex
 ///   attribute format ([`VertexInputAttributeDescription::format`]).
 /// - [`FORMAT_FEATURE2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR`] specifies that the format  **can**  be used as the vertex format when creating an [acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure) ([`AccelerationStructureGeometryTrianglesDataKHR::vertex_format`]). This format  **can**  also be used as the vertex format in host memory when doing [host acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#host-acceleration-structure) builds.
-/// # Related
+///# Related
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatFeatureFlagBits2")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5067,36 +5067,36 @@ impl std::fmt::Display for FormatFeatureFlagBits2 {
 ///    VK_RENDERING_RESUMING_BIT_KHR = VK_RENDERING_RESUMING_BIT,
 ///} VkRenderingFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkRenderingFlagBits VkRenderingFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`CONTENTS_SECONDARY_COMMAND_BUFFERS`] specifies that draw calls for the render pass instance
 ///   will be recorded in secondary command buffers.
 /// - [`RESUMING`] specifies that the render pass instance is resuming an earlier suspended render
 ///   pass instance.
 /// - [`SUSPENDING`] specifies that the render pass instance will be suspended.
-/// The contents of `pRenderingInfo` **must**  match between suspended render
-/// pass instances and the render pass instances that resume them, other than
-/// the presence or absence of the [`RESUMING`],
-/// [`SUSPENDING`], and
-/// [`CONTENTS_SECONDARY_COMMAND_BUFFERS`] flags.
-/// No action or synchronization commands, or other render pass instances, are
-/// allowed between suspending and resuming render pass instances.
-/// # Related
+///The contents of `pRenderingInfo` **must**  match between suspended render
+///pass instances and the render pass instances that resume them, other than
+///the presence or absence of the [`RESUMING`],
+///[`SUSPENDING`], and
+///[`CONTENTS_SECONDARY_COMMAND_BUFFERS`] flags.
+///No action or synchronization commands, or other render pass instances, are
+///allowed between suspending and resuming render pass instances.
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`RenderingFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5171,23 +5171,23 @@ impl std::fmt::Display for RenderingFlagBits {
 ///// Provided by VK_VERSION_1_3
 ///typedef VkFlags VkPrivateDataSlotCreateFlags;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_private_data
 ///typedef VkPrivateDataSlotCreateFlags VkPrivateDataSlotCreateFlagsEXT;
 ///```
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`PrivateDataSlotCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5221,12 +5221,12 @@ impl std::fmt::Debug for PrivateDataSlotCreateFlags {
 /// VK_PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT,
 ///} VkPipelineCreationFeedbackFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_pipeline_creation_feedback
 ///typedef VkPipelineCreationFeedbackFlagBits VkPipelineCreationFeedbackFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`VALID`] indicates that the feedback information is valid.
 /// - [`APPLICATION_PIPELINE_CACHE_HIT`] indicates that a readily usable pipeline or pipeline stage
 ///   was found in the `pipelineCache` specified by the application in the pipeline creation
@@ -5241,20 +5241,20 @@ impl std::fmt::Debug for PrivateDataSlotCreateFlags {
 ///   was used to accelerate the creation of the pipeline.An implementation  **should**  set the
 ///   [`BASE_PIPELINE_ACCELERATION`] bit if it was able to avoid a significant amount of work by
 ///   using the base pipeline.
-/// # Related
+///# Related
 /// - [`VK_EXT_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineCreationFeedback`]
 /// - [`PipelineCreationFeedbackCreateInfo`]
 /// - [`PipelineCreationFeedbackFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedbackFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5657,12 +5657,12 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
 ///// Provided by VK_HUAWEI_invocation_mask
 ///static const VkAccessFlagBits2 VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI = 0x8000000000ULL;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkAccessFlagBits2 VkAccessFlagBits2KHR;
 ///```
-/// # Description
+///# Description
 /// - [`ACCESS2_NONE`] specifies no accesses.
 /// - [`ACCESS2_MEMORY_READ`] specifies all read accesses. It is always valid in any access mask,
 ///   and is treated as equivalent to setting all `READ` access flags that are valid where it is
@@ -5780,17 +5780,17 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
 ///   of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations).
 ///   Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
 /// - [`ACCESS2_VIDEO_ENCODE_WRITE_KHR`] specifies write access to an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations). Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccessFlags2")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -6839,12 +6839,12 @@ impl std::fmt::Debug for AccessFlags2 {
 ///static const VkPipelineStageFlagBits2 VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI =
 /// 0x10000000000ULL;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkPipelineStageFlagBits2 VkPipelineStageFlagBits2KHR;
 ///```
-/// # Description
+///# Description
 /// - [`PIPELINE_STAGE2_NONE`] specifies no stages of execution.
 /// - [`PIPELINE_STAGE2_DRAW_INDIRECT`] specifies the stage of the pipeline where indirect command
 ///   parameters are consumed. This stage also includes reading commands written by
@@ -6923,17 +6923,17 @@ impl std::fmt::Debug for AccessFlags2 {
 /// - [`PIPELINE_STAGE2_BOTTOM_OF_PIPE`] is equivalent to [`PIPELINE_STAGE2_ALL_COMMANDS`] with
 ///   [`AccessFlags2`] set to `0` when specified in the first synchronization scope, but equivalent
 ///   to [`PIPELINE_STAGE2_NONE`] in the second scope.
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineStageFlags2")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -7971,18 +7971,18 @@ impl std::fmt::Debug for PipelineStageFlags2 {
 ///static const VkFormatFeatureFlagBits2 VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV =
 /// 0x4000000000ULL;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_format_feature_flags2
 ///typedef VkFormatFeatureFlagBits2 VkFormatFeatureFlagBits2KHR;
 ///```
-/// # Description
-/// The following bits  **may**  be set in `linearTilingFeatures` and
-/// `optimalTilingFeatures`, specifying that the features are supported by
-/// [`Image`] or [`ImageView`]
-/// or [`SamplerYcbcrConversion`]
-/// created with the queried
-/// [`get_physical_device_format_properties2`]`::format`:
+///# Description
+///The following bits  **may**  be set in `linearTilingFeatures` and
+///`optimalTilingFeatures`, specifying that the features are supported by
+///[`Image`] or [`ImageView`]
+///or [`SamplerYcbcrConversion`]
+///created with the queried
+///[`get_physical_device_format_properties2`]`::format`:
 /// - [`FORMAT_FEATURE2_SAMPLED_IMAGE`] specifies that an image view  **can**  be [sampled from](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage).
 /// - [`FORMAT_FEATURE2_STORAGE_IMAGE`] specifies that an image view  **can**  be used as a [storage
 ///   image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage).
@@ -8056,9 +8056,9 @@ impl std::fmt::Debug for PipelineStageFlags2 {
 /// - [`FORMAT_FEATURE2_SAMPLED_IMAGE_DEPTH_COMPARISON`] specifies that image views created with
 ///   this format  **can**  be used for depth comparison performed by `OpImage*Dref*` instructions.
 /// - [`FORMAT_FEATURE2_LINEAR_COLOR_ATTACHMENT_NV`] specifies that    the format is supported as a renderable [Linear Color    Attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary).    This bit will be set for renderable color formats in the    `linearTilingFeatures`. This  **must**  not be set in the `optimalTilingFeatures` or `bufferFeatures` members.
-/// The following bits  **may**  be set in `bufferFeatures`, specifying that the
-/// features are supported by [`Buffer`] or [`BufferView`] created with the queried
-/// [`get_physical_device_format_properties2`]`::format`:
+///The following bits  **may**  be set in `bufferFeatures`, specifying that the
+///features are supported by [`Buffer`] or [`BufferView`] created with the queried
+///[`get_physical_device_format_properties2`]`::format`:
 /// - [`FORMAT_FEATURE2_UNIFORM_TEXEL_BUFFER`] specifies that the format  **can**  be used to create
 ///   a buffer view that  **can**  be bound to a `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`
 ///   descriptor.
@@ -8070,17 +8070,17 @@ impl std::fmt::Debug for PipelineStageFlags2 {
 /// - [`FORMAT_FEATURE2_VERTEX_BUFFER`] specifies that the format  **can**  be used as a vertex
 ///   attribute format ([`VertexInputAttributeDescription::format`]).
 /// - [`FORMAT_FEATURE2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR`] specifies that the format  **can**  be used as the vertex format when creating an [acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure) ([`AccelerationStructureGeometryTrianglesDataKHR::vertex_format`]). This format  **can**  also be used as the vertex format in host memory when doing [host acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#host-acceleration-structure) builds.
-/// # Related
+///# Related
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatFeatureFlags2")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -8979,36 +8979,36 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
 ///    VK_RENDERING_RESUMING_BIT_KHR = VK_RENDERING_RESUMING_BIT,
 ///} VkRenderingFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkRenderingFlagBits VkRenderingFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`CONTENTS_SECONDARY_COMMAND_BUFFERS`] specifies that draw calls for the render pass instance
 ///   will be recorded in secondary command buffers.
 /// - [`RESUMING`] specifies that the render pass instance is resuming an earlier suspended render
 ///   pass instance.
 /// - [`SUSPENDING`] specifies that the render pass instance will be suspended.
-/// The contents of `pRenderingInfo` **must**  match between suspended render
-/// pass instances and the render pass instances that resume them, other than
-/// the presence or absence of the [`RESUMING`],
-/// [`SUSPENDING`], and
-/// [`CONTENTS_SECONDARY_COMMAND_BUFFERS`] flags.
-/// No action or synchronization commands, or other render pass instances, are
-/// allowed between suspending and resuming render pass instances.
-/// # Related
+///The contents of `pRenderingInfo` **must**  match between suspended render
+///pass instances and the render pass instances that resume them, other than
+///the presence or absence of the [`RESUMING`],
+///[`SUSPENDING`], and
+///[`CONTENTS_SECONDARY_COMMAND_BUFFERS`] flags.
+///No action or synchronization commands, or other render pass instances, are
+///allowed between suspending and resuming render pass instances.
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`RenderingFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -9308,12 +9308,12 @@ impl std::fmt::Debug for RenderingFlags {
 ///    VK_TOOL_PURPOSE_MODIFYING_FEATURES_BIT_EXT = VK_TOOL_PURPOSE_MODIFYING_FEATURES_BIT,
 ///} VkToolPurposeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_tooling_info
 ///typedef VkToolPurposeFlagBits VkToolPurposeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`VALIDATION`] specifies that the tool provides validation of API usage.
 /// - [`PROFILING`] specifies that the tool provides profiling of API usage.
 /// - [`TRACING`] specifies that the tool is capturing data about the application’s API usage,
@@ -9329,18 +9329,18 @@ impl std::fmt::Debug for RenderingFlags {
 ///   or [object debug annotation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-debug-annotation),
 ///   [queue labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-queue-labels),
 ///   or [command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
-/// # Related
+///# Related
 /// - [`VK_EXT_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`ToolPurposeFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkToolPurposeFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -9700,25 +9700,25 @@ impl std::fmt::Debug for ToolPurposeFlags {
 ///    VK_SUBMIT_PROTECTED_BIT_KHR = VK_SUBMIT_PROTECTED_BIT,
 ///} VkSubmitFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkSubmitFlagBits VkSubmitFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`PROTECTED`] specifies that this batch is a protected submission.
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`SubmitFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubmitFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -9980,30 +9980,30 @@ impl std::fmt::Debug for SubmitFlags {
 ///    uint32_t           privateDataSlotRequestCount;
 ///} VkDevicePrivateDataCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_private_data
 ///typedef VkDevicePrivateDataCreateInfo VkDevicePrivateDataCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`private_data_slot_request_count`] is the amount of slots to reserve.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO`
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDevicePrivateDataCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -10088,21 +10088,21 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 ///    VkPrivateDataSlotCreateFlags    flags;
 ///} VkPrivateDataSlotCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_private_data
 ///typedef VkPrivateDataSlotCreateInfo VkPrivateDataSlotCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`PrivateDataSlotCreateFlags`]
@@ -10110,13 +10110,13 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 /// - [`create_private_data_slot`]
 /// - [`create_private_data_slot_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPrivateDataSlotCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -10201,40 +10201,40 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
 ///    VkBool32           privateData;
 ///} VkPhysicalDevicePrivateDataFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_private_data
 ///typedef VkPhysicalDevicePrivateDataFeatures VkPhysicalDevicePrivateDataFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`private_data`] indicates whether the implementation supports private data. See [Private Data](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#private-data).
-/// If the [`PhysicalDevicePrivateDataFeatures`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDevicePrivateDataFeatures`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePrivateDataFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePrivateDataFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePrivateDataFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -10351,22 +10351,22 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 ///    const VkBufferCreateInfo*    pCreateInfo;
 ///} VkDeviceBufferMemoryRequirements;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///typedef VkDeviceBufferMemoryRequirements VkDeviceBufferMemoryRequirementsKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`create_info`] is a pointer to a [`BufferCreateInfo`] structure containing parameters
 ///   affecting creation of the buffer to query.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`create_info`] **must**  be a valid pointer to a valid [`BufferCreateInfo`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`BufferCreateInfo`]
@@ -10374,13 +10374,13 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 /// - [`get_device_buffer_memory_requirements`]
 /// - [`get_device_buffer_memory_requirements_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceBufferMemoryRequirements")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -10475,12 +10475,12 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 ///    VkImageAspectFlagBits       planeAspect;
 ///} VkDeviceImageMemoryRequirements;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///typedef VkDeviceImageMemoryRequirements VkDeviceImageMemoryRequirementsKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`create_info`] is a pointer to a [`ImageCreateInfo`] structure containing parameters
@@ -10489,8 +10489,8 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 ///   image plane to query. This parameter is ignored unless [`create_info`]`::tiling` is
 ///   `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`, or [`create_info`]`::flags` has
 ///   `VK_IMAGE_CREATE_DISJOINT_BIT` set.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [`create_info`]::[`p_next`] chain  **must**  not contain a [`ImageSwapchainCreateInfoKHR`]
 ///   structure
 /// - If [`create_info`]`::format` specifies a *multi-planar* format and [`create_info`]`::flags`
@@ -10508,13 +10508,13 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 ///   [`DrmFormatModifierPropertiesEXT::drm_format_modifier_plane_count`] associated with the
 ///   image’s `format` and [`ImageDrmFormatModifierPropertiesEXT::drm_format_modifier`])
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`create_info`] **must**  be a valid pointer to a valid [`ImageCreateInfo`] structure
 /// - If [`plane_aspect`] is not `0`, [`plane_aspect`] **must**  be a valid [`ImageAspectFlagBits`]
 ///   value
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`ImageAspectFlagBits`]
@@ -10525,13 +10525,13 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 /// - [`get_device_image_sparse_memory_requirements`]
 /// - [`get_device_image_sparse_memory_requirements_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceImageMemoryRequirements")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -10649,15 +10649,15 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 ///    VkBool32           descriptorBindingInlineUniformBlockUpdateAfterBind;
 ///} VkPhysicalDeviceInlineUniformBlockFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_inline_uniform_block
 ///typedef VkPhysicalDeviceInlineUniformBlockFeatures
 /// VkPhysicalDeviceInlineUniformBlockFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -10668,28 +10668,28 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 ///   implementation supports updating inline uniform block descriptors after a set is bound. If
 ///   this feature is not enabled, `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT` **must**  not be
 ///   used with `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`.
-/// If the [`PhysicalDeviceInlineUniformBlockFeatures`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceInlineUniformBlockFeatures`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceInlineUniformBlockFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceInlineUniformBlockFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -10858,16 +10858,16 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 ///    uint32_t           maxDescriptorSetUpdateAfterBindInlineUniformBlocks;
 ///} VkPhysicalDeviceInlineUniformBlockProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_inline_uniform_block
 ///typedef VkPhysicalDeviceInlineUniformBlockProperties
 /// VkPhysicalDeviceInlineUniformBlockPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`max_inline_uniform_block_size`] is the maximum size in bytes of an [inline uniform block](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inlineuniformblock)
 ///   binding.
 /// - `maxPerStageDescriptorInlineUniformBlock` is the maximum number of inline uniform block
@@ -10889,25 +10889,25 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 ///   [`max_descriptor_set_inline_uniform_blocks`] but counts descriptor bindings from descriptor
 ///   sets created with or without the `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT`
 ///   bit set.
-/// If the [`PhysicalDeviceInlineUniformBlockProperties`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceInlineUniformBlockProperties`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES`
-/// # Related
+///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11072,37 +11072,37 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
 ///    const void*        pData;
 ///} VkWriteDescriptorSetInlineUniformBlock;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_inline_uniform_block
 ///typedef VkWriteDescriptorSetInlineUniformBlock VkWriteDescriptorSetInlineUniformBlockEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`data_size`] is the number of bytes of inline uniform block data pointed to by [`data`].
 /// - [`data`] is a pointer to [`data_size`] number of bytes of data to write to the inline uniform
 ///   block.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`data_size`] **must**  be an integer multiple of `4`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK`
 /// - [`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
 /// - [`data_size`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWriteDescriptorSetInlineUniformBlock")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11227,32 +11227,32 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
 ///    uint32_t           maxInlineUniformBlockBindings;
 ///} VkDescriptorPoolInlineUniformBlockCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_inline_uniform_block
 ///typedef VkDescriptorPoolInlineUniformBlockCreateInfo
 /// VkDescriptorPoolInlineUniformBlockCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_inline_uniform_block_bindings`] is the number of inline uniform block bindings to
 ///   allocate.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO`
-/// # Related
+///# Related
 /// - [`VK_EXT_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorPoolInlineUniformBlockCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11338,14 +11338,14 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 ///    VkBool32           maintenance4;
 ///} VkPhysicalDeviceMaintenance4Features;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///typedef VkPhysicalDeviceMaintenance4Features VkPhysicalDeviceMaintenance4FeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`maintenance4`] indicates that the implementation supports the following:  - The application
 ///   **may**  destroy a [`PipelineLayout`] object immediately after using it to create another
 ///   object.  - `LocalSizeId` **can**  be used as an alternative to `LocalSize` to specify the
@@ -11355,28 +11355,28 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 ///   or equal size.  - Push constants do not have to be initialized before they are dynamically
 ///   accessed.  - The interface matching rules allow a larger output vector to match with a smaller
 ///   input vector, with additional values being discarded.
-/// If the [`PhysicalDeviceMaintenance4Features`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDeviceMaintenance4Features`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceMaintenance4Features`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceMaintenance4Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance4Features")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11502,36 +11502,36 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
 ///    VkDeviceSize       maxBufferSize;
 ///} VkPhysicalDeviceMaintenance4Properties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance4
 ///typedef VkPhysicalDeviceMaintenance4Properties VkPhysicalDeviceMaintenance4PropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`max_buffer_size`] is the maximum size [`Buffer`] that  **can**  be created.
-/// If the [`PhysicalDeviceMaintenance4Properties`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDeviceMaintenance4Properties`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES`
-/// # Related
+///# Related
 /// - [`VK_KHR_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance4Properties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11624,15 +11624,15 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 ///    VkBool32           textureCompressionASTC_HDR;
 ///} VkPhysicalDeviceTextureCompressionASTCHDRFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_texture_compression_astc_hdr
 ///typedef VkPhysicalDeviceTextureCompressionASTCHDRFeatures
 /// VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -11651,30 +11651,30 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 ///   not enabled, [`get_physical_device_format_properties`] and
 ///   [`get_physical_device_image_format_properties`] **can**  be used to check for supported
 ///   properties of individual formats as normal.
-/// If the [`PhysicalDeviceTextureCompressionAstchdrFeatures`] structure is included in the
+///If the [`PhysicalDeviceTextureCompressionAstchdrFeatures`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceTextureCompressionAstchdrFeatures`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceTextureCompressionAstchdrFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_texture_compression_astc_hdr`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTextureCompressionASTCHDRFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11812,34 +11812,34 @@ impl<'lt> PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
 ///    uint64_t                           duration;
 ///} VkPipelineCreationFeedback;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_pipeline_creation_feedback
 ///typedef VkPipelineCreationFeedback VkPipelineCreationFeedbackEXT;
 ///```
-/// # Members
+///# Members
 /// - [`flags`] is a bitmask of [`PipelineCreationFeedbackFlagBits`] providing feedback about the
 ///   creation of a pipeline or of a pipeline stage.
 /// - [`duration`] is the duration spent creating a pipeline or pipeline stage in nanoseconds.
-/// # Description
-/// If the `VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT` is not set in
-/// [`flags`], an implementation  **must**  not set any other bits in [`flags`],
-/// and the values of all other [`PipelineCreationFeedback`] data members
-/// are undefined.
-/// # Related
+///# Description
+///If the `VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT` is not set in
+///[`flags`], an implementation  **must**  not set any other bits in [`flags`],
+///and the values of all other [`PipelineCreationFeedback`] data members
+///are undefined.
+///# Related
 /// - [`VK_EXT_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineCreationFeedbackCreateInfo`]
 /// - [`PipelineCreationFeedbackFlagBits`]
 /// - [`PipelineCreationFeedbackFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedback")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -11908,12 +11908,12 @@ impl PipelineCreationFeedback {
 ///    VkPipelineCreationFeedback*    pPipelineStageCreationFeedbacks;
 ///} VkPipelineCreationFeedbackCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_pipeline_creation_feedback
 ///typedef VkPipelineCreationFeedbackCreateInfo VkPipelineCreationFeedbackCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pipeline_creation_feedback`] is a pointer to a [`PipelineCreationFeedback`] structure.
@@ -11921,28 +11921,28 @@ impl PipelineCreationFeedback {
 ///   [`pipeline_stage_creation_feedbacks`].
 /// - [`pipeline_stage_creation_feedbacks`] is a pointer to an array of
 ///   [`pipeline_stage_creation_feedback_count`][`PipelineCreationFeedback`] structures.
-/// # Description
-/// An implementation  **should**  write pipeline creation feedback to
-/// [`pipeline_creation_feedback`] and  **may**  write pipeline stage creation
-/// feedback to [`pipeline_stage_creation_feedbacks`].
-/// An implementation  **must**  set or clear the
-/// `VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT` in
-/// [`PipelineCreationFeedback::flags`] for
-/// [`pipeline_creation_feedback`] and every element of
-/// [`pipeline_stage_creation_feedbacks`].When chained to
-/// [`RayTracingPipelineCreateInfoKHR`],
-/// [`RayTracingPipelineCreateInfoNV`],
-/// or
-/// [`GraphicsPipelineCreateInfo`], the `i` element of
-/// [`pipeline_stage_creation_feedbacks`] corresponds to the `i` element of
-/// [`RayTracingPipelineCreateInfoKHR::stages`],
-/// [`RayTracingPipelineCreateInfoNV::stages`],
-/// or
-/// [`GraphicsPipelineCreateInfo::stages`].
-/// When chained to [`ComputePipelineCreateInfo`], the first element of
-/// [`pipeline_stage_creation_feedbacks`] corresponds to
-/// [`ComputePipelineCreateInfo::stage`].
-/// ## Valid Usage
+///# Description
+///An implementation  **should**  write pipeline creation feedback to
+///[`pipeline_creation_feedback`] and  **may**  write pipeline stage creation
+///feedback to [`pipeline_stage_creation_feedbacks`].
+///An implementation  **must**  set or clear the
+///`VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT` in
+///[`PipelineCreationFeedback::flags`] for
+///[`pipeline_creation_feedback`] and every element of
+///[`pipeline_stage_creation_feedbacks`].When chained to
+///[`RayTracingPipelineCreateInfoKHR`],
+///[`RayTracingPipelineCreateInfoNV`],
+///or
+///[`GraphicsPipelineCreateInfo`], the `i` element of
+///[`pipeline_stage_creation_feedbacks`] corresponds to the `i` element of
+///[`RayTracingPipelineCreateInfoKHR::stages`],
+///[`RayTracingPipelineCreateInfoNV::stages`],
+///or
+///[`GraphicsPipelineCreateInfo::stages`].
+///When chained to [`ComputePipelineCreateInfo`], the first element of
+///[`pipeline_stage_creation_feedbacks`] corresponds to
+///[`ComputePipelineCreateInfo::stage`].
+///## Valid Usage
 /// - When chained to [`GraphicsPipelineCreateInfo`],
 ///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`] **must**  equal
 ///   [`GraphicsPipelineCreateInfo::stage_count`]
@@ -11955,14 +11955,14 @@ impl PipelineCreationFeedback {
 ///   [`PipelineCreationFeedback`]::[`pipeline_stage_creation_feedback_count`] **must**  equal
 ///   [`RayTracingPipelineCreateInfoNV::stage_count`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO`
 /// - [`pipeline_creation_feedback`] **must**  be a valid pointer to a [`PipelineCreationFeedback`]
 ///   structure
 /// - [`pipeline_stage_creation_feedbacks`] **must**  be a valid pointer to an array of
 ///   [`pipeline_stage_creation_feedback_count`][`PipelineCreationFeedback`] structures
 /// - [`pipeline_stage_creation_feedback_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`VK_EXT_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`ComputePipelineCreateInfo`]
@@ -11972,13 +11972,13 @@ impl PipelineCreationFeedback {
 /// - [`RayTracingPipelineCreateInfoNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCreationFeedbackCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12144,44 +12144,44 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
 ///    VkBool32           shaderDemoteToHelperInvocation;
 ///} VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_shader_demote_to_helper_invocation
 ///typedef VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures
 /// VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_demote_to_helper_invocation`] indicates whether the implementation supports the
 ///   SPIR-V `DemoteToHelperInvocationEXT` capability.
-/// If the [`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`] structure is included in the
+///If the [`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_shader_demote_to_helper_invocation`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12302,16 +12302,16 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 ///    VkBool32           uniformTexelBufferOffsetSingleTexelAlignment;
 ///} VkPhysicalDeviceTexelBufferAlignmentProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_texel_buffer_alignment
 ///typedef VkPhysicalDeviceTexelBufferAlignmentProperties
 /// VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`storage_texel_buffer_offset_alignment_bytes`] is a byte alignment that is sufficient for a
 ///   storage texel buffer of any format. The value  **must**  be a power of two.
 /// - [`storage_texel_buffer_offset_single_texel_alignment`] indicates whether single texel
@@ -12322,39 +12322,39 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 /// - [`uniform_texel_buffer_offset_single_texel_alignment`] indicates whether single texel
 ///   alignment is sufficient for a uniform texel buffer of any format. The value  **must**  be a
 ///   power of two.
-/// If the [`PhysicalDeviceTexelBufferAlignmentProperties`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceTexelBufferAlignmentProperties`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.If the single texel alignment property is
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.If the single texel alignment property is
 /// [`FALSE`], then the buffer
-/// view’s offset  **must**  be aligned to the corresponding byte alignment value.
-/// If the single texel alignment property is [`TRUE`], then the buffer
-/// view’s offset  **must**  be aligned to the lesser of the corresponding byte
-/// alignment value or the size of a single texel, based on
-/// [`BufferViewCreateInfo::format`].
-/// If the size of a single texel is a multiple of three bytes, then the size of
-/// a single component of the format is used instead.These limits  **must**  not advertise a larger
+///view’s offset  **must**  be aligned to the corresponding byte alignment value.
+///If the single texel alignment property is [`TRUE`], then the buffer
+///view’s offset  **must**  be aligned to the lesser of the corresponding byte
+///alignment value or the size of a single texel, based on
+///[`BufferViewCreateInfo::format`].
+///If the size of a single texel is a multiple of three bytes, then the size of
+///a single component of the format is used instead.These limits  **must**  not advertise a larger
 /// alignment than the
-/// [required](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-required) maximum minimum value of
-/// [`PhysicalDeviceLimits::min_texel_buffer_offset_alignment`], for any
-/// format that supports use as a texel buffer.
-/// ## Valid Usage (Implicit)
+///[required](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-required) maximum minimum value of
+///[`PhysicalDeviceLimits::min_texel_buffer_offset_alignment`], for any
+///format that supports use as a texel buffer.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES`
-/// # Related
+///# Related
 /// - [`VK_EXT_texel_buffer_alignment`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12546,15 +12546,15 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 ///    VkBool32           computeFullSubgroups;
 ///} VkPhysicalDeviceSubgroupSizeControlFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_subgroup_size_control
 ///typedef VkPhysicalDeviceSubgroupSizeControlFeatures
 /// VkPhysicalDeviceSubgroupSizeControlFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -12564,28 +12564,28 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 /// - [`compute_full_subgroups`] indicates whether the implementation supports requiring full
 ///   subgroups in compute shaders via the
 ///   `VK_PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT` flag.
-/// If the [`PhysicalDeviceSubgroupSizeControlFeatures`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceSubgroupSizeControlFeatures`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceSubgroupSizeControlFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceSubgroupSizeControlFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupSizeControlFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12749,45 +12749,45 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 ///    VkShaderStageFlags    requiredSubgroupSizeStages;
 ///} VkPhysicalDeviceSubgroupSizeControlProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_subgroup_size_control
 ///typedef VkPhysicalDeviceSubgroupSizeControlProperties
 /// VkPhysicalDeviceSubgroupSizeControlPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`min_subgroup_size`] is the minimum subgroup size supported by this device. [`min_subgroup_size`] is at least one if any of the physical device’s queues support `VK_QUEUE_GRAPHICS_BIT` or `VK_QUEUE_COMPUTE_BIT`. [`min_subgroup_size`] is a power-of-two. [`min_subgroup_size`] is less than or equal to [`max_subgroup_size`]. [`min_subgroup_size`] is less than or equal to [subgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-subgroup-size).
 /// - [`max_subgroup_size`] is the maximum subgroup size supported by this device. [`max_subgroup_size`] is at least one if any of the physical device’s queues support `VK_QUEUE_GRAPHICS_BIT` or `VK_QUEUE_COMPUTE_BIT`. [`max_subgroup_size`] is a power-of-two. [`max_subgroup_size`] is greater than or equal to [`min_subgroup_size`]. [`max_subgroup_size`] is greater than or equal to [subgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-subgroup-size).
 /// - [`max_compute_workgroup_subgroups`] is the maximum number of subgroups supported by the
 ///   implementation within a workgroup.
 /// - [`required_subgroup_size_stages`] is a bitfield of what shader stages support having a
 ///   required subgroup size specified.
-/// If the [`PhysicalDeviceSubgroupSizeControlProperties`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceSubgroupSizeControlProperties`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.If
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.If
 /// [`PhysicalDeviceSubgroupProperties::supported_operations`]
-/// includes [`VK_SUBGROUP_FEATURE_QUAD_BIT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-subgroup-quad),
-/// [`min_subgroup_size`] **must**  be greater than or equal to 4.
-/// ## Valid Usage (Implicit)
+///includes [`VK_SUBGROUP_FEATURE_QUAD_BIT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-subgroup-quad),
+///[`min_subgroup_size`] **must**  be greater than or equal to 4.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES`
-/// # Related
+///# Related
 /// - [`VK_EXT_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupSizeControlProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12928,42 +12928,42 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 ///    uint32_t           requiredSubgroupSize;
 ///} VkPipelineShaderStageRequiredSubgroupSizeCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_subgroup_size_control
 ///typedef VkPipelineShaderStageRequiredSubgroupSizeCreateInfo
 /// VkPipelineShaderStageRequiredSubgroupSizeCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`required_subgroup_size`] is an unsigned integer value specifying the required subgroup size
 ///   for the newly created pipeline shader stage.
-/// # Description
-/// If a [`PipelineShaderStageRequiredSubgroupSizeCreateInfo`] structure is
-/// included in the [`p_next`] chain of [`PipelineShaderStageCreateInfo`],
-/// it specifies that the pipeline shader stage being compiled has a required
-/// subgroup size.
-/// ## Valid Usage
+///# Description
+///If a [`PipelineShaderStageRequiredSubgroupSizeCreateInfo`] structure is
+///included in the [`p_next`] chain of [`PipelineShaderStageCreateInfo`],
+///it specifies that the pipeline shader stage being compiled has a required
+///subgroup size.
+///## Valid Usage
 /// - [`required_subgroup_size`] **must**  be a power-of-two integer
 /// - [`required_subgroup_size`] **must**  be greater or equal to [minSubgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-minSubgroupSize)
 /// - [`required_subgroup_size`] **must**  be less than or equal to [maxSubgroupSize](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxSubgroupSize)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO`
-/// # Related
+///# Related
 /// - [`VK_EXT_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineShaderStageRequiredSubgroupSizeCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13058,15 +13058,15 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 ///    VkBool32           pipelineCreationCacheControl;
 ///} VkPhysicalDevicePipelineCreationCacheControlFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_pipeline_creation_cache_control
 ///typedef VkPhysicalDevicePipelineCreationCacheControlFeatures
 /// VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -13075,30 +13075,30 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 ///   `VK_PIPELINE_CREATE_FAIL_ON_PIPELINE_COMPILE_REQUIRED_BIT`   -
 ///   `VK_PIPELINE_CREATE_EARLY_RETURN_ON_FAILURE_BIT`   - The following  **can**  be used in
 ///   [`PipelineCacheCreateInfo::flags`]:   - `VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT`
-/// If the [`PhysicalDevicePipelineCreationCacheControlFeatures`] structure is included in the
+///If the [`PhysicalDevicePipelineCreationCacheControlFeatures`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePipelineCreationCacheControlFeatures`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePipelineCreationCacheControlFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_pipeline_creation_cache_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineCreationCacheControlFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13233,9 +13233,9 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///    VkBool32           maintenance4;
 ///} VkPhysicalDeviceVulkan13Features;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -13300,26 +13300,26 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///   or equal size.  - Push constants do not have to be initialized before they are dynamically
 ///   accessed.  - The interface matching rules allow a larger output vector to match with a smaller
 ///   input vector, with additional values being discarded.
-/// If the [`PhysicalDeviceVulkan13Features`] structure is included in the [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceVulkan13Features`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///If the [`PhysicalDeviceVulkan13Features`] structure is included in the [`p_next`] chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceVulkan13Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan13Features")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14104,10 +14104,10 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 ///    VkDeviceSize          maxBufferSize;
 ///} VkPhysicalDeviceVulkan13Properties;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`min_subgroup_size`] is the minimum subgroup size supported by this device.
 ///   [`min_subgroup_size`] is at least one if any of the physical device’s queues support
 ///   `VK_QUEUE_GRAPHICS_BIT` or `VK_QUEUE_COMPUTE_BIT`. [`min_subgroup_size`] is a power-of-two.
@@ -14256,30 +14256,30 @@ impl<'lt> PhysicalDeviceVulkan13Features<'lt> {
 ///   alignment is sufficient for a uniform texel buffer of any format. The value  **must**  be a
 ///   power of two.
 /// - [`max_buffer_size`] is the maximum size [`Buffer`] that  **can**  be created.
-/// If the [`PhysicalDeviceVulkan13Properties`] structure is included in the [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.These properties correspond to Vulkan 1.3
+///If the [`PhysicalDeviceVulkan13Properties`] structure is included in the [`p_next`] chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.These properties correspond to Vulkan 1.3
 /// functionality.The members of [`PhysicalDeviceVulkan13Properties`] **must**  have the same
-/// values as the corresponding members of
-/// [`PhysicalDeviceInlineUniformBlockProperties`] and
-/// [`PhysicalDeviceSubgroupSizeControlProperties`].
-/// ## Valid Usage (Implicit)
+///values as the corresponding members of
+///[`PhysicalDeviceInlineUniformBlockProperties`] and
+///[`PhysicalDeviceSubgroupSizeControlProperties`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`DeviceSize`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVulkan13Properties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16027,12 +16027,12 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 ///    char                  layer[VK_MAX_EXTENSION_NAME_SIZE];
 ///} VkPhysicalDeviceToolProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_tooling_info
 ///typedef VkPhysicalDeviceToolProperties VkPhysicalDeviceToolPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`name`] is a null-terminated UTF-8 string containing the name of the tool.
@@ -16042,11 +16042,11 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 /// - [`description`] is a null-terminated UTF-8 string containing a description of the tool.
 /// - [`layer`] is a null-terminated UTF-8 string containing the name of the layer implementing the
 ///   tool, if the tool is implemented in a layer - otherwise it  **may**  be an empty string.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_EXT_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
@@ -16054,13 +16054,13 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 /// - [`get_physical_device_tool_properties`]
 /// - [`get_physical_device_tool_properties_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceToolProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16226,44 +16226,44 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
 ///    VkBool32           shaderZeroInitializeWorkgroupMemory;
 ///} VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_zero_initialize_workgroup_memory
 ///typedef VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures
 /// VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_zero_initialize_workgroup_memory`] specifies whether the implementation supports
 ///   initializing a variable in Workgroup storage class.
-/// If the [`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`] structure is included in the
+///If the [`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_KHR_zero_initialize_workgroup_memory`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16380,40 +16380,40 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 ///    VkBool32           robustImageAccess;
 ///} VkPhysicalDeviceImageRobustnessFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_image_robustness
 ///typedef VkPhysicalDeviceImageRobustnessFeatures VkPhysicalDeviceImageRobustnessFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`robust_image_access`] indicates whether image accesses are tightly bounds-checked against the dimensions of the image view. [Invalid texels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-input-validation) resulting from out of bounds image loads will be replaced as described in [Texel Replacement](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-texel-replacement), with either (0,0,1) or (0,0,0) values inserted for missing G, B, or A components based on the format.
-/// If the [`PhysicalDeviceImageRobustnessFeatures`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceImageRobustnessFeatures`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceImageRobustnessFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceImageRobustnessFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_EXT_image_robustness`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageRobustnessFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16537,38 +16537,38 @@ impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
 ///    VkDeviceSize       size;
 ///} VkBufferCopy2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkBufferCopy2 VkBufferCopy2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_offset`] is the starting offset in bytes from the start of `srcBuffer`.
 /// - [`dst_offset`] is the starting offset in bytes from the start of `dstBuffer`.
 /// - [`size`] is the number of bytes to copy.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The [`size`] **must**  be greater than `0`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COPY_2`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CopyBufferInfo2`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCopy2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16691,12 +16691,12 @@ impl<'lt> BufferCopy2<'lt> {
 ///    VkExtent3D                  extent;
 ///} VkImageCopy2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkImageCopy2 VkImageCopy2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_subresource`] and [`dst_subresource`] are [`ImageSubresourceLayers`] structures
@@ -16705,8 +16705,8 @@ impl<'lt> BufferCopy2<'lt> {
 /// - [`src_offset`] and [`dst_offset`] select the initial `x`, `y`, and `z` offsets in texels of
 ///   the sub-regions of the source and destination image data.
 /// - [`extent`] is the size in texels of the image to copy in `width`, `height` and `depth`.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The number of slices of the [`extent`] (for 3D) or layers of the [`src_subresource`] (for
 ///   non-3D)  **must**  match the number of slices of the [`extent`] (for 3D) or layers of the
 ///   [`dst_subresource`] (for non-3D)
@@ -16714,12 +16714,12 @@ impl<'lt> BufferCopy2<'lt> {
 /// - `extent.height` **must**  not be 0
 /// - `extent.depth` **must**  not be 0
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_COPY_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 /// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CopyImageInfo2`]
@@ -16728,13 +16728,13 @@ impl<'lt> BufferCopy2<'lt> {
 /// - [`Offset3D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageCopy2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16892,12 +16892,12 @@ impl<'lt> ImageCopy2<'lt> {
 ///    VkOffset3D                  dstOffsets[2];
 ///} VkImageBlit2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkImageBlit2 VkImageBlit2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_subresource`] is the subresource to blit from.
@@ -16906,21 +16906,21 @@ impl<'lt> ImageCopy2<'lt> {
 /// - [`dst_subresource`] is the subresource to blit into.
 /// - [`dst_offsets`] is a pointer to an array of two [`Offset3D`] structures specifying the bounds
 ///   of the destination region within [`dst_subresource`].
-/// # Description
-/// For each element of the `pRegions` array, a blit operation is performed
-/// for the specified source and destination regions.
-/// ## Valid Usage
+///# Description
+///For each element of the `pRegions` array, a blit operation is performed
+///for the specified source and destination regions.
+///## Valid Usage
 /// - The `aspectMask` member of [`src_subresource`] and [`dst_subresource`] **must**  match
 /// - The `layerCount` member of [`src_subresource`] and [`dst_subresource`] **must**  match
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_BLIT_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`CopyCommandTransformInfoQCOM`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 /// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`BlitImageInfo2`]
@@ -16928,13 +16928,13 @@ impl<'lt> ImageCopy2<'lt> {
 /// - [`Offset3D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageBlit2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17079,12 +17079,12 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for ImageB
 ///    VkExtent3D                  imageExtent;
 ///} VkBufferImageCopy2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkBufferImageCopy2 VkBufferImageCopy2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer_offset`] is the offset in bytes from the start of the buffer object where the image
@@ -17098,11 +17098,11 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for ImageB
 /// - [`image_offset`] selects the initial `x`, `y`, `z` offsets in texels of the sub-region of the
 ///   source or destination image data.
 /// - [`image_extent`] is the size in texels of the image to copy in `width`, `height` and `depth`.
-/// # Description
-/// This structure is functionally identical to [`BufferImageCopy`], but
-/// adds [`s_type`] and [`p_next`] parameters, allowing it to be more easily
-/// extended.
-/// ## Valid Usage
+///# Description
+///This structure is functionally identical to [`BufferImageCopy`], but
+///adds [`s_type`] and [`p_next`] parameters, allowing it to be more easily
+///extended.
+///## Valid Usage
 /// - [`buffer_row_length`] **must**  be `0`, or greater than or equal to the `width` member of
 ///   [`image_extent`]
 /// - [`buffer_image_height`] **must**  be `0`, or greater than or equal to the `height` member of
@@ -17112,13 +17112,13 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for ImageB
 /// - `imageExtent.height` **must**  not be 0
 /// - `imageExtent.depth` **must**  not be 0
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_IMAGE_COPY_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`CopyCommandTransformInfoQCOM`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`image_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CopyBufferToImageInfo2`]
@@ -17129,13 +17129,13 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for ImageB
 /// - [`Offset3D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferImageCopy2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17315,12 +17315,12 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for Buffer
 ///    VkExtent3D                  extent;
 ///} VkImageResolve2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkImageResolve2 VkImageResolve2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_subresource`] and [`dst_subresource`] are [`ImageSubresourceLayers`] structures
@@ -17330,18 +17330,18 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for Buffer
 ///   the sub-regions of the source and destination image data.
 /// - [`extent`] is the size in texels of the source image to resolve in `width`, `height` and
 ///   `depth`.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The `aspectMask` member of [`src_subresource`] and [`dst_subresource`] **must**  only contain
 ///   `VK_IMAGE_ASPECT_COLOR_BIT`
 /// - The `layerCount` member of [`src_subresource`] and [`dst_subresource`] **must**  match
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 /// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Extent3D`]
@@ -17350,13 +17350,13 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for Buffer
 /// - [`ResolveImageInfo2`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageResolve2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17515,12 +17515,12 @@ impl<'lt> ImageResolve2<'lt> {
 ///    const VkBufferCopy2*    pRegions;
 ///} VkCopyBufferInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkCopyBufferInfo2 VkCopyBufferInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_buffer`] is the source buffer.
@@ -17528,12 +17528,12 @@ impl<'lt> ImageResolve2<'lt> {
 /// - [`region_count`] is the number of regions to copy.
 /// - [`regions`] is a pointer to an array of [`BufferCopy2`] structures specifying the regions to
 ///   copy.
-/// # Description
-/// Members defined by this structure with the same name as parameters in
-/// [`cmd_copy_buffer`] have the identical effect to those parameters; the
-/// child structure [`BufferCopy2`] is a variant of [`BufferCopy`] which
-/// includes [`s_type`] and [`p_next`] parameters, allowing it to be extended.
-/// ## Valid Usage
+///# Description
+///Members defined by this structure with the same name as parameters in
+///[`cmd_copy_buffer`] have the identical effect to those parameters; the
+///child structure [`BufferCopy2`] is a variant of [`BufferCopy`] which
+///includes [`s_type`] and [`p_next`] parameters, allowing it to be extended.
+///## Valid Usage
 /// - The `srcOffset` member of each element of [`regions`] **must**  be less than the size of
 ///   [`src_buffer`]
 /// - The `dstOffset` member of each element of [`regions`] **must**  be less than the size of
@@ -17551,7 +17551,7 @@ impl<'lt> ImageResolve2<'lt> {
 /// - If [`dst_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_BUFFER_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_buffer`] **must**  be a valid [`Buffer`] handle
@@ -17561,7 +17561,7 @@ impl<'lt> ImageResolve2<'lt> {
 /// - [`region_count`] **must**  be greater than `0`
 /// - Both of [`dst_buffer`], and [`src_buffer`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
@@ -17570,13 +17570,13 @@ impl<'lt> ImageResolve2<'lt> {
 /// - [`cmd_copy_buffer2`]
 /// - [`cmd_copy_buffer2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyBufferInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17726,12 +17726,12 @@ impl<'lt> CopyBufferInfo2<'lt> {
 ///    const VkImageCopy2*    pRegions;
 ///} VkCopyImageInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkCopyImageInfo2 VkCopyImageInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_image`] is the source image.
@@ -17741,8 +17741,8 @@ impl<'lt> CopyBufferInfo2<'lt> {
 /// - [`region_count`] is the number of regions to copy.
 /// - [`regions`] is a pointer to an array of [`ImageCopy2`] structures specifying the regions to
 ///   copy.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The union of all source regions, and the union of all destination regions, specified by the
 ///   elements of [`regions`],  **must**  not overlap in memory
 /// - The [format features](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#resources-image-format-features)
@@ -17899,7 +17899,7 @@ impl<'lt> CopyBufferInfo2<'lt> {
 ///   **must**  have been included in the [`ImageStencilUsageCreateInfo::stencil_usage`] used to
 ///   create [`dst_image`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_IMAGE_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_image`] **must**  be a valid [`Image`] handle
@@ -17911,7 +17911,7 @@ impl<'lt> CopyBufferInfo2<'lt> {
 /// - [`region_count`] **must**  be greater than `0`
 /// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Image`]
@@ -17921,13 +17921,13 @@ impl<'lt> CopyBufferInfo2<'lt> {
 /// - [`cmd_copy_image2`]
 /// - [`cmd_copy_image2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18112,12 +18112,12 @@ impl<'lt> CopyImageInfo2<'lt> {
 ///    VkFilter               filter;
 ///} VkBlitImageInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkBlitImageInfo2 VkBlitImageInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_image`] is the source image.
@@ -18128,8 +18128,8 @@ impl<'lt> CopyImageInfo2<'lt> {
 /// - [`regions`] is a pointer to an array of [`ImageBlit2`] structures specifying the regions to
 ///   blit.
 /// - [`filter`] is a [`Filter`] specifying the filter to apply if the blits require scaling.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The source region specified by each element of [`regions`] **must**  be a region that is
 ///   contained within [`src_image`]
 /// - The destination region specified by each element of [`regions`] **must**  be a region that is
@@ -18225,7 +18225,7 @@ impl<'lt> CopyImageInfo2<'lt> {
 ///   chain, then [`src_image`] **must**  be of type `VK_IMAGE_TYPE_2D`
 /// -    If any element of [`regions`] contains [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, then [`src_image`] **must**  not have a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_image`] **must**  be a valid [`Image`] handle
@@ -18238,7 +18238,7 @@ impl<'lt> CopyImageInfo2<'lt> {
 /// - [`region_count`] **must**  be greater than `0`
 /// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Filter`]
@@ -18249,13 +18249,13 @@ impl<'lt> CopyImageInfo2<'lt> {
 /// - [`cmd_blit_image2`]
 /// - [`cmd_blit_image2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBlitImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18455,12 +18455,12 @@ impl<'lt> BlitImageInfo2<'lt> {
 ///    const VkBufferImageCopy2*    pRegions;
 ///} VkCopyBufferToImageInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkCopyBufferToImageInfo2 VkCopyBufferToImageInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_buffer`] is the source buffer.
@@ -18469,8 +18469,8 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - [`region_count`] is the number of regions to copy.
 /// - [`regions`] is a pointer to an array of [`BufferImageCopy2`] structures specifying the regions
 ///   to copy.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the image region specified by each element of [`regions`] does not contain
 ///   [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, it  **must**  be a region that is
 ///   contained within the specified `imageSubresource` of [`dst_image`]
@@ -18576,7 +18576,7 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - If [`dst_image`] has a depth/stencil format, the `bufferOffset` member of any element of
 ///   [`regions`] **must**  be a multiple of `4`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_BUFFER_TO_IMAGE_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_buffer`] **must**  be a valid [`Buffer`] handle
@@ -18587,7 +18587,7 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - [`region_count`] **must**  be greater than `0`
 /// - Both of [`dst_image`], and [`src_buffer`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
@@ -18598,13 +18598,13 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - [`cmd_copy_buffer_to_image2`]
 /// - [`cmd_copy_buffer_to_image2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyBufferToImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18770,12 +18770,12 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 ///    const VkBufferImageCopy2*    pRegions;
 ///} VkCopyImageToBufferInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkCopyImageToBufferInfo2 VkCopyImageToBufferInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_image`] is the source image.
@@ -18784,8 +18784,8 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - [`region_count`] is the number of regions to copy.
 /// - [`regions`] is a pointer to an array of [`BufferImageCopy2`] structures specifying the regions
 ///   to copy.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the image region specified by each element of [`regions`] does not contain
 ///   [`CopyCommandTransformInfoQCOM`] in its [`p_next`] chain, it  **must**  be contained within
 ///   the specified `imageSubresource` of [`src_image`]
@@ -18887,7 +18887,7 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - If {imageparam} has a depth/stencil format, the `bufferOffset` member of any element of
 ///   [`regions`] **must**  be a multiple of `4`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_image`] **must**  be a valid [`Image`] handle
@@ -18898,7 +18898,7 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - [`region_count`] **must**  be greater than `0`
 /// - Both of [`dst_buffer`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
@@ -18909,13 +18909,13 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - [`cmd_copy_image_to_buffer2`]
 /// - [`cmd_copy_image_to_buffer2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyImageToBufferInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19082,12 +19082,12 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 ///    const VkImageResolve2*    pRegions;
 ///} VkResolveImageInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_copy_commands2
 ///typedef VkResolveImageInfo2 VkResolveImageInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_image`] is the source image.
@@ -19097,8 +19097,8 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - [`region_count`] is the number of regions to resolve.
 /// - [`regions`] is a pointer to an array of [`ImageResolve2`] structures specifying the regions to
 ///   resolve.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The union of all source regions, and the union of all destination regions, specified by the
 ///   elements of [`regions`],  **must**  not overlap in memory
 /// - If [`src_image`] is non-sparse then it  **must**  be bound completely and contiguously to a
@@ -19165,7 +19165,7 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - If [`dst_image`] is of type `VK_IMAGE_TYPE_1D` or `VK_IMAGE_TYPE_2D`, then for each element of
 ///   [`regions`], `dstOffset.z` **must**  be `0` and `extent.depth` **must**  be `1`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_image`] **must**  be a valid [`Image`] handle
@@ -19177,7 +19177,7 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - [`region_count`] **must**  be greater than `0`
 /// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Image`]
@@ -19187,13 +19187,13 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - [`cmd_resolve_image2`]
 /// - [`cmd_resolve_image2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkResolveImageInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19373,44 +19373,44 @@ impl<'lt> ResolveImageInfo2<'lt> {
 ///    VkBool32           shaderTerminateInvocation;
 ///} VkPhysicalDeviceShaderTerminateInvocationFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_shader_terminate_invocation
 ///typedef VkPhysicalDeviceShaderTerminateInvocationFeatures
 /// VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_terminate_invocation`] specifies whether the implementation supports SPIR-V modules
 ///   that use the `SPV_KHR_terminate_invocation` extension.
-/// If the [`PhysicalDeviceShaderTerminateInvocationFeatures`] structure is included in the
+///If the [`PhysicalDeviceShaderTerminateInvocationFeatures`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderTerminateInvocationFeatures`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderTerminateInvocationFeatures`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_KHR_shader_terminate_invocation`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderTerminateInvocationFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19530,28 +19530,28 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 ///    VkAccessFlags2           dstAccessMask;
 ///} VkMemoryBarrier2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkMemoryBarrier2 VkMemoryBarrier2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
 /// - [`src_access_mask`] is a [`AccessFlags2`] mask of access flags to be included in the [first access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
 /// - [`dst_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages to be included in the [second synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
 /// - [`dst_access_mask`] is a [`AccessFlags2`] mask of access flags to be included in the [second access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes).
-/// # Description
-/// This structure defines a [memory
-/// dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) affecting all device memory.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-/// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
-/// this structure include only operations and memory accesses specified by
-/// [`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
-/// by this structure include only operations and memory accesses specified by
-/// [`dst_stage_mask`] and [`dst_access_mask`].
-/// ## Valid Usage
+///# Description
+///This structure defines a [memory
+///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) affecting all device memory.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
+///this structure include only operations and memory accesses specified by
+///[`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
+///by this structure include only operations and memory accesses specified by
+///[`dst_stage_mask`] and [`dst_access_mask`].
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -19850,13 +19850,13 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 /// - If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`dst_stage_mask`]
 ///   **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_BARRIER_2`
 /// - [`src_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 /// - [`src_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
 /// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 /// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`AccessFlags2`]
@@ -19864,13 +19864,13 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryBarrier2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20018,12 +20018,12 @@ impl<'lt> MemoryBarrier2<'lt> {
 ///    VkImageSubresourceRange    subresourceRange;
 ///} VkImageMemoryBarrier2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkImageMemoryBarrier2 VkImageMemoryBarrier2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
@@ -20037,51 +20037,51 @@ impl<'lt> MemoryBarrier2<'lt> {
 /// - [`image`] is a handle to the image affected by this barrier.
 /// - [`subresource_range`] describes the [image subresource range](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views)
 ///   within [`image`] that is affected by this barrier.
-/// # Description
-/// This structure defines a [memory
-/// dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to an image subresource range, and  **can**  define a
-/// [queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
-/// [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions) for
-/// that subresource range.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-/// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
-/// this structure include only operations and memory accesses specified by
-/// [`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
-/// by this structure include only operations and memory accesses specified by
-/// [`dst_stage_mask`] and [`dst_access_mask`].Both [access scopes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are
-/// limited to only memory accesses to [`image`] in the subresource range
-/// defined by [`subresource_range`].If [`image`] was created with `VK_SHARING_MODE_EXCLUSIVE`, and
-/// [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], this
-/// memory barrier defines a [queue family
-/// transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-/// When executed on a queue in the family identified by
-/// [`src_queue_family_index`], this barrier defines a
-/// [queue family release operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release)
-/// for the specified image subresource range, and the second synchronization
-/// and access scopes do not synchronize operations on that queue.
-/// When executed on a queue in the family identified by
-/// [`dst_queue_family_index`], this barrier defines a
-/// [queue family acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire)
-/// for the specified image subresource range, and the first synchronization and
-/// access scopes do not synchronize operations on that queue.A [queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) is
-/// also defined if the values are not equal, and either is one of the special
-/// queue family values reserved for external memory ownership transfers, as
-/// described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-/// A [queue family release
-/// operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release) is defined when [`dst_queue_family_index`] is one of those
-/// values, and a [queue family
-/// acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire) is defined when [`src_queue_family_index`] is one of
-/// those values.If [`old_layout`] is not equal to [`new_layout`], then the memory barrier
-/// defines an [image layout
-/// transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions) for the specified image subresource range.
-/// If this memory barrier defines a [queue
-/// family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers), the layout transition is only executed once
-/// between the queues.If [`image`] has a multi-planar format and the image is *disjoint*, then
-/// including `VK_IMAGE_ASPECT_COLOR_BIT` in the `aspectMask` member of
-/// [`subresource_range`] is equivalent to including
-/// `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, and
-/// (for three-plane formats only) `VK_IMAGE_ASPECT_PLANE_2_BIT`.
-/// ## Valid Usage
+///# Description
+///This structure defines a [memory
+///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to an image subresource range, and  **can**  define a
+///[queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+///[image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions) for
+///that subresource range.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
+///this structure include only operations and memory accesses specified by
+///[`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
+///by this structure include only operations and memory accesses specified by
+///[`dst_stage_mask`] and [`dst_access_mask`].Both [access scopes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are
+///limited to only memory accesses to [`image`] in the subresource range
+///defined by [`subresource_range`].If [`image`] was created with `VK_SHARING_MODE_EXCLUSIVE`, and
+///[`src_queue_family_index`] is not equal to [`dst_queue_family_index`], this
+///memory barrier defines a [queue family
+///transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
+///When executed on a queue in the family identified by
+///[`src_queue_family_index`], this barrier defines a
+///[queue family release operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release)
+///for the specified image subresource range, and the second synchronization
+///and access scopes do not synchronize operations on that queue.
+///When executed on a queue in the family identified by
+///[`dst_queue_family_index`], this barrier defines a
+///[queue family acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire)
+///for the specified image subresource range, and the first synchronization and
+///access scopes do not synchronize operations on that queue.A [queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) is
+///also defined if the values are not equal, and either is one of the special
+///queue family values reserved for external memory ownership transfers, as
+///described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
+///A [queue family release
+///operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release) is defined when [`dst_queue_family_index`] is one of those
+///values, and a [queue family
+///acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire) is defined when [`src_queue_family_index`] is one of
+///those values.If [`old_layout`] is not equal to [`new_layout`], then the memory barrier
+///defines an [image layout
+///transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions) for the specified image subresource range.
+///If this memory barrier defines a [queue
+///family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers), the layout transition is only executed once
+///between the queues.If [`image`] has a multi-planar format and the image is *disjoint*, then
+///including `VK_IMAGE_ASPECT_COLOR_BIT` in the `aspectMask` member of
+///[`subresource_range`] is equivalent to including
+///`VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, and
+///(for three-plane formats only) `VK_IMAGE_ASPECT_PLANE_2_BIT`.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -20496,7 +20496,7 @@ impl<'lt> MemoryBarrier2<'lt> {
 ///   [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be equal
 /// -    If [`src_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`, and [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions), [`old_layout`] **must**  be one of `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_UNDEFINED`, or `VK_IMAGE_LAYOUT_GENERAL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`SampleLocationsInfoEXT`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
@@ -20508,7 +20508,7 @@ impl<'lt> MemoryBarrier2<'lt> {
 /// - [`new_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`image`] **must**  be a valid [`Image`] handle
 /// - [`subresource_range`] **must**  be a valid [`ImageSubresourceRange`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`AccessFlags2`]
@@ -20519,13 +20519,13 @@ impl<'lt> MemoryBarrier2<'lt> {
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageMemoryBarrier2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20775,12 +20775,12 @@ unsafe impl<'lt> crate::Chain<'lt, SampleLocationsInfoEXT<'lt>> for ImageMemoryB
 ///    VkDeviceSize             size;
 ///} VkBufferMemoryBarrier2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkBufferMemoryBarrier2 VkBufferMemoryBarrier2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
@@ -20794,41 +20794,41 @@ unsafe impl<'lt> crate::Chain<'lt, SampleLocationsInfoEXT<'lt>> for ImageMemoryB
 ///   the base offset as bound to the buffer (see [`bind_buffer_memory`]).
 /// - [`size`] is a size in bytes of the affected area of backing memory for [`buffer`], or
 ///   [`WHOLE_SIZE`] to use the range from [`offset`] to the end of the buffer.
-/// # Description
-/// This structure defines a [memory
-/// dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to a range of a buffer, and  **can**  define a
-/// [queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) for
-/// that range.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-/// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
-/// this structure include only operations and memory accesses specified by
-/// [`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-/// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
-/// by this structure include only operations and memory accesses specified by
-/// [`dst_stage_mask`] and [`dst_access_mask`].Both [access scopes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are
-/// limited to only memory accesses to [`buffer`] in the range defined by
-/// [`offset`] and [`size`].If [`buffer`] was created with `VK_SHARING_MODE_EXCLUSIVE`, and
-/// [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], this
-/// memory barrier defines a [queue family
-/// transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-/// When executed on a queue in the family identified by
-/// [`src_queue_family_index`], this barrier defines a
-/// [queue family release operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release)
-/// for the specified buffer range, and the second synchronization and access
-/// scopes do not synchronize operations on that queue.
-/// When executed on a queue in the family identified by
-/// [`dst_queue_family_index`], this barrier defines a
-/// [queue family acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire)
-/// for the specified buffer range, and the first synchronization and access
-/// scopes do not synchronize operations on that queue.A [queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) is
-/// also defined if the values are not equal, and either is one of the special
-/// queue family values reserved for external memory ownership transfers, as
-/// described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
-/// A [queue family release
-/// operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release) is defined when [`dst_queue_family_index`] is one of those
-/// values, and a [queue family
-/// acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire) is defined when [`src_queue_family_index`] is one of
-/// those values.
-/// ## Valid Usage
+///# Description
+///This structure defines a [memory
+///dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory) limited to a range of a buffer, and  **can**  define a
+///[queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) for
+///that range.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described by
+///this structure include only operations and memory accesses specified by
+///[`src_stage_mask`] and [`src_access_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) described
+///by this structure include only operations and memory accesses specified by
+///[`dst_stage_mask`] and [`dst_access_mask`].Both [access scopes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are
+///limited to only memory accesses to [`buffer`] in the range defined by
+///[`offset`] and [`size`].If [`buffer`] was created with `VK_SHARING_MODE_EXCLUSIVE`, and
+///[`src_queue_family_index`] is not equal to [`dst_queue_family_index`], this
+///memory barrier defines a [queue family
+///transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
+///When executed on a queue in the family identified by
+///[`src_queue_family_index`], this barrier defines a
+///[queue family release operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release)
+///for the specified buffer range, and the second synchronization and access
+///scopes do not synchronize operations on that queue.
+///When executed on a queue in the family identified by
+///[`dst_queue_family_index`], this barrier defines a
+///[queue family acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire)
+///for the specified buffer range, and the first synchronization and access
+///scopes do not synchronize operations on that queue.A [queue family transfer operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) is
+///also defined if the values are not equal, and either is one of the special
+///queue family values reserved for external memory ownership transfers, as
+///described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
+///A [queue family release
+///operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-release) is defined when [`dst_queue_family_index`] is one of those
+///values, and a [queue family
+///acquire operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers-acquire) is defined when [`src_queue_family_index`] is one of
+///those values.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`src_stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -21143,7 +21143,7 @@ unsafe impl<'lt> crate::Chain<'lt, SampleLocationsInfoEXT<'lt>> for ImageMemoryB
 /// - If either [`src_stage_mask`] or [`dst_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`,
 ///   [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be equal
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`src_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
@@ -21151,7 +21151,7 @@ unsafe impl<'lt> crate::Chain<'lt, SampleLocationsInfoEXT<'lt>> for ImageMemoryB
 /// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 /// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`AccessFlags2`]
@@ -21161,13 +21161,13 @@ unsafe impl<'lt> crate::Chain<'lt, SampleLocationsInfoEXT<'lt>> for ImageMemoryB
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferMemoryBarrier2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21399,12 +21399,12 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 ///    const VkImageMemoryBarrier2*     pImageMemoryBarriers;
 ///} VkDependencyInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkDependencyInfo VkDependencyInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`dependency_flags`] is a bitmask of [`DependencyFlagBits`] specifying how execution and
@@ -21418,12 +21418,12 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 /// - [`image_memory_barrier_count`] is the length of the [`image_memory_barriers`] array.
 /// - [`image_memory_barriers`] is a pointer to an array of [`ImageMemoryBarrier2`] structures
 ///   defining memory dependencies between image subresources.
-/// # Description
-/// This structure defines a set of [memory dependencies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory), as well as [queue
-/// family transfer operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Each member of [`memory_barriers`], [`buffer_memory_barriers`], and
-/// [`image_memory_barriers`] defines a separate
-/// [memory dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory).
-/// ## Valid Usage (Implicit)
+///# Description
+///This structure defines a set of [memory dependencies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory), as well as [queue
+///family transfer operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Each member of [`memory_barriers`], [`buffer_memory_barriers`], and
+///[`image_memory_barriers`] defines a separate
+///[memory dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-memory).
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEPENDENCY_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`dependency_flags`] **must**  be a valid combination of [`DependencyFlagBits`] values
@@ -21434,7 +21434,7 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 ///   structures
 /// - If [`image_memory_barrier_count`] is not `0`, [`image_memory_barriers`] **must**  be a valid
 ///   pointer to an array of [`image_memory_barrier_count`] valid [`ImageMemoryBarrier2`] structures
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`BufferMemoryBarrier2`]
@@ -21449,13 +21449,13 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 /// - [`cmd_wait_events2`]
 /// - [`cmd_wait_events2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDependencyInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21681,12 +21681,12 @@ impl<'lt> DependencyInfo<'lt> {
 ///    uint32_t                 deviceIndex;
 ///} VkSemaphoreSubmitInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkSemaphoreSubmitInfo VkSemaphoreSubmitInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is a [`Semaphore`] affected by this operation.
@@ -21695,10 +21695,10 @@ impl<'lt> DependencyInfo<'lt> {
 /// - [`stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages which limit the first synchronization scope of a semaphore signal operation, or second synchronization scope of a semaphore wait operation as described in the [semaphore wait operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-waiting) and [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) sections of [the synchronization chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).
 /// - [`device_index`] is the index of the device within a device group that executes the semaphore
 ///   wait or signal operation.
-/// # Description
-/// Whether this structure defines a semaphore wait or signal operation is
-/// defined by how it is used.
-/// ## Valid Usage
+///# Description
+///Whether this structure defines a semaphore wait or signal operation is
+///defined by how it is used.
+///## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`stage_mask`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -21735,12 +21735,12 @@ impl<'lt> DependencyInfo<'lt> {
 /// - If the `device` that [`semaphore`] was created on is a device group, [`device_index`] **must**
 ///   be a valid device index
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineStageFlags2`]
@@ -21748,13 +21748,13 @@ impl<'lt> DependencyInfo<'lt> {
 /// - [`StructureType`]
 /// - [`SubmitInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21899,41 +21899,41 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
 ///    uint32_t           deviceMask;
 ///} VkCommandBufferSubmitInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkCommandBufferSubmitInfo VkCommandBufferSubmitInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`command_buffer`] is a [`CommandBuffer`] to be submitted for execution.
 /// - [`device_mask`] is a bitmask indicating which devices in a device group execute the command
 ///   buffer. A [`device_mask`] of `0` is equivalent to setting all bits corresponding to valid
 ///   devices in the group to `1`.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`command_buffer`] **must**  not have been allocated with `VK_COMMAND_BUFFER_LEVEL_SECONDARY`
 /// - If [`device_mask`] is not `0`, it  **must**  be a valid device mask
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`StructureType`]
 /// - [`SubmitInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferSubmitInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22044,12 +22044,12 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 ///    const VkSemaphoreSubmitInfo*        pSignalSemaphoreInfos;
 ///} VkSubmitInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkSubmitInfo2 VkSubmitInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`SubmitFlagBits`].
@@ -22061,8 +22061,8 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 ///   describing command buffers to execute in the batch.
 /// - [`signal_semaphore_info_count`] is the number of elements in [`signal_semaphore_infos`].
 /// - [`signal_semaphore_infos`] is a pointer to an array of [`SemaphoreSubmitInfo`] describing [semaphore signal operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling).
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the same semaphore is used as the `semaphore` member of both an element of
 ///   [`signal_semaphore_infos`] and [`wait_semaphore_infos`], and that semaphore is a timeline
 ///   semaphore, the `value` member of the [`signal_semaphore_infos`] element  **must**  be greater
@@ -22080,7 +22080,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 /// -    If any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), there  **must**  be no render pass instances between that render pass instance and the render pass instance that resumes it
 /// -    If the [`variableSampleLocations`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-variableSampleLocations) limit is not supported, and any `commandBuffer` member of an element of [`command_buffer_infos`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), where a graphics pipeline has been bound, any pipelines bound in the render pass instance that resumes it, or any subsequent render pass instances that resume from that one and so on,  **must**  use the same sample locations
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBMIT_INFO_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`PerformanceQuerySubmitInfoKHR`],
@@ -22095,7 +22095,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 /// - If [`signal_semaphore_info_count`] is not `0`, [`signal_semaphore_infos`] **must**  be a valid
 ///   pointer to an array of [`signal_semaphore_info_count`] valid [`SemaphoreSubmitInfo`]
 ///   structures
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBufferSubmitInfo`]
@@ -22105,13 +22105,13 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 /// - [`queue_submit2`]
 /// - [`queue_submit2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubmitInfo2")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22341,41 +22341,41 @@ unsafe impl<'lt> crate::Chain<'lt, PerformanceQuerySubmitInfoKHR<'lt>> for Submi
 ///    VkBool32           synchronization2;
 ///} VkPhysicalDeviceSynchronization2Features;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_synchronization2
 ///typedef VkPhysicalDeviceSynchronization2Features VkPhysicalDeviceSynchronization2FeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`synchronization2`] indicates whether the implementation supports the new set of
 ///   synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
-/// If the [`PhysicalDeviceSynchronization2Features`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceSynchronization2Features`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceSynchronization2Features`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceSynchronization2Features`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_KHR_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSynchronization2Features")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22493,46 +22493,46 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 ///    VkBool32           shaderIntegerDotProduct;
 ///} VkPhysicalDeviceShaderIntegerDotProductFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_shader_integer_dot_product
 ///typedef VkPhysicalDeviceShaderIntegerDotProductFeatures
 /// VkPhysicalDeviceShaderIntegerDotProductFeaturesKHR;
 ///```
-/// # Members
-/// The members of the [`PhysicalDeviceShaderIntegerDotProductFeatures`]
-/// structure describe the following features:
-/// # Description
+///# Members
+///The members of the [`PhysicalDeviceShaderIntegerDotProductFeatures`]
+///structure describe the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_integer_dot_product`] specifies whether shader modules  **can**  declare the
 ///   `DotProductInputAllKHR`, `DotProductInput4x8BitKHR`, `DotProductInput4x8BitPackedKHR` and
 ///   `DotProductKHR` capabilities.
-/// If the [`PhysicalDeviceShaderIntegerDotProductFeatures`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceShaderIntegerDotProductFeatures`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderIntegerDotProductFeatures`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderIntegerDotProductFeatures`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_KHR_shader_integer_dot_product`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22680,16 +22680,16 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 ///    VkBool32           integerDotProductAccumulatingSaturating64BitMixedSignednessAccelerated;
 ///} VkPhysicalDeviceShaderIntegerDotProductProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_shader_integer_dot_product
 ///typedef VkPhysicalDeviceShaderIntegerDotProductProperties
 /// VkPhysicalDeviceShaderIntegerDotProductPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`integer_dot_product8_bit_unsigned_accelerated`] is a boolean that will be [`TRUE`] if the support for 8-bit unsigned dot product operations using the `OpUDotKHR` SPIR-V instruction is accelerated [as defined below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-integer-dot-product-accelerated).
 /// - [`integer_dot_product8_bit_signed_accelerated`] is a boolean that will be [`TRUE`] if the support for 8-bit signed dot product operations using the `OpSDotKHR` SPIR-V instruction is accelerated [as defined below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-integer-dot-product-accelerated).
 /// - [`integer_dot_product8_bit_mixed_signedness_accelerated`] is a boolean that will be [`TRUE`] if the support for 8-bit mixed signedness dot product operations using the `OpSUDotKHR` SPIR-V instruction is accelerated [as defined below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-integer-dot-product-accelerated).
@@ -22726,29 +22726,29 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 /// - [`integer_dot_product_accumulating_saturating64_bit_unsigned_accelerated`] is a boolean that will be [`TRUE`] if the support for 64-bit unsigned accumulating saturating dot product operations using the `OpUDotAccSatKHR` SPIR-V instruction is accelerated [as defined below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-integer-dot-product-accelerated).
 /// - [`integer_dot_product_accumulating_saturating64_bit_signed_accelerated`] is a boolean that will be [`TRUE`] if the support for 64-bit signed accumulating saturating dot product operations using the `OpSDotAccSatKHR` SPIR-V instruction is accelerated [as defined below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-integer-dot-product-accelerated).
 /// - [`integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated`] is a boolean that will be [`TRUE`] if the support for 64-bit mixed signedness accumulating saturating dot product operations using the `OpSUDotAccSatKHR` SPIR-V instruction is accelerated [as defined below](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-integer-dot-product-accelerated).
-/// If the [`PhysicalDeviceShaderIntegerDotProductProperties`] structure is included in the
+///If the [`PhysicalDeviceShaderIntegerDotProductProperties`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.These are properties of the integer dot product
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.These are properties of the integer dot product
 /// acceleration information of
-/// a physical device.
-/// ## Valid Usage (Implicit)
+///a physical device.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES`
-/// # Related
+///# Related
 /// - [`VK_KHR_shader_integer_dot_product`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderIntegerDotProductProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -24203,37 +24203,37 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 ///    VkFormatFeatureFlags2    bufferFeatures;
 ///} VkFormatProperties3;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_format_feature_flags2
 ///typedef VkFormatProperties3 VkFormatProperties3KHR;
 ///```
-/// # Members
+///# Members
 /// - [`linear_tiling_features`] is a bitmask of [`FormatFeatureFlagBits2`] specifying features
 ///   supported by images created with a `tiling` parameter of `VK_IMAGE_TILING_LINEAR`.
 /// - [`optimal_tiling_features`] is a bitmask of [`FormatFeatureFlagBits2`] specifying features
 ///   supported by images created with a `tiling` parameter of `VK_IMAGE_TILING_OPTIMAL`.
 /// - [`buffer_features`] is a bitmask of [`FormatFeatureFlagBits2`] specifying features supported
 ///   by buffers.
-/// # Description
-/// The bits reported in [`linear_tiling_features`], [`optimal_tiling_features`]
-/// and [`buffer_features`] **must**  include the bits reported in the
-/// corresponding fields of [`FormatProperties2::format_properties`].
-/// ## Valid Usage (Implicit)
+///# Description
+///The bits reported in [`linear_tiling_features`], [`optimal_tiling_features`]
+///and [`buffer_features`] **must**  include the bits reported in the
+///corresponding fields of [`FormatProperties2::format_properties`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3`
-/// # Related
+///# Related
 /// - [`VK_KHR_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
 /// - [`FormatFeatureFlags2`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatProperties3")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -24365,12 +24365,12 @@ impl<'lt> FormatProperties3<'lt> {
 ///    VkFormat           stencilAttachmentFormat;
 ///} VkPipelineRenderingCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkPipelineRenderingCreateInfo VkPipelineRenderingCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`view_mask`] is the viewMask used for rendering.
@@ -24381,23 +24381,23 @@ impl<'lt> FormatProperties3<'lt> {
 ///   used in this pipeline.
 /// - [`stencil_attachment_format`] is a [`Format`] value defining the format of the stencil
 ///   attachment used in this pipeline.
-/// # Description
-/// When a pipeline is created without a [`RenderPass`], if this structure
-/// is present in the [`p_next`] chain of [`GraphicsPipelineCreateInfo`],
-/// it specifies the view mask and format of attachments used for rendering.
-/// If this structure is not specified, and the pipeline does not include a
-/// [`RenderPass`], [`view_mask`] and [`color_attachment_count`] are `0`,
-/// and [`depth_attachment_format`] and [`stencil_attachment_format`] are
-/// `VK_FORMAT_UNDEFINED`.
-/// If a graphics pipeline is created with a valid [`RenderPass`],
-/// parameters of this structure are ignored.If [`depth_attachment_format`],
+///# Description
+///When a pipeline is created without a [`RenderPass`], if this structure
+///is present in the [`p_next`] chain of [`GraphicsPipelineCreateInfo`],
+///it specifies the view mask and format of attachments used for rendering.
+///If this structure is not specified, and the pipeline does not include a
+///[`RenderPass`], [`view_mask`] and [`color_attachment_count`] are `0`,
+///and [`depth_attachment_format`] and [`stencil_attachment_format`] are
+///`VK_FORMAT_UNDEFINED`.
+///If a graphics pipeline is created with a valid [`RenderPass`],
+///parameters of this structure are ignored.If [`depth_attachment_format`],
 /// [`stencil_attachment_format`], or any
-/// element of [`color_attachment_formats`] is `VK_FORMAT_UNDEFINED`, it
-/// indicates that the corresponding attachment is unused within the render
-/// pass.
-/// Valid formats indicate that an attachment  **can**  be used - but it is still
-/// valid to set the attachment to `NULL` when beginning rendering.
-/// ## Valid Usage
+///element of [`color_attachment_formats`] is `VK_FORMAT_UNDEFINED`, it
+///indicates that the corresponding attachment is unused within the render
+///pass.
+///Valid formats indicate that an attachment  **can**  be used - but it is still
+///valid to set the attachment to `NULL` when beginning rendering.
+///## Valid Usage
 /// -    If any element of [`color_attachment_formats`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format with [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) that includes either `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
 /// - If [`depth_attachment_format`] is not `VK_FORMAT_UNDEFINED`, it  **must**  be a format that
 ///   includes a depth aspect
@@ -24412,25 +24412,25 @@ impl<'lt> FormatProperties3<'lt> {
 ///   feature is not enabled, [`view_mask`] **must**  be `0`
 /// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO`
 /// - If [`color_attachment_count`] is not `0`, [`color_attachment_formats`] **must**  be a valid
 ///   pointer to an array of [`color_attachment_count`] valid [`Format`] values
 /// - [`depth_attachment_format`] **must**  be a valid [`Format`] value
 /// - [`stencil_attachment_format`] **must**  be a valid [`Format`] value
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Format`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRenderingCreateInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -24601,12 +24601,12 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///    const VkRenderingAttachmentInfo*    pStencilAttachment;
 ///} VkRenderingInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkRenderingInfo VkRenderingInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`RenderingFlagBits`].
@@ -24623,19 +24623,19 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   depth attachment.
 /// - [`stencil_attachment`] is a pointer to a [`RenderingAttachmentInfo`] structure describing a
 ///   stencil attachment.
-/// # Description
-/// If [`view_mask`] is not `0`, multiview is enabled.If there is an instance of
+///# Description
+///If [`view_mask`] is not `0`, multiview is enabled.If there is an instance of
 /// [`DeviceGroupRenderPassBeginInfo`] included
-/// in the [`p_next`] chain and its `deviceCount` member is not `0`, then
-/// [`render_area`] is ignored, and the render area is defined per-device by
-/// that structure.Each element of the [`color_attachments`] array corresponds to an output
-/// location in the shader, i.e. if the shader declares an output variable
-/// decorated with a `Location` value of  **X** , then it uses the attachment
-/// provided in [`color_attachments`][ **X** ].
-/// If the `imageView` member of any element of [`color_attachments`] is
-/// [`crate::Handle::null`], writes to the corresponding location by a fragment are
-/// discarded.
-/// ## Valid Usage
+///in the [`p_next`] chain and its `deviceCount` member is not `0`, then
+///[`render_area`] is ignored, and the render area is defined per-device by
+///that structure.Each element of the [`color_attachments`] array corresponds to an output
+///location in the shader, i.e. if the shader declares an output variable
+///decorated with a `Location` value of  **X** , then it uses the attachment
+///provided in [`color_attachments`][ **X** ].
+///If the `imageView` member of any element of [`color_attachments`] is
+///[`crate::Handle::null`], writes to the corresponding location by a fragment are
+///discarded.
+///## Valid Usage
 /// - If [`view_mask`] is `0`, [`layer_count`] **must**  not be `0`
 /// - If neither the [`VK_AMD_mixed_attachment_samples`] nor the [`VK_NV_framebuffer_mixed_samples`]
 ///   extensions are enabled, `imageView` members of [`depth_attachment`], [`stencil_attachment`],
@@ -24770,61 +24770,47 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
-///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9019679999999999em;"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
-///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
+///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
+///   style="top:-3.41586em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
+///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
@@ -24832,125 +24818,51 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
-///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285719em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
@@ -24968,47 +24880,139 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
 ///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.446108em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
@@ -25023,12 +25027,12 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
 ///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
 ///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
@@ -25041,76 +25045,76 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
 ///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
 ///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.3448em;"
-///   class="vlist"><span
+///   mtight">y</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285716em;"><span
+///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
 ///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
+///   each element of `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
 ///   included in the [`p_next`] chain is not [`crate::Handle::null`], it  **must**  not be equal to
 ///   the `imageView` or `resolveImageView` member of [`depth_attachment`], [`stencil_attachment`],
@@ -25119,55 +25123,55 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
 ///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
+///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
+///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
+///   class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
 ///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
@@ -25184,26 +25188,27 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span>
 /// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
 ///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
@@ -25217,14 +25222,14 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
@@ -25232,37 +25237,17 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
 ///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
@@ -25271,18 +25256,37 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
 ///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
 ///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
 ///   each element of `pDeviceRenderAreas`
@@ -25291,38 +25295,38 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
 ///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
 ///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
+///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
@@ -25331,35 +25335,35 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
 ///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
 ///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span
+///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
 ///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
 ///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.03588em;" class="mord
-///   mathdefault mtight">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
 ///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
 ///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span style="height:0.29011428571428566em;"
@@ -25373,28 +25377,28 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
 ///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
 ///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
 ///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
@@ -25404,19 +25408,20 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
 ///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
 ///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
 ///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
 ///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
@@ -25424,38 +25429,38 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.16454285714285716em;" class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight"
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
 ///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
 ///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">h</span><span class="mord mathdefault
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
 ///   style="height:0.5480799999999999em;"
 ///   class="vlist"><span></span></span></span></span></span><span class="mclose
 ///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
@@ -25481,7 +25486,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   feature is not enabled, [`view_mask`] **must**  be `0`
 /// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_INFO`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`DeviceGroupRenderPassBeginInfo`],
@@ -25495,7 +25500,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   valid [`RenderingAttachmentInfo`] structure
 /// - If [`stencil_attachment`] is not `NULL`, [`stencil_attachment`] **must**  be a valid pointer
 ///   to a valid [`RenderingAttachmentInfo`] structure
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Rect2D`]
@@ -25505,13 +25510,13 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 /// - [`cmd_begin_rendering`]
 /// - [`cmd_begin_rendering_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -25758,12 +25763,12 @@ unsafe impl<'lt> crate::Chain<'lt, MultiviewPerViewAttributesInfoNVX<'lt>> for R
 ///    VkClearValue             clearValue;
 ///} VkRenderingAttachmentInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkRenderingAttachmentInfo VkRenderingAttachmentInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_view`] is the image view that will be used for rendering.
@@ -25780,29 +25785,29 @@ unsafe impl<'lt> crate::Chain<'lt, MultiviewPerViewAttributesInfoNVX<'lt>> for R
 ///   are treated at the end of the render pass instance.
 /// - [`clear_value`] is a [`ClearValue`] structure defining values used to clear [`image_view`]
 ///   when [`load_op`] is `VK_ATTACHMENT_LOAD_OP_CLEAR`.
-/// # Description
-/// Values in [`image_view`] are loaded and stored according to the values of
-/// [`load_op`] and [`store_op`], within the render area
-/// for each device
-/// specified in [`RenderingInfo`].
-/// If [`image_view`] is [`crate::Handle::null`], other members of this structure
-/// are ignored; writes to this attachment will be discarded, and no load,
-/// store, or resolve operations will be performed.If [`resolve_mode`] is `VK_RESOLVE_MODE_NONE`,
+///# Description
+///Values in [`image_view`] are loaded and stored according to the values of
+///[`load_op`] and [`store_op`], within the render area
+///for each device
+///specified in [`RenderingInfo`].
+///If [`image_view`] is [`crate::Handle::null`], other members of this structure
+///are ignored; writes to this attachment will be discarded, and no load,
+///store, or resolve operations will be performed.If [`resolve_mode`] is `VK_RESOLVE_MODE_NONE`,
 /// then
-/// [`resolve_image_view`] is ignored.
-/// If [`resolve_mode`] is not `VK_RESOLVE_MODE_NONE`, values in
-/// [`resolve_image_view`] within the render area become undefined once
-/// rendering begins.
-/// At the end of rendering, the color values written to each pixel location in
-/// [`image_view`] will be resolved according to [`resolve_mode`] and stored
-/// into the the same location in [`resolve_image_view`].Store and resolve operations are only
+///[`resolve_image_view`] is ignored.
+///If [`resolve_mode`] is not `VK_RESOLVE_MODE_NONE`, values in
+///[`resolve_image_view`] within the render area become undefined once
+///rendering begins.
+///At the end of rendering, the color values written to each pixel location in
+///[`image_view`] will be resolved according to [`resolve_mode`] and stored
+///into the the same location in [`resolve_image_view`].Store and resolve operations are only
 /// performed at the end of a render pass
-/// instance that does not specify the `VK_RENDERING_SUSPENDING_BIT_KHR`
-/// flag.Load operations are only performed at the beginning of a render pass
-/// instance that does not specify the `VK_RENDERING_RESUMING_BIT_KHR` flag.Image contents at the
+///instance that does not specify the `VK_RENDERING_SUSPENDING_BIT_KHR`
+///flag.Load operations are only performed at the beginning of a render pass
+///instance that does not specify the `VK_RENDERING_RESUMING_BIT_KHR` flag.Image contents at the
 /// end of a suspended render pass instance remain defined
-/// for access by a resuming render pass instance.
-/// ## Valid Usage
+///for access by a resuming render pass instance.
+///## Valid Usage
 /// - If [`image_view`] is not [`crate::Handle::null`] and has a non-integer color format,
 ///   [`resolve_mode`] **must**  be `VK_RESOLVE_MODE_NONE` or `VK_RESOLVE_MODE_AVERAGE_BIT`
 /// - If [`image_view`] is not [`crate::Handle::null`] and has an integer color format,
@@ -25852,7 +25857,7 @@ unsafe impl<'lt> crate::Chain<'lt, MultiviewPerViewAttributesInfoNVX<'lt>> for R
 ///   `VK_RESOLVE_MODE_NONE`, [`resolve_image_layout`] **must**  not be
 ///   `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - If [`image_view`] is not [`crate::Handle::null`], [`image_view`] **must**  be a valid
@@ -25868,7 +25873,7 @@ unsafe impl<'lt> crate::Chain<'lt, MultiviewPerViewAttributesInfoNVX<'lt>> for R
 /// - [`clear_value`] **must**  be a valid [`ClearValue`] union
 /// - Both of [`image_view`], and [`resolve_image_view`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`AttachmentLoadOp`]
@@ -25880,13 +25885,13 @@ unsafe impl<'lt> crate::Chain<'lt, MultiviewPerViewAttributesInfoNVX<'lt>> for R
 /// - [`ResolveModeFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingAttachmentInfo")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -26093,39 +26098,39 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 ///    VkBool32           dynamicRendering;
 ///} VkPhysicalDeviceDynamicRenderingFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkPhysicalDeviceDynamicRenderingFeatures VkPhysicalDeviceDynamicRenderingFeaturesKHR;
 ///```
-/// # Members
-/// The members of the [`PhysicalDeviceDynamicRenderingFeatures`] structure
-/// describe the following features:
-/// # Description
+///# Members
+///The members of the [`PhysicalDeviceDynamicRenderingFeatures`] structure
+///describe the following features:
+///# Description
 /// - [`dynamic_rendering`] specifies that the implementation supports dynamic render pass instances
 ///   using the [`cmd_begin_rendering`] command.
-/// If the [`PhysicalDeviceDynamicRenderingFeatures`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceDynamicRenderingFeatures`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceDynamicRenderingFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceDynamicRenderingFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDynamicRenderingFeatures")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -26247,12 +26252,12 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 ///    VkSampleCountFlagBits    rasterizationSamples;
 ///} VkCommandBufferInheritanceRenderingInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dynamic_rendering
 ///typedef VkCommandBufferInheritanceRenderingInfo VkCommandBufferInheritanceRenderingInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure
 /// - [`flags`] is a bitmask of [`RenderingFlagBits`] used by the render pass instance.
@@ -26266,23 +26271,23 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 ///   attachment.
 /// - [`rasterization_samples`] is a [`SampleCountFlagBits`] specifying the number of samples used
 ///   in rasterization.
-/// # Description
-/// If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
-/// [`CommandBufferInheritanceRenderingInfo`] structure, then that structure
-/// controls parameters of dynamic render pass instances that the
-/// [`CommandBuffer`] **can**  be executed within.
-/// If [`CommandBufferInheritanceInfo::render_pass`] is not
-/// [`crate::Handle::null`], or
-/// `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
-/// [`CommandBufferBeginInfo`]::[`flags`], parameters of this structure
-/// are ignored.If [`color_attachment_count`] is `0` and the
-/// [`variableMultisampleRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-variableMultisampleRate) feature
-/// is enabled, [`rasterization_samples`] is ignored.If [`depth_attachment_format`],
+///# Description
+///If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
+///[`CommandBufferInheritanceRenderingInfo`] structure, then that structure
+///controls parameters of dynamic render pass instances that the
+///[`CommandBuffer`] **can**  be executed within.
+///If [`CommandBufferInheritanceInfo::render_pass`] is not
+///[`crate::Handle::null`], or
+///`VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT` is not specified in
+///[`CommandBufferBeginInfo`]::[`flags`], parameters of this structure
+///are ignored.If [`color_attachment_count`] is `0` and the
+///[`variableMultisampleRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-variableMultisampleRate) feature
+///is enabled, [`rasterization_samples`] is ignored.If [`depth_attachment_format`],
 /// [`stencil_attachment_format`], or any
-/// element of [`color_attachment_formats`] is `VK_FORMAT_UNDEFINED`, it
-/// indicates that the corresponding attachment is unused within the render
-/// pass.
-/// ## Valid Usage
+///element of [`color_attachment_formats`] is `VK_FORMAT_UNDEFINED`, it
+///indicates that the corresponding attachment is unused within the render
+///pass.
+///## Valid Usage
 /// - If [`color_attachment_count`] is not `0`, [`rasterization_samples`] **must**  be a valid
 ///   [`SampleCountFlagBits`] value
 /// - If the [`variableMultisampleRate`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-variableMultisampleRate)
@@ -26303,7 +26308,7 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 ///   feature is not enabled, [`view_mask`] **must**  be `0`
 /// - The index of the most significant bit in [`view_mask`] **must**  be less than [`maxMultiviewViewCount`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxMultiviewViewCount)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO`
 /// - [`flags`] **must**  be a valid combination of [`RenderingFlagBits`] values
 /// - If [`color_attachment_count`] is not `0`, [`color_attachment_formats`] **must**  be a valid
@@ -26312,7 +26317,7 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 /// - [`stencil_attachment_format`] **must**  be a valid [`Format`] value
 /// - If [`rasterization_samples`] is not `0`, [`rasterization_samples`] **must**  be a valid
 ///   [`SampleCountFlagBits`] value
-/// # Related
+///# Related
 /// - [`VK_KHR_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Format`]
@@ -26320,13 +26325,13 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceRenderingInfo")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -26525,56 +26530,56 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pToolCount,
     ///    VkPhysicalDeviceToolProperties*             pToolProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_tooling_info
     ///VkResult vkGetPhysicalDeviceToolPropertiesEXT(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    uint32_t*                                   pToolCount,
     ///    VkPhysicalDeviceToolProperties*             pToolProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the handle to the physical device to query for active tools.
     /// - [`p_tool_count`] is a pointer to an integer describing the number of tools active on
     ///   [`physical_device`].
     /// - [`p_tool_properties`] is either `NULL` or a pointer to an array of
     ///   [`PhysicalDeviceToolProperties`] structures.
-    /// # Description
-    /// If [`p_tool_properties`] is `NULL`, then the number of tools currently
-    /// active on [`physical_device`] is returned in [`p_tool_count`].
-    /// Otherwise, [`p_tool_count`] **must**  point to a variable set by the user to the
-    /// number of elements in the [`p_tool_properties`] array, and on return the
-    /// variable is overwritten with the number of structures actually written to
-    /// [`p_tool_properties`].
-    /// If [`p_tool_count`] is less than the number of currently active tools, at
-    /// most [`p_tool_count`] structures will be written.The count and properties of active tools
+    ///# Description
+    ///If [`p_tool_properties`] is `NULL`, then the number of tools currently
+    ///active on [`physical_device`] is returned in [`p_tool_count`].
+    ///Otherwise, [`p_tool_count`] **must**  point to a variable set by the user to the
+    ///number of elements in the [`p_tool_properties`] array, and on return the
+    ///variable is overwritten with the number of structures actually written to
+    ///[`p_tool_properties`].
+    ///If [`p_tool_count`] is less than the number of currently active tools, at
+    ///most [`p_tool_count`] structures will be written.The count and properties of active tools
     /// **may**  change in response to events
-    /// outside the scope of the specification.
-    /// An application  **should**  assume these properties might change at any given
-    /// time.
-    /// ## Valid Usage (Implicit)
+    ///outside the scope of the specification.
+    ///An application  **should**  assume these properties might change at any given
+    ///time.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_tool_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_tool_count`] is not `0`, and [`p_tool_properties`] is not
     ///   `NULL`, [`p_tool_properties`] **must**  be a valid pointer to an array of
     ///   [`p_tool_count`][`PhysicalDeviceToolProperties`] structures
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_EXT_tooling_info`]
     /// - [`crate::vulkan1_3`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceToolProperties`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceToolProperties")]
     #[doc(alias = "vkGetPhysicalDeviceToolPropertiesEXT")]
@@ -26649,41 +26654,41 @@ impl Device {
     ///    const VkDeviceBufferMemoryRequirements*     pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_maintenance4
     ///void vkGetDeviceBufferMemoryRequirementsKHR(
     ///    VkDevice                                    device,
     ///    const VkDeviceBufferMemoryRequirements*     pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device intended to own the buffer.
     /// - [`p_info`] is a pointer to a [`DeviceBufferMemoryRequirements`] structure containing
     ///   parameters required for the memory requirements query.
     /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
     ///   memory requirements of the buffer object are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceBufferMemoryRequirements`]
     ///   structure
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_maintenance4`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`DeviceBufferMemoryRequirements`]
     /// - [`MemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceBufferMemoryRequirements")]
     #[doc(alias = "vkGetDeviceBufferMemoryRequirementsKHR")]
@@ -26748,41 +26753,41 @@ impl Device {
     ///    const VkDeviceImageMemoryRequirements*      pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_maintenance4
     ///void vkGetDeviceImageMemoryRequirementsKHR(
     ///    VkDevice                                    device,
     ///    const VkDeviceImageMemoryRequirements*      pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device intended to own the image.
     /// - [`p_info`] is a pointer to a [`DeviceImageMemoryRequirements`] structure containing
     ///   parameters required for the memory requirements query.
     /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
     ///   memory requirements of the image object are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`]
     ///   structure
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_maintenance4`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`DeviceImageMemoryRequirements`]
     /// - [`MemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceImageMemoryRequirements")]
     #[doc(alias = "vkGetDeviceImageMemoryRequirementsKHR")]
@@ -26848,8 +26853,8 @@ impl Device {
     ///    uint32_t*                                   pSparseMemoryRequirementCount,
     ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_maintenance4
     ///void vkGetDeviceImageSparseMemoryRequirementsKHR(
     ///    VkDevice                                    device,
@@ -26857,7 +26862,7 @@ impl Device {
     ///    uint32_t*                                   pSparseMemoryRequirementCount,
     ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device intended to own the image.
     /// - [`p_info`] is a pointer to a [`DeviceImageMemoryRequirements`] structure containing
     ///   parameters required for the memory requirements query.
@@ -26865,8 +26870,8 @@ impl Device {
     ///   sparse memory requirements available or queried, as described below.
     /// - [`p_sparse_memory_requirements`] is either `NULL` or a pointer to an array of
     ///   [`SparseImageMemoryRequirements2`] structures.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`]
     ///   structure
@@ -26875,20 +26880,20 @@ impl Device {
     ///   [`p_sparse_memory_requirements`] is not `NULL`, [`p_sparse_memory_requirements`] **must**
     ///   be a valid pointer to an array of
     ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_maintenance4`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`DeviceImageMemoryRequirements`]
     /// - [`SparseImageMemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceImageSparseMemoryRequirements")]
     #[doc(alias = "vkGetDeviceImageSparseMemoryRequirementsKHR")]
@@ -26967,8 +26972,8 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkPrivateDataSlot*                          pPrivateDataSlot);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_private_data
     ///VkResult vkCreatePrivateDataSlotEXT(
     ///    VkDevice                                    device,
@@ -26976,7 +26981,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkPrivateDataSlot*                          pPrivateDataSlot);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device associated with the creation of the object(s) holding the
     ///   private data slot.
     /// - [`p_create_info`] is a pointer to a [`PrivateDataSlotCreateInfo`]
@@ -26984,12 +26989,12 @@ impl Device {
     ///   chapter.
     /// - [`p_private_data_slot`] is a pointer to a [`PrivateDataSlot`] handle in which the
     ///   resulting private data slot is returned
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - The [`privateData`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-privateData)
     ///   feature  **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`PrivateDataSlotCreateInfo`]
     ///   structure
@@ -26997,10 +27002,10 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_private_data_slot`] **must**  be a valid pointer to a [`PrivateDataSlot`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_EXT_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`AllocationCallbacks`]
@@ -27008,13 +27013,13 @@ impl Device {
     /// - [`PrivateDataSlot`]
     /// - [`PrivateDataSlotCreateInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreatePrivateDataSlot")]
     #[doc(alias = "vkCreatePrivateDataSlotEXT")]
@@ -27084,28 +27089,28 @@ impl Device {
     ///    VkPrivateDataSlot                           privateDataSlot,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_private_data
     ///void vkDestroyPrivateDataSlotEXT(
     ///    VkDevice                                    device,
     ///    VkPrivateDataSlot                           privateDataSlot,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device associated with the creation of the object(s) holding the
     ///   private data slot.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
     /// - [`private_data_slot`] is the private data slot to destroy.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - If [`AllocationCallbacks`] were provided when [`private_data_slot`] was created, a
     ///   compatible set of callbacks  **must**  be provided here
     /// - If no [`AllocationCallbacks`] were provided when [`private_data_slot`] was created,
     ///   [`p_allocator`] **must**  be `NULL`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`private_data_slot`] is not [`crate::Handle::null`], [`private_data_slot`] **must**
     ///   be a valid [`PrivateDataSlot`] handle
@@ -27114,22 +27119,22 @@ impl Device {
     /// - If [`private_data_slot`] is a valid handle, it  **must**  have been created, allocated, or
     ///   retrieved from [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`private_data_slot`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`VK_EXT_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`PrivateDataSlot`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyPrivateDataSlot")]
     #[doc(alias = "vkDestroyPrivateDataSlotEXT")]
@@ -27193,8 +27198,8 @@ impl Device {
     ///    VkPrivateDataSlot                           privateDataSlot,
     ///    uint64_t                                    data);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_private_data
     ///VkResult vkSetPrivateDataEXT(
     ///    VkDevice                                    device,
@@ -27203,7 +27208,7 @@ impl Device {
     ///    VkPrivateDataSlot                           privateDataSlot,
     ///    uint64_t                                    data);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device that created the object.
     /// - [`object_type`] is a [`ObjectType`] specifying the type of object to associate data with.
     /// - [`object_handle`] is a handle to the object to associate data with.
@@ -27211,34 +27216,34 @@ impl Device {
     ///   data storage.
     /// - [`data`] is user defined data to associate the object with. This data will be stored at
     ///   [`private_data_slot`].
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`object_handle`] **must**  be [`device`] or a child of [`device`]
     /// - [`object_handle`] **must**  be a valid handle to an object of type [`object_type`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`object_type`] **must**  be a valid [`ObjectType`] value
     /// - [`private_data_slot`] **must**  be a valid [`PrivateDataSlot`] handle
     /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`VK_EXT_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`ObjectType`]
     /// - [`PrivateDataSlot`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetPrivateData")]
     #[doc(alias = "vkSetPrivateDataEXT")]
@@ -27308,8 +27313,8 @@ impl Device {
     ///    VkPrivateDataSlot                           privateDataSlot,
     ///    uint64_t*                                   pData);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_private_data
     ///void vkGetPrivateDataEXT(
     ///    VkDevice                                    device,
@@ -27318,7 +27323,7 @@ impl Device {
     ///    VkPrivateDataSlot                           privateDataSlot,
     ///    uint64_t*                                   pData);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device that created the object
     /// - [`object_type`] is a [`ObjectType`] specifying the type of object data is associated with.
     /// - [`object_handle`] is a handle to the object data is associated with.
@@ -27327,31 +27332,31 @@ impl Device {
     /// - [`p_data`] is a pointer to specify where user data is returned. `0` will be written in the
     ///   absence of a previous call to [`set_private_data`] using the object specified by
     ///   [`object_handle`].
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`object_type`] **must**  be `VK_OBJECT_TYPE_DEVICE`, or an object type whose parent is
     ///   [`Device`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`object_type`] **must**  be a valid [`ObjectType`] value
     /// - [`private_data_slot`] **must**  be a valid [`PrivateDataSlot`] handle
     /// - [`p_data`] **must**  be a valid pointer to a `uint64_t` value
     /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
-    /// # Related
+    ///# Related
     /// - [`VK_EXT_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`ObjectType`]
     /// - [`PrivateDataSlot`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPrivateData")]
     #[doc(alias = "vkGetPrivateDataEXT")]
@@ -27416,8 +27421,8 @@ impl Queue {
     ///    const VkSubmitInfo2*                        pSubmits,
     ///    VkFence                                     fence);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_synchronization2
     ///VkResult vkQueueSubmit2KHR(
     ///    VkQueue                                     queue,
@@ -27425,7 +27430,7 @@ impl Queue {
     ///    const VkSubmitInfo2*                        pSubmits,
     ///    VkFence                                     fence);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`queue`] is the queue that the command buffers will be submitted to.
     /// - [`submit_count`] is the number of elements in the [`p_submits`] array.
     /// - [`p_submits`] is a pointer to an array of [`SubmitInfo2`] structures, each specifying a
@@ -27433,32 +27438,32 @@ impl Queue {
     /// - [`fence`] is an  **optional**  handle to a fence to be signaled once all submitted command
     ///   buffers have completed execution. If [`fence`] is not [`crate::Handle::null`], it defines a
     ///   [fence signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-signaling).
-    /// # Description
-    /// [`queue_submit2`] is a [queue submission
-    /// command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission), with each batch defined by an element of [`p_submits`].Semaphore operations submitted with [`queue_submit2`] have additional
-    /// ordering constraints compared to other submission commands, with
-    /// dependencies involving previous and subsequent queue operations.
-    /// Information about these additional constraints can be found in the
-    /// [semaphore](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores) section of [the
-    /// synchronization chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).If any command buffer submitted to this queue is in the
-    /// [executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), it is moved to the
-    /// [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
-    /// Once execution of all submissions of a command buffer complete, it moves
-    /// from the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), back to the
-    /// [executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
-    /// If a command buffer was recorded with the
-    /// `VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT` flag, it instead moves
-    /// back to the [invalid state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).If [`queue_submit2`] fails, it  **may**  return
-    /// `VK_ERROR_OUT_OF_HOST_MEMORY` or `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
-    /// If it does, the implementation  **must**  ensure that the state and contents of
-    /// any resources or synchronization primitives referenced by the submitted
-    /// command buffers and any semaphores referenced by [`p_submits`] is
-    /// unaffected by the call or its failure.
-    /// If [`queue_submit2`] fails in such a way that the implementation is
-    /// unable to make that guarantee, the implementation  **must**  return
-    /// `VK_ERROR_DEVICE_LOST`.
-    /// See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device).
-    /// ## Valid Usage
+    ///# Description
+    ///[`queue_submit2`] is a [queue submission
+    ///command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission), with each batch defined by an element of [`p_submits`].Semaphore operations submitted with [`queue_submit2`] have additional
+    ///ordering constraints compared to other submission commands, with
+    ///dependencies involving previous and subsequent queue operations.
+    ///Information about these additional constraints can be found in the
+    ///[semaphore](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores) section of [the
+    ///synchronization chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization).If any command buffer submitted to this queue is in the
+    ///[executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), it is moved to the
+    ///[pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
+    ///Once execution of all submissions of a command buffer complete, it moves
+    ///from the [pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle), back to the
+    ///[executable state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).
+    ///If a command buffer was recorded with the
+    ///`VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT` flag, it instead moves
+    ///back to the [invalid state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle).If [`queue_submit2`] fails, it  **may**  return
+    ///`VK_ERROR_OUT_OF_HOST_MEMORY` or `VK_ERROR_OUT_OF_DEVICE_MEMORY`.
+    ///If it does, the implementation  **must**  ensure that the state and contents of
+    ///any resources or synchronization primitives referenced by the submitted
+    ///command buffers and any semaphores referenced by [`p_submits`] is
+    ///unaffected by the call or its failure.
+    ///If [`queue_submit2`] fails in such a way that the implementation is
+    ///unable to make that guarantee, the implementation  **must**  return
+    ///`VK_ERROR_DEVICE_LOST`.
+    ///See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-lost-device).
+    ///## Valid Usage
     /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  be unsignaled
     /// - If [`fence`] is not [`crate::Handle::null`], [`fence`] **must**  not be associated with
     ///   any other queue command that has not yet completed execution on that queue
@@ -27498,7 +27503,7 @@ impl Queue {
     /// - If [`queue`] was not created with `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT`, the `flags`
     ///   member of any element of [`p_submits`] **must**  not include `VK_SUBMIT_PROTECTED_BIT_KHR`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - If [`submit_count`] is not `0`, [`p_submits`] **must**  be a valid pointer to an array of
     ///   [`submit_count`] valid [`SubmitInfo2`] structures
@@ -27507,29 +27512,29 @@ impl Queue {
     /// - Both of [`fence`], and [`queue`] that are valid handles of non-ignored parameters
     ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`queue`] **must**  be externally synchronized
     /// - Host access to [`fence`] **must**  be externally synchronized
     ///
-    /// ## Command Properties
-    /// ## Return Codes
+    ///## Command Properties
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`
-    /// # Related
+    ///# Related
     /// - [`VK_KHR_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Fence`]
     /// - [`Queue`]
     /// - [`SubmitInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueueSubmit2")]
     #[doc(alias = "vkQueueSubmit2KHR")]
@@ -27597,49 +27602,49 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkCullModeFlags                             cullMode);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetCullModeEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkCullModeFlags                             cullMode);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`cull_mode`] specifies the cull mode property to use for drawing.
-    /// # Description
-    /// This command sets the cull mode for subsequent drawing commands when the
-    /// graphics pipeline is created with `VK_DYNAMIC_STATE_CULL_MODE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineRasterizationStateCreateInfo`]::[`cull_mode`] value used to
-    /// create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the cull mode for subsequent drawing commands when the
+    ///graphics pipeline is created with `VK_DYNAMIC_STATE_CULL_MODE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`cull_mode`] value used to
+    ///create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`cull_mode`] **must**  be a valid combination of [`CullModeFlagBits`] values
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CullModeFlags`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetCullMode")]
     #[doc(alias = "vkCmdSetCullModeEXT")]
@@ -27695,50 +27700,50 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkFrontFace                                 frontFace);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetFrontFaceEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkFrontFace                                 frontFace);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`front_face`] is a [`FrontFace`] value specifying the front-facing triangle orientation
     ///   to be used for culling.
-    /// # Description
-    /// This command sets the front face orientation for subsequent drawing commands
-    /// when the graphics pipeline is created with `VK_DYNAMIC_STATE_FRONT_FACE`
-    /// set in [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineRasterizationStateCreateInfo`]::[`front_face`] value used to
-    /// create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the front face orientation for subsequent drawing commands
+    ///when the graphics pipeline is created with `VK_DYNAMIC_STATE_FRONT_FACE`
+    ///set in [`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`front_face`] value used to
+    ///create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`front_face`] **must**  be a valid [`FrontFace`] value
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`FrontFace`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetFrontFace")]
     #[doc(alias = "vkCmdSetFrontFaceEXT")]
@@ -27793,50 +27798,50 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkPrimitiveTopology                         primitiveTopology);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetPrimitiveTopologyEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkPrimitiveTopology                         primitiveTopology);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`primitive_topology`] specifies the primitive topology to use for drawing.
-    /// # Description
-    /// This command sets the primitive topology for subsequent drawing commands
-    /// when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineInputAssemblyStateCreateInfo::topology`] value used to
-    /// create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the primitive topology for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineInputAssemblyStateCreateInfo::topology`] value used to
+    ///create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`primitive_topology`] **must**  be a valid [`PrimitiveTopology`] value
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`PrimitiveTopology`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPrimitiveTopology")]
     #[doc(alias = "vkCmdSetPrimitiveTopologyEXT")]
@@ -27896,27 +27901,27 @@ impl CommandBuffer {
     ///    uint32_t                                    viewportCount,
     ///    const VkViewport*                           pViewports);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetViewportWithCountEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    uint32_t                                    viewportCount,
     ///    const VkViewport*                           pViewports);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`viewport_count`] specifies the viewport count.
     /// - [`p_viewports`] specifies the viewports to use for drawing.
-    /// # Description
-    /// This command sets the viewport count and viewports state for subsequent
-    /// drawing commands when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the corresponding
-    /// [`PipelineViewportStateCreateInfo`]::[`viewport_count`] and
-    /// [`p_viewports`] values used to create the currently active pipeline.
-    /// ## Valid Usage
+    ///# Description
+    ///This command sets the viewport count and viewports state for subsequent
+    ///drawing commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the corresponding
+    ///[`PipelineViewportStateCreateInfo`]::[`viewport_count`] and
+    ///[`p_viewports`] values used to create the currently active pipeline.
+    ///## Valid Usage
     /// - [`viewport_count`] **must**  be between `1` and [`PhysicalDeviceLimits::max_viewports`],
     ///   inclusive
     /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
@@ -27924,7 +27929,7 @@ impl CommandBuffer {
     /// - [`command_buffer`] **must**  not have
     ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor2_d`] enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_viewports`] **must**  be a valid pointer to an array of [`viewport_count`] valid
     ///   [`Viewport`] structures
@@ -27933,25 +27938,25 @@ impl CommandBuffer {
     ///   operations
     /// - [`viewport_count`] **must**  be greater than `0`
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`Viewport`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetViewportWithCount")]
     #[doc(alias = "vkCmdSetViewportWithCountEXT")]
@@ -28012,27 +28017,27 @@ impl CommandBuffer {
     ///    uint32_t                                    scissorCount,
     ///    const VkRect2D*                             pScissors);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetScissorWithCountEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    uint32_t                                    scissorCount,
     ///    const VkRect2D*                             pScissors);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`scissor_count`] specifies the scissor count.
     /// - [`p_scissors`] specifies the scissors to use for drawing.
-    /// # Description
-    /// This command sets the scissor count and scissor rectangular bounds state for
-    /// subsequence drawing commands when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the corresponding
-    /// [`PipelineViewportStateCreateInfo`]::[`scissor_count`] and
-    /// [`p_scissors`] values used to create the currently active pipeline.
-    /// ## Valid Usage
+    ///# Description
+    ///This command sets the scissor count and scissor rectangular bounds state for
+    ///subsequence drawing commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the corresponding
+    ///[`PipelineViewportStateCreateInfo`]::[`scissor_count`] and
+    ///[`p_scissors`] values used to create the currently active pipeline.
+    ///## Valid Usage
     /// - [`scissor_count`] **must**  be between `1` and [`PhysicalDeviceLimits::max_viewports`],
     ///   inclusive
     /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
@@ -28046,7 +28051,7 @@ impl CommandBuffer {
     /// - [`command_buffer`] **must**  not have
     ///   [`CommandBufferInheritanceViewportScissorInfoNV::viewport_scissor2_d`] enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_scissors`] **must**  be a valid pointer to an array of [`scissor_count`][`Rect2D`]
     ///   structures
@@ -28055,25 +28060,25 @@ impl CommandBuffer {
     ///   operations
     /// - [`scissor_count`] **must**  be greater than `0`
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`Rect2D`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetScissorWithCount")]
     #[doc(alias = "vkCmdSetScissorWithCountEXT")]
@@ -28138,8 +28143,8 @@ impl CommandBuffer {
     ///    const VkDeviceSize*                         pSizes,
     ///    const VkDeviceSize*                         pStrides);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdBindVertexBuffers2EXT(
     ///    VkCommandBuffer                             commandBuffer,
@@ -28150,7 +28155,7 @@ impl CommandBuffer {
     ///    const VkDeviceSize*                         pSizes,
     ///    const VkDeviceSize*                         pStrides);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`first_binding`] is the index of the first vertex input binding whose state is updated by
     ///   the command.
@@ -28161,37 +28166,37 @@ impl CommandBuffer {
     /// - [`p_sizes`] is `NULL` or a pointer to an array of the size in bytes of vertex data bound
     ///   from [`p_buffers`].
     /// - [`p_strides`] is `NULL` or a pointer to an array of buffer strides.
-    /// # Description
-    /// The values taken from elements i of [`p_buffers`] and [`p_offsets`]
-    /// replace the current state for the vertex input binding
-    /// [`first_binding`] +  i, for i in [0,
-    /// [`binding_count`]).
-    /// The vertex input binding is updated to start at the offset indicated by
-    /// [`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
-    /// If [`p_sizes`] is not `NULL` then [`p_sizes`][i] specifies the bound size
-    /// of the vertex buffer starting from the corresponding elements of
-    /// [`p_buffers`][i] plus [`p_offsets`][i].
-    /// All vertex input attributes that use each of these bindings will use these
-    /// updated addresses in their address calculations for subsequent drawing
-    /// commands.
-    /// If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) feature is enabled,
-    /// elements of [`p_buffers`] **can**  be [`crate::Handle::null`], and  **can**  be used by
-    /// the vertex shader.
-    /// If a vertex input attribute is bound to a vertex input binding that is
-    /// [`crate::Handle::null`], the values taken from memory are considered to be
-    /// zero, and missing G, B, or A components are
-    /// [filled with (0,0,1)](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fxvertex-input-extraction).This command also [dynamically sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the byte
-    /// strides between consecutive elements within buffer [`p_buffers`][i] to the
-    /// corresponding [`p_strides`][i] value when the graphics pipeline is created
-    /// with `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, strides are specified by the
-    /// [`VertexInputBindingDescription::stride`] values used to create
-    /// the currently active pipeline.If the bound pipeline state object was also created with the
-    /// `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled then
-    /// [`cmd_set_vertex_input_ext`] **can**  be used instead of
-    /// [`cmd_bind_vertex_buffers2`] to set the stride.
-    /// ## Valid Usage
+    ///# Description
+    ///The values taken from elements i of [`p_buffers`] and [`p_offsets`]
+    ///replace the current state for the vertex input binding
+    ///[`first_binding`] +  i, for i in [0,
+    ///[`binding_count`]).
+    ///The vertex input binding is updated to start at the offset indicated by
+    ///[`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
+    ///If [`p_sizes`] is not `NULL` then [`p_sizes`][i] specifies the bound size
+    ///of the vertex buffer starting from the corresponding elements of
+    ///[`p_buffers`][i] plus [`p_offsets`][i].
+    ///All vertex input attributes that use each of these bindings will use these
+    ///updated addresses in their address calculations for subsequent drawing
+    ///commands.
+    ///If the [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) feature is enabled,
+    ///elements of [`p_buffers`] **can**  be [`crate::Handle::null`], and  **can**  be used by
+    ///the vertex shader.
+    ///If a vertex input attribute is bound to a vertex input binding that is
+    ///[`crate::Handle::null`], the values taken from memory are considered to be
+    ///zero, and missing G, B, or A components are
+    ///[filled with (0,0,1)](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#fxvertex-input-extraction).This command also [dynamically sets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-dynamic-state) the byte
+    ///strides between consecutive elements within buffer [`p_buffers`][i] to the
+    ///corresponding [`p_strides`][i] value when the graphics pipeline is created
+    ///with `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, strides are specified by the
+    ///[`VertexInputBindingDescription::stride`] values used to create
+    ///the currently active pipeline.If the bound pipeline state object was also created with the
+    ///`VK_DYNAMIC_STATE_VERTEX_INPUT_EXT` dynamic state enabled then
+    ///[`cmd_set_vertex_input_ext`] **can**  be used instead of
+    ///[`cmd_bind_vertex_buffers2`] to set the stride.
+    ///## Valid Usage
     /// - [`first_binding`] **must**  be less than
     ///   [`PhysicalDeviceLimits::max_vertex_input_bindings`]
     /// - The sum of [`first_binding`] and [`binding_count`] **must**  be less than or equal to
@@ -28217,7 +28222,7 @@ impl CommandBuffer {
     ///   [`VertexInputAttributeDescription::offset`] plus
     ///   [`VertexInputAttributeDescription::format`] size
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_buffers`] **must**  be a valid pointer to an array of [`binding_count`] valid or
     ///   [`crate::Handle::null`][`Buffer`] handles
@@ -28236,26 +28241,26 @@ impl CommandBuffer {
     ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
     ///   [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBindVertexBuffers2")]
     #[doc(alias = "vkCmdBindVertexBuffers2EXT")]
@@ -28327,49 +28332,49 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthTestEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetDepthTestEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthTestEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`depth_test_enable`] specifies if the depth test is enabled.
-    /// # Description
-    /// This command sets the depth test enable for subsequent drawing commands when
-    /// the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineDepthStencilStateCreateInfo`]::[`depth_test_enable`] value
-    /// used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the depth test enable for subsequent drawing commands when
+    ///the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_test_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthTestEnable")]
     #[doc(alias = "vkCmdSetDepthTestEnableEXT")]
@@ -28425,49 +28430,49 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthWriteEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetDepthWriteEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthWriteEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`depth_write_enable`] specifies if depth writes are enabled.
-    /// # Description
-    /// This command sets the depth write enable for subsequent drawing commands
-    /// when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineDepthStencilStateCreateInfo`]::[`depth_write_enable`] value
-    /// used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the depth write enable for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_write_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthWriteEnable")]
     #[doc(alias = "vkCmdSetDepthWriteEnableEXT")]
@@ -28523,50 +28528,50 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkCompareOp                                 depthCompareOp);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetDepthCompareOpEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkCompareOp                                 depthCompareOp);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`depth_compare_op`] specifies the depth comparison operator.
-    /// # Description
-    /// This command sets the depth comparison operator for subsequent drawing
-    /// commands when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_DEPTH_COMPARE_OP` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineDepthStencilStateCreateInfo`]::[`depth_compare_op`] value used
-    /// to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the depth comparison operator for subsequent drawing
+    ///commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_COMPARE_OP` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_compare_op`] value used
+    ///to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`depth_compare_op`] **must**  be a valid [`CompareOp`] value
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CompareOp`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthCompareOp")]
     #[doc(alias = "vkCmdSetDepthCompareOpEXT")]
@@ -28622,49 +28627,49 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthBoundsTestEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetDepthBoundsTestEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthBoundsTestEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`depth_bounds_test_enable`] specifies if the depth bounds test is enabled.
-    /// # Description
-    /// This command sets the depth bounds enable for subsequent drawing commands
-    /// when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineDepthStencilStateCreateInfo`]::[`depth_bounds_test_enable`]
-    /// value used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the depth bounds enable for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`depth_bounds_test_enable`]
+    ///value used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthBoundsTestEnable")]
     #[doc(alias = "vkCmdSetDepthBoundsTestEnableEXT")]
@@ -28720,49 +28725,49 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    stencilTestEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetStencilTestEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    stencilTestEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`stencil_test_enable`] specifies if the stencil test is enabled.
-    /// # Description
-    /// This command sets the stencil test enable for subsequent drawing commands
-    /// when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] value
-    /// used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the stencil test enable for subsequent drawing commands
+    ///when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetStencilTestEnable")]
     #[doc(alias = "vkCmdSetStencilTestEnableEXT")]
@@ -28821,8 +28826,8 @@ impl CommandBuffer {
     ///    VkStencilOp                                 depthFailOp,
     ///    VkCompareOp                                 compareOp);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state
     ///void vkCmdSetStencilOpEXT(
     ///    VkCommandBuffer                             commandBuffer,
@@ -28832,7 +28837,7 @@ impl CommandBuffer {
     ///    VkStencilOp                                 depthFailOp,
     ///    VkCompareOp                                 compareOp);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`face_mask`] is a bitmask of [`StencilFaceFlagBits`] specifying the set of stencil state
     ///   for which to update the stencil operation.
@@ -28844,15 +28849,15 @@ impl CommandBuffer {
     ///   pass the stencil test and fail the depth test.
     /// - [`compare_op`] is a [`CompareOp`] value specifying the comparison operator used in the
     ///   stencil test.
-    /// # Description
-    /// This command sets the stencil operation for subsequent drawing commands when
-    /// the graphics pipeline is created with `VK_DYNAMIC_STATE_STENCIL_OP` set
-    /// in [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the corresponding
-    /// [`PipelineDepthStencilStateCreateInfo`]::[`fail_op`], [`pass_op`],
-    /// [`depth_fail_op`], and [`compare_op`] values used to create the currently
-    /// active pipeline, for both front and back faces.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the stencil operation for subsequent drawing commands when
+    ///the graphics pipeline is created with `VK_DYNAMIC_STATE_STENCIL_OP` set
+    ///in [`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the corresponding
+    ///[`PipelineDepthStencilStateCreateInfo`]::[`fail_op`], [`pass_op`],
+    ///[`depth_fail_op`], and [`compare_op`] values used to create the currently
+    ///active pipeline, for both front and back faces.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`face_mask`] **must**  be a valid combination of [`StencilFaceFlagBits`] values
     /// - [`face_mask`] **must**  not be `0`
@@ -28864,13 +28869,13 @@ impl CommandBuffer {
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
@@ -28878,13 +28883,13 @@ impl CommandBuffer {
     /// - [`StencilFaceFlags`]
     /// - [`StencilOp`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetStencilOp")]
     #[doc(alias = "vkCmdSetStencilOpEXT")]
@@ -28947,50 +28952,50 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    rasterizerDiscardEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state2
     ///void vkCmdSetRasterizerDiscardEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    rasterizerDiscardEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`rasterizer_discard_enable`] controls whether primitives are discarded immediately before
     ///   the rasterization stage.
-    /// # Description
-    /// This command sets the discard enable for subsequent drawing commands when
-    /// the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineRasterizationStateCreateInfo`]::[`rasterizer_discard_enable`]
-    /// value used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the discard enable for subsequent drawing commands when
+    ///the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`rasterizer_discard_enable`]
+    ///value used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetRasterizerDiscardEnable")]
     #[doc(alias = "vkCmdSetRasterizerDiscardEnableEXT")]
@@ -29049,49 +29054,49 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthBiasEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state2
     ///void vkCmdSetDepthBiasEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    depthBiasEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`depth_bias_enable`] controls whether to bias fragment depth values.
-    /// # Description
-    /// This command sets the depth bias enable for subsequent drawing commands when
-    /// the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineRasterizationStateCreateInfo`]::[`depth_bias_enable`] value
-    /// used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the depth bias enable for subsequent drawing commands when
+    ///the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineRasterizationStateCreateInfo`]::[`depth_bias_enable`] value
+    ///used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDepthBiasEnable")]
     #[doc(alias = "vkCmdSetDepthBiasEnableEXT")]
@@ -29147,51 +29152,51 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    primitiveRestartEnable);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_EXT_extended_dynamic_state2
     ///void vkCmdSetPrimitiveRestartEnableEXT(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkBool32                                    primitiveRestartEnable);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`primitive_restart_enable`] controls whether a special vertex index value is treated as
     ///   restarting the assembly of primitives. It behaves in the same way as
     ///   [`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
-    /// # Description
-    /// This command sets the primitive restart enable for subsequent drawing
-    /// commands when the graphics pipeline is created with
-    /// `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE` set in
-    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
-    /// Otherwise, this state is specified by the
-    /// [`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
-    /// value used to create the currently active pipeline.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///This command sets the primitive restart enable for subsequent drawing
+    ///commands when the graphics pipeline is created with
+    ///`VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE` set in
+    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
+    ///Otherwise, this state is specified by the
+    ///[`PipelineInputAssemblyStateCreateInfo`]::[`primitive_restart_enable`]
+    ///value used to create the currently active pipeline.
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_EXT_extended_dynamic_state2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetPrimitiveRestartEnable")]
     #[doc(alias = "vkCmdSetPrimitiveRestartEnableEXT")]
@@ -29246,22 +29251,22 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyBufferInfo2*                    pCopyBufferInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_copy_commands2
     ///void vkCmdCopyBuffer2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyBufferInfo2*                    pCopyBufferInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_copy_buffer_info`] is a pointer to a [`CopyBufferInfo2`] structure describing the copy
     ///   parameters.
-    /// # Description
-    /// This command is functionally identical to [`cmd_copy_buffer`], but
-    /// includes extensible sub-structures that include `sType` and `pNext`
-    /// parameters, allowing them to be more easily extended.
-    /// ## Valid Usage
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_buffer`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
     ///   supported, `srcBuffer` **must**  not be a protected buffer
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -29269,7 +29274,7 @@ impl CommandBuffer {
     /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
     ///   supported, `dstBuffer` **must**  not be an unprotected buffer
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_copy_buffer_info`] **must**  be a valid pointer to a valid [`CopyBufferInfo2`]
     ///   structure
@@ -29278,25 +29283,25 @@ impl CommandBuffer {
     ///   transfer, graphics, or compute operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyBufferInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyBuffer2")]
     #[doc(alias = "vkCmdCopyBuffer2KHR")]
@@ -29351,22 +29356,22 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyImageInfo2*                     pCopyImageInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_copy_commands2
     ///void vkCmdCopyImage2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyImageInfo2*                     pCopyImageInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_copy_image_info`] is a pointer to a [`CopyImageInfo2`] structure describing the copy
     ///   parameters.
-    /// # Description
-    /// This command is functionally identical to [`cmd_copy_image`], but includes
-    /// extensible sub-structures that include `sType` and `pNext`
-    /// parameters, allowing them to be more easily extended.
-    /// ## Valid Usage
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_image`], but includes
+    ///extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
     ///   supported, `srcImage` **must**  not be a protected image
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -29374,7 +29379,7 @@ impl CommandBuffer {
     /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
     ///   supported, `dstImage` **must**  not be an unprotected image
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_copy_image_info`] **must**  be a valid pointer to a valid [`CopyImageInfo2`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -29382,25 +29387,25 @@ impl CommandBuffer {
     ///   transfer, graphics, or compute operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyImageInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyImage2")]
     #[doc(alias = "vkCmdCopyImage2KHR")]
@@ -29456,22 +29461,22 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkBlitImageInfo2*                     pBlitImageInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_copy_commands2
     ///void vkCmdBlitImage2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkBlitImageInfo2*                     pBlitImageInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_blit_image_info`] is a pointer to a [`BlitImageInfo2`] structure describing the blit
     ///   parameters.
-    /// # Description
-    /// This command is functionally identical to [`cmd_blit_image`], but includes
-    /// extensible sub-structures that include `sType` and `pNext`
-    /// parameters, allowing them to be more easily extended.
-    /// ## Valid Usage
+    ///# Description
+    ///This command is functionally identical to [`cmd_blit_image`], but includes
+    ///extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
     ///   supported, `srcImage` **must**  not be a protected image
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -29479,7 +29484,7 @@ impl CommandBuffer {
     /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
     ///   supported, `dstImage` **must**  not be an unprotected image
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_blit_image_info`] **must**  be a valid pointer to a valid [`BlitImageInfo2`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -29487,25 +29492,25 @@ impl CommandBuffer {
     ///   operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`BlitImageInfo2`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBlitImage2")]
     #[doc(alias = "vkCmdBlitImage2KHR")]
@@ -29560,22 +29565,22 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyBufferToImageInfo2*             pCopyBufferToImageInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_copy_commands2
     ///void vkCmdCopyBufferToImage2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyBufferToImageInfo2*             pCopyBufferToImageInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_copy_buffer_to_image_info`] is a pointer to a [`CopyBufferToImageInfo2`] structure
     ///   describing the copy parameters.
-    /// # Description
-    /// This command is functionally identical to [`cmd_copy_buffer_to_image`], but
-    /// includes extensible sub-structures that include `sType` and `pNext`
-    /// parameters, allowing them to be more easily extended.
-    /// ## Valid Usage
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_buffer_to_image`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
     ///   supported, `srcBuffer` **must**  not be a protected buffer
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -29583,7 +29588,7 @@ impl CommandBuffer {
     /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
     ///   supported, `dstImage` **must**  not be an unprotected image
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_copy_buffer_to_image_info`] **must**  be a valid pointer to a valid
     ///   [`CopyBufferToImageInfo2`] structure
@@ -29592,25 +29597,25 @@ impl CommandBuffer {
     ///   transfer, graphics, or compute operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyBufferToImageInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyBufferToImage2")]
     #[doc(alias = "vkCmdCopyBufferToImage2KHR")]
@@ -29671,22 +29676,22 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyImageToBufferInfo2*             pCopyImageToBufferInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_copy_commands2
     ///void vkCmdCopyImageToBuffer2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCopyImageToBufferInfo2*             pCopyImageToBufferInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_copy_image_to_buffer_info`] is a pointer to a [`CopyImageToBufferInfo2`] structure
     ///   describing the copy parameters.
-    /// # Description
-    /// This command is functionally identical to [`cmd_copy_image_to_buffer`], but
-    /// includes extensible sub-structures that include `sType` and `pNext`
-    /// parameters, allowing them to be more easily extended.
-    /// ## Valid Usage
+    ///# Description
+    ///This command is functionally identical to [`cmd_copy_image_to_buffer`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
     ///   supported, `srcImage` **must**  not be a protected image
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -29694,7 +29699,7 @@ impl CommandBuffer {
     /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
     ///   supported, `dstBuffer` **must**  not be an unprotected buffer
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_copy_image_to_buffer_info`] **must**  be a valid pointer to a valid
     ///   [`CopyImageToBufferInfo2`] structure
@@ -29703,25 +29708,25 @@ impl CommandBuffer {
     ///   transfer, graphics, or compute operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyImageToBufferInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCopyImageToBuffer2")]
     #[doc(alias = "vkCmdCopyImageToBuffer2KHR")]
@@ -29782,22 +29787,22 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkResolveImageInfo2*                  pResolveImageInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_copy_commands2
     ///void vkCmdResolveImage2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkResolveImageInfo2*                  pResolveImageInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`p_resolve_image_info`] is a pointer to a [`ResolveImageInfo2`] structure describing the
     ///   resolve parameters.
-    /// # Description
-    /// This command is functionally identical to [`cmd_resolve_image`], but
-    /// includes extensible sub-structures that include `sType` and `pNext`
-    /// parameters, allowing them to be more easily extended.
-    /// ## Valid Usage
+    ///# Description
+    ///This command is functionally identical to [`cmd_resolve_image`], but
+    ///includes extensible sub-structures that include `sType` and `pNext`
+    ///parameters, allowing them to be more easily extended.
+    ///## Valid Usage
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
     ///   supported, `srcImage` **must**  not be a protected image
     /// - If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`]() is not
@@ -29805,7 +29810,7 @@ impl CommandBuffer {
     /// - If [`command_buffer`] is a protected command buffer and [`protectedNoFault`]() is not
     ///   supported, `dstImage` **must**  not be an unprotected image
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_resolve_image_info`] **must**  be a valid pointer to a valid [`ResolveImageInfo2`]
     ///   structure
@@ -29814,25 +29819,25 @@ impl CommandBuffer {
     ///   operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`ResolveImageInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdResolveImage2")]
     #[doc(alias = "vkCmdResolveImage2KHR")]
@@ -29891,47 +29896,47 @@ impl CommandBuffer {
     ///    VkEvent                                     event,
     ///    const VkDependencyInfo*                     pDependencyInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_synchronization2
     ///void vkCmdSetEvent2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkEvent                                     event,
     ///    const VkDependencyInfo*                     pDependencyInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`event`] is the event that will be signaled.
     /// - [`p_dependency_info`] is a pointer to a [`DependencyInfo`] structure defining the first
     ///   scopes of this operation.
-    /// # Description
-    /// When [`cmd_set_event2`] is submitted to a queue, it defines the first half
-    /// of memory dependencies defined by [`p_dependency_info`], as well as an event
-    /// signal operation which sets the event to the signaled state.
-    /// A memory dependency is defined between the event signal operation and
-    /// commands that occur earlier in submission order.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-    /// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are defined by
-    /// the union of all the memory dependencies defined by [`p_dependency_info`],
-    /// and are applied to all operations that occur earlier in
-    /// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-    /// [Queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
-    /// [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
-    /// defined by [`p_dependency_info`] are also included in the first scopes.The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// includes only the event signal operation, and any
-    /// [queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
-    /// [image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
-    /// defined by [`p_dependency_info`].The second [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes)
-    /// includes only [queue family ownership
-    /// transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout
-    /// transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Future [`cmd_wait_events2`] commands rely on all values of each element in
-    /// [`p_dependency_info`] matching exactly with those used to signal the
-    /// corresponding event.
-    /// [`cmd_wait_events`] **must**  not be used to wait on the result of a signal
-    /// operation defined by [`cmd_set_event2`].If [`event`] is already in the signaled state when
+    ///# Description
+    ///When [`cmd_set_event2`] is submitted to a queue, it defines the first half
+    ///of memory dependencies defined by [`p_dependency_info`], as well as an event
+    ///signal operation which sets the event to the signaled state.
+    ///A memory dependency is defined between the event signal operation and
+    ///commands that occur earlier in submission order.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+    ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) are defined by
+    ///the union of all the memory dependencies defined by [`p_dependency_info`],
+    ///and are applied to all operations that occur earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///[Queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+    ///[image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
+    ///defined by [`p_dependency_info`] are also included in the first scopes.The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes only the event signal operation, and any
+    ///[queue family ownership transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and
+    ///[image layout transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions)
+    ///defined by [`p_dependency_info`].The second [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes)
+    ///includes only [queue family ownership
+    ///transfers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers) and [image layout
+    ///transitions](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-image-layout-transitions).Future [`cmd_wait_events2`] commands rely on all values of each element in
+    ///[`p_dependency_info`] matching exactly with those used to signal the
+    ///corresponding event.
+    ///[`cmd_wait_events`] **must**  not be used to wait on the result of a signal
+    ///operation defined by [`cmd_set_event2`].If [`event`] is already in the signaled state when
     /// [`cmd_set_event2`] is
-    /// executed on the device, then [`cmd_set_event2`] has no effect, no event
-    /// signal operation occurs, and no dependency is generated.
-    /// ## Valid Usage
+    ///executed on the device, then [`cmd_set_event2`] has no effect, no event
+    ///signal operation occurs, and no dependency is generated.
+    ///## Valid Usage
     /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
     ///   feature  **must**  be enabled
     /// - The `dependencyFlags` member of [`p_dependency_info`] **must**  be `0`
@@ -29946,7 +29951,7 @@ impl CommandBuffer {
     ///   **must**  only include pipeline stages valid for the queue family that was used to create
     ///   the command pool that [`command_buffer`] was allocated from
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`event`] **must**  be a valid [`Event`] handle
     /// - [`p_dependency_info`] **must**  be a valid pointer to a valid [`DependencyInfo`] structure
@@ -29957,26 +29962,26 @@ impl CommandBuffer {
     /// - Both of [`command_buffer`], and [`event`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`DependencyInfo`]
     /// - [`Event`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetEvent2")]
     #[doc(alias = "vkCmdSetEvent2KHR")]
@@ -30036,33 +30041,33 @@ impl CommandBuffer {
     ///    VkEvent                                     event,
     ///    VkPipelineStageFlags2                       stageMask);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_synchronization2
     ///void vkCmdResetEvent2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    VkEvent                                     event,
     ///    VkPipelineStageFlags2                       stageMask);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`event`] is the event that will be unsignaled.
     /// - [`stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline stages used to determine the first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    /// # Description
-    /// When [`cmd_reset_event2`] is submitted to a queue, it defines an execution
-    /// dependency on commands that were submitted before it, and defines an event
-    /// unsignal operation which resets the event to the unsignaled state.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// includes all commands that occur earlier in
-    /// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-    /// The synchronization scope is limited to operations by [`stage_mask`] or
-    /// stages that are [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
-    /// than [`stage_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// includes only the event unsignal operation.If [`event`] is already in the unsignaled state
+    ///# Description
+    ///When [`cmd_reset_event2`] is submitted to a queue, it defines an execution
+    ///dependency on commands that were submitted before it, and defines an event
+    ///unsignal operation which resets the event to the unsignaled state.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes all commands that occur earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///The synchronization scope is limited to operations by [`stage_mask`] or
+    ///stages that are [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order)
+    ///than [`stage_mask`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes only the event unsignal operation.If [`event`] is already in the unsignaled state
     /// when
-    /// [`cmd_reset_event2`] is executed on the device, then this command has no
-    /// effect, no event unsignal operation occurs, and no execution dependency is
-    /// generated.
-    /// ## Valid Usage
+    ///[`cmd_reset_event2`] is executed on the device, then this command has no
+    ///effect, no event unsignal operation occurs, and no execution dependency is
+    ///generated.
+    ///## Valid Usage
     /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
     ///   feature is not enabled, [`stage_mask`] **must**  not contain
     ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -30103,7 +30108,7 @@ impl CommandBuffer {
     ///   of any [`cmd_wait_events2`] that includes [`event`] in its `pEvents` parameter
     /// - [`command_buffer`]’s current device mask  **must**  include exactly one physical device
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`event`] **must**  be a valid [`Event`] handle
     /// - [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
@@ -30114,26 +30119,26 @@ impl CommandBuffer {
     /// - Both of [`command_buffer`], and [`event`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`Event`]
     /// - [`PipelineStageFlags2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdResetEvent2")]
     #[doc(alias = "vkCmdResetEvent2KHR")]
@@ -30191,8 +30196,8 @@ impl CommandBuffer {
     ///    const VkEvent*                              pEvents,
     ///    const VkDependencyInfo*                     pDependencyInfos);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_synchronization2
     ///void vkCmdWaitEvents2KHR(
     ///    VkCommandBuffer                             commandBuffer,
@@ -30200,33 +30205,33 @@ impl CommandBuffer {
     ///    const VkEvent*                              pEvents,
     ///    const VkDependencyInfo*                     pDependencyInfos);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`event_count`] is the length of the [`p_events`] array.
     /// - [`p_events`] is a pointer to an array of [`event_count`] events to wait on.
     /// - [`p_dependency_infos`] is a pointer to an array of [`event_count`][`DependencyInfo`] structures, defining the second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).
-    /// # Description
-    /// When [`cmd_wait_events2`] is submitted to a queue, it inserts memory
-    /// dependencies according to the elements of [`p_dependency_infos`] and each
-    /// corresponding element of [`p_events`].
-    /// [`cmd_wait_events2`] **must**  not be used to wait on event signal operations
-    /// occurring on other queues, or signal operations executed by
-    /// [`cmd_set_event`].The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-    /// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
-    /// dependency defined by any element i of [`p_dependency_infos`] are
-    /// applied to operations that occurred earlier in
-    /// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the last event
-    /// signal operation on element i of [`p_events`].Signal operations for an event at index i are
+    ///# Description
+    ///When [`cmd_wait_events2`] is submitted to a queue, it inserts memory
+    ///dependencies according to the elements of [`p_dependency_infos`] and each
+    ///corresponding element of [`p_events`].
+    ///[`cmd_wait_events2`] **must**  not be used to wait on event signal operations
+    ///occurring on other queues, or signal operations executed by
+    ///[`cmd_set_event`].The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+    ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
+    ///dependency defined by any element i of [`p_dependency_infos`] are
+    ///applied to operations that occurred earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the last event
+    ///signal operation on element i of [`p_events`].Signal operations for an event at index i are
     /// only included if:
     /// - The event was signaled by a [`cmd_set_event2`] command that occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) with a `dependencyInfo` parameter exactly equal to the element of [`p_dependency_infos`] at index i ; or
     /// - The event was created without `VK_EVENT_CREATE_DEVICE_ONLY_BIT`, and the first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) defined by the element of [`p_dependency_infos`] at index i only includes host operations (`VK_PIPELINE_STAGE_2_HOST_BIT`).
-    /// The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
-    /// memory dependency defined by any element i of [`p_dependency_infos`]
-    /// are applied to operations that occurred later in
-    /// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than
-    /// [`cmd_wait_events2`].
-    /// ## Valid Usage
+    ///The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
+    ///memory dependency defined by any element i of [`p_dependency_infos`]
+    ///are applied to operations that occurred later in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than
+    ///[`cmd_wait_events2`].
+    ///## Valid Usage
     /// - The [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2)
     ///   feature  **must**  be enabled
     /// - Members of [`p_events`] **must**  not have been signaled by [`cmd_set_event`]
@@ -30255,7 +30260,7 @@ impl CommandBuffer {
     ///   be called inside a render pass instance
     /// - [`command_buffer`]’s current device mask  **must**  include exactly one physical device
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_events`] **must**  be a valid pointer to an array of [`event_count`] valid [`Event`]
     ///   handles
@@ -30268,26 +30273,26 @@ impl CommandBuffer {
     /// - Both of [`command_buffer`], and the elements of [`p_events`] **must**  have been created,
     ///   allocated, or retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`DependencyInfo`]
     /// - [`Event`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdWaitEvents2")]
     #[doc(alias = "vkCmdWaitEvents2KHR")]
@@ -30352,32 +30357,32 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkDependencyInfo*                     pDependencyInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_synchronization2
     ///void vkCmdPipelineBarrier2KHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkDependencyInfo*                     pDependencyInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`p_dependency_info`] is a pointer to a [`DependencyInfo`] structure defining the scopes
     ///   of this operation.
-    /// # Description
-    /// When [`cmd_pipeline_barrier2`] is submitted to a queue, it defines memory
-    /// dependencies between commands that were submitted before it, and those
-    /// submitted after it.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
-    /// [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
-    /// dependency defined by [`p_dependency_info`] are applied to operations that
-    /// occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
-    /// memory dependency defined by [`p_dependency_info`] are applied to operations
-    /// that occurred later in [submission
-    /// order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).If [`cmd_pipeline_barrier2`] is recorded within a render pass instance,
-    /// the synchronization scopes are
-    /// [limited to
-    /// operations within the same subpass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-barriers-subpass-self-dependencies).
-    /// ## Valid Usage
+    ///# Description
+    ///When [`cmd_pipeline_barrier2`] is submitted to a queue, it defines memory
+    ///dependencies between commands that were submitted before it, and those
+    ///submitted after it.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) and
+    ///[access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each memory
+    ///dependency defined by [`p_dependency_info`] are applied to operations that
+    ///occurred earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///and [access scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-access-scopes) of each
+    ///memory dependency defined by [`p_dependency_info`] are applied to operations
+    ///that occurred later in [submission
+    ///order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).If [`cmd_pipeline_barrier2`] is recorded within a render pass instance,
+    ///the synchronization scopes are
+    ///[limited to
+    ///operations within the same subpass](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-barriers-subpass-self-dependencies).
+    ///## Valid Usage
     /// - If [`cmd_pipeline_barrier2`] is called within a render pass instance, the render pass
     ///   **must**  have been created with at least one [`SubpassDependency`] instance in
     ///   [`RenderPassCreateInfo::dependencies`] that expresses a dependency from the current
@@ -30410,32 +30415,32 @@ impl CommandBuffer {
     ///   **must**  only include pipeline stages valid for the queue family that was used to create
     ///   the command pool that [`command_buffer`] was allocated from
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_dependency_info`] **must**  be a valid pointer to a valid [`DependencyInfo`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   transfer, graphics, or compute operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`DependencyInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdPipelineBarrier2")]
     #[doc(alias = "vkCmdPipelineBarrier2KHR")]
@@ -30495,8 +30500,8 @@ impl CommandBuffer {
     ///    VkQueryPool                                 queryPool,
     ///    uint32_t                                    query);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_synchronization2
     ///void vkCmdWriteTimestamp2KHR(
     ///    VkCommandBuffer                             commandBuffer,
@@ -30504,30 +30509,30 @@ impl CommandBuffer {
     ///    VkQueryPool                                 queryPool,
     ///    uint32_t                                    query);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`stage`] specifies a stage of the pipeline.
     /// - [`query_pool`] is the query pool that will manage the timestamp.
     /// - [`query`] is the query within the query pool that will contain the timestamp.
-    /// # Description
-    /// When [`cmd_write_timestamp2`] is submitted to a queue, it defines an
-    /// execution dependency on commands that were submitted before it, and writes a
-    /// timestamp to a query pool.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// includes all commands that occur earlier in
-    /// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-    /// The synchronization scope is limited to operations on the pipeline stage
-    /// specified by [`stage`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
-    /// includes only the timestamp write operation.When the timestamp value is written, the
+    ///# Description
+    ///When [`cmd_write_timestamp2`] is submitted to a queue, it defines an
+    ///execution dependency on commands that were submitted before it, and writes a
+    ///timestamp to a query pool.The first [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes all commands that occur earlier in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///The synchronization scope is limited to operations on the pipeline stage
+    ///specified by [`stage`].The second [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes)
+    ///includes only the timestamp write operation.When the timestamp value is written, the
     /// availability status of the query is
-    /// set to available.Comparisons between timestamps are not meaningful if the timestamps are
-    /// written by commands submitted to different queues.If [`cmd_write_timestamp2`] is called
+    ///set to available.Comparisons between timestamps are not meaningful if the timestamps are
+    ///written by commands submitted to different queues.If [`cmd_write_timestamp2`] is called
     /// while executing a render pass
-    /// instance that has multiview enabled, the timestamp uses N consecutive
-    /// query indices in the query pool (starting at [`query`]) where N is
-    /// the number of bits set in the view mask of the subpass the command is
-    /// executed in.
-    /// The resulting query values are determined by an implementation-dependent
-    /// choice of one of the following behaviors:
+    ///instance that has multiview enabled, the timestamp uses N consecutive
+    ///query indices in the query pool (starting at [`query`]) where N is
+    ///the number of bits set in the view mask of the subpass the command is
+    ///executed in.
+    ///The resulting query values are determined by an implementation-dependent
+    ///choice of one of the following behaviors:
     /// - The first query is a timestamp value and (if more than one bit is set in the view mask)
     ///   zero is written to the remaining queries. If two timestamps are written in the same
     ///   subpass, the sum of the execution time of all views between those commands is the
@@ -30536,9 +30541,9 @@ impl CommandBuffer {
     ///   sum of the execution time of all views between those commands is the sum of the difference
     ///   between corresponding queries written by each command. The difference between
     ///   corresponding queries  **may**  be the execution time of a single view.
-    /// In either case, the application  **can**  sum the differences between all N
-    /// queries to determine the total execution time.
-    /// ## Valid Usage
+    ///In either case, the application  **can**  sum the differences between all N
+    ///queries to determine the total execution time.
+    ///## Valid Usage
     /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
     ///   feature is not enabled, [`stage`] **must**  not contain
     ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -30584,7 +30589,7 @@ impl CommandBuffer {
     ///   and the number of bits set in the current subpass’s view mask  **must**  be less than or
     ///   equal to the number of queries in [`query_pool`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`stage`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
     /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
@@ -30594,26 +30599,26 @@ impl CommandBuffer {
     /// - Both of [`command_buffer`], and [`query_pool`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`PipelineStageFlags2`]
     /// - [`QueryPool`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdWriteTimestamp2")]
     #[doc(alias = "vkCmdWriteTimestamp2KHR")]
@@ -30673,29 +30678,29 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkRenderingInfo*                      pRenderingInfo);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_dynamic_rendering
     ///void vkCmdBeginRenderingKHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkRenderingInfo*                      pRenderingInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer in which to record the command.
     /// - [`p_rendering_info`] is a pointer to a [`RenderingInfo`] structure specifying details of
     ///   the render pass instance to begin.
-    /// # Description
-    /// After beginning a render pass instance, the command buffer is ready to
-    /// record [draw commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing).If `pRenderingInfo->flags` includes `VK_RENDERING_RESUMING_BIT` then
-    /// this render pass is resumed from a render pass instance that has been
-    /// suspended earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-    /// ## Valid Usage
+    ///# Description
+    ///After beginning a render pass instance, the command buffer is ready to
+    ///record [draw commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing).If `pRenderingInfo->flags` includes `VK_RENDERING_RESUMING_BIT` then
+    ///this render pass is resumed from a render pass instance that has been
+    ///suspended earlier in [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///## Valid Usage
     /// - The [`dynamicRendering`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-dynamicRendering)
     ///   feature  **must**  be enabled
     /// - If [`command_buffer`] is a secondary command buffer, `pRenderingInfo->flags` **must**  not
     ///   include `VK_RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_rendering_info`] **must**  be a valid pointer to a valid [`RenderingInfo`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -30703,25 +30708,25 @@ impl CommandBuffer {
     ///   operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_dynamic_rendering`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`RenderingInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBeginRendering")]
     #[doc(alias = "vkCmdBeginRenderingKHR")]
@@ -30775,48 +30780,48 @@ impl CommandBuffer {
     ///void vkCmdEndRendering(
     ///    VkCommandBuffer                             commandBuffer);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_dynamic_rendering
     ///void vkCmdEndRenderingKHR(
     ///    VkCommandBuffer                             commandBuffer);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer in which to record the command.
-    /// # Description
-    /// If the value of `pRenderingInfo->flags` used to begin this render pass
-    /// instance included `VK_RENDERING_SUSPENDING_BIT`, then this render pass
-    /// is suspended and will be resumed later in
-    /// [submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
-    /// ## Valid Usage
+    ///# Description
+    ///If the value of `pRenderingInfo->flags` used to begin this render pass
+    ///instance included `VK_RENDERING_SUSPENDING_BIT`, then this render pass
+    ///is suspended and will be resumed later in
+    ///[submission order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order).
+    ///## Valid Usage
     /// - The current render pass instance  **must**  have been begun with [`cmd_begin_rendering`]
     /// - The current render pass instance  **must**  have been begun in [`command_buffer`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     /// - This command  **must**  only be called inside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`VK_KHR_dynamic_rendering`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdEndRendering")]
     #[doc(alias = "vkCmdEndRenderingKHR")]
@@ -30868,12 +30873,12 @@ impl CommandBuffer {
 ///// Provided by VK_VERSION_1_3
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkPrivateDataSlot)
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_EXT_private_data
 ///typedef VkPrivateDataSlot VkPrivateDataSlotEXT;
 ///```
-/// # Related
+///# Related
 /// - [`VK_EXT_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`create_private_data_slot`]
@@ -30885,13 +30890,13 @@ impl CommandBuffer {
 /// - [`set_private_data`]
 /// - [`set_private_data_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPrivateDataSlot")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]
@@ -30923,13 +30928,13 @@ impl Handle for PrivateDataSlot {
     type Parent = Unique<Device>;
     type VTable = ();
     type Metadata = AtomicBool;
-    type Raw = u64;
+    type Storage = u64;
     #[inline]
-    fn as_raw(self) -> Self::Raw {
+    fn as_stored(self) -> Self::Storage {
         self.0
     }
     #[inline]
-    unsafe fn from_raw(this: Self::Raw) -> Self {
+    unsafe fn from_stored(this: Self::Storage) -> Self {
         Self(this)
     }
     #[inline]

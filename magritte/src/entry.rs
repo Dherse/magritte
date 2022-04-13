@@ -5,6 +5,8 @@
 
 use std::{any::Any, ffi::CStr, sync::Arc};
 
+use atomic::Atomic;
+
 use crate::{
     vulkan1_0::{
         AllocationCallbacks, ExtensionProperties, FNCreateInstance, FNEnumerateInstanceExtensionProperties,
@@ -50,7 +52,7 @@ impl Entry {
                 .unwrap_or_else(std::ptr::null),
             &mut instance,
         ) {
-            VulkanResultCodes::SUCCESS => Ok(Unique::new(self, instance, extensions)),
+            VulkanResultCodes::SUCCESS => Ok(Unique::new(self, instance, Atomic::new(extensions))),
             other => Err(other),
         }
     }

@@ -466,7 +466,7 @@ impl<'a> SymbolName<'a> for CommandAlias<'a> {
     }
 }
 
-bitflags::beflags! {
+bitflags::bitflags! {
     /// In which context can a command be used
     pub struct RenderpassFlags: u32 {
         /// Inside of a render pass
@@ -480,7 +480,7 @@ bitflags::beflags! {
     }
 }
 
-bitflags::beflags! {
+bitflags::bitflags! {
     /// What buffer level can a command be used on
     pub struct BufferLevelFlags: u32 {
         /// From a primary level buffer only
@@ -494,7 +494,7 @@ bitflags::beflags! {
     }
 }
 
-bitflags::beflags! {
+bitflags::bitflags! {
     /// What queue can this command be submitted into
     pub struct QueueFlags: u32 {
         /// A graphics queue

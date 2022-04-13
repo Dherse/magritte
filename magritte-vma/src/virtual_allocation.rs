@@ -1,4 +1,4 @@
-use magritte::{Unique, Handle};
+use magritte::{Handle, Unique};
 
 use crate::allocator::VmaAllocator;
 
@@ -32,19 +32,18 @@ impl Handle for VmaVirtualAllocation {
     type Parent = Unique<VmaAllocator>;
     type VTable = ();
     type Metadata = ();
-    type Raw = u64;
+    type Storage = u64;
     #[inline]
-    fn as_raw(self) -> Self::Raw {
+    fn as_stored(self) -> Self::Storage {
         self.0
     }
     #[inline]
-    unsafe fn from_raw(this: Self::Raw) -> Self {
+    unsafe fn from_stored(this: Self::Storage) -> Self {
         Self(this)
     }
     #[inline]
     #[track_caller]
-    unsafe fn destroy(self: &mut Unique<Self>) {
-    }
+    unsafe fn destroy(self: &mut Unique<Self>) {}
     #[inline]
     unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {}
 }

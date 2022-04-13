@@ -141,8 +141,10 @@ impl<'a> Handle<'a> {
         };
 
         let metadata = if self.name() == "Instance" {
+            imports.push("atomic::Atomic");
             imports.push("crate::extensions::Extensions");
-            quote! { Extensions }
+            imports.push("std::sync::atomic::Ordering");
+            quote! { Atomic<Extensions> }
         } else {
             imports.push("std::sync::atomic::AtomicBool");
             quote! { AtomicBool }
@@ -158,8 +160,8 @@ impl<'a> Handle<'a> {
             };
 
             let extensions = match self.name() {
-                "Device" => quote! { parent.instance().metadata() },
-                "Instance" => quote! { metadata },
+                "Device" => quote! { &parent.instance().metadata().load(Ordering::Acquire) },
+                "Instance" => quote! { &metadata.load(Ordering::Acquire) },
                 _ => unreachable!(),
             };
 
@@ -305,6 +307,14 @@ impl<'a> Handle<'a> {
             });
         }
 
+        let instance_ext_fn = (self.name() == "Instance").then(|| {
+            quote! {
+                pub fn update_extensions(&self, extensions: Extensions) {
+                    self.metadata().store(extensions, Ordering::Relaxed);
+                }
+            }
+        });
+
         quote_each_token! {
             out
 
@@ -347,15 +357,15 @@ impl<'a> Handle<'a> {
 
                 type Metadata = #metadata;
 
-                type Raw = #ty;
+                type Storage = #ty;
 
                 #[inline]
-                fn as_raw(self) -> Self::Raw {
+                fn as_stored(self) -> Self::Storage {
                     self.0
                 }
 
                 #[inline]
-                unsafe fn from_raw(this: Self::Raw) -> Self {
+                unsafe fn from_stored(this: Self::Storage) -> Self {
                     Self(this)
                 }
 
@@ -373,6 +383,8 @@ impl<'a> Handle<'a> {
 
             impl Unique<#name> {
                 #(#ancestors)*
+
+                #instance_ext_fn
             }
         }
     }

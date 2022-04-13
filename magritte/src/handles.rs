@@ -148,8 +148,8 @@ pub trait Handle: Clone {
     /// The metadata of this handle
     type Metadata: Send + Sync;
 
-    /// The raw contained type
-    type Raw;
+    /// The contained type
+    type Storage;
 
     /// Destroy tha handle, only called on `drop`
     /// The function is unsafe because it cannot be proven
@@ -157,18 +157,18 @@ pub trait Handle: Clone {
     unsafe fn destroy(self: &mut Unique<Self>);
 
     #[doc(hidden)]
-    fn as_raw(self) -> Self::Raw;
+    fn as_stored(self) -> Self::Storage;
 
     #[doc(hidden)]
-    unsafe fn from_raw(this: Self::Raw) -> Self;
+    unsafe fn from_stored(this: Self::Storage) -> Self;
 
     /// Loads the V-Table of this handle.
     unsafe fn load_vtable(&self, parent: &Self::Parent, metadata: &Self::Metadata) -> Self::VTable;
 
     #[inline]
     #[doc(hidden)]
-    unsafe fn coerce<T: Handle<Raw = Self::Raw>>(self) -> T {
-        T::from_raw(self.as_raw())
+    unsafe fn coerce<T: Handle<Storage = Self::Storage>>(self) -> T {
+        T::from_stored(self.as_stored())
     }
 }
 
@@ -179,7 +179,7 @@ impl Handle for () {
 
     type Metadata = ();
 
-    type Raw = ();
+    type Storage = ();
 
     #[inline]
     unsafe fn destroy(self: &mut Unique<Self>) {}
@@ -189,11 +189,11 @@ impl Handle for () {
         ()
     }
 
-    fn as_raw(self) -> Self::Raw {
+    fn as_stored(self) -> Self::Storage {
         ()
     }
 
-    unsafe fn from_raw(_: Self::Raw) -> Self {
+    unsafe fn from_stored(_: Self::Storage) -> Self {
         ()
     }
 }
@@ -205,7 +205,7 @@ impl Handle for Arc<Entry> {
 
     type Metadata = ();
 
-    type Raw = ();
+    type Storage = ();
 
     #[inline]
     unsafe fn destroy(self: &mut Unique<Self>) {}
@@ -215,11 +215,11 @@ impl Handle for Arc<Entry> {
         self.0
     }
 
-    fn as_raw(self) -> Self::Raw {
+    fn as_stored(self) -> Self::Storage {
         ()
     }
 
-    unsafe fn from_raw(_: Self::Raw) -> Self {
+    unsafe fn from_stored(_: Self::Storage) -> Self {
         unimplemented!();
     }
 }

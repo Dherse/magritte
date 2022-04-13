@@ -1,5 +1,3 @@
-
-
 bitflags::bitflags! {
     #[repr(transparent)]
     pub struct VmaAllocatorCreateFlags: u32 {
@@ -12,7 +10,6 @@ bitflags::bitflags! {
         const EXT_MEMORY_PRIORITY = 0x00000040;
     }
 }
-
 
 bitflags::bitflags! {
     #[repr(transparent)]

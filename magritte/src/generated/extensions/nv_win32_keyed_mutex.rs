@@ -79,7 +79,7 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    const uint64_t*          pReleaseKeys;
 ///} VkWin32KeyedMutexAcquireReleaseInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`acquire_count`] is the number of entries in the [`acquire_syncs`], [`acquire_keys`], and
 ///   [`acquire_timeout_milliseconds`] arrays.
 /// - [`acquire_syncs`] is a pointer to an array of [`DeviceMemory`] objects which were imported
@@ -96,8 +96,8 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`release_keys`] is a pointer to an array of mutex key values to set when the submitted work
 ///   has completed. Entries refer to the keyed mutex associated with the corresponding entries in
 ///   [`release_syncs`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV`
 /// - If [`acquire_count`] is not `0`, [`acquire_syncs`] **must**  be a valid pointer to an array of
 ///   [`acquire_count`] valid [`DeviceMemory`] handles
@@ -112,18 +112,18 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - Both of the elements of [`acquire_syncs`], and the elements of [`release_syncs`] that are
 ///   valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`VK_NV_win32_keyed_mutex`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWin32KeyedMutexAcquireReleaseInfoNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

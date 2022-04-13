@@ -2,8 +2,8 @@ use std::env;
 
 use cc::Build;
 
-extern crate cc;
 extern crate bindgen;
+extern crate cc;
 
 // This code is heavily based off of the vk-mem-rs one.
 fn main() {
@@ -102,8 +102,6 @@ fn main() {
     build.compile("vma");
 
     generate_bindings("bindings.rs")
-
-    
 }
 
 fn generate_bindings(output_file: &str) {

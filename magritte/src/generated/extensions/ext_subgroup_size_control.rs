@@ -31,47 +31,49 @@
 //! class="base"><span style="height:0.43056em;vertical-align:0em;" class="strut"></span><span
 //! class="mord mathdefault">s</span><span class="mspace"
 //! style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
-//! class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span
-//! style="height:0.8888799999999999em;vertical-align:-0.19444em;" class="strut"></span><span
-//! class="mord"><span style="margin-right:0.13889em;" class="mord mathdefault">W</span><span
-//! class="mord mathdefault">o</span><span class="mord mathdefault"
-//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault"
-//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault">G</span><span
-//! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span class="mord
-//! mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord
-//! mathdefault">p</span><span style="margin-right:0.05764em;" class="mord
-//! mathdefault">S</span><span class="mord mathdefault">i</span><span
-//! style="margin-right:0.04398em;" class="mord mathdefault">z</span><span class="mord
-//! mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault">x</span><span
+//! style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
+//! class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+//! class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span
+//! class="mord mathdefault">o</span><span style="margin-right:0.02778em;" class="mord
+//! mathdefault">r</span><span style="margin-right:0.03148em;" class="mord
+//! mathdefault">k</span><span class="mord mathdefault">G</span><span class="mord mathdefault"
+//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
+//! mathdefault">u</span><span class="mord mathdefault">p</span><span
+//! style="margin-right:0.05764em;" class="mord mathdefault">S</span><span class="mord
+//! mathdefault">i</span><span class="mord mathdefault"
+//! style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span
+//! class="mord">.</span><span class="mord mathdefault">x</span><span
 //! style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 //! class="mbin">×</span><span class="mspace"
-//! style="margin-right:0.2222222222222222em;"></span><span style="margin-right:0.13889em;"
-//! class="mord mathdefault">W</span><span class="mord mathdefault">o</span><span
-//! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span class="mord mathdefault"
-//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault">G</span><span class="mord
-//! mathdefault" style="margin-right:0.02778em;">r</span><span class="mord
+//! style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault"
+//! style="margin-right:0.13889em;">W</span><span class="mord mathdefault">o</span><span class="mord
+//! mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault"
+//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault">G</span><span
+//! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span class="mord
 //! mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord
 //! mathdefault">p</span><span class="mord mathdefault"
 //! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span class="mord
 //! mathdefault" style="margin-right:0.04398em;">z</span><span class="mord
-//! mathdefault">e</span><span class="mord">.</span><span style="margin-right:0.03588em;"
-//! class="mord mathdefault">y</span><span style="margin-right:0.2222222222222222em;"
-//! class="mspace"></span><span class="mbin">×</span><span
-//! style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault"
-//! style="margin-right:0.13889em;">W</span><span class="mord mathdefault">o</span><span class="mord
-//! mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault"
-//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">g</span><span class="mord mathdefault"
-//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
-//! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault"
-//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span class="mord
-//! mathdefault" style="margin-right:0.04398em;">z</span><span class="mord
 //! mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault"
-//! style="margin-right:0.04398em;">z</span><span style="margin-right:0.2777777777777778em;"
-//! class="mspace"></span><span class="mrel">≤</span><span
-//! style="margin-right:0.2777777777777778em;" class="mspace"></span><span
+//! style="margin-right:0.03588em;">y</span><span class="mspace"
+//! style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+//! style="margin-right:0.2222222222222222em;" class="mspace"></span><span
+//! style="margin-right:0.13889em;" class="mord mathdefault">W</span><span class="mord
+//! mathdefault">o</span><span style="margin-right:0.02778em;" class="mord
+//! mathdefault">r</span><span style="margin-right:0.03148em;" class="mord
+//! mathdefault">k</span><span style="margin-right:0.03588em;" class="mord
+//! mathdefault">g</span><span class="mord mathdefault"
+//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
+//! mathdefault">u</span><span class="mord mathdefault">p</span><span
 //! style="margin-right:0.05764em;" class="mord mathdefault">S</span><span class="mord
-//! mathdefault">u</span><span class="mord mathdefault">b</span><span class="mord mathdefault"
+//! mathdefault">i</span><span class="mord mathdefault"
+//! style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span
+//! class="mord">.</span><span class="mord mathdefault"
+//! style="margin-right:0.04398em;">z</span><span class="mspace"
+//! style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span
+//! style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault"
+//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">u</span><span class="mord
+//! mathdefault">b</span><span class="mord mathdefault"
 //! style="margin-right:0.03588em;">g</span><span style="margin-right:0.02778em;" class="mord
 //! mathdefault">r</span><span class="mord mathdefault">o</span><span class="mord
 //! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault"
@@ -85,17 +87,18 @@
 //! mathdefault">C</span><span class="mord mathdefault">o</span><span class="mord
 //! mathdefault">m</span><span class="mord mathdefault">p</span><span class="mord
 //! mathdefault">u</span><span class="mord mathdefault">t</span><span class="mord
-//! mathdefault">e</span><span class="mord mathdefault"
-//! style="margin-right:0.13889em;">W</span><span class="mord mathdefault">o</span><span
+//! mathdefault">e</span><span style="margin-right:0.13889em;" class="mord
+//! mathdefault">W</span><span class="mord mathdefault">o</span><span
 //! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span
-//! style="margin-right:0.03148em;" class="mord mathdefault">k</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">g</span><span style="margin-right:0.02778em;" class="mord
-//! mathdefault">r</span><span class="mord mathdefault">o</span><span class="mord
-//! mathdefault">u</span><span class="mord mathdefault">p</span><span
-//! style="margin-right:0.05764em;" class="mord mathdefault">S</span><span class="mord
-//! mathdefault">u</span><span class="mord mathdefault">b</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">g</span><span style="margin-right:0.02778em;" class="mord
-//! mathdefault">r</span><span class="mord mathdefault">o</span><span class="mord
+//! style="margin-right:0.03148em;" class="mord mathdefault">k</span><span
+//! style="margin-right:0.03588em;" class="mord mathdefault">g</span><span
+//! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span class="mord
+//! mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord
+//! mathdefault">p</span><span class="mord mathdefault"
+//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">u</span><span class="mord
+//! mathdefault">b</span><span style="margin-right:0.03588em;" class="mord
+//! mathdefault">g</span><span class="mord mathdefault"
+//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
 //! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord
 //! mathdefault">s</span></span></span></span></span>Developers can also specify a new pipeline
 //! shader stage create flag that

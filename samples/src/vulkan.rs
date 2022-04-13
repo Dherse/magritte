@@ -1,4 +1,9 @@
-use std::{error::Error, io::ErrorKind, sync::Arc};
+use std::{
+    error::Error,
+    ffi::CStr,
+    io::ErrorKind,
+    sync::{atomic::Ordering, Arc},
+};
 
 use log::{debug, error, info, trace, Level};
 use magritte::{
@@ -14,6 +19,7 @@ use magritte::{
     window::{create_surface, enable_required_extensions},
     AsRaw, Extensions, Unique, Version,
 };
+use magritte_vma::VmaAllocator;
 use winit::window::Window;
 
 use crate::AsCStr;
@@ -34,6 +40,9 @@ pub struct Vulkan {
 
     /// The "connected" physical device
     pub device: Unique<Device>,
+
+    /// The allocator
+    pub allocator: Unique<VmaAllocator>,
 
     /// The graphics queue we will render on
     pub graphics_queue: Unique<Queue>,
@@ -237,6 +246,15 @@ impl Vulkan {
             Version(properties.driver_version())
         );
 
+        // Here we fetch the supported extensions that will be used to allocate memory
+        // in a easier and more performant way using the Vulkan Memory Allocator.
+        // Note that both the use of VMA and raw Vulkan allocations are covered in this
+        // sample.
+        VmaAllocator::enable_extensions(&physical_device, &mut extensions)?;
+
+        // We update the list of extensions storage in the instance
+        instance.update_extensions(extensions);
+
         // We need to tell Vulkan that we want a queue from a certain family.
         // We got the family from the previous step. We will get one queue with max priority (1.0)
         let queue_info = DeviceQueueCreateInfo::default()
@@ -268,10 +286,15 @@ impl Vulkan {
         // We can therefore get the queue out of the device.
         // Queues are very sensitive to synchronization, Magritte currently doesn't handle synchronization
         // automatically, be careful of this! Always read the documentation before dealing with queues.
-        // Once you know the basics of queues, it will be allright!
+        // Once you know the basics of queues, it will be alright!
         let graphics_queue = unsafe { device.get_device_queue(Some(queue_family_index), Some(0)) };
 
         info!("We have obtained the graphics queue: {:?}", graphics_queue.as_raw());
+
+        // We create the allocator:
+        let allocator = VmaAllocator::new(&device, None, None)?;
+
+        info!("Created the VMA allocator instance: {:?}", allocator.as_raw());
 
         // Fewww... after all of this work, we have the basic graphic elements of a Vulkan-backed
         // game/application!
@@ -282,6 +305,7 @@ impl Vulkan {
                 debug_utils,
                 physical_device,
                 device,
+                allocator,
                 graphics_queue,
                 queue_family_index,
             },

@@ -2,34 +2,51 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-use std::{ffi::{c_void}, os::raw::c_char};
+use std::{ffi::c_void, os::raw::c_char};
 
 use magritte::{
+    core::{MAX_MEMORY_HEAPS, MAX_MEMORY_TYPES},
     vulkan1_0::{
-        DeviceMemory, DeviceSize, DeviceVTable, FNAllocateMemory, FNBindBufferMemory, FNBindImageMemory,
-        FNCmdCopyBuffer, FNCreateBuffer, FNCreateImage, FNDestroyBuffer, FNDestroyImage, FNFlushMappedMemoryRanges,
-        FNFreeMemory, FNGetBufferMemoryRequirements, FNGetImageMemoryRequirements, FNGetPhysicalDeviceMemoryProperties,
-        FNGetPhysicalDeviceProperties, FNInvalidateMappedMemoryRanges, FNMapMemory, FNUnmapMemory, InstanceVTable, 
-        PhysicalDevice, Device, Instance, MemoryPropertyFlags, VulkanResultCodes, PhysicalDeviceProperties,
-        BufferCreateInfo, ImageCreateInfo, MemoryRequirements, Buffer, Image, Bool32, PhysicalDeviceMemoryProperties, 
+        Bool32, Buffer, BufferCreateInfo, Device, DeviceMemory, DeviceSize, DeviceVTable, FNAllocateMemory,
+        FNBindBufferMemory, FNBindImageMemory, FNCmdCopyBuffer, FNCreateBuffer, FNCreateImage, FNDestroyBuffer,
+        FNDestroyImage, FNFlushMappedMemoryRanges, FNFreeMemory, FNGetBufferMemoryRequirements, FNGetDeviceProcAddr,
+        FNGetImageMemoryRequirements, FNGetInstanceProcAddr, FNGetPhysicalDeviceMemoryProperties,
+        FNGetPhysicalDeviceProperties, FNInvalidateMappedMemoryRanges, FNMapMemory, FNUnmapMemory, Image,
+        ImageCreateInfo, Instance, InstanceVTable, MemoryPropertyFlags, MemoryRequirements, PhysicalDevice,
+        PhysicalDeviceMemoryProperties, PhysicalDeviceProperties, VulkanResultCodes,
     },
     vulkan1_1::{
+        ExternalMemoryHandleTypeFlags, ExternalMemoryHandleTypeFlags as ExternalMemoryHandleTypeFlagsKHR,
         FNBindBufferMemory2, FNBindImageMemory2, FNGetBufferMemoryRequirements2, FNGetImageMemoryRequirements2,
-        FNGetPhysicalDeviceMemoryProperties2, ExternalMemoryHandleTypeFlags, ExternalMemoryHandleTypeFlags as ExternalMemoryHandleTypeFlagsKHR,
+        FNGetPhysicalDeviceMemoryProperties2,
     },
-    vulkan1_3::{FNGetDeviceBufferMemoryRequirements, FNGetDeviceImageMemoryRequirements}, core::{MAX_MEMORY_TYPES, MAX_MEMORY_HEAPS}, Unique,
+    vulkan1_3::{FNGetDeviceBufferMemoryRequirements, FNGetDeviceImageMemoryRequirements},
+    Unique,
 };
 
-use crate::{allocator::VmaAllocator, pool::VmaPool, allocation::VmaAllocation, defragmentation_context::VmaDefragmentationContext, virtual_allocation::VmaVirtualAllocation, virtual_block::VmaVirtualBlock, flags::{VmaAllocatorCreateFlags, VmaAllocationCreateFlags, VmaPoolCreateFlags, VmaDefragmentationFlags, VmaVirtualAllocationCreateFlags, VmaVirtualBlockCreateFlags}};
-
-include!("../bindings.rs");
+use crate::{
+    allocation::VmaAllocation,
+    allocator::VmaAllocator,
+    defragmentation_context::VmaDefragmentationContext,
+    flags::{
+        VmaAllocationCreateFlags, VmaAllocatorCreateFlags, VmaDefragmentationFlags, VmaPoolCreateFlags,
+        VmaVirtualAllocationCreateFlags, VmaVirtualBlockCreateFlags,
+    },
+    pool::VmaPool,
+    virtual_allocation::VmaVirtualAllocation,
+    virtual_block::VmaVirtualBlock,
+};
 
 type Result = VulkanResultCodes;
 type AllocationCallbacks = magritte::vulkan1_0::AllocationCallbacks<'static>;
 
+include!("../bindings.rs");
+
 /// All the Vulkan function used by VMA
 #[repr(C)]
 pub struct VmaVulkanFunctions {
+    pub get_instance_proc_addr: FNGetInstanceProcAddr,
+    pub get_device_proc_addr: FNGetDeviceProcAddr,
     pub get_physical_device_properties: FNGetPhysicalDeviceProperties,
     pub get_physical_device_memory_properties: FNGetPhysicalDeviceMemoryProperties,
     pub allocate_memory: FNAllocateMemory,
@@ -59,6 +76,8 @@ pub struct VmaVulkanFunctions {
 impl VmaVulkanFunctions {
     pub fn new(instance: &InstanceVTable, device: &DeviceVTable) -> Self {
         Self {
+            get_instance_proc_addr: None,
+            get_device_proc_addr: instance.vulkan1_0().get_device_proc_addr(),
             get_physical_device_properties: instance.vulkan1_0().get_physical_device_properties(),
             get_physical_device_memory_properties: instance.vulkan1_0().get_physical_device_memory_properties(),
             allocate_memory: device.vulkan1_0().allocate_memory(),
@@ -120,17 +139,17 @@ impl VmaVulkanFunctions {
                 .vulkan1_3()
                 .and_then(|vtable| vtable.get_device_buffer_memory_requirements())
                 .or_else(|| {
-                    return device
+                    device
                         .khr_maintenance4()
-                        .and_then(|vtable| vtable.get_device_buffer_memory_requirements_khr());
+                        .and_then(|vtable| vtable.get_device_buffer_memory_requirements_khr())
                 }),
             get_device_image_memory_requirements: device
                 .vulkan1_3()
                 .and_then(|vtable| vtable.get_device_image_memory_requirements())
                 .or_else(|| {
-                    return device
+                    device
                         .khr_maintenance4()
-                        .and_then(|vtable| vtable.get_device_image_memory_requirements_khr());
+                        .and_then(|vtable| vtable.get_device_image_memory_requirements_khr())
                 }),
         }
     }

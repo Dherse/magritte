@@ -20,6 +20,11 @@ categories = [
 ]
 license-file = '../LICENSE'
 repository = 'https://github.com/Dherse/magritte'
+[dependencies.atomic]
+version = '0.5.1'
+features = []
+optional = false
+
 [dependencies.bytemuck]
 version = '1.9.1'
 features = []
@@ -730,7 +735,10 @@ default = [
     'window',
     'validation',
 ]
-validation = ['log', 'VK_EXT_debug_utils']
+validation = [
+    'log',
+    'VK_EXT_debug_utils',
+]
 window = [
     'raw-window-handle',
     'VK_KHR_surface',
