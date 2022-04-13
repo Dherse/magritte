@@ -10,7 +10,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory_fd`]`
+//! - Requires `[`khr_external_memory_fd`]`
 //!# Contacts
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_external_memory_dma_buf]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
@@ -39,7 +39,7 @@
 //! feature: the ability to
 //!import/export between `dma_buf` and [`DeviceMemory`].
 //!This feature, together with features provided by
-//!`[`VK_KHR_external_memory_fd`]`, is sufficient to bind a [`Buffer`]
+//!`[`khr_external_memory_fd`]`, is sufficient to bind a [`Buffer`]
 //!to `dma_buf`.
 //!# Version History
 //! - Revision 1, 2017-10-10 (Chad Versace)  - Squashed internal revisions

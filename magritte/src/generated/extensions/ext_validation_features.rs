@@ -96,7 +96,7 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   operations between actions (Draw, Copy, Dispatch, Blit) reading or writing the same regions of
 ///   memory. This feature is disabled by default.
 ///# Related
-/// - [`VK_EXT_validation_features`]
+/// - [`ext_validation_features`]
 /// - [`ValidationFeaturesEXT`]
 ///
 ///# Notes and documentation
@@ -239,7 +239,7 @@ impl std::fmt::Display for ValidationFeatureEnableEXT {
 ///   results and every shader will be validated on every application execution. Shader validation
 ///   caching is enabled by default.
 ///# Related
-/// - [`VK_EXT_validation_features`]
+/// - [`ext_validation_features`]
 /// - [`ValidationFeaturesEXT`]
 ///
 ///# Notes and documentation
@@ -396,7 +396,7 @@ impl std::fmt::Display for ValidationFeatureDisableEXT {
 ///   be a valid pointer to an array of [`disabled_validation_feature_count`] valid
 ///   [`ValidationFeatureDisableEXT`] values
 ///# Related
-/// - [`VK_EXT_validation_features`]
+/// - [`ext_validation_features`]
 /// - [`StructureType`]
 /// - [`ValidationFeatureDisableEXT`]
 /// - [`ValidationFeatureEnableEXT`]

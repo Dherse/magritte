@@ -24,7 +24,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_NV_framebuffer_mixed_samples`]`
+//! - Requires `[`nv_framebuffer_mixed_samples`]`
 //!# Contacts
 //! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_coverage_reduction_mode]
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
@@ -128,7 +128,7 @@ pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &'static CStr = crate::cstr
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`nv_coverage_reduction_mode`]
 /// - [`FramebufferMixedSamplesCombinationNV`]
 /// - [`PhysicalDevice`]
 ///
@@ -167,7 +167,7 @@ pub type FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv = Opt
 ///   is covered if the pixel coverage sample with the same [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)i
 ///   is covered; other pixel coverage samples are discarded.
 ///# Related
-/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`nv_coverage_reduction_mode`]
 /// - [`FramebufferMixedSamplesCombinationNV`]
 /// - [`PipelineCoverageReductionStateCreateInfoNV`]
 ///
@@ -253,7 +253,7 @@ impl std::fmt::Display for CoverageReductionModeNV {
 ///typedef VkFlags VkPipelineCoverageReductionStateCreateFlagsNV;
 ///```
 ///# Related
-/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`nv_coverage_reduction_mode`]
 /// - [`PipelineCoverageReductionStateCreateInfoNV`]
 ///
 ///# Notes and documentation
@@ -309,7 +309,7 @@ impl std::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`nv_coverage_reduction_mode`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -448,19 +448,19 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 ///If this structure is not included in the [`p_next`] chain, or if the
 ///extension is not enabled, the default coverage reduction mode is inferred as
 ///follows:
-/// - If the `[`VK_NV_framebuffer_mixed_samples`]` extension is enabled, then it is as if the
+/// - If the `[`nv_framebuffer_mixed_samples`]` extension is enabled, then it is as if the
 ///   [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_MERGE_NV`.
-/// - If the `[`VK_AMD_mixed_attachment_samples`]` extension is enabled, then it is as if the
+/// - If the `[`amd_mixed_attachment_samples`]` extension is enabled, then it is as if the
 ///   [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV`.
-/// - If both `[`VK_NV_framebuffer_mixed_samples`]` and `[`VK_AMD_mixed_attachment_samples`]` are
-///   enabled, then the default coverage reduction mode is implementation-dependent.
+/// - If both `[`nv_framebuffer_mixed_samples`]` and `[`amd_mixed_attachment_samples`]` are enabled,
+///   then the default coverage reduction mode is implementation-dependent.
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
 /// - [`flags`] **must**  be `0`
 /// - [`coverage_reduction_mode`] **must**  be a valid [`CoverageReductionModeNV`] value
 ///# Related
-/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`nv_coverage_reduction_mode`]
 /// - [`CoverageReductionModeNV`]
 /// - [`PipelineCoverageReductionStateCreateFlagsNV`]
 /// - [`StructureType`]
@@ -599,7 +599,7 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_NV_coverage_reduction_mode`]
+/// - [`nv_coverage_reduction_mode`]
 /// - [`CoverageReductionModeNV`]
 /// - [`SampleCountFlagBits`]
 /// - [`SampleCountFlags`]
@@ -795,7 +795,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_NV_coverage_reduction_mode`]
+    /// - [`nv_coverage_reduction_mode`]
     /// - [`FramebufferMixedSamplesCombinationNV`]
     /// - [`PhysicalDevice`]
     ///

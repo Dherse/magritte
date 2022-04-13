@@ -1,13 +1,13 @@
 //![VK_EXT_display_control](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_display_control.html) - device extension
 //!# Description
 //!This extension defines a set of utility functions for use with the
-//!`[`VK_KHR_display`]` and `[`VK_KHR_display_swapchain`]` extensions.
+//!`[`khr_display`]` and `[`khr_display_swapchain`]` extensions.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_display_surface_counter`]`
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`ext_display_surface_counter`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_display_control]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_display_control
@@ -124,7 +124,7 @@ pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`Device`]
 /// - [`DisplayKHR`]
 /// - [`DisplayPowerInfoEXT`]
@@ -176,7 +176,7 @@ pub type FNDisplayPowerControlExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`DeviceEventInfoEXT`]
@@ -235,7 +235,7 @@ pub type FNRegisterDeviceEventExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`DisplayEventInfoEXT`]
@@ -296,7 +296,7 @@ pub type FNRegisterDisplayEventExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`Device`]
 /// - [`SurfaceCounterFlagBitsEXT`]
 /// - [`SwapchainKHR`]
@@ -336,7 +336,7 @@ pub type FNGetSwapchainCounterExt = Option<
 ///   **may**  be the same as [`OFF`].
 /// - [`ON`] specifies that the display is powered on.
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`DisplayPowerInfoEXT`]
 ///
 ///# Notes and documentation
@@ -431,7 +431,7 @@ impl std::fmt::Display for DisplayPowerStateEXT {
 ///   unplugged from the specified device. Applications  **can**  use this notification to determine
 ///   when they need to re-enumerate the available displays on a device.
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`DeviceEventInfoEXT`]
 ///
 ///# Notes and documentation
@@ -515,7 +515,7 @@ impl std::fmt::Display for DeviceEventTypeEXT {
 /// - [`FIRST_PIXEL_OUT`] specifies that the fence is signaled when the first pixel of the next
 ///   display refresh cycle leaves the display engine for the display.
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`DisplayEventInfoEXT`]
 ///
 ///# Notes and documentation
@@ -605,7 +605,7 @@ impl std::fmt::Display for DisplayEventTypeEXT {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`power_state`] **must**  be a valid [`DisplayPowerStateEXT`] value
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`DisplayPowerStateEXT`]
 /// - [`StructureType`]
 /// - [`display_power_control_ext`]
@@ -712,7 +712,7 @@ impl<'lt> DisplayPowerInfoEXT<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`device_event`] **must**  be a valid [`DeviceEventTypeEXT`] value
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`DeviceEventTypeEXT`]
 /// - [`StructureType`]
 /// - [`register_device_event_ext`]
@@ -818,7 +818,7 @@ impl<'lt> DeviceEventInfoEXT<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`display_event`] **must**  be a valid [`DisplayEventTypeEXT`] value
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`DisplayEventTypeEXT`]
 /// - [`StructureType`]
 /// - [`register_display_event_ext`]
@@ -933,7 +933,7 @@ impl<'lt> DisplayEventInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT`
 /// - [`surface_counters`] **must**  be a valid combination of [`SurfaceCounterFlagBitsEXT`] values
 ///# Related
-/// - [`VK_EXT_display_control`]
+/// - [`ext_display_control`]
 /// - [`StructureType`]
 /// - [`SurfaceCounterFlagsEXT`]
 ///
@@ -1050,7 +1050,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_display_control`]
+    /// - [`ext_display_control`]
     /// - [`Device`]
     /// - [`DisplayKHR`]
     /// - [`DisplayPowerInfoEXT`]
@@ -1127,7 +1127,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_display_control`]
+    /// - [`ext_display_control`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`DeviceEventInfoEXT`]
@@ -1216,7 +1216,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_display_control`]
+    /// - [`ext_display_control`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`DisplayEventInfoEXT`]
@@ -1308,7 +1308,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`
     ///# Related
-    /// - [`VK_EXT_display_control`]
+    /// - [`ext_display_control`]
     /// - [`Device`]
     /// - [`SurfaceCounterFlagBitsEXT`]
     /// - [`SwapchainKHR`]

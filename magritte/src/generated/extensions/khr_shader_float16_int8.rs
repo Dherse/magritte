@@ -10,14 +10,14 @@
 //!This extension does not enable use of 8-bit integer types or 16-bit
 //!floating-point types in any [shader input and
 //!output interfaces](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-iointerfaces) and therefore does not supersede the
-//!`[`VK_KHR_8bit_storage`]` or `[`VK_KHR_16bit_storage`]` extensions.
+//!`[`khr_8bit_storage`]` or `[`khr_16bit_storage`]` extensions.
 //!# Revision
 //!1
 //!# Dependencies
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Alexander Galazin [alegal-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_float16_int8]
 //!   @alegal-arm%0A<<Here describe the issue or question you have about the
@@ -34,7 +34,7 @@
 //! - Revision 1, 2018-03-07 (Alexander Galazin)  - Initial draft
 //!# Other info
 //! * 2018-03-07
-//! *   - Promoted to Vulkan 1.2 Core  - This extension interacts with `[`VK_KHR_8bit_storage`]`  - This extension interacts with `[`VK_KHR_16bit_storage`]`  - This extension interacts with `[`VK_KHR_shader_float_controls`]`  - This extension provides API support for [`GL_EXT_shader_explicit_arithmetic_types`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_explicit_arithmetic_types.txt)
+//! *   - Promoted to Vulkan 1.2 Core  - This extension interacts with `[`khr_8bit_storage`]`  - This extension interacts with `[`khr_16bit_storage`]`  - This extension interacts with `[`khr_shader_float_controls`]`  - This extension provides API support for [`GL_EXT_shader_explicit_arithmetic_types`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_explicit_arithmetic_types.txt)
 //! * No known IP claims.
 //! * - Alexander Galazin, Arm  - Jan-Harald Fredriksen, Arm  - Jeff Bolz, NVIDIA  - Graeme Leese,
 //!   Broadcom  - Daniel Rakos, AMD

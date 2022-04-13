@@ -19,8 +19,8 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_FUCHSIA_external_memory`]`
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - Requires `[`fuchsia_external_memory`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //!# Contacts
 //! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_buffer_collection]
 //!   @rosasco%0A<<Here describe the issue or question you have about the
@@ -179,7 +179,7 @@ pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///externally synchronized with the exception of
 ///[`create_buffer_collection_fuchsia`].
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`AllocationCallbacks`]
 /// - [`BufferCollectionCreateInfoFUCHSIA`]
 /// - [`BufferCollectionFUCHSIA`]
@@ -238,7 +238,7 @@ pub type FNCreateBufferCollectionFuchsia = Option<
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`BufferConstraintsInfoFUCHSIA`]
 /// - [`Device`]
@@ -302,7 +302,7 @@ pub type FNSetBufferCollectionBufferConstraintsFuchsia = Option<
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`Device`]
 /// - [`ImageConstraintsInfoFUCHSIA`]
@@ -350,7 +350,7 @@ pub type FNSetBufferCollectionImageConstraintsFuchsia = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`AllocationCallbacks`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`Device`]
@@ -425,7 +425,7 @@ pub type FNDestroyBufferCollectionFuchsia = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`Device`]
@@ -472,7 +472,7 @@ pub type FNGetBufferCollectionPropertiesFuchsia = Option<
 ///specify that protected memory is optional, Sysmem will not allocate
 ///protected memory.
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`ImageConstraintsInfoFlagsFUCHSIA`]
 ///
 ///# Notes and documentation
@@ -570,7 +570,7 @@ impl std::fmt::Display for ImageConstraintsInfoFlagBitsFUCHSIA {
 ///typedef VkFlags VkImageFormatConstraintsFlagsFUCHSIA;
 ///```
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`ImageFormatConstraintsInfoFUCHSIA`]
 ///
 ///# Notes and documentation
@@ -623,7 +623,7 @@ impl std::fmt::Debug for ImageFormatConstraintsFlagsFUCHSIA {
 ///specify that protected memory is optional, Sysmem will not allocate
 ///protected memory.
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`ImageConstraintsInfoFlagsFUCHSIA`]
 ///
 ///# Notes and documentation
@@ -959,7 +959,7 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`StructureType`]
 ///
@@ -1088,7 +1088,7 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA`
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`StructureType`]
 ///
@@ -1218,7 +1218,7 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`
 /// - [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionFUCHSIA`]
 /// - [`StructureType`]
 ///
@@ -1348,7 +1348,7 @@ impl<'lt> BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`StructureType`]
 /// - [`create_buffer_collection_fuchsia`]
 ///
@@ -1513,7 +1513,7 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 /// - [`suggested_x_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 /// - [`suggested_y_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`ChromaLocation`]
 /// - [`ComponentMapping`]
 /// - [`FormatFeatureFlags`]
@@ -1819,7 +1819,7 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 /// - [`buffer_collection_constraints`] **must**  be a valid
 ///   [`BufferCollectionConstraintsInfoFUCHSIA`] structure
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionConstraintsInfoFUCHSIA`]
 /// - [`BufferCreateInfo`]
 /// - [`FormatFeatureFlags`]
@@ -1967,7 +1967,7 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`ImageFormatConstraintsInfoFUCHSIA`]
 /// - [`StructureType`]
@@ -2094,7 +2094,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 ///   [`SysmemColorSpaceFUCHSIA`] structures
 /// - [`color_space_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`FormatFeatureFlags`]
 /// - [`ImageConstraintsInfoFUCHSIA`]
 /// - [`ImageCreateInfo`]
@@ -2348,7 +2348,7 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 /// - [`flags`] **must**  be a valid combination of [`ImageConstraintsInfoFlagBitsFUCHSIA`] values
 /// - [`format_constraints_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionConstraintsInfoFUCHSIA`]
 /// - [`ImageConstraintsInfoFlagsFUCHSIA`]
 /// - [`ImageFormatConstraintsInfoFUCHSIA`]
@@ -2555,7 +2555,7 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferConstraintsInfoFUCHSIA`]
 /// - [`ImageConstraintsInfoFUCHSIA`]
 /// - [`StructureType`]
@@ -2747,7 +2747,7 @@ impl Device {
     ///externally synchronized with the exception of
     ///[`create_buffer_collection_fuchsia`].
     ///# Related
-    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`fuchsia_buffer_collection`]
     /// - [`AllocationCallbacks`]
     /// - [`BufferCollectionCreateInfoFUCHSIA`]
     /// - [`BufferCollectionFUCHSIA`]
@@ -2837,7 +2837,7 @@ impl Device {
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
     ///# Related
-    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`fuchsia_buffer_collection`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`BufferConstraintsInfoFUCHSIA`]
     /// - [`Device`]
@@ -2926,7 +2926,7 @@ impl Device {
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
     ///# Related
-    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`fuchsia_buffer_collection`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`Device`]
     /// - [`ImageConstraintsInfoFUCHSIA`]
@@ -2999,7 +2999,7 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`fuchsia_buffer_collection`]
     /// - [`AllocationCallbacks`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`Device`]
@@ -3099,7 +3099,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_FUCHSIA_buffer_collection`]
+    /// - [`fuchsia_buffer_collection`]
     /// - [`BufferCollectionFUCHSIA`]
     /// - [`BufferCollectionPropertiesFUCHSIA`]
     /// - [`Device`]
@@ -3146,7 +3146,7 @@ impl Device {
 ///[VkBufferCollectionFUCHSIA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionFUCHSIA.html) - Opaque handle to a buffer collection object
 ///# C Specifications
 ///Fuchsia’s FIDL-based Sysmem service interoperates with Vulkan via the
-///`[`VK_FUCHSIA_buffer_collection`]` extension.A buffer collection is a set of one or more buffers
+///`[`fuchsia_buffer_collection`]` extension.A buffer collection is a set of one or more buffers
 /// which were allocated
 ///together as a group and which all have the same properties.
 ///These properties describe the buffers' internal representation, such as its
@@ -3161,7 +3161,7 @@ impl Device {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkBufferCollectionFUCHSIA)
 ///```
 ///# Related
-/// - [`VK_FUCHSIA_buffer_collection`]
+/// - [`fuchsia_buffer_collection`]
 /// - [`BufferCollectionBufferCreateInfoFUCHSIA`]
 /// - [`BufferCollectionImageCreateInfoFUCHSIA`]
 /// - [`ImportMemoryBufferCollectionFUCHSIA`]

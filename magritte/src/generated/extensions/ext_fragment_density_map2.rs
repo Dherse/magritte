@@ -1,14 +1,14 @@
 //![VK_EXT_fragment_density_map2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_fragment_density_map2.html) - device extension
 //!# Description
 //!This extension adds additional features and properties to
-//!`[`VK_EXT_fragment_density_map`]` in order to reduce fragment density map
+//!`[`ext_fragment_density_map`]` in order to reduce fragment density map
 //!host latency as well as improved queries for subsampled sampler
 //!implementation-dependent behavior.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_fragment_density_map`]`
+//! - Requires `[`ext_fragment_density_map`]`
 //!# Contacts
 //! - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_fragment_density_map2]
 //!   @mnetsch%0A<<Here describe the issue or question you have about the
@@ -36,7 +36,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT`
 //!# Version History
 //! - Revision 1, 2020-06-16 (Matthew Netsch)  - Initial version
@@ -99,7 +99,7 @@ pub const EXT_FRAGMENT_DENSITY_MAP_2_EXTENSION_NAME: &'static CStr = crate::cstr
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_fragment_density_map2`]
+/// - [`ext_fragment_density_map2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -256,7 +256,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_fragment_density_map2`]
+/// - [`ext_fragment_density_map2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

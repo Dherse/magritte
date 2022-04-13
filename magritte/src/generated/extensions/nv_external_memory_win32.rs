@@ -11,10 +11,10 @@
 //!# Revision
 //!1
 //!# Dependencies
-//! - *Deprecated* by `[`VK_KHR_external_memory_win32`]` extension
+//! - *Deprecated* by `[`khr_external_memory_win32`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_NV_external_memory`]`
+//! - Requires `[`nv_external_memory`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_win32]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -132,7 +132,7 @@ pub const NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_NV_external_memory_win32`]
+/// - [`nv_external_memory_win32`]
 /// - [`Device`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
@@ -187,7 +187,7 @@ pub type FNGetMemoryWin32HandleNv = Option<
 /// - [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
 ///# Related
-/// - [`VK_NV_external_memory_win32`]
+/// - [`nv_external_memory_win32`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`StructureType`]
 ///
@@ -336,7 +336,7 @@ impl<'lt> ImportMemoryWin32HandleInfoNV<'lt> {
 /// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
-/// - [`VK_NV_external_memory_win32`]
+/// - [`nv_external_memory_win32`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -479,7 +479,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_NV_external_memory_win32`]
+    /// - [`nv_external_memory_win32`]
     /// - [`Device`]
     /// - [`DeviceMemory`]
     /// - [`ExternalMemoryHandleTypeFlagsNV`]

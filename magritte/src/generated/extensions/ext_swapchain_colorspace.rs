@@ -5,7 +5,7 @@
 //!4
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_swapchain_colorspace]
 //!   @courtney-g%0A<<Here describe the issue or question you have about the

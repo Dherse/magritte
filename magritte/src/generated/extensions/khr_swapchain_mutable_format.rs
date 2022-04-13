@@ -10,9 +10,9 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_KHR_maintenance2`]`
-//! - Requires `[`VK_KHR_image_format_list`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`khr_maintenance2`]`
+//! - Requires `[`khr_image_format_list`]`
 //!# Contacts
 //! - Daniel Rakos [drakos-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain_mutable_format]
 //!   @drakos-arm%0A<<Here describe the issue or question you have about the

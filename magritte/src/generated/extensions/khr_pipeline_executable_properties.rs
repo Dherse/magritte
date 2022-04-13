@@ -13,7 +13,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_pipeline_executable_properties]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
@@ -154,7 +154,7 @@ pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static CStr =
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Device`]
 /// - [`PipelineExecutablePropertiesKHR`]
 /// - [`PipelineInfoKHR`]
@@ -232,7 +232,7 @@ pub type FNGetPipelineExecutablePropertiesKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Device`]
 /// - [`PipelineExecutableInfoKHR`]
 /// - [`PipelineExecutableStatisticKHR`]
@@ -316,7 +316,7 @@ pub type FNGetPipelineExecutableStatisticsKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Device`]
 /// - [`PipelineExecutableInfoKHR`]
 /// - [`PipelineExecutableInternalRepresentationKHR`]
@@ -360,7 +360,7 @@ pub type FNGetPipelineExecutableInternalRepresentationsKhr = Option<
 /// - [`FLOAT64`] specifies that the statistic is returned as a 64-bit floating-point value and
 ///   **should**  be read from the `f64` field of [`PipelineExecutableStatisticValueKHR`].
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`PipelineExecutableStatisticKHR`]
 ///
 ///# Notes and documentation
@@ -488,7 +488,7 @@ impl std::fmt::Display for PipelineExecutableStatisticFormatKHR {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -626,7 +626,7 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Pipeline`]
 /// - [`StructureType`]
 /// - [`get_pipeline_executable_properties_khr`]
@@ -751,7 +751,7 @@ impl<'lt> PipelineInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 /// - [`get_pipeline_executable_properties_khr`]
@@ -930,7 +930,7 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`pipeline`] **must**  be a valid [`Pipeline`] handle
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Pipeline`]
 /// - [`StructureType`]
 /// - [`get_pipeline_executable_internal_representations_khr`]
@@ -1063,7 +1063,7 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`PipelineExecutableStatisticFormatKHR`]
 /// - [`PipelineExecutableStatisticValueKHR`]
 /// - [`StructureType`]
@@ -1266,7 +1266,7 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`get_pipeline_executable_internal_representations_khr`]
@@ -1493,7 +1493,7 @@ impl<'lt> PipelineExecutableInternalRepresentationKHR<'lt> {
 /// - [`f64`] is the 64-bit floating-point value if the [`PipelineExecutableStatisticFormatKHR`] is
 ///   `VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR`.
 ///# Related
-/// - [`VK_KHR_pipeline_executable_properties`]
+/// - [`khr_pipeline_executable_properties`]
 /// - [`Bool32`]
 /// - [`PipelineExecutableStatisticKHR`]
 ///
@@ -1581,7 +1581,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_pipeline_executable_properties`]
+    /// - [`khr_pipeline_executable_properties`]
     /// - [`Device`]
     /// - [`PipelineExecutablePropertiesKHR`]
     /// - [`PipelineInfoKHR`]
@@ -1701,7 +1701,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_pipeline_executable_properties`]
+    /// - [`khr_pipeline_executable_properties`]
     /// - [`Device`]
     /// - [`PipelineExecutableInfoKHR`]
     /// - [`PipelineExecutableStatisticKHR`]
@@ -1826,7 +1826,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_pipeline_executable_properties`]
+    /// - [`khr_pipeline_executable_properties`]
     /// - [`Device`]
     /// - [`PipelineExecutableInfoKHR`]
     /// - [`PipelineExecutableInternalRepresentationKHR`]

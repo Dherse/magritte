@@ -6,7 +6,7 @@
 //!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_video_encode_queue`]`
+//! - Requires `[`khr_video_encode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -228,7 +228,7 @@ pub const EXT_VIDEO_ENCODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   frame  **must**  be encoded with the same `slice_type` which corresponds to the picture type
 ///   of the frame. For example, all slices of a P-frame would be encoded as P-slices.
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264CapabilityFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -484,7 +484,7 @@ impl std::fmt::Display for VideoEncodeH264CapabilityFlagBitsEXT {
 ///[`VideoEncodeH264VclFrameInfoEXT::nalu_slice_entries`] or in the
 ///command buffer  **must**  match the placement order of the slices in the frame.
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264InputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -618,7 +618,7 @@ impl std::fmt::Display for VideoEncodeH264InputModeFlagBitsEXT {
 /// - Input: Frame and Non-VCL, Output: Slice and Non-VCL
 /// - Input: Slice and Non-VCL, Output: Slice and Non-VCL
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264OutputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -729,7 +729,7 @@ impl std::fmt::Display for VideoEncodeH264OutputModeFlagBitsEXT {
 ///```c specifies a dyadic reference structure.
 ///```
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlInfoEXT`]
 /// - [`VideoEncodeH264RateControlStructureFlagsEXT`]
 ///
@@ -905,7 +905,7 @@ impl std::fmt::Display for VideoEncodeH264RateControlStructureFlagBitsEXT {
 ///   frame  **must**  be encoded with the same `slice_type` which corresponds to the picture type
 ///   of the frame. For example, all slices of a P-frame would be encoded as P-slices.
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264CapabilityFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -1557,7 +1557,7 @@ impl std::fmt::Debug for VideoEncodeH264CapabilityFlagsEXT {
 ///[`VideoEncodeH264VclFrameInfoEXT::nalu_slice_entries`] or in the
 ///command buffer  **must**  match the placement order of the slices in the frame.
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264InputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -1894,7 +1894,7 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagsEXT {
 /// - Input: Frame and Non-VCL, Output: Slice and Non-VCL
 /// - Input: Slice and Non-VCL, Output: Slice and Non-VCL
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264OutputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -2208,7 +2208,7 @@ impl std::fmt::Debug for VideoEncodeH264OutputModeFlagsEXT {
 ///```c specifies a dyadic reference structure.
 ///```
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlInfoEXT`]
 /// - [`VideoEncodeH264RateControlStructureFlagsEXT`]
 ///
@@ -2570,7 +2570,7 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 ///   [`VideoEncodeH264OutputModeFlagBitsEXT`] values
 /// - [`output_mode_flags`] **must**  not be `0`
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264CapabilityFlagsEXT`]
@@ -2931,7 +2931,7 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264SessionParametersCreateInfoEXT`]
 ///
@@ -3104,7 +3104,7 @@ impl<'lt> VideoEncodeH264SessionParametersAddInfoEXT<'lt> {
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoEncodeH264SessionParametersAddInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264SessionParametersAddInfoEXT`]
 ///
@@ -3269,7 +3269,7 @@ impl<'lt> VideoEncodeH264SessionParametersCreateInfoEXT<'lt> {
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH264ReferenceInfo`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264ReferenceListsEXT`]
 ///
@@ -3412,7 +3412,7 @@ impl<'lt> VideoEncodeH264DpbSlotInfoEXT<'lt> {
 ///   [`StdVideoEncodeH264PictureInfo`] value
 /// - [`nalu_slice_entry_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264NaluSliceEXT`]
 /// - [`VideoEncodeH264ReferenceListsEXT`]
@@ -3633,7 +3633,7 @@ impl<'lt> VideoEncodeH264VclFrameInfoEXT<'lt> {
 /// - [`mem_mgmt_ctrl_operations`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH264RefMemMgmtCtrlOperations`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264DpbSlotInfoEXT`]
 /// - [`VideoEncodeH264NaluSliceEXT`]
@@ -3874,7 +3874,7 @@ impl<'lt> VideoEncodeH264ReferenceListsEXT<'lt> {
 ///   values
 /// - [`pps_id_entry_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -4080,7 +4080,7 @@ impl<'lt> VideoEncodeH264EmitPictureParametersEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_PROFILE_EXT`
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -4205,7 +4205,7 @@ impl<'lt> VideoEncodeH264ProfileEXT<'lt> {
 /// - [`slice_header_std`] **must**  be a valid pointer to a valid [`StdVideoEncodeH264SliceHeader`]
 ///   value
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264ReferenceListsEXT`]
 /// - [`VideoEncodeH264VclFrameInfoEXT`]
@@ -4387,7 +4387,7 @@ impl<'lt> VideoEncodeH264NaluSliceEXT<'lt> {
 /// - [`rate_control_structure`] **must**  be a valid
 ///   [`VideoEncodeH264RateControlStructureFlagBitsEXT`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264RateControlStructureFlagBitsEXT`]
 ///
@@ -4566,7 +4566,7 @@ impl<'lt> VideoEncodeH264RateControlInfoEXT<'lt> {
 /// - [`qp_p`] is the QP to be used for P-frames.
 /// - [`qp_b`] is the QP to be used for B-frames.
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlLayerInfoEXT`]
 ///
 ///# Notes and documentation
@@ -4654,7 +4654,7 @@ impl VideoEncodeH264QpEXT {
 /// - [`frame_p_size`] is the size in bytes to be used for P-frames.
 /// - [`frame_b_size`] is the size in bytes to be used for B-frames.
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlLayerInfoEXT`]
 ///
 ///# Notes and documentation
@@ -4796,7 +4796,7 @@ impl VideoEncodeH264FrameSizeEXT {
 /// - [`max_qp`] **must**  be a valid [`VideoEncodeH264QpEXT`] structure
 /// - [`max_frame_size`] **must**  be a valid [`VideoEncodeH264FrameSizeEXT`] structure
 ///# Related
-/// - [`VK_EXT_video_encode_h264`]
+/// - [`ext_video_encode_h264`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264FrameSizeEXT`]

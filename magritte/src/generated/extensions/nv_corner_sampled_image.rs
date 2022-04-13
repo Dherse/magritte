@@ -22,7 +22,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_corner_sampled_image]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_corner_sampled_image
@@ -105,7 +105,7 @@ pub const NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_corner_sampled_image`]
+/// - [`nv_corner_sampled_image`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

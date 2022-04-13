@@ -70,7 +70,7 @@ pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static CStr =
 ///} VkPipelineCompilerControlFlagBitsAMD;
 ///```
 ///# Related
-/// - [`VK_AMD_pipeline_compiler_control`]
+/// - [`amd_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]
 ///
 ///# Notes and documentation
@@ -150,7 +150,7 @@ impl std::fmt::Display for PipelineCompilerControlFlagBitsAMD {
 ///} VkPipelineCompilerControlFlagBitsAMD;
 ///```
 ///# Related
-/// - [`VK_AMD_pipeline_compiler_control`]
+/// - [`amd_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]
 ///
 ///# Notes and documentation
@@ -422,7 +422,7 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD`
 /// - [`compiler_control_flags`] **must**  be `0`
 ///# Related
-/// - [`VK_AMD_pipeline_compiler_control`]
+/// - [`amd_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]
 /// - [`StructureType`]
 ///

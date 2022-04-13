@@ -44,7 +44,7 @@ fn main() {
     let target = env::var("TARGET").unwrap();
     if target.contains("darwin") {
         build
-            .flag("-std=c++11")
+            .flag("-std=c++14")
             .flag("-Wno-missing-field-initializers")
             .flag("-Wno-unused-variable")
             .flag("-Wno-unused-parameter")
@@ -56,7 +56,7 @@ fn main() {
             .cpp(true);
     } else if target.contains("ios") {
         build
-            .flag("-std=c++11")
+            .flag("-std=c++14")
             .flag("-Wno-missing-field-initializers")
             .flag("-Wno-unused-variable")
             .flag("-Wno-unused-parameter")
@@ -67,7 +67,7 @@ fn main() {
             .cpp(true);
     } else if target.contains("android") {
         build
-            .flag("-std=c++11")
+            .flag("-std=c++14")
             .flag("-Wno-missing-field-initializers")
             .flag("-Wno-unused-variable")
             .flag("-Wno-unused-parameter")
@@ -77,7 +77,7 @@ fn main() {
             .cpp(true);
     } else if target.contains("linux") {
         build
-            .flag("-std=c++11")
+            .flag("-std=c++14")
             .flag("-Wno-missing-field-initializers")
             .flag("-Wno-unused-variable")
             .flag("-Wno-unused-parameter")
@@ -87,7 +87,7 @@ fn main() {
             .cpp(true);
     } else if target.contains("windows") && target.contains("gnu") {
         build
-            .flag("-std=c++11")
+            .flag("-std=c++14")
             .flag("-Wno-missing-field-initializers")
             .flag("-Wno-unused-variable")
             .flag("-Wno-unused-parameter")

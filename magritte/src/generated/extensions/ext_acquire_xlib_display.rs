@@ -11,7 +11,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_direct_mode_display`]`
+//! - Requires `[`ext_direct_mode_display`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_acquire_xlib_display]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -103,7 +103,7 @@ pub const EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_EXT_acquire_xlib_display`]
+/// - [`ext_acquire_xlib_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -155,7 +155,7 @@ pub type FNAcquireXlibDisplayExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_acquire_xlib_display`]
+/// - [`ext_acquire_xlib_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -213,7 +213,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_EXT_acquire_xlib_display`]
+    /// - [`ext_acquire_xlib_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -288,7 +288,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_acquire_xlib_display`]
+    /// - [`ext_acquire_xlib_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///

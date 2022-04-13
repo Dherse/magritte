@@ -1,14 +1,14 @@
 //![VK_KHR_swapchain](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_swapchain.html) - device extension
 //!# Description
 //!The [`VK_KHR_swapchain`] extension is the device-level companion to the
-//!`[`VK_KHR_surface`]` extension.
+//!`[`khr_surface`]` extension.
 //!It introduces [`SwapchainKHR`] objects, which provide the ability to
 //!present rendering results to a surface.
 //!# Revision
 //!70
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_swapchain
@@ -670,7 +670,7 @@ pub const KHR_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_swa
 ///   - `VK_ERROR_SURFACE_LOST_KHR`  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SwapchainCreateInfoKHR`]
@@ -745,7 +745,7 @@ pub type FNCreateSwapchainKhr = Option<
 ///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
@@ -808,7 +808,7 @@ pub type FNDestroySwapchainKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`Device`]
 /// - [`Image`]
 /// - [`SwapchainKHR`]
@@ -891,7 +891,7 @@ pub type FNGetSwapchainImagesKhr = Option<
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`Device`]
 /// - [`Fence`]
 /// - [`Semaphore`]
@@ -994,7 +994,7 @@ pub type FNAcquireNextImageKhr = Option<
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`PresentInfoKHR`]
 /// - [`Queue`]
 ///
@@ -1090,7 +1090,7 @@ pub type FNCreateSwapchainImageView = Option<
 ///   swapchain is created with but are supported for at least one of the allowed image view
 ///   formats.
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`SwapchainCreateFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1215,7 +1215,7 @@ impl std::fmt::Display for SwapchainCreateFlagBitsKHR {
 ///   swapchain is created with but are supported for at least one of the allowed image view
 ///   formats.
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`SwapchainCreateFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1708,7 +1708,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 /// - Both of [`old_swapchain`], and [`surface`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Instance`]
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`Bool32`]
 /// - [`ColorSpaceKHR`]
 /// - [`CompositeAlphaFlagBitsKHR`]
@@ -2201,7 +2201,7 @@ unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> 
 ///   handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from
 ///   the same [`Instance`]
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`VulkanResultCodes`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
@@ -2530,7 +2530,7 @@ impl Device {
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`  - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_swapchain`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SwapchainCreateInfoKHR`]
@@ -2637,7 +2637,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`swapchain`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_swapchain`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
@@ -2724,7 +2724,7 @@ impl SwapchainKHR {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_swapchain`]
     /// - [`Device`]
     /// - [`Image`]
     /// - [`SwapchainKHR`]
@@ -2855,7 +2855,7 @@ impl Device {
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
     ///# Related
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_swapchain`]
     /// - [`Device`]
     /// - [`Fence`]
     /// - [`Semaphore`]
@@ -3077,7 +3077,7 @@ impl Queue {
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
     ///# Related
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_swapchain`]
     /// - [`PresentInfoKHR`]
     /// - [`Queue`]
     ///
@@ -3127,7 +3127,7 @@ impl Queue {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSwapchainKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_swapchain`]
 /// - [`AcquireNextImageInfoKHR`]
 /// - [`BindImageMemorySwapchainInfoKHR`]
 /// - [`ImageSwapchainCreateInfoKHR`]

@@ -33,7 +33,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_sample_locations]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_sample_locations
@@ -130,7 +130,7 @@ pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`p_multisample_properties`] **must**  be a valid pointer to a [`MultisamplePropertiesEXT`]
 ///   structure
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`MultisamplePropertiesEXT`]
 /// - [`PhysicalDevice`]
 /// - [`SampleCountFlagBits`]
@@ -199,7 +199,7 @@ pub type FNGetPhysicalDeviceMultisamplePropertiesExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`CommandBuffer`]
 /// - [`SampleLocationsInfoEXT`]
 ///
@@ -239,7 +239,7 @@ pub type FNCmdSetSampleLocationsExt = Option<
 ///that  **can**  be queried using
 ///[`PhysicalDeviceSampleLocationsPropertiesEXT`].
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`SampleLocationsInfoEXT`]
 ///
 ///# Notes and documentation
@@ -342,7 +342,7 @@ impl SampleLocationEXT {
 /// - If [`sample_locations_count`] is not `0`, [`sample_locations`] **must**  be a valid pointer to
 ///   an array of [`sample_locations_count`][`SampleLocationEXT`] structures
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`AttachmentSampleLocationsEXT`]
 /// - [`Extent2D`]
 /// - [`PipelineSampleLocationsStateCreateInfoEXT`]
@@ -527,7 +527,7 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`RenderPassSampleLocationsBeginInfoEXT`]
 /// - [`SampleLocationsInfoEXT`]
 ///
@@ -625,7 +625,7 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`RenderPassSampleLocationsBeginInfoEXT`]
 /// - [`SampleLocationsInfoEXT`]
 ///
@@ -752,7 +752,7 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 ///   **must**  be a valid pointer to an array of [`post_subpass_sample_locations_count`] valid
 ///   [`SubpassSampleLocationsEXT`] structures
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`AttachmentSampleLocationsEXT`]
 /// - [`StructureType`]
 /// - [`SubpassSampleLocationsEXT`]
@@ -980,7 +980,7 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`
 /// - [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`Bool32`]
 /// - [`SampleLocationsInfoEXT`]
 /// - [`StructureType`]
@@ -1154,7 +1154,7 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`Bool32`]
 /// - [`Extent2D`]
 /// - [`SampleCountFlags`]
@@ -1368,7 +1368,7 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_sample_locations`]
+/// - [`ext_sample_locations`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 /// - [`get_physical_device_multisample_properties_ext`]
@@ -1489,7 +1489,7 @@ impl PhysicalDevice {
     /// - [`p_multisample_properties`] **must**  be a valid pointer to a
     ///   [`MultisamplePropertiesEXT`] structure
     ///# Related
-    /// - [`VK_EXT_sample_locations`]
+    /// - [`ext_sample_locations`]
     /// - [`MultisamplePropertiesEXT`]
     /// - [`PhysicalDevice`]
     /// - [`SampleCountFlagBits`]
@@ -1582,7 +1582,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_sample_locations`]
+    /// - [`ext_sample_locations`]
     /// - [`CommandBuffer`]
     /// - [`SampleLocationsInfoEXT`]
     ///

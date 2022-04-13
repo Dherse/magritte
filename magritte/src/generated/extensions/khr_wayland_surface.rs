@@ -2,14 +2,14 @@
 //!# Description
 //!The [`VK_KHR_wayland_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to a Wayland
+//!the `[`khr_surface`]` extension) that refers to a Wayland
 //![`wl_surface`], as well as a query to determine support for rendering to a
 //!Wayland compositor.
 //!# Revision
 //!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_wayland_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_wayland_surface
@@ -130,7 +130,7 @@ pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_wayland_surface`]
+/// - [`khr_wayland_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
@@ -177,7 +177,7 @@ pub type FNCreateWaylandSurfaceKhr = Option<
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`display`] **must**  be a valid pointer to a [`wl_display`] value
 ///# Related
-/// - [`VK_KHR_wayland_surface`]
+/// - [`khr_wayland_surface`]
 /// - [`PhysicalDevice`]
 ///
 ///# Notes and documentation
@@ -202,7 +202,7 @@ pub type FNGetPhysicalDeviceWaylandPresentationSupportKhr = Option<
 ///typedef VkFlags VkWaylandSurfaceCreateFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_wayland_surface`]
+/// - [`khr_wayland_surface`]
 /// - [`WaylandSurfaceCreateInfoKHR`]
 ///
 ///# Notes and documentation
@@ -257,7 +257,7 @@ impl std::fmt::Debug for WaylandSurfaceCreateFlagsKHR {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_KHR_wayland_surface`]
+/// - [`khr_wayland_surface`]
 /// - [`StructureType`]
 /// - [`WaylandSurfaceCreateFlagsKHR`]
 /// - [`create_wayland_surface_khr`]
@@ -413,7 +413,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_wayland_surface`]
+    /// - [`khr_wayland_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]
@@ -491,7 +491,7 @@ impl PhysicalDevice {
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`display`] **must**  be a valid pointer to a [`wl_display`] value
     ///# Related
-    /// - [`VK_KHR_wayland_surface`]
+    /// - [`khr_wayland_surface`]
     /// - [`PhysicalDevice`]
     ///
     ///# Notes and documentation

@@ -11,7 +11,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory`]`
+//! - Requires `[`khr_external_memory`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_fd]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -115,7 +115,7 @@ pub const KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_external_memory_fd`]
+/// - [`khr_external_memory_fd`]
 /// - [`Device`]
 /// - [`MemoryGetFdInfoKHR`]
 ///
@@ -171,7 +171,7 @@ pub type FNGetMemoryFdKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_KHR_external_memory_fd`]
+/// - [`khr_external_memory_fd`]
 /// - [`Device`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`MemoryFdPropertiesKHR`]
@@ -242,7 +242,7 @@ pub type FNGetMemoryFdPropertiesKhr = Option<
 /// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_memory_fd`]
+/// - [`khr_external_memory_fd`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
@@ -364,7 +364,7 @@ impl<'lt> ImportMemoryFdInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_external_memory_fd`]
+/// - [`khr_external_memory_fd`]
 /// - [`StructureType`]
 /// - [`get_memory_fd_properties_khr`]
 ///
@@ -491,7 +491,7 @@ impl<'lt> MemoryFdPropertiesKHR<'lt> {
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_memory_fd`]
+/// - [`khr_external_memory_fd`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
@@ -632,7 +632,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_external_memory_fd`]
+    /// - [`khr_external_memory_fd`]
     /// - [`Device`]
     /// - [`MemoryGetFdInfoKHR`]
     ///
@@ -713,7 +713,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_KHR_external_memory_fd`]
+    /// - [`khr_external_memory_fd`]
     /// - [`Device`]
     /// - [`ExternalMemoryHandleTypeFlagBits`]
     /// - [`MemoryFdPropertiesKHR`]

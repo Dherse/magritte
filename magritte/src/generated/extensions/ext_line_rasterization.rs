@@ -9,7 +9,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_line_rasterization]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
@@ -121,7 +121,7 @@ pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_line_rasterization`]
+/// - [`ext_line_rasterization`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -155,7 +155,7 @@ pub type FNCmdSetLineStippleExt = Option<
 /// - [`BRESENHAM`] specifies lines drawn by determining which pixel diamonds the line intersects and exits, as defined in [Bresenham Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
 /// - [`RECTANGULAR_SMOOTH`] specifies lines drawn if they were rectangles extruded from the line, with alpha falloff, as defined in [Smooth Lines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
 ///# Related
-/// - [`VK_EXT_line_rasterization`]
+/// - [`ext_line_rasterization`]
 /// - [`PipelineRasterizationLineStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -287,7 +287,7 @@ impl std::fmt::Display for LineRasterizationModeEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_line_rasterization`]
+/// - [`ext_line_rasterization`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -638,7 +638,7 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_line_rasterization`]
+/// - [`ext_line_rasterization`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -774,7 +774,7 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
 /// - [`line_rasterization_mode`] **must**  be a valid [`LineRasterizationModeEXT`] value
 ///# Related
-/// - [`VK_EXT_line_rasterization`]
+/// - [`ext_line_rasterization`]
 /// - [`Bool32`]
 /// - [`LineRasterizationModeEXT`]
 /// - [`StructureType`]
@@ -979,7 +979,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_line_rasterization`]
+    /// - [`ext_line_rasterization`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation

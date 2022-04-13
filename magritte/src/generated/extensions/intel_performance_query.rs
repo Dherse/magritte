@@ -145,7 +145,7 @@ pub const INTEL_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Device`]
 /// - [`InitializePerformanceApiInfoINTEL`]
 ///
@@ -178,7 +178,7 @@ pub type FNInitializePerformanceApiIntel = Option<
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Device`]
 ///
 ///# Notes and documentation
@@ -217,7 +217,7 @@ pub type FNUninitializePerformanceApiIntel = Option<unsafe extern "system" fn(de
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Device`]
 /// - [`PerformanceConfigurationAcquireInfoINTEL`]
 /// - [`PerformanceConfigurationINTEL`]
@@ -267,7 +267,7 @@ pub type FNAcquirePerformanceConfigurationIntel = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Device`]
 /// - [`PerformanceConfigurationINTEL`]
 ///
@@ -306,7 +306,7 @@ pub type FNReleasePerformanceConfigurationIntel = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`PerformanceConfigurationINTEL`]
 /// - [`Queue`]
 ///
@@ -345,7 +345,7 @@ pub type FNQueueSetPerformanceConfigurationIntel =
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Device`]
 /// - [`PerformanceParameterTypeINTEL`]
 /// - [`PerformanceValueINTEL`]
@@ -398,7 +398,7 @@ pub type FNGetPerformanceParameterIntel = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`CommandBuffer`]
 /// - [`PerformanceMarkerInfoINTEL`]
 ///
@@ -448,7 +448,7 @@ pub type FNCmdSetPerformanceMarkerIntel = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`CommandBuffer`]
 /// - [`PerformanceStreamMarkerInfoINTEL`]
 ///
@@ -504,7 +504,7 @@ pub type FNCmdSetPerformanceStreamMarkerIntel = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`CommandBuffer`]
 /// - [`PerformanceOverrideInfoINTEL`]
 ///
@@ -534,7 +534,7 @@ pub type FNCmdSetPerformanceOverrideIntel = Option<
 ///} VkPerformanceConfigurationTypeINTEL;
 ///```
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`PerformanceConfigurationAcquireInfoINTEL`]
 ///
 ///# Notes and documentation
@@ -623,7 +623,7 @@ impl std::fmt::Display for PerformanceConfigurationTypeINTEL {
 /// - [`MANUAL`] is the default mode in which the application calls [`cmd_begin_query`] and
 ///   [`cmd_end_query`] to record performance data.
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
 ///
 ///# Notes and documentation
@@ -707,7 +707,7 @@ impl std::fmt::Display for QueryPoolSamplingModeINTEL {
 /// - [`FLUSH_GPU_CACHES`] stalls the stream of commands until all previously emitted commands have
 ///   completed and all caches been flushed and invalidated.
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`PerformanceOverrideInfoINTEL`]
 ///
 ///# Notes and documentation
@@ -797,7 +797,7 @@ impl std::fmt::Display for PerformanceOverrideTypeINTEL {
 /// - [`STREAM_MARKER_VALID_BITS`] has a 32 bits integer result which tells how many bits can be
 ///   written into the [`PerformanceValueINTEL`] value.
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`get_performance_parameter_intel`]
 ///
 ///# Notes and documentation
@@ -893,7 +893,7 @@ impl std::fmt::Display for PerformanceParameterTypeINTEL {
 ///} VkPerformanceValueTypeINTEL;
 ///```
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`PerformanceValueINTEL`]
 ///
 ///# Notes and documentation
@@ -994,7 +994,7 @@ impl std::fmt::Display for PerformanceValueTypeINTEL {
 /// - If [`type_`] is `VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL`, the `valueString` member of [`data`]
 ///   **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`PerformanceValueDataINTEL`]
 /// - [`PerformanceValueTypeINTEL`]
 /// - [`get_performance_parameter_intel`]
@@ -1073,7 +1073,7 @@ impl PerformanceValueINTEL {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INITIALIZE_PERFORMANCE_API_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`StructureType`]
 /// - [`initialize_performance_api_intel`]
 ///
@@ -1204,7 +1204,7 @@ impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
 /// - [`performance_counters_sampling`] **must**  be a valid [`QueryPoolSamplingModeINTEL`] value
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`QueryPoolSamplingModeINTEL`]
 /// - [`StructureType`]
 ///
@@ -1312,7 +1312,7 @@ impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_MARKER_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`StructureType`]
 /// - [`cmd_set_performance_marker_intel`]
 ///
@@ -1423,7 +1423,7 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`StructureType`]
 /// - [`cmd_set_performance_stream_marker_intel`]
 ///
@@ -1531,7 +1531,7 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`PerformanceOverrideTypeINTEL`] value
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Bool32`]
 /// - [`PerformanceOverrideTypeINTEL`]
 /// - [`StructureType`]
@@ -1695,7 +1695,7 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`PerformanceConfigurationTypeINTEL`] value
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`PerformanceConfigurationTypeINTEL`]
 /// - [`StructureType`]
 /// - [`acquire_performance_configuration_intel`]
@@ -1807,7 +1807,7 @@ impl<'lt> PerformanceConfigurationAcquireInfoINTEL<'lt> {
 ///The correct member of the union is determined by the associated
 ///[`PerformanceValueTypeINTEL`] value.
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`Bool32`]
 /// - [`PerformanceValueINTEL`]
 ///
@@ -1863,7 +1863,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`Device`]
     /// - [`InitializePerformanceApiInfoINTEL`]
     ///
@@ -1920,7 +1920,7 @@ impl Device {
     ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`Device`]
     ///
     ///# Notes and documentation
@@ -1980,7 +1980,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`Device`]
     /// - [`PerformanceConfigurationAcquireInfoINTEL`]
     /// - [`PerformanceConfigurationINTEL`]
@@ -2059,7 +2059,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`Device`]
     /// - [`PerformanceConfigurationINTEL`]
     ///
@@ -2123,7 +2123,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`Device`]
     /// - [`PerformanceParameterTypeINTEL`]
     /// - [`PerformanceValueINTEL`]
@@ -2188,7 +2188,7 @@ impl Queue {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`PerformanceConfigurationINTEL`]
     /// - [`Queue`]
     ///
@@ -2262,7 +2262,7 @@ impl CommandBuffer {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`CommandBuffer`]
     /// - [`PerformanceMarkerInfoINTEL`]
     ///
@@ -2335,7 +2335,7 @@ impl CommandBuffer {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`CommandBuffer`]
     /// - [`PerformanceStreamMarkerInfoINTEL`]
     ///
@@ -2417,7 +2417,7 @@ impl CommandBuffer {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_INTEL_performance_query`]
+    /// - [`intel_performance_query`]
     /// - [`CommandBuffer`]
     /// - [`PerformanceOverrideInfoINTEL`]
     ///
@@ -2472,7 +2472,7 @@ impl CommandBuffer {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkPerformanceConfigurationINTEL)
 ///```
 ///# Related
-/// - [`VK_INTEL_performance_query`]
+/// - [`intel_performance_query`]
 /// - [`acquire_performance_configuration_intel`]
 /// - [`queue_set_performance_configuration_intel`]
 /// - [`release_performance_configuration_intel`]

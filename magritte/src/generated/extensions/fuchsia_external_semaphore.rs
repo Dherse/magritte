@@ -8,8 +8,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_semaphore_capabilities`]`
-//! - Requires `[`VK_KHR_external_semaphore`]`
+//! - Requires `[`khr_external_semaphore_capabilities`]`
+//! - Requires `[`khr_external_semaphore`]`
 //!# Contacts
 //! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_external_semaphore]
 //!   @rosasco%0A<<Here describe the issue or question you have about the
@@ -106,7 +106,7 @@ pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_FUCHSIA_external_semaphore`]
+/// - [`fuchsia_external_semaphore`]
 /// - [`Device`]
 /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 ///
@@ -160,7 +160,7 @@ pub type FNGetSemaphoreZirconHandleFuchsia = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_FUCHSIA_external_semaphore`]
+/// - [`fuchsia_external_semaphore`]
 /// - [`Device`]
 /// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
 ///
@@ -221,7 +221,7 @@ pub type FNImportSemaphoreZirconHandleFuchsia = Option<
 ///## Host Synchronization
 /// - Host access to [`semaphore`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_FUCHSIA_external_semaphore`]
+/// - [`fuchsia_external_semaphore`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`SemaphoreImportFlags`]
@@ -406,7 +406,7 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_FUCHSIA_external_semaphore`]
+/// - [`fuchsia_external_semaphore`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
@@ -545,7 +545,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_FUCHSIA_external_semaphore`]
+    /// - [`fuchsia_external_semaphore`]
     /// - [`Device`]
     /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
     ///
@@ -624,7 +624,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_FUCHSIA_external_semaphore`]
+    /// - [`fuchsia_external_semaphore`]
     /// - [`Device`]
     /// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
     ///

@@ -17,10 +17,10 @@
 //!5
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
-//! - Requires `[`VK_KHR_external_memory`]`
-//! - Requires `[`VK_EXT_queue_family_foreign`]`
-//! - Requires `[`VK_KHR_dedicated_allocation`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
+//! - Requires `[`khr_external_memory`]`
+//! - Requires `[`ext_queue_family_foreign`]`
+//! - Requires `[`khr_dedicated_allocation`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_ANDROID_external_memory_android_hardware_buffer]
 //!   @critsec%0A<<Here describe the issue or question you have about the
@@ -37,7 +37,7 @@
 //!   [`ExternalFormatANDROID`]
 //! - Extending [`ImageFormatProperties2`]:  - [`AndroidHardwareBufferUsageANDROID`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ImportAndroidHardwareBufferInfoANDROID`]
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`AndroidHardwareBufferPropertiesANDROID`]:  -
 //!   [`AndroidHardwareBufferFormatProperties2ANDROID`]
 //!# New constants
@@ -52,7 +52,7 @@
 //!   `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
 //!# Known issues & F.A.Q
@@ -136,8 +136,8 @@
 //!new Android feature.
 //!# Version History
 //! - Revision 5, 2022-02-04 (Chris Forbes)  - Describe mapping of flags for storage image support
-//! - Revision 4, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]`
-//!   to `vk.xml`
+//! - Revision 4, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
+//!   `vk.xml`
 //! - Revision 3, 2019-08-27 (Jon Leech)  - Update revision history to correspond to XML version
 //!   number
 //! - Revision 2, 2018-04-09 (Petr Kraus)  - Markup fixes and remove incorrect Draft status
@@ -197,7 +197,7 @@ pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &'stat
 ///struct AHardwareBuffer;
 ///```
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -238,7 +238,7 @@ pub type AHardwareBuffer = c_void;
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`AndroidHardwareBufferPropertiesANDROID`]
 /// - [`Device`]
 ///
@@ -297,7 +297,7 @@ pub type FNGetAndroidHardwareBufferPropertiesAndroid = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`Device`]
 /// - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
 ///
@@ -349,7 +349,7 @@ pub type FNGetMemoryAndroidHardwareBufferAndroid = Option<
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
 /// - [`buffer`] **must**  be a valid pointer to an [`AHardwareBuffer`] value
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -482,7 +482,7 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -601,7 +601,7 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 /// - [`get_android_hardware_buffer_properties_android`]
@@ -748,7 +748,7 @@ unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferFormatProperties2ANDROID
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 /// - [`get_memory_android_hardware_buffer_android`]
@@ -922,7 +922,7 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`ChromaLocation`]
 /// - [`ComponentMapping`]
 /// - [`Format`]
@@ -1171,7 +1171,7 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+/// - [`android_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -1313,8 +1313,8 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
 ///# Related
-/// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
-/// - [`VK_KHR_format_feature_flags2`]
+/// - [`android_external_memory_android_hardware_buffer`]
+/// - [`khr_format_feature_flags2`]
 /// - [`ChromaLocation`]
 /// - [`ComponentMapping`]
 /// - [`Format`]
@@ -1564,7 +1564,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
     ///# Related
-    /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+    /// - [`android_external_memory_android_hardware_buffer`]
     /// - [`AndroidHardwareBufferPropertiesANDROID`]
     /// - [`Device`]
     ///
@@ -1649,7 +1649,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_ANDROID_external_memory_android_hardware_buffer`]
+    /// - [`android_external_memory_android_hardware_buffer`]
     /// - [`Device`]
     /// - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
     ///

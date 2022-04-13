@@ -16,7 +16,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_ARM_rasterization_order_attachment_access]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
@@ -42,7 +42,7 @@
 //!   `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM`  -
 //!   `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM`
 //!# Known issues & F.A.Q
-//!1) Is there any interaction with the `[`VK_KHR_dynamic_rendering`]`
+//!1) Is there any interaction with the `[`khr_dynamic_rendering`]`
 //!extension?No.
 //!This extension only affects reads from input attachments.
 //!Render pass instances begun with [`cmd_begin_rendering_khr`] do not have
@@ -94,7 +94,7 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CSt
 ///# Description
 /// - [`RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM`] indicates that access to color and input attachments will have implicit framebuffer-local memory dependencies, allowing applications to express custom blending operations in a fragment shader. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
 ///# Related
-/// - [`VK_ARM_rasterization_order_attachment_access`]
+/// - [`arm_rasterization_order_attachment_access`]
 /// - [`PipelineColorBlendStateCreateFlags`]
 ///
 ///# Notes and documentation
@@ -195,7 +195,7 @@ impl std::fmt::Display for PipelineColorBlendStateCreateFlagBits {
 ///   for more information.
 /// - [`RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_ARM`] indicates that access to the stencil aspects of depth/stencil and input attachments will have implicit framebuffer-local memory dependencies. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
 ///# Related
-/// - [`VK_ARM_rasterization_order_attachment_access`]
+/// - [`arm_rasterization_order_attachment_access`]
 /// - [`PipelineDepthStencilStateCreateFlags`]
 ///
 ///# Notes and documentation
@@ -323,7 +323,7 @@ impl std::fmt::Display for PipelineDepthStencilStateCreateFlagBits {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM`
 ///# Related
-/// - [`VK_ARM_rasterization_order_attachment_access`]
+/// - [`arm_rasterization_order_attachment_access`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

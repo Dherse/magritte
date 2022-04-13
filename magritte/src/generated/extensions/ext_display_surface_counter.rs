@@ -8,7 +8,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_display`]`
+//! - Requires `[`khr_display`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_display_surface_counter]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -112,7 +112,7 @@ pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = crate::cst
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_EXT_display_surface_counter`]
+/// - [`ext_display_surface_counter`]
 /// - [`PhysicalDevice`]
 /// - [`SurfaceCapabilities2EXT`]
 /// - [`SurfaceKHR`]
@@ -148,7 +148,7 @@ pub type FNGetPhysicalDeviceSurfaceCapabilities2Ext = Option<
 /// - [`VBLANK`] specifies a counter incrementing once every time a vertical blanking period occurs
 ///   on the display associated with the surface.
 ///# Related
-/// - [`VK_EXT_display_surface_counter`]
+/// - [`ext_display_surface_counter`]
 /// - [`SurfaceCounterFlagsEXT`]
 /// - [`get_swapchain_counter_ext`]
 ///
@@ -233,7 +233,7 @@ impl std::fmt::Display for SurfaceCounterFlagBitsEXT {
 /// - [`VBLANK`] specifies a counter incrementing once every time a vertical blanking period occurs
 ///   on the display associated with the surface.
 ///# Related
-/// - [`VK_EXT_display_surface_counter`]
+/// - [`ext_display_surface_counter`]
 /// - [`SurfaceCounterFlagsEXT`]
 /// - [`get_swapchain_counter_ext`]
 ///
@@ -563,7 +563,7 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_display_surface_counter`]
+/// - [`ext_display_surface_counter`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`Extent2D`]
 /// - [`ImageUsageFlags`]
@@ -914,7 +914,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_EXT_display_surface_counter`]
+    /// - [`ext_display_surface_counter`]
     /// - [`PhysicalDevice`]
     /// - [`SurfaceCapabilities2EXT`]
     /// - [`SurfaceKHR`]

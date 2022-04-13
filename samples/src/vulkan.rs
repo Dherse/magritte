@@ -17,7 +17,7 @@ use magritte::{
     },
     vulkan1_1::PhysicalDeviceProperties2,
     window::{create_surface, enable_required_extensions},
-    AsRaw, Extensions, Unique, Version,
+    AsRaw, InstanceExtensions, DeviceExtensions, Unique, Version,
 };
 use magritte_vma::VmaAllocator;
 use winit::window::Window;
@@ -54,7 +54,8 @@ pub struct Vulkan {
 impl Vulkan {
     pub fn new(
         window: &Window,
-        extensions: Extensions,
+        instance_extensions: InstanceExtensions,
+        device_extensions: DeviceExtensions,
         validation: bool,
     ) -> Result<(Self, Unique<SurfaceKHR>), Box<dyn Error>> {
         // First, we load the library
@@ -108,19 +109,18 @@ impl Vulkan {
         // - we need a swapchain to actually display things on screen
         // - we need an annoying set of extensions for showing the window, this is why Magritte comes with
         //   `enable_required_extensions` that will automatically deal with extensions for your window!
-        let mut extensions = enable_required_extensions(window, extensions)?
-            .enable_khr_swapchain()
+        let mut instance_extensions = enable_required_extensions(window, instance_extensions)?
             .enable_khr_get_physical_device_properties2();
 
         // If we have the validation layers, enable the extension (optional)
         if validation {
-            extensions = enable_validation(extensions);
+            instance_extensions = enable_validation(instance_extensions);
 
             trace!("We have added the extensions for debugging");
         }
 
         // Vulkan needs the extension names, so we create the list of names:
-        let instance_extension_list = extensions.instance_extension_names();
+        let instance_extension_list = instance_extensions.extension_names();
 
         // Here, we create some application info that Vulkan can use.
         // I don't know exactly why they are used, but I would assume they are.
@@ -153,7 +153,7 @@ impl Vulkan {
 
         // Here we create the instance.
         // We give it the extra parameter `extensions` as it will keep it as a "metadata".
-        let instance = unsafe { entry.create_instance(&instance_create_info, None, extensions)? };
+        let mut instance = unsafe { entry.create_instance(&instance_create_info, None, instance_extensions)? };
 
         // What is that `as_raw`??? It's simple, Magritte wraps Vulkan structures into a `Unique` which
         // helps to enforce most (**not** all) lifetimes. `as_raw` simply lets you get back to the
@@ -246,14 +246,14 @@ impl Vulkan {
             Version(properties.driver_version())
         );
 
+        // Enable the swapchain extension
+        let mut device_extensions = device_extensions.enable_khr_swapchain();
+
         // Here we fetch the supported extensions that will be used to allocate memory
         // in a easier and more performant way using the Vulkan Memory Allocator.
         // Note that both the use of VMA and raw Vulkan allocations are covered in this
         // sample.
-        VmaAllocator::enable_extensions(&physical_device, &mut extensions)?;
-
-        // We update the list of extensions storage in the instance
-        instance.update_extensions(extensions);
+        VmaAllocator::enable_extensions(&physical_device, &mut device_extensions)?;
 
         // We need to tell Vulkan that we want a queue from a certain family.
         // We got the family from the previous step. We will get one queue with max priority (1.0)
@@ -262,7 +262,7 @@ impl Vulkan {
             .set_queue_priorities(&[1.0]);
 
         // We get the names of the device extensions (if any)
-        let device_extension_names = extensions.device_extension_names();
+        let device_extension_names = device_extensions.extension_names();
 
         // The physical device features we wish to enable, currently none
         let features = PhysicalDeviceFeatures::default();
@@ -277,7 +277,7 @@ impl Vulkan {
         // Finally, we create the device.
         // You can imagine this step as "connecting" to the device, we are now ready to talk to it
         // and tell it what to allocate, do, deallocate, etc.
-        let (device, _) = unsafe { physical_device.create_device(&device_create_info, None)? };
+        let (device, _) = unsafe { physical_device.create_device(&device_create_info, None, device_extensions)? };
 
         info!("We have created a device: {:?}", device.as_raw());
 

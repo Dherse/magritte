@@ -1,12 +1,12 @@
 //![VK_KHR_deferred_host_operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_deferred_host_operations.html) - device extension
 //!# Description
-//!The `[`VK_KHR_deferred_host_operations`]` extension defines the
+//!The `[`khr_deferred_host_operations`]` extension defines the
 //!infrastructure and usage patterns for deferrable commands, but does not
 //!specify any commands as deferrable.
 //!This is left to additional dependent extensions.
 //!Commands  **must**  not be deferred unless the deferral is specifically allowed
 //!by another extension which depends on
-//!`[`VK_KHR_deferred_host_operations`]`.
+//!`[`khr_deferred_host_operations`]`.
 //!# Revision
 //!4
 //!# Dependencies
@@ -118,7 +118,7 @@ pub const KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME: &'static CStr = crate::cs
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_deferred_host_operations`]
+/// - [`khr_deferred_host_operations`]
 /// - [`AllocationCallbacks`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
@@ -174,7 +174,7 @@ pub type FNCreateDeferredOperationKhr = Option<
 ///## Host Synchronization
 /// - Host access to [`operation`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_deferred_host_operations`]
+/// - [`khr_deferred_host_operations`]
 /// - [`AllocationCallbacks`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
@@ -235,7 +235,7 @@ pub type FNDestroyDeferredOperationKhr = Option<
 /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
 /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_KHR_deferred_host_operations`]
+/// - [`khr_deferred_host_operations`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
@@ -277,7 +277,7 @@ pub type FNGetDeferredOperationMaxConcurrencyKhr =
 ///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_NOT_READY`
 ///# Related
-/// - [`VK_KHR_deferred_host_operations`]
+/// - [`khr_deferred_host_operations`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
@@ -337,7 +337,7 @@ pub type FNGetDeferredOperationResultKhr =
 /// * - `VK_SUCCESS`  - `VK_THREAD_DONE_KHR`  - `VK_THREAD_IDLE_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_deferred_host_operations`]
+/// - [`khr_deferred_host_operations`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
 ///
@@ -379,7 +379,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_deferred_host_operations`]
+    /// - [`khr_deferred_host_operations`]
     /// - [`AllocationCallbacks`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
@@ -465,7 +465,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`operation`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_KHR_deferred_host_operations`]
+    /// - [`khr_deferred_host_operations`]
     /// - [`AllocationCallbacks`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
@@ -550,7 +550,7 @@ impl Device {
     /// - [`operation`] **must**  be a valid [`DeferredOperationKHR`] handle
     /// - [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_KHR_deferred_host_operations`]
+    /// - [`khr_deferred_host_operations`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
@@ -615,7 +615,7 @@ impl Device {
     ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_NOT_READY`
     ///# Related
-    /// - [`VK_KHR_deferred_host_operations`]
+    /// - [`khr_deferred_host_operations`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
@@ -702,7 +702,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_THREAD_DONE_KHR`  - `VK_THREAD_IDLE_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_deferred_host_operations`]
+    /// - [`khr_deferred_host_operations`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
     ///
@@ -750,7 +750,7 @@ impl Device {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDeferredOperationKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_deferred_host_operations`]
+/// - [`khr_deferred_host_operations`]
 /// - [`build_acceleration_structures_khr`]
 /// - [`copy_acceleration_structure_khr`]
 /// - [`copy_acceleration_structure_to_memory_khr`]

@@ -2,7 +2,7 @@
 //!# Description
 //!This extension provides functionality to use a logical device that consists
 //!of multiple physical devices, as created with the
-//!`[`VK_KHR_device_group_creation`]` extension.
+//!`[`khr_device_group_creation`]` extension.
 //!A device group can allocate memory across the subdevices, bind memory from
 //!one subdevice to a resource on another subdevice, record command buffers
 //!where some work executes on an arbitrary subset of the subdevices, and
@@ -13,7 +13,7 @@
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_device_group_creation`]`
+//! - Requires `[`khr_device_group_creation`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_device_group]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_device_group
@@ -22,11 +22,11 @@
 //! - [`cmd_dispatch_base_khr`]
 //! - [`cmd_set_device_mask_khr`]
 //! - [`get_device_group_peer_memory_features_khr`]
-//!If [`VK_KHR_surface`] is supported:
+//!If [`khr_surface`] is supported:
 //! - [`get_device_group_present_capabilities_khr`]
 //! - [`get_device_group_surface_present_modes_khr`]
 //! - [`get_physical_device_present_rectangles_khr`]
-//!If [`VK_KHR_swapchain`] is supported:
+//!If [`khr_swapchain`] is supported:
 //! - [`acquire_next_image2_khr`]
 //!# New structures
 //! - Extending [`BindSparseInfo`]:  - [`DeviceGroupBindSparseInfoKHR`]
@@ -34,12 +34,12 @@
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryAllocateFlagsInfoKHR`]
 //! - Extending [`RenderPassBeginInfo`], [`RenderingInfo`]:  - [`DeviceGroupRenderPassBeginInfoKHR`]
 //! - Extending [`SubmitInfo`]:  - [`DeviceGroupSubmitInfoKHR`]
-//!If [`VK_KHR_bind_memory2`] is supported:
+//!If [`khr_bind_memory2`] is supported:
 //! - Extending [`BindBufferMemoryInfo`]:  - [`BindBufferMemoryDeviceGroupInfoKHR`]
 //! - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemoryDeviceGroupInfoKHR`]
-//!If [`VK_KHR_surface`] is supported:
+//!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentCapabilitiesKHR`]
-//!If [`VK_KHR_swapchain`] is supported:
+//!If [`khr_swapchain`] is supported:
 //! - [`AcquireNextImageInfoKHR`]
 //! - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemorySwapchainInfoKHR`]
 //! - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`]
@@ -48,12 +48,12 @@
 //!# New enums
 //! - [`MemoryAllocateFlagBitsKHR`]
 //! - [`PeerMemoryFeatureFlagBitsKHR`]
-//!If [`VK_KHR_surface`] is supported:
+//!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
 //!# New bitmasks
 //! - [`MemoryAllocateFlagsKHR`]
 //! - [`PeerMemoryFeatureFlagsKHR`]
-//!If [`VK_KHR_surface`] is supported:
+//!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
 //!# New constants
 //! - [`KHR_DEVICE_GROUP_EXTENSION_NAME`]
@@ -70,13 +70,13 @@
 //!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR`
-//!If [`VK_KHR_bind_memory2`] is supported:
+//!If [`khr_bind_memory2`] is supported:
 //! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR`
 //!   - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR`
-//!If [`VK_KHR_surface`] is supported:
+//!If [`khr_surface`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR`
-//!If [`VK_KHR_swapchain`] is supported:
+//!If [`khr_swapchain`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR`  -
@@ -170,9 +170,9 @@ pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_surface`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_surface`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`DeviceGroupPresentCapabilitiesKHR`]
@@ -233,9 +233,9 @@ pub type FNGetDeviceGroupPresentCapabilitiesKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_surface`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_surface`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
@@ -293,8 +293,8 @@ pub type FNGetDeviceGroupSurfacePresentModesKhr = Option<
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`AcquireNextImageInfoKHR`]
 /// - [`Device`]
@@ -371,9 +371,9 @@ pub type FNAcquireNextImage2Khr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_surface`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_surface`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`Rect2D`]
@@ -419,9 +419,9 @@ pub type FNGetPhysicalDevicePresentRectanglesKhr = Option<
 /// - [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine
 ///   **can**  each present their own swapchain images.
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_surface`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_surface`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentInfoKHR`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
@@ -561,9 +561,9 @@ impl std::fmt::Display for DeviceGroupPresentModeFlagBitsKHR {
 /// - [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine
 ///   **can**  each present their own swapchain images.
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_surface`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_surface`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentInfoKHR`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
@@ -920,9 +920,9 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_surface`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_surface`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
 /// - [`StructureType`]
@@ -1064,8 +1064,8 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
 /// - If [`swapchain`] is not [`crate::Handle::null`], [`swapchain`] **must**  be a valid
 ///   [`SwapchainKHR`] handle
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 /// - [`SwapchainKHR`]
@@ -1189,8 +1189,8 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
 ///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 /// - [`SwapchainKHR`]
@@ -1345,8 +1345,8 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// - Host access to [`semaphore`] **must**  be externally synchronized
 /// - Host access to [`fence`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`Fence`]
 /// - [`Semaphore`]
@@ -1581,8 +1581,8 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 ///   of [`swapchain_count`]`uint32_t` values
 /// - [`mode`] **must**  be a valid [`DeviceGroupPresentModeFlagBitsKHR`] value
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentModeFlagBitsKHR`]
 /// - [`StructureType`]
@@ -1740,8 +1740,8 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
 /// - [`modes`] **must**  be a valid combination of [`DeviceGroupPresentModeFlagBitsKHR`] values
 /// - [`modes`] **must**  not be `0`
 ///# Related
-/// - [`VK_KHR_device_group`]
-/// - [`VK_KHR_swapchain`]
+/// - [`khr_device_group`]
+/// - [`khr_swapchain`]
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
 /// - [`StructureType`]
@@ -1885,9 +1885,9 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_device_group`]
-    /// - [`VK_KHR_surface`]
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_device_group`]
+    /// - [`khr_surface`]
+    /// - [`khr_swapchain`]
     /// - [`crate::vulkan1_1`]
     /// - [`PhysicalDevice`]
     /// - [`Rect2D`]
@@ -1966,9 +1966,9 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_device_group`]
-    /// - [`VK_KHR_surface`]
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_device_group`]
+    /// - [`khr_surface`]
+    /// - [`khr_swapchain`]
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`DeviceGroupPresentCapabilitiesKHR`]
@@ -2054,9 +2054,9 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_device_group`]
-    /// - [`VK_KHR_surface`]
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_device_group`]
+    /// - [`khr_surface`]
+    /// - [`khr_swapchain`]
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`DeviceGroupPresentModeFlagsKHR`]
@@ -2136,8 +2136,8 @@ impl Device {
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
     ///# Related
-    /// - [`VK_KHR_device_group`]
-    /// - [`VK_KHR_swapchain`]
+    /// - [`khr_device_group`]
+    /// - [`khr_swapchain`]
     /// - [`crate::vulkan1_1`]
     /// - [`AcquireNextImageInfoKHR`]
     /// - [`Device`]

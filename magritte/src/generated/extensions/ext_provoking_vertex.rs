@@ -10,7 +10,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jesse Hall [jessehall](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_provoking_vertex]
 //!   @jessehall%0A<<Here describe the issue or question you have about the VK_EXT_provoking_vertex
@@ -112,7 +112,7 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///These modes are described more precisely in
 ///[Primitive Topologies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-topologies).
 ///# Related
-/// - [`VK_EXT_provoking_vertex`]
+/// - [`ext_provoking_vertex`]
 /// - [`PipelineRasterizationProvokingVertexStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -206,7 +206,7 @@ impl std::fmt::Display for ProvokingVertexModeEXT {
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`provoking_vertex_last`] indicates whether the implementation supports the
 ///   `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`[`ProvokingVertexModeEXT`] for flat shading.
-/// - [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is [`FALSE`]. [`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`] when the [`VK_EXT_transform_feedback`] extension is not supported.
+/// - [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is [`FALSE`]. [`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`] when the [`ext_transform_feedback`] extension is not supported.
 ///If the [`PhysicalDeviceProvokingVertexFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
@@ -221,7 +221,7 @@ impl std::fmt::Display for ProvokingVertexModeEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_provoking_vertex`]
+/// - [`ext_provoking_vertex`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -254,7 +254,7 @@ pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     ///[`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex)
     ///is [`FALSE`].
     ///[`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`]
-    ///when the [`VK_EXT_transform_feedback`] extension is not supported.
+    ///when the [`ext_transform_feedback`] extension is not supported.
     pub transform_feedback_preserves_provoking_vertex: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
@@ -414,7 +414,7 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_provoking_vertex`]
+/// - [`ext_provoking_vertex`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -609,7 +609,7 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT`
 /// - [`provoking_vertex_mode`] **must**  be a valid [`ProvokingVertexModeEXT`] value
 ///# Related
-/// - [`VK_EXT_provoking_vertex`]
+/// - [`ext_provoking_vertex`]
 /// - [`ProvokingVertexModeEXT`]
 /// - [`StructureType`]
 ///

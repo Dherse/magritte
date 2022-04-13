@@ -70,8 +70,8 @@
 //! - Revision 1, 2021-10-22 (Tobias Hector)  - Initial draft
 //!# Other info
 //! * 2021-10-22
-//! * - Tobias Hector, AMD  - Contributors to [`VK_EXT_global_priority`]  - Contributors to
-//!   [`VK_EXT_global_priority_query`]
+//! * - Tobias Hector, AMD  - Contributors to [`ext_global_priority`]  - Contributors to
+//!   [`ext_global_priority_query`]
 //!# Related
 //! - [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
 //! - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
@@ -104,7 +104,7 @@ use std::{ffi::CStr, marker::PhantomData};
 ///#define VK_MAX_GLOBAL_PRIORITY_SIZE_EXT   VK_MAX_GLOBAL_PRIORITY_SIZE_KHR
 ///```
 ///# Related
-/// - [`VK_KHR_global_priority`]
+/// - [`khr_global_priority`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -155,8 +155,8 @@ pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 /// - [`HIGH`] is above the system default.
 /// - [`REALTIME`] is the highest priority. Useful for critical tasks.
 ///# Related
-/// - [`VK_EXT_global_priority`]
-/// - [`VK_KHR_global_priority`]
+/// - [`ext_global_priority`]
+/// - [`khr_global_priority`]
 /// - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
 /// - [`QueueFamilyGlobalPriorityPropertiesKHR`]
 ///
@@ -270,8 +270,8 @@ impl std::fmt::Display for QueueGlobalPriorityKHR {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`
 /// - [`global_priority`] **must**  be a valid [`QueueGlobalPriorityKHR`] value
 ///# Related
-/// - [`VK_EXT_global_priority`]
-/// - [`VK_KHR_global_priority`]
+/// - [`ext_global_priority`]
+/// - [`khr_global_priority`]
 /// - [`QueueGlobalPriorityKHR`]
 /// - [`StructureType`]
 ///
@@ -396,7 +396,7 @@ impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_global_priority`]
+/// - [`khr_global_priority`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -549,7 +549,7 @@ impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
 /// - Any given element of [`priorities`] **must**  be a valid [`QueueGlobalPriorityKHR`] value
 ///# Related
-/// - [`VK_KHR_global_priority`]
+/// - [`khr_global_priority`]
 /// - [`QueueGlobalPriorityKHR`]
 /// - [`StructureType`]
 ///

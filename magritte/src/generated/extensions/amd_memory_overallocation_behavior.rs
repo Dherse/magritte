@@ -72,7 +72,7 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
 ///   heap sizes reported by [`PhysicalDeviceMemoryProperties`]. Allocations that are not explicitly
 ///   made by the application within the scope of the Vulkan instance are not accounted for.
 ///# Related
-/// - [`VK_AMD_memory_overallocation_behavior`]
+/// - [`amd_memory_overallocation_behavior`]
 /// - [`DeviceMemoryOverallocationCreateInfoAMD`]
 ///
 ///# Notes and documentation
@@ -185,7 +185,7 @@ impl std::fmt::Display for MemoryOverallocationBehaviorAMD {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD`
 /// - [`overallocation_behavior`] **must**  be a valid [`MemoryOverallocationBehaviorAMD`] value
 ///# Related
-/// - [`VK_AMD_memory_overallocation_behavior`]
+/// - [`amd_memory_overallocation_behavior`]
 /// - [`MemoryOverallocationBehaviorAMD`]
 /// - [`StructureType`]
 ///

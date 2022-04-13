@@ -25,7 +25,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_hdr_metadata]
 //!   @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_hdr_metadata
@@ -110,7 +110,7 @@ pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// - Both of [`device`], and the elements of [`p_swapchains`] **must**  have been created,
 ///   allocated, or retrieved from the same [`Instance`]
 ///# Related
-/// - [`VK_EXT_hdr_metadata`]
+/// - [`ext_hdr_metadata`]
 /// - [`Device`]
 /// - [`HdrMetadataEXT`]
 /// - [`SwapchainKHR`]
@@ -149,7 +149,7 @@ pub type FNSetHdrMetadataExt = Option<
 ///chromaticity coordinates” (Section 7.3) and are limited to between 0 and 1
 ///for real colors for the reference monitor.
 ///# Related
-/// - [`VK_EXT_hdr_metadata`]
+/// - [`ext_hdr_metadata`]
 /// - [`HdrMetadataEXT`]
 ///
 ///# Notes and documentation
@@ -240,7 +240,7 @@ impl XyColorEXT {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_HDR_METADATA_EXT`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_hdr_metadata`]
+/// - [`ext_hdr_metadata`]
 /// - [`StructureType`]
 /// - [`XyColorEXT`]
 /// - [`set_hdr_metadata_ext`]
@@ -478,7 +478,7 @@ impl Device {
     /// - Both of [`device`], and the elements of [`p_swapchains`] **must**  have been created,
     ///   allocated, or retrieved from the same [`Instance`]
     ///# Related
-    /// - [`VK_EXT_hdr_metadata`]
+    /// - [`ext_hdr_metadata`]
     /// - [`Device`]
     /// - [`HdrMetadataEXT`]
     /// - [`SwapchainKHR`]

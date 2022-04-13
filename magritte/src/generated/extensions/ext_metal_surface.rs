@@ -2,13 +2,13 @@
 //!# Description
 //!The [`VK_EXT_metal_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) from [`CaMetalLayer`], which is
+//!the `[`khr_surface`]` extension) from [`CaMetalLayer`], which is
 //!the native rendering surface of Apple’s Metal framework.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Dzmitry Malyshau [kvark](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_metal_surface]
 //!   @kvark%0A<<Here describe the issue or question you have about the VK_EXT_metal_surface
@@ -75,7 +75,7 @@ pub const EXT_METAL_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 ///#endif
 ///```
 ///# Related
-/// - [`VK_EXT_metal_surface`]
+/// - [`ext_metal_surface`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -118,7 +118,7 @@ pub type CaMetalLayer = c_void;
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 ///# Related
-/// - [`VK_EXT_metal_surface`]
+/// - [`ext_metal_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`MetalSurfaceCreateInfoEXT`]
@@ -147,7 +147,7 @@ pub type FNCreateMetalSurfaceExt = Option<
 ///typedef VkFlags VkMetalSurfaceCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_metal_surface`]
+/// - [`ext_metal_surface`]
 /// - [`MetalSurfaceCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -196,7 +196,7 @@ impl std::fmt::Debug for MetalSurfaceCreateFlagsEXT {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_EXT_metal_surface`]
+/// - [`ext_metal_surface`]
 /// - [`MetalSurfaceCreateFlagsEXT`]
 /// - [`StructureType`]
 /// - [`create_metal_surface_ext`]
@@ -339,7 +339,7 @@ impl Instance {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
     ///# Related
-    /// - [`VK_EXT_metal_surface`]
+    /// - [`ext_metal_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`MetalSurfaceCreateInfoEXT`]

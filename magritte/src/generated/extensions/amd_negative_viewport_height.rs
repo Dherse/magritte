@@ -8,7 +8,7 @@
 //!# Revision
 //!1
 //!# Dependencies
-//! - *Obsoleted* by `[`VK_KHR_maintenance1`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+//! - *Obsoleted* by `[`khr_maintenance1`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts

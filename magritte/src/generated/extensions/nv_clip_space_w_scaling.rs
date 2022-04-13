@@ -135,7 +135,7 @@ pub const NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_clip_space_w_scaling`]
+/// - [`nv_clip_space_w_scaling`]
 /// - [`CommandBuffer`]
 /// - [`ViewportWScalingNV`]
 ///
@@ -168,7 +168,7 @@ pub type FNCmdSetViewportWScalingNv = Option<
 ///# Members
 /// - [`xcoeff`] and [`ycoeff`] are the viewport’s W scaling factor for x and y respectively.
 ///# Related
-/// - [`VK_NV_clip_space_w_scaling`]
+/// - [`nv_clip_space_w_scaling`]
 /// - [`PipelineViewportWScalingStateCreateInfoNV`]
 /// - [`cmd_set_viewport_w_scaling_nv`]
 ///
@@ -254,7 +254,7 @@ impl ViewportWScalingNV {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV`
 /// - [`viewport_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_clip_space_w_scaling`]
+/// - [`nv_clip_space_w_scaling`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`ViewportWScalingNV`]
@@ -466,7 +466,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_clip_space_w_scaling`]
+    /// - [`nv_clip_space_w_scaling`]
     /// - [`CommandBuffer`]
     /// - [`ViewportWScalingNV`]
     ///

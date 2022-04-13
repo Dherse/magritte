@@ -14,8 +14,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_KHR_copy_commands2`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`khr_copy_commands2`]`
 //!# Contacts
 //! - Jeff Leger [jackohound](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_rotated_copy_commands]
 //!   @jackohound%0A<<Here describe the issue or question you have about the
@@ -97,7 +97,7 @@ pub const QCOM_ROTATED_COPY_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cstr
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM`
 ///# Related
-/// - [`VK_QCOM_rotated_copy_commands`]
+/// - [`qcom_rotated_copy_commands`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 ///

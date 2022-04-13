@@ -26,7 +26,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_transform_feedback]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -209,7 +209,7 @@ pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -314,7 +314,7 @@ pub type FNCmdBindTransformFeedbackBuffersExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -406,7 +406,7 @@ pub type FNCmdBeginTransformFeedbackExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -534,7 +534,7 @@ pub type FNCmdEndTransformFeedbackExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`CommandBuffer`]
 /// - [`QueryControlFlags`]
 /// - [`QueryPool`]
@@ -609,7 +609,7 @@ pub type FNCmdBeginQueryIndexedExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`CommandBuffer`]
 /// - [`QueryPool`]
 ///
@@ -716,8 +716,8 @@ pub type FNCmdEndQueryIndexedExt =
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -880,9 +880,9 @@ pub type FNCmdEndQueryIndexedExt =
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -1061,7 +1061,7 @@ pub type FNCmdEndQueryIndexedExt =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -1092,7 +1092,7 @@ pub type FNCmdDrawIndirectByteCountExt = Option<
 ///typedef VkFlags VkPipelineRasterizationStateStreamCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`PipelineRasterizationStateStreamCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -1150,7 +1150,7 @@ impl std::fmt::Debug for PipelineRasterizationStateStreamCreateFlagsEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -1368,7 +1368,7 @@ impl<'lt> PhysicalDeviceTransformFeedbackFeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`Bool32`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
@@ -1770,7 +1770,7 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_EXT_transform_feedback`]
+/// - [`ext_transform_feedback`]
 /// - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
 /// - [`StructureType`]
 ///
@@ -1953,7 +1953,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_transform_feedback`]
+    /// - [`ext_transform_feedback`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
@@ -2087,7 +2087,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_transform_feedback`]
+    /// - [`ext_transform_feedback`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
@@ -2209,7 +2209,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_transform_feedback`]
+    /// - [`ext_transform_feedback`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
@@ -2365,7 +2365,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_transform_feedback`]
+    /// - [`ext_transform_feedback`]
     /// - [`CommandBuffer`]
     /// - [`QueryControlFlags`]
     /// - [`QueryPool`]
@@ -2466,7 +2466,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_transform_feedback`]
+    /// - [`ext_transform_feedback`]
     /// - [`CommandBuffer`]
     /// - [`QueryPool`]
     ///
@@ -2604,8 +2604,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -2775,9 +2775,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -2963,7 +2963,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_transform_feedback`]
+    /// - [`ext_transform_feedback`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]

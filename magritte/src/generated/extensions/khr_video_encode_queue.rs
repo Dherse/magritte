@@ -3,8 +3,8 @@
 //!4
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_video_queue`]`
-//! - Requires `[`VK_KHR_synchronization2`]`
+//! - Requires `[`khr_video_queue`]`
+//! - Requires `[`khr_synchronization2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -48,7 +48,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR`  -
 //!   `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR`
 //!# Version History
@@ -57,8 +57,8 @@
 //!   VkVideoEncoderKHR to VkVideoSessionKHR
 //! - Revision 1.6, Jan 08 2020 (Tony Zlatinski)  - API unify with the video_decode_queue spec
 //! - Revision 2, March 29 2021 (Tony Zlatinski)  - Spec and API updates.
-//! - Revision 3, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]`
-//!   to `vk.xml`
+//! - Revision 3, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
+//!   `vk.xml`
 //! - Revision 4, 2022-02-10 (Ahmed Abdelkhalek)  - Updates to encode capability interface
 //!# Other info
 //! * 2022-02-10
@@ -157,7 +157,7 @@ pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`CommandBuffer`]
 /// - [`VideoEncodeInfoKHR`]
 ///
@@ -186,7 +186,7 @@ pub type FNCmdEncodeVideoKhr = Option<
 ///# Description
 /// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -272,7 +272,7 @@ impl std::fmt::Display for VideoEncodeFlagBitsKHR {
 /// - [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of
 ///   [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -365,7 +365,7 @@ impl std::fmt::Display for VideoEncodeCapabilityFlagBitsKHR {
 ///[`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
 ///[`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -459,7 +459,7 @@ impl std::fmt::Display for VideoEncodeRateControlFlagBitsKHR {
 /// - [`CBR`] for constant bitrate rate control mode.
 /// - [`VBR`] for variable bitrate rate control mode.
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlInfoKHR`]
 /// - [`VideoEncodeRateControlModeFlagsKHR`]
 ///
@@ -559,7 +559,7 @@ impl std::fmt::Display for VideoEncodeRateControlModeFlagBitsKHR {
 ///# Description
 /// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -844,7 +844,7 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
 /// - [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of
 ///   [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1133,7 +1133,7 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
 ///[`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
 ///[`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1422,7 +1422,7 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
 /// - [`CBR`] for constant bitrate rate control mode.
 /// - [`VBR`] for variable bitrate rate control mode.
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlInfoKHR`]
 /// - [`VideoEncodeRateControlModeFlagsKHR`]
 ///
@@ -1808,7 +1808,7 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 /// - If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an
 ///   array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`Extent2D`]
@@ -2205,7 +2205,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265EmitPictureParametersEXT<'lt>>
 ///   [`VideoEncodeRateControlLayerInfoKHR`] structures
 /// - [`layer_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`StructureType`]
 /// - [`VideoEncodeRateControlFlagsKHR`]
 /// - [`VideoEncodeRateControlLayerInfoKHR`]
@@ -2443,7 +2443,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265RateControlInfoEXT<'lt>> for V
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`StructureType`]
 /// - [`VideoEncodeRateControlInfoKHR`]
 ///
@@ -2708,7 +2708,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265RateControlLayerInfoEXT<'lt>>
 ///   [`VideoEncodeRateControlModeFlagBitsKHR`] values
 /// - [`rate_control_modes`] **must**  not be `0`
 ///# Related
-/// - [`VK_KHR_video_encode_queue`]
+/// - [`khr_video_encode_queue`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
@@ -2909,7 +2909,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_video_encode_queue`]
+    /// - [`khr_video_encode_queue`]
     /// - [`CommandBuffer`]
     /// - [`VideoEncodeInfoKHR`]
     ///

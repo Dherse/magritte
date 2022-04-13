@@ -74,7 +74,7 @@ use std::{
 ///   structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`DeviceBufferMemoryRequirements`]
@@ -126,7 +126,7 @@ pub type FNGetDeviceBufferMemoryRequirements = Option<
 /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceImageMemoryRequirements`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`DeviceImageMemoryRequirements`]
@@ -186,7 +186,7 @@ pub type FNGetDeviceImageMemoryRequirements = Option<
 ///   a valid pointer to an array of
 ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`DeviceImageMemoryRequirements`]
@@ -257,7 +257,7 @@ pub type FNGetDeviceImageSparseMemoryRequirements = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_tooling_info`]
+/// - [`ext_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceToolProperties`]
@@ -322,7 +322,7 @@ pub type FNGetPhysicalDeviceToolProperties = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -388,7 +388,7 @@ pub type FNCreatePrivateDataSlot = Option<
 ///## Host Synchronization
 /// - Host access to [`private_data_slot`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -454,7 +454,7 @@ pub type FNDestroyPrivateDataSlot = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`ObjectType`]
@@ -521,7 +521,7 @@ pub type FNSetPrivateData = Option<
 /// - [`p_data`] **must**  be a valid pointer to a `uint64_t` value
 /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`Device`]
 /// - [`ObjectType`]
@@ -652,7 +652,7 @@ pub type FNGetPrivateData = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Fence`]
 /// - [`Queue`]
@@ -714,7 +714,7 @@ pub type FNQueueSubmit2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CullModeFlags`]
@@ -770,7 +770,7 @@ pub type FNCmdSetCullMode = Option<unsafe extern "system" fn(command_buffer: Com
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`FrontFace`]
@@ -825,7 +825,7 @@ pub type FNCmdSetFrontFace = Option<unsafe extern "system" fn(command_buffer: Co
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`PrimitiveTopology`]
@@ -895,7 +895,7 @@ pub type FNCmdSetPrimitiveTopology =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`Viewport`]
@@ -971,7 +971,7 @@ pub type FNCmdSetViewportWithCount =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`Rect2D`]
@@ -1104,7 +1104,7 @@ pub type FNCmdSetScissorWithCount =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
@@ -1170,7 +1170,7 @@ pub type FNCmdBindVertexBuffers2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1226,7 +1226,7 @@ pub type FNCmdSetDepthTestEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1283,7 +1283,7 @@ pub type FNCmdSetDepthWriteEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CompareOp`]
@@ -1339,7 +1339,7 @@ pub type FNCmdSetDepthCompareOp =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1395,7 +1395,7 @@ pub type FNCmdSetDepthBoundsTestEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1473,7 +1473,7 @@ pub type FNCmdSetStencilTestEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state`]
+/// - [`ext_extended_dynamic_state`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CompareOp`]
@@ -1540,7 +1540,7 @@ pub type FNCmdSetStencilOp = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state2`]
+/// - [`ext_extended_dynamic_state2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1596,7 +1596,7 @@ pub type FNCmdSetRasterizerDiscardEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state2`]
+/// - [`ext_extended_dynamic_state2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1654,7 +1654,7 @@ pub type FNCmdSetDepthBiasEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state2`]
+/// - [`ext_extended_dynamic_state2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
@@ -1716,7 +1716,7 @@ pub type FNCmdSetPrimitiveRestartEnable =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyBufferInfo2`]
@@ -1779,7 +1779,7 @@ pub type FNCmdCopyBuffer2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyImageInfo2`]
@@ -1843,7 +1843,7 @@ pub type FNCmdCopyImage2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`BlitImageInfo2`]
 /// - [`CommandBuffer`]
@@ -1907,7 +1907,7 @@ pub type FNCmdBlitImage2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyBufferToImageInfo2`]
@@ -1974,7 +1974,7 @@ pub type FNCmdCopyBufferToImage2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`CopyImageToBufferInfo2`]
@@ -2041,7 +2041,7 @@ pub type FNCmdCopyImageToBuffer2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`ResolveImageInfo2`]
@@ -2142,7 +2142,7 @@ pub type FNCmdResolveImage2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`DependencyInfo`]
@@ -2257,7 +2257,7 @@ pub type FNCmdSetEvent2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`Event`]
@@ -2372,7 +2372,7 @@ pub type FNCmdResetEvent2 =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`DependencyInfo`]
@@ -2473,7 +2473,7 @@ pub type FNCmdWaitEvents2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`DependencyInfo`]
@@ -2606,7 +2606,7 @@ pub type FNCmdPipelineBarrier2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`PipelineStageFlags2`]
@@ -2674,7 +2674,7 @@ pub type FNCmdWriteTimestamp2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`RenderingInfo`]
@@ -2729,7 +2729,7 @@ pub type FNCmdBeginRendering = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 ///
@@ -2780,7 +2780,7 @@ pub type FNCmdEndRendering = Option<unsafe extern "system" fn(command_buffer: Co
 ///   [`BASE_PIPELINE_ACCELERATION`] bit if it was able to avoid a significant amount of work by
 ///   using the base pipeline.
 ///# Related
-/// - [`VK_EXT_pipeline_creation_feedback`]
+/// - [`ext_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineCreationFeedback`]
 /// - [`PipelineCreationFeedbackCreateInfo`]
@@ -2932,7 +2932,7 @@ impl std::fmt::Display for PipelineCreationFeedbackFlagBits {
 ///   [queue labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-queue-labels),
 ///   or [command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
 ///# Related
-/// - [`VK_EXT_tooling_info`]
+/// - [`ext_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`ToolPurposeFlags`]
 ///
@@ -3280,7 +3280,7 @@ impl std::fmt::Display for ToolPurposeFlagBits {
 ///   Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
 /// - [`ACCESS2_VIDEO_ENCODE_WRITE_KHR`] specifies write access to an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations). Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
 ///# Notes and documentation
@@ -3938,7 +3938,7 @@ impl std::fmt::Display for AccessFlagBits2 {
 ///   [`AccessFlags2`] set to `0` when specified in the first synchronization scope, but equivalent
 ///   to [`PIPELINE_STAGE2_NONE`] in the second scope.
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
 ///# Notes and documentation
@@ -4340,7 +4340,7 @@ impl std::fmt::Display for PipelineStageFlagBits2 {
 ///# Description
 /// - [`PROTECTED`] specifies that this batch is a protected submission.
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`SubmitFlags`]
 ///
@@ -4647,7 +4647,7 @@ impl std::fmt::Display for SubmitFlagBits {
 ///   attribute format ([`VertexInputAttributeDescription::format`]).
 /// - [`FORMAT_FEATURE2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR`] specifies that the format  **can**  be used as the vertex format when creating an [acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure) ([`AccelerationStructureGeometryTrianglesDataKHR::vertex_format`]). This format  **can**  also be used as the vertex format in host memory when doing [host acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#host-acceleration-structure) builds.
 ///# Related
-/// - [`VK_KHR_format_feature_flags2`]
+/// - [`khr_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
 ///
 ///# Notes and documentation
@@ -5086,7 +5086,7 @@ impl std::fmt::Display for FormatFeatureFlagBits2 {
 ///No action or synchronization commands, or other render pass instances, are
 ///allowed between suspending and resuming render pass instances.
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`RenderingFlags`]
 ///
@@ -5177,7 +5177,7 @@ impl std::fmt::Display for RenderingFlagBits {
 ///typedef VkPrivateDataSlotCreateFlags VkPrivateDataSlotCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`PrivateDataSlotCreateInfo`]
 ///
@@ -5242,7 +5242,7 @@ impl std::fmt::Debug for PrivateDataSlotCreateFlags {
 ///   [`BASE_PIPELINE_ACCELERATION`] bit if it was able to avoid a significant amount of work by
 ///   using the base pipeline.
 ///# Related
-/// - [`VK_EXT_pipeline_creation_feedback`]
+/// - [`ext_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineCreationFeedback`]
 /// - [`PipelineCreationFeedbackCreateInfo`]
@@ -5781,7 +5781,7 @@ impl std::fmt::Debug for PipelineCreationFeedbackFlags {
 ///   Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
 /// - [`ACCESS2_VIDEO_ENCODE_WRITE_KHR`] specifies write access to an image or buffer resource as part of a [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations). Such access occurs in the `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR` pipeline stage.
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
 ///# Notes and documentation
@@ -6924,7 +6924,7 @@ impl std::fmt::Debug for AccessFlags2 {
 ///   [`AccessFlags2`] set to `0` when specified in the first synchronization scope, but equivalent
 ///   to [`PIPELINE_STAGE2_NONE`] in the second scope.
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 ///
 ///# Notes and documentation
@@ -8071,7 +8071,7 @@ impl std::fmt::Debug for PipelineStageFlags2 {
 ///   attribute format ([`VertexInputAttributeDescription::format`]).
 /// - [`FORMAT_FEATURE2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_KHR`] specifies that the format  **can**  be used as the vertex format when creating an [acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure) ([`AccelerationStructureGeometryTrianglesDataKHR::vertex_format`]). This format  **can**  also be used as the vertex format in host memory when doing [host acceleration structure](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#host-acceleration-structure) builds.
 ///# Related
-/// - [`VK_KHR_format_feature_flags2`]
+/// - [`khr_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
 ///
 ///# Notes and documentation
@@ -8998,7 +8998,7 @@ impl std::fmt::Debug for FormatFeatureFlags2 {
 ///No action or synchronization commands, or other render pass instances, are
 ///allowed between suspending and resuming render pass instances.
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`RenderingFlags`]
 ///
@@ -9330,7 +9330,7 @@ impl std::fmt::Debug for RenderingFlags {
 ///   [queue labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-queue-labels),
 ///   or [command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
 ///# Related
-/// - [`VK_EXT_tooling_info`]
+/// - [`ext_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`ToolPurposeFlags`]
 ///
@@ -9708,7 +9708,7 @@ impl std::fmt::Debug for ToolPurposeFlags {
 ///# Description
 /// - [`PROTECTED`] specifies that this batch is a protected submission.
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`SubmitFlags`]
 ///
@@ -9993,7 +9993,7 @@ impl std::fmt::Debug for SubmitFlags {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO`
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
@@ -10103,7 +10103,7 @@ impl<'lt> DevicePrivateDataCreateInfo<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`PrivateDataSlotCreateFlags`]
 /// - [`StructureType`]
@@ -10223,7 +10223,7 @@ impl<'lt> PrivateDataSlotCreateInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES`
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -10367,7 +10367,7 @@ impl<'lt> PhysicalDevicePrivateDataFeatures<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`create_info`] **must**  be a valid pointer to a valid [`BufferCreateInfo`] structure
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`BufferCreateInfo`]
 /// - [`StructureType`]
@@ -10515,7 +10515,7 @@ impl<'lt> DeviceBufferMemoryRequirements<'lt> {
 /// - If [`plane_aspect`] is not `0`, [`plane_aspect`] **must**  be a valid [`ImageAspectFlagBits`]
 ///   value
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`ImageAspectFlagBits`]
 /// - [`ImageCreateInfo`]
@@ -10678,7 +10678,7 @@ impl<'lt> DeviceImageMemoryRequirements<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES`
 ///# Related
-/// - [`VK_EXT_inline_uniform_block`]
+/// - [`ext_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -10897,7 +10897,7 @@ impl<'lt> PhysicalDeviceInlineUniformBlockFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES`
 ///# Related
-/// - [`VK_EXT_inline_uniform_block`]
+/// - [`ext_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
@@ -11092,7 +11092,7 @@ impl<'lt> PhysicalDeviceInlineUniformBlockProperties<'lt> {
 /// - [`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
 /// - [`data_size`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_inline_uniform_block`]
+/// - [`ext_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
@@ -11242,7 +11242,7 @@ impl<'lt> WriteDescriptorSetInlineUniformBlock<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO`
 ///# Related
-/// - [`VK_EXT_inline_uniform_block`]
+/// - [`ext_inline_uniform_block`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
@@ -11365,7 +11365,7 @@ impl<'lt> DescriptorPoolInlineUniformBlockCreateInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES`
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -11520,7 +11520,7 @@ impl<'lt> PhysicalDeviceMaintenance4Features<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES`
 ///# Related
-/// - [`VK_KHR_maintenance4`]
+/// - [`khr_maintenance4`]
 /// - [`crate::vulkan1_3`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
@@ -11663,7 +11663,7 @@ impl<'lt> PhysicalDeviceMaintenance4Properties<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES`
 ///# Related
-/// - [`VK_EXT_texture_compression_astc_hdr`]
+/// - [`ext_texture_compression_astc_hdr`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -11827,7 +11827,7 @@ impl<'lt> PhysicalDeviceTextureCompressionAstchdrFeatures<'lt> {
 ///and the values of all other [`PipelineCreationFeedback`] data members
 ///are undefined.
 ///# Related
-/// - [`VK_EXT_pipeline_creation_feedback`]
+/// - [`ext_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineCreationFeedbackCreateInfo`]
 /// - [`PipelineCreationFeedbackFlagBits`]
@@ -11963,7 +11963,7 @@ impl PipelineCreationFeedback {
 ///   [`pipeline_stage_creation_feedback_count`][`PipelineCreationFeedback`] structures
 /// - [`pipeline_stage_creation_feedback_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_pipeline_creation_feedback`]
+/// - [`ext_pipeline_creation_feedback`]
 /// - [`crate::vulkan1_3`]
 /// - [`ComputePipelineCreateInfo`]
 /// - [`GraphicsPipelineCreateInfo`]
@@ -12170,7 +12170,7 @@ impl<'lt> PipelineCreationFeedbackCreateInfo<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES`
 ///# Related
-/// - [`VK_EXT_shader_demote_to_helper_invocation`]
+/// - [`ext_shader_demote_to_helper_invocation`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -12342,7 +12342,7 @@ impl<'lt> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES`
 ///# Related
-/// - [`VK_EXT_texel_buffer_alignment`]
+/// - [`ext_texel_buffer_alignment`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`DeviceSize`]
@@ -12574,7 +12574,7 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentProperties<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES`
 ///# Related
-/// - [`VK_EXT_subgroup_size_control`]
+/// - [`ext_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -12776,7 +12776,7 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES`
 ///# Related
-/// - [`VK_EXT_subgroup_size_control`]
+/// - [`ext_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
@@ -12953,7 +12953,7 @@ impl<'lt> PhysicalDeviceSubgroupSizeControlProperties<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO`
 ///# Related
-/// - [`VK_EXT_subgroup_size_control`]
+/// - [`ext_subgroup_size_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 ///
@@ -13087,7 +13087,7 @@ impl<'lt> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES`
 ///# Related
-/// - [`VK_EXT_pipeline_creation_cache_control`]
+/// - [`ext_pipeline_creation_cache_control`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -13268,7 +13268,7 @@ impl<'lt> PhysicalDevicePipelineCreationCacheControlFeatures<'lt> {
 ///   subgroups in compute shaders via the
 ///   `VK_PIPELINE_SHADER_STAGE_CREATE_REQUIRE_FULL_SUBGROUPS_BIT` flag.
 /// - [`synchronization2`] indicates whether the implementation supports the new set of
-///   synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
+///   synchronization commands introduced in `[`khr_synchronization2`]`.
 /// - [`texture_compression_astc_hdr`] indicates whether all of the ASTC HDR compressed texture
 ///   formats are supported. If this feature is enabled, then the
 ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT`, `VK_FORMAT_FEATURE_BLIT_SRC_BIT` and
@@ -13385,7 +13385,7 @@ pub struct PhysicalDeviceVulkan13Features<'lt> {
     pub compute_full_subgroups: Bool32,
     ///[`synchronization2`]
     ///indicates whether the implementation supports the new set of
-    ///synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
+    ///synchronization commands introduced in `[`khr_synchronization2`]`.
     pub synchronization2: Bool32,
     ///[`texture_compression_astc_hdr`] indicates whether all of the ASTC HDR
     ///compressed texture formats are supported.
@@ -16047,7 +16047,7 @@ impl<'lt> PhysicalDeviceVulkan13Properties<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_tooling_info`]
+/// - [`ext_tooling_info`]
 /// - [`crate::vulkan1_3`]
 /// - [`StructureType`]
 /// - [`ToolPurposeFlags`]
@@ -16252,7 +16252,7 @@ impl<'lt> PhysicalDeviceToolProperties<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES`
 ///# Related
-/// - [`VK_KHR_zero_initialize_workgroup_memory`]
+/// - [`khr_zero_initialize_workgroup_memory`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -16402,7 +16402,7 @@ impl<'lt> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES`
 ///# Related
-/// - [`VK_EXT_image_robustness`]
+/// - [`ext_image_robustness`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -16556,7 +16556,7 @@ impl<'lt> PhysicalDeviceImageRobustnessFeatures<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COPY_2`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CopyBufferInfo2`]
 /// - [`DeviceSize`]
@@ -16720,7 +16720,7 @@ impl<'lt> BufferCopy2<'lt> {
 /// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 /// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CopyImageInfo2`]
 /// - [`Extent3D`]
@@ -16921,7 +16921,7 @@ impl<'lt> ImageCopy2<'lt> {
 /// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 /// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`BlitImageInfo2`]
 /// - [`ImageSubresourceLayers`]
@@ -17119,7 +17119,7 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for ImageB
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`image_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CopyBufferToImageInfo2`]
 /// - [`CopyImageToBufferInfo2`]
@@ -17342,7 +17342,7 @@ unsafe impl<'lt> crate::Chain<'lt, CopyCommandTransformInfoQCOM<'lt>> for Buffer
 /// - [`src_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 /// - [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Extent3D`]
 /// - [`ImageSubresourceLayers`]
@@ -17562,7 +17562,7 @@ impl<'lt> ImageResolve2<'lt> {
 /// - Both of [`dst_buffer`], and [`src_buffer`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
 /// - [`BufferCopy2`]
@@ -17912,7 +17912,7 @@ impl<'lt> CopyBufferInfo2<'lt> {
 /// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Image`]
 /// - [`ImageCopy2`]
@@ -18239,7 +18239,7 @@ impl<'lt> CopyImageInfo2<'lt> {
 /// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Filter`]
 /// - [`Image`]
@@ -18588,7 +18588,7 @@ impl<'lt> BlitImageInfo2<'lt> {
 /// - Both of [`dst_image`], and [`src_buffer`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
 /// - [`BufferImageCopy2`]
@@ -18899,7 +18899,7 @@ impl<'lt> CopyBufferToImageInfo2<'lt> {
 /// - Both of [`dst_buffer`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Buffer`]
 /// - [`BufferImageCopy2`]
@@ -19178,7 +19178,7 @@ impl<'lt> CopyImageToBufferInfo2<'lt> {
 /// - Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_copy_commands2`]
+/// - [`khr_copy_commands2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Image`]
 /// - [`ImageLayout`]
@@ -19399,7 +19399,7 @@ impl<'lt> ResolveImageInfo2<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES`
 ///# Related
-/// - [`VK_KHR_shader_terminate_invocation`]
+/// - [`khr_shader_terminate_invocation`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -19857,7 +19857,7 @@ impl<'lt> PhysicalDeviceShaderTerminateInvocationFeatures<'lt> {
 /// - [`dst_stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 /// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`AccessFlags2`]
 /// - [`DependencyInfo`]
@@ -20509,7 +20509,7 @@ impl<'lt> MemoryBarrier2<'lt> {
 /// - [`image`] **must**  be a valid [`Image`] handle
 /// - [`subresource_range`] **must**  be a valid [`ImageSubresourceRange`] structure
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`AccessFlags2`]
 /// - [`DependencyInfo`]
@@ -21152,7 +21152,7 @@ unsafe impl<'lt> crate::Chain<'lt, SampleLocationsInfoEXT<'lt>> for ImageMemoryB
 /// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`AccessFlags2`]
 /// - [`Buffer`]
@@ -21435,7 +21435,7 @@ impl<'lt> BufferMemoryBarrier2<'lt> {
 /// - If [`image_memory_barrier_count`] is not `0`, [`image_memory_barriers`] **must**  be a valid
 ///   pointer to an array of [`image_memory_barrier_count`] valid [`ImageMemoryBarrier2`] structures
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`BufferMemoryBarrier2`]
 /// - [`DependencyFlags`]
@@ -21741,7 +21741,7 @@ impl<'lt> DependencyInfo<'lt> {
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`PipelineStageFlags2`]
 /// - [`Semaphore`]
@@ -21921,7 +21921,7 @@ impl<'lt> SemaphoreSubmitInfo<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBuffer`]
 /// - [`StructureType`]
@@ -22096,7 +22096,7 @@ impl<'lt> CommandBufferSubmitInfo<'lt> {
 ///   pointer to an array of [`signal_semaphore_info_count`] valid [`SemaphoreSubmitInfo`]
 ///   structures
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`CommandBufferSubmitInfo`]
 /// - [`SemaphoreSubmitInfo`]
@@ -22353,7 +22353,7 @@ unsafe impl<'lt> crate::Chain<'lt, PerformanceQuerySubmitInfoKHR<'lt>> for Submi
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`synchronization2`] indicates whether the implementation supports the new set of
-///   synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
+///   synchronization commands introduced in `[`khr_synchronization2`]`.
 ///If the [`PhysicalDeviceSynchronization2Features`] structure is included in the [`p_next`] chain
 /// of the
 ///[`PhysicalDeviceFeatures2`] structure passed to
@@ -22364,7 +22364,7 @@ unsafe impl<'lt> crate::Chain<'lt, PerformanceQuerySubmitInfoKHR<'lt>> for Submi
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES`
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -22389,7 +22389,7 @@ pub struct PhysicalDeviceSynchronization2Features<'lt> {
     pub p_next: *mut BaseOutStructure<'lt>,
     ///[`synchronization2`]
     ///indicates whether the implementation supports the new set of
-    ///synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
+    ///synchronization commands introduced in `[`khr_synchronization2`]`.
     pub synchronization2: Bool32,
 }
 impl<'lt> Default for PhysicalDeviceSynchronization2Features<'lt> {
@@ -22521,7 +22521,7 @@ impl<'lt> PhysicalDeviceSynchronization2Features<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES`
 ///# Related
-/// - [`VK_KHR_shader_integer_dot_product`]
+/// - [`khr_shader_integer_dot_product`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -22737,7 +22737,7 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductFeatures<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES`
 ///# Related
-/// - [`VK_KHR_shader_integer_dot_product`]
+/// - [`khr_shader_integer_dot_product`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -24222,7 +24222,7 @@ impl<'lt> PhysicalDeviceShaderIntegerDotProductProperties<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3`
 ///# Related
-/// - [`VK_KHR_format_feature_flags2`]
+/// - [`khr_format_feature_flags2`]
 /// - [`crate::vulkan1_3`]
 /// - [`FormatFeatureFlags2`]
 /// - [`StructureType`]
@@ -24419,7 +24419,7 @@ impl<'lt> FormatProperties3<'lt> {
 /// - [`depth_attachment_format`] **must**  be a valid [`Format`] value
 /// - [`stencil_attachment_format`] **must**  be a valid [`Format`] value
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Format`]
 /// - [`StructureType`]
@@ -24637,7 +24637,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///discarded.
 ///## Valid Usage
 /// - If [`view_mask`] is `0`, [`layer_count`] **must**  not be `0`
-/// - If neither the [`VK_AMD_mixed_attachment_samples`] nor the [`VK_NV_framebuffer_mixed_samples`]
+/// - If neither the [`amd_mixed_attachment_samples`] nor the [`nv_framebuffer_mixed_samples`]
 ///   extensions are enabled, `imageView` members of [`depth_attachment`], [`stencil_attachment`],
 ///   and elements of [`color_attachments`] that are not [`crate::Handle::null`] **must**  have been
 ///   created with the same `sampleCount`
@@ -24779,266 +24779,10 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span style="margin-right:0.13889em;" class="mord mathdefault
-///   mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
-///   style="top:-3.23em;"><span style="height:3em;" class="pstrut"></span><span
-///   style="border-bottom-width:0.04em;" class="frac-line"></span></span><span
-///   style="top:-3.41586em;"><span style="height:3em;" class="pstrut"></span><span class="sizing
-///   reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span class="mclose delimcenter" style="top:0em;"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
-///   class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
 ///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
 ///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.446108em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
-///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord mtight"><span
-///   class="mord mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.15122857142857138em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.481108em;" class="vlist"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-///   for each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">t</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
-///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist"
-///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
-///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
-///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
 ///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
 ///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
 ///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
@@ -25056,6 +24800,176 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+///   style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to <span
+///   class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
+///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span
+///   style="height:0.15122857142857138em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose
+///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
+///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
+///   `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span style="margin-right:0.13889em;" class="mord mathdefault
+///   mtight">F</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
@@ -25063,46 +24977,128 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
 ///   class="vlist-r"><span class="vlist"
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.00773em;">R</span><span class="mord mathdefault mtight">e</span><span
+///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
-///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
-///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   class="mbin mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
 ///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure included in the [`p_next`] chain is
+///   not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">F</span><span style="margin-right:0.02778em;" class="mord
+///   mathdefault mtight">r</span><span class="mord mathdefault mtight">a</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">m</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span><span style="margin-right:0.13889em;" class="mord
+///   mathdefault mtight">T</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span><span
+///   style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285716em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
@@ -25112,9 +25108,9 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
 ///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentDensityMapAttachmentInfoEXT`] structure
 ///   included in the [`p_next`] chain is not [`crate::Handle::null`], it  **must**  not be equal to
 ///   the `imageView` or `resolveImageView` member of [`depth_attachment`], [`stencil_attachment`],
@@ -25123,13 +25119,13 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.9019679999999999em;" class="vlist"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
@@ -25150,42 +25146,43 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
 ///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
 ///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.41586em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
-///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285719em;"
-///   class="vlist"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
-///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.41586em;"><span
+///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
 ///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span style="margin-right:0.02778em;" class="mord
-///   mathdefault mtight">r</span><span class="mord mathdefault mtight">A</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.3448em;"><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285719em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
@@ -25203,13 +25200,186 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
 ///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
 ///   is not [`crate::Handle::null`], `imageView` **must**  have a width greater than or equal to
+///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
+///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
+///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
+///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
+///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
+///   mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span
+///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
+///   class="frac-line"></span></span><span style="top:-3.446108em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.16454285714285719em;"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault
+///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
+///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
+///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
+///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
+///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
+///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+///   style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
+///   class="mord mathdefault mtight">h</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
+///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
+///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
+///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+///   for each element of `pDeviceRenderAreas`
+/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
+///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
 ///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
 ///   class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span
 ///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
 ///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
 ///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span style="height:0.9322159999999999em;" class="vlist"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
 ///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
+///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord
+///   mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">t</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.01968em;" class="mord mathdefault mtight">l</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
+///   mtight">i</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span class="vlist"
+///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
+///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
+///   style="height:3em;"></span><span class="frac-line"
+///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
+///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
+///   class="mord mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.16454285714285716em;" class="vlist"><span
+///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
+///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
+///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
+///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
+///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
+///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
+///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
+///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
+///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
+///   mathdefault mtight">h</span><span class="mord mathdefault
+///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
+///   class="vlist-r"><span style="height:0.29011428571428566em;"
+///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
+///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
+///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
+///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
+/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
+///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
+///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
+///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
+///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
+///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
+///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
+///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
+///   class="vlist-r"><span style="height:0.999188em;" class="vlist"><span
+///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
 ///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
 ///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
 ///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
@@ -25227,103 +25397,12 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   mtight">x</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
 ///   mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.05764em;">S</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.04398em;" class="mord mathdefault mtight">z</span><span class="mord
+///   class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord
 ///   mtight"><span class="mord mathdefault mtight">e</span><span class="msupsub"><span
 ///   class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
 ///   style="height:0.3448em;"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span
-///   class="mord mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span style="height:3em;"
-///   class="pstrut"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span
-///   style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">v</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault
-///   mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault
-///   mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span style="margin-right:0.02691em;" class="mord
-///   mathdefault mtight">w</span><span class="mord mathdefault mtight">i</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">t</span><span class="mord
-///   mathdefault mtight">h</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
-///   style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></
-///   span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span
-///   class="mclose nulldelimiter"></span></span></span><span style="top:0em;" class="mclose
-///   delimcenter"><span class="delimsizing size2">⌉</span></span></span></span></span></span> for
-///   each element of `pDeviceRenderAreas`
-/// - If the [`p_next`] chain does not contain [`DeviceGroupRenderPassBeginInfo`] or its
-///   `deviceRenderAreaCount` member is equal to 0 and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span style="height:3em;" class="pstrut"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mord mathdefault
-///   mtight">i</span><span style="margin-right:0.04398em;" class="mord mathdefault
-///   mtight">z</span><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
 ///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
 ///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
 ///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
@@ -25333,31 +25412,41 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
 ///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
 ///   style="height:3em;"></span><span style="border-bottom-width:0.04em;"
-///   class="frac-line"></span></span><span style="top:-3.51308em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
-///   mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span
-///   class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
+///   class="frac-line"></span></span><span style="top:-3.51308em;"><span style="height:3em;"
+///   class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord
+///   mtight"><span class="mord mathdefault mtight">p</span><span style="margin-right:0.02778em;"
+///   class="mord mathdefault mtight">D</span><span class="mord mathdefault mtight">e</span><span
+///   class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord
+///   mathdefault mtight">i</span><span class="mord mathdefault mtight">c</span><span class="mord
+///   mathdefault mtight">e</span><span style="margin-right:0.00773em;" class="mord mathdefault
+///   mtight">R</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
+///   mtight">n</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault
+///   mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
 ///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mtight"><span
-///   class="mord mathdefault mtight">a</span><span class="msupsub"><span class="vlist-t
-///   vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">a</span><span class="mord
+///   mtight"><span class="mord mathdefault mtight">s</span><span class="msupsub"><span
+///   class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:0.16454285714285716em;"
 ///   class="vlist"><span
 ///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut"
 ///   style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord
-///   mtight"><span style="margin-right:0.03588em;" class="mord mathdefault
-///   mtight">y</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.2818857142857143em;"><span></span></span></span></span></span></span><span
-///   class="mbin mtight">+</span><span class="mord mathdefault mtight"
+///   mtight"><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
+///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
+///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
+///   mtight">+</span><span class="mord mathdefault mtight">p</span><span
+///   style="margin-right:0.02778em;" class="mord mathdefault mtight">D</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight"
+///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
+///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
+///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
+///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
+///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
+///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
+///   mtight">A</span><span class="mord mathdefault mtight"
 ///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">d</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">A</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mtight"><span class="mord mathdefault
-///   mtight">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+///   class="mord mathdefault mtight">a</span><span class="mord mtight"><span class="mord
+///   mathdefault mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
 ///   class="vlist-r"><span style="height:0.3448em;" class="vlist"><span
 ///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
 ///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
@@ -25372,100 +25461,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 ///   style="height:0.5480799999999999em;"><span></span></span></span></span></span><span
 ///   class="mclose nulldelimiter"></span></span></span><span class="mclose delimcenter"
 ///   style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span>
-/// - If the [`p_next`] chain contains a [`DeviceGroupRenderPassBeginInfo`] structure, its
-///   `deviceRenderAreaCount` member is not 0, and the `imageView` member of a
-///   [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure included in the [`p_next`] chain
-///   is not [`crate::Handle::null`], `imageView` **must**  have a height greater than or equal to
-///   <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span
-///   style="height:1.80002em;vertical-align:-0.65002em;" class="strut"></span><span
-///   class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing
-///   size2">⌈</span></span><span class="mord"><span class="mord"><span class="mopen
-///   nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.999188em;"><span
-///   style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span
-///   class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord
-///   mathdefault mtight">s</span><span class="mord mathdefault mtight">h</span><span class="mord
-///   mathdefault mtight">a</span><span class="mord mathdefault mtight">d</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.00773em;">R</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault
-///   mtight">h</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault
-///   mtight">t</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span
-///   style="margin-right:0.05764em;" class="mord mathdefault mtight">S</span><span class="mord
-///   mathdefault mtight">i</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord
-///   mathdefault mtight">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
-///   class="vlist-r"><span class="vlist" style="height:0.3448em;"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   style="margin-right:0.03588em;" class="mord mathdefault mtight">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span class="vlist"
-///   style="height:0.29011428571428566em;"><span></span></span></span></span></span></span></
-///   span></span></span><span style="top:-3.23em;"><span class="pstrut"
-///   style="height:3em;"></span><span class="frac-line"
-///   style="border-bottom-width:0.04em;"></span></span><span style="top:-3.51308em;"><span
-///   class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span
-///   class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.00773em;" class="mord mathdefault mtight">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span class="mord
-///   mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault
-///   mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
-///   style="height:0.16454285714285716em;"><span
-///   style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   style="height:2.5em;" class="pstrut"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">y</span></span></span></span></span><span
-///   class="vlist-s">​</span></span><span class="vlist-r"><span style="height:0.2818857142857143em;"
-///   class="vlist"><span></span></span></span></span></span></span><span class="mbin
-///   mtight">+</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault
-///   mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault
-///   mtight">e</span><span class="mord mathdefault mtight"
-///   style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">e</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mord
-///   mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord
-///   mathdefault mtight">d</span><span class="mord mathdefault mtight">e</span><span
-///   style="margin-right:0.02778em;" class="mord mathdefault mtight">r</span><span class="mord
-///   mathdefault mtight">A</span><span style="margin-right:0.02778em;" class="mord mathdefault
-///   mtight">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault
-///   mtight">a</span><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span
-///   class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
-///   style="height:0.3448em;" class="vlist"><span
-///   style="top:-2.3487714285714287em;margin-left:0em;margin-right:0.07142857142857144em;"><span
-///   class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1
-///   mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span
-///   class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">i</span><span
-///   class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord
-///   mathdefault mtight">h</span><span class="mord mathdefault
-///   mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span
-///   class="vlist-r"><span style="height:0.29011428571428566em;"
-///   class="vlist"><span></span></span></span></span></span></span></span></span></span></
-///   span><span class="vlist-s">​</span></span><span class="vlist-r"><span
-///   style="height:0.5480799999999999em;"
-///   class="vlist"><span></span></span></span></span></span><span class="mclose
-///   nulldelimiter"></span></span></span><span style="top:0em;" class="mclose delimcenter"><span
-///   class="delimsizing size2">⌉</span></span></span></span></span></span> for each element of
-///   `pDeviceRenderAreas`
+///   for each element of `pDeviceRenderAreas`
 /// - If the `imageView` member of a [`RenderingFragmentShadingRateAttachmentInfoKHR`] structure
 ///   included in the [`p_next`] chain is not [`crate::Handle::null`], and [`view_mask`] is `0`,
 ///   `imageView` **must**  have a [`layer_count`] that is either equal to `1` or greater than or
@@ -25501,7 +25497,7 @@ impl<'lt> PipelineRenderingCreateInfo<'lt> {
 /// - If [`stencil_attachment`] is not `NULL`, [`stencil_attachment`] **must**  be a valid pointer
 ///   to a valid [`RenderingAttachmentInfo`] structure
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Rect2D`]
 /// - [`RenderingAttachmentInfo`]
@@ -25874,7 +25870,7 @@ unsafe impl<'lt> crate::Chain<'lt, MultiviewPerViewAttributesInfoNVX<'lt>> for R
 /// - Both of [`image_view`], and [`resolve_image_view`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`AttachmentLoadOp`]
 /// - [`AttachmentStoreOp`]
@@ -26119,7 +26115,7 @@ impl<'lt> RenderingAttachmentInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -26318,7 +26314,7 @@ impl<'lt> PhysicalDeviceDynamicRenderingFeatures<'lt> {
 /// - If [`rasterization_samples`] is not `0`, [`rasterization_samples`] **must**  be a valid
 ///   [`SampleCountFlagBits`] value
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`khr_dynamic_rendering`]
 /// - [`crate::vulkan1_3`]
 /// - [`Format`]
 /// - [`RenderingFlags`]
@@ -26568,7 +26564,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_tooling_info`]
+    /// - [`ext_tooling_info`]
     /// - [`crate::vulkan1_3`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceToolProperties`]
@@ -26676,7 +26672,7 @@ impl Device {
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
     ///# Related
-    /// - [`VK_KHR_maintenance4`]
+    /// - [`khr_maintenance4`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`DeviceBufferMemoryRequirements`]
@@ -26775,7 +26771,7 @@ impl Device {
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
     ///# Related
-    /// - [`VK_KHR_maintenance4`]
+    /// - [`khr_maintenance4`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`DeviceImageMemoryRequirements`]
@@ -26881,7 +26877,7 @@ impl Device {
     ///   be a valid pointer to an array of
     ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
     ///# Related
-    /// - [`VK_KHR_maintenance4`]
+    /// - [`khr_maintenance4`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`DeviceImageMemoryRequirements`]
@@ -27006,7 +27002,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_private_data`]
+    /// - [`ext_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -27122,7 +27118,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`private_data_slot`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_EXT_private_data`]
+    /// - [`ext_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -27231,7 +27227,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_private_data`]
+    /// - [`ext_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`ObjectType`]
@@ -27344,7 +27340,7 @@ impl Device {
     /// - [`p_data`] **must**  be a valid pointer to a `uint64_t` value
     /// - [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_EXT_private_data`]
+    /// - [`ext_private_data`]
     /// - [`crate::vulkan1_3`]
     /// - [`Device`]
     /// - [`ObjectType`]
@@ -27522,7 +27518,7 @@ impl Queue {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`khr_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Fence`]
     /// - [`Queue`]
@@ -27633,7 +27629,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CullModeFlags`]
@@ -27732,7 +27728,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`FrontFace`]
@@ -27830,7 +27826,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`PrimitiveTopology`]
@@ -27945,7 +27941,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`Viewport`]
@@ -28067,7 +28063,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`Rect2D`]
@@ -28248,7 +28244,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
@@ -28363,7 +28359,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -28461,7 +28457,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -28560,7 +28556,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CompareOp`]
@@ -28658,7 +28654,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -28756,7 +28752,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -28876,7 +28872,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state`]
+    /// - [`ext_extended_dynamic_state`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CompareOp`]
@@ -28984,7 +28980,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`ext_extended_dynamic_state2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -29085,7 +29081,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`ext_extended_dynamic_state2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -29185,7 +29181,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`ext_extended_dynamic_state2`]
     /// - [`crate::vulkan1_3`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
@@ -29290,7 +29286,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_copy_commands2`]
+    /// - [`khr_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyBufferInfo2`]
@@ -29394,7 +29390,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_copy_commands2`]
+    /// - [`khr_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyImageInfo2`]
@@ -29499,7 +29495,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_copy_commands2`]
+    /// - [`khr_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`BlitImageInfo2`]
     /// - [`CommandBuffer`]
@@ -29604,7 +29600,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_copy_commands2`]
+    /// - [`khr_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyBufferToImageInfo2`]
@@ -29715,7 +29711,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_copy_commands2`]
+    /// - [`khr_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`CopyImageToBufferInfo2`]
@@ -29826,7 +29822,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_copy_commands2`]
+    /// - [`khr_copy_commands2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`ResolveImageInfo2`]
@@ -29969,7 +29965,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`khr_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`DependencyInfo`]
@@ -30126,7 +30122,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`khr_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`Event`]
@@ -30280,7 +30276,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`khr_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`DependencyInfo`]
@@ -30429,7 +30425,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`khr_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`DependencyInfo`]
@@ -30606,7 +30602,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`khr_synchronization2`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`PipelineStageFlags2`]
@@ -30715,7 +30711,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_dynamic_rendering`]
+    /// - [`khr_dynamic_rendering`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     /// - [`RenderingInfo`]
@@ -30811,7 +30807,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_dynamic_rendering`]
+    /// - [`khr_dynamic_rendering`]
     /// - [`crate::vulkan1_3`]
     /// - [`CommandBuffer`]
     ///
@@ -30879,7 +30875,7 @@ impl CommandBuffer {
 ///typedef VkPrivateDataSlot VkPrivateDataSlotEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_private_data`]
+/// - [`ext_private_data`]
 /// - [`crate::vulkan1_3`]
 /// - [`create_private_data_slot`]
 /// - [`create_private_data_slot_ext`]

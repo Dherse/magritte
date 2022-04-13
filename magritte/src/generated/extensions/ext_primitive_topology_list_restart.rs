@@ -89,7 +89,7 @@ pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_primitive_topology_list_restart`]
+/// - [`ext_primitive_topology_list_restart`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

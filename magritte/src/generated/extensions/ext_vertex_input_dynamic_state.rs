@@ -11,7 +11,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_vertex_input_dynamic_state]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -136,7 +136,7 @@ pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_vertex_input_dynamic_state`]
+/// - [`ext_vertex_input_dynamic_state`]
 /// - [`CommandBuffer`]
 /// - [`VertexInputAttributeDescription2EXT`]
 /// - [`VertexInputBindingDescription2EXT`]
@@ -189,7 +189,7 @@ pub type FNCmdSetVertexInputExt = Option<
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_vertex_input_dynamic_state`]
+/// - [`ext_vertex_input_dynamic_state`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -345,7 +345,7 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT`
 /// - [`input_rate`] **must**  be a valid [`VertexInputRate`] value
 ///# Related
-/// - [`VK_EXT_vertex_input_dynamic_state`]
+/// - [`ext_vertex_input_dynamic_state`]
 /// - [`StructureType`]
 /// - [`VertexInputRate`]
 /// - [`cmd_set_vertex_input_ext`]
@@ -533,7 +533,7 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// - [`format`] **must**  be allowed as a vertex buffer format, as specified by the
 ///   `VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT` flag in [`FormatProperties::buffer_features`] returned
 ///   by [`get_physical_device_format_properties`]
-/// - If the `[`VK_KHR_portability_subset`]` extension is enabled, and
+/// - If the `[`khr_portability_subset`]` extension is enabled, and
 ///   [`PhysicalDevicePortabilitySubsetFeaturesKHR::vertex_attribute_access_beyond_stride`] is
 ///   [`FALSE`], the sum of [`offset`] plus the size of the vertex attribute data described by
 ///   [`format`] **must**  not be greater than `stride` in the [`VertexInputBindingDescription2EXT`]
@@ -543,7 +543,7 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT`
 /// - [`format`] **must**  be a valid [`Format`] value
 ///# Related
-/// - [`VK_EXT_vertex_input_dynamic_state`]
+/// - [`ext_vertex_input_dynamic_state`]
 /// - [`Format`]
 /// - [`StructureType`]
 /// - [`cmd_set_vertex_input_ext`]
@@ -755,7 +755,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_vertex_input_dynamic_state`]
+    /// - [`ext_vertex_input_dynamic_state`]
     /// - [`CommandBuffer`]
     /// - [`VertexInputAttributeDescription2EXT`]
     /// - [`VertexInputBindingDescription2EXT`]

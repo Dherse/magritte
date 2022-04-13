@@ -30,17 +30,17 @@ macro_rules! acquire {
 
 use crate::entry::{Entry, EntryVTable};
 
-pub(crate) struct Inner<T: Handle> {
-    pub(crate) parent: T::Parent,
-    pub(crate) vtable: T::VTable,
-    pub(crate) metadata: T::Metadata,
-    pub(crate) strong: AtomicUsize,
+pub struct Inner<T: Handle> {
+    pub parent: T::Parent,
+    pub vtable: T::VTable,
+    pub metadata: T::Metadata,
+    pub strong: AtomicUsize,
 }
 
 #[derive(Debug)]
 pub struct Unique<T: Handle> {
     pub(crate) inner: NonNull<Inner<T>>,
-    pub(crate) this: T,
+    pub this: T,
 }
 
 impl<T: Handle> Deref for Unique<T> {
@@ -76,10 +76,37 @@ impl<T: Handle> Unique<T> {
         }
     }
 
+    /// Loads the strong count of this unique handle
+    #[inline]
+    pub fn strong_count(&self) -> usize {
+        self.inner().strong.load(Ordering::Acquire)
+    }
+
     /// Gets the inner storage of this value
     #[inline]
-    fn inner(&self) -> &Inner<T> {
+    pub fn inner(&self) -> &Inner<T> {
         unsafe { self.inner.as_ref() }
+    }
+
+    /// Gets a mutable reference to inner storage of this value.
+    /// Returns `None` if there is more than one strong reference.
+    /// 
+    /// # Safety
+    /// This is safe because we ensure that there is only one reference
+    /// to the value. And by taking a mutable reference to the unique value,
+    /// we prevent it from being cloned until the mutable reference is dropped.
+    #[inline]
+    pub fn inner_mut(&mut self) -> Option<&mut Inner<T>> {
+        (self.strong_count() == 1).then(|| unsafe { self.inner.as_mut() })
+    }
+
+    /// Gets a mutable reference to the inner storage of this value.
+    /// 
+    /// # Safety
+    /// The caller must ensure that synchronization is done.
+    #[inline]
+    pub unsafe fn inner_mut_unchecked(&self) -> &mut Inner<T> {
+        &mut *self.inner.as_ptr()
     }
 
     /// Gets a reference to the parent

@@ -7,7 +7,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //!# Contacts
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_rgba10x6_formats]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
@@ -88,7 +88,7 @@ pub const EXT_RGBA10X6_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_rgba10x6_formats`]
+/// - [`ext_rgba10x6_formats`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

@@ -3,13 +3,13 @@
 //!This extension provides new entry points to query device display properties
 //!and capabilities in a way that can be easily extended by other extensions,
 //!without introducing any further entry points.
-//!This extension can be considered the `[`VK_KHR_display`]` equivalent of
-//!the `[`VK_KHR_get_physical_device_properties2`]` extension.
+//!This extension can be considered the `[`khr_display`]` equivalent of
+//!the `[`khr_get_physical_device_properties2`]` extension.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_display`]`
+//! - Requires `[`khr_display`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_display_properties2]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -120,7 +120,7 @@ pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayProperties2KHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -170,7 +170,7 @@ pub type FNGetPhysicalDeviceDisplayProperties2Khr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayPlaneProperties2KHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -224,7 +224,7 @@ pub type FNGetPhysicalDeviceDisplayPlaneProperties2Khr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayKHR`]
 /// - [`DisplayModeProperties2KHR`]
 /// - [`PhysicalDevice`]
@@ -277,7 +277,7 @@ pub type FNGetDisplayModeProperties2Khr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayPlaneCapabilities2KHR`]
 /// - [`DisplayPlaneInfo2KHR`]
 /// - [`PhysicalDevice`]
@@ -317,7 +317,7 @@ pub type FNGetDisplayPlaneCapabilities2Khr = Option<
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayPropertiesKHR`]
 /// - [`StructureType`]
 /// - [`get_physical_device_display_properties2_khr`]
@@ -429,7 +429,7 @@ impl<'lt> DisplayProperties2KHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayPlanePropertiesKHR`]
 /// - [`StructureType`]
 /// - [`get_physical_device_display_plane_properties2_khr`]
@@ -545,7 +545,7 @@ impl<'lt> DisplayPlaneProperties2KHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`StructureType`]
 /// - [`get_display_mode_properties2_khr`]
@@ -671,7 +671,7 @@ impl<'lt> DisplayModeProperties2KHR<'lt> {
 ///## Host Synchronization
 /// - Host access to [`mode`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayModeKHR`]
 /// - [`StructureType`]
 /// - [`get_display_plane_capabilities2_khr`]
@@ -793,7 +793,7 @@ impl<'lt> DisplayPlaneInfo2KHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_get_display_properties2`]
+/// - [`khr_get_display_properties2`]
 /// - [`DisplayPlaneCapabilitiesKHR`]
 /// - [`StructureType`]
 /// - [`get_display_plane_capabilities2_khr`]
@@ -917,7 +917,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_get_display_properties2`]
+    /// - [`khr_get_display_properties2`]
     /// - [`DisplayProperties2KHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -999,7 +999,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_get_display_properties2`]
+    /// - [`khr_get_display_properties2`]
     /// - [`DisplayPlaneProperties2KHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -1085,7 +1085,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_get_display_properties2`]
+    /// - [`khr_get_display_properties2`]
     /// - [`DisplayKHR`]
     /// - [`DisplayModeProperties2KHR`]
     /// - [`PhysicalDevice`]
@@ -1170,7 +1170,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_get_display_properties2`]
+    /// - [`khr_get_display_properties2`]
     /// - [`DisplayPlaneCapabilities2KHR`]
     /// - [`DisplayPlaneInfo2KHR`]
     /// - [`PhysicalDevice`]

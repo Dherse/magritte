@@ -6,7 +6,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory`]`
+//! - Requires `[`khr_external_memory`]`
 //!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_external_memory_host]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
@@ -137,7 +137,7 @@ pub const EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_EXT_external_memory_host`]
+/// - [`ext_external_memory_host`]
 /// - [`Device`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`MemoryHostPointerPropertiesEXT`]
@@ -217,7 +217,7 @@ pub type FNGetMemoryHostPointerPropertiesExt = Option<
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT`
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_EXT_external_memory_host`]
+/// - [`ext_external_memory_host`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
@@ -356,7 +356,7 @@ impl<'lt> ImportMemoryHostPointerInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_external_memory_host`]
+/// - [`ext_external_memory_host`]
 /// - [`StructureType`]
 /// - [`get_memory_host_pointer_properties_ext`]
 ///
@@ -476,7 +476,7 @@ impl<'lt> MemoryHostPointerPropertiesEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_external_memory_host`]
+/// - [`ext_external_memory_host`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
@@ -611,7 +611,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_EXT_external_memory_host`]
+    /// - [`ext_external_memory_host`]
     /// - [`Device`]
     /// - [`ExternalMemoryHandleTypeFlagBits`]
     /// - [`MemoryHostPointerPropertiesEXT`]

@@ -3,13 +3,13 @@
 //!This extension provides new entry points to query device surface
 //!capabilities in a way that can be easily extended by other extensions,
 //!without introducing any further entry points.
-//!This extension can be considered the `[`VK_KHR_surface`]` equivalent of
-//!the `[`VK_KHR_get_physical_device_properties2`]` extension.
+//!This extension can be considered the `[`khr_surface`]` equivalent of
+//!the `[`khr_get_physical_device_properties2`]` extension.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_surface_capabilities2]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -135,7 +135,7 @@ pub const KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME: &'static CStr =
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_get_surface_capabilities2`]
+/// - [`khr_get_surface_capabilities2`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceSurfaceInfo2KHR`]
 /// - [`SurfaceCapabilities2KHR`]
@@ -191,7 +191,7 @@ pub type FNGetPhysicalDeviceSurfaceCapabilities2Khr = Option<
 ///`VK_SUCCESS`, to indicate that not all the available values were
 ///returned.
 ///## Valid Usage
-/// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
+/// - If the `[`google_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
 ///   **must**  be a valid [`SurfaceKHR`] handle
 /// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
 ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
@@ -211,7 +211,7 @@ pub type FNGetPhysicalDeviceSurfaceCapabilities2Khr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_get_surface_capabilities2`]
+/// - [`khr_get_surface_capabilities2`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceSurfaceInfo2KHR`]
 /// - [`SurfaceFormat2KHR`]
@@ -271,15 +271,15 @@ pub type FNGetPhysicalDeviceSurfaceFormats2Khr = Option<
 ///   [`SurfaceFullScreenExclusiveWin32InfoEXT`] structure  **must**  be included in the [`p_next`]
 ///   chain
 /// - When passed as the `pSurfaceInfo` parameter of
-///   [`get_physical_device_surface_capabilities2_khr`], if the `[`VK_GOOGLE_surfaceless_query`]`
+///   [`get_physical_device_surface_capabilities2_khr`], if the `[`google_surfaceless_query`]`
 ///   extension is enabled and the [`p_next`] chain of the `pSurfaceCapabilities` parameter includes
 ///   [`SurfaceProtectedCapabilitiesKHR`], then [`surface`] **can**  be [`crate::Handle::null`].
 ///   Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_formats2_khr`],
-///   if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be
+///   if the `[`google_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be
 ///   [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 /// - When passed as the `pSurfaceInfo` parameter of
-///   [`get_physical_device_surface_present_modes2_ext`], if the `[`VK_GOOGLE_surfaceless_query`]`
+///   [`get_physical_device_surface_present_modes2_ext`], if the `[`google_surfaceless_query`]`
 ///   extension is enabled, then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise,
 ///   [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 ///
@@ -292,7 +292,7 @@ pub type FNGetPhysicalDeviceSurfaceFormats2Khr = Option<
 /// - If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid [`SurfaceKHR`]
 ///   handle
 ///# Related
-/// - [`VK_KHR_get_surface_capabilities2`]
+/// - [`khr_get_surface_capabilities2`]
 /// - [`StructureType`]
 /// - [`SurfaceKHR`]
 /// - [`get_device_group_surface_present_modes2_ext`]
@@ -409,7 +409,7 @@ unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> 
 ///   [`SurfaceCapabilitiesFullScreenExclusiveEXT`], or [`SurfaceProtectedCapabilitiesKHR`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
-/// - [`VK_KHR_get_surface_capabilities2`]
+/// - [`khr_get_surface_capabilities2`]
 /// - [`StructureType`]
 /// - [`SurfaceCapabilitiesKHR`]
 /// - [`get_physical_device_surface_capabilities2_khr`]
@@ -531,7 +531,7 @@ unsafe impl<'lt> crate::Chain<'lt, SurfaceCapabilitiesFullScreenExclusiveEXT<'lt
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_get_surface_capabilities2`]
+/// - [`khr_get_surface_capabilities2`]
 /// - [`StructureType`]
 /// - [`SurfaceFormatKHR`]
 /// - [`get_physical_device_surface_formats2_khr`]
@@ -670,7 +670,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_get_surface_capabilities2`]
+    /// - [`khr_get_surface_capabilities2`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceSurfaceInfo2KHR`]
     /// - [`SurfaceCapabilities2KHR`]
@@ -758,7 +758,7 @@ impl PhysicalDevice {
     ///`VK_SUCCESS`, to indicate that not all the available values were
     ///returned.
     ///## Valid Usage
-    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
+    /// - If the `[`google_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
     ///   **must**  be a valid [`SurfaceKHR`] handle
     /// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
     ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
@@ -778,7 +778,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_get_surface_capabilities2`]
+    /// - [`khr_get_surface_capabilities2`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceSurfaceInfo2KHR`]
     /// - [`SurfaceFormat2KHR`]

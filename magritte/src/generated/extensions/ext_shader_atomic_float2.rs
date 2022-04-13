@@ -14,7 +14,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_shader_atomic_float`]`
+//! - Requires `[`ext_shader_atomic_float`]`
 //!# Contacts
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_atomic_float2]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
@@ -129,7 +129,7 @@ pub const EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_shader_atomic_float2`]
+/// - [`ext_shader_atomic_float2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

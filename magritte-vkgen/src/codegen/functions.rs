@@ -131,8 +131,6 @@ impl<'a> Function<'a> {
         let mut change = None;
         if let Some(new_handle) = gen.change_handle {
             handle = source.handles.get_by_name(&new_handle).unwrap();
-            // gen = StatefulFunctionGeneratorState::new(source, imports, handle, self.clone(), None);
-
             change = Some(new_handle);
         }
 
@@ -200,6 +198,10 @@ impl<'a> Function<'a> {
             }
         };
 
+        let update_vtable = gen.returns_device.then(|| quote! {
+            self.instance().update_vtable(&extensions);
+        });
+
         let return_expr = match self.return_type() {
             Some(Ty::Named(Cow::Borrowed("VkResult"))) => {
                 imports.push_origin(&Origin::Vulkan1_0, "VulkanResultCodes");
@@ -218,7 +220,10 @@ impl<'a> Function<'a> {
 
                 quote! {
                     match _return {
-                        #(VulkanResultCodes::#successes) |* => VulkanResult::Success(_return, #inner_return_value),
+                        #(VulkanResultCodes::#successes) |* => {
+                            #update_vtable
+                            VulkanResult::Success(_return, #inner_return_value)
+                        },
                         e => VulkanResult::Err(e)
                     }
                 }
@@ -258,6 +263,13 @@ impl<'a> Function<'a> {
             Mutability::Const => quote! { self: &Unique<#ident> },
         };
 
+        let extension_param = gen.returns_device.then(|| {
+            imports.push("crate::extensions::DeviceExtensions");
+            quote! {
+                extensions: DeviceExtensions,
+            }
+        });
+
         quote_each_token! {
             out
 
@@ -268,7 +280,8 @@ impl<'a> Function<'a> {
             #[inline]
             pub unsafe fn #name #generics(
                 #this,
-                #(#params),*
+                #(#params, )*
+                #extension_param
             ) -> #return_ty {
                 #[cfg(any(debug_assertions, feature = "assertions"))]
                 let _function = #function_getter.expect("function not loaded");

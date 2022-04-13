@@ -32,7 +32,7 @@
 //!dependencies in parallel with other tasks.Queue submission has been changed to wrap command
 //! buffers and semaphores in
 //!extensible structures, which incorporate changes from Vulkan 1.1,
-//!`[`VK_KHR_device_group`]`, and `[`VK_KHR_timeline_semaphore`]`.
+//!`[`khr_device_group`]`, and `[`khr_timeline_semaphore`]`.
 //!This also adds a pipeline stage to the semaphore signal operation, mirroring
 //!the existing pipeline stage specification for wait operations.Other miscellaneous changes
 //! include:
@@ -58,7 +58,7 @@
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_synchronization2]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_synchronization2
@@ -70,9 +70,9 @@
 //! - [`cmd_wait_events2_khr`]
 //! - [`cmd_write_timestamp2_khr`]
 //! - [`queue_submit2_khr`]
-//!If [`VK_AMD_buffer_marker`] is supported:
+//!If [`amd_buffer_marker`] is supported:
 //! - [`cmd_write_buffer_marker2_amd`]
-//!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
+//!If [`nv_device_diagnostic_checkpoints`] is supported:
 //! - [`get_queue_checkpoint_data2_nv`]
 //!# New structures
 //! - [`BufferMemoryBarrier2KHR`]
@@ -84,7 +84,7 @@
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceSynchronization2FeaturesKHR`]
 //! - Extending [`SubpassDependency2`]:  - [`MemoryBarrier2KHR`]
-//!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
+//!If [`nv_device_diagnostic_checkpoints`] is supported:
 //! - [`CheckpointData2NV`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyCheckpointProperties2NV`]
 //!# New enums
@@ -108,55 +108,55 @@
 //!   - `VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2_KHR`  - `VK_STRUCTURE_TYPE_MEMORY_BARRIER_2_KHR`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_SUBMIT_INFO_KHR`  - `VK_STRUCTURE_TYPE_SUBMIT_INFO_2_KHR`
-//!If [`VK_EXT_blend_operation_advanced`] is supported:
+//!If [`ext_blend_operation_advanced`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`
-//!If [`VK_EXT_conditional_rendering`] is supported:
+//!If [`ext_conditional_rendering`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_CONDITIONAL_RENDERING_READ_BIT_EXT`
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_CONDITIONAL_RENDERING_BIT_EXT`
-//!If [`VK_EXT_fragment_density_map`] is supported:
+//!If [`ext_fragment_density_map`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`
 //! - Extending [`PipelineStageFlagBits2`]:  -
 //!   `VK_PIPELINE_STAGE_2_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
-//!If [`VK_EXT_transform_feedback`] is supported:
+//!If [`ext_transform_feedback`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`  -
 //!   `VK_ACCESS_2_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`  -
 //!   `VK_ACCESS_2_TRANSFORM_FEEDBACK_WRITE_BIT_EXT`
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_TRANSFORM_FEEDBACK_BIT_EXT`
-//!If [`VK_KHR_acceleration_structure`] is supported:
+//!If [`khr_acceleration_structure`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR`  -
 //!   `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_KHR`
 //! - Extending [`PipelineStageFlagBits2`]:  -
 //!   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_KHR`
-//!If [`VK_KHR_fragment_shading_rate`] is supported:
+//!If [`khr_fragment_shading_rate`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR`
 //! - Extending [`PipelineStageFlagBits2`]:  -
 //!   `VK_PIPELINE_STAGE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
-//!If [`VK_KHR_ray_tracing_pipeline`] is supported:
+//!If [`khr_ray_tracing_pipeline`] is supported:
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_KHR`
-//!If [`VK_NV_device_diagnostic_checkpoints`] is supported:
+//!If [`nv_device_diagnostic_checkpoints`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV`  -
 //!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
-//!If [`VK_NV_device_generated_commands`] is supported:
+//!If [`nv_device_generated_commands`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_COMMAND_PREPROCESS_READ_BIT_NV`  -
 //!   `VK_ACCESS_2_COMMAND_PREPROCESS_WRITE_BIT_NV`
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_COMMAND_PREPROCESS_BIT_NV`
-//!If [`VK_NV_mesh_shader`] is supported:
+//!If [`nv_mesh_shader`] is supported:
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_MESH_SHADER_BIT_NV`  -
 //!   `VK_PIPELINE_STAGE_2_TASK_SHADER_BIT_NV`
-//!If [`VK_NV_ray_tracing`] is supported:
+//!If [`nv_ray_tracing`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_NV`  -
 //!   `VK_ACCESS_2_ACCELERATION_STRUCTURE_WRITE_BIT_NV`
 //! - Extending [`PipelineStageFlagBits2`]:  -
 //!   `VK_PIPELINE_STAGE_2_ACCELERATION_STRUCTURE_BUILD_BIT_NV`  -
 //!   `VK_PIPELINE_STAGE_2_RAY_TRACING_SHADER_BIT_NV`
-//!If [`VK_NV_shading_rate_image`] is supported:
+//!If [`nv_shading_rate_image`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
 //!# Version History
 //! - Revision 1, 2020-12-03 (Tobias Hector)  - Internal revisions
 //!# Other info
 //! * 2020-12-03
-//! * - Promoted to Vulkan 1.3 Core  - Interacts with `[`VK_KHR_create_renderpass2`]`
+//! * - Promoted to Vulkan 1.3 Core  - Interacts with `[`khr_create_renderpass2`]`
 //! * - Tobias Hector
 //!# Related
 //! - [`AccessFlagBits2KHR`]
@@ -217,7 +217,7 @@ pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///typedef uint64_t VkFlags64;
 ///```
 ///# Related
-/// - [`VK_KHR_synchronization2`]
+/// - [`khr_synchronization2`]
 /// - [`Flags`]
 ///
 ///# Notes and documentation
@@ -269,8 +269,8 @@ pub type Flags64 = u64;
 ///   is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to an array of
 ///   [`p_checkpoint_data_count`][`CheckpointData2NV`] structures
 ///# Related
-/// - [`VK_KHR_synchronization2`]
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`khr_synchronization2`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`CheckpointData2NV`]
 /// - [`Queue`]
 ///
@@ -383,8 +383,8 @@ pub type FNGetQueueCheckpointData2Nv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_AMD_buffer_marker`]
-/// - [`VK_KHR_synchronization2`]
+/// - [`amd_buffer_marker`]
+/// - [`khr_synchronization2`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -430,8 +430,8 @@ pub type FNCmdWriteBufferMarker2Amd = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
 ///# Related
-/// - [`VK_KHR_synchronization2`]
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`khr_synchronization2`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 ///
@@ -549,8 +549,8 @@ impl<'lt> QueueFamilyCheckpointProperties2NV<'lt> {
 ///implementation-defined and  **can**  be queried by calling
 ///[`get_physical_device_queue_family_properties2`].
 ///# Related
-/// - [`VK_KHR_synchronization2`]
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`khr_synchronization2`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 /// - [`get_queue_checkpoint_data2_nv`]
@@ -716,8 +716,8 @@ impl Queue {
     ///   [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to
     ///   an array of [`p_checkpoint_data_count`][`CheckpointData2NV`] structures
     ///# Related
-    /// - [`VK_KHR_synchronization2`]
-    /// - [`VK_NV_device_diagnostic_checkpoints`]
+    /// - [`khr_synchronization2`]
+    /// - [`nv_device_diagnostic_checkpoints`]
     /// - [`CheckpointData2NV`]
     /// - [`Queue`]
     ///
@@ -863,8 +863,8 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_AMD_buffer_marker`]
-    /// - [`VK_KHR_synchronization2`]
+    /// - [`amd_buffer_marker`]
+    /// - [`khr_synchronization2`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]

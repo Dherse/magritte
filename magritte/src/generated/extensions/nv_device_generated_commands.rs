@@ -53,7 +53,7 @@
 //!3
 //!# Dependencies
 //! - Requires Vulkan 1.1
-//! - Requires `[`VK_KHR_buffer_device_address`]`
+//! - Requires `[`khr_buffer_device_address`]`
 //!# Contacts
 //! - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_generated_commands]
 //!   @pixeljetstream%0A<<Here describe the issue or question you have about the
@@ -345,7 +345,7 @@ pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static CStr = crate::cs
 ///   [`GeneratedCommandsMemoryRequirementsInfoNV`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`Device`]
 /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
 /// - [`MemoryRequirements2`]
@@ -402,7 +402,7 @@ pub type FNGetGeneratedCommandsMemoryRequirementsNv = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`IndirectCommandsLayoutCreateInfoNV`]
@@ -462,7 +462,7 @@ pub type FNCreateIndirectCommandsLayoutNv = Option<
 ///## Host Synchronization
 /// - Host access to [`indirect_commands_layout`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`IndirectCommandsLayoutNV`]
@@ -553,8 +553,8 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -717,9 +717,9 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -898,7 +898,7 @@ pub type FNDestroyIndirectCommandsLayoutNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 /// - [`GeneratedCommandsInfoNV`]
@@ -955,7 +955,7 @@ pub type FNCmdExecuteGeneratedCommandsNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`CommandBuffer`]
 /// - [`GeneratedCommandsInfoNV`]
 ///
@@ -1020,7 +1020,7 @@ pub type FNCmdPreprocessGeneratedCommandsNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`CommandBuffer`]
 /// - [`Pipeline`]
 /// - [`PipelineBindPoint`]
@@ -1060,7 +1060,7 @@ pub type FNCmdBindPipelineShaderGroupNv = Option<
 ///} VkIndirectCommandsTokenTypeNV;
 ///```
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectCommandsLayoutTokenNV`]
 ///
 ///# Notes and documentation
@@ -1177,7 +1177,7 @@ impl std::fmt::Display for IndirectCommandsTokenTypeNV {
 ///   implementation-dependent order, which is not: guaranteed to be coherent using the same input
 ///   data.
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
 ///
 ///# Notes and documentation
@@ -1283,7 +1283,7 @@ impl std::fmt::Display for IndirectCommandsLayoutUsageFlagBitsNV {
 /// - [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw
 ///   operations.
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectStateFlagsNV`]
 ///
 ///# Notes and documentation
@@ -1373,7 +1373,7 @@ impl std::fmt::Display for IndirectStateFlagBitsNV {
 ///   implementation-dependent order, which is not: guaranteed to be coherent using the same input
 ///   data.
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
 ///
 ///# Notes and documentation
@@ -1682,7 +1682,7 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
 /// - [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw
 ///   operations.
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectStateFlagsNV`]
 ///
 ///# Notes and documentation
@@ -1970,7 +1970,7 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -2139,7 +2139,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -2418,7 +2418,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 ///   [`PipelineShaderStageCreateInfo`] structures
 /// - [`stage_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`GraphicsPipelineShaderGroupsCreateInfoNV`]
 /// - [`PipelineShaderStageCreateInfo`]
 /// - [`PipelineTessellationStateCreateInfo`]
@@ -2652,7 +2652,7 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 ///   [`pipeline_count`] valid [`Pipeline`] handles
 /// - [`group_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`GraphicsShaderGroupCreateInfoNV`]
 /// - [`Pipeline`]
 /// - [`StructureType`]
@@ -2835,7 +2835,7 @@ impl<'lt> GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
 /// - The `index` **must**  be within range of the accessible shader groups of the current bound
 ///   graphics pipeline. See [`cmd_bind_pipeline_shader_group_nv`] for further details
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -2903,7 +2903,7 @@ impl BindShaderGroupIndirectCommandNV {
 ///## Valid Usage (Implicit)
 /// - [`index_type`] **must**  be a valid [`IndexType`] value
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`DeviceAddress`]
 /// - [`IndexType`]
 ///
@@ -3011,7 +3011,7 @@ impl BindIndexBufferIndirectCommandNV {
 /// - Each element of the buffer from which the address was acquired and that is non-sparse
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`DeviceAddress`]
 ///
 ///# Notes and documentation
@@ -3106,7 +3106,7 @@ impl BindVertexBufferIndirectCommandNV {
 /// - [`data`] encodes packed state that this command alters.  - Bit `0`: If set represents
 ///   `VK_FRONT_FACE_CLOCKWISE`, otherwise `VK_FRONT_FACE_COUNTER_CLOCKWISE`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -3172,7 +3172,7 @@ impl SetStateFlagsIndirectCommandNV {
 ///## Valid Usage (Implicit)
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`GeneratedCommandsInfoNV`]
@@ -3323,7 +3323,7 @@ impl IndirectCommandsStreamNV {
 /// - If [`index_type_count`] is not `0`, [`index_type_values`] **must**  be a valid pointer to an
 ///   array of [`index_type_count`]`uint32_t` values
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`Bool32`]
 /// - [`IndexType`]
 /// - [`IndirectCommandsLayoutCreateInfoNV`]
@@ -3752,7 +3752,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 /// - [`token_count`] **must**  be greater than `0`
 /// - [`stream_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectCommandsLayoutTokenNV`]
 /// - [`IndirectCommandsLayoutUsageFlagsNV`]
 /// - [`PipelineBindPoint`]
@@ -4074,7 +4074,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`IndirectCommandsLayoutNV`]
@@ -4429,7 +4429,7 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 /// - Both of [`indirect_commands_layout`], and [`pipeline`] **must**  have been created, allocated,
 ///   or retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`IndirectCommandsLayoutNV`]
 /// - [`Pipeline`]
 /// - [`PipelineBindPoint`]
@@ -4604,7 +4604,7 @@ impl Device {
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
     ///# Related
-    /// - [`VK_NV_device_generated_commands`]
+    /// - [`nv_device_generated_commands`]
     /// - [`Device`]
     /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
     /// - [`MemoryRequirements2`]
@@ -4687,7 +4687,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_NV_device_generated_commands`]
+    /// - [`nv_device_generated_commands`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`IndirectCommandsLayoutCreateInfoNV`]
@@ -4778,7 +4778,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`indirect_commands_layout`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_NV_device_generated_commands`]
+    /// - [`nv_device_generated_commands`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`IndirectCommandsLayoutNV`]
@@ -4893,8 +4893,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -5064,9 +5064,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -5252,7 +5252,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_device_generated_commands`]
+    /// - [`nv_device_generated_commands`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     /// - [`GeneratedCommandsInfoNV`]
@@ -5333,7 +5333,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_device_generated_commands`]
+    /// - [`nv_device_generated_commands`]
     /// - [`CommandBuffer`]
     /// - [`GeneratedCommandsInfoNV`]
     ///
@@ -5422,7 +5422,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_device_generated_commands`]
+    /// - [`nv_device_generated_commands`]
     /// - [`CommandBuffer`]
     /// - [`Pipeline`]
     /// - [`PipelineBindPoint`]
@@ -5476,7 +5476,7 @@ impl CommandBuffer {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkIndirectCommandsLayoutNV)
 ///```
 ///# Related
-/// - [`VK_NV_device_generated_commands`]
+/// - [`nv_device_generated_commands`]
 /// - [`GeneratedCommandsInfoNV`]
 /// - [`GeneratedCommandsMemoryRequirementsInfoNV`]
 /// - [`create_indirect_commands_layout_nv`]

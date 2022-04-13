@@ -46,7 +46,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_memory_priority`]`
+//! - Requires `[`ext_memory_priority`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pageable_device_local_memory]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -119,7 +119,7 @@ pub const EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME: &'static CStr =
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_EXT_pageable_device_local_memory`]
+/// - [`ext_pageable_device_local_memory`]
 /// - [`Device`]
 /// - [`DeviceMemory`]
 ///
@@ -165,7 +165,7 @@ pub type FNSetDeviceMemoryPriorityExt =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_pageable_device_local_memory`]
+/// - [`ext_pageable_device_local_memory`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -311,7 +311,7 @@ impl Device {
     /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
     /// - [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_EXT_pageable_device_local_memory`]
+    /// - [`ext_pageable_device_local_memory`]
     /// - [`Device`]
     /// - [`DeviceMemory`]
     ///

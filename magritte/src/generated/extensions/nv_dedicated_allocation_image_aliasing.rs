@@ -9,7 +9,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_dedicated_allocation`]`
+//! - Requires `[`khr_dedicated_allocation`]`
 //!# Contacts
 //! - Nuno Subtil [nsubtil](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_dedicated_allocation_image_aliasing]
 //!   @nsubtil%0A<<Here describe the issue or question you have about the
@@ -80,7 +80,7 @@ pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_dedicated_allocation_image_aliasing`]
+/// - [`nv_dedicated_allocation_image_aliasing`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

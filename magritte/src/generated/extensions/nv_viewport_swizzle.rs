@@ -39,15 +39,15 @@
 //! with the viewport, viewport swizzling
 //!must happen prior to the viewport transform.
 //!In particular, it needs to be performed before clipping and perspective
-//!division.The viewport mask expansion (`[`VK_NV_viewport_array2`]`) and the
+//!division.The viewport mask expansion (`[`nv_viewport_array2`]`) and the
 //!viewport swizzle could potentially be performed before or after transform
 //!feedback, but feeding back several viewports worth of primitives with
 //!different swizzles does not seem particularly useful.
 //!This specification applies the viewport mask and swizzle after transform
 //!feedback, and makes primitive queries only count each primitive once.2) Any interesting examples
 //! of how this extension,
-//!`[`VK_NV_viewport_array2`]`, and
-//!`[`VK_NV_geometry_shader_passthrough`]` can be used together in practice? **RESOLVED** : One
+//!`[`nv_viewport_array2`]`, and
+//!`[`nv_geometry_shader_passthrough`]` can be used together in practice? **RESOLVED** : One
 //! interesting use case for this extension is for single-pass
 //!rendering to a cube map.
 //!In this example, the application would attach a cube map texture to a
@@ -227,7 +227,7 @@ pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_N
 ///# Description
 ///These values are described in detail in [Viewport Swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-viewport-swizzle).
 ///# Related
-/// - [`VK_NV_viewport_swizzle`]
+/// - [`nv_viewport_swizzle`]
 /// - [`ViewportSwizzleNV`]
 ///
 ///# Notes and documentation
@@ -328,7 +328,7 @@ impl std::fmt::Display for ViewportCoordinateSwizzleNV {
 ///typedef VkFlags VkPipelineViewportSwizzleStateCreateFlagsNV;
 ///```
 ///# Related
-/// - [`VK_NV_viewport_swizzle`]
+/// - [`nv_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateInfoNV`]
 ///
 ///# Notes and documentation
@@ -382,7 +382,7 @@ impl std::fmt::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
 /// - [`z`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 /// - [`w`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 ///# Related
-/// - [`VK_NV_viewport_swizzle`]
+/// - [`nv_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateInfoNV`]
 /// - [`ViewportCoordinateSwizzleNV`]
 ///
@@ -510,7 +510,7 @@ impl ViewportSwizzleNV {
 ///   [`ViewportSwizzleNV`] structures
 /// - [`viewport_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_viewport_swizzle`]
+/// - [`nv_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateFlagsNV`]
 /// - [`StructureType`]
 /// - [`ViewportSwizzleNV`]

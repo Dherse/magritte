@@ -15,10 +15,10 @@
 //!4
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_KHR_surface`]`
-//! - Requires `[`VK_KHR_get_surface_capabilities2`]`
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`khr_surface`]`
+//! - Requires `[`khr_get_surface_capabilities2`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_full_screen_exclusive]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -27,7 +27,7 @@
 //! - [`acquire_full_screen_exclusive_mode_ext`]
 //! - [`get_physical_device_surface_present_modes2_ext`]
 //! - [`release_full_screen_exclusive_mode_ext`]
-//!If [`VK_KHR_device_group`] is supported:
+//!If [`khr_device_group`] is supported:
 //! - [`get_device_group_surface_present_modes2_ext`]
 //!If [Version 1.1]() is supported:
 //! - [`get_device_group_surface_present_modes2_ext`]
@@ -35,7 +35,7 @@
 //! - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:  -
 //!   [`SurfaceFullScreenExclusiveInfoEXT`]
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`SurfaceCapabilitiesFullScreenExclusiveEXT`]
-//!If [`VK_KHR_win32_surface`] is supported:
+//!If [`khr_win32_surface`] is supported:
 //! - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:  -
 //!   [`SurfaceFullScreenExclusiveWin32InfoEXT`]
 //!# New enums
@@ -47,7 +47,7 @@
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT`
-//!If [`VK_KHR_win32_surface`] is supported:
+//!If [`khr_win32_surface`] is supported:
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
 //!# Known issues & F.A.Q
@@ -97,8 +97,8 @@
 //!# Other info
 //! * 2019-03-12
 //! * No known IP claims.
-//! * - Interacts with Vulkan 1.1  - Interacts with `[`VK_KHR_device_group`]`  - Interacts with
-//!   `[`VK_KHR_win32_surface`]`
+//! * - Interacts with Vulkan 1.1  - Interacts with `[`khr_device_group`]`  - Interacts with
+//!   `[`khr_win32_surface`]`
 //! * - Hans-Kristian Arntzen, ARM  - Slawomir Grajewski, Intel  - Tobias Hector, AMD  - James
 //!   Jones, NVIDIA  - Daniel Rakos, AMD  - Jeff Juliano, NVIDIA  - Joshua Schnarr, NVIDIA  - Aaron
 //!   Hagan, AMD
@@ -165,7 +165,7 @@ pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///[`get_physical_device_surface_present_modes_khr`], with the ability to specify
 ///extended inputs via chained input structures.
 ///## Valid Usage
-/// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
+/// - If the `[`google_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
 ///   **must**  be a valid [`SurfaceKHR`] handle
 /// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
 ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
@@ -185,7 +185,7 @@ pub const EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
+/// - [`ext_full_screen_exclusive`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceSurfaceInfo2KHR`]
 /// - [`PresentModeKHR`]
@@ -245,8 +245,8 @@ pub type FNGetPhysicalDeviceSurfacePresentModes2Ext = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
-/// - [`VK_KHR_device_group`]
+/// - [`ext_full_screen_exclusive`]
+/// - [`khr_device_group`]
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`DeviceGroupPresentModeFlagsKHR`]
@@ -311,7 +311,7 @@ pub type FNGetDeviceGroupSurfacePresentModes2Ext = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
+/// - [`ext_full_screen_exclusive`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
@@ -344,7 +344,7 @@ pub type FNAcquireFullScreenExclusiveModeExt =
 ///   structure, with `fullScreenExclusive` set to
 ///   `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
+/// - [`ext_full_screen_exclusive`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
@@ -384,7 +384,7 @@ pub type FNReleaseFullScreenExclusiveModeExt =
 ///   using the [`acquire_full_screen_exclusive_mode_ext`] and
 ///   [`release_full_screen_exclusive_mode_ext`] commands.
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
+/// - [`ext_full_screen_exclusive`]
 /// - [`SurfaceFullScreenExclusiveInfoEXT`]
 ///
 ///# Notes and documentation
@@ -500,7 +500,7 @@ impl std::fmt::Display for FullScreenExclusiveEXT {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT`
 /// - [`full_screen_exclusive`] **must**  be a valid [`FullScreenExclusiveEXT`] value
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
+/// - [`ext_full_screen_exclusive`]
 /// - [`FullScreenExclusiveEXT`]
 /// - [`StructureType`]
 ///
@@ -618,8 +618,8 @@ impl<'lt> SurfaceFullScreenExclusiveInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
-/// - [`VK_KHR_win32_surface`]
+/// - [`ext_full_screen_exclusive`]
+/// - [`khr_win32_surface`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -740,7 +740,7 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`
 ///# Related
-/// - [`VK_EXT_full_screen_exclusive`]
+/// - [`ext_full_screen_exclusive`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -882,7 +882,7 @@ impl PhysicalDevice {
     ///[`get_physical_device_surface_present_modes_khr`], with the ability to specify
     ///extended inputs via chained input structures.
     ///## Valid Usage
-    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
+    /// - If the `[`google_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface`
     ///   **must**  be a valid [`SurfaceKHR`] handle
     /// - If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by
     ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
@@ -902,7 +902,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`ext_full_screen_exclusive`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceSurfaceInfo2KHR`]
     /// - [`PresentModeKHR`]
@@ -1007,8 +1007,8 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_EXT_full_screen_exclusive`]
-    /// - [`VK_KHR_device_group`]
+    /// - [`ext_full_screen_exclusive`]
+    /// - [`khr_device_group`]
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`DeviceGroupPresentModeFlagsKHR`]
@@ -1098,7 +1098,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`ext_full_screen_exclusive`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///
@@ -1156,7 +1156,7 @@ impl Device {
     ///   [`SurfaceFullScreenExclusiveInfoEXT`] structure, with `fullScreenExclusive` set to
     ///   `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`
     ///# Related
-    /// - [`VK_EXT_full_screen_exclusive`]
+    /// - [`ext_full_screen_exclusive`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///

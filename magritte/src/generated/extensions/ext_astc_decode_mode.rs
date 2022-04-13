@@ -23,7 +23,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_astc_decode_mode]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
@@ -112,7 +112,7 @@ pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT`
 /// - [`decode_mode`] **must**  be a valid [`Format`] value
 ///# Related
-/// - [`VK_EXT_astc_decode_mode`]
+/// - [`ext_astc_decode_mode`]
 /// - [`Format`]
 /// - [`StructureType`]
 ///
@@ -225,7 +225,7 @@ impl<'lt> ImageViewAstcDecodeModeEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_astc_decode_mode`]
+/// - [`ext_astc_decode_mode`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

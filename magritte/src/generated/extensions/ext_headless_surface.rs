@@ -21,7 +21,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Lisa Wu [chengtianww](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_headless_surface]
 //!   @chengtianww%0A<<Here describe the issue or question you have about the
@@ -99,7 +99,7 @@ pub const EXT_HEADLESS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_headless_surface`]
+/// - [`ext_headless_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`HeadlessSurfaceCreateInfoEXT`]
 /// - [`Instance`]
@@ -128,7 +128,7 @@ pub type FNCreateHeadlessSurfaceExt = Option<
 ///typedef VkFlags VkHeadlessSurfaceCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_headless_surface`]
+/// - [`ext_headless_surface`]
 /// - [`HeadlessSurfaceCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -175,7 +175,7 @@ impl std::fmt::Debug for HeadlessSurfaceCreateFlagsEXT {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_EXT_headless_surface`]
+/// - [`ext_headless_surface`]
 /// - [`HeadlessSurfaceCreateFlagsEXT`]
 /// - [`StructureType`]
 /// - [`create_headless_surface_ext`]
@@ -292,7 +292,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_headless_surface`]
+    /// - [`ext_headless_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`HeadlessSurfaceCreateInfoEXT`]
     /// - [`Instance`]

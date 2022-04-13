@@ -11,7 +11,7 @@
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Kevin Petit [kevinpetit](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_integer_dot_product]
 //!   @kevinpetit%0A<<Here describe the issue or question you have about the
@@ -32,7 +32,7 @@
 //!# Other info
 //! * 2021-06-16
 //! * - Promoted to Vulkan 1.3 Core  - This extension requires [`SPV_KHR_integer_dot_product`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_integer_dot_product.html).
-//!   - This extension interacts with `[`VK_KHR_shader_float16_int8`]`.
+//!   - This extension interacts with `[`khr_shader_float16_int8`]`.
 //! * No known IP claims.
 //! * - Kévin Petit, Arm Ltd.  - Jeff Bolz, NVidia  - Spencer Fricke, Samsung  - Jesse Hall, Google
 //!   - John Kessenich, Google  - Graeme Leese, Broadcom  - Einar Hov, Arm Ltd.  - Stuart Brady, Arm

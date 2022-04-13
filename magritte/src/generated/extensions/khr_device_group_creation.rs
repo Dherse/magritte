@@ -4,7 +4,7 @@
 //!physical devices, and to create a logical device from a subset of one of
 //!those groups.
 //!Such a logical device can then be used with new features in the
-//!`[`VK_KHR_device_group`]` extension.
+//!`[`khr_device_group`]` extension.
 //!# Revision
 //!1
 //!# Dependencies

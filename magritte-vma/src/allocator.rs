@@ -1,7 +1,7 @@
 use magritte::{
     cstr,
     vulkan1_0::{Device, PhysicalDevice, VulkanResultCodes},
-    AsRaw, Extensions, Handle, Unique,
+    AsRaw, DeviceExtensions, Handle, Unique,
 };
 
 use crate::{
@@ -33,7 +33,7 @@ impl VmaAllocator {
 
         let functions = VmaVulkanFunctions::new(device.instance().vtable(), device.vtable());
 
-        let extensions = device.instance().metadata().load(Ordering::Acquire);
+        let extensions = device.metadata();
         let mut flags = VmaAllocatorCreateFlags::empty();
         if extensions.khr_dedicated_allocation() {
             flags |= VmaAllocatorCreateFlags::DEDICATED_ALLOCATION;
@@ -90,7 +90,7 @@ impl VmaAllocator {
 
     pub fn enable_extensions(
         physical_device: &Unique<PhysicalDevice>,
-        extensions: &mut Extensions,
+        extensions: &mut DeviceExtensions,
     ) -> Result<(), VulkanResultCodes> {
         const DEDICATED_ALLOCATION: &str = "VK_KHR_dedicated_allocation";
         const BIND_MEMORY2: &str = "VK_KHR_bind_memory2";

@@ -10,7 +10,7 @@
 //!# Revision
 //!10
 //!# Dependencies
-//! - *Deprecated* by `[`VK_EXT_debug_utils`]` extension
+//! - *Deprecated* by `[`ext_debug_utils`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts
@@ -198,7 +198,7 @@ pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///object of the corresponding type associated with [`object_type`] as defined
 ///in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types).
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`DebugReportCallbackCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -255,7 +255,7 @@ pub type PFNDebugReportCallbackEXT = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`AllocationCallbacks`]
 /// - [`DebugReportCallbackCreateInfoEXT`]
 /// - [`DebugReportCallbackEXT`]
@@ -314,7 +314,7 @@ pub type FNCreateDebugReportCallbackExt = Option<
 ///## Host Synchronization
 /// - Host access to [`callback`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`AllocationCallbacks`]
 /// - [`DebugReportCallbackEXT`]
 /// - [`Instance`]
@@ -378,7 +378,7 @@ pub type FNDestroyDebugReportCallbackExt = Option<
 /// - [`p_layer_prefix`] **must**  be a null-terminated UTF-8 string
 /// - [`p_message`] **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`DebugReportFlagsEXT`]
 /// - [`DebugReportObjectTypeEXT`]
 /// - [`Instance`]
@@ -433,7 +433,7 @@ pub type FNDebugReportMessageExt = Option<
 ///   when debugging an application.
 /// - [`DEBUG`] specifies diagnostic information from the implementation and layers.
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`DebugReportFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -560,7 +560,7 @@ impl std::fmt::Display for DebugReportFlagBitsEXT {
 ///   when debugging an application.
 /// - [`DEBUG`] specifies diagnostic information from the implementation and layers.
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`DebugReportFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -922,7 +922,7 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
 /// - [`pfn_callback`] **must**  be a valid [`PFNDebugReportCallbackEXT`] value
 ///# Related
 /// - [`PFNDebugReportCallbackEXT`]
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`DebugReportFlagsEXT`]
 /// - [`StructureType`]
 /// - [`create_debug_report_callback_ext`]
@@ -1091,7 +1091,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_debug_report`]
+    /// - [`ext_debug_report`]
     /// - [`AllocationCallbacks`]
     /// - [`DebugReportCallbackCreateInfoEXT`]
     /// - [`DebugReportCallbackEXT`]
@@ -1181,7 +1181,7 @@ impl Instance {
     ///## Host Synchronization
     /// - Host access to [`callback`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_EXT_debug_report`]
+    /// - [`ext_debug_report`]
     /// - [`AllocationCallbacks`]
     /// - [`DebugReportCallbackEXT`]
     /// - [`Instance`]
@@ -1269,7 +1269,7 @@ impl Instance {
     /// - [`p_layer_prefix`] **must**  be a null-terminated UTF-8 string
     /// - [`p_message`] **must**  be a null-terminated UTF-8 string
     ///# Related
-    /// - [`VK_EXT_debug_report`]
+    /// - [`ext_debug_report`]
     /// - [`DebugReportFlagsEXT`]
     /// - [`DebugReportObjectTypeEXT`]
     /// - [`Instance`]
@@ -1329,7 +1329,7 @@ impl Instance {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugReportCallbackEXT)
 ///```
 ///# Related
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_report`]
 /// - [`create_debug_report_callback_ext`]
 /// - [`destroy_debug_report_callback_ext`]
 ///

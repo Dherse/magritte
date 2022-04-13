@@ -21,12 +21,12 @@
 //!wants to handle the memory situation (free it, move to host memory, changing
 //!mipmap levels, etc).
 //!This extension is designed to be used in concert with
-//!`[`VK_EXT_memory_priority`]` to help with this part of memory management.
+//!`[`ext_memory_priority`]` to help with this part of memory management.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_budget]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_budget
@@ -104,7 +104,7 @@ pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_memory_budget`]
+/// - [`ext_memory_budget`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///

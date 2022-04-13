@@ -33,13 +33,13 @@
 //! - [`NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV`
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
 //!# Version History
 //! - Revision 1, 2021-11-29 (sourav parmar)  - Initial draft
 //!# Other info
 //! * 2021-12-02
-//! * - This extension requires [`VK_KHR_format_feature_flags2`]
+//! * - This extension requires [`khr_format_feature_flags2`]
 //! * - Pat Brown, NVIDIA  - Piers Daniell, NVIDIA  - Sourav Parmar, NVIDIA
 //!# Related
 //! - [`PhysicalDeviceLinearColorAttachmentFeaturesNV`]
@@ -89,7 +89,7 @@ pub const NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME: &'static CStr = crate::cstr
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_linear_color_attachment`]
+/// - [`nv_linear_color_attachment`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

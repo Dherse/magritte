@@ -8,7 +8,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_fence`]`
+//! - Requires `[`khr_external_fence`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_win32]
 //!   @critsec%0A<<Here describe the issue or question you have about the
@@ -28,7 +28,7 @@
 //!   `VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR`
 //!# Known issues & F.A.Q
 //!This extension borrows concepts, semantics, and language from
-//!`[`VK_KHR_external_semaphore_win32`]`.
+//!`[`khr_external_semaphore_win32`]`.
 //!That extension’s issues apply equally to this extension.1) Should D3D12 fence handle types be
 //! supported, like they are for
 //!semaphores? **RESOLVED** : No.
@@ -46,7 +46,7 @@
 //! * 2017-05-08
 //! * No known IP claims.
 //! * - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  -
-//!   Contributors to `[`VK_KHR_external_semaphore_win32`]`
+//!   Contributors to `[`khr_external_semaphore_win32`]`
 //!# Related
 //! - [`ExportFenceWin32HandleInfoKHR`]
 //! - [`FenceGetWin32HandleInfoKHR`]
@@ -109,7 +109,7 @@ pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_external_fence_win32`]
+/// - [`khr_external_fence_win32`]
 /// - [`Device`]
 /// - [`FenceGetWin32HandleInfoKHR`]
 ///
@@ -162,7 +162,7 @@ pub type FNGetFenceWin32HandleKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_KHR_external_fence_win32`]
+/// - [`khr_external_fence_win32`]
 /// - [`Device`]
 /// - [`ImportFenceWin32HandleInfoKHR`]
 ///
@@ -231,7 +231,7 @@ pub type FNImportFenceWin32HandleKhr = Option<
 ///## Host Synchronization
 /// - Host access to [`fence`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_external_fence_win32`]
+/// - [`khr_external_fence_win32`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`Fence`]
 /// - [`FenceImportFlags`]
@@ -451,7 +451,7 @@ impl<'lt> ImportFenceWin32HandleInfoKHR<'lt> {
 /// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
-/// - [`VK_KHR_external_fence_win32`]
+/// - [`khr_external_fence_win32`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -622,7 +622,7 @@ impl<'lt> ExportFenceWin32HandleInfoKHR<'lt> {
 /// - [`fence`] **must**  be a valid [`Fence`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_fence_win32`]
+/// - [`khr_external_fence_win32`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`Fence`]
 /// - [`StructureType`]
@@ -759,7 +759,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_external_fence_win32`]
+    /// - [`khr_external_fence_win32`]
     /// - [`Device`]
     /// - [`FenceGetWin32HandleInfoKHR`]
     ///
@@ -838,7 +838,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_KHR_external_fence_win32`]
+    /// - [`khr_external_fence_win32`]
     /// - [`Device`]
     /// - [`ImportFenceWin32HandleInfoKHR`]
     ///

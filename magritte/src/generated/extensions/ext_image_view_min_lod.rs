@@ -13,7 +13,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_image_view_min_lod]
 //!   @Joshua-Ashton%0A<<Here describe the issue or question you have about the
@@ -81,7 +81,7 @@ pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_image_view_min_lod`]
+/// - [`ext_image_view_min_lod`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -225,7 +225,7 @@ impl<'lt> PhysicalDeviceImageViewMinLodFeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT`
 ///# Related
-/// - [`VK_EXT_image_view_min_lod`]
+/// - [`ext_image_view_min_lod`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

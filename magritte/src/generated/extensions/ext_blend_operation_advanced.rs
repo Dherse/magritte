@@ -175,7 +175,7 @@ pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`DISJOINT`] specifies that the source and destination coverage are considered to have minimal
 ///   overlap.
 ///# Related
-/// - [`VK_EXT_blend_operation_advanced`]
+/// - [`ext_blend_operation_advanced`]
 /// - [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -288,7 +288,7 @@ impl std::fmt::Display for BlendOverlapEXT {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_blend_operation_advanced`]
+/// - [`ext_blend_operation_advanced`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -457,7 +457,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_blend_operation_advanced`]
+/// - [`ext_blend_operation_advanced`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -803,7 +803,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///   `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`
 /// - [`blend_overlap`] **must**  be a valid [`BlendOverlapEXT`] value
 ///# Related
-/// - [`VK_EXT_blend_operation_advanced`]
+/// - [`ext_blend_operation_advanced`]
 /// - [`BlendOverlapEXT`]
 /// - [`Bool32`]
 /// - [`StructureType`]

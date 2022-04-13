@@ -15,8 +15,7 @@
 //!# Revision
 //!1
 //!# Dependencies
-//! - *Deprecated* by `[`VK_KHR_dedicated_allocation`]` extension  - Which in turn was *promoted* to
-//!   [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+//! - *Deprecated* by `[`khr_dedicated_allocation`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts
@@ -90,7 +89,7 @@ pub const NV_DEDICATED_ALLOCATION_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV`
 ///# Related
-/// - [`VK_NV_dedicated_allocation`]
+/// - [`nv_dedicated_allocation`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -222,7 +221,7 @@ impl<'lt> DedicatedAllocationImageCreateInfoNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV`
 ///# Related
-/// - [`VK_NV_dedicated_allocation`]
+/// - [`nv_dedicated_allocation`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -379,7 +378,7 @@ impl<'lt> DedicatedAllocationBufferCreateInfoNV<'lt> {
 /// - Both of [`buffer`], and [`image`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_NV_dedicated_allocation`]
+/// - [`nv_dedicated_allocation`]
 /// - [`Buffer`]
 /// - [`Image`]
 /// - [`StructureType`]

@@ -20,7 +20,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_discard_rectangles]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -45,7 +45,7 @@
 //! - Revision 1, 2016-12-22 (Piers Daniell)  - Internal revisions
 //!# Other info
 //! * 2016-12-22
-//! * - Interacts with `[`VK_KHR_device_group`]`  - Interacts with Vulkan 1.1
+//! * - Interacts with `[`khr_device_group`]`  - Interacts with Vulkan 1.1
 //! * - Daniel Koch, NVIDIA  - Jeff Bolz, NVIDIA
 //!# Related
 //! - [`DiscardRectangleModeEXT`]
@@ -137,7 +137,7 @@ pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_discard_rectangles`]
+/// - [`ext_discard_rectangles`]
 /// - [`CommandBuffer`]
 /// - [`Rect2D`]
 ///
@@ -171,7 +171,7 @@ pub type FNCmdSetDiscardRectangleExt = Option<
 /// - [`INCLUSIVE`] specifies that the discard rectangle test is inclusive.
 /// - [`EXCLUSIVE`] specifies that the discard rectangle test is exclusive.
 ///# Related
-/// - [`VK_EXT_discard_rectangles`]
+/// - [`ext_discard_rectangles`]
 /// - [`PipelineDiscardRectangleStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -250,7 +250,7 @@ impl std::fmt::Display for DiscardRectangleModeEXT {
 ///typedef VkFlags VkPipelineDiscardRectangleStateCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_discard_rectangles`]
+/// - [`ext_discard_rectangles`]
 /// - [`PipelineDiscardRectangleStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -302,7 +302,7 @@ impl std::fmt::Debug for PipelineDiscardRectangleStateCreateFlagsEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_discard_rectangles`]
+/// - [`ext_discard_rectangles`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -434,7 +434,7 @@ impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
 /// - [`flags`] **must**  be `0`
 /// - [`discard_rectangle_mode`] **must**  be a valid [`DiscardRectangleModeEXT`] value
 ///# Related
-/// - [`VK_EXT_discard_rectangles`]
+/// - [`ext_discard_rectangles`]
 /// - [`DiscardRectangleModeEXT`]
 /// - [`PipelineDiscardRectangleStateCreateFlagsEXT`]
 /// - [`Rect2D`]
@@ -650,7 +650,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_discard_rectangles`]
+    /// - [`ext_discard_rectangles`]
     /// - [`CommandBuffer`]
     /// - [`Rect2D`]
     ///

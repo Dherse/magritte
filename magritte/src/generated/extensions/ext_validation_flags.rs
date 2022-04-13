@@ -9,7 +9,7 @@
 //!# Revision
 //!2
 //!# Dependencies
-//! - *Deprecated* by `[`VK_EXT_validation_features`]` extension
+//! - *Deprecated* by `[`ext_validation_features`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts
@@ -70,7 +70,7 @@ pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`ALL`] specifies that all validation checks are disabled.
 /// - [`SHADERS`] specifies that shader validation is disabled.
 ///# Related
-/// - [`VK_EXT_validation_flags`]
+/// - [`ext_validation_flags`]
 /// - [`ValidationFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -170,7 +170,7 @@ impl std::fmt::Display for ValidationCheckEXT {
 ///   [`disabled_validation_check_count`] valid [`ValidationCheckEXT`] values
 /// - [`disabled_validation_check_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_validation_flags`]
+/// - [`ext_validation_flags`]
 /// - [`StructureType`]
 /// - [`ValidationCheckEXT`]
 ///

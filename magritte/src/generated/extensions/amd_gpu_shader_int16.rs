@@ -4,7 +4,7 @@
 //!# Revision
 //!2
 //!# Dependencies
-//! - *Deprecated* by `[`VK_KHR_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+//! - *Deprecated* by `[`khr_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts

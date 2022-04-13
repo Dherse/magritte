@@ -10,7 +10,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_display`]`
+//! - Requires `[`khr_display`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_direct_mode_display]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -22,15 +22,15 @@
 //! - [`EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION`]
 //!# Known issues & F.A.Q
 //!1) Should this extension and its related platform-specific extensions
-//!leverage `[`VK_KHR_display`]`, or provide separate equivalent interfaces. **RESOLVED** : Use
-//! `[`VK_KHR_display`]` concepts and objects.
-//!`[`VK_KHR_display`]` can be used to enumerate all displays on the system,
+//!leverage `[`khr_display`]`, or provide separate equivalent interfaces. **RESOLVED** : Use
+//! `[`khr_display`]` concepts and objects.
+//!`[`khr_display`]` can be used to enumerate all displays on the system,
 //!including those attached to/in use by a window system or native platform,
-//!but `[`VK_KHR_display_swapchain`]` will fail to create a swapchain on
+//!but `[`khr_display_swapchain`]` will fail to create a swapchain on
 //!in-use displays.
 //!This extension and its platform-specific children will allow applications to
 //!grab in-use displays away from window systems and/or native platforms,
-//!allowing them to be used with `[`VK_KHR_display_swapchain`]`.2) Are separate calls needed to
+//!allowing them to be used with `[`khr_display_swapchain`]`.2) Are separate calls needed to
 //! acquire displays and enable direct mode? **RESOLVED** : No, these operations happen in one
 //! combined command.
 //!Acquiring a display puts it into direct mode.
@@ -86,7 +86,7 @@ pub const EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///## Return Codes
 /// * - `VK_SUCCESS`
 ///# Related
-/// - [`VK_EXT_direct_mode_display`]
+/// - [`ext_direct_mode_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -122,7 +122,7 @@ impl PhysicalDevice {
     ///## Return Codes
     /// * - `VK_SUCCESS`
     ///# Related
-    /// - [`VK_EXT_direct_mode_display`]
+    /// - [`ext_direct_mode_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///

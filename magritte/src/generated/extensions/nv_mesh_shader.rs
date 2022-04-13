@@ -19,7 +19,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_mesh_shader]
 //!   @pixeljetstream%0A<<Here describe the issue or question you have about the VK_NV_mesh_shader
@@ -168,8 +168,8 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -332,9 +332,9 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -468,7 +468,7 @@ pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_mes
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_mesh_shader`]
+/// - [`nv_mesh_shader`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -561,8 +561,8 @@ pub type FNCmdDrawMeshTasksNv =
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -725,9 +725,9 @@ pub type FNCmdDrawMeshTasksNv =
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -880,7 +880,7 @@ pub type FNCmdDrawMeshTasksNv =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_mesh_shader`]
+/// - [`nv_mesh_shader`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -985,8 +985,8 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -1149,9 +1149,9 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -1315,7 +1315,7 @@ pub type FNCmdDrawMeshTasksIndirectNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_mesh_shader`]
+/// - [`nv_mesh_shader`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -1368,7 +1368,7 @@ pub type FNCmdDrawMeshTasksIndirectCountNv = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_mesh_shader`]
+/// - [`nv_mesh_shader`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -1594,7 +1594,7 @@ impl<'lt> PhysicalDeviceMeshShaderFeaturesNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_mesh_shader`]
+/// - [`nv_mesh_shader`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -1943,7 +1943,7 @@ impl<'lt> PhysicalDeviceMeshShaderPropertiesNV<'lt> {
 /// - [`task_count`] **must**  be less than or equal to
 ///   [`PhysicalDeviceMeshShaderPropertiesNV::max_draw_mesh_tasks_count`]
 ///# Related
-/// - [`VK_NV_mesh_shader`]
+/// - [`nv_mesh_shader`]
 /// - [`cmd_draw_mesh_tasks_indirect_nv`]
 ///
 ///# Notes and documentation
@@ -2072,8 +2072,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -2243,9 +2243,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -2383,7 +2383,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_mesh_shader`]
+    /// - [`nv_mesh_shader`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation
@@ -2505,8 +2505,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -2676,9 +2676,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -2837,7 +2837,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_mesh_shader`]
+    /// - [`nv_mesh_shader`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
@@ -2969,8 +2969,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -3140,9 +3140,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -3311,7 +3311,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_mesh_shader`]
+    /// - [`nv_mesh_shader`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]

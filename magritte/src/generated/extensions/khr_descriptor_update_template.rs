@@ -24,7 +24,7 @@
 //! - [`create_descriptor_update_template_khr`]
 //! - [`destroy_descriptor_update_template_khr`]
 //! - [`update_descriptor_set_with_template_khr`]
-//!If [`VK_KHR_push_descriptor`] is supported:
+//!If [`khr_push_descriptor`] is supported:
 //! - [`cmd_push_descriptor_set_with_template_khr`]
 //!# New structures
 //! - [`DescriptorUpdateTemplateCreateInfoKHR`]
@@ -40,10 +40,10 @@
 //!   `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR`
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR`
-//!If [`VK_EXT_debug_report`] is supported:
+//!If [`ext_debug_report`] is supported:
 //! - Extending [`DebugReportObjectTypeEXT`]:  -
 //!   `VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT`
-//!If [`VK_KHR_push_descriptor`] is supported:
+//!If [`khr_push_descriptor`] is supported:
 //! - Extending [`DescriptorUpdateTemplateType`]:  -
 //!   `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
 //!# Version History
@@ -51,7 +51,7 @@
 //!# Other info
 //! * 2017-09-05
 //! * No known IP claims.
-//! * - Interacts with `[`VK_KHR_push_descriptor`]`  - Promoted to Vulkan 1.1 Core
+//! * - Interacts with `[`khr_push_descriptor`]`  - Promoted to Vulkan 1.1 Core
 //! * - Jeff Bolz, NVIDIA  - Michael Worcester, Imagination Technologies
 //!# Related
 //! - [`DescriptorUpdateTemplateCreateFlagsKHR`]
@@ -187,8 +187,8 @@ pub const KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME: &'static CStr =
 /// 0,&appData);
 ///```
 ///# Related
-/// - [`VK_KHR_descriptor_update_template`]
-/// - [`VK_KHR_push_descriptor`]
+/// - [`khr_descriptor_update_template`]
+/// - [`khr_push_descriptor`]
 /// - [`crate::vulkan1_1`]
 /// - [`CommandBuffer`]
 /// - [`DescriptorUpdateTemplate`]
@@ -313,8 +313,8 @@ impl CommandBuffer {
     /// myPipelineLayout, 0,&appData);
     ///```
     ///# Related
-    /// - [`VK_KHR_descriptor_update_template`]
-    /// - [`VK_KHR_push_descriptor`]
+    /// - [`khr_descriptor_update_template`]
+    /// - [`khr_push_descriptor`]
     /// - [`crate::vulkan1_1`]
     /// - [`CommandBuffer`]
     /// - [`DescriptorUpdateTemplate`]

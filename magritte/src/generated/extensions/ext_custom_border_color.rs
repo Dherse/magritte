@@ -150,7 +150,7 @@ pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT`
 /// - [`format`] **must**  be a valid [`Format`] value
 ///# Related
-/// - [`VK_EXT_custom_border_color`]
+/// - [`ext_custom_border_color`]
 /// - [`ClearColorValue`]
 /// - [`Format`]
 /// - [`StructureType`]
@@ -280,7 +280,7 @@ impl<'lt> SamplerCustomBorderColorCreateInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_custom_border_color`]
+/// - [`ext_custom_border_color`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -408,7 +408,7 @@ impl<'lt> PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_custom_border_color`]
+/// - [`ext_custom_border_color`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

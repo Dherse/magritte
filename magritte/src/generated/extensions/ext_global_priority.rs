@@ -26,7 +26,7 @@
 //!# Revision
 //!2
 //!# Dependencies
-//! - *Promoted* to `[`VK_KHR_global_priority`]` extension
+//! - *Promoted* to `[`khr_global_priority`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts

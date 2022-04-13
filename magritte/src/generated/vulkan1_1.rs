@@ -324,9 +324,9 @@ use std::{
 ///#define VK_LUID_SIZE_KHR                  VK_LUID_SIZE
 ///```
 ///# Related
-/// - [`VK_KHR_external_fence_capabilities`]
-/// - [`VK_KHR_external_memory_capabilities`]
-/// - [`VK_KHR_external_semaphore_capabilities`]
+/// - [`khr_external_fence_capabilities`]
+/// - [`khr_external_memory_capabilities`]
+/// - [`khr_external_semaphore_capabilities`]
 /// - [`crate::vulkan1_1`]
 ///
 ///# Notes and documentation
@@ -356,7 +356,7 @@ pub const LUID_SIZE: u32 = 8;
 ///#define VK_QUEUE_FAMILY_EXTERNAL_KHR      VK_QUEUE_FAMILY_EXTERNAL
 ///```
 ///# Related
-/// - [`VK_KHR_external_memory`]
+/// - [`khr_external_memory`]
 /// - [`crate::vulkan1_1`]
 ///
 ///# Notes and documentation
@@ -382,7 +382,7 @@ pub const QUEUE_FAMILY_EXTERNAL: u32 = !1;
 ///#define VK_MAX_DEVICE_GROUP_SIZE_KHR      VK_MAX_DEVICE_GROUP_SIZE
 ///```
 ///# Related
-/// - [`VK_KHR_device_group_creation`]
+/// - [`khr_device_group_creation`]
 /// - [`crate::vulkan1_1`]
 ///
 ///# Notes and documentation
@@ -2132,8 +2132,8 @@ pub type FNCmdSetDeviceMask = Option<unsafe extern "system" fn(command_buffer: C
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -10696,7 +10696,7 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES`
 ///# Related
-/// - [`VK_KHR_variable_pointers`]
+/// - [`khr_variable_pointers`]
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -13402,7 +13402,7 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 ///per-view position and viewport masks are written to output array variables
 ///decorated with `PositionPerViewNV` and `ViewportMaskPerViewNV`,
 ///respectively.
-///If `[`VK_NV_viewport_array2`]` is not supported and enabled,
+///If `[`nv_viewport_array2`]` is not supported and enabled,
 ///`ViewportMaskPerViewNV` **must**  not be used.
 ///Values written to elements of `PositionPerViewNV` and
 ///`ViewportMaskPerViewNV` **must**  not depend on the `ViewIndex`.
@@ -19244,7 +19244,7 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES`
 ///# Related
-/// - [`VK_KHR_sampler_ycbcr_conversion`]
+/// - [`khr_sampler_ycbcr_conversion`]
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -23439,8 +23439,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used

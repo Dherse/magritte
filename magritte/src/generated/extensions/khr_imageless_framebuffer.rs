@@ -14,8 +14,8 @@
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_maintenance2`]`
-//! - Requires `[`VK_KHR_image_format_list`]`
+//! - Requires `[`khr_maintenance2`]`
+//! - Requires `[`khr_image_format_list`]`
 //!# Contacts
 //! - Tobias Hector [tobias](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_imageless_framebuffer]
 //!   @tobias%0A<<Here describe the issue or question you have about the

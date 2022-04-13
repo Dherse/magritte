@@ -9,8 +9,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_ray_tracing_pipeline`]`
-//! - Requires `[`VK_KHR_synchronization2`]`
+//! - Requires `[`khr_ray_tracing_pipeline`]`
+//! - Requires `[`khr_synchronization2`]`
 //!# Contacts
 //! - Yunpeng Zhu [yunxingzhu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_invocation_mask]
 //!   @yunxingzhu%0A<<Here describe the issue or question you have about the
@@ -32,9 +32,9 @@
 //! - Revision 1, 2021-05-27 (Yunpeng Zhu)  - Initial draft.
 //!# Other info
 //! * 2021-05-27
-//! * - This extension requires `[`VK_KHR_ray_tracing_pipeline`]`, which allow to bind an invocation
+//! * - This extension requires `[`khr_ray_tracing_pipeline`]`, which allow to bind an invocation
 //!   mask image before the ray tracing command  - This extension requires
-//!   `[`VK_KHR_synchronization2`]`, which allows new pipeline stage for the invocation mask image
+//!   `[`khr_synchronization2`]`, which allows new pipeline stage for the invocation mask image
 //! * - Yunpeng Zhu, HuaWei
 //!# Related
 //! - [`PhysicalDeviceInvocationMaskFeaturesHUAWEI`]
@@ -115,7 +115,7 @@ pub const HUAWEI_INVOCATION_MASK_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_HUAWEI_invocation_mask`]
+/// - [`huawei_invocation_mask`]
 /// - [`CommandBuffer`]
 /// - [`ImageLayout`]
 /// - [`ImageView`]
@@ -159,7 +159,7 @@ pub type FNCmdBindInvocationMaskHuawei =
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI`
 ///# Related
-/// - [`VK_HUAWEI_invocation_mask`]
+/// - [`huawei_invocation_mask`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -331,7 +331,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_HUAWEI_invocation_mask`]
+    /// - [`huawei_invocation_mask`]
     /// - [`CommandBuffer`]
     /// - [`ImageLayout`]
     /// - [`ImageView`]

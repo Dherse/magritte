@@ -7,7 +7,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_ycbcr_image_arrays]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -73,7 +73,7 @@ pub const EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_ycbcr_image_arrays`]
+/// - [`ext_ycbcr_image_arrays`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

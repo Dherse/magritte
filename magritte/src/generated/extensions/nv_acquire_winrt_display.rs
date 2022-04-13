@@ -17,7 +17,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_direct_mode_display`]`
+//! - Requires `[`ext_direct_mode_display`]`
 //!# Contacts
 //! - Jeff Juliano [jjuliano](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_acquire_winrt_display]
 //!   @jjuliano%0A<<Here describe the issue or question you have about the
@@ -150,7 +150,7 @@ pub const NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_NV_acquire_winrt_display`]
+/// - [`nv_acquire_winrt_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -199,7 +199,7 @@ pub type FNAcquireWinrtDisplayNv =
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_NV_acquire_winrt_display`]
+/// - [`nv_acquire_winrt_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -253,7 +253,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_NV_acquire_winrt_display`]
+    /// - [`nv_acquire_winrt_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -327,7 +327,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_NV_acquire_winrt_display`]
+    /// - [`nv_acquire_winrt_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///

@@ -85,7 +85,7 @@ pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_shader_sm_builtins`]
+/// - [`nv_shader_sm_builtins`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -222,7 +222,7 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_shader_sm_builtins`]
+/// - [`nv_shader_sm_builtins`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

@@ -63,7 +63,7 @@ pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &'static CStr =
 ///typedef VkFlags VkPipelineCoverageToColorStateCreateFlagsNV;
 ///```
 ///# Related
-/// - [`VK_NV_fragment_coverage_to_color`]
+/// - [`nv_fragment_coverage_to_color`]
 /// - [`PipelineCoverageToColorStateCreateInfoNV`]
 ///
 ///# Notes and documentation
@@ -139,7 +139,7 @@ impl std::fmt::Debug for PipelineCoverageToColorStateCreateFlagsNV {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_NV_fragment_coverage_to_color`]
+/// - [`nv_fragment_coverage_to_color`]
 /// - [`Bool32`]
 /// - [`PipelineCoverageToColorStateCreateFlagsNV`]
 /// - [`StructureType`]

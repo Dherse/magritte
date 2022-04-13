@@ -74,7 +74,7 @@ pub const NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageViewHandleInfoNVX`] structure
 ///# Related
-/// - [`VK_NVX_image_view_handle`]
+/// - [`nvx_image_view_handle`]
 /// - [`Device`]
 /// - [`ImageViewHandleInfoNVX`]
 ///
@@ -113,7 +113,7 @@ pub type FNGetImageViewHandleNvx =
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_UNKNOWN`
 ///# Related
-/// - [`VK_NVX_image_view_handle`]
+/// - [`nvx_image_view_handle`]
 /// - [`Device`]
 /// - [`ImageView`]
 /// - [`ImageViewAddressPropertiesNVX`]
@@ -174,7 +174,7 @@ pub type FNGetImageViewAddressNvx = Option<
 /// - Both of [`image_view`], and [`sampler`] that are valid handles of non-ignored parameters
 ///   **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_NVX_image_view_handle`]
+/// - [`nvx_image_view_handle`]
 /// - [`DescriptorType`]
 /// - [`ImageView`]
 /// - [`Sampler`]
@@ -317,7 +317,7 @@ impl<'lt> ImageViewHandleInfoNVX<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_NVX_image_view_handle`]
+/// - [`nvx_image_view_handle`]
 /// - [`DeviceAddress`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
@@ -444,7 +444,7 @@ impl Device {
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageViewHandleInfoNVX`] structure
     ///# Related
-    /// - [`VK_NVX_image_view_handle`]
+    /// - [`nvx_image_view_handle`]
     /// - [`Device`]
     /// - [`ImageViewHandleInfoNVX`]
     ///
@@ -503,7 +503,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_UNKNOWN`
     ///# Related
-    /// - [`VK_NVX_image_view_handle`]
+    /// - [`nvx_image_view_handle`]
     /// - [`Device`]
     /// - [`ImageView`]
     /// - [`ImageViewAddressPropertiesNVX`]

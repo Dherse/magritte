@@ -6,7 +6,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_calibrated_timestamps]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
@@ -154,7 +154,7 @@ pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_calibrated_timestamps`]
+/// - [`ext_calibrated_timestamps`]
 /// - [`PhysicalDevice`]
 /// - [`TimeDomainEXT`]
 ///
@@ -218,7 +218,7 @@ pub type FNGetPhysicalDeviceCalibrateableTimeDomainsExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_calibrated_timestamps`]
+/// - [`ext_calibrated_timestamps`]
 /// - [`CalibratedTimestampInfoEXT`]
 /// - [`Device`]
 ///
@@ -289,7 +289,7 @@ pub type FNGetCalibratedTimestampsExt = Option<
 ///return counter.QuadPart;
 ///```
 ///# Related
-/// - [`VK_EXT_calibrated_timestamps`]
+/// - [`ext_calibrated_timestamps`]
 /// - [`CalibratedTimestampInfoEXT`]
 /// - [`get_physical_device_calibrateable_time_domains_ext`]
 ///
@@ -407,7 +407,7 @@ impl std::fmt::Display for TimeDomainEXT {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`time_domain`] **must**  be a valid [`TimeDomainEXT`] value
 ///# Related
-/// - [`VK_EXT_calibrated_timestamps`]
+/// - [`ext_calibrated_timestamps`]
 /// - [`StructureType`]
 /// - [`TimeDomainEXT`]
 /// - [`get_calibrated_timestamps_ext`]
@@ -536,7 +536,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_calibrated_timestamps`]
+    /// - [`ext_calibrated_timestamps`]
     /// - [`PhysicalDevice`]
     /// - [`TimeDomainEXT`]
     ///
@@ -634,7 +634,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_calibrated_timestamps`]
+    /// - [`ext_calibrated_timestamps`]
     /// - [`CalibratedTimestampInfoEXT`]
     /// - [`Device`]
     ///

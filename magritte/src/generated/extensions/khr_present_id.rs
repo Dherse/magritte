@@ -1,7 +1,7 @@
 //![VK_KHR_present_id](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_present_id.html) - device extension
 //!# Description
 //!This device extension allows an application that uses the
-//!`[`VK_KHR_swapchain`]` extension to provide an identifier for present
+//!`[`khr_swapchain`]` extension to provide an identifier for present
 //!operations on a swapchain.
 //!An application  **can**  use this to reference specific present operations in
 //!other extensions.
@@ -9,7 +9,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - Keith Packard [keithp](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_present_id]
 //!   @keithp%0A<<Here describe the issue or question you have about the VK_KHR_present_id
@@ -80,7 +80,7 @@ pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_pr
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_present_id`]
+/// - [`khr_present_id`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -253,7 +253,7 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///   [`swapchain_count`]`uint64_t` values
 /// - [`swapchain_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_present_id`]
+/// - [`khr_present_id`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

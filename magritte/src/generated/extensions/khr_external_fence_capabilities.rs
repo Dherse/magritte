@@ -12,7 +12,7 @@
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_capabilities]
 //!   @critsec%0A<<Here describe the issue or question you have about the
@@ -50,7 +50,7 @@
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core
 //! * - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  -
-//!   Contributors to `[`VK_KHR_external_semaphore_capabilities`]`
+//!   Contributors to `[`khr_external_semaphore_capabilities`]`
 //!# Related
 //! - [`LUID_SIZE_KHR`]
 //! - [`ExternalFenceFeatureFlagBitsKHR`]

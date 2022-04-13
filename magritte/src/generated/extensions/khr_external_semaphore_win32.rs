@@ -8,7 +8,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_semaphore`]`
+//! - Requires `[`khr_external_semaphore`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_win32]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -126,7 +126,7 @@ pub const KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME: &'static CStr = crate::cs
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`khr_external_semaphore_win32`]
 /// - [`Device`]
 /// - [`SemaphoreGetWin32HandleInfoKHR`]
 ///
@@ -176,7 +176,7 @@ pub type FNGetSemaphoreWin32HandleKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`khr_external_semaphore_win32`]
 /// - [`Device`]
 /// - [`ImportSemaphoreWin32HandleInfoKHR`]
 ///
@@ -256,7 +256,7 @@ pub type FNImportSemaphoreWin32HandleKhr = Option<
 ///## Host Synchronization
 /// - Host access to [`semaphore`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`khr_external_semaphore_win32`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`SemaphoreImportFlags`]
@@ -482,7 +482,7 @@ impl<'lt> ImportSemaphoreWin32HandleInfoKHR<'lt> {
 /// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
-/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`khr_external_semaphore_win32`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -667,7 +667,7 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 ///   `NULL`, [`signal_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`signal_semaphore_values_count`]`uint64_t` values
 ///# Related
-/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`khr_external_semaphore_win32`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -869,7 +869,7 @@ impl<'lt> D3d12FenceSubmitInfoKHR<'lt> {
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_semaphore_win32`]
+/// - [`khr_external_semaphore_win32`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
@@ -1006,7 +1006,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_external_semaphore_win32`]
+    /// - [`khr_external_semaphore_win32`]
     /// - [`Device`]
     /// - [`SemaphoreGetWin32HandleInfoKHR`]
     ///
@@ -1082,7 +1082,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_KHR_external_semaphore_win32`]
+    /// - [`khr_external_semaphore_win32`]
     /// - [`Device`]
     /// - [`ImportSemaphoreWin32HandleInfoKHR`]
     ///

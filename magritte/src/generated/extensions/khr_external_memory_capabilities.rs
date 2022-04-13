@@ -12,7 +12,7 @@
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_capabilities]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -104,8 +104,8 @@
 //!# Other info
 //! * 2016-10-17
 //! * No known IP claims.
-//! * - Interacts with `[`VK_KHR_dedicated_allocation`]`.  - Interacts with
-//!   `[`VK_NV_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core
+//! * - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts with
+//!   `[`nv_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core
 //! * - Ian Elliot, Google  - Jesse Hall, Google  - James Jones, NVIDIA
 //!# Related
 //! - [`LUID_SIZE_KHR`]

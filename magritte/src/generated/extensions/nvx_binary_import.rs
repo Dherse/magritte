@@ -110,7 +110,7 @@ pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuModuleCreateInfoNVX`]
 /// - [`CuModuleNVX`]
@@ -158,7 +158,7 @@ pub type FNCreateCuModuleNvx = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuFunctionCreateInfoNVX`]
 /// - [`CuFunctionNVX`]
@@ -200,7 +200,7 @@ pub type FNCreateCuFunctionNvx = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`module`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuModuleNVX`]
 /// - [`Device`]
@@ -240,7 +240,7 @@ pub type FNDestroyCuModuleNvx = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`function`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuFunctionNVX`]
 /// - [`Device`]
@@ -285,7 +285,7 @@ pub type FNDestroyCuFunctionNvx = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`CommandBuffer`]
 /// - [`CuLaunchInfoNVX`]
 ///
@@ -321,7 +321,7 @@ pub type FNCmdCuLaunchKernelNvx = Option<
 /// - [`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
 /// - [`data_size`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`StructureType`]
 /// - [`create_cu_module_nvx`]
 ///
@@ -452,7 +452,7 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 /// - [`module`] **must**  be a valid [`CuModuleNVX`] handle
 /// - [`name`] **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`CuModuleNVX`]
 /// - [`StructureType`]
 /// - [`create_cu_function_nvx`]
@@ -594,7 +594,7 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 /// - If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of
 ///   [`extra_count`] bytes
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`CuFunctionNVX`]
 /// - [`StructureType`]
 /// - [`cmd_cu_launch_kernel_nvx`]
@@ -905,7 +905,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_NVX_binary_import`]
+    /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuModuleCreateInfoNVX`]
     /// - [`CuModuleNVX`]
@@ -984,7 +984,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_NVX_binary_import`]
+    /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuFunctionCreateInfoNVX`]
     /// - [`CuFunctionNVX`]
@@ -1057,7 +1057,7 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`module`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_NVX_binary_import`]
+    /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuModuleNVX`]
     /// - [`Device`]
@@ -1121,7 +1121,7 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`function`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_NVX_binary_import`]
+    /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuFunctionNVX`]
     /// - [`Device`]
@@ -1190,7 +1190,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NVX_binary_import`]
+    /// - [`nvx_binary_import`]
     /// - [`CommandBuffer`]
     /// - [`CuLaunchInfoNVX`]
     ///
@@ -1237,7 +1237,7 @@ impl CommandBuffer {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuModuleNVX)
 ///```
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`CuFunctionCreateInfoNVX`]
 /// - [`create_cu_module_nvx`]
 /// - [`destroy_cu_module_nvx`]
@@ -1336,7 +1336,7 @@ impl Unique<CuModuleNVX> {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuFunctionNVX)
 ///```
 ///# Related
-/// - [`VK_NVX_binary_import`]
+/// - [`nvx_binary_import`]
 /// - [`CuLaunchInfoNVX`]
 /// - [`create_cu_function_nvx`]
 /// - [`destroy_cu_function_nvx`]

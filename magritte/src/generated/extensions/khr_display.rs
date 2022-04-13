@@ -6,7 +6,7 @@
 //!23
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display
@@ -99,8 +99,8 @@
 //!work with which present queues? **PROPOSED RESOLUTION** : No known hardware has such
 //! limitations, but
 //!determining such limitations is supported automatically using the existing
-//!`[`VK_KHR_surface`]` and `[`VK_KHR_swapchain`]` query mechanisms.8) Should all presentation need
-//! to be done relative to an overlay plane, or
+//!`[`khr_surface`]` and `[`khr_swapchain`]` query mechanisms.8) Should all presentation need to be
+//! done relative to an overlay plane, or
 //!can a display mode + display be used alone to target an output? **PROPOSED RESOLUTION** :
 //! Require specifying a plane explicitly.9) Should displays have an associated window system
 //! display, such as an
@@ -325,7 +325,7 @@ pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_displ
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayPropertiesKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -388,7 +388,7 @@ pub type FNGetPhysicalDeviceDisplayPropertiesKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayPlanePropertiesKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -453,7 +453,7 @@ pub type FNGetPhysicalDeviceDisplayPlanePropertiesKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -518,7 +518,7 @@ pub type FNGetDisplayPlaneSupportedDisplaysKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayKHR`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`PhysicalDevice`]
@@ -577,7 +577,7 @@ pub type FNGetDisplayModePropertiesKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`AllocationCallbacks`]
 /// - [`DisplayKHR`]
 /// - [`DisplayModeCreateInfoKHR`]
@@ -638,7 +638,7 @@ pub type FNCreateDisplayModeKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModeKHR`]
 /// - [`DisplayPlaneCapabilitiesKHR`]
 /// - [`PhysicalDevice`]
@@ -695,7 +695,7 @@ pub type FNGetDisplayPlaneCapabilitiesKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`AllocationCallbacks`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 /// - [`Instance`]
@@ -742,7 +742,7 @@ pub type FNCreateDisplayPlaneSurfaceKhr = Option<
 /// - [`PER_PIXEL_PREMULTIPLIED`] is equivalent to [`PER_PIXEL`], except the source alpha values are
 ///   assumed to be premultiplied into the source image’s other color components.
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 ///
@@ -858,7 +858,7 @@ impl std::fmt::Display for DisplayPlaneAlphaFlagBitsKHR {
 /// - [`PER_PIXEL_PREMULTIPLIED`] is equivalent to [`PER_PIXEL`], except the source alpha values are
 ///   assumed to be premultiplied into the source image’s other color components.
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 ///
@@ -1202,7 +1202,7 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
 /// - [`INHERIT`] specifies that the presentation transform is not specified, and is instead
 ///   determined by platform-specific considerations and mechanisms outside Vulkan.
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
 /// - [`CopyCommandTransformInfoQCOM`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
@@ -1600,7 +1600,7 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
 ///typedef VkFlags VkDisplayModeCreateFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModeCreateInfoKHR`]
 ///
 ///# Notes and documentation
@@ -1633,7 +1633,7 @@ impl std::fmt::Debug for DisplayModeCreateFlagsKHR {
 ///typedef VkFlags VkDisplaySurfaceCreateFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
 ///
 ///# Notes and documentation
@@ -1695,7 +1695,7 @@ impl std::fmt::Debug for DisplaySurfaceCreateFlagsKHR {
 ///   this is true, the application  **can**  submit persistent present operations on swapchains
 ///   created against this display.
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`Bool32`]
 /// - [`DisplayKHR`]
 /// - [`DisplayProperties2KHR`]
@@ -1917,7 +1917,7 @@ impl<'lt> DisplayPropertiesKHR<'lt> {
 /// - [`current_stack_index`] is the current z-order of the plane. This will be between 0 and the
 ///   value returned by [`get_physical_device_display_plane_properties_khr`] in `pPropertyCount`.
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayKHR`]
 /// - [`DisplayPlaneProperties2KHR`]
 /// - [`get_physical_device_display_plane_properties_khr`]
@@ -2000,7 +2000,7 @@ impl DisplayPlanePropertiesKHR {
 /// - The `height` member of [`visible_region`] **must**  be greater than `0`
 /// - [`refresh_rate`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModeCreateInfoKHR`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`Extent2D`]
@@ -2075,7 +2075,7 @@ impl DisplayModeParametersKHR {
 /// - [`parameters`] is a [`DisplayModeParametersKHR`] structure describing the display parameters
 ///   associated with [`display_mode`].
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModeKHR`]
 /// - [`DisplayModeParametersKHR`]
 /// - [`DisplayModeProperties2KHR`]
@@ -2162,7 +2162,7 @@ impl DisplayModePropertiesKHR {
 /// - [`flags`] **must**  be `0`
 /// - [`parameters`] **must**  be a valid [`DisplayModeParametersKHR`] structure
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModeCreateFlagsKHR`]
 /// - [`DisplayModeParametersKHR`]
 /// - [`StructureType`]
@@ -2330,7 +2330,7 @@ impl<'lt> DisplayModeCreateInfoKHR<'lt> {
 ///in [`DisplayPlaneCapabilitiesKHR`] are guaranteed to be supported.
 ///Presentation requests specifying unsupported combinations  **may**  fail.
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayPlaneAlphaFlagsKHR`]
 /// - [`DisplayPlaneCapabilities2KHR`]
 /// - [`Extent2D`]
@@ -2576,7 +2576,7 @@ impl DisplayPlaneCapabilitiesKHR {
 /// - [`transform`] **must**  be a valid [`SurfaceTransformFlagBitsKHR`] value
 /// - [`alpha_mode`] **must**  be a valid [`DisplayPlaneAlphaFlagBitsKHR`] value
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModeKHR`]
 /// - [`DisplayPlaneAlphaFlagBitsKHR`]
 /// - [`DisplaySurfaceCreateFlagsKHR`]
@@ -2822,7 +2822,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`AllocationCallbacks`]
     /// - [`DisplaySurfaceCreateInfoKHR`]
     /// - [`Instance`]
@@ -2916,7 +2916,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`DisplayPropertiesKHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -3011,7 +3011,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`DisplayPlanePropertiesKHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -3108,7 +3108,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -3220,7 +3220,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`DisplayKHR`]
     /// - [`DisplayModePropertiesKHR`]
     /// - [`PhysicalDevice`]
@@ -3312,7 +3312,7 @@ impl DisplayKHR {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`AllocationCallbacks`]
     /// - [`DisplayKHR`]
     /// - [`DisplayModeCreateInfoKHR`]
@@ -3408,7 +3408,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_display`]
+    /// - [`khr_display`]
     /// - [`DisplayModeKHR`]
     /// - [`DisplayPlaneCapabilitiesKHR`]
     /// - [`PhysicalDevice`]
@@ -3464,7 +3464,7 @@ impl PhysicalDevice {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayPlanePropertiesKHR`]
 /// - [`DisplayPropertiesKHR`]
 /// - [`acquire_drm_display_ext`]
@@ -3569,7 +3569,7 @@ impl Unique<DisplayKHR> {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayModeKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_display`]
+/// - [`khr_display`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`DisplayPlaneInfo2KHR`]
 /// - [`DisplaySurfaceCreateInfoKHR`]

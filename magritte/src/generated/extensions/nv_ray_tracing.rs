@@ -18,8 +18,8 @@
 //!3
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_KHR_get_memory_requirements2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_memory_requirements2`]`
 //!# Contacts
 //! - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_ray_tracing]
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the VK_NV_ray_tracing
@@ -256,7 +256,7 @@ pub const NV_RAY_TRACING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV_ray
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`Device`]
 /// - [`Pipeline`]
 ///
@@ -312,7 +312,7 @@ pub type FNCompileDeferredNv =
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureCreateInfoNV`]
 /// - [`AccelerationStructureNV`]
 /// - [`AllocationCallbacks`]
@@ -370,7 +370,7 @@ pub type FNCreateAccelerationStructureNv = Option<
 ///## Host Synchronization
 /// - Host access to [`acceleration_structure`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -423,7 +423,7 @@ pub type FNDestroyAccelerationStructureNv = Option<
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2KHR`]
 ///   structure
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
 /// - [`Device`]
 /// - [`MemoryRequirements2KHR`]
@@ -469,7 +469,7 @@ pub type FNGetAccelerationStructureMemoryRequirementsNv = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`BindAccelerationStructureMemoryInfoNV`]
 /// - [`Device`]
 ///
@@ -525,7 +525,7 @@ pub type FNBindAccelerationStructureMemoryNv = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`Device`]
 ///
@@ -599,7 +599,7 @@ pub type FNGetAccelerationStructureHandleNv = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INVALID_SHADER_NV`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`Pipeline`]
@@ -676,7 +676,7 @@ pub type FNCreateRayTracingPipelinesNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`CommandBuffer`]
 /// - [`CopyAccelerationStructureModeKHR`]
@@ -759,7 +759,7 @@ pub type FNCmdCopyAccelerationStructureNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`CommandBuffer`]
 /// - [`QueryPool`]
@@ -881,7 +881,7 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
 /// - [`AccelerationStructureNV`]
 /// - [`Bool32`]
@@ -1014,8 +1014,8 @@ pub type FNCmdBuildAccelerationStructureNv = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -1149,7 +1149,7 @@ pub type FNCmdBuildAccelerationStructureNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -1198,7 +1198,7 @@ pub type FNCmdTraceRaysNv = Option<
 /// - [`BUILD_SCRATCH`] requests the memory requirement for scratch space during the initial build.
 /// - [`UPDATE_SCRATCH`] requests the memory requirement for scratch space during an update.
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
 ///
 ///# Notes and documentation
@@ -1347,7 +1347,7 @@ impl std::fmt::Display for AccelerationStructureMemoryRequirementsTypeNV {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`RayTracingShaderGroupTypeKHR`] value
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`RayTracingPipelineCreateInfoNV`]
 /// - [`RayTracingShaderGroupTypeKHR`]
 /// - [`StructureType`]
@@ -1619,7 +1619,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 /// - Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`Pipeline`]
 /// - [`PipelineCreateFlags`]
 /// - [`PipelineLayout`]
@@ -1950,7 +1950,7 @@ unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for 
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`Format`]
@@ -2241,7 +2241,7 @@ impl<'lt> GeometryTrianglesNV<'lt> {
 /// - If [`aabb_data`] is not [`crate::Handle::null`], [`aabb_data`] **must**  be a valid [`Buffer`]
 ///   handle
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
 /// - [`GeometryDataNV`]
@@ -2396,7 +2396,7 @@ impl<'lt> GeometryAabbNV<'lt> {
 /// - [`triangles`] **must**  be a valid [`GeometryTrianglesNV`] structure
 /// - [`aabbs`] **must**  be a valid [`GeometryAabbNV`] structure
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`GeometryAabbNV`]
 /// - [`GeometryNV`]
 /// - [`GeometryTrianglesNV`]
@@ -2491,7 +2491,7 @@ impl<'lt> GeometryDataNV<'lt> {
 /// - [`geometry`] **must**  be a valid [`GeometryDataNV`] structure
 /// - [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
 /// - [`GeometryDataNV`]
 /// - [`GeometryFlagsKHR`]
@@ -2675,7 +2675,7 @@ impl<'lt> GeometryNV<'lt> {
 /// - If [`geometry_count`] is not `0`, [`geometries`] **must**  be a valid pointer to an array of
 ///   [`geometry_count`] valid [`GeometryNV`] structures
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureCreateInfoNV`]
 /// - [`AccelerationStructureTypeNV`]
 /// - [`BuildAccelerationStructureFlagsNV`]
@@ -2879,7 +2879,7 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`info`] **must**  be a valid [`AccelerationStructureInfoNV`] structure
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureInfoNV`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
@@ -3037,7 +3037,7 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 /// - Both of [`acceleration_structure`], and [`memory`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`DeviceMemory`]
 /// - [`DeviceSize`]
@@ -3246,7 +3246,7 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 ///   handles
 /// - [`acceleration_structure_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureNV`]
 /// - [`StructureType`]
 ///
@@ -3394,7 +3394,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 /// - [`type_`] **must**  be a valid [`AccelerationStructureMemoryRequirementsTypeNV`] value
 /// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsTypeNV`]
 /// - [`AccelerationStructureNV`]
 /// - [`StructureType`]
@@ -3562,7 +3562,7 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -3802,7 +3802,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`Device`]
     /// - [`Pipeline`]
     ///
@@ -3884,7 +3884,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureCreateInfoNV`]
     /// - [`AccelerationStructureNV`]
     /// - [`AllocationCallbacks`]
@@ -3973,7 +3973,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`acceleration_structure`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -4050,7 +4050,7 @@ impl Device {
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2KHR`]
     ///   structure
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
     /// - [`Device`]
     /// - [`MemoryRequirements2KHR`]
@@ -4122,7 +4122,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`BindAccelerationStructureMemoryInfoNV`]
     /// - [`Device`]
     ///
@@ -4200,7 +4200,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`Device`]
     ///
@@ -4295,7 +4295,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INVALID_SHADER_NV`
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`Pipeline`]
@@ -4409,7 +4409,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`CommandBuffer`]
     /// - [`CopyAccelerationStructureModeKHR`]
@@ -4514,7 +4514,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureNV`]
     /// - [`CommandBuffer`]
     /// - [`QueryPool`]
@@ -4666,7 +4666,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`AccelerationStructureInfoNV`]
     /// - [`AccelerationStructureNV`]
     /// - [`Bool32`]
@@ -4830,8 +4830,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -4966,7 +4966,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`nv_ray_tracing`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]
@@ -5035,14 +5035,14 @@ impl CommandBuffer {
 }
 ///[VkAccelerationStructureNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureNV.html) - Opaque handle to an acceleration structure object
 ///# C Specifications
-///Acceleration structures for the [`VK_NV_ray_tracing`] extension are
+///Acceleration structures for the [`nv_ray_tracing`] extension are
 ///represented by the similar [`AccelerationStructureNV`] handles:
 ///```c
 ///// Provided by VK_NV_ray_tracing
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureNV)
 ///```
 ///# Related
-/// - [`VK_NV_ray_tracing`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureMemoryRequirementsInfoNV`]
 /// - [`BindAccelerationStructureMemoryInfoNV`]
 /// - [`WriteDescriptorSetAccelerationStructureNV`]

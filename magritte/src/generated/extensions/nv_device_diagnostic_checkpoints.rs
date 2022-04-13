@@ -10,7 +10,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Nuno Subtil [nsubtil](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostic_checkpoints]
 //!   @nsubtil%0A<<Here describe the issue or question you have about the
@@ -105,7 +105,7 @@ pub const NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME: &'static CStr =
 ///   is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to an array of
 ///   [`p_checkpoint_data_count`][`CheckpointDataNV`] structures
 ///# Related
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`CheckpointDataNV`]
 /// - [`Queue`]
 ///
@@ -152,7 +152,7 @@ pub type FNGetQueueCheckpointDataNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -188,7 +188,7 @@ pub type FNCmdSetCheckpointNv =
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags`]
 /// - [`StructureType`]
 ///
@@ -307,7 +307,7 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_NV_device_diagnostic_checkpoints`]
+/// - [`nv_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlagBits`]
 /// - [`StructureType`]
 /// - [`get_queue_checkpoint_data_nv`]
@@ -473,7 +473,7 @@ impl Queue {
     ///   [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to
     ///   an array of [`p_checkpoint_data_count`][`CheckpointDataNV`] structures
     ///# Related
-    /// - [`VK_NV_device_diagnostic_checkpoints`]
+    /// - [`nv_device_diagnostic_checkpoints`]
     /// - [`CheckpointDataNV`]
     /// - [`Queue`]
     ///
@@ -553,7 +553,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_device_diagnostic_checkpoints`]
+    /// - [`nv_device_diagnostic_checkpoints`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation

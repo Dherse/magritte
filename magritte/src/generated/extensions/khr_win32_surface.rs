@@ -2,13 +2,13 @@
 //!# Description
 //!The [`VK_KHR_win32_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to a Win32 [`HWND`], as
+//!the `[`khr_surface`]` extension) that refers to a Win32 [`HWND`], as
 //!well as a query to determine support for rendering to the windows desktop.
 //!# Revision
 //!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_win32_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_win32_surface
@@ -146,7 +146,7 @@ pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_win32_surface`]
+/// - [`khr_win32_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
@@ -190,7 +190,7 @@ pub type FNCreateWin32SurfaceKhr = Option<
 ///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 ///# Related
-/// - [`VK_KHR_win32_surface`]
+/// - [`khr_win32_surface`]
 /// - [`PhysicalDevice`]
 ///
 ///# Notes and documentation
@@ -210,7 +210,7 @@ pub type FNGetPhysicalDeviceWin32PresentationSupportKhr =
 ///typedef VkFlags VkWin32SurfaceCreateFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_win32_surface`]
+/// - [`khr_win32_surface`]
 /// - [`Win32SurfaceCreateInfoKHR`]
 ///
 ///# Notes and documentation
@@ -265,7 +265,7 @@ impl std::fmt::Debug for Win32SurfaceCreateFlagsKHR {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_KHR_win32_surface`]
+/// - [`khr_win32_surface`]
 /// - [`StructureType`]
 /// - [`Win32SurfaceCreateFlagsKHR`]
 /// - [`create_win32_surface_khr`]
@@ -433,7 +433,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_win32_surface`]
+    /// - [`khr_win32_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]
@@ -508,7 +508,7 @@ impl PhysicalDevice {
     ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     ///# Related
-    /// - [`VK_KHR_win32_surface`]
+    /// - [`khr_win32_surface`]
     /// - [`PhysicalDevice`]
     ///
     ///# Notes and documentation

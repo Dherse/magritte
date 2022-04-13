@@ -10,8 +10,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory_capabilities`]`
-//! - Requires `[`VK_KHR_external_memory`]`
+//! - Requires `[`khr_external_memory_capabilities`]`
+//! - Requires `[`khr_external_memory`]`
 //!# Contacts
 //! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_external_memory]
 //!   @rosasco%0A<<Here describe the issue or question you have about the VK_FUCHSIA_external_memory
@@ -32,7 +32,7 @@
 //!   - `VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
 //!# Known issues & F.A.Q
-//!See `[`VK_KHR_external_memory`]` issues list for further information.
+//!See `[`khr_external_memory`]` issues list for further information.
 //!# Version History
 //! - Revision 1, 2021-03-01 (John Rosasco)  - Initial draft
 //!# Other info
@@ -95,7 +95,7 @@ pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_FUCHSIA_external_memory`]
+/// - [`fuchsia_external_memory`]
 /// - [`Device`]
 /// - [`MemoryGetZirconHandleInfoFUCHSIA`]
 ///
@@ -148,7 +148,7 @@ pub type FNGetMemoryZirconHandleFuchsia = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_FUCHSIA_external_memory`]
+/// - [`fuchsia_external_memory`]
 /// - [`Device`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`MemoryZirconHandlePropertiesFUCHSIA`]
@@ -197,7 +197,7 @@ pub type FNGetMemoryZirconHandlePropertiesFuchsia = Option<
 /// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_FUCHSIA_external_memory`]
+/// - [`fuchsia_external_memory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
@@ -328,7 +328,7 @@ impl<'lt> ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_FUCHSIA_external_memory`]
+/// - [`fuchsia_external_memory`]
 /// - [`StructureType`]
 /// - [`get_memory_zircon_handle_properties_fuchsia`]
 ///
@@ -450,7 +450,7 @@ impl<'lt> MemoryZirconHandlePropertiesFUCHSIA<'lt> {
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_FUCHSIA_external_memory`]
+/// - [`fuchsia_external_memory`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
@@ -584,7 +584,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_FUCHSIA_external_memory`]
+    /// - [`fuchsia_external_memory`]
     /// - [`Device`]
     /// - [`MemoryGetZirconHandleInfoFUCHSIA`]
     ///
@@ -662,7 +662,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_FUCHSIA_external_memory`]
+    /// - [`fuchsia_external_memory`]
     /// - [`Device`]
     /// - [`ExternalMemoryHandleTypeFlagBits`]
     /// - [`MemoryZirconHandlePropertiesFUCHSIA`]

@@ -8,7 +8,7 @@ use crate::{
         DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT,
     },
     vulkan1_0::{Bool32, Instance, VulkanResultCodes, FALSE},
-    Extensions, Unique,
+    InstanceExtensions, Unique,
 };
 pub use log::Level;
 use log::{debug, error, info, warn};
@@ -17,7 +17,7 @@ pub const VALIDATION_LAYER_NAME: *const c_char = cstr_ptr!("VK_LAYER_KHRONOS_val
 
 /// Enables the Vulkan validation layer in the extension set
 #[inline]
-pub const fn enable_validation(extension: Extensions) -> Extensions {
+pub fn enable_validation(extension: InstanceExtensions) -> InstanceExtensions {
     extension.enable_ext_debug_utils()
 }
 

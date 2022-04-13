@@ -123,7 +123,7 @@ pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`CommandBuffer`]
 /// - [`ConditionalRenderingBeginInfoEXT`]
 ///
@@ -173,7 +173,7 @@ pub type FNCmdBeginConditionalRenderingExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -201,7 +201,7 @@ pub type FNCmdEndConditionalRenderingExt = Option<unsafe extern "system" fn(comm
 ///   or not. That is, if the 32-bit predicate read from `buffer` memory at `offset` is zero, the
 ///   rendering commands are not discarded, and if non zero, then they are discarded.
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`ConditionalRenderingFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -295,7 +295,7 @@ impl std::fmt::Display for ConditionalRenderingFlagBitsEXT {
 ///   or not. That is, if the 32-bit predicate read from `buffer` memory at `offset` is zero, the
 ///   rendering commands are not discarded, and if non zero, then they are discarded.
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`ConditionalRenderingFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -599,7 +599,7 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 /// - [`flags`] **must**  be a valid combination of [`ConditionalRenderingFlagBitsEXT`] values
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`Buffer`]
 /// - [`ConditionalRenderingFlagsEXT`]
 /// - [`DeviceSize`]
@@ -759,7 +759,7 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -905,7 +905,7 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_conditional_rendering`]
+/// - [`ext_conditional_rendering`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -1094,7 +1094,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_conditional_rendering`]
+    /// - [`ext_conditional_rendering`]
     /// - [`CommandBuffer`]
     /// - [`ConditionalRenderingBeginInfoEXT`]
     ///
@@ -1168,7 +1168,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_conditional_rendering`]
+    /// - [`ext_conditional_rendering`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation

@@ -8,7 +8,7 @@
 //!# Revision
 //!1
 //!# Dependencies
-//! - *Deprecated* by `[`VK_KHR_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+//! - *Deprecated* by `[`khr_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts
@@ -56,8 +56,8 @@
 //!# Other info
 //! * 2016-08-19
 //! * No known IP claims.
-//! * - Interacts with Vulkan 1.1.  - Interacts with `[`VK_KHR_dedicated_allocation`]`.  - Interacts
-//!   with `[`VK_NV_dedicated_allocation`]`.
+//! * - Interacts with Vulkan 1.1.  - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts
+//!   with `[`nv_dedicated_allocation`]`.
 //! * - James Jones, NVIDIA
 //!# Related
 //! - [`ExternalImageFormatPropertiesNV`]
@@ -150,7 +150,7 @@ pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
 ///# Related
-/// - [`VK_NV_external_memory_capabilities`]
+/// - [`nv_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`Format`]
@@ -203,7 +203,7 @@ pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = Option<
 /// - [`D3D11_IMAGE_KMT`] specifies a handle to memory returned by
 ///   `IDXGIResource::GetSharedHandle()`.
 ///# Related
-/// - [`VK_NV_external_memory_capabilities`]
+/// - [`nv_external_memory_capabilities`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 ///
 ///# Notes and documentation
@@ -317,7 +317,7 @@ impl std::fmt::Display for ExternalMemoryHandleTypeFlagBitsNV {
 /// - [`IMPORTABLE`] specifies that the implementation supports importing handles of the specified
 ///   type.
 ///# Related
-/// - [`VK_NV_external_memory_capabilities`]
+/// - [`nv_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
 /// - [`ExternalMemoryFeatureFlagsNV`]
 /// - [`get_physical_device_external_image_format_properties_nv`]
@@ -428,7 +428,7 @@ impl std::fmt::Display for ExternalMemoryFeatureFlagBitsNV {
 /// - [`D3D11_IMAGE_KMT`] specifies a handle to memory returned by
 ///   `IDXGIResource::GetSharedHandle()`.
 ///# Related
-/// - [`VK_NV_external_memory_capabilities`]
+/// - [`nv_external_memory_capabilities`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 ///
 ///# Notes and documentation
@@ -753,7 +753,7 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
 /// - [`IMPORTABLE`] specifies that the implementation supports importing handles of the specified
 ///   type.
 ///# Related
-/// - [`VK_NV_external_memory_capabilities`]
+/// - [`nv_external_memory_capabilities`]
 /// - [`ExternalImageFormatPropertiesNV`]
 /// - [`ExternalMemoryFeatureFlagsNV`]
 /// - [`get_physical_device_external_image_format_properties_nv`]
@@ -1073,7 +1073,7 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
 ///   will always contain
 ///   [`get_physical_device_external_image_format_properties_nv`]`::externalHandleType`
 ///# Related
-/// - [`VK_NV_external_memory_capabilities`]
+/// - [`nv_external_memory_capabilities`]
 /// - [`ExternalMemoryFeatureFlagsNV`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`ImageFormatProperties`]
@@ -1246,7 +1246,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
     ///# Related
-    /// - [`VK_NV_external_memory_capabilities`]
+    /// - [`nv_external_memory_capabilities`]
     /// - [`ExternalImageFormatPropertiesNV`]
     /// - [`ExternalMemoryHandleTypeFlagsNV`]
     /// - [`Format`]

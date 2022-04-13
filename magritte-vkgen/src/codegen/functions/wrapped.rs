@@ -27,6 +27,8 @@ pub struct StatefulFunctionGeneratorState {
 
     pub this: Mutability,
 
+    pub returns_device: bool,
+
     /// The argument definitions of the function
     /// Of the form:
     /// - `#name: #ty`
@@ -459,8 +461,15 @@ impl StatefulFunctionGeneratorState {
 
                     imports.push("std::sync::atomic::AtomicBool");
 
+                    let metadata = if out.original_name() == "VkDevice" {
+                        self.returns_device = true;
+                        quote! { extensions }
+                    } else {
+                        quote! { AtomicBool::default() }
+                    };
+
                     self.return_values
-                        .push(quote! { Unique::new(self, #ret_ident.assume_init(), AtomicBool::default()) });
+                        .push(quote! { Unique::new(self, #ret_ident.assume_init(), #metadata) });
 
                     self.call_args.push(box move |_| quote! { #ret_ident.as_mut_ptr() });
                 },

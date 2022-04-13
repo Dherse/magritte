@@ -2,14 +2,14 @@
 //!# Description
 //!This extension adds some Y′C<sub>B</sub>C<sub>R</sub> formats that are in common use for video
 //!encode and decode, but were not part of the
-//!`[`VK_KHR_sampler_ycbcr_conversion`]` extension.
+//!`[`khr_sampler_ycbcr_conversion`]` extension.
 //!# Revision
 //!1
 //!# Dependencies
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //!# Contacts
 //! - Tony Zlatinski [tzlatinski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_ycbcr_2plane_444_formats]
 //!   @tzlatinski%0A<<Here describe the issue or question you have about the
@@ -86,7 +86,7 @@ pub const EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_ycbcr_2plane_444_formats`]
+/// - [`ext_ycbcr_2plane_444_formats`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

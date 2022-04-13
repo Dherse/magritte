@@ -8,10 +8,10 @@
 //!# Revision
 //!4
 //!# Dependencies
-//! - *Promoted* to `[`VK_EXT_debug_utils`]` extension
+//! - *Promoted* to `[`ext_debug_utils`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_debug_report`]`
+//! - Requires `[`ext_debug_report`]`
 //!# Contacts
 //! - Baldur Karlsson [baldurk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_marker]
 //!   @baldurk%0A<<Here describe the issue or question you have about the VK_EXT_debug_marker
@@ -130,7 +130,7 @@ pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`DebugMarkerObjectNameInfoEXT`]
 /// - [`Device`]
 ///
@@ -179,7 +179,7 @@ pub type FNDebugMarkerSetObjectNameExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`DebugMarkerObjectTagInfoEXT`]
 /// - [`Device`]
 ///
@@ -226,7 +226,7 @@ pub type FNDebugMarkerSetObjectTagExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`CommandBuffer`]
 /// - [`DebugMarkerMarkerInfoEXT`]
 ///
@@ -281,7 +281,7 @@ pub type FNCmdDebugMarkerBeginExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -322,7 +322,7 @@ pub type FNCmdDebugMarkerEndExt = Option<unsafe extern "system" fn(command_buffe
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`CommandBuffer`]
 /// - [`DebugMarkerMarkerInfoEXT`]
 ///
@@ -409,8 +409,8 @@ pub type FNCmdDebugMarkerInsertExt = Option<
 ///} VkDebugReportObjectTypeEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_debug_marker`]
-/// - [`VK_EXT_debug_report`]
+/// - [`ext_debug_marker`]
+/// - [`ext_debug_report`]
 /// - [`DebugMarkerObjectNameInfoEXT`]
 /// - [`DebugMarkerObjectTagInfoEXT`]
 /// - [`debug_report_message_ext`]
@@ -763,7 +763,7 @@ impl std::fmt::Display for DebugReportObjectTypeEXT {
 /// - [`object_type`] **must**  be a valid [`DebugReportObjectTypeEXT`] value
 /// - [`object_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`DebugReportObjectTypeEXT`]
 /// - [`StructureType`]
 /// - [`debug_marker_set_object_name_ext`]
@@ -933,7 +933,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
 /// - [`tag`] **must**  be a valid pointer to an array of [`tag_size`] bytes
 /// - [`tag_size`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`DebugReportObjectTypeEXT`]
 /// - [`StructureType`]
 /// - [`debug_marker_set_object_tag_ext`]
@@ -1122,7 +1122,7 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`marker_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_EXT_debug_marker`]
+/// - [`ext_debug_marker`]
 /// - [`StructureType`]
 /// - [`cmd_debug_marker_begin_ext`]
 /// - [`cmd_debug_marker_insert_ext`]
@@ -1263,7 +1263,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_debug_marker`]
+    /// - [`ext_debug_marker`]
     /// - [`DebugMarkerObjectNameInfoEXT`]
     /// - [`Device`]
     ///
@@ -1333,7 +1333,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_debug_marker`]
+    /// - [`ext_debug_marker`]
     /// - [`DebugMarkerObjectTagInfoEXT`]
     /// - [`Device`]
     ///
@@ -1401,7 +1401,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_marker`]
+    /// - [`ext_debug_marker`]
     /// - [`CommandBuffer`]
     /// - [`DebugMarkerMarkerInfoEXT`]
     ///
@@ -1476,7 +1476,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_marker`]
+    /// - [`ext_debug_marker`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation
@@ -1539,7 +1539,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_marker`]
+    /// - [`ext_debug_marker`]
     /// - [`CommandBuffer`]
     /// - [`DebugMarkerMarkerInfoEXT`]
     ///

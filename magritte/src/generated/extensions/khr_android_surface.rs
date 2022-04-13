@@ -2,7 +2,7 @@
 //!# Description
 //!The [`VK_KHR_android_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to an
+//!the `[`khr_surface`]` extension) that refers to an
 //![`ANativeWindow`], Android’s native surface type.
 //!The [`ANativeWindow`] represents the producer endpoint of any buffer
 //!queue, regardless of consumer endpoint.
@@ -13,7 +13,7 @@
 //!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_android_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_android_surface
@@ -94,7 +94,7 @@ pub const KHR_ANDROID_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_K
 ///struct ANativeWindow;
 ///```
 ///# Related
-/// - [`VK_KHR_android_surface`]
+/// - [`khr_android_surface`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -149,7 +149,7 @@ pub type ANativeWindow = c_void;
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 ///# Related
-/// - [`VK_KHR_android_surface`]
+/// - [`khr_android_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`AndroidSurfaceCreateInfoKHR`]
 /// - [`Instance`]
@@ -178,7 +178,7 @@ pub type FNCreateAndroidSurfaceKhr = Option<
 ///typedef VkFlags VkAndroidSurfaceCreateFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_android_surface`]
+/// - [`khr_android_surface`]
 /// - [`AndroidSurfaceCreateInfoKHR`]
 ///
 ///# Notes and documentation
@@ -230,7 +230,7 @@ impl std::fmt::Debug for AndroidSurfaceCreateFlagsKHR {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_KHR_android_surface`]
+/// - [`khr_android_surface`]
 /// - [`AndroidSurfaceCreateFlagsKHR`]
 /// - [`StructureType`]
 /// - [`create_android_surface_khr`]
@@ -393,7 +393,7 @@ impl Instance {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
     ///# Related
-    /// - [`VK_KHR_android_surface`]
+    /// - [`khr_android_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`AndroidSurfaceCreateInfoKHR`]
     /// - [`Instance`]

@@ -17,8 +17,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.1
-//! - Requires `[`VK_KHR_spirv_1_4`]`
-//! - Requires `[`VK_KHR_acceleration_structure`]`
+//! - Requires `[`khr_spirv_1_4`]`
+//! - Requires `[`khr_acceleration_structure`]`
 //!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_query]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_query
@@ -35,10 +35,9 @@
 //!v8) release and the final (VK_KHR_acceleration_structure v11 /
 //!VK_KHR_ray_query v1) release?
 //! - refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and
-//!   decoupling ray query support from ray pipelines:  - `[`VK_KHR_acceleration_structure`]` (for
-//!   acceleration structure operations)  - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing
-//!   pipeline and shader stages)  - `[`VK_KHR_ray_query`]` (for ray queries in existing shader
-//!   stages)
+//!   decoupling ray query support from ray pipelines:  - `[`khr_acceleration_structure`]` (for
+//!   acceleration structure operations)  - `[`khr_ray_tracing_pipeline`]` (for ray tracing pipeline
+//!   and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages)
 //! - Update SPIRV capabilities to use `RayQueryKHR`
 //! - extension is no longer provisional
 //!# Version History
@@ -113,7 +112,7 @@ pub const KHR_RAY_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_ray
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_ray_query`]
+/// - [`khr_ray_query`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

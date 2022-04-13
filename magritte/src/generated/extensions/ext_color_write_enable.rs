@@ -16,7 +16,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Sharif Elcott [selcott](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_color_write_enable]
 //!   @selcott%0A<<Here describe the issue or question you have about the VK_EXT_color_write_enable
@@ -111,7 +111,7 @@ pub const EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_color_write_enable`]
+/// - [`ext_color_write_enable`]
 /// - [`Bool32`]
 /// - [`CommandBuffer`]
 ///
@@ -159,7 +159,7 @@ pub type FNCmdSetColorWriteEnableExt = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_color_write_enable`]
+/// - [`ext_color_write_enable`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -325,7 +325,7 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 /// - If [`attachment_count`] is not `0`, [`color_write_enables`] **must**  be a valid pointer to an
 ///   array of [`attachment_count`][`Bool32`] values
 ///# Related
-/// - [`VK_EXT_color_write_enable`]
+/// - [`ext_color_write_enable`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -486,7 +486,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_color_write_enable`]
+    /// - [`ext_color_write_enable`]
     /// - [`Bool32`]
     /// - [`CommandBuffer`]
     ///

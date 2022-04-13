@@ -2,13 +2,13 @@
 //!# Description
 //!The [`VK_GGP_stream_descriptor_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to a Google Games
+//!the `[`khr_surface`]` extension) that refers to a Google Games
 //!Platform [`GgpStreamDescriptor`].
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Jean-Francois Roy [jfroy](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GGP_stream_descriptor_surface]
 //!   @jfroy%0A<<Here describe the issue or question you have about the
@@ -93,7 +93,7 @@ pub const GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME: &'static CStr =
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 ///# Related
-/// - [`VK_GGP_stream_descriptor_surface`]
+/// - [`ggp_stream_descriptor_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`StreamDescriptorSurfaceCreateInfoGGP`]
@@ -122,7 +122,7 @@ pub type FNCreateStreamDescriptorSurfaceGgp = Option<
 ///typedef VkFlags VkStreamDescriptorSurfaceCreateFlagsGGP;
 ///```
 ///# Related
-/// - [`VK_GGP_stream_descriptor_surface`]
+/// - [`ggp_stream_descriptor_surface`]
 /// - [`StreamDescriptorSurfaceCreateInfoGGP`]
 ///
 ///# Notes and documentation
@@ -175,7 +175,7 @@ impl std::fmt::Debug for StreamDescriptorSurfaceCreateFlagsGGP {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_GGP_stream_descriptor_surface`]
+/// - [`ggp_stream_descriptor_surface`]
 /// - [`StreamDescriptorSurfaceCreateFlagsGGP`]
 /// - [`StructureType`]
 /// - [`create_stream_descriptor_surface_ggp`]
@@ -322,7 +322,7 @@ impl Instance {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
     ///# Related
-    /// - [`VK_GGP_stream_descriptor_surface`]
+    /// - [`ggp_stream_descriptor_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`StreamDescriptorSurfaceCreateInfoGGP`]

@@ -40,7 +40,7 @@ use std::{
 ///#define VK_MAX_DRIVER_NAME_SIZE_KHR       VK_MAX_DRIVER_NAME_SIZE
 ///```
 ///# Related
-/// - [`VK_KHR_driver_properties`]
+/// - [`khr_driver_properties`]
 /// - [`crate::vulkan1_2`]
 ///
 ///# Notes and documentation
@@ -65,7 +65,7 @@ pub const MAX_DRIVER_NAME_SIZE: u32 = 256;
 ///#define VK_MAX_DRIVER_INFO_SIZE_KHR       VK_MAX_DRIVER_INFO_SIZE
 ///```
 ///# Related
-/// - [`VK_KHR_driver_properties`]
+/// - [`khr_driver_properties`]
 /// - [`crate::vulkan1_2`]
 ///
 ///# Notes and documentation
@@ -125,7 +125,7 @@ pub const MAX_DRIVER_INFO_SIZE: u32 = 256;
 /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
 /// - [`query_pool`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_EXT_host_query_reset`]
+/// - [`ext_host_query_reset`]
 /// - [`crate::vulkan1_2`]
 /// - [`Device`]
 /// - [`QueryPool`]
@@ -183,7 +183,7 @@ pub type FNResetQueryPool =
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -246,7 +246,7 @@ pub type FNCreateRenderPass2 = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Device`]
 /// - [`Semaphore`]
@@ -312,7 +312,7 @@ pub type FNGetSemaphoreCounterValue =
 /// * - `VK_SUCCESS`  - `VK_TIMEOUT`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Device`]
 /// - [`SemaphoreWaitInfo`]
@@ -368,7 +368,7 @@ pub type FNWaitSemaphores = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Device`]
 /// - [`SemaphoreSignalInfo`]
@@ -422,7 +422,7 @@ pub type FNSignalSemaphore = Option<
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`BufferDeviceAddressInfo`]
 /// - [`Device`]
@@ -497,7 +497,7 @@ pub type FNGetBufferOpaqueCaptureAddress =
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`BufferDeviceAddressInfo`]
 /// - [`Device`]
@@ -549,7 +549,7 @@ pub type FNGetBufferDeviceAddress = Option<
 /// - [`p_info`] **must**  be a valid pointer to a valid [`DeviceMemoryOpaqueCaptureAddressInfo`]
 ///   structure
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`Device`]
 /// - [`DeviceMemoryOpaqueCaptureAddressInfo`]
@@ -684,7 +684,7 @@ pub type FNGetDeviceMemoryOpaqueCaptureAddress = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`CommandBuffer`]
 /// - [`RenderPassBeginInfo`]
@@ -757,7 +757,7 @@ pub type FNCmdBeginRenderPass2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`CommandBuffer`]
 /// - [`SubpassBeginInfo`]
@@ -824,7 +824,7 @@ pub type FNCmdNextSubpass2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`CommandBuffer`]
 /// - [`SubpassEndInfo`]
@@ -947,8 +947,8 @@ pub type FNCmdEndRenderPass2 = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -1111,9 +1111,9 @@ pub type FNCmdEndRenderPass2 = Option<
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -1309,8 +1309,8 @@ pub type FNCmdEndRenderPass2 = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_AMD_draw_indirect_count`]
-/// - [`VK_KHR_draw_indirect_count`]
+/// - [`amd_draw_indirect_count`]
+/// - [`khr_draw_indirect_count`]
 /// - [`crate::vulkan1_2`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
@@ -1442,8 +1442,8 @@ pub type FNCmdDrawIndirectCount = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -1606,9 +1606,9 @@ pub type FNCmdDrawIndirectCount = Option<
 ///   corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
 ///   [`FALSE`]
 /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions
-///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be
-///   the same as the current subpass color and/or depth/stencil attachments
+///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are
+///   enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**  be the
+///   same as the current subpass color and/or depth/stencil attachments
 /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the `imageView`
 ///   member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout` member of
 ///   `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this command
@@ -1805,8 +1805,8 @@ pub type FNCmdDrawIndirectCount = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_AMD_draw_indirect_count`]
-/// - [`VK_KHR_draw_indirect_count`]
+/// - [`amd_draw_indirect_count`]
+/// - [`khr_draw_indirect_count`]
 /// - [`crate::vulkan1_2`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
@@ -1860,7 +1860,7 @@ pub type FNCmdDrawIndexedIndirectCount = Option<
 ///   particular reference value. When created, the semaphore payload has the value given by the
 ///   `initialValue` field of [`SemaphoreTypeCreateInfo`].
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreTypeCreateInfo`]
 ///
@@ -1963,7 +1963,7 @@ impl std::fmt::Display for SemaphoreType {
 /// - [`MAX`] specifies that texel values are combined by taking the component-wise maximum of
 ///   values in the footprint with non-zero weights.
 ///# Related
-/// - [`VK_EXT_sampler_filter_minmax`]
+/// - [`ext_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
 /// - [`SamplerReductionModeCreateInfo`]
 ///
@@ -2106,7 +2106,7 @@ impl std::fmt::Display for SamplerReductionMode {
 ///typedef VkDriverId VkDriverIdKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_driver_properties`]
+/// - [`khr_driver_properties`]
 /// - [`crate::vulkan1_2`]
 /// - [`PhysicalDeviceDriverProperties`]
 /// - [`PhysicalDeviceVulkan12Properties`]
@@ -2285,7 +2285,7 @@ impl std::fmt::Display for DriverId {
 /// - [`NONE`] specifies that shader float controls for all bit widths  **must**  be set
 ///   identically.
 ///# Related
-/// - [`VK_KHR_shader_float_controls`]
+/// - [`khr_shader_float_controls`]
 /// - [`crate::vulkan1_2`]
 /// - [`PhysicalDeviceFloatControlsProperties`]
 /// - [`PhysicalDeviceVulkan12Properties`]
@@ -2397,7 +2397,7 @@ impl std::fmt::Display for ShaderFloatControlsIndependence {
 ///   all of the semaphores in [`SemaphoreWaitInfo::semaphores`] have reached the value specified by
 ///   the corresponding element of [`SemaphoreWaitInfo::values`].
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreWaitFlags`]
 ///
@@ -2537,7 +2537,7 @@ impl std::fmt::Display for SemaphoreWaitFlagBits {
 ///   and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize)
 ///   limits instead.
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`DescriptorBindingFlags`]
 ///
@@ -2700,7 +2700,7 @@ impl std::fmt::Display for DescriptorBindingFlagBits {
 /// - [`MIN`] indicates that result of the resolve operation is the minimum of the sample values.
 /// - [`MAX`] indicates that result of the resolve operation is the maximum of the sample values.
 ///# Related
-/// - [`VK_KHR_depth_stencil_resolve`]
+/// - [`khr_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`RenderingAttachmentInfo`]
 /// - [`ResolveModeFlags`]
@@ -2813,7 +2813,7 @@ impl std::fmt::Display for ResolveModeFlagBits {
 ///   all of the semaphores in [`SemaphoreWaitInfo::semaphores`] have reached the value specified by
 ///   the corresponding element of [`SemaphoreWaitInfo::values`].
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreWaitFlags`]
 ///
@@ -3144,7 +3144,7 @@ impl std::fmt::Debug for SemaphoreWaitFlags {
 ///   and [`maxInlineUniformTotalSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxInlineUniformTotalSize)
 ///   limits instead.
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`DescriptorBindingFlags`]
 ///
@@ -3522,7 +3522,7 @@ impl std::fmt::Debug for DescriptorBindingFlags {
 /// - [`MIN`] indicates that result of the resolve operation is the minimum of the sample values.
 /// - [`MAX`] indicates that result of the resolve operation is the maximum of the sample values.
 ///# Related
-/// - [`VK_KHR_depth_stencil_resolve`]
+/// - [`khr_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`RenderingAttachmentInfo`]
 /// - [`ResolveModeFlags`]
@@ -3858,7 +3858,7 @@ impl std::fmt::Debug for ResolveModeFlags {
 /// - [`subminor`] is the subminor version number of the conformance test suite.
 /// - [`patch`] is the patch version number of the conformance test suite.
 ///# Related
-/// - [`VK_KHR_driver_properties`]
+/// - [`khr_driver_properties`]
 /// - [`crate::vulkan1_2`]
 /// - [`PhysicalDeviceDriverProperties`]
 /// - [`PhysicalDeviceVulkan12Properties`]
@@ -3988,7 +3988,7 @@ impl ConformanceVersion {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES`
 ///# Related
-/// - [`VK_KHR_driver_properties`]
+/// - [`khr_driver_properties`]
 /// - [`crate::vulkan1_2`]
 /// - [`ConformanceVersion`]
 /// - [`DriverId`]
@@ -4176,7 +4176,7 @@ impl<'lt> PhysicalDeviceDriverProperties<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES`
 ///# Related
-/// - [`VK_KHR_shader_subgroup_extended_types`]
+/// - [`khr_shader_subgroup_extended_types`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -4361,7 +4361,7 @@ impl<'lt> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES`
 ///# Related
-/// - [`VK_EXT_sampler_filter_minmax`]
+/// - [`ext_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -4546,7 +4546,7 @@ impl<'lt> PhysicalDeviceSamplerFilterMinmaxProperties<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO`
 /// - [`reduction_mode`] **must**  be a valid [`SamplerReductionMode`] value
 ///# Related
-/// - [`VK_EXT_sampler_filter_minmax`]
+/// - [`ext_sampler_filter_minmax`]
 /// - [`crate::vulkan1_2`]
 /// - [`SamplerReductionMode`]
 /// - [`StructureType`]
@@ -4667,7 +4667,7 @@ impl<'lt> SamplerReductionModeCreateInfo<'lt> {
 /// - If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array
 ///   of [`view_format_count`] valid [`Format`] values
 ///# Related
-/// - [`VK_KHR_image_format_list`]
+/// - [`khr_image_format_list`]
 /// - [`crate::vulkan1_2`]
 /// - [`Format`]
 /// - [`StructureType`]
@@ -4834,7 +4834,7 @@ impl<'lt> ImageFormatListCreateInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES`
 ///# Related
-/// - [`VK_KHR_shader_float16_int8`]
+/// - [`khr_shader_float16_int8`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -5053,13 +5053,13 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float16`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
@@ -5122,7 +5122,7 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES`
 ///# Related
-/// - [`VK_KHR_shader_float_controls`]
+/// - [`khr_shader_float_controls`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`ShaderFloatControlsIndependence`]
@@ -5856,7 +5856,7 @@ impl<'lt> PhysicalDeviceFloatControlsProperties<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES`
 ///# Related
-/// - [`VK_EXT_host_query_reset`]
+/// - [`ext_host_query_reset`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -6126,7 +6126,7 @@ impl<'lt> PhysicalDeviceHostQueryResetFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES`
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -7273,7 +7273,7 @@ impl<'lt> PhysicalDeviceDescriptorIndexingFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES`
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -8002,7 +8002,7 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 /// - If [`binding_count`] is not `0`, [`binding_flags`] **must**  be a valid pointer to an array of
 ///   [`binding_count`] valid combinations of [`DescriptorBindingFlagBits`] values
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`DescriptorBindingFlags`]
 /// - [`StructureType`]
@@ -8173,7 +8173,7 @@ impl<'lt> DescriptorSetLayoutBindingFlagsCreateInfo<'lt> {
 /// - If [`descriptor_set_count`] is not `0`, [`descriptor_counts`] **must**  be a valid pointer to
 ///   an array of [`descriptor_set_count`]`uint32_t` values
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
@@ -8339,7 +8339,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountAllocateInfo<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT`
 ///# Related
-/// - [`VK_EXT_descriptor_indexing`]
+/// - [`ext_descriptor_indexing`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
@@ -8580,7 +8580,7 @@ impl<'lt> DescriptorSetVariableDescriptorCountLayoutSupport<'lt> {
 /// - [`initial_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`final_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentDescriptionFlags`]
 /// - [`AttachmentLoadOp`]
@@ -8883,7 +8883,7 @@ unsafe impl<'lt> crate::Chain<'lt, AttachmentDescriptionStencilLayout<'lt>> for 
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`FragmentShadingRateAttachmentInfoKHR`]
 /// - [`ImageAspectFlags`]
@@ -9097,15 +9097,14 @@ unsafe impl<'lt> crate::Chain<'lt, AttachmentReferenceStencilLayout<'lt>> for At
 /// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
 /// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
 /// -    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-/// - If the `[`VK_AMD_mixed_attachment_samples`]` extension is enabled, all attachments in
+/// - If the `[`amd_mixed_attachment_samples`]` extension is enabled, all attachments in
 ///   [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have a sample count that is
 ///   smaller than or equal to the sample count of [`depth_stencil_attachment`] if it is not
 ///   [`ATTACHMENT_UNUSED`]
-/// - If neither the `[`VK_AMD_mixed_attachment_samples`]` nor the
-///   `[`VK_NV_framebuffer_mixed_samples`]` extensions are enabled, and if
-///   [`depth_stencil_attachment`] is not [`ATTACHMENT_UNUSED`] and any attachments in
-///   [`color_attachments`] are not [`ATTACHMENT_UNUSED`], they  **must**  have the same sample
-///   count
+/// - If neither the `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]`
+///   extensions are enabled, and if [`depth_stencil_attachment`] is not [`ATTACHMENT_UNUSED`] and
+///   any attachments in [`color_attachments`] are not [`ATTACHMENT_UNUSED`], they  **must**  have
+///   the same sample count
 /// - Each element of [`preserve_attachments`] **must**  not be [`ATTACHMENT_UNUSED`]
 /// - Any given element of [`preserve_attachments`] **must**  not also be an element of any other
 ///   member of the subpass description
@@ -9151,7 +9150,7 @@ unsafe impl<'lt> crate::Chain<'lt, AttachmentReferenceStencilLayout<'lt>> for At
 /// - If [`preserve_attachment_count`] is not `0`, [`preserve_attachments`] **must**  be a valid
 ///   pointer to an array of [`preserve_attachment_count`]`uint32_t` values
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentReference2`]
 /// - [`PipelineBindPoint`]
@@ -9603,7 +9602,7 @@ unsafe impl<'lt> crate::Chain<'lt, FragmentShadingRateAttachmentInfoKHR<'lt>> fo
 /// - [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits`] values
 /// - [`dependency_flags`] **must**  be a valid combination of [`DependencyFlagBits`] values
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AccessFlags`]
 /// - [`DependencyFlags`]
@@ -9926,12 +9925,12 @@ unsafe impl<'lt> crate::Chain<'lt, MemoryBarrier2<'lt>> for SubpassDependency2<'
 ///   `attachment` member of `pFragmentShadingRateAttachment` **must**  be [`ATTACHMENT_UNUSED`]
 /// -    If any element of [`attachments`] is used as a fragment shading rate attachment in any subpass, it  **must**  have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 /// - If the pipeline is being created with fragment shader state, and the
-///   [`VK_QCOM_render_pass_shader_resolve`] extension is enabled, and if subpass has any input
+///   [`qcom_render_pass_shader_resolve`] extension is enabled, and if subpass has any input
 ///   attachments, and if the subpass description contains
 ///   `VK_SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM`, then the sample count of the input
 ///   attachments  **must**  equal `rasterizationSamples`
 /// - If the pipeline is being created with fragment shader state, and the
-///   [`VK_QCOM_render_pass_shader_resolve`] extension is enabled, and if the subpass description
+///   [`qcom_render_pass_shader_resolve`] extension is enabled, and if the subpass description
 ///   contains `VK_SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM`, then `sampleShadingEnable`
 ///   **must**  be false
 /// - If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, and if
@@ -9959,7 +9958,7 @@ unsafe impl<'lt> crate::Chain<'lt, MemoryBarrier2<'lt>> for SubpassDependency2<'
 ///   pointer to an array of [`correlated_view_mask_count`]`uint32_t` values
 /// - [`subpass_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentDescription2`]
 /// - [`RenderPassCreateFlags`]
@@ -10257,7 +10256,7 @@ unsafe impl<'lt> crate::Chain<'lt, RenderPassFragmentDensityMapCreateInfoEXT<'lt
 /// - [`p_next`] **must**  be `NULL`
 /// - [`contents`] **must**  be a valid [`SubpassContents`] value
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 /// - [`SubpassContents`]
@@ -10372,7 +10371,7 @@ impl<'lt> SubpassBeginInfo<'lt> {
 ///   [`SubpassFragmentDensityMapOffsetEndInfoQCOM`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
-/// - [`VK_KHR_create_renderpass2`]
+/// - [`khr_create_renderpass2`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 /// - [`cmd_end_render_pass2`]
@@ -10480,7 +10479,7 @@ unsafe impl<'lt> crate::Chain<'lt, SubpassFragmentDensityMapOffsetEndInfoQCOM<'l
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES`
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -10630,7 +10629,7 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES`
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
@@ -10759,7 +10758,7 @@ impl<'lt> PhysicalDeviceTimelineSemaphoreProperties<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO`
 /// - [`semaphore_type`] **must**  be a valid [`SemaphoreType`] value
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`SemaphoreType`]
 /// - [`StructureType`]
@@ -10913,7 +10912,7 @@ impl<'lt> SemaphoreTypeCreateInfo<'lt> {
 ///   [`signal_semaphore_values`] **must**  be a valid pointer to an array of
 ///   [`signal_semaphore_value_count`]`uint64_t` values
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
@@ -11114,7 +11113,7 @@ impl<'lt> TimelineSemaphoreSubmitInfo<'lt> {
 /// - [`values`] **must**  be a valid pointer to an array of [`semaphore_count`]`uint64_t` values
 /// - [`semaphore_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Semaphore`]
 /// - [`SemaphoreWaitFlags`]
@@ -11312,7 +11311,7 @@ impl<'lt> SemaphoreWaitInfo<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 ///# Related
-/// - [`VK_KHR_timeline_semaphore`]
+/// - [`khr_timeline_semaphore`]
 /// - [`crate::vulkan1_2`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
@@ -11462,7 +11461,7 @@ impl<'lt> SemaphoreSignalInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES`
 ///# Related
-/// - [`VK_KHR_8bit_storage`]
+/// - [`khr_8bit_storage`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -11952,7 +11951,7 @@ impl<'lt> PhysicalDeviceVulkanMemoryModelFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES`
 ///# Related
-/// - [`VK_KHR_shader_atomic_int64`]
+/// - [`khr_shader_atomic_int64`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -12155,7 +12154,7 @@ impl<'lt> PhysicalDeviceShaderAtomicInt64Features<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES`
 ///# Related
-/// - [`VK_KHR_depth_stencil_resolve`]
+/// - [`khr_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`ResolveModeFlags`]
@@ -12425,7 +12424,7 @@ impl<'lt> PhysicalDeviceDepthStencilResolveProperties<'lt> {
 /// - If [`depth_stencil_resolve_attachment`] is not `NULL`, [`depth_stencil_resolve_attachment`]
 ///   **must**  be a valid pointer to a valid [`AttachmentReference2`] structure
 ///# Related
-/// - [`VK_KHR_depth_stencil_resolve`]
+/// - [`khr_depth_stencil_resolve`]
 /// - [`crate::vulkan1_2`]
 /// - [`AttachmentReference2`]
 /// - [`ResolveModeFlagBits`]
@@ -12612,7 +12611,7 @@ impl<'lt> SubpassDescriptionDepthStencilResolve<'lt> {
 /// - [`stencil_usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
 /// - [`stencil_usage`] **must**  not be `0`
 ///# Related
-/// - [`VK_EXT_separate_stencil_usage`]
+/// - [`ext_separate_stencil_usage`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
@@ -12731,7 +12730,7 @@ impl<'lt> ImageStencilUsageCreateInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES`
 ///# Related
-/// - [`VK_EXT_scalar_block_layout`]
+/// - [`ext_scalar_block_layout`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -12887,7 +12886,7 @@ impl<'lt> PhysicalDeviceScalarBlockLayoutFeatures<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES`
 ///# Related
-/// - [`VK_KHR_uniform_buffer_standard_layout`]
+/// - [`khr_uniform_buffer_standard_layout`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -13051,7 +13050,7 @@ impl<'lt> PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES`
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -13416,7 +13415,7 @@ impl<'lt> BufferDeviceAddressInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO`
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
@@ -13537,7 +13536,7 @@ impl<'lt> BufferOpaqueCaptureAddressCreateInfo<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES`
 ///# Related
-/// - [`VK_KHR_imageless_framebuffer`]
+/// - [`khr_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -13856,7 +13855,7 @@ impl<'lt> FramebufferAttachmentsCreateInfo<'lt> {
 /// - If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array
 ///   of [`view_format_count`] valid [`Format`] values
 ///# Related
-/// - [`VK_KHR_imageless_framebuffer`]
+/// - [`khr_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
 /// - [`Format`]
 /// - [`FramebufferAttachmentsCreateInfo`]
@@ -14098,7 +14097,7 @@ impl<'lt> FramebufferAttachmentImageInfo<'lt> {
 /// - If [`attachment_count`] is not `0`, [`attachments`] **must**  be a valid pointer to an array
 ///   of [`attachment_count`] valid [`ImageView`] handles
 ///# Related
-/// - [`VK_KHR_imageless_framebuffer`]
+/// - [`khr_imageless_framebuffer`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageView`]
 /// - [`StructureType`]
@@ -14253,7 +14252,7 @@ impl<'lt> RenderPassAttachmentBeginInfo<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES`
 ///# Related
-/// - [`VK_KHR_separate_depth_stencil_layouts`]
+/// - [`khr_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -14411,7 +14410,7 @@ impl<'lt> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT`
 /// - [`stencil_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
-/// - [`VK_KHR_separate_depth_stencil_layouts`]
+/// - [`khr_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageLayout`]
 /// - [`StructureType`]
@@ -14550,7 +14549,7 @@ impl<'lt> AttachmentReferenceStencilLayout<'lt> {
 /// - [`stencil_initial_layout`] **must**  be a valid [`ImageLayout`] value
 /// - [`stencil_final_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
-/// - [`VK_KHR_separate_depth_stencil_layouts`]
+/// - [`khr_separate_depth_stencil_layouts`]
 /// - [`crate::vulkan1_2`]
 /// - [`ImageLayout`]
 /// - [`StructureType`]
@@ -14695,7 +14694,7 @@ impl<'lt> AttachmentDescriptionStencilLayout<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO`
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`StructureType`]
 ///
@@ -14809,7 +14808,7 @@ impl<'lt> MemoryOpaqueCaptureAddressAllocateInfo<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///# Related
-/// - [`VK_KHR_buffer_device_address`]
+/// - [`khr_buffer_device_address`]
 /// - [`crate::vulkan1_2`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
@@ -18573,9 +18572,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
@@ -18587,7 +18586,7 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
@@ -20356,7 +20355,7 @@ impl Device {
     /// - [`query_pool`] **must**  be a valid [`QueryPool`] handle
     /// - [`query_pool`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_EXT_host_query_reset`]
+    /// - [`ext_host_query_reset`]
     /// - [`crate::vulkan1_2`]
     /// - [`Device`]
     /// - [`QueryPool`]
@@ -20463,7 +20462,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_create_renderpass2`]
+    /// - [`khr_create_renderpass2`]
     /// - [`crate::vulkan1_2`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -20577,7 +20576,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`
     ///# Related
-    /// - [`VK_KHR_timeline_semaphore`]
+    /// - [`khr_timeline_semaphore`]
     /// - [`crate::vulkan1_2`]
     /// - [`Device`]
     /// - [`Semaphore`]
@@ -20687,7 +20686,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`
     ///# Related
-    /// - [`VK_KHR_timeline_semaphore`]
+    /// - [`khr_timeline_semaphore`]
     /// - [`crate::vulkan1_2`]
     /// - [`Device`]
     /// - [`SemaphoreWaitInfo`]
@@ -20788,7 +20787,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_timeline_semaphore`]
+    /// - [`khr_timeline_semaphore`]
     /// - [`crate::vulkan1_2`]
     /// - [`Device`]
     /// - [`SemaphoreSignalInfo`]
@@ -20882,7 +20881,7 @@ impl Device {
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
     ///# Related
-    /// - [`VK_KHR_buffer_device_address`]
+    /// - [`khr_buffer_device_address`]
     /// - [`crate::vulkan1_2`]
     /// - [`BufferDeviceAddressInfo`]
     /// - [`Device`]
@@ -20998,7 +20997,7 @@ impl Device {
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
     ///# Related
-    /// - [`VK_KHR_buffer_device_address`]
+    /// - [`khr_buffer_device_address`]
     /// - [`crate::vulkan1_2`]
     /// - [`BufferDeviceAddressInfo`]
     /// - [`Device`]
@@ -21109,7 +21108,7 @@ impl Device {
     /// - [`p_info`] **must**  be a valid pointer to a valid
     ///   [`DeviceMemoryOpaqueCaptureAddressInfo`] structure
     ///# Related
-    /// - [`VK_KHR_buffer_device_address`]
+    /// - [`khr_buffer_device_address`]
     /// - [`crate::vulkan1_2`]
     /// - [`Device`]
     /// - [`DeviceMemoryOpaqueCaptureAddressInfo`]
@@ -21291,7 +21290,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_create_renderpass2`]
+    /// - [`khr_create_renderpass2`]
     /// - [`crate::vulkan1_2`]
     /// - [`CommandBuffer`]
     /// - [`RenderPassBeginInfo`]
@@ -21410,7 +21409,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_create_renderpass2`]
+    /// - [`khr_create_renderpass2`]
     /// - [`crate::vulkan1_2`]
     /// - [`CommandBuffer`]
     /// - [`SubpassBeginInfo`]
@@ -21524,7 +21523,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_create_renderpass2`]
+    /// - [`khr_create_renderpass2`]
     /// - [`crate::vulkan1_2`]
     /// - [`CommandBuffer`]
     /// - [`SubpassEndInfo`]
@@ -21692,8 +21691,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -21863,9 +21862,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -22069,8 +22068,8 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_AMD_draw_indirect_count`]
-    /// - [`VK_KHR_draw_indirect_count`]
+    /// - [`amd_draw_indirect_count`]
+    /// - [`khr_draw_indirect_count`]
     /// - [`crate::vulkan1_2`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
@@ -22273,8 +22272,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -22444,9 +22443,9 @@ impl CommandBuffer {
     ///   the corresponding element of the `pAttachments` member of `pColorBlendState` **must**  be
     ///   [`FALSE`]
     /// - If rasterization is not disabled in the bound graphics pipeline, and neither the
-    ///   `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]`
-    ///   extensions are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`]
-    ///   **must**  be the same as the current subpass color and/or depth/stencil attachments
+    ///   `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions
+    ///   are enabled, then [`PipelineMultisampleStateCreateInfo::rasterization_samples`] **must**
+    ///   be the same as the current subpass color and/or depth/stencil attachments
     /// - If the current render pass instance was begun with [`cmd_begin_rendering`], the
     ///   `imageView` member of `pDepthAttachment` is not [`crate::Handle::null`], and the `layout`
     ///   member of `pDepthAttachment` is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`, this
@@ -22651,8 +22650,8 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_AMD_draw_indirect_count`]
-    /// - [`VK_KHR_draw_indirect_count`]
+    /// - [`amd_draw_indirect_count`]
+    /// - [`khr_draw_indirect_count`]
     /// - [`crate::vulkan1_2`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]

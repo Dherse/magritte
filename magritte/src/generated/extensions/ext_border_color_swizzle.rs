@@ -15,7 +15,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_custom_border_color`]`
+//! - Requires `[`ext_custom_border_color`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_border_color_swizzle]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -103,7 +103,7 @@ pub const EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///   `VK_STRUCTURE_TYPE_SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT`
 /// - [`components`] **must**  be a valid [`ComponentMapping`] structure
 ///# Related
-/// - [`VK_EXT_border_color_swizzle`]
+/// - [`ext_border_color_swizzle`]
 /// - [`Bool32`]
 /// - [`ComponentMapping`]
 /// - [`StructureType`]
@@ -256,7 +256,7 @@ impl<'lt> SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_border_color_swizzle`]
+/// - [`ext_border_color_swizzle`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

@@ -1,4 +1,3 @@
-use ahash::AHashMap;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token};
 use tracing::warn;
@@ -94,7 +93,7 @@ impl<'a> Extension<'a> {
         quote! {
             #[cfg(feature = #name)]
             #[inline]
-            pub fn #ident(&self) -> bool {
+            pub const fn #ident(&self) -> bool {
                 self.#ident
             }
         }
@@ -133,9 +132,9 @@ impl<'a> Extension<'a> {
 
         let min_version = match self.min_core() {
             Origin::Vulkan1_0 => None,
-            Origin::Vulkan1_1 => Some(quote! { assert!(self.version() >= Version::VULKAN1_1) }),
-            Origin::Vulkan1_2 => Some(quote! { assert!(self.version() >= Version::VULKAN1_2) }),
-            Origin::Vulkan1_3 => Some(quote! { assert!(self.version() >= Version::VULKAN1_3) }),
+            Origin::Vulkan1_1 => Some(quote! { assert!(self.version() >= Version::VULKAN1_1); }),
+            Origin::Vulkan1_2 => Some(quote! { assert!(self.version() >= Version::VULKAN1_2); }),
+            Origin::Vulkan1_3 => Some(quote! { assert!(self.version() >= Version::VULKAN1_3); }),
             other => unreachable!("not a vulkan version: {:?}", other)
         };
 

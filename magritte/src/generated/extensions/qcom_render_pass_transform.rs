@@ -49,8 +49,8 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Jeff Leger [jackohound](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_render_pass_transform]
 //!   @jackohound%0A<<Here describe the issue or question you have about the
@@ -125,9 +125,9 @@
 //! - Revision 2, 2021-03-09 (Matthew Netsch)  - Adds interactions with VK_KHR_fragment_shading_rate
 //!# Other info
 //! * 2021-03-09
-//! * - This extension requires `[`VK_KHR_swapchain`]`  - This extension interacts with
-//!   `[`VK_EXT_fragment_density_map`]`  - This extension interacts with
-//!   `[`VK_KHR_fragment_shading_rate`]`
+//! * - This extension requires `[`khr_swapchain`]`  - This extension interacts with
+//!   `[`ext_fragment_density_map`]`  - This extension interacts with
+//!   `[`khr_fragment_shading_rate`]`
 //! * - Jeff Leger, Qualcomm Technologies, Inc.  - Brandon Light, Qualcomm Technologies, Inc.  -
 //!   Matthew Netsch, Qualcomm Technologies, Inc.
 //!# Related
@@ -185,7 +185,7 @@ pub const QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME: &'static CStr = crate::cstr
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM`
 ///# Related
-/// - [`VK_QCOM_render_pass_transform`]
+/// - [`qcom_render_pass_transform`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]
 ///
@@ -320,7 +320,7 @@ impl<'lt> RenderPassTransformBeginInfoQCOM<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM`
 ///# Related
-/// - [`VK_QCOM_render_pass_transform`]
+/// - [`qcom_render_pass_transform`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
 /// - [`SurfaceTransformFlagBitsKHR`]

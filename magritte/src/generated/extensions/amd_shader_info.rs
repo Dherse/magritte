@@ -128,7 +128,7 @@ pub const AMD_SHADER_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD_s
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_AMD_shader_info`]
+/// - [`amd_shader_info`]
 /// - [`Device`]
 /// - [`Pipeline`]
 /// - [`ShaderInfoTypeAMD`]
@@ -169,7 +169,7 @@ pub type FNGetShaderInfoAmd = Option<
 /// - [`BINARY`] specifies that implementation-specific information will be queried.
 /// - [`DISASSEMBLY`] specifies that human-readable dissassembly of a shader.
 ///# Related
-/// - [`VK_AMD_shader_info`]
+/// - [`amd_shader_info`]
 /// - [`get_shader_info_amd`]
 ///
 ///# Notes and documentation
@@ -269,7 +269,7 @@ impl std::fmt::Display for ShaderInfoTypeAMD {
 /// - [`lds_usage_size_in_bytes`] is the LDS usage size in bytes per work group by this shader.
 /// - [`scratch_mem_usage_in_bytes`] is the scratch memory usage in bytes by this shader.
 ///# Related
-/// - [`VK_AMD_shader_info`]
+/// - [`amd_shader_info`]
 /// - [`ShaderStatisticsInfoAMD`]
 ///
 ///# Notes and documentation
@@ -421,7 +421,7 @@ impl ShaderResourceUsageAMD {
 ///These values  **may**  further be limited by implementations due to performance
 ///optimizations where register pressure is a bottleneck.
 ///# Related
-/// - [`VK_AMD_shader_info`]
+/// - [`amd_shader_info`]
 /// - [`ShaderResourceUsageAMD`]
 /// - [`ShaderStageFlags`]
 ///
@@ -632,7 +632,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_AMD_shader_info`]
+    /// - [`amd_shader_info`]
     /// - [`Device`]
     /// - [`Pipeline`]
     /// - [`ShaderInfoTypeAMD`]

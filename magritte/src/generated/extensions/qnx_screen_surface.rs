@@ -2,14 +2,14 @@
 //!# Description
 //!The [`VK_QNX_screen_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to a QNX Screen
+//!the `[`khr_surface`]` extension) that refers to a QNX Screen
 //!`window`, as well as a query to determine support for rendering to a QNX
 //!Screen compositor.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Mike Gorchak [mgorchak-blackberry](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QNX_screen_surface]
 //!   @mgorchak-blackberry%0A<<Here describe the issue or question you have about the
@@ -92,7 +92,7 @@ pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_QN
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_QNX_screen_surface`]
+/// - [`qnx_screen_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`ScreenSurfaceCreateInfoQNX`]
@@ -139,7 +139,7 @@ pub type FNCreateScreenSurfaceQnx = Option<
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`window`] **must**  be a valid pointer to a [`_screen_window`] value
 ///# Related
-/// - [`VK_QNX_screen_surface`]
+/// - [`qnx_screen_surface`]
 /// - [`PhysicalDevice`]
 ///
 ///# Notes and documentation
@@ -164,7 +164,7 @@ pub type FNGetPhysicalDeviceScreenPresentationSupportQnx = Option<
 ///typedef VkFlags VkScreenSurfaceCreateFlagsQNX;
 ///```
 ///# Related
-/// - [`VK_QNX_screen_surface`]
+/// - [`qnx_screen_surface`]
 /// - [`ScreenSurfaceCreateInfoQNX`]
 ///
 ///# Notes and documentation
@@ -219,7 +219,7 @@ impl std::fmt::Debug for ScreenSurfaceCreateFlagsQNX {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_QNX_screen_surface`]
+/// - [`qnx_screen_surface`]
 /// - [`ScreenSurfaceCreateFlagsQNX`]
 /// - [`StructureType`]
 /// - [`create_screen_surface_qnx`]
@@ -375,7 +375,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_QNX_screen_surface`]
+    /// - [`qnx_screen_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`ScreenSurfaceCreateInfoQNX`]
@@ -453,7 +453,7 @@ impl PhysicalDevice {
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`window`] **must**  be a valid pointer to a [`_screen_window`] value
     ///# Related
-    /// - [`VK_QNX_screen_surface`]
+    /// - [`qnx_screen_surface`]
     /// - [`PhysicalDevice`]
     ///
     ///# Notes and documentation

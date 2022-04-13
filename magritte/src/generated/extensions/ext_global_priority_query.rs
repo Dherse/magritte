@@ -12,11 +12,11 @@
 //!# Revision
 //!1
 //!# Dependencies
-//! - *Promoted* to `[`VK_KHR_global_priority`]` extension
+//! - *Promoted* to `[`khr_global_priority`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_global_priority`]`
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`ext_global_priority`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Yiwei Zhang [zhangyiwei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_global_priority_query]
 //!   @zhangyiwei%0A<<Here describe the issue or question you have about the

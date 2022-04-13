@@ -114,7 +114,7 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_robustness2`]
+/// - [`ext_robustness2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -351,7 +351,7 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_robustness2`]
+/// - [`ext_robustness2`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///

@@ -8,7 +8,7 @@
 //! the mechanisms for creating
 //![`SurfaceKHR`] objects, but once created they may be used in this and
 //!other platform-independent extensions, in particular the
-//!`[`VK_KHR_swapchain`]` extension.
+//!`[`khr_swapchain`]` extension.
 //!# Revision
 //!25
 //!# Dependencies
@@ -60,7 +60,7 @@
 //![`get_physical_device_surface_formats_khr`], and
 //![`get_physical_device_surface_present_modes_khr`] functions be in this
 //!extension and operate on physical devices, rather than being in
-//!`[`VK_KHR_swapchain`]` (i.e. device extension) and being dependent on
+//!`[`khr_swapchain`]` (i.e. device extension) and being dependent on
 //![`Device`]? **RESOLVED** : Yes.
 //!While it might be useful to depend on [`Device`] (and therefore on
 //!enabled extensions and features) for the queries, Vulkan was released only
@@ -234,7 +234,7 @@ pub const KHR_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_surfa
 ///## Host Synchronization
 /// - Host access to [`surface`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
@@ -289,7 +289,7 @@ pub type FNDestroySurfaceKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`Bool32`]
 /// - [`PhysicalDevice`]
 /// - [`SurfaceKHR`]
@@ -346,7 +346,7 @@ pub type FNGetPhysicalDeviceSurfaceSupportKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`PhysicalDevice`]
 /// - [`SurfaceCapabilitiesKHR`]
 /// - [`SurfaceKHR`]
@@ -407,12 +407,12 @@ pub type FNGetPhysicalDeviceSurfaceCapabilitiesKhr = Option<
 ///a color renderable format for `VK_IMAGE_TILING_OPTIMAL`, then
 ///[`p_surface_formats`] **must**  also contain an entry with the same value for
 ///`colorSpace` and `format` equal to the corresponding SRGB (or UNORM)
-///format.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+///format.If the `[`google_surfaceless_query`]` extension is enabled, the values
 ///returned in [`p_surface_formats`] will be identical for every valid surface
 ///created on this physical device, and so [`surface`] **can**  be
 ///[`crate::Handle::null`].
 ///## Valid Usage
-/// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
+/// - If the `[`google_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
 ///   valid [`SurfaceKHR`] handle
 /// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
 ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
@@ -434,7 +434,7 @@ pub type FNGetPhysicalDeviceSurfaceCapabilitiesKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`PhysicalDevice`]
 /// - [`SurfaceFormatKHR`]
 /// - [`SurfaceKHR`]
@@ -486,12 +486,12 @@ pub type FNGetPhysicalDeviceSurfaceFormatsKhr = Option<
 ///presentation modes supported, at most [`p_present_mode_count`] values will be
 ///written, and `VK_INCOMPLETE` will be returned instead of
 ///`VK_SUCCESS`, to indicate that not all the available modes were
-///returned.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+///returned.If the `[`google_surfaceless_query`]` extension is enabled, the values
 ///returned in [`p_present_modes`] will be identical for every valid surface
 ///created on this physical device, and so [`surface`] **can**  be
 ///[`crate::Handle::null`].
 ///## Valid Usage
-/// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
+/// - If the `[`google_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
 ///   valid [`SurfaceKHR`] handle
 /// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
 ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
@@ -513,7 +513,7 @@ pub type FNGetPhysicalDeviceSurfaceFormatsKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`PhysicalDevice`]
 /// - [`PresentModeKHR`]
 /// - [`SurfaceKHR`]
@@ -598,7 +598,7 @@ pub type FNGetPhysicalDeviceSurfacePresentModesKhr = Option<
 ///swapchain created for a surface  **may**  differ depending on the presentation
 ///mode, and can be determined as per the table below:
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`SwapchainCreateInfoKHR`]
 /// - [`get_physical_device_surface_present_modes2_ext`]
 /// - [`get_physical_device_surface_present_modes_khr`]
@@ -838,10 +838,10 @@ impl std::fmt::Display for PresentModeKHR {
 ///This extension defines enums for [`ColorSpaceKHR`] that correspond to
 ///the following color spaces:The transfer functions are described in the “Transfer Functions”
 /// chapter
-///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span style="height:3.30003em;vertical-align:-1.400015em;" class="strut"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.400015em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span style="height:3.75em;" class="pstrut"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="minner"><span style="top:0em;" class="mopen delimcenter"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span style="border-bottom-width:0.049em;" class="frac-line mtight"></span></span><span style="top:-3.384em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">−</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span><span style="width:1em;" class="arraycolsep"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
+///of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).Except Display-P3 OETF, which is:<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.30003em;vertical-align:-1.400015em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.900015em;"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span style="margin-right:0.05764em;" class="mord mathdefault">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span style="height:1.900015em;" class="vlist"><span style="top:-3.9000150000000002em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord"></span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span style="height:0.9540200000000001em;" class="vlist"><span style="top:-3.363em;margin-right:0.05em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span style="height:3em;" class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">.</span><span class="mord mtight">4</span></span></span></span><span style="top:-3.2255000000000003em;"><span style="height:3em;" class="pstrut"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">5</span><span class="mord">5</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span style="width:1em;" class="arraycolsep"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span style="height:3.008em;" class="pstrut"></span><span class="mord"><span class="mord text"><span class="mord">for</span></span><span class="mspace">&nbsp;</span><span class="mord">0</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">0</span><span class="mord">3</span><span class="mord">0</span><span class="mord">1</span><span class="mord">8</span><span class="mord">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.19em;" class="vlist"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span style="height:1.400015em;" class="vlist"><span></span></span></span></span></span></span></span></span></span></span>where L is the linear value of a color component and E is the
 ///encoded value (as stored in the image in memory).
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`SurfaceFormatKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
@@ -1093,7 +1093,7 @@ impl std::fmt::Display for ColorSpaceKHR {
 ///   set the blending mode using native window system commands, then a platform-specific default
 ///   will be used.
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
@@ -1226,7 +1226,7 @@ impl std::fmt::Display for CompositeAlphaFlagBitsKHR {
 /// - [`INHERIT`] specifies that the presentation transform is not specified, and is instead
 ///   determined by platform-specific considerations and mechanisms outside Vulkan.
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
 /// - [`CopyCommandTransformInfoQCOM`]
 /// - [`DisplaySurfaceCreateInfoKHR`]
@@ -1374,7 +1374,7 @@ impl std::fmt::Display for SurfaceTransformFlagBitsKHR {
 ///   set the blending mode using native window system commands, then a platform-specific default
 ///   will be used.
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`SwapchainCreateInfoKHR`]
 ///
@@ -1740,7 +1740,7 @@ impl std::fmt::Debug for CompositeAlphaFlagsKHR {
 ///   specified device. `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set.
 ///   Implementations  **may**  support additional usages.
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`CompositeAlphaFlagsKHR`]
 /// - [`Extent2D`]
 /// - [`ImageUsageFlags`]
@@ -1991,7 +1991,7 @@ impl SurfaceCapabilitiesKHR {
 /// - [`format`] is a [`Format`] that is compatible with the specified surface.
 /// - [`color_space`] is a presentation [`ColorSpaceKHR`] that is compatible with the surface.
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`ColorSpaceKHR`]
 /// - [`Format`]
 /// - [`SurfaceFormat2KHR`]
@@ -2091,7 +2091,7 @@ impl Instance {
     ///## Host Synchronization
     /// - Host access to [`surface`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_KHR_surface`]
+    /// - [`khr_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]
@@ -2170,7 +2170,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_surface`]
+    /// - [`khr_surface`]
     /// - [`Bool32`]
     /// - [`PhysicalDevice`]
     /// - [`SurfaceKHR`]
@@ -2255,7 +2255,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_surface`]
+    /// - [`khr_surface`]
     /// - [`PhysicalDevice`]
     /// - [`SurfaceCapabilitiesKHR`]
     /// - [`SurfaceKHR`]
@@ -2339,13 +2339,13 @@ impl PhysicalDevice {
     ///a color renderable format for `VK_IMAGE_TILING_OPTIMAL`, then
     ///[`p_surface_formats`] **must**  also contain an entry with the same value for
     ///`colorSpace` and `format` equal to the corresponding SRGB (or UNORM)
-    ///format.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+    ///format.If the `[`google_surfaceless_query`]` extension is enabled, the values
     ///returned in [`p_surface_formats`] will be identical for every valid surface
     ///created on this physical device, and so [`surface`] **can**  be
     ///[`crate::Handle::null`].
     ///## Valid Usage
-    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**
-    ///   be a valid [`SurfaceKHR`] handle
+    /// - If the `[`google_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
+    ///   valid [`SurfaceKHR`] handle
     /// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
     ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
     ///   equivalent platform-specific mechanism
@@ -2367,7 +2367,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_surface`]
+    /// - [`khr_surface`]
     /// - [`PhysicalDevice`]
     /// - [`SurfaceFormatKHR`]
     /// - [`SurfaceKHR`]
@@ -2458,13 +2458,13 @@ impl PhysicalDevice {
     ///presentation modes supported, at most [`p_present_mode_count`] values will be
     ///written, and `VK_INCOMPLETE` will be returned instead of
     ///`VK_SUCCESS`, to indicate that not all the available modes were
-    ///returned.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
+    ///returned.If the `[`google_surfaceless_query`]` extension is enabled, the values
     ///returned in [`p_present_modes`] will be identical for every valid surface
     ///created on this physical device, and so [`surface`] **can**  be
     ///[`crate::Handle::null`].
     ///## Valid Usage
-    /// - If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**
-    ///   be a valid [`SurfaceKHR`] handle
+    /// - If the `[`google_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a
+    ///   valid [`SurfaceKHR`] handle
     /// - If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by
     ///   [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an
     ///   equivalent platform-specific mechanism
@@ -2486,7 +2486,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_surface`]
+    /// - [`khr_surface`]
     /// - [`PhysicalDevice`]
     /// - [`PresentModeKHR`]
     /// - [`SurfaceKHR`]
@@ -2554,7 +2554,7 @@ impl PhysicalDevice {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSurfaceKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_surface`]
+/// - [`khr_surface`]
 /// - [`PhysicalDeviceSurfaceInfo2KHR`]
 /// - [`SwapchainCreateInfoKHR`]
 /// - [`create_android_surface_khr`]

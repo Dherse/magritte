@@ -73,7 +73,7 @@ pub const EXT_INDEX_TYPE_UINT8_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_index_type_uint8`]
+/// - [`ext_index_type_uint8`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

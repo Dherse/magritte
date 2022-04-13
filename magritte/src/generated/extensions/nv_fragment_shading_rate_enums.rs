@@ -9,7 +9,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_fragment_shading_rate`]`
+//! - Requires `[`khr_fragment_shading_rate`]`
 //!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fragment_shading_rate_enums]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the
@@ -180,7 +180,7 @@ pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &'static CStr =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_fragment_shading_rate_enums`]
+/// - [`nv_fragment_shading_rate_enums`]
 /// - [`CommandBuffer`]
 /// - [`FragmentShadingRateCombinerOpKHR`]
 /// - [`FragmentShadingRateNV`]
@@ -251,7 +251,7 @@ pub type FNCmdSetFragmentShadingRateEnumNv = Option<
 ///a pipeline, primitive, or attachment shading rate, the
 ///`noInvocationFragmentShadingRates` feature  **must**  be enabled.
 ///# Related
-/// - [`VK_NV_fragment_shading_rate_enums`]
+/// - [`nv_fragment_shading_rate_enums`]
 /// - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
 /// - [`cmd_set_fragment_shading_rate_enum_nv`]
 ///
@@ -402,7 +402,7 @@ impl std::fmt::Display for FragmentShadingRateNV {
 ///   structure and that any state specified by the
 ///   [`PipelineFragmentShadingRateStateCreateInfoKHR`] structure should be ignored.
 ///# Related
-/// - [`VK_NV_fragment_shading_rate_enums`]
+/// - [`nv_fragment_shading_rate_enums`]
 /// - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
 ///
 ///# Notes and documentation
@@ -522,7 +522,7 @@ impl std::fmt::Display for FragmentShadingRateTypeNV {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_fragment_shading_rate_enums`]
+/// - [`nv_fragment_shading_rate_enums`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -751,7 +751,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 /// - [`max_fragment_shading_rate_invocation_count`] **must**  be a valid [`SampleCountFlagBits`]
 ///   value
 ///# Related
-/// - [`VK_NV_fragment_shading_rate_enums`]
+/// - [`nv_fragment_shading_rate_enums`]
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 ///
@@ -893,7 +893,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
 /// - Any given element of [`combiner_ops`] **must**  be a valid
 ///   [`FragmentShadingRateCombinerOpKHR`] value
 ///# Related
-/// - [`VK_NV_fragment_shading_rate_enums`]
+/// - [`nv_fragment_shading_rate_enums`]
 /// - [`FragmentShadingRateCombinerOpKHR`]
 /// - [`FragmentShadingRateNV`]
 /// - [`FragmentShadingRateTypeNV`]
@@ -1104,7 +1104,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_fragment_shading_rate_enums`]
+    /// - [`nv_fragment_shading_rate_enums`]
     /// - [`CommandBuffer`]
     /// - [`FragmentShadingRateCombinerOpKHR`]
     /// - [`FragmentShadingRateNV`]

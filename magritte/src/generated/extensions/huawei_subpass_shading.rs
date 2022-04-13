@@ -15,7 +15,7 @@
 //!the [`Rect2D`] of the
 //![`RenderPassBeginInfo::render_area`].
 //!`GlobalInvocationId.z` is mapped to the Layer if
-//!`[`VK_EXT_shader_viewport_index_layer`]` is supported.
+//!`[`ext_shader_viewport_index_layer`]` is supported.
 //!The `GlobalInvocationId.xy` is equal to the index of the local workgroup
 //!multiplied by the size of the local workgroup plus the
 //!`LocalInvocationId` and the [`Rect2D`] of the
@@ -25,8 +25,8 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_create_renderpass2`]`
-//! - Requires `[`VK_KHR_synchronization2`]`
+//! - Requires `[`khr_create_renderpass2`]`
+//! - Requires `[`khr_synchronization2`]`
 //!# Contacts
 //! - Hueilong Wang [wyvernathuawei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_subpass_shading]
 //!   @wyvernathuawei%0A<<Here describe the issue or question you have about the
@@ -116,7 +116,7 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`huawei_subpass_shading`]
 /// - [`Device`]
 /// - [`Extent2D`]
 /// - [`RenderPass`]
@@ -205,8 +205,8 @@ pub type FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -285,7 +285,7 @@ pub type FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`huawei_subpass_shading`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -330,7 +330,7 @@ pub type FNCmdSubpassShadingHuawei = Option<unsafe extern "system" fn(command_bu
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
 ///# Related
-/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`huawei_subpass_shading`]
 /// - [`RenderPass`]
 /// - [`StructureType`]
 ///
@@ -472,7 +472,7 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`
 ///# Related
-/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`huawei_subpass_shading`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -596,7 +596,7 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`
 ///# Related
-/// - [`VK_HUAWEI_subpass_shading`]
+/// - [`huawei_subpass_shading`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -743,7 +743,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_HUAWEI_subpass_shading`]
+    /// - [`huawei_subpass_shading`]
     /// - [`Device`]
     /// - [`Extent2D`]
     /// - [`RenderPass`]
@@ -855,8 +855,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -936,7 +936,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_HUAWEI_subpass_shading`]
+    /// - [`huawei_subpass_shading`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation

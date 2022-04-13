@@ -133,7 +133,7 @@ pub const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_representative_fragment_test`]
+/// - [`nv_representative_fragment_test`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -281,7 +281,7 @@ impl<'lt> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV`
 ///# Related
-/// - [`VK_NV_representative_fragment_test`]
+/// - [`nv_representative_fragment_test`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

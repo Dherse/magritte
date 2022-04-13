@@ -16,7 +16,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Caio Marcelo de Oliveira Filho [cmarcelo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_workgroup_memory_explicit_layout]
 //!   @cmarcelo%0A<<Here describe the issue or question you have about the
@@ -105,7 +105,7 @@ pub const KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_workgroup_memory_explicit_layout`]
+/// - [`khr_workgroup_memory_explicit_layout`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

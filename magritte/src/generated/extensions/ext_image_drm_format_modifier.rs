@@ -13,10 +13,10 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_bind_memory2`]`
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_KHR_image_format_list`]`
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - Requires `[`khr_bind_memory2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`khr_image_format_list`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //!# Contacts
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_image_drm_format_modifier]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
@@ -31,7 +31,7 @@
 //!   [`ImageDrmFormatModifierListCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceImageFormatInfo2`]:  -
 //!   [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - [`DrmFormatModifierProperties2EXT`]
 //! - Extending [`FormatProperties2`]:  - [`DrmFormatModifierPropertiesList2EXT`]
 //!# New constants
@@ -47,7 +47,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
 //!# Known issues & F.A.Q
 //!1) Should this extension define a single DRM format modifier per
@@ -168,8 +168,8 @@
 //!### []()Version History
 //!
 //! - Revision 1, 2018-08-29 (Chad Versace)  - First stable revision
-//! - Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]`
-//!   to `vk.xml`
+//! - Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
+//!   `vk.xml`
 //!# Other info
 //! * 2021-09-30
 //! * No known IP claims.
@@ -244,7 +244,7 @@ pub const EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME: &'static CStr =
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`Device`]
 /// - [`Image`]
 /// - [`ImageDrmFormatModifierPropertiesEXT`]
@@ -300,7 +300,7 @@ pub type FNGetImageDrmFormatModifierPropertiesExt = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`DrmFormatModifierPropertiesEXT`]
 /// - [`StructureType`]
 ///
@@ -517,7 +517,7 @@ impl<'lt> DrmFormatModifierPropertiesListEXT<'lt> {
 ///[`drm_format_modifier_plane_count`].
 ///In all other cases, the *memory planecount* is ignored.
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`DrmFormatModifierPropertiesListEXT`]
 /// - [`FormatFeatureFlags`]
 ///
@@ -647,7 +647,7 @@ impl DrmFormatModifierPropertiesEXT {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
 /// - [`sharing_mode`] **must**  be a valid [`SharingMode`] value
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`SharingMode`]
 /// - [`StructureType`]
 ///
@@ -833,7 +833,7 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
 ///   [`drm_format_modifier_count`]`uint64_t` values
 /// - [`drm_format_modifier_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -1008,7 +1008,7 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 /// - If [`drm_format_modifier_plane_count`] is not `0`, [`plane_layouts`] **must**  be a valid
 ///   pointer to an array of [`drm_format_modifier_plane_count`][`SubresourceLayout`] structures
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`StructureType`]
 /// - [`SubresourceLayout`]
 ///
@@ -1170,7 +1170,7 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
+/// - [`ext_image_drm_format_modifier`]
 /// - [`StructureType`]
 /// - [`get_image_drm_format_modifier_properties_ext`]
 ///
@@ -1302,8 +1302,8 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
-/// - [`VK_KHR_format_feature_flags2`]
+/// - [`ext_image_drm_format_modifier`]
+/// - [`khr_format_feature_flags2`]
 /// - [`DrmFormatModifierProperties2EXT`]
 /// - [`StructureType`]
 ///
@@ -1462,8 +1462,8 @@ impl<'lt> DrmFormatModifierPropertiesList2EXT<'lt> {
 /// - [`drm_format_modifier_tiling_features`] is a bitmask of [`FormatFeatureFlagBits2`] that are
 ///   supported by any image created with `format` and [`drm_format_modifier`].
 ///# Related
-/// - [`VK_EXT_image_drm_format_modifier`]
-/// - [`VK_KHR_format_feature_flags2`]
+/// - [`ext_image_drm_format_modifier`]
+/// - [`khr_format_feature_flags2`]
 /// - [`DrmFormatModifierPropertiesList2EXT`]
 /// - [`FormatFeatureFlags2`]
 ///
@@ -1576,7 +1576,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_image_drm_format_modifier`]
+    /// - [`ext_image_drm_format_modifier`]
     /// - [`Device`]
     /// - [`Image`]
     /// - [`ImageDrmFormatModifierPropertiesEXT`]

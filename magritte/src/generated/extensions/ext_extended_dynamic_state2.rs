@@ -8,7 +8,7 @@
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Vikram Kushwaha [vkushwaha-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_extended_dynamic_state2]
 //!   @vkushwaha-nv%0A<<Here describe the issue or question you have about the
@@ -107,7 +107,7 @@ pub const EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state2`]
+/// - [`ext_extended_dynamic_state2`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -159,7 +159,7 @@ pub type FNCmdSetPatchControlPointsExt =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state2`]
+/// - [`ext_extended_dynamic_state2`]
 /// - [`CommandBuffer`]
 /// - [`LogicOp`]
 ///
@@ -210,7 +210,7 @@ pub type FNCmdSetLogicOpExt = Option<unsafe extern "system" fn(command_buffer: C
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_extended_dynamic_state2`]
+/// - [`ext_extended_dynamic_state2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -452,7 +452,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`ext_extended_dynamic_state2`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation
@@ -528,7 +528,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_extended_dynamic_state2`]
+    /// - [`ext_extended_dynamic_state2`]
     /// - [`CommandBuffer`]
     /// - [`LogicOp`]
     ///

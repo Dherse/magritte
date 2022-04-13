@@ -11,10 +11,10 @@
 //!# Revision
 //!2
 //!# Dependencies
-//! - *Deprecated* by `[`VK_KHR_buffer_device_address`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+//! - *Deprecated* by `[`khr_buffer_device_address`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_buffer_device_address]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
@@ -126,7 +126,7 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_buffer_device_address`]
+/// - [`ext_buffer_device_address`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -358,7 +358,7 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
 ///# Related
-/// - [`VK_EXT_buffer_device_address`]
+/// - [`ext_buffer_device_address`]
 /// - [`DeviceAddress`]
 /// - [`StructureType`]
 ///

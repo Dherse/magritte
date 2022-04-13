@@ -9,9 +9,9 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_KHR_get_surface_capabilities2`]`
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_surface_capabilities2`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_display_native_hdr]
 //!   @anteru%0A<<Here describe the issue or question you have about the VK_AMD_display_native_hdr
@@ -88,7 +88,7 @@ pub const AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///## Valid Usage
 /// - [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
 ///# Related
-/// - [`VK_AMD_display_native_hdr`]
+/// - [`amd_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
@@ -125,7 +125,7 @@ pub type FNSetLocalDimmingAmd =
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
 ///# Related
-/// - [`VK_AMD_display_native_hdr`]
+/// - [`amd_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -274,7 +274,7 @@ impl<'lt> DisplayNativeHdrSurfaceCapabilitiesAMD<'lt> {
 /// - It is only valid to set [`local_dimming_enable`] to [`TRUE`] if
 ///   [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] is supported
 ///# Related
-/// - [`VK_AMD_display_native_hdr`]
+/// - [`amd_display_native_hdr`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -408,7 +408,7 @@ impl Device {
     ///## Valid Usage
     /// - [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
     ///# Related
-    /// - [`VK_AMD_display_native_hdr`]
+    /// - [`amd_display_native_hdr`]
     /// - [`Bool32`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]

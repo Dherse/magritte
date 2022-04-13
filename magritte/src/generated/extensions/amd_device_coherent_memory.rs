@@ -79,7 +79,7 @@ pub const AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD`
 ///# Related
-/// - [`VK_AMD_device_coherent_memory`]
+/// - [`amd_device_coherent_memory`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

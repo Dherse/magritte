@@ -2,13 +2,13 @@
 //!# Description
 //!The [`VK_FUCHSIA_imagepipe_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to a Fuchsia
+//!the `[`khr_surface`]` extension) that refers to a Fuchsia
 //!`imagePipeHandle`.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Craig Stout [cdotstout](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_imagepipe_surface]
 //!   @cdotstout%0A<<Here describe the issue or question you have about the
@@ -87,7 +87,7 @@ pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_FUCHSIA_imagepipe_surface`]
+/// - [`fuchsia_imagepipe_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
 /// - [`Instance`]
@@ -116,7 +116,7 @@ pub type FNCreateImagePipeSurfaceFuchsia = Option<
 ///typedef VkFlags VkImagePipeSurfaceCreateFlagsFUCHSIA;
 ///```
 ///# Related
-/// - [`VK_FUCHSIA_imagepipe_surface`]
+/// - [`fuchsia_imagepipe_surface`]
 /// - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
 ///
 ///# Notes and documentation
@@ -169,7 +169,7 @@ impl std::fmt::Debug for ImagePipeSurfaceCreateFlagsFUCHSIA {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_FUCHSIA_imagepipe_surface`]
+/// - [`fuchsia_imagepipe_surface`]
 /// - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]
 /// - [`StructureType`]
 /// - [`create_image_pipe_surface_fuchsia`]
@@ -314,7 +314,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_FUCHSIA_imagepipe_surface`]
+    /// - [`fuchsia_imagepipe_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
     /// - [`Instance`]

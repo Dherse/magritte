@@ -15,7 +15,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_cooperative_matrix]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
@@ -121,7 +121,7 @@ pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_NV_cooperative_matrix`]
+/// - [`nv_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
 /// - [`PhysicalDevice`]
 ///
@@ -159,7 +159,7 @@ pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
 /// - [`QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily` scope.
 ///All enum values match the corresponding SPIR-V value.
 ///# Related
-/// - [`VK_NV_cooperative_matrix`]
+/// - [`nv_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
 ///
 ///# Notes and documentation
@@ -264,7 +264,7 @@ impl std::fmt::Display for ScopeNV {
 /// - [`UINT32`] corresponds to SPIR-V `OpTypeInt` 32 0.
 /// - [`UINT64`] corresponds to SPIR-V `OpTypeInt` 64 0.
 ///# Related
-/// - [`VK_NV_cooperative_matrix`]
+/// - [`nv_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
 ///
 ///# Notes and documentation
@@ -412,7 +412,7 @@ impl std::fmt::Display for ComponentTypeNV {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_cooperative_matrix`]
+/// - [`nv_cooperative_matrix`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -598,7 +598,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_cooperative_matrix`]
+/// - [`nv_cooperative_matrix`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 ///
@@ -752,7 +752,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 /// - [`d_type`] **must**  be a valid [`ComponentTypeNV`] value
 /// - [`scope`] **must**  be a valid [`ScopeNV`] value
 ///# Related
-/// - [`VK_NV_cooperative_matrix`]
+/// - [`nv_cooperative_matrix`]
 /// - [`ComponentTypeNV`]
 /// - [`ScopeNV`]
 /// - [`StructureType`]
@@ -1002,7 +1002,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_NV_cooperative_matrix`]
+    /// - [`nv_cooperative_matrix`]
     /// - [`CooperativeMatrixPropertiesNV`]
     /// - [`PhysicalDevice`]
     ///

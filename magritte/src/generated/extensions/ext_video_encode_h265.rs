@@ -6,7 +6,7 @@
 //!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_video_encode_queue`]`
+//! - Requires `[`khr_video_encode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -237,7 +237,7 @@ pub const EXT_VIDEO_ENCODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   to the picture type of the frame. For example, all slice segments of a P-frame would be
 ///   encoded as P-slices.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265CapabilityFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -510,7 +510,7 @@ impl std::fmt::Display for VideoEncodeH265CapabilityFlagBitsEXT {
 ///the command buffer  **must**  match the placement order of the slice segments in
 ///the frame.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265InputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -646,7 +646,7 @@ impl std::fmt::Display for VideoEncodeH265InputModeFlagBitsEXT {
 /// - Input: Frame and Non-VCL, Output: Slice Segment and Non-VCL
 /// - Input: Slice Segment and Non-VCL, Output: Slice Segment and Non-VCL
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265OutputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -760,7 +760,7 @@ impl std::fmt::Display for VideoEncodeH265OutputModeFlagBitsEXT {
 /// - [`FLAT`] specifies a flat reference structure.
 /// - [`DYADIC`] specifies a dyadic reference structure.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265RateControlInfoEXT`]
 /// - [`VideoEncodeH265RateControlStructureFlagsEXT`]
 ///
@@ -865,7 +865,7 @@ impl std::fmt::Display for VideoEncodeH265RateControlStructureFlagBitsEXT {
 /// - [`32`] specifies that a CTB size of 32x32 is supported.
 /// - [`64`] specifies that a CTB size of 64x64 is supported.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265CtbSizeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -970,7 +970,7 @@ impl std::fmt::Display for VideoEncodeH265CtbSizeFlagBitsEXT {
 /// - [`16`] specifies that a transform block size of 16x16 is supported.
 /// - [`32`] specifies that a transform block size of 32x32 is supported.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265TransformBlockSizeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -1159,7 +1159,7 @@ impl std::fmt::Display for VideoEncodeH265TransformBlockSizeFlagBitsEXT {
 ///   to the picture type of the frame. For example, all slice segments of a P-frame would be
 ///   encoded as P-slices.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265CapabilityFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -1854,7 +1854,7 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
 ///the command buffer  **must**  match the placement order of the slice segments in
 ///the frame.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265InputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -2193,7 +2193,7 @@ impl std::fmt::Debug for VideoEncodeH265InputModeFlagsEXT {
 /// - Input: Frame and Non-VCL, Output: Slice Segment and Non-VCL
 /// - Input: Slice Segment and Non-VCL, Output: Slice Segment and Non-VCL
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265OutputModeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -2510,7 +2510,7 @@ impl std::fmt::Debug for VideoEncodeH265OutputModeFlagsEXT {
 /// - [`FLAT`] specifies a flat reference structure.
 /// - [`DYADIC`] specifies a dyadic reference structure.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265RateControlInfoEXT`]
 /// - [`VideoEncodeH265RateControlStructureFlagsEXT`]
 ///
@@ -2821,7 +2821,7 @@ impl std::fmt::Debug for VideoEncodeH265RateControlStructureFlagsEXT {
 /// - [`32`] specifies that a CTB size of 32x32 is supported.
 /// - [`64`] specifies that a CTB size of 64x64 is supported.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265CtbSizeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -3129,7 +3129,7 @@ impl std::fmt::Debug for VideoEncodeH265CtbSizeFlagsEXT {
 /// - [`16`] specifies that a transform block size of 16x16 is supported.
 /// - [`32`] specifies that a transform block size of 32x32 is supported.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265TransformBlockSizeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -3528,7 +3528,7 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
 ///   [`VideoEncodeH265TransformBlockSizeFlagBitsEXT`] values
 /// - [`transform_block_sizes`] **must**  not be `0`
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265CapabilityFlagsEXT`]
 /// - [`VideoEncodeH265CtbSizeFlagsEXT`]
@@ -4039,7 +4039,7 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
 /// - VPS/SPS/PPS parameters  **must**  comply with the limits specified in
 ///   [`VideoSessionCreateInfoKHR`] during Video Session creation
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265SessionParametersCreateInfoEXT`]
 ///
@@ -4244,7 +4244,7 @@ impl<'lt> VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoEncodeH265SessionParametersAddInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265SessionParametersAddInfoEXT`]
 ///
@@ -4436,7 +4436,7 @@ impl<'lt> VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
 ///   [`StdVideoEncodeH265PictureInfo`] value
 /// - [`nalu_slice_segment_entry_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265NaluSliceSegmentEXT`]
 /// - [`VideoEncodeH265ReferenceListsEXT`]
@@ -4645,7 +4645,7 @@ impl<'lt> VideoEncodeH265VclFrameInfoEXT<'lt> {
 /// - If [`pps_id_entry_count`] is not `0`, [`pps_id_entries`] **must**  be a valid pointer to an
 ///   array of [`pps_id_entry_count`]`uint8_t` values
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -4921,7 +4921,7 @@ impl<'lt> VideoEncodeH265EmitPictureParametersEXT<'lt> {
 /// - [`slice_segment_header_std`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH265SliceSegmentHeader`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265ReferenceListsEXT`]
 /// - [`VideoEncodeH265VclFrameInfoEXT`]
@@ -5106,7 +5106,7 @@ impl<'lt> VideoEncodeH265NaluSliceSegmentEXT<'lt> {
 /// - [`rate_control_structure`] **must**  be a valid
 ///   [`VideoEncodeH265RateControlStructureFlagBitsEXT`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265RateControlStructureFlagBitsEXT`]
 ///
@@ -5285,7 +5285,7 @@ impl<'lt> VideoEncodeH265RateControlInfoEXT<'lt> {
 /// - [`qp_p`] is the QP to be used for P-frames.
 /// - [`qp_b`] is the QP to be used for B-frames.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265RateControlLayerInfoEXT`]
 ///
 ///# Notes and documentation
@@ -5373,7 +5373,7 @@ impl VideoEncodeH265QpEXT {
 /// - [`frame_p_size`] is the size in bytes to be used for P-frames.
 /// - [`frame_b_size`] is the size in bytes to be used for B-frames.
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`VideoEncodeH265RateControlLayerInfoEXT`]
 ///
 ///# Notes and documentation
@@ -5515,7 +5515,7 @@ impl VideoEncodeH265FrameSizeEXT {
 /// - [`max_qp`] **must**  be a valid [`VideoEncodeH265QpEXT`] structure
 /// - [`max_frame_size`] **must**  be a valid [`VideoEncodeH265FrameSizeEXT`] structure
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265FrameSizeEXT`]
@@ -5868,7 +5868,7 @@ impl<'lt> VideoEncodeH265RateControlLayerInfoEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_PROFILE_EXT`
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -5989,7 +5989,7 @@ impl<'lt> VideoEncodeH265ProfileEXT<'lt> {
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH265ReferenceInfo`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265ReferenceListsEXT`]
 ///
@@ -6132,7 +6132,7 @@ impl<'lt> VideoEncodeH265DpbSlotInfoEXT<'lt> {
 /// - [`reference_modifications`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH265ReferenceModifications`] value
 ///# Related
-/// - [`VK_EXT_video_encode_h265`]
+/// - [`ext_video_encode_h265`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH265DpbSlotInfoEXT`]
 /// - [`VideoEncodeH265NaluSliceSegmentEXT`]

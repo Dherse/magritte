@@ -2,13 +2,13 @@
 //!# Description
 //!The [`VK_NN_vi_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) associated with an
+//!the `[`khr_surface`]` extension) associated with an
 //!`nn`::`vi`::`Layer`.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Mathias Heyer mheyer
 //!# New functions & commands
@@ -118,7 +118,7 @@ pub const NN_VI_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NN_vi_s
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 ///# Related
-/// - [`VK_NN_vi_surface`]
+/// - [`nn_vi_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
@@ -147,7 +147,7 @@ pub type FNCreateViSurfaceNn = Option<
 ///typedef VkFlags VkViSurfaceCreateFlagsNN;
 ///```
 ///# Related
-/// - [`VK_NN_vi_surface`]
+/// - [`nn_vi_surface`]
 /// - [`ViSurfaceCreateInfoNN`]
 ///
 ///# Notes and documentation
@@ -200,7 +200,7 @@ impl std::fmt::Debug for ViSurfaceCreateFlagsNN {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_NN_vi_surface`]
+/// - [`nn_vi_surface`]
 /// - [`StructureType`]
 /// - [`ViSurfaceCreateFlagsNN`]
 /// - [`create_vi_surface_nn`]
@@ -365,7 +365,7 @@ impl Instance {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
     ///# Related
-    /// - [`VK_NN_vi_surface`]
+    /// - [`nn_vi_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]

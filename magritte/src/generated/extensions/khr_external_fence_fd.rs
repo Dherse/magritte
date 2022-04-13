@@ -8,7 +8,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_fence`]`
+//! - Requires `[`khr_external_fence`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_fd]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_external_fence_fd
@@ -26,7 +26,7 @@
 //!   `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
 //!# Known issues & F.A.Q
 //!This extension borrows concepts, semantics, and language from
-//!`[`VK_KHR_external_semaphore_fd`]`.
+//!`[`khr_external_semaphore_fd`]`.
 //!That extension’s issues apply equally to this extension.
 //!# Version History
 //! - Revision 1, 2017-05-08 (Jesse Hall)  - Initial revision
@@ -34,7 +34,7 @@
 //! * 2017-05-08
 //! * No known IP claims.
 //! * - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  -
-//!   Contributors to `[`VK_KHR_external_semaphore_fd`]`
+//!   Contributors to `[`khr_external_semaphore_fd`]`
 //!# Related
 //! - [`FenceGetFdInfoKHR`]
 //! - [`ImportFenceFdInfoKHR`]
@@ -99,7 +99,7 @@ pub const KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_external_fence_fd`]
+/// - [`khr_external_fence_fd`]
 /// - [`Device`]
 /// - [`FenceGetFdInfoKHR`]
 ///
@@ -152,7 +152,7 @@ pub type FNGetFenceFdKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_KHR_external_fence_fd`]
+/// - [`khr_external_fence_fd`]
 /// - [`Device`]
 /// - [`ImportFenceFdInfoKHR`]
 ///
@@ -214,7 +214,7 @@ pub type FNImportFenceFdKhr = Option<
 ///## Host Synchronization
 /// - Host access to [`fence`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_external_fence_fd`]
+/// - [`khr_external_fence_fd`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`Fence`]
 /// - [`FenceImportFlags`]
@@ -389,7 +389,7 @@ impl<'lt> ImportFenceFdInfoKHR<'lt> {
 /// - [`fence`] **must**  be a valid [`Fence`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_fence_fd`]
+/// - [`khr_external_fence_fd`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`Fence`]
 /// - [`StructureType`]
@@ -530,7 +530,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_external_fence_fd`]
+    /// - [`khr_external_fence_fd`]
     /// - [`Device`]
     /// - [`FenceGetFdInfoKHR`]
     ///
@@ -604,7 +604,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_KHR_external_fence_fd`]
+    /// - [`khr_external_fence_fd`]
     /// - [`Device`]
     /// - [`ImportFenceFdInfoKHR`]
     ///

@@ -13,9 +13,9 @@
 //!13
 //!# Dependencies
 //! - Requires Vulkan 1.1
-//! - Requires `[`VK_EXT_descriptor_indexing`]`
-//! - Requires `[`VK_KHR_buffer_device_address`]`
-//! - Requires `[`VK_KHR_deferred_host_operations`]`
+//! - Requires `[`ext_descriptor_indexing`]`
+//! - Requires `[`khr_buffer_device_address`]`
+//! - Requires `[`khr_deferred_host_operations`]`
 //!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_acceleration_structure]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
@@ -112,7 +112,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR`
-//!If [`VK_KHR_format_feature_flags2`] is supported:
+//!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  -
 //!   `VK_FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
 //!# Known issues & F.A.Q
@@ -225,8 +225,8 @@
 //!   removed) and added the `createFlags` member
 //! - change [`cmd_build_acceleration_structures_indirect_khr`] to use buffer device address for
 //!   indirect parameter
-//! - make `[`VK_KHR_deferred_host_operations`]` an interaction instead of a required extension
-//!   (later went back on this)
+//! - make `[`khr_deferred_host_operations`]` an interaction instead of a required extension (later
+//!   went back on this)
 //! - renamed `VkAccelerationStructureBuildOffsetInfoKHR` to
 //!   [`AccelerationStructureBuildRangeInfoKHR`]  - renamed the `ppOffsetInfos` parameter of
 //!   [`cmd_build_acceleration_structures_khr`] to `ppBuildRangeInfos`
@@ -253,7 +253,7 @@
 //!   [`copy_memory_to_acceleration_structure_khr`]  - removed `VkDeferredOperationInfoKHR`
 //!   structure  - change deferred host creation/return parameter behavior such that the
 //!   implementation can modify such parameters until the deferred host operation completes  -
-//!   `[`VK_KHR_deferred_host_operations`]` is required again
+//!   `[`khr_deferred_host_operations`]` is required again
 //! - Change acceleration structure build to always be sized  - de-alias
 //!   [`AccelerationStructureMemoryRequirementsTypeNV`] and
 //!   `VkAccelerationStructureMemoryRequirementsTypeKHR`, and remove
@@ -271,19 +271,18 @@
 //!(VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
 //!v11) release?
 //! - refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and
-//!   decoupling ray query support from ray pipelines:  - `[`VK_KHR_acceleration_structure`]` (for
-//!   acceleration structure operations)  - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing
-//!   pipeline and shader stages)  - `[`VK_KHR_ray_query`]` (for ray queries in existing shader
-//!   stages)
+//!   decoupling ray query support from ray pipelines:  - `[`khr_acceleration_structure`]` (for
+//!   acceleration structure operations)  - `[`khr_ray_tracing_pipeline`]` (for ray tracing pipeline
+//!   and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages)
 //! - clarify buffer usage flags for ray tracing  - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` is left
-//!   alone in `[`VK_NV_ray_tracing`]` (required on `scratch` and `instanceData`)  -
+//!   alone in `[`nv_ray_tracing`]` (required on `scratch` and `instanceData`)  -
 //!   `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias of
-//!   `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` in `[`VK_KHR_ray_tracing_pipeline`]` and is required on
+//!   `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` in `[`khr_ray_tracing_pipeline`]` and is required on
 //!   shader binding table buffers  -
 //!   `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR` is added in
-//!   `[`VK_KHR_acceleration_structure`]` for all vertex, index, transform, aabb, and instance
-//!   buffer data referenced by device build commands  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is
-//!   used for `scratchData`
+//!   `[`khr_acceleration_structure`]` for all vertex, index, transform, aabb, and instance buffer
+//!   data referenced by device build commands  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used for
+//!   `scratchData`
 //! - add max primitive counts (`ppMaxPrimitiveCounts`) to
 //!   [`cmd_build_acceleration_structures_indirect_khr`]
 //! - Allocate acceleration structures from `VkBuffers` and add a mode to constrain the device
@@ -421,8 +420,8 @@
 //!   VK_GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR to
 //!   VK_GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR (keep previous as alias).  - Clarify
 //!   description and add note.
-//! - Revision 13, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]`
-//!   to `vk.xml`
+//! - Revision 13, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
+//!   `vk.xml`
 //!# Other info
 //! * 2021-09-30
 //! * - Samuel Bourasseau, Adobe  - Matthäus Chajdas, AMD  - Greg Grebe, AMD  - Nicolai Hähnle, AMD
@@ -569,7 +568,7 @@ pub const KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///## Host Synchronization
 /// - Host access to [`acceleration_structure`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
@@ -635,7 +634,7 @@ pub type FNDestroyAccelerationStructureKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`CopyAccelerationStructureInfoKHR`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
@@ -707,7 +706,7 @@ pub type FNCopyAccelerationStructureKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`CopyAccelerationStructureToMemoryInfoKHR`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
@@ -775,7 +774,7 @@ pub type FNCopyAccelerationStructureToMemoryKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`CopyMemoryToAccelerationStructureInfoKHR`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
@@ -864,7 +863,7 @@ pub type FNCopyMemoryToAccelerationStructureKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`Device`]
 /// - [`QueryType`]
@@ -918,7 +917,7 @@ pub type FNWriteAccelerationStructuresPropertiesKhr = Option<
 /// - [`p_compatibility`] **must**  be a valid pointer to a
 ///   [`AccelerationStructureCompatibilityKHR`] value
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureCompatibilityKHR`]
 /// - [`AccelerationStructureVersionInfoKHR`]
 /// - [`Device`]
@@ -998,7 +997,7 @@ pub type FNGetDeviceAccelerationStructureCompatibilityKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureCreateInfoKHR`]
 /// - [`AccelerationStructureKHR`]
 /// - [`AllocationCallbacks`]
@@ -1273,7 +1272,7 @@ pub type FNCreateAccelerationStructureKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`AccelerationStructureBuildRangeInfoKHR`]
 /// - [`DeferredOperationKHR`]
@@ -1334,7 +1333,7 @@ pub type FNBuildAccelerationStructuresKhr = Option<
 /// - [`p_info`] **must**  be a valid pointer to a valid
 ///   [`AccelerationStructureDeviceAddressInfoKHR`] structure
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureDeviceAddressInfoKHR`]
 /// - [`Device`]
 ///
@@ -1438,7 +1437,7 @@ pub type FNGetAccelerationStructureDeviceAddressKhr = Option<
 /// - [`p_size_info`] **must**  be a valid pointer to a [`AccelerationStructureBuildSizesInfoKHR`]
 ///   structure
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`AccelerationStructureBuildSizesInfoKHR`]
 /// - [`AccelerationStructureBuildTypeKHR`]
@@ -1503,7 +1502,7 @@ pub type FNGetAccelerationStructureBuildSizesKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`CommandBuffer`]
 /// - [`CopyAccelerationStructureInfoKHR`]
 ///
@@ -1594,7 +1593,7 @@ pub type FNCmdCopyAccelerationStructureKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`CommandBuffer`]
 /// - [`CopyAccelerationStructureToMemoryInfoKHR`]
 ///
@@ -1666,7 +1665,7 @@ pub type FNCmdCopyAccelerationStructureToMemoryKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`CommandBuffer`]
 /// - [`CopyMemoryToAccelerationStructureInfoKHR`]
 ///
@@ -1755,7 +1754,7 @@ pub type FNCmdCopyMemoryToAccelerationStructureKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`CommandBuffer`]
 /// - [`QueryPool`]
@@ -2098,7 +2097,7 @@ pub type FNCmdWriteAccelerationStructuresPropertiesKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`AccelerationStructureBuildRangeInfoKHR`]
 /// - [`CommandBuffer`]
@@ -2444,7 +2443,7 @@ pub type FNCmdBuildAccelerationStructuresKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`CommandBuffer`]
 /// - [`DeviceAddress`]
@@ -2506,8 +2505,8 @@ pub type FNCmdBuildAccelerationStructuresIndirectKhr = Option<
 /// - [`DESERIALIZE`] deserializes the semi-opaque serialization format in the buffer to the
 ///   acceleration structure.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`CopyAccelerationStructureInfoKHR`]
 /// - [`CopyAccelerationStructureToMemoryInfoKHR`]
 /// - [`CopyMemoryToAccelerationStructureInfoKHR`]
@@ -2630,7 +2629,7 @@ impl std::fmt::Display for CopyAccelerationStructureModeKHR {
 /// - [`UPDATE`] specifies that the destination acceleration structure will be built using data in a
 ///   source acceleration structure, updated by the specified geometries.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 ///
 ///# Notes and documentation
@@ -2745,8 +2744,8 @@ impl std::fmt::Display for BuildAccelerationStructureModeKHR {
 /// - [`GENERIC`] is an acceleration structure whose type is determined at build time used for
 ///   special circumstances.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`AccelerationStructureCreateInfoKHR`]
 /// - [`AccelerationStructureInfoNV`]
@@ -2853,8 +2852,8 @@ impl std::fmt::Display for AccelerationStructureTypeKHR {
 /// - [`AABBS`] specifies a geometry type consisting of axis-aligned bounding boxes.
 /// - [`INSTANCES`] specifies a geometry type consisting of acceleration structure instances.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureGeometryKHR`]
 /// - [`GeometryNV`]
 ///
@@ -2950,7 +2949,7 @@ impl std::fmt::Display for GeometryTypeKHR {
 /// - [`HOST_OR_DEVICE`] requests the memory requirement for operations performed by either the
 ///   host, or the device.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`get_acceleration_structure_build_sizes_khr`]
 ///
 ///# Notes and documentation
@@ -3053,7 +3052,7 @@ impl std::fmt::Display for AccelerationStructureBuildTypeKHR {
 /// - [`INCOMPATIBLE`] if the `pVersionData` version acceleration structure is not compatible with
 ///   `device`.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`get_device_acceleration_structure_compatibility_khr`]
 ///
 ///# Notes and documentation
@@ -3180,8 +3179,8 @@ impl std::fmt::Display for AccelerationStructureCompatibilityKHR {
 ///[`FORCE_OPAQUE`] **must**  not be used in the
 ///same flag.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`GeometryInstanceFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3299,8 +3298,8 @@ impl std::fmt::Display for GeometryInstanceFlagBitsKHR {
 ///   any-hit shader a single time for each primitive in this geometry. If this bit is absent an
 ///   implementation  **may**  invoke the any-hit shader more than once for this geometry.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`GeometryFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3431,8 +3430,8 @@ impl std::fmt::Display for GeometryFlagBitsKHR {
 ///   the scratch memory and the final result acceleration structure, potentially at the expense of
 ///   build time or trace performance.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`BuildAccelerationStructureFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3566,7 +3565,7 @@ impl std::fmt::Display for BuildAccelerationStructureFlagBitsKHR {
 /// - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the acceleration structure’s address  **can**
 ///   be saved and reused on a subsequent run.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureCreateFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3679,8 +3678,8 @@ impl std::fmt::Display for AccelerationStructureCreateFlagBitsKHR {
 ///   any-hit shader a single time for each primitive in this geometry. If this bit is absent an
 ///   implementation  **may**  invoke the any-hit shader more than once for this geometry.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`GeometryFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3999,8 +3998,8 @@ impl std::fmt::Debug for GeometryFlagsKHR {
 ///[`FORCE_OPAQUE`] **must**  not be used in the
 ///same flag.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`GeometryInstanceFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -4361,8 +4360,8 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
 ///   the scratch memory and the final result acceleration structure, potentially at the expense of
 ///   build time or trace performance.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`BuildAccelerationStructureFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -4723,7 +4722,7 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
 /// - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the acceleration structure’s address  **can**
 ///   be saved and reused on a subsequent run.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureCreateFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -5043,7 +5042,7 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
 ///   handles
 /// - [`acceleration_structure_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`StructureType`]
 ///
@@ -5208,7 +5207,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -5565,7 +5564,7 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -5859,7 +5858,7 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
 /// - [`vertex_format`] **must**  be a valid [`Format`] value
 /// - [`index_type`] **must**  be a valid [`IndexType`] value
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureGeometryDataKHR`]
 /// - [`DeviceOrHostAddressConstKHR`]
 /// - [`DeviceSize`]
@@ -6093,7 +6092,7 @@ unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureGeometryMotionTrianglesD
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureGeometryDataKHR`]
 /// - [`DeviceOrHostAddressConstKHR`]
 /// - [`DeviceSize`]
@@ -6225,7 +6224,7 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureGeometryDataKHR`]
 /// - [`Bool32`]
 /// - [`DeviceOrHostAddressConstKHR`]
@@ -6401,7 +6400,7 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
 ///   [`geometry`] **must**  be a valid [`AccelerationStructureGeometryInstancesDataKHR`] structure
 /// - [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`AccelerationStructureGeometryDataKHR`]
 /// - [`GeometryFlagsKHR`]
@@ -6661,7 +6660,7 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
 ///   handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from
 ///   the same [`Device`]
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureGeometryKHR`]
 /// - [`AccelerationStructureKHR`]
 /// - [`AccelerationStructureTypeKHR`]
@@ -7005,7 +7004,7 @@ impl<'lt> AccelerationStructureBuildGeometryInfoKHR<'lt> {
 /// - For geometries of type `VK_GEOMETRY_TYPE_INSTANCES_KHR`, the offset [`primitive_offset`] from
 ///   [`AccelerationStructureGeometryInstancesDataKHR::data`] **must**  be a multiple of 16
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`build_acceleration_structures_khr`]
 /// - [`cmd_build_acceleration_structures_khr`]
 ///
@@ -7181,7 +7180,7 @@ impl AccelerationStructureBuildRangeInfoKHR {
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
 /// - [`type_`] **must**  be a valid [`AccelerationStructureTypeKHR`] value
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureCreateFlagsKHR`]
 /// - [`AccelerationStructureTypeKHR`]
 /// - [`Buffer`]
@@ -7397,8 +7396,8 @@ unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureMotionInfoNV<'lt>> for A
 /// - [`min_y`] **must**  be less than or equal to [`max_y`]
 /// - [`min_z`] **must**  be less than or equal to [`max_z`]
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -7540,8 +7539,8 @@ impl AabbPositionsKHR {
 ///## Valid Usage
 /// - The first three columns of [`matrix`] **must**  define an invertible 3x3 matrix
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureInstanceKHR`]
 /// - [`AccelerationStructureMatrixMotionInstanceNV`]
 ///
@@ -7641,8 +7640,8 @@ impl TransformMatrixKHR {
 ///## Valid Usage (Implicit)
 /// - [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_acceleration_structure`]
+/// - [`nv_ray_tracing`]
 /// - [`AccelerationStructureMotionInstanceDataNV`]
 /// - [`GeometryInstanceFlagsKHR`]
 /// - [`TransformMatrixKHR`]
@@ -7799,7 +7798,7 @@ impl AccelerationStructureInstanceKHR {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`acceleration_structure`] **must**  be a valid [`AccelerationStructureKHR`] handle
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`StructureType`]
 /// - [`get_acceleration_structure_device_address_khr`]
@@ -7912,9 +7911,9 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 ///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
 ///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mbin">×</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
+///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span></span><span class="base"><span
+///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
 ///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
 ///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
@@ -7922,7 +7921,7 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 ///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`StructureType`]
 /// - [`get_device_acceleration_structure_compatibility_khr`]
 ///
@@ -8056,7 +8055,7 @@ impl<'lt> AccelerationStructureVersionInfoKHR<'lt> {
 /// - Both of [`dst`], and [`src`] **must**  have been created, allocated, or retrieved from the
 ///   same [`Device`]
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`CopyAccelerationStructureModeKHR`]
 /// - [`StructureType`]
@@ -8214,7 +8213,7 @@ impl<'lt> CopyAccelerationStructureInfoKHR<'lt> {
 /// - [`src`] **must**  be a valid [`AccelerationStructureKHR`] handle
 /// - [`mode`] **must**  be a valid [`CopyAccelerationStructureModeKHR`] value
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`CopyAccelerationStructureModeKHR`]
 /// - [`DeviceOrHostAddressKHR`]
@@ -8377,7 +8376,7 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
 /// - [`dst`] **must**  be a valid [`AccelerationStructureKHR`] handle
 /// - [`mode`] **must**  be a valid [`CopyAccelerationStructureModeKHR`] value
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureKHR`]
 /// - [`CopyAccelerationStructureModeKHR`]
 /// - [`DeviceOrHostAddressConstKHR`]
@@ -8534,7 +8533,7 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 /// - [`get_acceleration_structure_build_sizes_khr`]
@@ -8669,7 +8668,7 @@ impl<'lt> AccelerationStructureBuildSizesInfoKHR<'lt> {
 ///   [`get_buffer_device_address_khr`] command.
 /// - [`host_address`] is a host memory address.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`CopyAccelerationStructureToMemoryInfoKHR`]
 /// - [`DeviceAddress`]
@@ -8711,7 +8710,7 @@ impl Default for DeviceOrHostAddressKHR {
 ///   [`get_buffer_device_address_khr`] command.
 /// - [`host_address`] is a const host memory address.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureGeometryAabbsDataKHR`]
 /// - [`AccelerationStructureGeometryInstancesDataKHR`]
 /// - [`AccelerationStructureGeometryMotionTrianglesDataNV`]
@@ -8757,7 +8756,7 @@ impl Default for DeviceOrHostAddressConstKHR {
 /// - [`aabbs`] is a [`AccelerationStructureGeometryAabbsDataKHR`] struture.
 /// - [`instances`] is a [`AccelerationStructureGeometryInstancesDataKHR`] structure.
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureGeometryAabbsDataKHR`]
 /// - [`AccelerationStructureGeometryInstancesDataKHR`]
 /// - [`AccelerationStructureGeometryKHR`]
@@ -8826,7 +8825,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`acceleration_structure`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureKHR`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
@@ -8916,7 +8915,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`CopyAccelerationStructureInfoKHR`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
@@ -9015,7 +9014,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`CopyAccelerationStructureToMemoryInfoKHR`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
@@ -9110,7 +9109,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`CopyMemoryToAccelerationStructureInfoKHR`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
@@ -9227,7 +9226,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureKHR`]
     /// - [`Device`]
     /// - [`QueryType`]
@@ -9310,7 +9309,7 @@ impl Device {
     /// - [`p_compatibility`] **must**  be a valid pointer to a
     ///   [`AccelerationStructureCompatibilityKHR`] value
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureCompatibilityKHR`]
     /// - [`AccelerationStructureVersionInfoKHR`]
     /// - [`Device`]
@@ -9412,7 +9411,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureCreateInfoKHR`]
     /// - [`AccelerationStructureKHR`]
     /// - [`AllocationCallbacks`]
@@ -9725,7 +9724,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_OPERATION_DEFERRED_KHR`  - `VK_OPERATION_NOT_DEFERRED_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureBuildGeometryInfoKHR`]
     /// - [`AccelerationStructureBuildRangeInfoKHR`]
     /// - [`DeferredOperationKHR`]
@@ -9815,7 +9814,7 @@ impl Device {
     /// - [`p_info`] **must**  be a valid pointer to a valid
     ///   [`AccelerationStructureDeviceAddressInfoKHR`] structure
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureDeviceAddressInfoKHR`]
     /// - [`Device`]
     ///
@@ -9942,7 +9941,7 @@ impl Device {
     /// - [`p_size_info`] **must**  be a valid pointer to a
     ///   [`AccelerationStructureBuildSizesInfoKHR`] structure
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureBuildGeometryInfoKHR`]
     /// - [`AccelerationStructureBuildSizesInfoKHR`]
     /// - [`AccelerationStructureBuildTypeKHR`]
@@ -10033,7 +10032,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`CommandBuffer`]
     /// - [`CopyAccelerationStructureInfoKHR`]
     ///
@@ -10146,7 +10145,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`CommandBuffer`]
     /// - [`CopyAccelerationStructureToMemoryInfoKHR`]
     ///
@@ -10241,7 +10240,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`CommandBuffer`]
     /// - [`CopyMemoryToAccelerationStructureInfoKHR`]
     ///
@@ -10356,7 +10355,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureKHR`]
     /// - [`CommandBuffer`]
     /// - [`QueryPool`]
@@ -10734,7 +10733,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureBuildGeometryInfoKHR`]
     /// - [`AccelerationStructureBuildRangeInfoKHR`]
     /// - [`CommandBuffer`]
@@ -11113,7 +11112,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_acceleration_structure`]
+    /// - [`khr_acceleration_structure`]
     /// - [`AccelerationStructureBuildGeometryInfoKHR`]
     /// - [`CommandBuffer`]
     /// - [`DeviceAddress`]
@@ -11183,7 +11182,7 @@ impl CommandBuffer {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_acceleration_structure`]
+/// - [`khr_acceleration_structure`]
 /// - [`AccelerationStructureBuildGeometryInfoKHR`]
 /// - [`AccelerationStructureDeviceAddressInfoKHR`]
 /// - [`CopyAccelerationStructureInfoKHR`]

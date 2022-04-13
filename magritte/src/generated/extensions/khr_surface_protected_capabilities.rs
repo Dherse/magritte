@@ -20,7 +20,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.1
-//! - Requires `[`VK_KHR_get_surface_capabilities2`]`
+//! - Requires `[`khr_get_surface_capabilities2`]`
 //!# Contacts
 //! - Sandeep Shinde [sashinde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_surface_protected_capabilities]
 //!   @sashinde%0A<<Here describe the issue or question you have about the
@@ -81,7 +81,7 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///   with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set  **must**  be supported for
 ///   `surface`.
 ///# Description
-///If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the value
+///If the `[`google_surfaceless_query`]` extension is enabled, the value
 ///returned in [`supports_protected`] will be identical for every valid
 ///surface created on this physical device, and so in the
 ///[`get_physical_device_surface_capabilities2_khr`] call,
@@ -93,7 +93,7 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR`
 ///# Related
-/// - [`VK_KHR_surface_protected_capabilities`]
+/// - [`khr_surface_protected_capabilities`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

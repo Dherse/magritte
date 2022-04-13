@@ -1,7 +1,7 @@
 //![VK_KHR_present_wait](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_present_wait.html) - device extension
 //!# Description
 //!This device extension allows an application that uses the
-//!`[`VK_KHR_swapchain`]` extension to wait for present operations to
+//!`[`khr_swapchain`]` extension to wait for present operations to
 //!complete.
 //!An application can use this to monitor and control the pacing of the
 //!application by managing the number of outstanding images yet to be
@@ -10,8 +10,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_KHR_present_id`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`khr_present_id`]`
 //!# Contacts
 //! - Keith Packard [keithp](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_present_wait]
 //!   @keithp%0A<<Here describe the issue or question you have about the VK_KHR_present_wait
@@ -156,7 +156,7 @@ pub const KHR_PRESENT_WAIT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 /// * - `VK_SUCCESS`  - `VK_TIMEOUT`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///# Related
-/// - [`VK_KHR_present_wait`]
+/// - [`khr_present_wait`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
@@ -203,7 +203,7 @@ pub type FNWaitForPresentKhr = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_present_wait`]
+/// - [`khr_present_wait`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -389,7 +389,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`
     ///# Related
-    /// - [`VK_KHR_present_wait`]
+    /// - [`khr_present_wait`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///

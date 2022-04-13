@@ -64,7 +64,7 @@ pub const EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///typedef VkFlags VkPipelineRasterizationDepthClipStateCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_depth_clip_enable`]
+/// - [`ext_depth_clip_enable`]
 /// - [`PipelineRasterizationDepthClipStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -121,7 +121,7 @@ impl std::fmt::Debug for PipelineRasterizationDepthClipStateCreateFlagsEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_depth_clip_enable`]
+/// - [`ext_depth_clip_enable`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -268,7 +268,7 @@ impl<'lt> PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_EXT_depth_clip_enable`]
+/// - [`ext_depth_clip_enable`]
 /// - [`Bool32`]
 /// - [`PipelineRasterizationDepthClipStateCreateFlagsEXT`]
 /// - [`StructureType`]

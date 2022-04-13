@@ -84,7 +84,7 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 /// - [`p_host_mapping`] **must**  be a valid pointer to a
 ///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
 ///# Related
-/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSetBindingReferenceVALVE`]
 /// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
 /// - [`Device`]
@@ -122,7 +122,7 @@ pub type FNGetDescriptorSetLayoutHostMappingInfoValve = Option<
 /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
 /// - [`pp_data`] **must**  be a valid pointer to a pointer value
 ///# Related
-/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSet`]
 /// - [`Device`]
 ///
@@ -154,7 +154,7 @@ pub type FNGetDescriptorSetHostMappingValve =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
 ///# Related
-/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`valve_descriptor_set_host_mapping`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -288,7 +288,7 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
 ///# Related
-/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSetLayout`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_host_mapping_info_valve`]
@@ -407,7 +407,7 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_VALVE_descriptor_set_host_mapping`]
+/// - [`valve_descriptor_set_host_mapping`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
@@ -534,7 +534,7 @@ impl Device {
     /// - [`p_host_mapping`] **must**  be a valid pointer to a
     ///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
     ///# Related
-    /// - [`VK_VALVE_descriptor_set_host_mapping`]
+    /// - [`valve_descriptor_set_host_mapping`]
     /// - [`DescriptorSetBindingReferenceVALVE`]
     /// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
     /// - [`Device`]
@@ -598,7 +598,7 @@ impl Device {
     /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
     /// - [`pp_data`] **must**  be a valid pointer to a pointer value
     ///# Related
-    /// - [`VK_VALVE_descriptor_set_host_mapping`]
+    /// - [`valve_descriptor_set_host_mapping`]
     /// - [`DescriptorSet`]
     /// - [`Device`]
     ///

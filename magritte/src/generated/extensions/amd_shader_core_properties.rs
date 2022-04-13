@@ -1,13 +1,13 @@
 //![VK_AMD_shader_core_properties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_core_properties.html) - device extension
 //!# Description
 //!This extension exposes shader core properties for a target physical device
-//!through the `[`VK_KHR_get_physical_device_properties2`]` extension.
+//!through the `[`khr_get_physical_device_properties2`]` extension.
 //!Please refer to the example below for proper usage.
 //!# Revision
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Martin Dinkov [mdinkov](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_core_properties]
 //!   @mdinkov%0A<<Here describe the issue or question you have about the
@@ -111,7 +111,7 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
 ///# Related
-/// - [`VK_AMD_shader_core_properties`]
+/// - [`amd_shader_core_properties`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

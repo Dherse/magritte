@@ -11,7 +11,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_scissor_exclusive]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_scissor_exclusive
@@ -135,7 +135,7 @@ pub const NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_scissor_exclusive`]
+/// - [`nv_scissor_exclusive`]
 /// - [`CommandBuffer`]
 /// - [`Rect2D`]
 ///
@@ -184,7 +184,7 @@ pub type FNCmdSetExclusiveScissorNv = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_scissor_exclusive`]
+/// - [`nv_scissor_exclusive`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -338,7 +338,7 @@ impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV`
 ///# Related
-/// - [`VK_NV_scissor_exclusive`]
+/// - [`nv_scissor_exclusive`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
 ///
@@ -516,7 +516,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_scissor_exclusive`]
+    /// - [`nv_scissor_exclusive`]
     /// - [`CommandBuffer`]
     /// - [`Rect2D`]
     ///

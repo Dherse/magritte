@@ -29,7 +29,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -152,7 +152,7 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_portability_subset`]
+/// - [`khr_portability_subset`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -876,7 +876,7 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
 ///# Related
-/// - [`VK_KHR_portability_subset`]
+/// - [`khr_portability_subset`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

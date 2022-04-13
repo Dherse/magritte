@@ -26,7 +26,7 @@
 //!# Other info
 //! * 2020-01-08
 //! * No known IP claims.
-//! * - See contributors to `[`VK_KHR_ray_tracing_pipeline`]`
+//! * - See contributors to `[`khr_ray_tracing_pipeline`]`
 //!# Related
 //! - [`PipelineLibraryCreateInfoKHR`]
 //!
@@ -76,7 +76,7 @@ pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - If [`library_count`] is not `0`, [`libraries`] **must**  be a valid pointer to an array of
 ///   [`library_count`] valid [`Pipeline`] handles
 ///# Related
-/// - [`VK_KHR_pipeline_library`]
+/// - [`khr_pipeline_library`]
 /// - [`Pipeline`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 /// - [`StructureType`]

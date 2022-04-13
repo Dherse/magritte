@@ -2,16 +2,16 @@
 //!# Description
 //!The [`VK_MVK_ios_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) based on a `UIView`, the native
+//!the `[`khr_surface`]` extension) based on a `UIView`, the native
 //!surface type of iOS, which is underpinned by a [`CaMetalLayer`], to
 //!support rendering to the surface using Apple’s Metal framework.
 //!# Revision
 //!3
 //!# Dependencies
-//! - *Deprecated* by `[`VK_EXT_metal_surface`]` extension
+//! - *Deprecated* by `[`ext_metal_surface`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Bill Hollings [billhollings](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_MVK_ios_surface]
 //!   @billhollings%0A<<Here describe the issue or question you have about the VK_MVK_ios_surface
@@ -100,7 +100,7 @@ pub const MVK_IOS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_MVK_i
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 ///# Related
-/// - [`VK_MVK_ios_surface`]
+/// - [`mvk_ios_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`IosSurfaceCreateInfoMVK`]
 /// - [`Instance`]
@@ -129,7 +129,7 @@ pub type FNCreateIosSurfaceMvk = Option<
 ///typedef VkFlags VkIOSSurfaceCreateFlagsMVK;
 ///```
 ///# Related
-/// - [`VK_MVK_ios_surface`]
+/// - [`mvk_ios_surface`]
 /// - [`IosSurfaceCreateInfoMVK`]
 ///
 ///# Notes and documentation
@@ -184,7 +184,7 @@ impl std::fmt::Debug for IosSurfaceCreateFlagsMVK {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_MVK_ios_surface`]
+/// - [`mvk_ios_surface`]
 /// - [`IosSurfaceCreateFlagsMVK`]
 /// - [`StructureType`]
 /// - [`create_ios_surface_mvk`]
@@ -328,7 +328,7 @@ impl Instance {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
     ///# Related
-    /// - [`VK_MVK_ios_surface`]
+    /// - [`mvk_ios_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`IosSurfaceCreateInfoMVK`]
     /// - [`Instance`]

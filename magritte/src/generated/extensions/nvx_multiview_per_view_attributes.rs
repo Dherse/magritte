@@ -23,14 +23,14 @@
 //!written  **must**  be such that `gl_Position =
 //!gl_PositionPerViewNV[gl_ViewIndex]` for all views in the subpass.
 //!Implementations are free to either use the per-view outputs or the
-//!non-per-view outputs, whichever would be more efficient.If `[`VK_NV_viewport_array2`]` is not
-//! also supported and enabled, the
+//!non-per-view outputs, whichever would be more efficient.If `[`nv_viewport_array2`]` is not also
+//! supported and enabled, the
 //!per-view viewport mask  **must**  not be used.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_multiview`]`
+//! - Requires `[`khr_multiview`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_multiview_per_view_attributes]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
@@ -53,7 +53,7 @@
 //! * No known IP claims.
 //! * - This extension requires [`SPV_NVX_multiview_per_view_attributes`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NVX_multiview_per_view_attributes.html)
 //!   - This extension provides API support for [`GL_NVX_multiview_per_view_attributes`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt)
-//!   - This extension interacts with `[`VK_NV_viewport_array2`]`.
+//!   - This extension interacts with `[`nv_viewport_array2`]`.
 //! * - Jeff Bolz, NVIDIA  - Daniel Koch, NVIDIA
 //!# Related
 //! - [`PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX`]
@@ -103,7 +103,7 @@ pub const NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX`
 ///# Related
-/// - [`VK_NVX_multiview_per_view_attributes`]
+/// - [`nvx_multiview_per_view_attributes`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

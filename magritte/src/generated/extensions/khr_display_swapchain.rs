@@ -6,8 +6,8 @@
 //!10
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_KHR_display`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`khr_display`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display_swapchain]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display_swapchain
@@ -159,7 +159,7 @@ pub const KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_KHR_display_swapchain`]
+/// - [`khr_display_swapchain`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SwapchainCreateInfoKHR`]
@@ -229,7 +229,7 @@ pub type FNCreateSharedSwapchainsKhr = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
 ///# Related
-/// - [`VK_KHR_display_swapchain`]
+/// - [`khr_display_swapchain`]
 /// - [`Bool32`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
@@ -448,7 +448,7 @@ impl Device {
     ///   `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`  - `VK_ERROR_DEVICE_LOST`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_KHR_display_swapchain`]
+    /// - [`khr_display_swapchain`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SwapchainCreateInfoKHR`]

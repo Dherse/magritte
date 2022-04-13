@@ -3,8 +3,8 @@
 //!3
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -256,7 +256,7 @@ pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_v
 /// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
 ///   `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`PhysicalDevice`]
 /// - [`VideoCapabilitiesKHR`]
 /// - [`VideoProfileKHR`]
@@ -350,7 +350,7 @@ pub type FNGetPhysicalDeviceVideoCapabilitiesKhr = Option<
 /// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceVideoFormatInfoKHR`]
 /// - [`VideoFormatPropertiesKHR`]
@@ -406,7 +406,7 @@ pub type FNGetPhysicalDeviceVideoFormatPropertiesKhr = Option<
 ///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_INCOMPATIBLE_DRIVER`  -
 ///   `VK_ERROR_FEATURE_NOT_PRESENT`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`VideoSessionCreateInfoKHR`]
@@ -451,7 +451,7 @@ pub type FNCreateVideoSessionKhr = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`VideoSessionKHR`]
@@ -505,7 +505,7 @@ pub type FNDestroyVideoSessionKhr = Option<
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
 ///   `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_TOO_MANY_OBJECTS`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`VideoSessionParametersCreateInfoKHR`]
@@ -553,7 +553,7 @@ pub type FNCreateVideoSessionParametersKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_TOO_MANY_OBJECTS`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`Device`]
 /// - [`VideoSessionParametersKHR`]
 /// - [`VideoSessionParametersUpdateInfoKHR`]
@@ -595,7 +595,7 @@ pub type FNUpdateVideoSessionParametersKhr = Option<
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`VideoSessionParametersKHR`]
@@ -664,7 +664,7 @@ pub type FNDestroyVideoSessionParametersKhr = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`Device`]
 /// - [`VideoGetMemoryPropertiesKHR`]
 /// - [`VideoSessionKHR`]
@@ -717,7 +717,7 @@ pub type FNGetVideoSessionMemoryRequirementsKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`Device`]
 /// - [`VideoBindMemoryKHR`]
 /// - [`VideoSessionKHR`]
@@ -767,7 +767,7 @@ pub type FNBindVideoSessionMemoryKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`CommandBuffer`]
 /// - [`VideoBeginCodingInfoKHR`]
 ///
@@ -814,7 +814,7 @@ pub type FNCmdBeginVideoCodingKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`CommandBuffer`]
 /// - [`VideoCodingControlInfoKHR`]
 ///
@@ -861,7 +861,7 @@ pub type FNCmdControlVideoCodingKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`CommandBuffer`]
 /// - [`VideoEndCodingInfoKHR`]
 ///
@@ -896,7 +896,7 @@ pub type FNCmdEndVideoCodingKhr = Option<
 /// - [`COMPLETE`] specifies that operations completed successfully and the query result is
 ///   available.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -1006,7 +1006,7 @@ impl std::fmt::Display for QueryResultStatusKHR {
 /// - [`DECODE_H264_EXT`] - H.264 video decode operations are supported by this queue family.
 /// - [`DECODE_H265_EXT`] - H.265 video decode operations are supported by this queue family.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCodecOperationFlagsKHR`]
 /// - [`VideoProfileKHR`]
 ///
@@ -1143,7 +1143,7 @@ impl std::fmt::Display for VideoCodecOperationFlagBitsKHR {
 /// - [`444`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr components have the same
 ///   sample rate, thus there is no chroma subsampling.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1260,7 +1260,7 @@ impl std::fmt::Display for VideoChromaSubsamplingFlagBitsKHR {
 /// - [`VIDEO_COMPONENT_DEPTH10`] - the format component bit depth is 10 bits.
 /// - [`VIDEO_COMPONENT_DEPTH12`] - the format component bit depth is 12 bits.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoComponentBitDepthFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1367,7 +1367,7 @@ impl std::fmt::Display for VideoComponentBitDepthFlagBitsKHR {
 ///   the DPB  **must**  be created as single multi-layered image where each layer represents one of
 ///   the DPB Video Picture Resources.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCapabilityFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1456,7 +1456,7 @@ impl std::fmt::Display for VideoCapabilityFlagBitsKHR {
 ///# Description
 /// - [`PROTECTED_CONTENT`] - create the video session for use with protected video content
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoSessionCreateFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1543,7 +1543,7 @@ impl std::fmt::Display for VideoSessionCreateFlagBitsKHR {
 /// - [`POWER`] defines power efficient case.
 /// - [`QUALITY`] defines quality focus case.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1656,7 +1656,7 @@ impl std::fmt::Display for VideoCodingQualityPresetFlagBitsKHR {
 ///This  **may**  be used when different video sequences are processed with the same
 ///session.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCodingControlFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1764,7 +1764,7 @@ impl std::fmt::Display for VideoCodingControlFlagBitsKHR {
 /// - [`DECODE_H264_EXT`] - H.264 video decode operations are supported by this queue family.
 /// - [`DECODE_H265_EXT`] - H.265 video decode operations are supported by this queue family.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCodecOperationFlagsKHR`]
 /// - [`VideoProfileKHR`]
 ///
@@ -2112,7 +2112,7 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
 ///   the DPB  **must**  be created as single multi-layered image where each layer represents one of
 ///   the DPB Video Picture Resources.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCapabilityFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -2400,7 +2400,7 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
 ///# Description
 /// - [`PROTECTED_CONTENT`] - create the video session for use with protected video content
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoSessionCreateFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -2677,7 +2677,7 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
 ///typedef VkFlags VkVideoBeginCodingFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoBeginCodingInfoKHR`]
 ///
 ///# Notes and documentation
@@ -2710,7 +2710,7 @@ impl std::fmt::Debug for VideoBeginCodingFlagsKHR {
 ///typedef VkFlags VkVideoEndCodingFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoEndCodingInfoKHR`]
 ///
 ///# Notes and documentation
@@ -2752,7 +2752,7 @@ impl std::fmt::Debug for VideoEndCodingFlagsKHR {
 /// - [`POWER`] defines power efficient case.
 /// - [`QUALITY`] defines quality focus case.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3068,7 +3068,7 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
 ///This  **may**  be used when different video sequences are processed with the same
 ///session.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoCodingControlFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3363,7 +3363,7 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
 /// - [`444`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr components have the same
 ///   sample rate, thus there is no chroma subsampling.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -3699,7 +3699,7 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
 /// - [`VIDEO_COMPONENT_DEPTH10`] - the format component bit depth is 10 bits.
 /// - [`VIDEO_COMPONENT_DEPTH12`] - the format component bit depth is 12 bits.
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoComponentBitDepthFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -4025,7 +4025,7 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 ///   [`VideoCodecOperationFlagBitsKHR`] values
 /// - [`video_codec_operations`] **must**  not be `0`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoCodecOperationFlagsKHR`]
 ///
@@ -4142,7 +4142,7 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -4285,7 +4285,7 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 ///   [`VideoProfileKHR`] structures
 /// - [`profile_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`PhysicalDeviceVideoFormatInfoKHR`]
 /// - [`StructureType`]
 /// - [`VideoProfileKHR`]
@@ -4435,7 +4435,7 @@ impl<'lt> VideoProfilesKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 /// - [`VideoProfilesKHR`]
@@ -4585,7 +4585,7 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_FORMAT_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`Format`]
 /// - [`StructureType`]
 /// - [`get_physical_device_video_format_properties_khr`]
@@ -4717,7 +4717,7 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 ///   values
 /// - [`chroma_bit_depth`] **must**  not be `0`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoChromaSubsamplingFlagsKHR`]
 /// - [`VideoCodecOperationFlagBitsKHR`]
@@ -4935,7 +4935,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265ProfileEXT<'lt>> for VideoProf
 ///   [`VideoEncodeCapabilitiesKHR`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`DeviceSize`]
 /// - [`ExtensionProperties`]
 /// - [`Extent2D`]
@@ -5200,7 +5200,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeCapabilitiesKHR<'lt>> for VideoCap
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`MemoryRequirements2`]
 /// - [`StructureType`]
 /// - [`get_video_session_memory_requirements_khr`]
@@ -5350,7 +5350,7 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`DeviceMemory`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
@@ -5517,7 +5517,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`image_view_binding`] **must**  be a valid [`ImageView`] handle
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`Extent2D`]
 /// - [`ImageView`]
 /// - [`Offset2D`]
@@ -5684,7 +5684,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 /// - [`picture_resource`] **must**  be a valid pointer to a valid [`VideoPictureResourceKHR`]
 ///   structure
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoBeginCodingInfoKHR`]
 /// - [`VideoDecodeInfoKHR`]
@@ -5890,7 +5890,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265DpbSlotInfoEXT<'lt>> for Video
 /// - [`std_header_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`]
 ///   structure
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`ExtensionProperties`]
 /// - [`Extent2D`]
 /// - [`Format`]
@@ -6184,7 +6184,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoSessionKHR`]
 /// - [`VideoSessionParametersKHR`]
@@ -6346,7 +6346,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265SessionParametersCreateInfoEXT
 ///   [`VideoEncodeH265SessionParametersAddInfoEXT`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`update_video_session_parameters_khr`]
 ///
@@ -6514,7 +6514,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265SessionParametersAddInfoEXT<'l
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoBeginCodingFlagsKHR`]
 /// - [`VideoCodingQualityPresetFlagsKHR`]
@@ -6741,7 +6741,7 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoEndCodingFlagsKHR`]
 /// - [`cmd_end_video_coding_khr`]
@@ -6856,7 +6856,7 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`flags`] **must**  be a valid combination of [`VideoCodingControlFlagBitsKHR`] values
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`StructureType`]
 /// - [`VideoCodingControlFlagsKHR`]
 /// - [`cmd_control_video_coding_khr`]
@@ -6975,7 +6975,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
     ///   `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`PhysicalDevice`]
     /// - [`VideoCapabilitiesKHR`]
     /// - [`VideoProfileKHR`]
@@ -7101,7 +7101,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceVideoFormatInfoKHR`]
     /// - [`VideoFormatPropertiesKHR`]
@@ -7203,7 +7203,7 @@ impl Device {
     ///   `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_INCOMPATIBLE_DRIVER`  -
     ///   `VK_ERROR_FEATURE_NOT_PRESENT`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`VideoSessionCreateInfoKHR`]
@@ -7279,7 +7279,7 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`VideoSessionKHR`]
@@ -7358,7 +7358,7 @@ impl VideoSessionKHR {
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  -
     ///   `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_TOO_MANY_OBJECTS`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`VideoSessionParametersCreateInfoKHR`]
@@ -7440,7 +7440,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_TOO_MANY_OBJECTS`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`Device`]
     /// - [`VideoSessionParametersKHR`]
     /// - [`VideoSessionParametersUpdateInfoKHR`]
@@ -7507,7 +7507,7 @@ impl Device {
     /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
     ///   [`AllocationCallbacks`] structure
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`VideoSessionParametersKHR`]
@@ -7600,7 +7600,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`Device`]
     /// - [`VideoGetMemoryPropertiesKHR`]
     /// - [`VideoSessionKHR`]
@@ -7692,7 +7692,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`Device`]
     /// - [`VideoBindMemoryKHR`]
     /// - [`VideoSessionKHR`]
@@ -7769,7 +7769,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`CommandBuffer`]
     /// - [`VideoBeginCodingInfoKHR`]
     ///
@@ -7836,7 +7836,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`CommandBuffer`]
     /// - [`VideoCodingControlInfoKHR`]
     ///
@@ -7906,7 +7906,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_video_queue`]
+    /// - [`khr_video_queue`]
     /// - [`CommandBuffer`]
     /// - [`VideoEndCodingInfoKHR`]
     ///
@@ -7952,7 +7952,7 @@ impl CommandBuffer {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoBeginCodingInfoKHR`]
 /// - [`VideoSessionParametersCreateInfoKHR`]
 /// - [`bind_video_session_memory_khr`]
@@ -8053,7 +8053,7 @@ impl Unique<VideoSessionKHR> {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionParametersKHR)
 ///```
 ///# Related
-/// - [`VK_KHR_video_queue`]
+/// - [`khr_video_queue`]
 /// - [`VideoBeginCodingInfoKHR`]
 /// - [`VideoSessionParametersCreateInfoKHR`]
 /// - [`create_video_session_parameters_khr`]

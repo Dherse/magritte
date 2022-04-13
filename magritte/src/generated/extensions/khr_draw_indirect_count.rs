@@ -1,6 +1,6 @@
 //![VK_KHR_draw_indirect_count](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_draw_indirect_count.html) - device extension
 //!# Description
-//!This extension is based off the `[`VK_AMD_draw_indirect_count`]`
+//!This extension is based off the `[`amd_draw_indirect_count`]`
 //!extension.
 //!This extension allows an application to source the number of draws for
 //!indirect drawing calls from a buffer.Applications might want to do culling on the GPU via a

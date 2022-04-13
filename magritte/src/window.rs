@@ -5,7 +5,7 @@ use raw_window_handle::{HasRawWindowHandle, RawWindowHandle};
 use crate::{
     extensions::{self, khr_surface::SurfaceKHR},
     vulkan1_0::{AllocationCallbacks, Instance, VulkanResultCodes},
-    Extensions, Unique, VulkanResult,
+    InstanceExtensions, Unique, VulkanResult,
 };
 
 /// Create a surface from a raw surface handle.
@@ -104,8 +104,8 @@ pub unsafe fn create_surface(
 /// The returned extensions will include all extension dependencies.
 pub fn enable_required_extensions<W: HasRawWindowHandle>(
     window_handle: W,
-    extensions: Extensions,
-) -> Result<Extensions, VulkanResultCodes> {
+    extensions: InstanceExtensions,
+) -> Result<InstanceExtensions, VulkanResultCodes> {
     let extensions = match window_handle.raw_window_handle() {
         #[cfg(target_os = "windows")]
         RawWindowHandle::Win32(_) => extensions.enable_khr_surface().enable_khr_win32_surface(),

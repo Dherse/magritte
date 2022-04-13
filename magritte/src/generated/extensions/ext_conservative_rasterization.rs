@@ -28,7 +28,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_conservative_rasterization]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
@@ -102,7 +102,7 @@ pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr =
 /// - [`UNDERESTIMATE`] specifies that conservative rasterization is enabled in underestimation
 ///   mode.
 ///# Related
-/// - [`VK_EXT_conservative_rasterization`]
+/// - [`ext_conservative_rasterization`]
 /// - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -195,7 +195,7 @@ impl std::fmt::Display for ConservativeRasterizationModeEXT {
 ///typedef VkFlags VkPipelineRasterizationConservativeStateCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_conservative_rasterization`]
+/// - [`ext_conservative_rasterization`]
 /// - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -296,7 +296,7 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_conservative_rasterization`]
+/// - [`ext_conservative_rasterization`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -755,7 +755,7 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 /// - [`conservative_rasterization_mode`] **must**  be a valid [`ConservativeRasterizationModeEXT`]
 ///   value
 ///# Related
-/// - [`VK_EXT_conservative_rasterization`]
+/// - [`ext_conservative_rasterization`]
 /// - [`ConservativeRasterizationModeEXT`]
 /// - [`PipelineRasterizationConservativeStateCreateFlagsEXT`]
 /// - [`StructureType`]

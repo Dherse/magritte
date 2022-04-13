@@ -43,8 +43,6 @@ impl<'a> Handle<'a> {
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
-        // TODO: fns_
-
         imports.push("crate::Handle");
 
         let parent = if let Some(parent) = self.parent() {
@@ -140,11 +138,12 @@ impl<'a> Handle<'a> {
             quote! { () }
         };
 
-        let metadata = if self.name() == "Instance" {
-            imports.push("atomic::Atomic");
-            imports.push("crate::extensions::Extensions");
-            imports.push("std::sync::atomic::Ordering");
-            quote! { Atomic<Extensions> }
+        let metadata = if self.original_name() == "VkInstance" {
+            imports.push("crate::extensions::InstanceExtensions");
+            quote! { InstanceExtensions }
+        } else if self.original_name() == "VkDevice" {
+            imports.push("crate::extensions::DeviceExtensions");
+            quote! { DeviceExtensions }
         } else {
             imports.push("std::sync::atomic::AtomicBool");
             quote! { AtomicBool }
@@ -160,8 +159,8 @@ impl<'a> Handle<'a> {
             };
 
             let extensions = match self.name() {
-                "Device" => quote! { &parent.instance().metadata().load(Ordering::Acquire) },
-                "Instance" => quote! { &metadata.load(Ordering::Acquire) },
+                "Device" => quote! { &parent.instance().metadata(), metadata },
+                "Instance" => quote! { &metadata, &Default::default() },
                 _ => unreachable!(),
             };
 
@@ -228,6 +227,12 @@ impl<'a> Handle<'a> {
                                     );
                                 }
                             }
+                        } else if self.original_name() == "VkDevice" {
+                            quote! {
+                                self.#destroyer(
+                                    None
+                                );
+                            }
                         } else {
                             quote! {
                                 if !self.metadata().load(Ordering::Acquire) {
@@ -289,13 +294,13 @@ impl<'a> Handle<'a> {
             quote! { _ }
         };
 
-        let metadata_ident = if load_vtable.is_some() && self.name() == "Instance" {
+        let metadata_ident = if load_vtable.is_some() && (self.original_name() == "VkInstance" || self.original_name() == "VkDevice") {
             quote! { metadata }
         } else {
             quote! { _ }
         };
 
-        if self.name() != "Instance" {
+        if self.original_name() != "VkInstance" && self.original_name() != "VkDevice" {
             imports.push("std::sync::atomic::Ordering");
 
             ancestors.push(quote! {
@@ -305,15 +310,26 @@ impl<'a> Handle<'a> {
                     self.metadata().store(true, Ordering::Relaxed);
                 }
             });
-        }
+        } else if self.original_name() == "VkInstance" {
+            imports.push("crate::extensions::DeviceExtensions");
+            let ident = self.this_vtable_ident();
 
-        let instance_ext_fn = (self.name() == "Instance").then(|| {
-            quote! {
-                pub fn update_extensions(&self, extensions: Extensions) {
-                    self.metadata().store(extensions, Ordering::Relaxed);
+            ancestors.push(quote! {
+                #[doc = "Update the vtable with the list of device extensions"]
+                #[doc(hidden)]
+                #[inline]
+                pub unsafe fn update_vtable(&self, device_extensions: &DeviceExtensions) {
+                    let this = self.this;
+                    let inner = self.inner_mut_unchecked();
+                    inner.vtable = #ident::load(
+                        inner.parent.vtable().get_instance_proc_addr().unwrap(),
+                        this,
+                        &inner.metadata,
+                        device_extensions
+                    );
                 }
-            }
-        });
+            });
+        }
 
         quote_each_token! {
             out
@@ -383,8 +399,6 @@ impl<'a> Handle<'a> {
 
             impl Unique<#name> {
                 #(#ancestors)*
-
-                #instance_ext_fn
             }
         }
     }

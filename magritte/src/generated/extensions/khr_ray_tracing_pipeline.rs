@@ -20,8 +20,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.1
-//! - Requires `[`VK_KHR_spirv_1_4`]`
-//! - Requires `[`VK_KHR_acceleration_structure`]`
+//! - Requires `[`khr_spirv_1_4`]`
+//! - Requires `[`khr_acceleration_structure`]`
 //!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_tracing_pipeline]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_tracing_pipeline
@@ -116,11 +116,11 @@
 //!   changed functionality)
 //! - Added enums, structures and commands:  - `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR``VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR` to [`PipelineCreateFlagBits`]  - [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] structure  - [`DeviceOrHostAddressKHR`] and [`DeviceOrHostAddressConstKHR`] unions  - [`PipelineLibraryCreateInfoKHR`] struct  - [`RayTracingPipelineInterfaceCreateInfoKHR`] struct  - [`StridedDeviceAddressRegionKHR`] struct  - [`cmd_trace_rays_indirect_khr`] command and [`TraceRaysIndirectCommandKHR`] struct  - [`get_ray_tracing_capture_replay_shader_group_handles_khr`] (shader group capture/replay)  - [`cmd_set_ray_tracing_pipeline_stack_size_khr`] and [`get_ray_tracing_shader_group_stack_size_khr`] commands for stack size control
 //! - Functionality removed:  - `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`  - [`compile_deferred_nv`]
-//!   command (replaced with `[`VK_KHR_deferred_host_operations`]`)
+//!   command (replaced with `[`khr_deferred_host_operations`]`)
 //!(3) What are the changes between the public provisional (VK_KHR_ray_tracing
 //!v8) release and the internal provisional (VK_KHR_ray_tracing v9) release?
 //! - Require Vulkan 1.1 and SPIR-V 1.4
-//! - Added interactions with Vulkan 1.2 and `[`VK_KHR_vulkan_memory_model`]`
+//! - Added interactions with Vulkan 1.2 and `[`khr_vulkan_memory_model`]`
 //! - added creation time capture and replay flags  - added
 //!   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR` to
 //!   [`PipelineCreateFlagBits`]
@@ -128,11 +128,11 @@
 //!   [`cmd_trace_rays_khr`], [`cmd_trace_rays_indirect_khr`], to take these for the shader binding
 //!   table and use device addresses instead of buffers.
 //! - require the shader binding table buffers to have the `VK_BUFFER_USAGE_RAY_TRACING_BIT_KHR` set
-//! - make `[`VK_KHR_pipeline_library`]` an interaction instead of required extension
+//! - make `[`khr_pipeline_library`]` an interaction instead of required extension
 //! - rename the `libraries` member of [`RayTracingPipelineCreateInfoKHR`] to `pLibraryInfo` and
 //!   make it a pointer
-//! - make `[`VK_KHR_deferred_host_operations`]` an interaction instead of a required extension
-//!   (later went back on this)
+//! - make `[`khr_deferred_host_operations`]` an interaction instead of a required extension (later
+//!   went back on this)
 //! - added explicit stack size management for ray tracing pipelines  - removed the
 //!   `maxCallableSize` member of [`RayTracingPipelineInterfaceCreateInfoKHR`]  - added the
 //!   `pDynamicState` member to [`RayTracingPipelineCreateInfoKHR`]  - added
@@ -149,15 +149,14 @@
 //!   parameter for [`create_ray_tracing_pipelines_khr`]  - removed `VkDeferredOperationInfoKHR`
 //!   structure  - change deferred host creation/return parameter behavior such that the
 //!   implementation can modify such parameters until the deferred host operation completes  -
-//!   `[`VK_KHR_deferred_host_operations`]` is required again
+//!   `[`khr_deferred_host_operations`]` is required again
 //!(4) What are the changes between the internal provisional
 //!(VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
 //!v11 / VK_KHR_ray_tracing_pipeline v1) release?
 //! - refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and
-//!   decoupling ray query support from ray pipelines:  - `[`VK_KHR_acceleration_structure`]` (for
-//!   acceleration structure operations)  - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing
-//!   pipeline and shader stages)  - `[`VK_KHR_ray_query`]` (for ray queries in existing shader
-//!   stages)
+//!   decoupling ray query support from ray pipelines:  - `[`khr_acceleration_structure`]` (for
+//!   acceleration structure operations)  - `[`khr_ray_tracing_pipeline`]` (for ray tracing pipeline
+//!   and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages)
 //! - Require `Volatile` for the following builtins in the ray generation, closest hit, miss,
 //!   intersection, and callable shader stages:  - `SubgroupSize`, `SubgroupLocalInvocationId`,
 //!   `SubgroupEqMask`, `SubgroupGeMask`, `SubgroupGtMask`, `SubgroupLeMask`, `SubgroupLtMask`  -
@@ -165,7 +164,7 @@
 //! - clarify buffer usage flags for ray tracing  - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR`
 //!   is added as an alias of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` and is required on shader binding
 //!   table buffers  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used in
-//!   `[`VK_KHR_acceleration_structure`]` for `scratchData`
+//!   `[`khr_acceleration_structure`]` for `scratchData`
 //! - rename `maxRecursionDepth` to `maxRayPipelineRecursionDepth` (pipeline creation) and
 //!   `maxRayRecursionDepth` (limit) to reduce confusion
 //! - Add queryable `maxRayHitAttributeSize` limit and rename members of
@@ -212,10 +211,10 @@
 //! * - This extension requires [`SPV_KHR_ray_tracing`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_ray_tracing.html)
 //!   - This extension provides API support for [`GLSL_EXT_ray_tracing`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_ray_tracing.txt)
 //!   - This extension interacts with [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2)
-//!   and `[`VK_KHR_vulkan_memory_model`]`, adding the [shader-call-related](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-related)
+//!   and `[`khr_vulkan_memory_model`]`, adding the [shader-call-related](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-related)
 //!   relation of invocations, [shader-call-order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-order)
 //!   partial order of dynamic instances of instructions, and the [`ShaderCallKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-shadercall)
-//!   scope.  - This extension interacts with `[`VK_KHR_pipeline_library`]`, enabling pipeline
+//!   scope.  - This extension interacts with `[`khr_pipeline_library`]`, enabling pipeline
 //!   libraries to be used with ray tracing pipelines and enabling usage of
 //!   [`RayTracingPipelineInterfaceCreateInfoKHR`].
 //! * - Matthäus Chajdas, AMD  - Greg Grebe, AMD  - Nicolai Hähnle, AMD  - Tobias Hector, AMD  -
@@ -287,8 +286,8 @@ use std::{
 ///#define VK_SHADER_UNUSED_NV               VK_SHADER_UNUSED_KHR
 ///```
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_ray_tracing_pipeline`]
+/// - [`nv_ray_tracing`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -361,8 +360,8 @@ pub const KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_ray_tracing_pipeline`]
+/// - [`nv_ray_tracing`]
 /// - [`Device`]
 /// - [`Pipeline`]
 ///
@@ -432,7 +431,7 @@ pub type FNGetRayTracingShaderGroupHandlesKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`Device`]
 /// - [`Pipeline`]
 ///
@@ -531,7 +530,7 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`AllocationCallbacks`]
 /// - [`DeferredOperationKHR`]
 /// - [`Device`]
@@ -589,7 +588,7 @@ pub type FNCreateRayTracingPipelinesKhr = Option<
 /// - [`group_shader`] **must**  be a valid [`ShaderGroupShaderKHR`] value
 /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`Device`]
 /// - [`Pipeline`]
 /// - [`ShaderGroupShaderKHR`]
@@ -693,8 +692,8 @@ pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -862,7 +861,7 @@ pub type FNGetRayTracingShaderGroupStackSizeKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`CommandBuffer`]
 /// - [`StridedDeviceAddressRegionKHR`]
 ///
@@ -967,8 +966,8 @@ pub type FNCmdTraceRaysKhr = Option<
 /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
 /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any
 ///   dynamic state, that state  **must**  have been set or inherited (if the
-///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
-///   so after any previously bound pipeline with the corresponding state not specified as dynamic
+///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so
+///   after any previously bound pipeline with the corresponding state not specified as dynamic
 /// - There  **must**  not have been any calls to dynamic state setting commands for any state not
 ///   specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this
 ///   command, since that pipeline was bound
@@ -1138,7 +1137,7 @@ pub type FNCmdTraceRaysKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`CommandBuffer`]
 /// - [`DeviceAddress`]
 /// - [`StridedDeviceAddressRegionKHR`]
@@ -1199,7 +1198,7 @@ pub type FNCmdTraceRaysIndirectKhr = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -1246,8 +1245,8 @@ pub type FNCmdSetRayTracingPipelineStackSizeKhr =
 ///   and  **must**  contain an intersection shader and  **may**  contain closest hit and any-hit
 ///   shaders.
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
-/// - [`VK_NV_ray_tracing`]
+/// - [`khr_ray_tracing_pipeline`]
+/// - [`nv_ray_tracing`]
 /// - [`RayTracingShaderGroupCreateInfoKHR`]
 /// - [`RayTracingShaderGroupCreateInfoNV`]
 ///
@@ -1353,7 +1352,7 @@ impl std::fmt::Display for RayTracingShaderGroupTypeKHR {
 /// - [`INTERSECTION`] uses the shader specified in the group with
 ///   [`RayTracingShaderGroupCreateInfoKHR::intersection_shader`]
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`get_ray_tracing_shader_group_stack_size_khr`]
 ///
 ///# Notes and documentation
@@ -1515,7 +1514,7 @@ impl std::fmt::Display for ShaderGroupShaderKHR {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`type_`] **must**  be a valid [`RayTracingShaderGroupTypeKHR`] value
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 /// - [`RayTracingShaderGroupTypeKHR`]
 /// - [`StructureType`]
@@ -1848,7 +1847,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, each
 ///   element of `pLibraryInfo->pLibraries` **must**  have been created with the
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR` bit set
-/// - If the `[`VK_KHR_pipeline_library`]` extension is not enabled, [`library_info`] and
+/// - If the `[`khr_pipeline_library`]` extension is not enabled, [`library_info`] and
 ///   [`library_interface`] **must**  be `NULL`
 /// - If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`, for
 ///   any element of [`groups`] with a `type` of
@@ -1900,7 +1899,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored
 ///   parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`Pipeline`]
 /// - [`PipelineCreateFlags`]
 /// - [`PipelineDynamicStateCreateInfo`]
@@ -2286,7 +2285,7 @@ unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for 
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -2622,7 +2621,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR`
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -2856,7 +2855,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
 /// - If [`size`] is not zero, [`stride`] **must**  be less than or equal to the size of the buffer
 ///   from which [`device_address`] was queried
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`DeviceAddress`]
 /// - [`DeviceSize`]
 /// - [`cmd_trace_rays_indirect_khr`]
@@ -2965,7 +2964,7 @@ impl StridedDeviceAddressRegionKHR {
 /// - [`width`] × [`height`] × [`depth`] **must**  be less than or equal to
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_dispatch_invocation_count`]
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -3074,7 +3073,7 @@ impl TraceRaysIndirectCommandKHR {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_ray_tracing_pipeline`]
+/// - [`khr_ray_tracing_pipeline`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 /// - [`StructureType`]
 ///
@@ -3232,8 +3231,8 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
-    /// - [`VK_NV_ray_tracing`]
+    /// - [`khr_ray_tracing_pipeline`]
+    /// - [`nv_ray_tracing`]
     /// - [`Device`]
     /// - [`Pipeline`]
     ///
@@ -3350,7 +3349,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`khr_ray_tracing_pipeline`]
     /// - [`Device`]
     /// - [`Pipeline`]
     ///
@@ -3478,7 +3477,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`khr_ray_tracing_pipeline`]
     /// - [`AllocationCallbacks`]
     /// - [`DeferredOperationKHR`]
     /// - [`Device`]
@@ -3577,7 +3576,7 @@ impl Device {
     /// - [`group_shader`] **must**  be a valid [`ShaderGroupShaderKHR`] value
     /// - [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`khr_ray_tracing_pipeline`]
     /// - [`Device`]
     /// - [`Pipeline`]
     /// - [`ShaderGroupShaderKHR`]
@@ -3699,8 +3698,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -3873,7 +3872,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`khr_ray_tracing_pipeline`]
     /// - [`CommandBuffer`]
     /// - [`StridedDeviceAddressRegionKHR`]
     ///
@@ -4007,8 +4006,8 @@ impl CommandBuffer {
     /// - A valid pipeline  **must**  be bound to the pipeline bind point used by this command
     /// - If the [`Pipeline`] object bound to the pipeline bind point used by this command requires
     ///   any dynamic state, that state  **must**  have been set or inherited (if the
-    ///   `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and
-    ///   done so after any previously bound pipeline with the corresponding state not specified as
+    ///   `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done
+    ///   so after any previously bound pipeline with the corresponding state not specified as
     ///   dynamic
     /// - There  **must**  not have been any calls to dynamic state setting commands for any state
     ///   not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used
@@ -4183,7 +4182,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`khr_ray_tracing_pipeline`]
     /// - [`CommandBuffer`]
     /// - [`DeviceAddress`]
     /// - [`StridedDeviceAddressRegionKHR`]
@@ -4272,7 +4271,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_KHR_ray_tracing_pipeline`]
+    /// - [`khr_ray_tracing_pipeline`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation

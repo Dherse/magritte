@@ -19,7 +19,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_maintenance3`]`
+//! - Requires `[`khr_maintenance3`]`
 //!# Contacts
 //! - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_VALVE_mutable_descriptor_type]
 //!   @Joshua-Ashton%0A<<Here describe the issue or question you have about the
@@ -119,7 +119,7 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE`
 ///# Related
-/// - [`VK_VALVE_mutable_descriptor_type`]
+/// - [`valve_mutable_descriptor_type`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -277,7 +277,7 @@ impl<'lt> PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
 /// - If [`descriptor_type_count`] is not `0`, [`descriptor_types`] **must**  be a valid pointer to
 ///   an array of [`descriptor_type_count`] valid [`DescriptorType`] values
 ///# Related
-/// - [`VK_VALVE_mutable_descriptor_type`]
+/// - [`valve_mutable_descriptor_type`]
 /// - [`DescriptorType`]
 /// - [`MutableDescriptorTypeCreateInfoVALVE`]
 ///
@@ -388,7 +388,7 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
 ///   **must**  be a valid pointer to an array of [`mutable_descriptor_type_list_count`] valid
 ///   [`MutableDescriptorTypeListVALVE`] structures
 ///# Related
-/// - [`VK_VALVE_mutable_descriptor_type`]
+/// - [`valve_mutable_descriptor_type`]
 /// - [`MutableDescriptorTypeListVALVE`]
 /// - [`StructureType`]
 ///

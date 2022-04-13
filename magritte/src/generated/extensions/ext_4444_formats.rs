@@ -14,7 +14,7 @@
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_4444_formats]
 //!   @Joshua-Ashton%0A<<Here describe the issue or question you have about the VK_EXT_4444_formats
@@ -90,7 +90,7 @@ pub const EXT_4444_FORMATS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_4444_formats`]
+/// - [`ext_4444_formats`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

@@ -3,7 +3,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_video_decode_queue`]`
+//! - Requires `[`khr_video_decode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -92,7 +92,7 @@ pub const EXT_VIDEO_DECODE_H265_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_PROFILE_EXT`
 ///# Related
-/// - [`VK_EXT_video_decode_h265`]
+/// - [`ext_video_decode_h265`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -210,7 +210,7 @@ impl<'lt> VideoDecodeH265ProfileEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`
 ///# Related
-/// - [`VK_EXT_video_decode_h265`]
+/// - [`ext_video_decode_h265`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -372,7 +372,7 @@ impl<'lt> VideoDecodeH265CapabilitiesEXT<'lt> {
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_decode_h265`]
+/// - [`ext_video_decode_h265`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH265SessionParametersCreateInfoEXT`]
 ///
@@ -587,7 +587,7 @@ impl<'lt> VideoDecodeH265SessionParametersAddInfoEXT<'lt> {
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoDecodeH265SessionParametersAddInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_video_decode_h265`]
+/// - [`ext_video_decode_h265`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH265SessionParametersAddInfoEXT`]
 ///
@@ -768,7 +768,7 @@ impl<'lt> VideoDecodeH265SessionParametersCreateInfoEXT<'lt> {
 ///   values
 /// - [`slices_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_decode_h265`]
+/// - [`ext_video_decode_h265`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -924,7 +924,7 @@ impl<'lt> VideoDecodeH265PictureInfoEXT<'lt> {
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoDecodeH265ReferenceInfo`] value
 ///# Related
-/// - [`VK_EXT_video_decode_h265`]
+/// - [`ext_video_decode_h265`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

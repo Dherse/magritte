@@ -13,7 +13,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Shahbaz Youssefi [syoussefi](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_depth_clip_control]
 //!   @syoussefi%0A<<Here describe the issue or question you have about the
@@ -103,7 +103,7 @@ pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_depth_clip_control`]
+/// - [`ext_depth_clip_control`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -244,7 +244,7 @@ impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT`
 ///# Related
-/// - [`VK_EXT_depth_clip_control`]
+/// - [`ext_depth_clip_control`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

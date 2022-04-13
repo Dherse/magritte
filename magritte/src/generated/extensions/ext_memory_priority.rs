@@ -12,7 +12,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_priority]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_priority
@@ -80,7 +80,7 @@ pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_memory_priority`]
+/// - [`ext_memory_priority`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -226,7 +226,7 @@ impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`
 ///# Related
-/// - [`VK_EXT_memory_priority`]
+/// - [`ext_memory_priority`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

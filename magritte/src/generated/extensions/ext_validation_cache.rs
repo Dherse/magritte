@@ -131,7 +131,7 @@ pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`ValidationCacheCreateInfoEXT`]
@@ -187,7 +187,7 @@ pub type FNCreateValidationCacheExt = Option<
 ///## Host Synchronization
 /// - Host access to [`validation_cache`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`ValidationCacheEXT`]
@@ -274,7 +274,7 @@ pub type FNDestroyValidationCacheExt = Option<
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`Device`]
 /// - [`ValidationCacheEXT`]
 ///
@@ -332,7 +332,7 @@ pub type FNGetValidationCacheDataExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`Device`]
 /// - [`ValidationCacheEXT`]
 ///
@@ -366,7 +366,7 @@ pub type FNMergeValidationCachesExt = Option<
 ///# Description
 /// - [`ONE`] specifies version one of the validation cache.
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`create_validation_cache_ext`]
 /// - [`get_validation_cache_data_ext`]
 ///
@@ -449,7 +449,7 @@ impl std::fmt::Display for ValidationCacheHeaderVersionEXT {
 ///typedef VkFlags VkValidationCacheCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`ValidationCacheCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -512,7 +512,7 @@ impl std::fmt::Debug for ValidationCacheCreateFlagsEXT {
 /// - If [`initial_data_size`] is not `0`, [`initial_data`] **must**  be a valid pointer to an array
 ///   of [`initial_data_size`] bytes
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`StructureType`]
 /// - [`ValidationCacheCreateFlagsEXT`]
 /// - [`create_validation_cache_ext`]
@@ -672,7 +672,7 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT`
 /// - [`validation_cache`] **must**  be a valid [`ValidationCacheEXT`] handle
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`StructureType`]
 /// - [`ValidationCacheEXT`]
 ///
@@ -803,7 +803,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_validation_cache`]
+    /// - [`ext_validation_cache`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`ValidationCacheCreateInfoEXT`]
@@ -890,7 +890,7 @@ impl Device {
     ///## Host Synchronization
     /// - Host access to [`validation_cache`] **must**  be externally synchronized
     ///# Related
-    /// - [`VK_EXT_validation_cache`]
+    /// - [`ext_validation_cache`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`ValidationCacheEXT`]
@@ -1001,7 +1001,7 @@ impl Device {
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_validation_cache`]
+    /// - [`ext_validation_cache`]
     /// - [`Device`]
     /// - [`ValidationCacheEXT`]
     ///
@@ -1086,7 +1086,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_validation_cache`]
+    /// - [`ext_validation_cache`]
     /// - [`Device`]
     /// - [`ValidationCacheEXT`]
     ///
@@ -1146,7 +1146,7 @@ impl Device {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkValidationCacheEXT)
 ///```
 ///# Related
-/// - [`VK_EXT_validation_cache`]
+/// - [`ext_validation_cache`]
 /// - [`ShaderModuleValidationCacheCreateInfoEXT`]
 /// - [`create_validation_cache_ext`]
 /// - [`destroy_validation_cache_ext`]

@@ -78,7 +78,7 @@ pub const EXT_FILTER_CUBIC_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT`
 /// - [`image_view_type`] **must**  be a valid [`ImageViewType`] value
 ///# Related
-/// - [`VK_EXT_filter_cubic`]
+/// - [`ext_filter_cubic`]
 /// - [`ImageViewType`]
 /// - [`StructureType`]
 ///
@@ -203,7 +203,7 @@ impl<'lt> PhysicalDeviceImageViewImageFormatInfoEXT<'lt> {
 ///   [`PhysicalDeviceImageViewImageFormatInfoEXT`] structure with an `imageViewType` that is
 ///   compatible with `imageType`
 ///# Related
-/// - [`VK_EXT_filter_cubic`]
+/// - [`ext_filter_cubic`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

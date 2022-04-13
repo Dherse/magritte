@@ -11,7 +11,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory`]`
+//! - Requires `[`khr_external_memory`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_win32]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -121,7 +121,7 @@ pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_external_memory_win32`]
+/// - [`khr_external_memory_win32`]
 /// - [`Device`]
 /// - [`MemoryGetWin32HandleInfoKHR`]
 ///
@@ -176,7 +176,7 @@ pub type FNGetMemoryWin32HandleKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_KHR_external_memory_win32`]
+/// - [`khr_external_memory_win32`]
 /// - [`Device`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`MemoryWin32HandlePropertiesKHR`]
@@ -258,7 +258,7 @@ pub type FNGetMemoryWin32HandlePropertiesKhr = Option<
 /// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_memory_win32`]
+/// - [`khr_external_memory_win32`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
@@ -444,7 +444,7 @@ impl<'lt> ImportMemoryWin32HandleInfoKHR<'lt> {
 /// - If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid
 ///   [`SECURITY_ATTRIBUTES`] value
 ///# Related
-/// - [`VK_KHR_external_memory_win32`]
+/// - [`khr_external_memory_win32`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -595,7 +595,7 @@ impl<'lt> ExportMemoryWin32HandleInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_external_memory_win32`]
+/// - [`khr_external_memory_win32`]
 /// - [`StructureType`]
 /// - [`get_memory_win32_handle_properties_khr`]
 ///
@@ -723,7 +723,7 @@ impl<'lt> MemoryWin32HandlePropertiesKHR<'lt> {
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_memory_win32`]
+/// - [`khr_external_memory_win32`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
@@ -861,7 +861,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_external_memory_win32`]
+    /// - [`khr_external_memory_win32`]
     /// - [`Device`]
     /// - [`MemoryGetWin32HandleInfoKHR`]
     ///
@@ -941,7 +941,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_KHR_external_memory_win32`]
+    /// - [`khr_external_memory_win32`]
     /// - [`Device`]
     /// - [`ExternalMemoryHandleTypeFlagBits`]
     /// - [`MemoryWin32HandlePropertiesKHR`]

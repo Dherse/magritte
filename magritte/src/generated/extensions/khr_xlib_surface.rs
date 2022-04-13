@@ -2,14 +2,14 @@
 //!# Description
 //!The [`VK_KHR_xlib_surface`] extension is an instance extension.
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-//!the `[`VK_KHR_surface`]` extension) that refers to an X11 [`Window`],
+//!the `[`khr_surface`]` extension) that refers to an X11 [`Window`],
 //!using the Xlib client-side library, as well as a query to determine support
 //!for rendering via Xlib.
 //!# Revision
 //!6
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_surface`]`
+//! - Requires `[`khr_surface`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_xlib_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_xlib_surface
@@ -122,7 +122,7 @@ pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_KHR_xlib_surface`]
+/// - [`khr_xlib_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
@@ -171,7 +171,7 @@ pub type FNCreateXlibSurfaceKhr = Option<
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
 ///# Related
-/// - [`VK_KHR_xlib_surface`]
+/// - [`khr_xlib_surface`]
 /// - [`PhysicalDevice`]
 ///
 ///# Notes and documentation
@@ -197,7 +197,7 @@ pub type FNGetPhysicalDeviceXlibPresentationSupportKhr = Option<
 ///typedef VkFlags VkXlibSurfaceCreateFlagsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_xlib_surface`]
+/// - [`khr_xlib_surface`]
 /// - [`XlibSurfaceCreateInfoKHR`]
 ///
 ///# Notes and documentation
@@ -252,7 +252,7 @@ impl std::fmt::Debug for XlibSurfaceCreateFlagsKHR {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
 ///# Related
-/// - [`VK_KHR_xlib_surface`]
+/// - [`khr_xlib_surface`]
 /// - [`StructureType`]
 /// - [`XlibSurfaceCreateFlagsKHR`]
 /// - [`create_xlib_surface_khr`]
@@ -414,7 +414,7 @@ impl Instance {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_KHR_xlib_surface`]
+    /// - [`khr_xlib_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]
@@ -494,7 +494,7 @@ impl PhysicalDevice {
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`dpy`] **must**  be a valid pointer to a [`Display`] value
     ///# Related
-    /// - [`VK_KHR_xlib_surface`]
+    /// - [`khr_xlib_surface`]
     /// - [`PhysicalDevice`]
     ///
     ///# Notes and documentation

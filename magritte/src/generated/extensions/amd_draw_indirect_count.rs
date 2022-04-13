@@ -7,7 +7,7 @@
 //!# Revision
 //!2
 //!# Dependencies
-//! - *Promoted* to `[`VK_KHR_draw_indirect_count`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+//! - *Promoted* to `[`khr_draw_indirect_count`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
 //!# Contacts
@@ -25,7 +25,7 @@
 //! - Revision 1, 2016-07-21 (Matthaeus Chajdas)  - Initial draft
 //!# Other info
 //! * 2016-08-23
-//! * - Promoted to `[`VK_KHR_draw_indirect_count`]`
+//! * - Promoted to `[`khr_draw_indirect_count`]`
 //! * No known IP claims.
 //! * - Matthaeus G. Chajdas, AMD  - Derrick Owens, AMD  - Graham Sellers, AMD  - Daniel Rakos, AMD
 //!   - Dominik Witczak, AMD

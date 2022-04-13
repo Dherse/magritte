@@ -1,15 +1,15 @@
 //![VK_GGP_frame_token](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_GGP_frame_token.html) - device extension
 //!# Description
-//!This extension allows an application that uses the `[`VK_KHR_swapchain`]`
+//!This extension allows an application that uses the `[`khr_swapchain`]`
 //!extension in combination with a Google Games Platform surface provided by
-//!the `[`VK_GGP_stream_descriptor_surface`]` extension to associate a
+//!the `[`ggp_stream_descriptor_surface`]` extension to associate a
 //!Google Games Platform frame token with a present operation.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_GGP_stream_descriptor_surface`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`ggp_stream_descriptor_surface`]`
 //!# Contacts
 //! - Jean-Francois Roy [jfroy](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GGP_frame_token]
 //!   @jfroy%0A<<Here describe the issue or question you have about the VK_GGP_frame_token
@@ -51,7 +51,7 @@ pub const GGP_FRAME_TOKEN_SPEC_VERSION: u32 = 1;
 pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_GGP_frame_token");
 ///[VkPresentFrameTokenGGP](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentFrameTokenGGP.html) - The Google Games Platform frame token
 ///# C Specifications
-///When the `[`VK_GGP_frame_token`]` extension is enabled, a Google Games
+///When the `[`ggp_frame_token`]` extension is enabled, a Google Games
 ///Platform frame token  **can**  be specified when presenting an image to a
 ///swapchain by adding a [`PresentFrameTokenGGP`] structure to the
 ///[`p_next`] chain of the [`PresentInfoKHR`] structure.The [`PresentFrameTokenGGP`] structure is
@@ -75,7 +75,7 @@ pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_GGP_f
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
 ///# Related
-/// - [`VK_GGP_frame_token`]
+/// - [`ggp_frame_token`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

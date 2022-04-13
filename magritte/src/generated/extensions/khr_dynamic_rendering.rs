@@ -5,7 +5,7 @@
 //!Dynamic render passes can also span across multiple primary command buffers,
 //!rather than relying on secondary command buffers.This extension also incorporates
 //! `VK_ATTACHMENT_STORE_OP_NONE_KHR` from
-//![`VK_QCOM_render_pass_store_ops`], enabling
+//![`qcom_render_pass_store_ops`], enabling
 //!applications to avoid unnecessary synchronization when an attachment is not
 //!written during a render pass.
 //!# Revision
@@ -14,7 +14,7 @@
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_dynamic_rendering]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_dynamic_rendering
@@ -29,17 +29,17 @@
 //! - Extending [`GraphicsPipelineCreateInfo`]:  - [`PipelineRenderingCreateInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDynamicRenderingFeaturesKHR`]
-//!If [`VK_AMD_mixed_attachment_samples`] is supported:
+//!If [`amd_mixed_attachment_samples`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`]:  -
 //!   [`AttachmentSampleCountInfoAMD`]
-//!If [`VK_EXT_fragment_density_map`] is supported:
+//!If [`ext_fragment_density_map`] is supported:
 //! - Extending [`RenderingInfo`]:  - [`RenderingFragmentDensityMapAttachmentInfoEXT`]
-//!If [`VK_KHR_fragment_shading_rate`] is supported:
+//!If [`khr_fragment_shading_rate`] is supported:
 //! - Extending [`RenderingInfo`]:  - [`RenderingFragmentShadingRateAttachmentInfoKHR`]
-//!If [`VK_NV_framebuffer_mixed_samples`] is supported:
+//!If [`nv_framebuffer_mixed_samples`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`]:  -
 //!   [`AttachmentSampleCountInfoNV`]
-//!If [`VK_NVX_multiview_per_view_attributes`] is supported:
+//!If [`nvx_multiview_per_view_attributes`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`], [`RenderingInfo`]:
 //!   - [`MultiviewPerViewAttributesInfoNVX`]
 //!# New enums
@@ -55,23 +55,23 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR`  - `VK_STRUCTURE_TYPE_RENDERING_INFO_KHR`
-//!If [`VK_AMD_mixed_attachment_samples`] is supported:
+//!If [`amd_mixed_attachment_samples`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD`
-//!If [`VK_EXT_fragment_density_map`] is supported:
+//!If [`ext_fragment_density_map`] is supported:
 //! - Extending [`PipelineCreateFlagBits`]:  -
 //!   `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`  -
 //!   `VK_PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT`
-//!If [`VK_KHR_fragment_shading_rate`] is supported:
+//!If [`khr_fragment_shading_rate`] is supported:
 //! - Extending [`PipelineCreateFlagBits`]:  -
 //!   `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`  -
 //!   `VK_PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR`
-//!If [`VK_NV_framebuffer_mixed_samples`] is supported:
+//!If [`nv_framebuffer_mixed_samples`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV`
-//!If [`VK_NVX_multiview_per_view_attributes`] is supported:
+//!If [`nvx_multiview_per_view_attributes`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
 //!# Version History
 //! - Revision 1, 2021-10-06 (Tobias Hector)  - Initial revision
@@ -167,8 +167,8 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
-/// - [`VK_KHR_fragment_shading_rate`]
+/// - [`khr_dynamic_rendering`]
+/// - [`khr_fragment_shading_rate`]
 /// - [`Extent2D`]
 /// - [`ImageLayout`]
 /// - [`ImageView`]
@@ -325,8 +325,8 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 /// - [`image_view`] **must**  be a valid [`ImageView`] handle
 /// - [`image_layout`] **must**  be a valid [`ImageLayout`] value
 ///# Related
-/// - [`VK_EXT_fragment_density_map`]
-/// - [`VK_KHR_dynamic_rendering`]
+/// - [`ext_fragment_density_map`]
+/// - [`khr_dynamic_rendering`]
 /// - [`ImageLayout`]
 /// - [`ImageView`]
 /// - [`StructureType`]
@@ -493,9 +493,9 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 /// - If [`depth_stencil_attachment_samples`] is not `0`, [`depth_stencil_attachment_samples`]
 ///   **must**  be a valid [`SampleCountFlagBits`] value
 ///# Related
-/// - [`VK_AMD_mixed_attachment_samples`]
-/// - [`VK_KHR_dynamic_rendering`]
-/// - [`VK_NV_framebuffer_mixed_samples`]
+/// - [`amd_mixed_attachment_samples`]
+/// - [`khr_dynamic_rendering`]
+/// - [`nv_framebuffer_mixed_samples`]
 /// - [`SampleCountFlagBits`]
 /// - [`StructureType`]
 ///
@@ -667,8 +667,8 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
 ///# Related
-/// - [`VK_KHR_dynamic_rendering`]
-/// - [`VK_NVX_multiview_per_view_attributes`]
+/// - [`khr_dynamic_rendering`]
+/// - [`nvx_multiview_per_view_attributes`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

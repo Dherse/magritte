@@ -30,7 +30,7 @@ pub mod window;
 
 pub use chaining::Chain;
 use generated::vulkan1_0::VulkanResultCodes;
-pub use generated::{extensions::Extensions, *};
+pub use generated::{extensions::{InstanceExtensions, DeviceExtensions}, *};
 pub use handles::{AsRaw, Handle, Unique};
 pub use results::VulkanResult;
 pub use version::*;

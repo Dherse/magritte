@@ -133,7 +133,7 @@ pub const AMD_BUFFER_MARKER_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_AMD
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_AMD_buffer_marker`]
+/// - [`amd_buffer_marker`]
 /// - [`Buffer`]
 /// - [`CommandBuffer`]
 /// - [`DeviceSize`]
@@ -244,7 +244,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_AMD_buffer_marker`]
+    /// - [`amd_buffer_marker`]
     /// - [`Buffer`]
     /// - [`CommandBuffer`]
     /// - [`DeviceSize`]

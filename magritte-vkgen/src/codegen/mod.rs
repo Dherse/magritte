@@ -19,7 +19,7 @@ mod unions;
 use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 
 use ahash::AHashMap;
-use proc_macro2::{Ident, Span, TokenStream};
+use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token};
 use tracing::warn;
 

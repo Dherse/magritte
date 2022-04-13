@@ -130,7 +130,7 @@ pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_inherited_viewport_scissor`]
+/// - [`nv_inherited_viewport_scissor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -331,7 +331,7 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`
 ///# Related
-/// - [`VK_NV_inherited_viewport_scissor`]
+/// - [`nv_inherited_viewport_scissor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`Viewport`]

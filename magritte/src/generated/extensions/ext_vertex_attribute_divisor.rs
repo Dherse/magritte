@@ -7,7 +7,7 @@
 //!3
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Vikram Kushwaha [vkushwaha](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_vertex_attribute_divisor]
 //!   @vkushwaha%0A<<Here describe the issue or question you have about the
@@ -95,7 +95,7 @@ pub const EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`VertexInputBindingDescription::input_rate`] **must**  be of type
 ///   `VK_VERTEX_INPUT_RATE_INSTANCE` for this [`binding`]
 ///# Related
-/// - [`VK_EXT_vertex_attribute_divisor`]
+/// - [`ext_vertex_attribute_divisor`]
 /// - [`PipelineVertexInputDivisorStateCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -195,7 +195,7 @@ impl VertexInputBindingDivisorDescriptionEXT {
 ///   [`vertex_binding_divisor_count`][`VertexInputBindingDivisorDescriptionEXT`] structures
 /// - [`vertex_binding_divisor_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_vertex_attribute_divisor`]
+/// - [`ext_vertex_attribute_divisor`]
 /// - [`StructureType`]
 /// - [`VertexInputBindingDivisorDescriptionEXT`]
 ///
@@ -339,7 +339,7 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT`
 ///# Related
-/// - [`VK_EXT_vertex_attribute_divisor`]
+/// - [`ext_vertex_attribute_divisor`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -465,7 +465,7 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_vertex_attribute_divisor`]
+/// - [`ext_vertex_attribute_divisor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

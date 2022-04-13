@@ -86,7 +86,7 @@ pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static CStr =
 ///# Description
 /// - [`EXTERNALLY_SYNCHRONIZED`] specifies that all commands that modify the created [`PipelineCache`] will be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fundamentals-threadingbehavior). When set, the implementation  **may**  skip any unnecessary processing needed to support simultaneous modification from multiple threads where allowed.
 ///# Related
-/// - [`VK_EXT_pipeline_creation_cache_control`]
+/// - [`ext_pipeline_creation_cache_control`]
 /// - [`PipelineCacheCreateFlags`]
 ///
 ///# Notes and documentation

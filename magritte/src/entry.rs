@@ -5,8 +5,6 @@
 
 use std::{any::Any, ffi::CStr, sync::Arc};
 
-use atomic::Atomic;
-
 use crate::{
     vulkan1_0::{
         AllocationCallbacks, ExtensionProperties, FNCreateInstance, FNEnumerateInstanceExtensionProperties,
@@ -14,7 +12,7 @@ use crate::{
         PFNVoidFunction, VulkanResultCodes,
     },
     vulkan1_1::FNEnumerateInstanceVersion,
-    Extensions, Unique, Version,
+    InstanceExtensions, Unique, Version,
 };
 
 pub struct Entry(pub EntryVTable, pub Box<dyn Any + Send + Sync>);
@@ -35,7 +33,7 @@ impl Entry {
         self: &Arc<Self>,
         instance_create_info: &InstanceCreateInfo<'lt>,
         allocation_callback: Option<&AllocationCallbacks<'lt>>,
-        extensions: Extensions,
+        instance_extensions: InstanceExtensions,
     ) -> Result<Unique<Instance>, VulkanResultCodes> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let fn_ = self.vtable().create_instance().unwrap();
@@ -52,7 +50,7 @@ impl Entry {
                 .unwrap_or_else(std::ptr::null),
             &mut instance,
         ) {
-            VulkanResultCodes::SUCCESS => Ok(Unique::new(self, instance, Atomic::new(extensions))),
+            VulkanResultCodes::SUCCESS => Ok(Unique::new(self, instance, instance_extensions)),
             other => Err(other),
         }
     }

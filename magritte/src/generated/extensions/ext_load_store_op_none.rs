@@ -1,7 +1,7 @@
 //![VK_EXT_load_store_op_none](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_load_store_op_none.html) - device extension
 //!# Description
 //!This extension incorporates `VK_ATTACHMENT_STORE_OP_NONE_EXT` from
-//!`[`VK_QCOM_render_pass_store_ops`]`, enabling applications to avoid
+//!`[`qcom_render_pass_store_ops`]`, enabling applications to avoid
 //!unnecessary synchronization when an attachment is not written during a
 //!render pass.Additionally, `VK_ATTACHMENT_LOAD_OP_NONE_EXT` is introduced to avoid
 //!unnecessary synchronization when an attachment is not used during a render

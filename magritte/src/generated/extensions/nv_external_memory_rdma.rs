@@ -6,7 +6,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory`]`
+//! - Requires `[`khr_external_memory`]`
 //!# Contacts
 //! - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_rdma]
 //!   @crohde%0A<<Here describe the issue or question you have about the VK_NV_external_memory_rdma
@@ -96,7 +96,7 @@ pub type RemoteAddressNV = c_void;
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_NV_external_memory_rdma`]
+/// - [`nv_external_memory_rdma`]
 /// - [`Device`]
 /// - [`MemoryGetRemoteAddressInfoNV`]
 /// - [`RemoteAddressNV`]
@@ -146,7 +146,7 @@ pub type FNGetMemoryRemoteAddressNv = Option<
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_external_memory_rdma`]
+/// - [`nv_external_memory_rdma`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -292,7 +292,7 @@ impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_NV_external_memory_rdma`]
+/// - [`nv_external_memory_rdma`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
@@ -428,7 +428,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_NV_external_memory_rdma`]
+    /// - [`nv_external_memory_rdma`]
     /// - [`Device`]
     /// - [`MemoryGetRemoteAddressInfoNV`]
     /// - [`RemoteAddressNV`]

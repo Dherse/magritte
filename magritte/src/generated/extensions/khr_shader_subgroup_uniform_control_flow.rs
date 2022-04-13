@@ -83,7 +83,7 @@ pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static CStr
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_shader_subgroup_uniform_control_flow`]
+/// - [`khr_shader_subgroup_uniform_control_flow`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///

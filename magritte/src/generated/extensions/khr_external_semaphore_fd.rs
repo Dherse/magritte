@@ -8,7 +8,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_semaphore`]`
+//! - Requires `[`khr_external_semaphore`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_fd]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
@@ -102,7 +102,7 @@ pub const KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_KHR_external_semaphore_fd`]
+/// - [`khr_external_semaphore_fd`]
 /// - [`Device`]
 /// - [`SemaphoreGetFdInfoKHR`]
 ///
@@ -155,7 +155,7 @@ pub type FNGetSemaphoreFdKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 ///# Related
-/// - [`VK_KHR_external_semaphore_fd`]
+/// - [`khr_external_semaphore_fd`]
 /// - [`Device`]
 /// - [`ImportSemaphoreFdInfoKHR`]
 ///
@@ -227,7 +227,7 @@ pub type FNImportSemaphoreFdKhr = Option<
 ///## Host Synchronization
 /// - Host access to [`semaphore`] **must**  be externally synchronized
 ///# Related
-/// - [`VK_KHR_external_semaphore_fd`]
+/// - [`khr_external_semaphore_fd`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`SemaphoreImportFlags`]
@@ -409,7 +409,7 @@ impl<'lt> ImportSemaphoreFdInfoKHR<'lt> {
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///# Related
-/// - [`VK_KHR_external_semaphore_fd`]
+/// - [`khr_external_semaphore_fd`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
@@ -549,7 +549,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_KHR_external_semaphore_fd`]
+    /// - [`khr_external_semaphore_fd`]
     /// - [`Device`]
     /// - [`SemaphoreGetFdInfoKHR`]
     ///
@@ -627,7 +627,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
     ///# Related
-    /// - [`VK_KHR_external_semaphore_fd`]
+    /// - [`khr_external_semaphore_fd`]
     /// - [`Device`]
     /// - [`ImportSemaphoreFdInfoKHR`]
     ///

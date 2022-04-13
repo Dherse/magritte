@@ -1,6 +1,6 @@
 //![VK_KHR_shared_presentable_image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_shared_presentable_image.html) - device extension
 //!# Description
-//!This extension extends `[`VK_KHR_swapchain`]` to enable creation of a
+//!This extension extends `[`khr_swapchain`]` to enable creation of a
 //!shared presentable image.
 //!This allows the application to use the image while the presention engine is
 //!accessing it, in order to reduce the latency between rendering and
@@ -9,9 +9,9 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_KHR_get_surface_capabilities2`]`
+//! - Requires `[`khr_swapchain`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_surface_capabilities2`]`
 //!# Contacts
 //! - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shared_presentable_image]
 //!   @alonorbach%0A<<Here describe the issue or question you have about the
@@ -141,7 +141,7 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cs
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 ///# Related
-/// - [`VK_KHR_shared_presentable_image`]
+/// - [`khr_shared_presentable_image`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
@@ -179,7 +179,7 @@ pub type FNGetSwapchainStatusKhr =
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
 ///# Related
-/// - [`VK_KHR_shared_presentable_image`]
+/// - [`khr_shared_presentable_image`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 ///
@@ -308,7 +308,7 @@ impl Device {
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
     ///# Related
-    /// - [`VK_KHR_shared_presentable_image`]
+    /// - [`khr_shared_presentable_image`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///

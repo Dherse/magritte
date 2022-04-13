@@ -10,10 +10,11 @@
 //!# Revision
 //!1
 //!# Dependencies
-//! - *Deprecated* by `[`VK_KHR_external_memory`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+//! - *Deprecated* by `[`khr_external_memory`]` extension  - Which in turn was *promoted* to [Vulkan
+//!   1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_NV_external_memory_capabilities`]`
+//! - Requires `[`nv_external_memory_capabilities`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_NV_external_memory
@@ -104,7 +105,7 @@ pub const NV_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NV
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
 ///# Related
-/// - [`VK_NV_external_memory`]
+/// - [`nv_external_memory`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`StructureType`]
 ///
@@ -217,7 +218,7 @@ impl<'lt> ExternalMemoryImageCreateInfoNV<'lt> {
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`]
 ///   values
 ///# Related
-/// - [`VK_NV_external_memory`]
+/// - [`nv_external_memory`]
 /// - [`ExternalMemoryHandleTypeFlagsNV`]
 /// - [`StructureType`]
 ///

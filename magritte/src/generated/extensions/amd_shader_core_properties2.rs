@@ -1,13 +1,13 @@
 //![VK_AMD_shader_core_properties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_core_properties2.html) - device extension
 //!# Description
 //!This extension exposes additional shader core properties for a target
-//!physical device through the `[`VK_KHR_get_physical_device_properties2`]`
+//!physical device through the `[`khr_get_physical_device_properties2`]`
 //!extension.
 //!# Revision
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_AMD_shader_core_properties`]`
+//! - Requires `[`amd_shader_core_properties`]`
 //!# Contacts
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_core_properties2]
 //!   @anteru%0A<<Here describe the issue or question you have about the
@@ -60,7 +60,7 @@ pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///[VkShaderCorePropertiesFlagBitsAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderCorePropertiesFlagBitsAMD.html) - Bitmask specifying shader core properties
 ///# C Specifications
 ///Bits for this type  **may**  be defined by future extensions, or new versions of
-///the `[`VK_AMD_shader_core_properties2`]` extension.
+///the `[`amd_shader_core_properties2`]` extension.
 ///Possible values of the `flags` member of
 ///[`ShaderCorePropertiesFlagsAMD`] are:
 ///```c
@@ -69,7 +69,7 @@ pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///} VkShaderCorePropertiesFlagBitsAMD;
 ///```
 ///# Related
-/// - [`VK_AMD_shader_core_properties2`]
+/// - [`amd_shader_core_properties2`]
 /// - [`PhysicalDeviceShaderCoreProperties2AMD`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
 ///
@@ -143,7 +143,7 @@ impl std::fmt::Display for ShaderCorePropertiesFlagBitsAMD {
 ///[VkShaderCorePropertiesFlagBitsAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkShaderCorePropertiesFlagBitsAMD.html) - Bitmask specifying shader core properties
 ///# C Specifications
 ///Bits for this type  **may**  be defined by future extensions, or new versions of
-///the `[`VK_AMD_shader_core_properties2`]` extension.
+///the `[`amd_shader_core_properties2`]` extension.
 ///Possible values of the `flags` member of
 ///[`ShaderCorePropertiesFlagsAMD`] are:
 ///```c
@@ -152,7 +152,7 @@ impl std::fmt::Display for ShaderCorePropertiesFlagBitsAMD {
 ///} VkShaderCorePropertiesFlagBitsAMD;
 ///```
 ///# Related
-/// - [`VK_AMD_shader_core_properties2`]
+/// - [`amd_shader_core_properties2`]
 /// - [`PhysicalDeviceShaderCoreProperties2AMD`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
 ///
@@ -425,7 +425,7 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
 ///# Related
-/// - [`VK_AMD_shader_core_properties2`]
+/// - [`amd_shader_core_properties2`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
 /// - [`StructureType`]
 ///

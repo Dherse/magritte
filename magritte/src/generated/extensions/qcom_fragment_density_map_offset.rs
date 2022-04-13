@@ -7,8 +7,8 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
-//! - Requires `[`VK_EXT_fragment_density_map`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
+//! - Requires `[`ext_fragment_density_map`]`
 //!# Contacts
 //! - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_fragment_density_map_offset]
 //!   @mnetsch%0A<<Here describe the issue or question you have about the
@@ -86,7 +86,7 @@ pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &'static CStr =
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM`
 ///# Related
-/// - [`VK_QCOM_fragment_density_map_offset`]
+/// - [`qcom_fragment_density_map_offset`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -226,7 +226,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM`
 ///# Related
-/// - [`VK_QCOM_fragment_density_map_offset`]
+/// - [`qcom_fragment_density_map_offset`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
@@ -395,7 +395,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 /// - If [`fragment_density_offset_count`] is not `0`, [`fragment_density_offsets`] **must**  be a
 ///   valid pointer to an array of [`fragment_density_offset_count`][`Offset2D`] structures
 ///# Related
-/// - [`VK_QCOM_fragment_density_map_offset`]
+/// - [`qcom_fragment_density_map_offset`]
 /// - [`Offset2D`]
 /// - [`StructureType`]
 ///

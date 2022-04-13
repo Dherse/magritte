@@ -13,7 +13,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Yiwei Zhang [zhangyiwei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_device_memory_report]
 //!   @zhangyiwei%0A<<Here describe the issue or question you have about the
@@ -42,7 +42,7 @@
 //!Each ICD just handles its own implementation of this extension, and this
 //!extension will only be directly exposed from the ICD.
 //!So we can avoid the extra implementation complexity used to accommodate the
-//!flexibility of `[`VK_EXT_debug_utils`]` extension.2) Can we extend and use the existing internal
+//!flexibility of `[`ext_debug_utils`]` extension.2) Can we extend and use the existing internal
 //! allocation callbacks instead
 //!of adding the new callback structure in this extension? **RESOLVED** : No.
 //!Our memory reporting layer that combines this information with other memory
@@ -186,7 +186,7 @@ pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///# Description
 ///The callback  **must**  not make calls to any Vulkan commands.
 ///# Related
-/// - [`VK_EXT_device_memory_report`]
+/// - [`ext_device_memory_report`]
 /// - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -228,7 +228,7 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 /// - [`ALLOCATION_FAILED`] specifies this event corresponds to the failed allocation of an internal
 ///   device memory object or a [`DeviceMemory`].
 ///# Related
-/// - [`VK_EXT_device_memory_report`]
+/// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
 ///
 ///# Notes and documentation
@@ -333,7 +333,7 @@ impl std::fmt::Display for DeviceMemoryReportEventTypeEXT {
 ///typedef VkFlags VkDeviceMemoryReportFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_device_memory_report`]
+/// - [`ext_device_memory_report`]
 /// - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
 ///
@@ -389,7 +389,7 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
 ///# Related
-/// - [`VK_EXT_device_memory_report`]
+/// - [`ext_device_memory_report`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -538,7 +538,7 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 /// - [`user_data`] **must**  be a pointer value
 ///# Related
 /// - [`PFNDeviceMemoryReportCallbackEXT`]
-/// - [`VK_EXT_device_memory_report`]
+/// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportFlagsEXT`]
 /// - [`StructureType`]
 ///
@@ -736,7 +736,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_EXT_device_memory_report`]
+/// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportEventTypeEXT`]
 /// - [`DeviceMemoryReportFlagsEXT`]
 /// - [`DeviceSize`]

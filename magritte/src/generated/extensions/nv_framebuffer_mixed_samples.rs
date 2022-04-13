@@ -101,7 +101,7 @@ pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = crate::cs
 /// - [`ALPHA`] specifies that the alpha component is multiplied by the modulation factor.
 /// - [`RGBA`] specifies that all components are multiplied by the modulation factor.
 ///# Related
-/// - [`VK_NV_framebuffer_mixed_samples`]
+/// - [`nv_framebuffer_mixed_samples`]
 /// - [`PipelineCoverageModulationStateCreateInfoNV`]
 ///
 ///# Notes and documentation
@@ -190,7 +190,7 @@ impl std::fmt::Display for CoverageModulationModeNV {
 ///typedef VkFlags VkPipelineCoverageModulationStateCreateFlagsNV;
 ///```
 ///# Related
-/// - [`VK_NV_framebuffer_mixed_samples`]
+/// - [`nv_framebuffer_mixed_samples`]
 /// - [`PipelineCoverageModulationStateCreateInfoNV`]
 ///
 ///# Notes and documentation
@@ -291,7 +291,7 @@ impl std::fmt::Debug for PipelineCoverageModulationStateCreateFlagsNV {
 /// - [`flags`] **must**  be `0`
 /// - [`coverage_modulation_mode`] **must**  be a valid [`CoverageModulationModeNV`] value
 ///# Related
-/// - [`VK_NV_framebuffer_mixed_samples`]
+/// - [`nv_framebuffer_mixed_samples`]
 /// - [`Bool32`]
 /// - [`CoverageModulationModeNV`]
 /// - [`PipelineCoverageModulationStateCreateFlagsNV`]

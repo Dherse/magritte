@@ -107,7 +107,7 @@ pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// - [`STRICT`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
 /// - [`RELAXED`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
 ///# Related
-/// - [`VK_AMD_rasterization_order`]
+/// - [`amd_rasterization_order`]
 /// - [`PipelineRasterizationStateRasterizationOrderAMD`]
 ///
 ///# Notes and documentation
@@ -204,13 +204,13 @@ impl std::fmt::Display for RasterizationOrderAMD {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD`
 /// - [`rasterization_order`] **must**  be a valid [`RasterizationOrderAMD`] value
-///If the `[`VK_AMD_rasterization_order`]` device extension is not enabled
+///If the `[`amd_rasterization_order`]` device extension is not enabled
 ///or the application does not request a particular rasterization order through
 ///specifying a [`PipelineRasterizationStateRasterizationOrderAMD`]
 ///structure then the rasterization order used by the graphics pipeline
 ///defaults to `VK_RASTERIZATION_ORDER_STRICT_AMD`.
 ///# Related
-/// - [`VK_AMD_rasterization_order`]
+/// - [`amd_rasterization_order`]
 /// - [`RasterizationOrderAMD`]
 /// - [`StructureType`]
 ///

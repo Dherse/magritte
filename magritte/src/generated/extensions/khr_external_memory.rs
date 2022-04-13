@@ -12,7 +12,7 @@
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory_capabilities`]`
+//! - Requires `[`khr_external_memory_capabilities`]`
 //!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_external_memory
@@ -32,7 +32,7 @@
 //!# Known issues & F.A.Q
 //!1) How do applications correlate two physical devices across process or
 //!Vulkan instance boundaries? **RESOLVED** : New device ID fields have been introduced by
-//!`[`VK_KHR_external_memory_capabilities`]`.
+//!`[`khr_external_memory_capabilities`]`.
 //!These fields, combined with the existing
 //![`PhysicalDeviceProperties::driver_version`] field can be used to
 //!identify compatible devices across processes, drivers, and APIs.
@@ -197,8 +197,8 @@
 //!# Other info
 //! * 2016-10-20
 //! * No known IP claims.
-//! * - Interacts with `[`VK_KHR_dedicated_allocation`]`.  - Interacts with
-//!   `[`VK_NV_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core
+//! * - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts with
+//!   `[`nv_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core
 //! * - Jason Ekstrand, Intel  - Ian Elliot, Google  - Jesse Hall, Google  - Tobias Hector,
 //!   Imagination Technologies  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Matthew Netsch,
 //!   Qualcomm Technologies, Inc.  - Daniel Rakos, AMD  - Carsten Rohde, NVIDIA  - Ray Smith, ARM  -

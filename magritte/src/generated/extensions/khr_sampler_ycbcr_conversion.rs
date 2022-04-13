@@ -16,10 +16,10 @@
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_maintenance1`]`
-//! - Requires `[`VK_KHR_bind_memory2`]`
-//! - Requires `[`VK_KHR_get_memory_requirements2`]`
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_maintenance1`]`
+//! - Requires `[`khr_bind_memory2`]`
+//! - Requires `[`khr_get_memory_requirements2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Andrew Garrard [fluppeteer](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_sampler_ycbcr_conversion]
 //!   @fluppeteer%0A<<Here describe the issue or question you have about the
@@ -96,7 +96,7 @@
 //!   `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO_KHR`
-//!If [`VK_EXT_debug_report`] is supported:
+//!If [`ext_debug_report`] is supported:
 //! - Extending [`DebugReportObjectTypeEXT`]:  -
 //!   `VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT`
 //!# Version History

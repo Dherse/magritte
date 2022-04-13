@@ -7,7 +7,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostics_config]
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
@@ -79,7 +79,7 @@ pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = crate::cs
 ///   for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the
 ///   command will be associated as the marker data for the automatically inserted checkpoints.
 ///# Related
-/// - [`VK_NV_device_diagnostics_config`]
+/// - [`nv_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
 ///
 ///# Notes and documentation
@@ -189,7 +189,7 @@ impl std::fmt::Display for DeviceDiagnosticsConfigFlagBitsNV {
 ///   for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the
 ///   command will be associated as the marker data for the automatically inserted checkpoints.
 ///# Related
-/// - [`VK_NV_device_diagnostics_config`]
+/// - [`nv_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
 ///
 ///# Notes and documentation
@@ -520,7 +520,7 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_device_diagnostics_config`]
+/// - [`nv_device_diagnostics_config`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -659,7 +659,7 @@ impl<'lt> PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`
 /// - [`flags`] **must**  be a valid combination of [`DeviceDiagnosticsConfigFlagBitsNV`] values
 ///# Related
-/// - [`VK_NV_device_diagnostics_config`]
+/// - [`nv_device_diagnostics_config`]
 /// - [`DeviceDiagnosticsConfigFlagsNV`]
 /// - [`StructureType`]
 ///

@@ -3,7 +3,7 @@
 //!4
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_video_decode_queue`]`
+//! - Requires `[`khr_video_decode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
 //!# Contacts
@@ -114,7 +114,7 @@ pub const EXT_VIDEO_DECODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   content where all lines belonging to the first field are grouped together in a single plane,
 ///   followed by another plane containing all lines belonging to the second field.
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -229,7 +229,7 @@ impl std::fmt::Display for VideoDecodeH264PictureLayoutFlagBitsEXT {
 ///   content where all lines belonging to the first field are grouped together in a single plane,
 ///   followed by another plane containing all lines belonging to the second field.
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -568,7 +568,7 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_PROFILE_EXT`
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH264PictureLayoutFlagsEXT`]
 ///
@@ -713,7 +713,7 @@ impl<'lt> VideoDecodeH264ProfileEXT<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT`
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`Offset2D`]
 /// - [`StructureType`]
 ///
@@ -880,7 +880,7 @@ impl<'lt> VideoDecodeH264CapabilitiesEXT<'lt> {
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH264SessionParametersCreateInfoEXT`]
 ///
@@ -1054,7 +1054,7 @@ impl<'lt> VideoDecodeH264SessionParametersAddInfoEXT<'lt> {
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoDecodeH264SessionParametersAddInfoEXT`] structure
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`StructureType`]
 /// - [`VideoDecodeH264SessionParametersAddInfoEXT`]
 ///
@@ -1219,7 +1219,7 @@ impl<'lt> VideoDecodeH264SessionParametersCreateInfoEXT<'lt> {
 ///   values
 /// - [`slices_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -1369,7 +1369,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264MvcEXT<'lt>> for VideoDecodeH2
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoDecodeH264ReferenceInfo`] value
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -1473,7 +1473,7 @@ impl<'lt> VideoDecodeH264DpbSlotInfoEXT<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_MVC_EXT`
 /// - [`std_mvc`] **must**  be a valid pointer to a valid [`StdVideoDecodeH264Mvc`] value
 ///# Related
-/// - [`VK_EXT_video_decode_h264`]
+/// - [`ext_video_decode_h264`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation

@@ -11,7 +11,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_performance_query]
 //!   @alonorbach%0A<<Here describe the issue or question you have about the
@@ -193,7 +193,7 @@ pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterDescriptionKHR`]
 /// - [`PerformanceCounterKHR`]
 /// - [`PhysicalDevice`]
@@ -247,7 +247,7 @@ pub type FNEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKhr = Optio
 ///   [`QueryPoolPerformanceCreateInfoKHR`] structure
 /// - [`p_num_passes`] **must**  be a valid pointer to a `uint32_t` value
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PhysicalDevice`]
 /// - [`QueryPoolPerformanceCreateInfoKHR`]
 ///
@@ -297,7 +297,7 @@ pub type FNGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKhr = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_TIMEOUT`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`AcquireProfilingLockInfoKHR`]
 /// - [`Device`]
 ///
@@ -333,7 +333,7 @@ pub type FNAcquireProfilingLockKhr = Option<
 ///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`Device`]
 ///
 ///# Notes and documentation
@@ -369,7 +369,7 @@ pub type FNReleaseProfilingLockKhr = Option<unsafe extern "system" fn(device: De
 ///   pass instance.
 /// - [`COMMAND`] - the performance counter scope is zero or more commands.
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterKHR`]
 ///
 ///# Notes and documentation
@@ -483,7 +483,7 @@ impl std::fmt::Display for PerformanceCounterScopeKHR {
 /// - [`HERTZ`] - the performance counter unit is a value of hertz (Hz).
 /// - [`CYCLES`] - the performance counter unit is a value of cycles.
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterKHR`]
 ///
 ///# Notes and documentation
@@ -625,7 +625,7 @@ impl std::fmt::Display for PerformanceCounterUnitKHR {
 /// - [`FLOAT32`] - the performance counter storage is a 32-bit floating-point.
 /// - [`FLOAT64`] - the performance counter storage is a 64-bit floating-point.
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterKHR`]
 ///
 ///# Notes and documentation
@@ -739,7 +739,7 @@ impl std::fmt::Display for PerformanceCounterStorageKHR {
 /// - [`CONCURRENTLY_IMPACTED`] specifies that concurrently recording the counter while other
 ///   submitted command buffers are running  **may**  impact the accuracy of the recording.
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -829,7 +829,7 @@ impl std::fmt::Display for PerformanceCounterDescriptionFlagBitsKHR {
 ///} VkAcquireProfilingLockFlagBitsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`AcquireProfilingLockFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -921,7 +921,7 @@ impl std::fmt::Display for AcquireProfilingLockFlagBitsKHR {
 /// - [`CONCURRENTLY_IMPACTED`] specifies that concurrently recording the counter while other
 ///   submitted command buffers are running  **may**  impact the accuracy of the recording.
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1212,7 +1212,7 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
 ///} VkAcquireProfilingLockFlagBitsKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`AcquireProfilingLockFlagsKHR`]
 ///
 ///# Notes and documentation
@@ -1489,7 +1489,7 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -1671,7 +1671,7 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -1816,7 +1816,7 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterScopeKHR`]
 /// - [`PerformanceCounterStorageKHR`]
 /// - [`PerformanceCounterUnitKHR`]
@@ -1996,7 +1996,7 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`
 /// - [`p_next`] **must**  be `NULL`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`PerformanceCounterDescriptionFlagsKHR`]
 /// - [`StructureType`]
 /// - [`enumerate_physical_device_queue_family_performance_query_counters_khr`]
@@ -2185,7 +2185,7 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 ///   [`counter_index_count`]`uint32_t` values
 /// - [`counter_index_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`StructureType`]
 /// - [`get_physical_device_queue_family_performance_query_passes_khr`]
 ///
@@ -2344,7 +2344,7 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 ///If [`timeout`] is `UINT64_MAX`, the function will not return until the
 ///profiling lock was acquired.
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`AcquireProfilingLockFlagsKHR`]
 /// - [`StructureType`]
 /// - [`acquire_profiling_lock_khr`]
@@ -2472,7 +2472,7 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 /// - [`StructureType`]
 ///
 ///# Notes and documentation
@@ -2582,7 +2582,7 @@ impl<'lt> PerformanceQuerySubmitInfoKHR<'lt> {
 ///} VkPerformanceCounterResultKHR;
 ///```
 ///# Related
-/// - [`VK_KHR_performance_query`]
+/// - [`khr_performance_query`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
@@ -2664,7 +2664,7 @@ impl PhysicalDevice {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_KHR_performance_query`]
+    /// - [`khr_performance_query`]
     /// - [`PerformanceCounterDescriptionKHR`]
     /// - [`PerformanceCounterKHR`]
     /// - [`PhysicalDevice`]
@@ -2768,7 +2768,7 @@ impl PhysicalDevice {
     ///   [`QueryPoolPerformanceCreateInfoKHR`] structure
     /// - [`p_num_passes`] **must**  be a valid pointer to a `uint32_t` value
     ///# Related
-    /// - [`VK_KHR_performance_query`]
+    /// - [`khr_performance_query`]
     /// - [`PhysicalDevice`]
     /// - [`QueryPoolPerformanceCreateInfoKHR`]
     ///
@@ -2843,7 +2843,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_TIMEOUT`
     ///# Related
-    /// - [`VK_KHR_performance_query`]
+    /// - [`khr_performance_query`]
     /// - [`AcquireProfilingLockInfoKHR`]
     /// - [`Device`]
     ///
@@ -2900,7 +2900,7 @@ impl Device {
     ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     ///# Related
-    /// - [`VK_KHR_performance_query`]
+    /// - [`khr_performance_query`]
     /// - [`Device`]
     ///
     ///# Notes and documentation

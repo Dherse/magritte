@@ -1,7 +1,7 @@
 //![VK_GOOGLE_display_timing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_GOOGLE_display_timing.html) - device extension
 //!# Description
 //!This device extension allows an application that uses the
-//!`[`VK_KHR_swapchain`]` extension to obtain information about the
+//!`[`khr_swapchain`]` extension to obtain information about the
 //!presentation engine’s display, to obtain timing information about each
 //!present, and to schedule a present to happen no earlier than a desired time.
 //!An application can use this to minimize various visual anomalies (e.g.
@@ -21,7 +21,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_display_timing]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
@@ -104,7 +104,7 @@ pub const GOOGLE_DISPLAY_TIMING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_GOOGLE_display_timing`]
+/// - [`google_display_timing`]
 /// - [`Device`]
 /// - [`RefreshCycleDurationGOOGLE`]
 /// - [`SwapchainKHR`]
@@ -184,7 +184,7 @@ pub type FNGetRefreshCycleDurationGoogle = Option<
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
 ///# Related
-/// - [`VK_GOOGLE_display_timing`]
+/// - [`google_display_timing`]
 /// - [`Device`]
 /// - [`PastPresentationTimingGOOGLE`]
 /// - [`SwapchainKHR`]
@@ -218,7 +218,7 @@ pub type FNGetPastPresentationTimingGoogle = Option<
 /// - [`refresh_duration`] is the number of nanoseconds from the start of one refresh cycle to the
 ///   next.
 ///# Related
-/// - [`VK_GOOGLE_display_timing`]
+/// - [`google_display_timing`]
 /// - [`get_refresh_cycle_duration_google`]
 ///
 ///# Notes and documentation
@@ -309,7 +309,7 @@ impl RefreshCycleDurationGOOGLE {
 ///[`actual_present_time`] is never late and [`present_margin`] is
 ///satisfactory.
 ///# Related
-/// - [`VK_GOOGLE_display_timing`]
+/// - [`google_display_timing`]
 /// - [`get_past_presentation_timing_google`]
 ///
 ///# Notes and documentation
@@ -431,7 +431,7 @@ impl PastPresentationTimingGOOGLE {
 }
 ///[VkPresentTimesInfoGOOGLE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentTimesInfoGOOGLE.html) - The earliest time each image should be presented
 ///# C Specifications
-///When the `[`VK_GOOGLE_display_timing`]` extension is enabled, additional
+///When the `[`google_display_timing`]` extension is enabled, additional
 ///fields  **can**  be specified that allow an application to specify the earliest
 ///time that an image should be displayed.
 ///This allows an application to avoid stutter that is caused by an image being
@@ -472,7 +472,7 @@ impl PastPresentationTimingGOOGLE {
 ///   [`swapchain_count`][`PresentTimeGOOGLE`] structures
 /// - [`swapchain_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_GOOGLE_display_timing`]
+/// - [`google_display_timing`]
 /// - [`PresentTimeGOOGLE`]
 /// - [`StructureType`]
 ///
@@ -612,7 +612,7 @@ impl<'lt> PresentTimesInfoGOOGLE<'lt> {
 ///```c but does not need a specific pname:desiredPresentTime.
 ///```
 ///# Related
-/// - [`VK_GOOGLE_display_timing`]
+/// - [`google_display_timing`]
 /// - [`PresentTimesInfoGOOGLE`]
 ///
 ///# Notes and documentation
@@ -713,7 +713,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_GOOGLE_display_timing`]
+    /// - [`google_display_timing`]
     /// - [`Device`]
     /// - [`RefreshCycleDurationGOOGLE`]
     /// - [`SwapchainKHR`]
@@ -814,7 +814,7 @@ impl Device {
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
     ///# Related
-    /// - [`VK_GOOGLE_display_timing`]
+    /// - [`google_display_timing`]
     /// - [`Device`]
     /// - [`PastPresentationTimingGOOGLE`]
     /// - [`SwapchainKHR`]

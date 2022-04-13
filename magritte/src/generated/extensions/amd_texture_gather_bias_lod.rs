@@ -10,7 +10,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Rex Xu [amdrexu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_texture_gather_bias_lod]
 //!   @amdrexu%0A<<Here describe the issue or question you have about the
@@ -70,13 +70,13 @@ pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &'static CStr = crate::cst
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`supports_texture_gather_lod_bias_amd`] tells if the image format can be used with texture
-///   gather bias/LOD functions, as introduced by the `[`VK_AMD_texture_gather_bias_lod`]`
-///   extension. This field is set by the implementation. User-specified value is ignored.
+///   gather bias/LOD functions, as introduced by the `[`amd_texture_gather_bias_lod`]` extension.
+///   This field is set by the implementation. User-specified value is ignored.
 ///# Description
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
 ///# Related
-/// - [`VK_AMD_texture_gather_bias_lod`]
+/// - [`amd_texture_gather_bias_lod`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -100,7 +100,7 @@ pub struct TextureLodGatherFormatPropertiesAMD<'lt> {
     pub p_next: *mut BaseOutStructure<'lt>,
     ///[`supports_texture_gather_lod_bias_amd`] tells if the image format can be
     ///used with texture gather bias/LOD functions, as introduced by the
-    ///`[`VK_AMD_texture_gather_bias_lod`]` extension.
+    ///`[`amd_texture_gather_bias_lod`]` extension.
     ///This field is set by the implementation.
     ///User-specified value is ignored.
     pub supports_texture_gather_lod_bias_amd: Bool32,

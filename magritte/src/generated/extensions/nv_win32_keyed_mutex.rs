@@ -9,10 +9,10 @@
 //!# Revision
 //!2
 //!# Dependencies
-//! - *Promoted* to `[`VK_KHR_win32_keyed_mutex`]` extension
+//! - *Promoted* to `[`khr_win32_keyed_mutex`]` extension
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_NV_external_memory_win32`]`
+//! - Requires `[`nv_external_memory_win32`]`
 //!# Contacts
 //! - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_win32_keyed_mutex]
 //!   @crohde%0A<<Here describe the issue or question you have about the VK_NV_win32_keyed_mutex
@@ -113,7 +113,7 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///   valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
 ///# Related
-/// - [`VK_NV_win32_keyed_mutex`]
+/// - [`nv_win32_keyed_mutex`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 ///

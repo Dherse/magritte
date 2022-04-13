@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span};
 use smallvec::SmallVec;
 
@@ -65,14 +66,19 @@ impl<'a> Extension<'a> {
         self.name.as_ref()
     }
 
+    /// Trims and makes the name into an rustified name.
+    pub fn simple_name(&self) -> String {
+        self.name().trim_start_matches("VK_").to_snake_case()
+    }
+
     /// Creates an identifier from the name
     pub fn as_ident(&self) -> Ident {
-        Ident::new(&self.origin().name(), Span::call_site())
+        Ident::new(&self.simple_name(), Span::call_site())
     }
 
     /// Creates an identifier for the enabling function
     pub fn as_enable_ident(&self) -> Ident {
-        Ident::new(&format!("enable_{}", self.origin().name()), Span::call_site())
+        Ident::new(&format!("enable_{}", self.simple_name()), Span::call_site())
     }
 
     /// Get a reference to the extension's disabled.

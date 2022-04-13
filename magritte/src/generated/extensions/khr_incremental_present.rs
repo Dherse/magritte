@@ -1,7 +1,7 @@
 //![VK_KHR_incremental_present](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_incremental_present.html) - device extension
 //!# Description
 //!This device extension extends [`queue_present_khr`], from the
-//!`[`VK_KHR_swapchain`]` extension, allowing an application to specify a
+//!`[`khr_swapchain`]` extension, allowing an application to specify a
 //!list of rectangular, modified regions of each image to present.
 //!This should be used in situations where an application is only changing a
 //!small portion of the presentable images within a swapchain, since it enables
@@ -13,7 +13,7 @@
 //!2
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_swapchain`]`
+//! - Requires `[`khr_swapchain`]`
 //!# Contacts
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_incremental_present]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
@@ -138,7 +138,7 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   [`swapchain_count`] valid [`PresentRegionKHR`] structures
 /// - [`swapchain_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_KHR_incremental_present`]
+/// - [`khr_incremental_present`]
 /// - [`PresentRegionKHR`]
 /// - [`StructureType`]
 ///
@@ -284,7 +284,7 @@ impl<'lt> PresentRegionsKHR<'lt> {
 /// - If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`] **must**
 ///   be a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
 ///# Related
-/// - [`VK_KHR_incremental_present`]
+/// - [`khr_incremental_present`]
 /// - [`PresentRegionsKHR`]
 /// - [`RectLayerKHR`]
 ///
@@ -397,7 +397,7 @@ impl<'lt> PresentRegionKHR<'lt> {
 /// - [`layer`] **must**  be less than the `imageArrayLayers` member of the
 ///   [`SwapchainCreateInfoKHR`] structure passed to [`create_swapchain_khr`]
 ///# Related
-/// - [`VK_KHR_incremental_present`]
+/// - [`khr_incremental_present`]
 /// - [`Extent2D`]
 /// - [`Offset2D`]
 /// - [`PresentRegionKHR`]

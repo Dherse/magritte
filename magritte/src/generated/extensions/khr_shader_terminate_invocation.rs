@@ -9,7 +9,7 @@
 //!executed instructions will have observable effects.
 //!The `OpTerminateInvocation` instruction, along with the
 //!`OpDemoteToHelperInvocation` instruction from the
-//!`[`VK_EXT_shader_demote_to_helper_invocation`]` extension, together
+//!`[`ext_shader_demote_to_helper_invocation`]` extension, together
 //!replace the `OpKill` instruction, which could behave like either of these
 //!instructions.
 //!`OpTerminateInvocation` provides the behavior required by the GLSL
@@ -21,7 +21,7 @@
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_terminate_invocation]
 //!   @critsec%0A<<Here describe the issue or question you have about the

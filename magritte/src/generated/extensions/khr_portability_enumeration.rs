@@ -1,14 +1,14 @@
 //![VK_KHR_portability_enumeration](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_portability_enumeration.html) - instance extension
 //!# Description
 //!This extension allows applications to control whether devices that expose
-//!the `[`VK_KHR_portability_subset`]` extension are included in the results
+//!the `[`khr_portability_subset`]` extension are included in the results
 //!of physical device enumeration.
-//!Since devices which support the `[`VK_KHR_portability_subset`]` extension
+//!Since devices which support the `[`khr_portability_subset`]` extension
 //!are not fully conformant Vulkan implementations, the Vulkan loader does not
 //!report those devices unless the application explicitly asks for them.
 //!This prevents applications which may not be aware of non-conformant devices
 //!from accidentally using them, as any device which supports the
-//!`[`VK_KHR_portability_subset`]` extension mandates that the extension
+//!`[`khr_portability_subset`]` extension mandates that the extension
 //!must be enabled if that device is used.This extension is implemented in the loader.
 //!# Revision
 //!1
@@ -27,7 +27,7 @@
 //!# Other info
 //! * 2021-06-02
 //! * No known IP claims.
-//! * - Interacts with `[`VK_KHR_portability_subset`]`
+//! * - Interacts with `[`khr_portability_subset`]`
 //! * - Lenny Komow, LunarG  - Charles Giessen, LunarG
 //!# Notes and documentation
 //!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

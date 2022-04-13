@@ -11,15 +11,15 @@
 //! - The ability to identify specific Vulkan objects using a name or tag to improve tracking.
 //! - The ability to identify specific sections within a [`Queue`] or [`CommandBuffer`] using labels
 //!   to aid organization and offline analysis in external tools.
-//!The main difference between this extension and `[`VK_EXT_debug_report`]`
-//!and `[`VK_EXT_debug_marker`]` is that those extensions use
+//!The main difference between this extension and `[`ext_debug_report`]`
+//!and `[`ext_debug_marker`]` is that those extensions use
 //![`DebugReportObjectTypeEXT`] to identify objects.
 //!This extension uses the core [`ObjectType`] in place of
 //![`DebugReportObjectTypeEXT`].
 //!The primary reason for this move is that no future object type handle
 //!enumeration values will be added to [`DebugReportObjectTypeEXT`] since
 //!the creation of [`ObjectType`].In addition, this extension combines the functionality of both
-//!`[`VK_EXT_debug_report`]` and `[`VK_EXT_debug_marker`]` by allowing
+//!`[`ext_debug_report`]` and `[`ext_debug_marker`]` by allowing
 //!object name and debug markers (now called labels) to be returned to the
 //!application’s callback function.
 //!This should assist in clarifying the details of a debug message including:
@@ -79,14 +79,14 @@
 //! **RESOLVED** : Not immediately.
 //!As one can imagine, there is a lot of work involved with converting the
 //!validation layer logging over to the new functionality.
-//!Basic logging, as seen in the origin `[`VK_EXT_debug_report`]` extension
+//!Basic logging, as seen in the origin `[`ext_debug_report`]` extension
 //!will be made available immediately.
 //!However, adding the labels and object names will take time.
 //!Since the priority for Khronos at this time is to continue focusing on Valid
 //!Usage statements, it may take a while before the new functionality is fully
 //!exposed.3) If the validation layers will not expose the new functionality
 //!immediately, then what is the point of this extension? **RESOLVED** : We needed a replacement
-//! for `[`VK_EXT_debug_report`]` because
+//! for `[`ext_debug_report`]` because
 //!the [`DebugReportObjectTypeEXT`] enumeration will no longer be updated
 //!and any new objects will need to be debugged using the new functionality
 //!provided by this extension.4) Should this extension be split into two separate parts (1
@@ -103,8 +103,8 @@
 //!enable string during [`create_instance`].
 //!# Version History
 //! - Revision 1, 2017-09-14 (Mark Young and all listed Contributors)  - Initial draft, based on
-//!   `[`VK_EXT_debug_report`]` and `[`VK_EXT_debug_marker`]` in addition to previous feedback
-//!   supplied from various companies including Valve, Epic, and Oxide games.
+//!   `[`ext_debug_report`]` and `[`ext_debug_marker`]` in addition to previous feedback supplied
+//!   from various companies including Valve, Epic, and Oxide games.
 //! - Revision 2, 2020-04-03 (Mark Young and Piers Daniell)  - Updated to allow either `NULL` or an
 //!   empty string to be passed in for `pObjectName` in [`DebugUtilsObjectNameInfoEXT`], because the
 //!   loader and various drivers support `NULL` already.
@@ -208,7 +208,7 @@ pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_d
 ///## Valid Usage
 /// - The callback  **must**  not make calls to any Vulkan commands
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -256,7 +256,7 @@ pub type PFNDebugUtilsMessengerCallbackEXT = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsObjectNameInfoEXT`]
 /// - [`Device`]
 ///
@@ -299,7 +299,7 @@ pub type FNSetDebugUtilsObjectNameExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsObjectTagInfoEXT`]
 /// - [`Device`]
 ///
@@ -337,7 +337,7 @@ pub type FNSetDebugUtilsObjectTagExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsLabelEXT`]
 /// - [`Queue`]
 ///
@@ -373,7 +373,7 @@ pub type FNQueueBeginDebugUtilsLabelExt =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`Queue`]
 ///
 ///# Notes and documentation
@@ -405,7 +405,7 @@ pub type FNQueueEndDebugUtilsLabelExt = Option<unsafe extern "system" fn(queue: 
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsLabelEXT`]
 /// - [`Queue`]
 ///
@@ -457,7 +457,7 @@ pub type FNQueueInsertDebugUtilsLabelExt =
 ///not executed in parallel with any Vulkan command that is also called with
 ///[`instance`] or child of [`instance`] as the dispatchable argument.
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`AllocationCallbacks`]
 /// - [`DebugUtilsMessengerCreateInfoEXT`]
 /// - [`DebugUtilsMessengerEXT`]
@@ -519,7 +519,7 @@ pub type FNCreateDebugUtilsMessengerExt = Option<
 ///not executed in parallel with any Vulkan command that is also called with
 ///[`instance`] or child of [`instance`] as the dispatchable argument.
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`AllocationCallbacks`]
 /// - [`DebugUtilsMessengerEXT`]
 /// - [`Instance`]
@@ -579,7 +579,7 @@ pub type FNDestroyDebugUtilsMessengerExt = Option<
 /// - [`p_callback_data`] **must**  be a valid pointer to a valid
 ///   [`DebugUtilsMessengerCallbackDataEXT`] structure
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagBitsEXT`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
@@ -629,7 +629,7 @@ pub type FNSubmitDebugUtilsMessageExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`CommandBuffer`]
 /// - [`DebugUtilsLabelEXT`]
 ///
@@ -691,7 +691,7 @@ pub type FNCmdBeginDebugUtilsLabelExt = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`CommandBuffer`]
 ///
 ///# Notes and documentation
@@ -731,7 +731,7 @@ pub type FNCmdEndDebugUtilsLabelExt = Option<unsafe extern "system" fn(command_b
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`CommandBuffer`]
 /// - [`DebugUtilsLabelEXT`]
 ///
@@ -773,7 +773,7 @@ pub type FNCmdInsertDebugUtilsLabelExt = Option<
 /// - [`ERROR`] specifies that the application has violated a valid usage condition of the
 ///   specification.
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
 /// - [`submit_debug_utils_message_ext`]
 ///
@@ -894,7 +894,7 @@ impl std::fmt::Display for DebugUtilsMessageSeverityFlagBitsEXT {
 ///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -1011,7 +1011,7 @@ impl std::fmt::Display for DebugUtilsMessageTypeFlagBitsEXT {
 /// - [`ERROR`] specifies that the application has violated a valid usage condition of the
 ///   specification.
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
 /// - [`submit_debug_utils_message_ext`]
 ///
@@ -1343,7 +1343,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
 ///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 ///
 ///# Notes and documentation
@@ -1641,7 +1641,7 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
 ///typedef VkFlags VkDebugUtilsMessengerCreateFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCreateInfoEXT`]
 ///
 ///# Notes and documentation
@@ -1674,7 +1674,7 @@ impl std::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
 ///typedef VkFlags VkDebugUtilsMessengerCallbackDataFlagsEXT;
 ///```
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 ///
 ///# Notes and documentation
@@ -1736,7 +1736,7 @@ impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
 /// - [`object_type`] **must**  be a valid [`ObjectType`] value
 /// - If [`object_name`] is not `NULL`, [`object_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 /// - [`ObjectType`]
 /// - [`StructureType`]
@@ -1904,7 +1904,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 /// - [`tag`] **must**  be a valid pointer to an array of [`tag_size`] bytes
 /// - [`tag_size`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`ObjectType`]
 /// - [`StructureType`]
 /// - [`set_debug_utils_object_tag_ext`]
@@ -2093,7 +2093,7 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 /// - [`p_next`] **must**  be `NULL`
 /// - [`label_name`] **must**  be a null-terminated UTF-8 string
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 /// - [`StructureType`]
 /// - [`cmd_begin_debug_utils_label_ext`]
@@ -2273,7 +2273,7 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 /// - [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`] value
 ///# Related
 /// - [`PFNDebugUtilsMessengerCallbackEXT`]
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 /// - [`DebugUtilsMessengerCreateFlagsEXT`]
@@ -2513,7 +2513,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 /// - If [`object_count`] is not `0`, [`objects`] **must**  be a valid pointer to an array of
 ///   [`object_count`] valid [`DebugUtilsObjectNameInfoEXT`] structures
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`DebugUtilsLabelEXT`]
 /// - [`DebugUtilsMessengerCallbackDataFlagsEXT`]
 /// - [`DebugUtilsObjectNameInfoEXT`]
@@ -2866,7 +2866,7 @@ impl Instance {
     ///not executed in parallel with any Vulkan command that is also called with
     ///[`instance`] or child of [`instance`] as the dispatchable argument.
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`AllocationCallbacks`]
     /// - [`DebugUtilsMessengerCreateInfoEXT`]
     /// - [`DebugUtilsMessengerEXT`]
@@ -2959,7 +2959,7 @@ impl Instance {
     ///not executed in parallel with any Vulkan command that is also called with
     ///[`instance`] or child of [`instance`] as the dispatchable argument.
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`AllocationCallbacks`]
     /// - [`DebugUtilsMessengerEXT`]
     /// - [`Instance`]
@@ -3043,7 +3043,7 @@ impl Instance {
     /// - [`p_callback_data`] **must**  be a valid pointer to a valid
     ///   [`DebugUtilsMessengerCallbackDataEXT`] structure
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`DebugUtilsMessageSeverityFlagBitsEXT`]
     /// - [`DebugUtilsMessageTypeFlagsEXT`]
     /// - [`DebugUtilsMessengerCallbackDataEXT`]
@@ -3117,7 +3117,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`DebugUtilsObjectNameInfoEXT`]
     /// - [`Device`]
     ///
@@ -3181,7 +3181,7 @@ impl Device {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`DebugUtilsObjectTagInfoEXT`]
     /// - [`Device`]
     ///
@@ -3240,7 +3240,7 @@ impl Queue {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`DebugUtilsLabelEXT`]
     /// - [`Queue`]
     ///
@@ -3300,7 +3300,7 @@ impl Queue {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`Queue`]
     ///
     ///# Notes and documentation
@@ -3354,7 +3354,7 @@ impl Queue {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`DebugUtilsLabelEXT`]
     /// - [`Queue`]
     ///
@@ -3420,7 +3420,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`CommandBuffer`]
     /// - [`DebugUtilsLabelEXT`]
     ///
@@ -3505,7 +3505,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`CommandBuffer`]
     ///
     ///# Notes and documentation
@@ -3567,7 +3567,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_EXT_debug_utils`]
+    /// - [`ext_debug_utils`]
     /// - [`CommandBuffer`]
     /// - [`DebugUtilsLabelEXT`]
     ///
@@ -3613,7 +3613,7 @@ impl CommandBuffer {
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugUtilsMessengerEXT)
 ///```
 ///# Related
-/// - [`VK_EXT_debug_utils`]
+/// - [`ext_debug_utils`]
 /// - [`create_debug_utils_messenger_ext`]
 /// - [`destroy_debug_utils_messenger_ext`]
 ///

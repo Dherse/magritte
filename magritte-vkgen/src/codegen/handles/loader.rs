@@ -8,7 +8,7 @@ use quote::{quote, quote_each_token};
 use crate::{
     imports::Imports,
     origin::Origin,
-    source::{CommandAlias, Function, Handle, Source},
+    source::{CommandAlias, Function, Handle, Source, ExtensionType},
     symbols::SymbolName,
     ty::Ty,
 };
@@ -130,7 +130,7 @@ impl<'a> Handle<'a> {
     ) where
         'a: 'b,
     {
-        imports.push("crate::extensions::Extensions");
+        imports.push("crate::extensions::InstanceExtensions");
 
         // the name of the vtable
         let name = self.this_vtable_ident();
@@ -190,8 +190,16 @@ impl<'a> Handle<'a> {
         });
 
         let values = origins.iter().map(|o| {
+            let getter = match o {
+                Origin::Extension(name, _, false) => match source.extensions.get_by_name(&name).unwrap().ty() {
+                    ExtensionType::Device => quote! { device_extensions},
+                    ExtensionType::Instance => quote! { instance_extensions },
+                },
+                _ => quote! { instance_extensions },
+            };
+
             let ty = self.vtable_ident(*o);
-            if let Some(tokens) = o.as_bool_tokens(Some(imports), &quote! { variant }) {
+            if let Some(tokens) = o.as_bool_tokens(Some(imports), &getter) {
                 quote! {
                     #tokens.then(|| #ty :: load(loader_fn, loader))
                 }
@@ -204,7 +212,7 @@ impl<'a> Handle<'a> {
 
         let opt_types = origins.iter().map(|o| {
             let ty = self.vtable_ident(*o);
-            if o.as_bool_tokens(Some(imports), &quote! { variant }).is_some() {
+            if o.as_bool_tokens(Some(imports), &quote! { }).is_some() {
                 quote! {
                     Option<&#ty>
                 }
@@ -216,7 +224,7 @@ impl<'a> Handle<'a> {
         });
 
         let as_refs = origins.iter().map(|o| {
-            if o.as_bool_tokens(Some(imports), &quote! { variant }).is_some() {
+            if o.as_bool_tokens(Some(imports), &quote! { }).is_some() {
                 Some(quote! {
                     .as_ref()
                 })
@@ -226,7 +234,7 @@ impl<'a> Handle<'a> {
         });
 
         let refs = origins.iter().map(|o| {
-            if o.as_bool_tokens(Some(imports), &quote! { variant }).is_some() {
+            if o.as_bool_tokens(Some(imports), &quote! { }).is_some() {
                 None
             } else {
                 Some(quote! {
@@ -234,6 +242,17 @@ impl<'a> Handle<'a> {
                 })
             }
         });
+
+        let device_extensions = origins.iter().filter_map(|o| match o {
+            Origin::Extension(name, _, false) => source.extensions.get_by_name(&name),
+            _ => None
+        }).any(|o| o.ty() == ExtensionType::Device).then(|| {
+            imports.push("crate::extensions::DeviceExtensions");
+            quote! {
+                device_extensions: &DeviceExtensions,
+            }
+        });
+        
 
         quote_each_token! {
             out
@@ -253,7 +272,8 @@ impl<'a> Handle<'a> {
                 pub fn load(
                     loader_fn: unsafe extern "system" fn(#loader, *const std::os::raw::c_char) -> Option<unsafe extern "system" fn()>,
                     loader: #loader,
-                    variant: &Extensions,
+                    instance_extensions: &InstanceExtensions,
+                    #device_extensions
                 ) -> Self
                 {
                     Self {

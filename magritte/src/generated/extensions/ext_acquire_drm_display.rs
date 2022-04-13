@@ -8,7 +8,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_EXT_direct_mode_display`]`
+//! - Requires `[`ext_direct_mode_display`]`
 //!# Contacts
 //! - Drew DeVault [sir@cmpwn.com]()
 //!# New functions & commands
@@ -86,7 +86,7 @@ pub const EXT_ACQUIRE_DRM_DISPLAY_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INITIALIZATION_FAILED`
 ///# Related
-/// - [`VK_EXT_acquire_drm_display`]
+/// - [`ext_acquire_drm_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -142,7 +142,7 @@ pub type FNAcquireDrmDisplayExt = Option<
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 ///# Related
-/// - [`VK_EXT_acquire_drm_display`]
+/// - [`ext_acquire_drm_display`]
 /// - [`DisplayKHR`]
 /// - [`PhysicalDevice`]
 ///
@@ -199,7 +199,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INITIALIZATION_FAILED`
     ///# Related
-    /// - [`VK_EXT_acquire_drm_display`]
+    /// - [`ext_acquire_drm_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///
@@ -282,7 +282,7 @@ impl PhysicalDevice {
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
     ///# Related
-    /// - [`VK_EXT_acquire_drm_display`]
+    /// - [`ext_acquire_drm_display`]
     /// - [`DisplayKHR`]
     /// - [`PhysicalDevice`]
     ///

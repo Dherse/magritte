@@ -4,7 +4,7 @@
 //![`QUEUE_FAMILY_FOREIGN_EXT`], which can be used to transfer ownership
 //!of resources backed by external memory to foreign, external queues.
 //!This is similar to [`QUEUE_FAMILY_EXTERNAL_KHR`], defined in
-//!`[`VK_KHR_external_memory`]`.
+//!`[`khr_external_memory`]`.
 //!The key differences between the two are:
 //! - The queues represented by [`QUEUE_FAMILY_EXTERNAL_KHR`] must share the same physical device
 //!   and the same driver version as the current [`Instance`]. [`QUEUE_FAMILY_FOREIGN_EXT`] has no
@@ -18,7 +18,7 @@
 //!1
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_external_memory`]`
+//! - Requires `[`khr_external_memory`]`
 //!# Contacts
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_queue_family_foreign]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
@@ -60,7 +60,7 @@ use std::ffi::CStr;
 ///#define VK_QUEUE_FAMILY_FOREIGN_EXT       (~2U)
 ///```
 ///# Related
-/// - [`VK_EXT_queue_family_foreign`]
+/// - [`ext_queue_family_foreign`]
 ///
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

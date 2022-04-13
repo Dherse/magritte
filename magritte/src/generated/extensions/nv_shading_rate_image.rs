@@ -40,7 +40,7 @@
 //!3
 //!# Dependencies
 //! - Requires Vulkan 1.0
-//! - Requires `[`VK_KHR_get_physical_device_properties2`]`
+//! - Requires `[`khr_get_physical_device_properties2`]`
 //!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shading_rate_image]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_shading_rate_image
@@ -237,7 +237,7 @@ pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CommandBuffer`]
 /// - [`ImageLayout`]
 /// - [`ImageView`]
@@ -306,7 +306,7 @@ pub type FNCmdBindShadingRateImageNv =
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CommandBuffer`]
 /// - [`ShadingRatePaletteNV`]
 ///
@@ -382,7 +382,7 @@ pub type FNCmdSetViewportShadingRatePaletteNv = Option<
 ///
 ///## Command Properties
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 /// - [`CoarseSampleOrderTypeNV`]
 /// - [`CommandBuffer`]
@@ -432,7 +432,7 @@ pub type FNCmdSetCoarseSampleOrderNv = Option<
 ///[`NO_INVOCATIONS`], no fragments will be
 ///generated in that region.
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 /// - [`ShadingRatePaletteNV`]
 ///
@@ -569,7 +569,7 @@ impl std::fmt::Display for ShadingRatePaletteEntryNV {
 ///   [sample index](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask)
 ///   and then by pixel coordinate (in row-major order).
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
 /// - [`cmd_set_coarse_sample_order_nv`]
 ///
@@ -685,7 +685,7 @@ impl std::fmt::Display for CoarseSampleOrderTypeNV {
 ///   [`shading_rate_palette_entry_count`] valid [`ShadingRatePaletteEntryNV`] values
 /// - [`shading_rate_palette_entry_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`PipelineViewportShadingRateImageStateCreateInfoNV`]
 /// - [`ShadingRatePaletteEntryNV`]
 /// - [`cmd_set_viewport_shading_rate_palette_nv`]
@@ -806,7 +806,7 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV`
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`Bool32`]
 /// - [`ShadingRatePaletteNV`]
 /// - [`StructureType`]
@@ -999,7 +999,7 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV`
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
@@ -1193,7 +1193,7 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV`
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
@@ -1354,7 +1354,7 @@ impl<'lt> PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
 /// - [`sample`] **must**  be less than the number of coverage samples in each pixel belonging to
 ///   the fragment
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 ///
 ///# Notes and documentation
@@ -1478,7 +1478,7 @@ impl CoarseSampleLocationNV {
 ///   [`sample_location_count`][`CoarseSampleLocationNV`] structures
 /// - [`sample_location_count`] **must**  be greater than `0`
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CoarseSampleLocationNV`]
 /// - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
 /// - [`ShadingRatePaletteEntryNV`]
@@ -1647,7 +1647,7 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
 ///   pointer to an array of [`custom_sample_order_count`] valid [`CoarseSampleOrderCustomNV`]
 ///   structures
 ///# Related
-/// - [`VK_NV_shading_rate_image`]
+/// - [`nv_shading_rate_image`]
 /// - [`CoarseSampleOrderCustomNV`]
 /// - [`CoarseSampleOrderTypeNV`]
 /// - [`StructureType`]
@@ -1839,7 +1839,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_shading_rate_image`]
+    /// - [`nv_shading_rate_image`]
     /// - [`CommandBuffer`]
     /// - [`ImageLayout`]
     /// - [`ImageView`]
@@ -1933,7 +1933,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_shading_rate_image`]
+    /// - [`nv_shading_rate_image`]
     /// - [`CommandBuffer`]
     /// - [`ShadingRatePaletteNV`]
     ///
@@ -2034,7 +2034,7 @@ impl CommandBuffer {
     ///
     ///## Command Properties
     ///# Related
-    /// - [`VK_NV_shading_rate_image`]
+    /// - [`nv_shading_rate_image`]
     /// - [`CoarseSampleOrderCustomNV`]
     /// - [`CoarseSampleOrderTypeNV`]
     /// - [`CommandBuffer`]
