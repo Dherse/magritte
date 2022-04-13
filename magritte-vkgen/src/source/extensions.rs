@@ -67,7 +67,12 @@ impl<'a> Extension<'a> {
 
     /// Creates an identifier from the name
     pub fn as_ident(&self) -> Ident {
-        Ident::new(self.name(), Span::call_site())
+        Ident::new(&self.origin().name(), Span::call_site())
+    }
+
+    /// Creates an identifier for the enabling function
+    pub fn as_enable_ident(&self) -> Ident {
+        Ident::new(&format!("enable_{}", self.origin().name()), Span::call_site())
     }
 
     /// Get a reference to the extension's disabled.

@@ -3,15 +3,15 @@
 use std::ffi::CStr;
 
 #[doc(hidden)]
-pub mod ffi;
+mod ffi;
 
-pub mod allocation;
-pub mod allocator;
-pub mod defragmentation_context;
-pub mod flags;
-pub mod pool;
-pub mod virtual_allocation;
-pub mod virtual_block;
+mod allocation;
+mod allocator;
+mod defragmentation_context;
+mod flags;
+mod pool;
+mod virtual_allocation;
+mod virtual_block;
 
 pub use allocator::VmaAllocator;
 

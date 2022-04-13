@@ -27,7 +27,7 @@ use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Extension, Source},
+    source::{Extension, Source, ExtensionType},
 };
 
 use self::handles::loader::HandleFunction;
@@ -305,16 +305,19 @@ impl<'a> Source<'a> {
                 out
             });
 
-        let instance_extensions = self.extensions.iter().filter(|ext| !ext.disabled());
-
         let mut out_ts = quote! {
             use crate::Version;
         };
 
-        Extension::generate_extension_set(
+        Extension::generate_extensions(
             self,
-            instance_extensions,
-            Ident::new("Extensions", Span::call_site()),
+            ExtensionType::Device,
+            &mut out_ts,
+        );
+
+        Extension::generate_extensions(
+            self,
+            ExtensionType::Instance,
             &mut out_ts,
         );
 
