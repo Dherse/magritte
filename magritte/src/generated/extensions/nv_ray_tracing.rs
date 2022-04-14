@@ -1870,7 +1870,22 @@ impl<'lt> RayTracingPipelineCreateInfoNV<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for RayTracingPipelineCreateInfoNV<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PipelineCreationFeedbackCreateInfo<'extender>> for RayTracingPipelineCreateInfoNV<'this>
+{
+    type Out = RayTracingPipelineCreateInfoNV<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PipelineCreationFeedbackCreateInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PipelineCreationFeedbackCreateInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkGeometryTrianglesNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html) - Structure specifying a triangle geometry in a bottom-level acceleration structure
 ///# C Specifications
 ///The [`GeometryTrianglesNV`] structure specifies triangle geometry in a

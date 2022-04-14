@@ -711,13 +711,39 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferFormatPropertiesANDROID<'lt>>
-    for AndroidHardwareBufferPropertiesANDROID<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AndroidHardwareBufferFormatPropertiesANDROID<'extender>>
+    for AndroidHardwareBufferPropertiesANDROID<'this>
 {
+    type Out = AndroidHardwareBufferPropertiesANDROID<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AndroidHardwareBufferFormatPropertiesANDROID<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AndroidHardwareBufferFormatPropertiesANDROID<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferFormatProperties2ANDROID<'lt>>
-    for AndroidHardwareBufferPropertiesANDROID<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AndroidHardwareBufferFormatProperties2ANDROID<'extender>>
+    for AndroidHardwareBufferPropertiesANDROID<'this>
 {
+    type Out = AndroidHardwareBufferPropertiesANDROID<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AndroidHardwareBufferFormatProperties2ANDROID<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AndroidHardwareBufferFormatProperties2ANDROID<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 ///[VkMemoryGetAndroidHardwareBufferInfoANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkMemoryGetAndroidHardwareBufferInfoANDROID.html) - Structure describing an Android hardware buffer memory export operation
 ///# C Specifications

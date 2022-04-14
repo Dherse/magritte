@@ -13,9 +13,8 @@ use magritte::{
         ApplicationInfo, Device, DeviceCreateInfo, DeviceQueueCreateInfo, Instance, InstanceCreateInfo, PhysicalDevice,
         PhysicalDeviceFeatures, Queue, QueueFlags,
     },
-    vulkan1_1::PhysicalDeviceProperties2,
     window::{create_surface, enable_required_extensions},
-    AsRaw, InstanceExtensions, DeviceExtensions, Unique, Version, Chain,
+    AsRaw, InstanceExtensions, DeviceExtensions, Unique, Version
 };
 use magritte_vma::VmaAllocator;
 use winit::window::Window;
@@ -107,8 +106,7 @@ impl Vulkan {
         // - we need a swapchain to actually display things on screen
         // - we need an annoying set of extensions for showing the window, this is why Magritte comes with
         //   `enable_required_extensions` that will automatically deal with extensions for your window!
-        let mut instance_extensions = enable_required_extensions(window, instance_extensions)?
-            .enable_khr_get_physical_device_properties2();
+        let mut instance_extensions = enable_required_extensions(window, instance_extensions)?;
 
         // If we have the validation layers, enable the extension (optional)
         if validation {
@@ -130,7 +128,7 @@ impl Vulkan {
         //   macros!
         // - The version of our game engine (if any)
         let app_info = ApplicationInfo::default()
-            .set_api_version(Version::VULKAN1_0.into())
+            .set_api_version(instance_extensions.version().into())
             .set_application_name(cstr_ptr!("Magritte sample"))
             .set_application_version(Version::from((1, 0, 0)).into());
 
@@ -151,7 +149,7 @@ impl Vulkan {
 
         // Here we create the instance.
         // We give it the extra parameter `extensions` as it will keep it as a "metadata".
-        let mut instance = unsafe { entry.create_instance(&instance_create_info, None, instance_extensions)? };
+        let instance = unsafe { entry.create_instance(&instance_create_info, None, instance_extensions)? };
 
         // What is that `as_raw`??? It's simple, Magritte wraps Vulkan structures into a `Unique` which
         // helps to enforce most (**not** all) lifetimes. `as_raw` simply lets you get back to the
@@ -227,19 +225,6 @@ impl Vulkan {
             physical_device.as_raw(),
             queue_family_index
         );
-
-        let mut driver_properties = magritte::vulkan1_2::PhysicalDeviceDriverProperties::default();
-
-        {
-            let properties = PhysicalDeviceProperties2::default().chain(&mut driver_properties);
-    
-            let properties2 = unsafe { physical_device.get_physical_device_properties2(Some(properties)) };
-
-            drop(properties2);
-        }
-
-
-        // println!("{:?}", driver_properties.driver_name().as_cstr());
 
         // We get the properties of the device just so we can get its name.
         let properties = unsafe { physical_device.get_physical_device_properties() };

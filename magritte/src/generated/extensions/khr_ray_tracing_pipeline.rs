@@ -2238,7 +2238,22 @@ impl<'lt> RayTracingPipelineCreateInfoKHR<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for RayTracingPipelineCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PipelineCreationFeedbackCreateInfo<'extender>> for RayTracingPipelineCreateInfoKHR<'this>
+{
+    type Out = RayTracingPipelineCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PipelineCreationFeedbackCreateInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PipelineCreationFeedbackCreateInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkPhysicalDeviceRayTracingPipelineFeaturesKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPipelineFeaturesKHR.html) - Structure describing the ray tracing features that can be supported by an implementation
 ///# C Specifications
 ///The [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] structure is defined

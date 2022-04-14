@@ -14,7 +14,7 @@ use crate::{
     expr::Expr,
     imports::Imports,
     source::{Field, Source, Struct},
-    ty::{Mutability, Ty},
+    ty::{Mutability, Ty}, origin::Origin,
 };
 
 impl<'a> Struct<'a> {
@@ -132,13 +132,9 @@ impl<'a> Struct<'a> {
             .map(|name| source.structs.get_by_name(name).unwrap())
             .map(Struct::as_ident);
 
-        let extender_lifetimes = self
-            .extended()
-            .into_iter()
-            .map(|name| source.structs.get_by_name(name).unwrap())
-            .map(|struct_| {
-                struct_.has_lifetime(source).then(lifetime_as_generic_argument)
-            });
+        if !self.extended().is_empty() {
+            imports.push_origin(&Origin::Vulkan1_0, "BaseOutStructure");
+        }
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
@@ -176,8 +172,24 @@ impl<'a> Struct<'a> {
             }
 
             #(
+                // We know that there are lifetimes because we are implementing a trait on pointer chains
                 #extender_conditions
-                unsafe impl<'lt> crate::Chain<'lt, #extenders #extender_lifetimes> for #name #lifetime {}
+                unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, #extenders<'extender>> for #name<'this> {
+                    type Out = #name<'other>;
+
+                    #[must_use]
+                    #[inline]
+                    fn chain(mut self, new: &'other mut #extenders<'extender>) -> Self::Out {
+                        unsafe {
+                            crate::chaining::insert_ptr_in_chain(
+                                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                                new as *mut #extenders<'extender> as *mut BaseOutStructure<'other>,
+                            );
+
+                            std::mem::transmute(self)
+                        }
+                    }
+                }
             )*
         }
     }

@@ -1,6 +1,6 @@
 //! Additional implementation for [`Ty`] used to generate code
 
-use std::{borrow::Cow, iter::once};
+use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};

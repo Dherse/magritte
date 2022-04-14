@@ -1052,9 +1052,39 @@ impl<'lt> VideoDecodeCapabilitiesKHR<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264CapabilitiesEXT<'lt>> for VideoDecodeCapabilitiesKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoDecodeH264CapabilitiesEXT<'extender>> for VideoDecodeCapabilitiesKHR<'this>
+{
+    type Out = VideoDecodeCapabilitiesKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH264CapabilitiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH264CapabilitiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265CapabilitiesEXT<'lt>> for VideoDecodeCapabilitiesKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoDecodeH265CapabilitiesEXT<'extender>> for VideoDecodeCapabilitiesKHR<'this>
+{
+    type Out = VideoDecodeCapabilitiesKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH265CapabilitiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH265CapabilitiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkVideoDecodeInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeInfoKHR.html) - Structure specifying parameters of decoding a frame
 ///# C Specifications
 ///The [`VideoDecodeInfoKHR`] structure is defined as:
@@ -1417,9 +1447,39 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264PictureInfoEXT<'lt>> for VideoDecodeInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoDecodeH264PictureInfoEXT<'extender>> for VideoDecodeInfoKHR<'this>
+{
+    type Out = VideoDecodeInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH264PictureInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH264PictureInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265PictureInfoEXT<'lt>> for VideoDecodeInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoDecodeH265PictureInfoEXT<'extender>> for VideoDecodeInfoKHR<'this>
+{
+    type Out = VideoDecodeInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH265PictureInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH265PictureInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 impl CommandBuffer {
     ///[vkCmdDecodeVideoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDecodeVideoKHR.html) - Decode a frame
     ///# C Specifications

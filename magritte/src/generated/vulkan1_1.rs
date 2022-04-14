@@ -8905,306 +8905,1905 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
     }
 }
 #[cfg(feature = "VK_NV_device_generated_commands")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePrivateDataFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVariablePointersFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiviewFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePrivateDataFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePrivateDataFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePrivateDataFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVariablePointersFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVariablePointersFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVariablePointersFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMultiviewFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMultiviewFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMultiviewFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_present_id")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePresentIdFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_KHR_present_wait")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePresentWaitFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevice16BitStorageFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePresentIdFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePresentIdFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePresentIdFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSamplerYcbcrConversionFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProtectedMemoryFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_blend_operation_advanced")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+#[cfg(feature = "VK_KHR_present_wait")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePresentWaitFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePresentWaitFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePresentWaitFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevice16BitStorageFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevice16BitStorageFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevice16BitStorageFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSamplerYcbcrConversionFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSamplerYcbcrConversionFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSamplerYcbcrConversionFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceProtectedMemoryFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceProtectedMemoryFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceProtectedMemoryFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_blend_operation_advanced")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_multi_draw")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiDrawFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInlineUniformBlockFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMaintenance4Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderDrawParametersFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderFloat16Int8Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceHostQueryResetFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_KHR_global_priority")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_device_memory_report")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDescriptorIndexingFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTimelineSemaphoreFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevice8BitStorageFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_conditional_rendering")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceConditionalRenderingFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMultiDrawFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMultiDrawFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMultiDrawFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkanMemoryModelFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderAtomicInt64Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_shader_atomic_float")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_shader_atomic_float2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceInlineUniformBlockFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceInlineUniformBlockFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceInlineUniformBlockFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMaintenance4Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMaintenance4Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMaintenance4Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderDrawParametersFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderDrawParametersFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderDrawParametersFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderFloat16Int8Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderFloat16Int8Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderFloat16Int8Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceHostQueryResetFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceHostQueryResetFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceHostQueryResetFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_global_priority")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_device_memory_report")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDeviceMemoryReportFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDeviceMemoryReportFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDeviceMemoryReportFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDescriptorIndexingFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDescriptorIndexingFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDescriptorIndexingFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTimelineSemaphoreFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTimelineSemaphoreFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTimelineSemaphoreFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevice8BitStorageFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevice8BitStorageFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevice8BitStorageFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_conditional_rendering")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceConditionalRenderingFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceConditionalRenderingFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceConditionalRenderingFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkanMemoryModelFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkanMemoryModelFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkanMemoryModelFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderAtomicInt64Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderAtomicInt64Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderAtomicInt64Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_shader_atomic_float")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderAtomicFloatFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderAtomicFloatFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderAtomicFloatFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_shader_atomic_float2")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_astc_decode_mode")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceAstcDecodeFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_transform_feedback")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTransformFeedbackFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_representative_fragment_test")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceAstcDecodeFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceAstcDecodeFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceAstcDecodeFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_transform_feedback")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTransformFeedbackFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTransformFeedbackFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTransformFeedbackFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_representative_fragment_test")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_scissor_exclusive")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExclusiveScissorFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_corner_sampled_image")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCornerSampledImageFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_compute_shader_derivatives")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceComputeShaderDerivativesFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceExclusiveScissorFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceExclusiveScissorFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceExclusiveScissorFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_corner_sampled_image")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCornerSampledImageFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCornerSampledImageFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCornerSampledImageFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_compute_shader_derivatives")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceComputeShaderDerivativesFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceComputeShaderDerivativesFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceComputeShaderDerivativesFeaturesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_fragment_shader_barycentric")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_shader_image_footprint")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderImageFootprintFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderImageFootprintFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderImageFootprintFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderImageFootprintFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(
+        mut self,
+        new: &'other mut PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'extender>,
+    ) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_shading_rate_image")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShadingRateImageFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_HUAWEI_invocation_mask")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInvocationMaskFeaturesHUAWEI<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_mesh_shader")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMeshShaderFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_KHR_acceleration_structure")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceAccelerationStructureFeaturesKHR<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShadingRateImageFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShadingRateImageFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShadingRateImageFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_HUAWEI_invocation_mask")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceInvocationMaskFeaturesHUAWEI<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceInvocationMaskFeaturesHUAWEI<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceInvocationMaskFeaturesHUAWEI<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_mesh_shader")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMeshShaderFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMeshShaderFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMeshShaderFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceAccelerationStructureFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceAccelerationStructureFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceAccelerationStructureFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_KHR_ray_query")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayQueryFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_fragment_density_map")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_fragment_density_map2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMap2FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRayTracingPipelineFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRayTracingPipelineFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRayTracingPipelineFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceScalarBlockLayoutFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceUniformBufferStandardLayoutFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+#[cfg(feature = "VK_KHR_ray_query")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRayQueryFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRayQueryFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRayQueryFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentDensityMapFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentDensityMapFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentDensityMapFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_fragment_density_map2")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentDensityMap2FeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentDensityMap2FeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentDensityMap2FeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceScalarBlockLayoutFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceScalarBlockLayoutFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceScalarBlockLayoutFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceUniformBufferStandardLayoutFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceUniformBufferStandardLayoutFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceUniformBufferStandardLayoutFeatures<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_depth_clip_enable")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDepthClipEnableFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_memory_priority")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMemoryPriorityFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_pageable_device_local_memory")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDepthClipEnableFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDepthClipEnableFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDepthClipEnableFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBufferDeviceAddressFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_buffer_device_address")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImagelessFramebufferFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTextureCompressionAstchdrFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+#[cfg(feature = "VK_EXT_memory_priority")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMemoryPriorityFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMemoryPriorityFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMemoryPriorityFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_pageable_device_local_memory")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceBufferDeviceAddressFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceBufferDeviceAddressFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceBufferDeviceAddressFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_buffer_device_address")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceBufferDeviceAddressFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceBufferDeviceAddressFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceBufferDeviceAddressFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceImagelessFramebufferFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceImagelessFramebufferFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceImagelessFramebufferFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTextureCompressionAstchdrFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTextureCompressionAstchdrFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTextureCompressionAstchdrFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_cooperative_matrix")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCooperativeMatrixFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceYcbcrImageArraysFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_KHR_performance_query")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePerformanceQueryFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_coverage_reduction_mode")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCoverageReductionModeFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCooperativeMatrixFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCooperativeMatrixFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCooperativeMatrixFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceYcbcrImageArraysFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceYcbcrImageArraysFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceYcbcrImageArraysFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_performance_query")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePerformanceQueryFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePerformanceQueryFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePerformanceQueryFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_coverage_reduction_mode")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCoverageReductionModeFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCoverageReductionModeFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCoverageReductionModeFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_INTEL_shader_integer_functions2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_shader_clock")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderClockFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_index_type_uint8")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceIndexTypeUint8FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_shader_sm_builtins")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_fragment_shader_interlock")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderClockFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderClockFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderClockFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+#[cfg(feature = "VK_EXT_index_type_uint8")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceIndexTypeUint8FeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceIndexTypeUint8FeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceIndexTypeUint8FeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_shader_sm_builtins")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderSmBuiltinsFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderSmBuiltinsFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderSmBuiltinsFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_fragment_shader_interlock")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_pipeline_executable_properties")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_texel_buffer_alignment")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubgroupSizeControlFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSubgroupSizeControlFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSubgroupSizeControlFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSubgroupSizeControlFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_line_rasterization")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceLineRasterizationFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePipelineCreationCacheControlFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceLineRasterizationFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceLineRasterizationFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceLineRasterizationFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan11Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan12Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan13Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_AMD_device_coherent_memory")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCoherentMemoryFeaturesAMD<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_custom_border_color")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCustomBorderColorFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_border_color_swizzle")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_extended_dynamic_state")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExtendedDynamicStateFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePipelineCreationCacheControlFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePipelineCreationCacheControlFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePipelineCreationCacheControlFeatures<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkan11Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkan11Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkan11Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkan12Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkan12Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkan12Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkan13Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkan13Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkan13Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_AMD_device_coherent_memory")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCoherentMemoryFeaturesAMD<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCoherentMemoryFeaturesAMD<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCoherentMemoryFeaturesAMD<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_custom_border_color")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCustomBorderColorFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCustomBorderColorFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCustomBorderColorFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_border_color_swizzle")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceBorderColorSwizzleFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceBorderColorSwizzleFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceBorderColorSwizzleFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_extended_dynamic_state")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceExtendedDynamicStateFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceExtendedDynamicStateFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceExtendedDynamicStateFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExtendedDynamicState2FeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceExtendedDynamicState2FeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceExtendedDynamicState2FeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceExtendedDynamicState2FeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_device_diagnostics_config")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDiagnosticsConfigFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDiagnosticsConfigFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDiagnosticsConfigFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDiagnosticsConfigFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(
+        mut self,
+        new: &'other mut PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'extender>,
+    ) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_robustness2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRobustness2FeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageRobustnessFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRobustness2FeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRobustness2FeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRobustness2FeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceImageRobustnessFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceImageRobustnessFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceImageRobustnessFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(
+        mut self,
+        new: &'other mut PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'extender>,
+    ) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_portability_subset")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePortabilitySubsetFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_4444_formats")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevice4444FormatsFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_HUAWEI_subpass_shading")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePortabilitySubsetFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePortabilitySubsetFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePortabilitySubsetFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_4444_formats")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevice4444FormatsFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevice4444FormatsFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevice4444FormatsFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_HUAWEI_subpass_shading")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSubpassShadingFeaturesHUAWEI<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSubpassShadingFeaturesHUAWEI<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSubpassShadingFeaturesHUAWEI<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_fragment_shading_rate")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderTerminateInvocationFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentShadingRateFeaturesKHR<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentShadingRateFeaturesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentShadingRateFeaturesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderTerminateInvocationFeatures<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderTerminateInvocationFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderTerminateInvocationFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_depth_clip_control")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDepthClipControlFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDepthClipControlFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDepthClipControlFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDepthClipControlFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_external_memory_rdma")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_color_write_enable")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceColorWriteEnableFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSynchronization2Features<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_NV_inherited_viewport_scissor")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceExternalMemoryRdmaFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceExternalMemoryRdmaFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceExternalMemoryRdmaFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_color_write_enable")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceColorWriteEnableFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceColorWriteEnableFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceColorWriteEnableFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSynchronization2Features<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSynchronization2Features<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSynchronization2Features<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_inherited_viewport_scissor")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceInheritedViewportScissorFeaturesNV<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceInheritedViewportScissorFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceInheritedViewportScissorFeaturesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_provoking_vertex")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProvokingVertexFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderIntegerDotProductFeatures<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceProvokingVertexFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceProvokingVertexFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceProvokingVertexFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderIntegerDotProductFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderIntegerDotProductFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderIntegerDotProductFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingMotionBlurFeaturesNV<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_rgba10x6_formats")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRgba10x6FormatsFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDynamicRenderingFeatures<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_EXT_image_view_min_lod")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageViewMinLodFeaturesEXT<'lt>> for PhysicalDeviceFeatures2<'lt> {}
-#[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRayTracingMotionBlurFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRayTracingMotionBlurFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRayTracingMotionBlurFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_rgba10x6_formats")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRgba10x6FormatsFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRgba10x6FormatsFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRgba10x6FormatsFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDynamicRenderingFeatures<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDynamicRenderingFeatures<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDynamicRenderingFeatures<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_image_view_min_lod")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceImageViewMinLodFeaturesEXT<'extender>> for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceImageViewMinLodFeaturesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceImageViewMinLodFeaturesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'extender>>
+    for PhysicalDeviceFeatures2<'this>
+{
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(
+        mut self,
+        new: &'other mut PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'extender>,
+    ) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_linear_color_attachment")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceLinearColorAttachmentFeaturesNV<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceLinearColorAttachmentFeaturesNV<'extender>> for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceLinearColorAttachmentFeaturesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceLinearColorAttachmentFeaturesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt>>
-    for PhysicalDeviceFeatures2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'extender>>
+    for PhysicalDeviceFeatures2<'this>
 {
+    type Out = PhysicalDeviceFeatures2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 ///[VkPhysicalDeviceProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProperties2.html) - Structure specifying physical device properties
 ///# C Specifications
@@ -9372,171 +10971,925 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
     }
 }
 #[cfg(feature = "VK_NV_device_generated_commands")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_multi_draw")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiDrawPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_KHR_push_descriptor")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePushDescriptorPropertiesKHR<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDriverProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceIdProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiviewProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_EXT_discard_rectangles")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDiscardRectanglePropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMultiDrawPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMultiDrawPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMultiDrawPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_push_descriptor")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePushDescriptorPropertiesKHR<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePushDescriptorPropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePushDescriptorPropertiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDriverProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDriverProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDriverProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceIdProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceIdProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceIdProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMultiviewProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMultiviewProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMultiviewProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_discard_rectangles")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDiscardRectanglePropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDiscardRectanglePropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDiscardRectanglePropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubgroupProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePointClippingProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProtectedMemoryProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSamplerFilterMinmaxProperties<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSubgroupProperties<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSubgroupProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSubgroupProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePointClippingProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePointClippingProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePointClippingProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceProtectedMemoryProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceProtectedMemoryProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceProtectedMemoryProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSamplerFilterMinmaxProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSamplerFilterMinmaxProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSamplerFilterMinmaxProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_sample_locations")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSampleLocationsPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_EXT_blend_operation_advanced")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSampleLocationsPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSampleLocationsPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSampleLocationsPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceInlineUniformBlockProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMaintenance3Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMaintenance4Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFloatControlsProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_EXT_external_memory_host")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExternalMemoryHostPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+#[cfg(feature = "VK_EXT_blend_operation_advanced")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceInlineUniformBlockProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceInlineUniformBlockProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceInlineUniformBlockProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMaintenance3Properties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMaintenance3Properties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMaintenance3Properties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMaintenance4Properties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMaintenance4Properties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMaintenance4Properties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFloatControlsProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFloatControlsProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFloatControlsProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_external_memory_host")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceExternalMemoryHostPropertiesEXT<'extender>>
+    for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceExternalMemoryHostPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceExternalMemoryHostPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_conservative_rasterization")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceConservativeRasterizationPropertiesEXT<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceConservativeRasterizationPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceConservativeRasterizationPropertiesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_AMD_shader_core_properties")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderCorePropertiesAMD<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_AMD_shader_core_properties2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderCoreProperties2AMD<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDescriptorIndexingProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTimelineSemaphoreProperties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderCorePropertiesAMD<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderCorePropertiesAMD<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderCorePropertiesAMD<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_AMD_shader_core_properties2")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderCoreProperties2AMD<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderCoreProperties2AMD<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderCoreProperties2AMD<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDescriptorIndexingProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDescriptorIndexingProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDescriptorIndexingProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTimelineSemaphoreProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTimelineSemaphoreProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTimelineSemaphoreProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'extender>>
+    for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_pci_bus_info")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePciBusInfoPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDepthStencilResolveProperties<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePciBusInfoPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePciBusInfoPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePciBusInfoPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDepthStencilResolveProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDepthStencilResolveProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDepthStencilResolveProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_transform_feedback")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTransformFeedbackPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTransformFeedbackPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTransformFeedbackPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTransformFeedbackPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_shading_rate_image")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShadingRateImagePropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_NV_mesh_shader")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMeshShaderPropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_KHR_acceleration_structure")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceAccelerationStructurePropertiesKHR<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShadingRateImagePropertiesNV<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShadingRateImagePropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShadingRateImagePropertiesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_NV_mesh_shader")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMeshShaderPropertiesNV<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMeshShaderPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMeshShaderPropertiesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceAccelerationStructurePropertiesKHR<'extender>>
+    for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceAccelerationStructurePropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceAccelerationStructurePropertiesKHR<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRayTracingPipelinePropertiesKHR<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRayTracingPipelinePropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRayTracingPipelinePropertiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_ray_tracing")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRayTracingPropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_EXT_fragment_density_map")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRayTracingPropertiesNV<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRayTracingPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRayTracingPropertiesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_fragment_density_map")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentDensityMapPropertiesEXT<'extender>>
+    for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentDensityMapPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentDensityMapPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_fragment_density_map2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMap2PropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentDensityMap2PropertiesEXT<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentDensityMap2PropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentDensityMap2PropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_cooperative_matrix")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCooperativeMatrixPropertiesNV<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCooperativeMatrixPropertiesNV<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCooperativeMatrixPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCooperativeMatrixPropertiesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_performance_query")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePerformanceQueryPropertiesKHR<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePerformanceQueryPropertiesKHR<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePerformanceQueryPropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePerformanceQueryPropertiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_shader_sm_builtins")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceTexelBufferAlignmentProperties<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderSmBuiltinsPropertiesNV<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderSmBuiltinsPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderSmBuiltinsPropertiesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubgroupSizeControlProperties<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceTexelBufferAlignmentProperties<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceTexelBufferAlignmentProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceTexelBufferAlignmentProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSubgroupSizeControlProperties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSubgroupSizeControlProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSubgroupSizeControlProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_HUAWEI_subpass_shading")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceSubpassShadingPropertiesHUAWEI<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceSubpassShadingPropertiesHUAWEI<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceSubpassShadingPropertiesHUAWEI<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_line_rasterization")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceLineRasterizationPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceLineRasterizationPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceLineRasterizationPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceLineRasterizationPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan11Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan12Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceVulkan13Properties<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_EXT_custom_border_color")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceCustomBorderColorPropertiesEXT<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkan11Properties<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkan11Properties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkan11Properties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkan12Properties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkan12Properties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkan12Properties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceVulkan13Properties<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceVulkan13Properties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceVulkan13Properties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_custom_border_color")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceCustomBorderColorPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceCustomBorderColorPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceCustomBorderColorPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_robustness2")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceRobustness2PropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
-#[cfg(feature = "VK_KHR_portability_subset")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDevicePortabilitySubsetPropertiesKHR<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceRobustness2PropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceRobustness2PropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceRobustness2PropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_KHR_portability_subset")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDevicePortabilitySubsetPropertiesKHR<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDevicePortabilitySubsetPropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDevicePortabilitySubsetPropertiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_KHR_fragment_shading_rate")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentShadingRatePropertiesKHR<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentShadingRatePropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentShadingRatePropertiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'extender>>
+    for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_provoking_vertex")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceProvokingVertexPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceShaderIntegerDotProductProperties<'lt>>
-    for PhysicalDeviceProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceProvokingVertexPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
 {
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceProvokingVertexPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceProvokingVertexPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceShaderIntegerDotProductProperties<'extender>>
+    for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceShaderIntegerDotProductProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceShaderIntegerDotProductProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 #[cfg(feature = "VK_EXT_physical_device_drm")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceDrmPropertiesEXT<'lt>> for PhysicalDeviceProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceDrmPropertiesEXT<'extender>> for PhysicalDeviceProperties2<'this>
+{
+    type Out = PhysicalDeviceProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceDrmPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceDrmPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkFormatProperties2.html) - Structure specifying image format properties
 ///# C Specifications
 ///The [`FormatProperties2`] structure is defined as:
@@ -9663,22 +12016,157 @@ impl<'lt> FormatProperties2<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
-unsafe impl<'lt> crate::Chain<'lt, DrmFormatModifierPropertiesListEXT<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, DrmFormatModifierPropertiesListEXT<'extender>> for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DrmFormatModifierPropertiesListEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DrmFormatModifierPropertiesListEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_video_queue")]
-unsafe impl<'lt> crate::Chain<'lt, VideoProfilesKHR<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, VideoProfilesKHR<'extender>>
+    for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoProfilesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoProfilesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_video_queue")]
-unsafe impl<'lt> crate::Chain<'lt, VideoProfileKHR<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, VideoProfileKHR<'extender>>
+    for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoProfileKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoProfileKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoDecodeH264ProfileEXT<'extender>> for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH264ProfileEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH264ProfileEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoDecodeH265ProfileEXT<'extender>> for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH265ProfileEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH265ProfileEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH264ProfileEXT<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoEncodeH264ProfileEXT<'extender>> for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoEncodeH264ProfileEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoEncodeH264ProfileEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265ProfileEXT<'lt>> for FormatProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, FormatProperties3<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoEncodeH265ProfileEXT<'extender>> for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoEncodeH265ProfileEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoEncodeH265ProfileEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, FormatProperties3<'extender>>
+    for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut FormatProperties3<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut FormatProperties3<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
-unsafe impl<'lt> crate::Chain<'lt, DrmFormatModifierPropertiesList2EXT<'lt>> for FormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, DrmFormatModifierPropertiesList2EXT<'extender>> for FormatProperties2<'this>
+{
+    type Out = FormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DrmFormatModifierPropertiesList2EXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DrmFormatModifierPropertiesList2EXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkImageFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageFormatProperties2.html) - Structure specifying an image format properties
 ///# C Specifications
 ///The [`ImageFormatProperties2`] structure is defined as:
@@ -9812,14 +12300,89 @@ impl<'lt> ImageFormatProperties2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, ExternalImageFormatProperties<'lt>> for ImageFormatProperties2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, SamplerYcbcrConversionImageFormatProperties<'lt>> for ImageFormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, ExternalImageFormatProperties<'extender>> for ImageFormatProperties2<'this>
+{
+    type Out = ImageFormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut ExternalImageFormatProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut ExternalImageFormatProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SamplerYcbcrConversionImageFormatProperties<'extender>> for ImageFormatProperties2<'this>
+{
+    type Out = ImageFormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SamplerYcbcrConversionImageFormatProperties<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SamplerYcbcrConversionImageFormatProperties<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
-unsafe impl<'lt> crate::Chain<'lt, TextureLodGatherFormatPropertiesAMD<'lt>> for ImageFormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, TextureLodGatherFormatPropertiesAMD<'extender>> for ImageFormatProperties2<'this>
+{
+    type Out = ImageFormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut TextureLodGatherFormatPropertiesAMD<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut TextureLodGatherFormatPropertiesAMD<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
-unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferUsageANDROID<'lt>> for ImageFormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AndroidHardwareBufferUsageANDROID<'extender>> for ImageFormatProperties2<'this>
+{
+    type Out = ImageFormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AndroidHardwareBufferUsageANDROID<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AndroidHardwareBufferUsageANDROID<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_filter_cubic")]
-unsafe impl<'lt> crate::Chain<'lt, FilterCubicImageViewImageFormatPropertiesEXT<'lt>> for ImageFormatProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, FilterCubicImageViewImageFormatPropertiesEXT<'extender>> for ImageFormatProperties2<'this>
+{
+    type Out = ImageFormatProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut FilterCubicImageViewImageFormatPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut FilterCubicImageViewImageFormatPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkPhysicalDeviceImageFormatInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageFormatInfo2.html) - Structure specifying image creation parameters
 ///# C Specifications
 ///The [`PhysicalDeviceImageFormatInfo2`] structure is defined as:
@@ -10045,18 +12608,89 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceExternalImageFormatInfo<'lt>> for PhysicalDeviceImageFormatInfo2<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, ImageFormatListCreateInfo<'lt>> for PhysicalDeviceImageFormatInfo2<'lt> {}
-#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt>>
-    for PhysicalDeviceImageFormatInfo2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceExternalImageFormatInfo<'extender>> for PhysicalDeviceImageFormatInfo2<'this>
 {
+    type Out = PhysicalDeviceImageFormatInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceExternalImageFormatInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceExternalImageFormatInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
-unsafe impl<'lt> crate::Chain<'lt, ImageStencilUsageCreateInfo<'lt>> for PhysicalDeviceImageFormatInfo2<'lt> {}
-#[cfg(feature = "VK_EXT_filter_cubic")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceImageViewImageFormatInfoEXT<'lt>>
-    for PhysicalDeviceImageFormatInfo2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, ImageFormatListCreateInfo<'extender>> for PhysicalDeviceImageFormatInfo2<'this>
 {
+    type Out = PhysicalDeviceImageFormatInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut ImageFormatListCreateInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut ImageFormatListCreateInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceImageDrmFormatModifierInfoEXT<'extender>>
+    for PhysicalDeviceImageFormatInfo2<'this>
+{
+    type Out = PhysicalDeviceImageFormatInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceImageDrmFormatModifierInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceImageDrmFormatModifierInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, ImageStencilUsageCreateInfo<'extender>> for PhysicalDeviceImageFormatInfo2<'this>
+{
+    type Out = PhysicalDeviceImageFormatInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut ImageStencilUsageCreateInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut ImageStencilUsageCreateInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+#[cfg(feature = "VK_EXT_filter_cubic")]
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceImageViewImageFormatInfoEXT<'extender>>
+    for PhysicalDeviceImageFormatInfo2<'this>
+{
+    type Out = PhysicalDeviceImageFormatInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceImageViewImageFormatInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceImageViewImageFormatInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 ///[VkQueueFamilyProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyProperties2.html) - Structure providing information about a queue family
 ///# C Specifications
@@ -10184,15 +12818,90 @@ impl<'lt> QueueFamilyProperties2<'lt> {
     }
 }
 #[cfg(feature = "VK_KHR_global_priority")]
-unsafe impl<'lt> crate::Chain<'lt, QueueFamilyGlobalPriorityPropertiesKHR<'lt>> for QueueFamilyProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, QueueFamilyGlobalPriorityPropertiesKHR<'extender>> for QueueFamilyProperties2<'this>
+{
+    type Out = QueueFamilyProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut QueueFamilyGlobalPriorityPropertiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut QueueFamilyGlobalPriorityPropertiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
-unsafe impl<'lt> crate::Chain<'lt, QueueFamilyCheckpointPropertiesNV<'lt>> for QueueFamilyProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, QueueFamilyCheckpointPropertiesNV<'extender>> for QueueFamilyProperties2<'this>
+{
+    type Out = QueueFamilyProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut QueueFamilyCheckpointPropertiesNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut QueueFamilyCheckpointPropertiesNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_synchronization2")]
-unsafe impl<'lt> crate::Chain<'lt, QueueFamilyCheckpointProperties2NV<'lt>> for QueueFamilyProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, QueueFamilyCheckpointProperties2NV<'extender>> for QueueFamilyProperties2<'this>
+{
+    type Out = QueueFamilyProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut QueueFamilyCheckpointProperties2NV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut QueueFamilyCheckpointProperties2NV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_video_queue")]
-unsafe impl<'lt> crate::Chain<'lt, VideoQueueFamilyProperties2KHR<'lt>> for QueueFamilyProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, VideoQueueFamilyProperties2KHR<'extender>> for QueueFamilyProperties2<'this>
+{
+    type Out = QueueFamilyProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoQueueFamilyProperties2KHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoQueueFamilyProperties2KHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_video_queue")]
-unsafe impl<'lt> crate::Chain<'lt, QueueFamilyQueryResultStatusProperties2KHR<'lt>> for QueueFamilyProperties2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, QueueFamilyQueryResultStatusProperties2KHR<'extender>> for QueueFamilyProperties2<'this>
+{
+    type Out = QueueFamilyProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut QueueFamilyQueryResultStatusProperties2KHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut QueueFamilyQueryResultStatusProperties2KHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkPhysicalDeviceMemoryProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryProperties2.html) - Structure specifying physical device memory properties
 ///# C Specifications
 ///The [`PhysicalDeviceMemoryProperties2`] structure is defined as:
@@ -10317,9 +13026,22 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_memory_budget")]
-unsafe impl<'lt> crate::Chain<'lt, PhysicalDeviceMemoryBudgetPropertiesEXT<'lt>>
-    for PhysicalDeviceMemoryProperties2<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PhysicalDeviceMemoryBudgetPropertiesEXT<'extender>>
+    for PhysicalDeviceMemoryProperties2<'this>
 {
+    type Out = PhysicalDeviceMemoryProperties2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PhysicalDeviceMemoryBudgetPropertiesEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PhysicalDeviceMemoryBudgetPropertiesEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 ///[VkSparseImageFormatProperties2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageFormatProperties2.html) - Structure specifying sparse image format properties
 ///# C Specifications
@@ -12224,7 +14946,22 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, SemaphoreTypeCreateInfo<'lt>> for PhysicalDeviceExternalSemaphoreInfo<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SemaphoreTypeCreateInfo<'extender>> for PhysicalDeviceExternalSemaphoreInfo<'this>
+{
+    type Out = PhysicalDeviceExternalSemaphoreInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SemaphoreTypeCreateInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SemaphoreTypeCreateInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkExternalSemaphoreProperties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkExternalSemaphoreProperties.html) - Structure describing supported external semaphore handle features
 ///# C Specifications
 ///The [`ExternalSemaphoreProperties`] structure is defined as:
@@ -14220,7 +16957,22 @@ impl<'lt> BindBufferMemoryInfo<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, BindBufferMemoryDeviceGroupInfo<'lt>> for BindBufferMemoryInfo<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, BindBufferMemoryDeviceGroupInfo<'extender>> for BindBufferMemoryInfo<'this>
+{
+    type Out = BindBufferMemoryInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut BindBufferMemoryDeviceGroupInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut BindBufferMemoryDeviceGroupInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkBindBufferMemoryDeviceGroupInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindBufferMemoryDeviceGroupInfo.html) - Structure specifying device within a group to bind to
 ///# C Specifications
 ///The [`BindBufferMemoryDeviceGroupInfo`] structure is defined as:
@@ -14644,10 +17396,55 @@ impl<'lt> BindImageMemoryInfo<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, BindImageMemoryDeviceGroupInfo<'lt>> for BindImageMemoryInfo<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, BindImageMemoryDeviceGroupInfo<'extender>> for BindImageMemoryInfo<'this>
+{
+    type Out = BindImageMemoryInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut BindImageMemoryDeviceGroupInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut BindImageMemoryDeviceGroupInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_device_group")]
-unsafe impl<'lt> crate::Chain<'lt, BindImageMemorySwapchainInfoKHR<'lt>> for BindImageMemoryInfo<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, BindImagePlaneMemoryInfo<'lt>> for BindImageMemoryInfo<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, BindImageMemorySwapchainInfoKHR<'extender>> for BindImageMemoryInfo<'this>
+{
+    type Out = BindImageMemoryInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut BindImageMemorySwapchainInfoKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut BindImageMemorySwapchainInfoKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, BindImagePlaneMemoryInfo<'extender>> for BindImageMemoryInfo<'this>
+{
+    type Out = BindImageMemoryInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut BindImagePlaneMemoryInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut BindImagePlaneMemoryInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkBindImageMemoryDeviceGroupInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImageMemoryDeviceGroupInfo.html) - Structure specifying device within a group to bind to
 ///# C Specifications
 ///The [`BindImageMemoryDeviceGroupInfo`] structure is defined as:
@@ -17360,7 +20157,22 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, ImagePlaneMemoryRequirementsInfo<'lt>> for ImageMemoryRequirementsInfo2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, ImagePlaneMemoryRequirementsInfo<'extender>> for ImageMemoryRequirementsInfo2<'this>
+{
+    type Out = ImageMemoryRequirementsInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut ImagePlaneMemoryRequirementsInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut ImagePlaneMemoryRequirementsInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkImageSparseMemoryRequirementsInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkImageSparseMemoryRequirementsInfo2.html) - (None)
 ///# C Specifications
 ///The [`ImageSparseMemoryRequirementsInfo2`] structure is defined as:
@@ -17603,7 +20415,22 @@ impl<'lt> MemoryRequirements2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, MemoryDedicatedRequirements<'lt>> for MemoryRequirements2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, MemoryDedicatedRequirements<'extender>> for MemoryRequirements2<'this>
+{
+    type Out = MemoryRequirements2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut MemoryDedicatedRequirements<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut MemoryDedicatedRequirements<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkSparseImageMemoryRequirements2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSparseImageMemoryRequirements2.html) - (None)
 ///# C Specifications
 ///The [`SparseImageMemoryRequirements2`] structure is defined as:
@@ -18956,7 +21783,22 @@ impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
     }
 }
 #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
-unsafe impl<'lt> crate::Chain<'lt, ExternalFormatANDROID<'lt>> for SamplerYcbcrConversionCreateInfo<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, ExternalFormatANDROID<'extender>>
+    for SamplerYcbcrConversionCreateInfo<'this>
+{
+    type Out = SamplerYcbcrConversionCreateInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut ExternalFormatANDROID<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut ExternalFormatANDROID<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkBindImagePlaneMemoryInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkBindImagePlaneMemoryInfo.html) - Structure specifying how to bind an image plane to memory
 ///# C Specifications
 ///In order to bind *planes* of a *disjoint image*, add a
@@ -20360,9 +23202,23 @@ impl<'lt> DescriptorSetLayoutSupport<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, DescriptorSetVariableDescriptorCountLayoutSupport<'lt>>
-    for DescriptorSetLayoutSupport<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, DescriptorSetVariableDescriptorCountLayoutSupport<'extender>>
+    for DescriptorSetLayoutSupport<'this>
 {
+    type Out = DescriptorSetLayoutSupport<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DescriptorSetVariableDescriptorCountLayoutSupport<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DescriptorSetVariableDescriptorCountLayoutSupport<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 ///[VkPhysicalDeviceShaderDrawParametersFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderDrawParametersFeatures.html) - Structure describing shader draw parameter features that can be supported by an implementation
 ///# C Specifications

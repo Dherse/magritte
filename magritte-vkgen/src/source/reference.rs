@@ -177,7 +177,7 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
 
     /// Returns the reference as a path
     pub fn as_path(&self) -> TokenStream {
-        let mut path = self.origin().as_path();
+        let path = self.origin().as_path();
 
         if !matches!(self, Self::Extension(_) | Self::Origin(_)) {
             let ident = self.as_ident();

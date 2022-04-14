@@ -5053,22 +5053,22 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float16`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
-///   class="strut"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span class="strut"
+///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -8812,7 +8812,22 @@ impl<'lt> AttachmentDescription2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, AttachmentDescriptionStencilLayout<'lt>> for AttachmentDescription2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AttachmentDescriptionStencilLayout<'extender>> for AttachmentDescription2<'this>
+{
+    type Out = AttachmentDescription2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AttachmentDescriptionStencilLayout<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AttachmentDescriptionStencilLayout<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkAttachmentReference2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAttachmentReference2.html) - Structure specifying an attachment reference
 ///# C Specifications
 ///The [`AttachmentReference2`] structure is defined as:
@@ -9009,7 +9024,22 @@ impl<'lt> AttachmentReference2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, AttachmentReferenceStencilLayout<'lt>> for AttachmentReference2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AttachmentReferenceStencilLayout<'extender>> for AttachmentReference2<'this>
+{
+    type Out = AttachmentReference2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AttachmentReferenceStencilLayout<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AttachmentReferenceStencilLayout<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkSubpassDescription2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDescription2.html) - Structure specifying a subpass description
 ///# C Specifications
 ///The [`SubpassDescription2`] structure is defined as:
@@ -9464,9 +9494,39 @@ impl<'lt> SubpassDescription2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, SubpassDescriptionDepthStencilResolve<'lt>> for SubpassDescription2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SubpassDescriptionDepthStencilResolve<'extender>> for SubpassDescription2<'this>
+{
+    type Out = SubpassDescription2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SubpassDescriptionDepthStencilResolve<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SubpassDescriptionDepthStencilResolve<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_fragment_shading_rate")]
-unsafe impl<'lt> crate::Chain<'lt, FragmentShadingRateAttachmentInfoKHR<'lt>> for SubpassDescription2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, FragmentShadingRateAttachmentInfoKHR<'extender>> for SubpassDescription2<'this>
+{
+    type Out = SubpassDescription2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut FragmentShadingRateAttachmentInfoKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut FragmentShadingRateAttachmentInfoKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkSubpassDependency2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassDependency2.html) - Structure specifying a subpass dependency
 ///# C Specifications
 ///The [`SubpassDependency2`] structure is defined as:
@@ -9811,7 +9871,22 @@ impl<'lt> SubpassDependency2<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, MemoryBarrier2<'lt>> for SubpassDependency2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, MemoryBarrier2<'extender>>
+    for SubpassDependency2<'this>
+{
+    type Out = SubpassDependency2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut MemoryBarrier2<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut MemoryBarrier2<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkRenderPassCreateInfo2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkRenderPassCreateInfo2.html) - Structure specifying parameters of a newly created render pass
 ///# C Specifications
 ///The [`RenderPassCreateInfo2`] structure is defined as:
@@ -10228,7 +10303,22 @@ impl<'lt> RenderPassCreateInfo2<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_fragment_density_map")]
-unsafe impl<'lt> crate::Chain<'lt, RenderPassFragmentDensityMapCreateInfoEXT<'lt>> for RenderPassCreateInfo2<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, RenderPassFragmentDensityMapCreateInfoEXT<'extender>> for RenderPassCreateInfo2<'this>
+{
+    type Out = RenderPassCreateInfo2<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut RenderPassFragmentDensityMapCreateInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut RenderPassFragmentDensityMapCreateInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkSubpassBeginInfo](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassBeginInfo.html) - Structure specifying subpass begin information
 ///# C Specifications
 ///The [`SubpassBeginInfo`] structure is defined as:
@@ -10444,7 +10534,22 @@ impl<'lt> SubpassEndInfo<'lt> {
     }
 }
 #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
-unsafe impl<'lt> crate::Chain<'lt, SubpassFragmentDensityMapOffsetEndInfoQCOM<'lt>> for SubpassEndInfo<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SubpassFragmentDensityMapOffsetEndInfoQCOM<'extender>> for SubpassEndInfo<'this>
+{
+    type Out = SubpassEndInfo<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SubpassFragmentDensityMapOffsetEndInfoQCOM<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SubpassFragmentDensityMapOffsetEndInfoQCOM<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkPhysicalDeviceTimelineSemaphoreFeatures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTimelineSemaphoreFeatures.html) - Structure describing timeline semaphore features that can be supported by an implementation
 ///# C Specifications
 ///The [`PhysicalDeviceTimelineSemaphoreFeatures`] structure is defined as:
@@ -18579,7 +18684,7 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
@@ -18587,8 +18692,8 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float64`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.

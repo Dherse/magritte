@@ -6059,9 +6059,23 @@ impl<'lt> AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     }
 }
 #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureGeometryMotionTrianglesDataNV<'lt>>
-    for AccelerationStructureGeometryTrianglesDataKHR<'lt>
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AccelerationStructureGeometryMotionTrianglesDataNV<'extender>>
+    for AccelerationStructureGeometryTrianglesDataKHR<'this>
 {
+    type Out = AccelerationStructureGeometryTrianglesDataKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AccelerationStructureGeometryMotionTrianglesDataNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AccelerationStructureGeometryMotionTrianglesDataNV<'extender>
+                    as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
 }
 ///[VkAccelerationStructureGeometryAabbsDataKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryAabbsDataKHR.html) - Structure specifying axis-aligned bounding box geometry in a bottom-level acceleration structure
 ///# C Specifications
@@ -7362,7 +7376,22 @@ impl<'lt> AccelerationStructureCreateInfoKHR<'lt> {
     }
 }
 #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureMotionInfoNV<'lt>> for AccelerationStructureCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, AccelerationStructureMotionInfoNV<'extender>> for AccelerationStructureCreateInfoKHR<'this>
+{
+    type Out = AccelerationStructureCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut AccelerationStructureMotionInfoNV<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut AccelerationStructureMotionInfoNV<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkAabbPositionsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAabbPositionsKHR.html) - Structure specifying two opposing corners of an axis-aligned bounding box
 ///# C Specifications
 ///The [`AabbPositionsKHR`] structure is defined as:
@@ -7907,12 +7936,12 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mbin">×</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
+///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
 ///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
 ///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
 ///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span

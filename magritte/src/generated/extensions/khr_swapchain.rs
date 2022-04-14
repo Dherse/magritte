@@ -565,8 +565,9 @@ use crate::{
         ColorSpaceKHR, CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR,
     },
     vulkan1_0::{
-        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, ImageUsageFlags,
-        ImageViewCreateInfo, Instance, PhysicalDevice, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
+        AllocationCallbacks, BaseInStructure, BaseOutStructure, Bool32, Device, Extent2D, Fence, Format,
+        ImageUsageFlags, ImageViewCreateInfo, Instance, PhysicalDevice, Queue, Semaphore, SharingMode, StructureType,
+        VulkanResultCodes,
     },
     vulkan1_2::ImageFormatListCreateInfo,
     AsRaw, Handle, SmallVec, Unique, VulkanResult,
@@ -2121,16 +2122,106 @@ impl<'lt> SwapchainCreateInfoKHR<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_display_control")]
-unsafe impl<'lt> crate::Chain<'lt, SwapchainCounterCreateInfoEXT<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SwapchainCounterCreateInfoEXT<'extender>> for SwapchainCreateInfoKHR<'this>
+{
+    type Out = SwapchainCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SwapchainCounterCreateInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SwapchainCounterCreateInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_device_group")]
-unsafe impl<'lt> crate::Chain<'lt, DeviceGroupSwapchainCreateInfoKHR<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, DeviceGroupSwapchainCreateInfoKHR<'extender>> for SwapchainCreateInfoKHR<'this>
+{
+    type Out = SwapchainCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DeviceGroupSwapchainCreateInfoKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DeviceGroupSwapchainCreateInfoKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_AMD_display_native_hdr")]
-unsafe impl<'lt> crate::Chain<'lt, SwapchainDisplayNativeHdrCreateInfoAMD<'lt>> for SwapchainCreateInfoKHR<'lt> {}
-unsafe impl<'lt> crate::Chain<'lt, ImageFormatListCreateInfo<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SwapchainDisplayNativeHdrCreateInfoAMD<'extender>> for SwapchainCreateInfoKHR<'this>
+{
+    type Out = SwapchainCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SwapchainDisplayNativeHdrCreateInfoAMD<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SwapchainDisplayNativeHdrCreateInfoAMD<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, ImageFormatListCreateInfo<'extender>> for SwapchainCreateInfoKHR<'this>
+{
+    type Out = SwapchainCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut ImageFormatListCreateInfo<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut ImageFormatListCreateInfo<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveInfoEXT<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SurfaceFullScreenExclusiveInfoEXT<'extender>> for SwapchainCreateInfoKHR<'this>
+{
+    type Out = SwapchainCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SurfaceFullScreenExclusiveInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SurfaceFullScreenExclusiveInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> for SwapchainCreateInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SurfaceFullScreenExclusiveWin32InfoEXT<'extender>> for SwapchainCreateInfoKHR<'this>
+{
+    type Out = SwapchainCreateInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SurfaceFullScreenExclusiveWin32InfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SurfaceFullScreenExclusiveWin32InfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkPresentInfoKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentInfoKHR.html) - Structure describing parameters of a queue presentation
 ///# C Specifications
 ///The [`PresentInfoKHR`] structure is defined as:
@@ -2437,17 +2528,107 @@ impl<'lt> PresentInfoKHR<'lt> {
     }
 }
 #[cfg(feature = "VK_KHR_display_swapchain")]
-unsafe impl<'lt> crate::Chain<'lt, DisplayPresentInfoKHR<'lt>> for PresentInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, DisplayPresentInfoKHR<'extender>>
+    for PresentInfoKHR<'this>
+{
+    type Out = PresentInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DisplayPresentInfoKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DisplayPresentInfoKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_incremental_present")]
-unsafe impl<'lt> crate::Chain<'lt, PresentRegionsKHR<'lt>> for PresentInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, PresentRegionsKHR<'extender>>
+    for PresentInfoKHR<'this>
+{
+    type Out = PresentInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PresentRegionsKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PresentRegionsKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_device_group")]
-unsafe impl<'lt> crate::Chain<'lt, DeviceGroupPresentInfoKHR<'lt>> for PresentInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, DeviceGroupPresentInfoKHR<'extender>> for PresentInfoKHR<'this>
+{
+    type Out = PresentInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DeviceGroupPresentInfoKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DeviceGroupPresentInfoKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_present_id")]
-unsafe impl<'lt> crate::Chain<'lt, PresentIdKHR<'lt>> for PresentInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, PresentIdKHR<'extender>>
+    for PresentInfoKHR<'this>
+{
+    type Out = PresentInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PresentIdKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PresentIdKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_GOOGLE_display_timing")]
-unsafe impl<'lt> crate::Chain<'lt, PresentTimesInfoGOOGLE<'lt>> for PresentInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, PresentTimesInfoGOOGLE<'extender>> for PresentInfoKHR<'this>
+{
+    type Out = PresentInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PresentTimesInfoGOOGLE<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PresentTimesInfoGOOGLE<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_GGP_frame_token")]
-unsafe impl<'lt> crate::Chain<'lt, PresentFrameTokenGGP<'lt>> for PresentInfoKHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, PresentFrameTokenGGP<'extender>>
+    for PresentInfoKHR<'this>
+{
+    type Out = PresentInfoKHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut PresentFrameTokenGGP<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut PresentFrameTokenGGP<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 impl Device {
     ///[vkCreateSwapchainKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateSwapchainKHR.html) - Create a swapchain
     ///# C Specifications

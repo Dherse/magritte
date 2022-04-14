@@ -1345,7 +1345,22 @@ impl<'lt> VideoDecodeH264PictureInfoEXT<'lt> {
         self
     }
 }
-unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH264MvcEXT<'lt>> for VideoDecodeH264PictureInfoEXT<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'other, VideoDecodeH264MvcEXT<'extender>>
+    for VideoDecodeH264PictureInfoEXT<'this>
+{
+    type Out = VideoDecodeH264PictureInfoEXT<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut VideoDecodeH264MvcEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut VideoDecodeH264MvcEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkVideoDecodeH264DpbSlotInfoEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeH264DpbSlotInfoEXT.html) - Structure specifies H.264 decode DPB picture information
 ///# C Specifications
 ///The [`VideoDecodeH264DpbSlotInfoEXT`] structure correlates a DPB Slot

@@ -381,9 +381,39 @@ impl<'lt> PhysicalDeviceSurfaceInfo2KHR<'lt> {
     }
 }
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveInfoEXT<'lt>> for PhysicalDeviceSurfaceInfo2KHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SurfaceFullScreenExclusiveInfoEXT<'extender>> for PhysicalDeviceSurfaceInfo2KHR<'this>
+{
+    type Out = PhysicalDeviceSurfaceInfo2KHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SurfaceFullScreenExclusiveInfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SurfaceFullScreenExclusiveInfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> for PhysicalDeviceSurfaceInfo2KHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SurfaceFullScreenExclusiveWin32InfoEXT<'extender>> for PhysicalDeviceSurfaceInfo2KHR<'this>
+{
+    type Out = PhysicalDeviceSurfaceInfo2KHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SurfaceFullScreenExclusiveWin32InfoEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SurfaceFullScreenExclusiveWin32InfoEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkSurfaceCapabilities2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceCapabilities2KHR.html) - Structure describing capabilities of a surface
 ///# C Specifications
 ///The [`SurfaceCapabilities2KHR`] structure is defined as:
@@ -503,13 +533,73 @@ impl<'lt> SurfaceCapabilities2KHR<'lt> {
     }
 }
 #[cfg(feature = "VK_AMD_display_native_hdr")]
-unsafe impl<'lt> crate::Chain<'lt, DisplayNativeHdrSurfaceCapabilitiesAMD<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, DisplayNativeHdrSurfaceCapabilitiesAMD<'extender>> for SurfaceCapabilities2KHR<'this>
+{
+    type Out = SurfaceCapabilities2KHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut DisplayNativeHdrSurfaceCapabilitiesAMD<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut DisplayNativeHdrSurfaceCapabilitiesAMD<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_shared_presentable_image")]
-unsafe impl<'lt> crate::Chain<'lt, SharedPresentSurfaceCapabilitiesKHR<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SharedPresentSurfaceCapabilitiesKHR<'extender>> for SurfaceCapabilities2KHR<'this>
+{
+    type Out = SurfaceCapabilities2KHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SharedPresentSurfaceCapabilitiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SharedPresentSurfaceCapabilitiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_KHR_surface_protected_capabilities")]
-unsafe impl<'lt> crate::Chain<'lt, SurfaceProtectedCapabilitiesKHR<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SurfaceProtectedCapabilitiesKHR<'extender>> for SurfaceCapabilities2KHR<'this>
+{
+    type Out = SurfaceCapabilities2KHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SurfaceProtectedCapabilitiesKHR<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SurfaceProtectedCapabilitiesKHR<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-unsafe impl<'lt> crate::Chain<'lt, SurfaceCapabilitiesFullScreenExclusiveEXT<'lt>> for SurfaceCapabilities2KHR<'lt> {}
+unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
+    crate::Chain<'other, SurfaceCapabilitiesFullScreenExclusiveEXT<'extender>> for SurfaceCapabilities2KHR<'this>
+{
+    type Out = SurfaceCapabilities2KHR<'other>;
+    #[must_use]
+    #[inline]
+    fn chain(mut self, new: &'other mut SurfaceCapabilitiesFullScreenExclusiveEXT<'extender>) -> Self::Out {
+        unsafe {
+            crate::chaining::insert_ptr_in_chain(
+                &mut self as *mut Self as *mut BaseOutStructure<'other>,
+                new as *mut SurfaceCapabilitiesFullScreenExclusiveEXT<'extender> as *mut BaseOutStructure<'other>,
+            );
+            std::mem::transmute(self)
+        }
+    }
+}
 ///[VkSurfaceFormat2KHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSurfaceFormat2KHR.html) - Structure describing a supported swapchain format tuple
 ///# C Specifications
 ///The [`SurfaceFormat2KHR`] structure is defined as:
