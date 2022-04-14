@@ -125,7 +125,7 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
     ///Lifetime field
@@ -367,7 +367,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapPropertiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
     ///Lifetime field
@@ -571,7 +571,7 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassFragmentDensityMapCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
     ///Lifetime field

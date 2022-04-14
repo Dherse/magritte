@@ -116,7 +116,7 @@ pub const EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!(
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerBorderColorComponentMappingCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -268,7 +268,7 @@ impl<'lt> SamplerBorderColorComponentMappingCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBorderColorSwizzleFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT<'lt> {
     ///Lifetime field

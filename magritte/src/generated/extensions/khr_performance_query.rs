@@ -1501,7 +1501,7 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     ///Lifetime field
@@ -1683,7 +1683,7 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     ///Lifetime field
@@ -1831,7 +1831,7 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceCounterKHR<'lt> {
     ///Lifetime field
@@ -2009,7 +2009,7 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR<'lt> {
     ///Lifetime field
@@ -2197,7 +2197,7 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolPerformanceCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2357,7 +2357,7 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR<'lt> {
     ///Lifetime field
@@ -2483,7 +2483,7 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceQuerySubmitInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR<'lt> {
     ///Lifetime field

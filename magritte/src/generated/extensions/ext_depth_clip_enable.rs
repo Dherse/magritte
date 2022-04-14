@@ -133,7 +133,7 @@ impl std::fmt::Debug for PipelineRasterizationDepthClipStateCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDepthClipEnableFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
     ///Lifetime field
@@ -281,7 +281,7 @@ impl<'lt> PhysicalDeviceDepthClipEnableFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationDepthClipStateCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT<'lt> {
     ///Lifetime field

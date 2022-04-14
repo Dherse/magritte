@@ -614,7 +614,7 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConditionalRenderingBeginInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ConditionalRenderingBeginInfoEXT<'lt> {
     ///Lifetime field
@@ -771,7 +771,7 @@ impl<'lt> ConditionalRenderingBeginInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceConditionalRenderingInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
     ///Lifetime field
@@ -917,7 +917,7 @@ impl<'lt> CommandBufferInheritanceConditionalRenderingInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConditionalRenderingFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT<'lt> {
     ///Lifetime field

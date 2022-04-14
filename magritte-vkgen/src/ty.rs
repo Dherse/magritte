@@ -396,9 +396,9 @@ impl Mutability {
 
     /// As a mutability tokens for references
     #[inline]
-    pub fn to_ref_token(&self) -> Option<syn::Token![mut]> {
+    pub fn to_ref_token(&self) -> Option<TokenStream> {
         match self {
-            Mutability::Mutable => Some(syn::Token![mut](Span::call_site())),
+            Mutability::Mutable => Some(quote! { mut }),
             Mutability::Const => None,
         }
     }

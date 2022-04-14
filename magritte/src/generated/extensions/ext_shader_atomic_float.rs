@@ -127,7 +127,7 @@ pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderAtomicFloatFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT<'lt> {
     ///Lifetime field

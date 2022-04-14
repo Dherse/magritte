@@ -3544,7 +3544,7 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265CapabilitiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265CapabilitiesEXT<'lt> {
     ///Lifetime field
@@ -4051,7 +4051,7 @@ impl<'lt> VideoEncodeH265CapabilitiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265SessionParametersAddInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
     ///Lifetime field
@@ -4256,7 +4256,7 @@ impl<'lt> VideoEncodeH265SessionParametersAddInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265SessionParametersCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -4449,7 +4449,7 @@ impl<'lt> VideoEncodeH265SessionParametersCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265VclFrameInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265VclFrameInfoEXT<'lt> {
     ///Lifetime field
@@ -4657,7 +4657,7 @@ impl<'lt> VideoEncodeH265VclFrameInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265EmitPictureParametersEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265EmitPictureParametersEXT<'lt> {
     ///Lifetime field
@@ -4934,7 +4934,7 @@ impl<'lt> VideoEncodeH265EmitPictureParametersEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265NaluSliceSegmentEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265NaluSliceSegmentEXT<'lt> {
     ///Lifetime field
@@ -5118,7 +5118,7 @@ impl<'lt> VideoEncodeH265NaluSliceSegmentEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265RateControlInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265RateControlInfoEXT<'lt> {
     ///Lifetime field
@@ -5529,7 +5529,7 @@ impl VideoEncodeH265FrameSizeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265RateControlLayerInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265RateControlLayerInfoEXT<'lt> {
     ///Lifetime field
@@ -6001,7 +6001,7 @@ impl<'lt> VideoEncodeH265ProfileEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265DpbSlotInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265DpbSlotInfoEXT<'lt> {
     ///Lifetime field
@@ -6146,7 +6146,7 @@ impl<'lt> VideoEncodeH265DpbSlotInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH265ReferenceListsEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH265ReferenceListsEXT<'lt> {
     ///Lifetime field

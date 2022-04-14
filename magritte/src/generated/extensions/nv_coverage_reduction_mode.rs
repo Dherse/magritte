@@ -321,7 +321,7 @@ impl std::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCoverageReductionModeFeaturesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     ///Lifetime field
@@ -473,7 +473,7 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCoverageReductionStateCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineCoverageReductionStateCreateInfoNV<'lt> {
     ///Lifetime field
@@ -614,7 +614,7 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFramebufferMixedSamplesCombinationNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct FramebufferMixedSamplesCombinationNV<'lt> {
     ///Lifetime field

@@ -1,6 +1,6 @@
 //! Utilities to generate nicer imports.
 
-use std::{cell::RefCell, fmt::Display};
+use std::{cell::RefCell, fmt::Display, str::FromStr};
 
 use ahash::AHashSet;
 use proc_macro2::TokenStream;
@@ -57,7 +57,7 @@ impl Imports {
 impl ToTokens for Imports {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         for elem in &*self.0.borrow() {
-            tokens.extend(syn::parse_str::<TokenStream>(elem));
+            tokens.extend(TokenStream::from_str(elem).unwrap());
         }
     }
 }

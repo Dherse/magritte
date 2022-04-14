@@ -500,7 +500,7 @@ impl std::fmt::Display for PipelineExecutableStatisticFormatKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
     ///Lifetime field
@@ -639,7 +639,7 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineInfoKHR<'lt> {
     ///Lifetime field
@@ -764,7 +764,7 @@ impl<'lt> PipelineInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutablePropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineExecutablePropertiesKHR<'lt> {
     ///Lifetime field
@@ -944,7 +944,7 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineExecutableInfoKHR<'lt> {
     ///Lifetime field
@@ -1077,7 +1077,7 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR<'lt> {
     ///Lifetime field
@@ -1279,7 +1279,7 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableInternalRepresentationKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineExecutableInternalRepresentationKHR<'lt> {
     ///Lifetime field

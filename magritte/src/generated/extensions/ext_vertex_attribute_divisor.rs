@@ -207,7 +207,7 @@ impl VertexInputBindingDivisorDescriptionEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineVertexInputDivisorStateCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -350,7 +350,7 @@ impl<'lt> PipelineVertexInputDivisorStateCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
     ///Lifetime field
@@ -477,7 +477,7 @@ impl<'lt> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT<'lt> {
     ///Lifetime field

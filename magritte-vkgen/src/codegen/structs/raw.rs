@@ -1,9 +1,8 @@
 use std::borrow::Cow;
 
 use ahash::AHashMap;
-use proc_macro2::{Span, TokenStream};
+use proc_macro2::{Span, TokenStream, Ident};
 use quote::{quote, quote_each_token};
-use syn::{Ident, Token};
 use tracing::warn;
 
 use crate::{
@@ -32,7 +31,13 @@ impl<'a> Struct<'a> {
 
         // generate the derives
         let debug = self.is_debug(source).then(|| quote! { #[derive(Debug)] });
-        let copy = self.is_copy(source).then(|| quote! { #[derive(Clone, Copy)] });
+        
+        let copy = self.is_copy(source).then(|| if self.has_p_next().is_some() {
+            quote! { #[derive(Clone)]  }
+        } else {
+            quote! { #[derive(Clone, Copy)] }
+        });
+
         let partial_eq_ord = self
             .is_partial_eq(source)
             .then(|| quote! { #[derive(PartialEq, PartialOrd)] });
@@ -43,12 +48,7 @@ impl<'a> Struct<'a> {
             .then(|| quote! { #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))] });
 
         // create the lifetime generic argument
-        let lt = lifetime_as_generic_argument();
-        let lifetime = self.has_lifetime(source).then(|| {
-            quote! {
-                <#lt>
-            }
-        });
+        let lifetime = self.has_lifetime(source).then(lifetime_as_generic_argument);
 
         // create a transparent, zero-sized field if there is a lifetime
         let lifetime_field = self.has_lifetime(source).then(|| {
@@ -137,11 +137,7 @@ impl<'a> Struct<'a> {
             .into_iter()
             .map(|name| source.structs.get_by_name(name).unwrap())
             .map(|struct_| {
-                struct_.has_lifetime(source).then(|| {
-                    quote! {
-                        <#lt>
-                    }
-                })
+                struct_.has_lifetime(source).then(lifetime_as_generic_argument)
             });
 
         // creates a doc alias if the name has been changed
@@ -362,7 +358,7 @@ impl<'a> Field<'a> {
             .expect("failed to created const converter");
 
         // if the output is a reference, get it
-        let ref_ = ref_.then(|| Token![&](Span::call_site()));
+        let ref_ = ref_.then(|| quote! { & });
 
         Some(quote! {
             #[doc = #doc]

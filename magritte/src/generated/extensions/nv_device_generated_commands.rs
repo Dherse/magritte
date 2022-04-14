@@ -1982,7 +1982,7 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
     ///Lifetime field
@@ -2150,7 +2150,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
     ///Lifetime field
@@ -2433,7 +2433,7 @@ impl<'lt> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGraphicsShaderGroupCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GraphicsShaderGroupCreateInfoNV<'lt> {
     ///Lifetime field
@@ -2665,7 +2665,7 @@ impl<'lt> GraphicsShaderGroupCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGraphicsPipelineShaderGroupsCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GraphicsPipelineShaderGroupsCreateInfoNV<'lt> {
     ///Lifetime field
@@ -3341,7 +3341,7 @@ impl IndirectCommandsStreamNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutTokenNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct IndirectCommandsLayoutTokenNV<'lt> {
     ///Lifetime field
@@ -3767,7 +3767,7 @@ impl<'lt> IndirectCommandsLayoutTokenNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkIndirectCommandsLayoutCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct IndirectCommandsLayoutCreateInfoNV<'lt> {
     ///Lifetime field
@@ -4093,7 +4093,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeneratedCommandsInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GeneratedCommandsInfoNV<'lt> {
     ///Lifetime field
@@ -4444,7 +4444,7 @@ impl<'lt> GeneratedCommandsInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeneratedCommandsMemoryRequirementsInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GeneratedCommandsMemoryRequirementsInfoNV<'lt> {
     ///Lifetime field

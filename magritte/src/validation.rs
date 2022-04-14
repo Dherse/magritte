@@ -72,7 +72,7 @@ unsafe extern "system" fn vulkan_debug_callback<'lt>(
     p_callback_data: *const DebugUtilsMessengerCallbackDataEXT<'lt>,
     _user_data: *mut std::os::raw::c_void,
 ) -> Bool32 {
-    let callback_data = *p_callback_data;
+    let callback_data = &*p_callback_data;
     let message_id_number: i32 = callback_data.message_id_number as i32;
 
     let message_id_name = if callback_data.message_id_name.is_null() {

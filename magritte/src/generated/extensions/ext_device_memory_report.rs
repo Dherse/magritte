@@ -401,7 +401,7 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
     ///Lifetime field
@@ -550,7 +550,7 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -751,7 +751,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceMemoryReportCallbackDataEXT<'lt> {
     ///Lifetime field

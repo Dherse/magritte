@@ -1360,7 +1360,7 @@ impl std::fmt::Display for AccelerationStructureMemoryRequirementsTypeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV<'lt> {
     ///Lifetime field
@@ -1636,7 +1636,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV<'lt> {
     ///Lifetime field
@@ -1966,7 +1966,7 @@ unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for 
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryTrianglesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GeometryTrianglesNV<'lt> {
     ///Lifetime field
@@ -2255,7 +2255,7 @@ impl<'lt> GeometryTrianglesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryAABBNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GeometryAabbNV<'lt> {
     ///Lifetime field
@@ -2409,7 +2409,7 @@ impl<'lt> GeometryAabbNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryDataNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GeometryDataNV<'lt> {
     ///Lifetime field
@@ -2434,12 +2434,12 @@ impl<'lt> Default for GeometryDataNV<'lt> {
 }
 impl<'lt> GeometryDataNV<'lt> {
     ///Gets the value of [`Self::triangles`]
-    pub fn triangles(&self) -> GeometryTrianglesNV<'lt> {
-        self.triangles
+    pub fn triangles(&self) -> &GeometryTrianglesNV<'lt> {
+        &self.triangles
     }
     ///Gets the value of [`Self::aabbs`]
-    pub fn aabbs(&self) -> GeometryAabbNV<'lt> {
-        self.aabbs
+    pub fn aabbs(&self) -> &GeometryAabbNV<'lt> {
+        &self.aabbs
     }
     ///Gets a mutable reference to the value of [`Self::triangles`]
     pub fn triangles_mut(&mut self) -> &mut GeometryTrianglesNV<'lt> {
@@ -2506,7 +2506,7 @@ impl<'lt> GeometryDataNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkGeometryNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct GeometryNV<'lt> {
     ///Lifetime field
@@ -2564,8 +2564,8 @@ impl<'lt> GeometryNV<'lt> {
         self.geometry_type
     }
     ///Gets the value of [`Self::geometry`]
-    pub fn geometry(&self) -> GeometryDataNV<'lt> {
-        self.geometry
+    pub fn geometry(&self) -> &GeometryDataNV<'lt> {
+        &self.geometry
     }
     ///Gets the value of [`Self::flags`]
     pub fn flags(&self) -> GeometryFlagsKHR {
@@ -2691,7 +2691,7 @@ impl<'lt> GeometryNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureInfoNV<'lt> {
     ///Lifetime field
@@ -2893,7 +2893,7 @@ impl<'lt> AccelerationStructureInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV<'lt> {
     ///Lifetime field
@@ -2948,8 +2948,8 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
         self.compacted_size
     }
     ///Gets the value of [`Self::info`]
-    pub fn info(&self) -> AccelerationStructureInfoNV<'lt> {
-        self.info
+    pub fn info(&self) -> &AccelerationStructureInfoNV<'lt> {
+        &self.info
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -3052,7 +3052,7 @@ impl<'lt> AccelerationStructureCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindAccelerationStructureMemoryInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV<'lt> {
     ///Lifetime field
@@ -3258,7 +3258,7 @@ impl<'lt> BindAccelerationStructureMemoryInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWriteDescriptorSetAccelerationStructureNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV<'lt> {
     ///Lifetime field
@@ -3408,7 +3408,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV<'lt> {
     ///Lifetime field
@@ -3573,7 +3573,7 @@ impl<'lt> AccelerationStructureMemoryRequirementsInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPropertiesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV<'lt> {
     ///Lifetime field

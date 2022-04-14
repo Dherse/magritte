@@ -283,7 +283,7 @@ impl std::fmt::Display for QueueGlobalPriorityKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceQueueGlobalPriorityCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -408,7 +408,7 @@ impl<'lt> DeviceQueueGlobalPriorityCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
     ///Lifetime field
@@ -561,7 +561,7 @@ impl<'lt> PhysicalDeviceGlobalPriorityQueryFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyGlobalPriorityPropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueueFamilyGlobalPriorityPropertiesKHR<'lt> {
     ///Lifetime field

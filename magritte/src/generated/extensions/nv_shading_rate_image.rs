@@ -819,7 +819,7 @@ impl<'lt> ShadingRatePaletteNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportShadingRateImageStateCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
     ///Lifetime field
@@ -1011,7 +1011,7 @@ impl<'lt> PipelineViewportShadingRateImageStateCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShadingRateImageFeaturesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
     ///Lifetime field
@@ -1205,7 +1205,7 @@ impl<'lt> PhysicalDeviceShadingRateImageFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShadingRateImagePropertiesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV<'lt> {
     ///Lifetime field
@@ -1660,7 +1660,7 @@ impl<'lt> CoarseSampleOrderCustomNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportCoarseSampleOrderStateCreateInfoNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV<'lt> {
     ///Lifetime field

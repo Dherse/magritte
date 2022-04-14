@@ -607,7 +607,7 @@ impl<'lt> ExportMemoryWin32HandleInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryWin32HandlePropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR<'lt> {
     ///Lifetime field
@@ -737,7 +737,7 @@ impl<'lt> MemoryWin32HandlePropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetWin32HandleInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR<'lt> {
     ///Lifetime field

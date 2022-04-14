@@ -163,7 +163,7 @@ pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerCustomBorderColorCreateInfoEXT")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct SamplerCustomBorderColorCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -291,7 +291,7 @@ impl<'lt> SamplerCustomBorderColorCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCustomBorderColorPropertiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
     ///Lifetime field
@@ -420,7 +420,7 @@ impl<'lt> PhysicalDeviceCustomBorderColorPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCustomBorderColorFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorFeaturesEXT<'lt> {
     ///Lifetime field

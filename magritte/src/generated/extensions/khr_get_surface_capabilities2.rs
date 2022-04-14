@@ -308,7 +308,7 @@ pub type FNGetPhysicalDeviceSurfaceFormats2Khr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSurfaceInfo2KHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSurfaceInfo2KHR<'lt> {
     ///Lifetime field
@@ -422,7 +422,7 @@ unsafe impl<'lt> crate::Chain<'lt, SurfaceFullScreenExclusiveWin32InfoEXT<'lt>> 
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilities2KHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SurfaceCapabilities2KHR<'lt> {
     ///Lifetime field
@@ -544,7 +544,7 @@ unsafe impl<'lt> crate::Chain<'lt, SurfaceCapabilitiesFullScreenExclusiveEXT<'lt
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceFormat2KHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SurfaceFormat2KHR<'lt> {
     ///Lifetime field

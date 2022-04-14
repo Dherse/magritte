@@ -4,10 +4,6 @@ use std::{borrow::Cow, iter::once};
 
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
-use syn::{
-    parse_quote, punctuated::Punctuated, AngleBracketedGenericArguments, GenericArgument, Lifetime, Path,
-    PathArguments, PathSegment, Token, Type, TypeArray, TypePath, TypePtr, TypeReference, TypeSlice,
-};
 
 use crate::{
     imports::Imports,
@@ -24,16 +20,15 @@ pub fn lifetime_as_ident() -> Ident {
 }
 
 /// Creates a lifetime for the global lifetime name
-pub fn lifetime_as_lifetime() -> Lifetime {
-    Lifetime {
-        apostrophe: Span::call_site(),
-        ident: lifetime_as_ident(),
+pub fn lifetime_as_lifetime() -> TokenStream {
+    quote! {
+        'lt
     }
 }
 
 /// Creates a generic lifetime argument for the global lifetime name
-pub fn lifetime_as_generic_argument() -> GenericArgument {
-    GenericArgument::Lifetime(lifetime_as_lifetime())
+pub fn lifetime_as_generic_argument() -> TokenStream {
+    quote! { <'lt> }
 }
 
 impl<'a> Ty<'a> {
@@ -282,7 +277,7 @@ impl<'a> Ty<'a> {
             },
             Ty::Pointer(mutability, ty) => {
                 let ty = ty.as_raw_ty(source, None, false).0;
-                let mut_ = mutability.as_mutability_token();
+                let mut_ = mutability.as_ref_token();
                 fields.push(quote! { value: &#lt #mut_ #ty});
 
                 let ptr_mut = mutability.as_ptr_token();
@@ -296,7 +291,7 @@ impl<'a> Ty<'a> {
             },
             Ty::Slice(mutability, ty, len) => {
                 let ty = ty.as_raw_ty(source, None, false).0;
-                let mut_ = mutability.as_mutability_token();
+                let mut_ = mutability.as_ref_token();
 
                 fields.push(quote! { value: &#lt #mut_ [#ty]});
 
@@ -365,7 +360,7 @@ impl<'a> Ty<'a> {
         len: Option<TokenStream>,
         unsafe_: bool,
     ) -> Option<(TokenStream, bool)> {
-        let mut_ = mutability.as_mutability_token();
+        let mut_ = mutability.as_ref_token();
 
         match self {
             Ty::Native(_) => {
@@ -483,18 +478,9 @@ impl<'a> Ty<'a> {
         source: &Source<'a>,
         imports: Option<&Imports>,
         pointer_has_lifetime: bool,
-    ) -> (Type, bool) {
+    ) -> (TokenStream, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
-            Ty::Pointer(mutability, ty) => (
-                Type::Ptr(TypePtr {
-                    star_token: Default::default(),
-                    const_token: mutability.as_const_token(),
-                    mutability: mutability.as_mutability_token(),
-                    elem: box ty.as_raw_ty(source, imports, false).0,
-                }),
-                pointer_has_lifetime,
-            ),
             Ty::Named(name) => source
                 .find(name)
                 .expect("type not found")
@@ -505,42 +491,39 @@ impl<'a> Ty<'a> {
             Ty::Array(ty, len) => {
                 let (elem, lt) = ty.as_raw_ty(source, imports, pointer_has_lifetime);
                 let len = len.as_const_expr(source, imports);
-                let len = parse_quote! {
+                let len = quote! {
                     #len as usize
                 };
 
                 (
-                    Type::Array(TypeArray {
-                        bracket_token: Default::default(),
-                        elem: box elem,
-                        semi_token: Default::default(),
-                        len,
-                    }),
+                    quote! {
+                        [#elem; #len]
+                    },
                     lt,
                 )
             },
-            Ty::Slice(mutability, ty, _) => (
-                Type::Ptr(TypePtr {
-                    star_token: Default::default(),
-                    const_token: mutability.as_const_token(),
-                    mutability: mutability.as_mutability_token(),
-                    elem: box ty.as_raw_ty(source, imports, false).0,
-                }),
-                pointer_has_lifetime,
-            ),
+            Ty::Pointer(mutability, ty) | Ty::Slice(mutability, ty, _) => {
+                let mutability = mutability.as_ptr_token();
+                let ty = ty.as_raw_ty(source, imports, false).0;
+
+                (
+                    quote! {
+                        *#mutability #ty
+                    },
+                    pointer_has_lifetime
+                )
+                
+            },
         }
     }
 
     /// Turns a type into a tokenized type and an optional lifetime argument
-    pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+    pub fn as_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> (TokenStream, bool) {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
             Ty::Pointer(_, ty) => (ty.as_raw_ty(source, imports, true).0, true),
             Ty::Named(Cow::Borrowed("VkBool32")) => (
-                Type::Path(TypePath {
-                    qself: None,
-                    path: Path::from(PathSegment::from(Ident::new("bool", Span::call_site()))),
-                }),
+                quote! { bool },
                 false,
             ),
             Ty::Named(name) => source
@@ -553,70 +536,58 @@ impl<'a> Ty<'a> {
             Ty::Array(ty, len) => {
                 let (elem, lt) = ty.as_raw_ty(source, imports, false);
                 let len = len.as_const_expr(source, imports);
-                let len = parse_quote! {
-                    #len as usize
-                };
-
                 (
-                    Type::Array(TypeArray {
-                        bracket_token: Default::default(),
-                        elem: box elem,
-                        semi_token: Default::default(),
-                        len,
-                    }),
+                    quote! {
+                        [#elem; #len as usize]
+                    },
                     lt,
                 )
             },
-            Ty::Slice(_, ty, _) => (
-                Type::Slice(TypeSlice {
-                    bracket_token: Default::default(),
-                    elem: box ty.as_raw_ty(source, imports, false).0,
-                }),
-                true,
-            ),
+            Ty::Slice(_, ty, _) => {
+                let elem = ty.as_raw_ty(source, imports, false).0;
+                (
+                    quote! {
+                        [#elem]
+                    },
+                    true,
+                )
+            },
         }
     }
 
     /// Turns a type into a tokenized type
-    pub(super) fn as_const_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
+    pub(super) fn as_const_ty(&self, source: &Source<'a>, imports: Option<&Imports>) -> TokenStream {
         match self {
             Ty::Native(native) => native.as_type(imports),
-            Ty::Pointer(mutability, ty) | Ty::Slice(mutability, ty, _) => Type::Ptr(TypePtr {
-                star_token: Default::default(),
-                const_token: mutability.as_const_token(),
-                mutability: mutability.as_mutability_token(),
-                elem: box ty.as_const_ty(source, imports),
-            }),
+            Ty::Pointer(mutability, ty) | Ty::Slice(mutability, ty, _) => {
+                let mutability = mutability.as_ptr_token();
+                let elem = ty.as_const_ty(source, imports);
+                
+                quote! {
+                    *#mutability #elem
+                }
+            },
             Ty::Named(name) => source
                 .find(name)
                 .expect("type not found")
                 .as_type_ref()
                 .expect("not a type")
                 .as_const_type(source, imports),
-            Ty::StringArray(len) => Type::Array(TypeArray {
-                bracket_token: Default::default(),
-                elem: box Native::Char.as_type(None),
-                semi_token: Default::default(),
-                len: {
-                    let len = len.as_const_expr(source, imports);
-                    parse_quote! {
-                        #len as usize
-                    }
-                },
-            }),
-            Ty::Array(ty, len) => {
-                let elem = box ty.as_const_ty(source, imports);
+            Ty::StringArray(len) => {
                 let len = len.as_const_expr(source, imports);
-                let len = parse_quote! {
-                    #len as usize
-                };
-
-                Type::Array(TypeArray {
-                    bracket_token: Default::default(),
-                    elem,
-                    semi_token: Default::default(),
-                    len,
-                })
+                let elem = Native::Char.as_type(None);
+                
+                quote! {
+                    [#elem; #len as usize]
+                }
+            },
+            Ty::Array(ty, len) => {
+                let len = len.as_const_expr(source, imports);
+                let elem = box ty.as_const_ty(source, imports);
+                
+                quote! {
+                    [#elem; #len as usize]
+                }
             },
             Ty::NullTerminatedString(_) => Native::NullTerminatedString.as_const_type(imports),
         }
@@ -625,7 +596,7 @@ impl<'a> Ty<'a> {
 
 impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     /// Turns a type reference into a tokenized type
-    pub fn as_const_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> Type {
+    pub fn as_const_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> TokenStream {
         assert!(
             !self.has_lifetime(source, false),
             "type cannot be made into static type"
@@ -633,28 +604,21 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
 
         if let Some(imports) = imports {
             self.import(imports);
-
-            Type::Path(TypePath {
-                qself: None,
-                path: Path::from(PathSegment::from(self.as_ident())),
-            })
+            
+            self.as_ident().to_token_stream()
         } else {
-            Type::Path(TypePath {
-                qself: None,
-                path: {
-                    let mut path = self.origin().as_path();
+            let path = self.origin().as_path();
+            let elem = self.as_ident().to_token_stream();
 
-                    path.segments.extend_one(PathSegment::from(self.as_ident()));
-
-                    path
-                },
-            })
+            quote! {
+                #path::#elem
+            }
         }
     }
 
     /// Turns a type reference into a tokenized type and a boolean designating whether it
     /// has a lifetime
-    pub fn as_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> (Type, bool) {
+    pub fn as_type(&self, source: &Source<'a>, imports: Option<&Imports>) -> (TokenStream, bool) {
         // special case for flattening aliases
         if let Some(alias) = self.as_alias() {
             return source
@@ -664,33 +628,22 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         }
 
         let lt = self.has_lifetime(source, true) && !self.is_opaque();
+        let lifetime = lt.then(lifetime_as_generic_argument);
 
-        let mut path = if let Some(imports) = imports {
+        let ident = self.as_ident();
+        (if let Some(imports) = imports {
             self.import(imports);
 
-            Path {
-                leading_colon: None,
-                segments: Punctuated::new(),
+            quote! {
+                #ident #lifetime
             }
         } else {
-            self.origin().as_path()
-        };
+            let path = self.origin().as_path();
 
-        path.segments.push(if lt {
-            PathSegment {
-                ident: self.as_ident(),
-                arguments: PathArguments::AngleBracketed(AngleBracketedGenericArguments {
-                    colon2_token: None,
-                    lt_token: Default::default(),
-                    args: once(lifetime_as_generic_argument()).collect(),
-                    gt_token: Default::default(),
-                }),
+            quote! {
+                #path :: #ident #lifetime
             }
-        } else {
-            PathSegment::from(self.as_ident())
-        });
-
-        (Type::Path(TypePath { qself: None, path }), lt)
+        }, lt)
     }
 
     /*/// Gets the list of generic type parameters
@@ -710,26 +663,6 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
 }
 
 impl Mutability {
-    /// Returns this mutability as an optional const token
-    #[inline]
-    pub fn as_const_token(&self) -> Option<Token![const]> {
-        if self.is_const() {
-            Some(Default::default())
-        } else {
-            None
-        }
-    }
-
-    /// Returns this mutability as an optional mut token
-    #[inline]
-    pub fn as_mutability_token(&self) -> Option<Token![mut]> {
-        if self.is_mut() {
-            Some(Default::default())
-        } else {
-            None
-        }
-    }
-
     /// Returns the mutability for a pointer
     #[inline]
     pub fn as_ptr_token(&self) -> TokenStream {
@@ -738,104 +671,61 @@ impl Mutability {
             Mutability::Const => quote! { const },
         }
     }
+
+    /// Returns the mutability for a pointer
+    #[inline]
+    pub fn as_ref_token(&self) -> Option<TokenStream> {
+        match self {
+            Mutability::Mutable => Some(quote! { mut }),
+            Mutability::Const => None,
+        }
+    }
 }
 
 impl Native {
     /// Gets the native type has a dynamic type that will (if needed) use the global lifetime name
-    pub fn as_type(&self, imports: Option<&Imports>) -> Type {
-        self.as_type_with_lifetime(lifetime_as_ident(), imports)
+    pub fn as_type(&self, imports: Option<&Imports>) -> TokenStream {
+        self.as_type_with_lifetime(lifetime_as_lifetime(), imports)
     }
 
     /// Gets the native type has a dynamic type that will (if needed) use the static lifetime
-    pub fn as_const_type(&self, imports: Option<&Imports>) -> Type {
-        self.as_type_with_lifetime(Ident::new("static", Span::call_site()), imports)
+    pub fn as_const_type(&self, imports: Option<&Imports>) -> TokenStream {
+        self.as_type_with_lifetime(quote! { 'static }, imports)
     }
 
     /// Gets the native type has a pointer type
-    pub fn as_raw_type(&self, imports: Option<&Imports>) -> Type {
+    pub fn as_raw_type(&self, imports: Option<&Imports>) -> TokenStream {
         if let Some(imports) = imports {
             imports.push("std::os::raw::c_char");
 
-            let path = Type::Path(TypePath {
-                qself: None,
-                path: Path::from(PathSegment::from(Ident::new("c_char", Span::call_site()))),
-            });
-
-            Type::Ptr(TypePtr {
-                star_token: Default::default(),
-                const_token: Some(Default::default()),
-                mutability: None,
-                elem: box path,
-            })
+            quote! {
+                *const c_char
+            }
         } else {
-            Type::Ptr(TypePtr {
-                star_token: Default::default(),
-                const_token: Some(Default::default()),
-                mutability: None,
-                elem: box Type::Path(TypePath {
-                    qself: None,
-                    path: Path {
-                        leading_colon: None,
-                        segments: [
-                            PathSegment::from(Ident::new("std", Span::call_site())),
-                            PathSegment::from(Ident::new("os", Span::call_site())),
-                            PathSegment::from(Ident::new("raw", Span::call_site())),
-                            PathSegment::from(Ident::new("c_char", Span::call_site())),
-                        ]
-                        .into_iter()
-                        .collect(),
-                    },
-                }),
-            })
+            quote! {
+                *const std::os::raw::c_char
+            }
         }
     }
 
     /// Gets a type from this native type, imports it if needed
-    pub fn as_type_with_lifetime(&self, lifetime: Ident, imports: Option<&Imports>) -> Type {
+    pub fn as_type_with_lifetime(&self, lifetime: TokenStream, imports: Option<&Imports>) -> TokenStream {
         if let Some(imports) = imports {
             self.import(imports);
 
-            let path = Type::Path(TypePath {
-                qself: None,
-                path: Path::from(PathSegment::from(self.as_ident())),
-            });
-
+            let ident = self.as_ident();
             match self {
-                Self::NullTerminatedString => Type::Reference(TypeReference {
-                    and_token: Default::default(),
-                    lifetime: Some(Lifetime {
-                        apostrophe: Span::call_site(),
-                        ident: lifetime,
-                    }),
-                    mutability: None,
-                    elem: box path,
-                }),
-                _ => path,
+                Self::NullTerminatedString => quote! {
+                    &#lifetime #ident
+                },
+                _ => ident.to_token_stream(),
             }
         } else {
             match self {
-                Self::NullTerminatedString => Type::Reference(TypeReference {
-                    and_token: Default::default(),
-                    lifetime: Some(Lifetime {
-                        apostrophe: Span::call_site(),
-                        ident: lifetime,
-                    }),
-                    mutability: None,
-                    elem: box Type::Path(TypePath {
-                        qself: None,
-                        path: Path {
-                            leading_colon: None,
-                            segments: [
-                                PathSegment::from(Ident::new("std", Span::call_site())),
-                                PathSegment::from(Ident::new("ffi", Span::call_site())),
-                                PathSegment::from(Ident::new("CStr", Span::call_site())),
-                            ]
-                            .into_iter()
-                            .collect(),
-                        },
-                    }),
-                }),
-                _ => Type::Path(self.as_type_path()),
+                Self::NullTerminatedString => quote! {
+                    &#lifetime std::ffi::CStr
+                },
+                _ => self.as_type_path()
             }
         }
     }
@@ -881,66 +771,13 @@ impl Native {
     }
 
     /// Turns a native type into a type path
-    pub fn as_type_path(&self) -> TypePath {
+    pub fn as_type_path(&self) -> TokenStream {
         match self {
-            Native::Void => TypePath {
-                qself: None,
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment::from(Ident::new("std", Span::call_site())),
-                        PathSegment::from(Ident::new("ffi", Span::call_site())),
-                        PathSegment::from(Ident::new("c_void", Span::call_site())),
-                    ]
-                    .into_iter()
-                    .collect(),
-                },
-            },
-            Native::Char => TypePath {
-                qself: None,
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment::from(Ident::new("std", Span::call_site())),
-                        PathSegment::from(Ident::new("os", Span::call_site())),
-                        PathSegment::from(Ident::new("raw", Span::call_site())),
-                        PathSegment::from(Ident::new("c_char", Span::call_site())),
-                    ]
-                    .into_iter()
-                    .collect(),
-                },
-            },
-            Native::UChar => TypePath {
-                qself: None,
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment::from(Ident::new("std", Span::call_site())),
-                        PathSegment::from(Ident::new("os", Span::call_site())),
-                        PathSegment::from(Ident::new("raw", Span::call_site())),
-                        PathSegment::from(Ident::new("c_uchar", Span::call_site())),
-                    ]
-                    .into_iter()
-                    .collect(),
-                },
-            },
-            Native::NullTerminatedString => TypePath {
-                qself: None,
-                path: Path {
-                    leading_colon: None,
-                    segments: [
-                        PathSegment::from(Ident::new("std", Span::call_site())),
-                        PathSegment::from(Ident::new("ffi", Span::call_site())),
-                        PathSegment::from(Ident::new("CStr", Span::call_site())),
-                    ]
-                    .into_iter()
-                    .collect(),
-                },
-            },
-            _ => TypePath {
-                qself: None,
-                path: Path::from(PathSegment::from(self.as_ident())),
-            },
+            Native::Void => quote! { std::ffi::c_void },
+            Native::Char => quote! { std::os::raw::c_char},
+            Native::UChar => quote! { std::os::raw::c_uchar },
+            Native::NullTerminatedString => quote! { std::ffi::CStr },
+            _ => self.as_ident().to_token_stream(),
         }
     }
 }

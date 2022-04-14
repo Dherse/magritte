@@ -182,7 +182,7 @@ pub const KHR_DYNAMIC_RENDERING_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFragmentShadingRateAttachmentInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
     ///Lifetime field
@@ -339,7 +339,7 @@ impl<'lt> RenderingFragmentShadingRateAttachmentInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderingFragmentDensityMapAttachmentInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
     ///Lifetime field
@@ -507,7 +507,7 @@ impl<'lt> RenderingFragmentDensityMapAttachmentInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentSampleCountInfoAMD")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AttachmentSampleCountInfoAMD<'lt> {
     ///Lifetime field
@@ -680,7 +680,7 @@ impl<'lt> AttachmentSampleCountInfoAMD<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultiviewPerViewAttributesInfoNVX")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MultiviewPerViewAttributesInfoNVX<'lt> {
     ///Lifetime field

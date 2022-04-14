@@ -2176,7 +2176,7 @@ impl DisplayModePropertiesKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DisplayModeCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2593,7 +2593,7 @@ impl DisplayPlaneCapabilitiesKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplaySurfaceCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct DisplaySurfaceCreateInfoKHR<'lt> {
     ///Lifetime field

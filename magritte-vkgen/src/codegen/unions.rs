@@ -27,12 +27,7 @@ impl<'a> Union<'a> {
         let copy = self.is_copy(source).then(|| quote! { #[derive(Clone, Copy)] });
 
         // create the lifetime generic argument
-        let lt = lifetime_as_generic_argument();
-        let lifetime = self.has_lifetime(source).then(|| {
-            quote! {
-                <#lt>
-            }
-        });
+        let lifetime = self.has_lifetime(source).then(lifetime_as_generic_argument);
 
         // get the documentation and the documentation of each field
         let field_doc = self.generate_doc(source, doc, out).unwrap_or_default();

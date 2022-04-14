@@ -424,7 +424,7 @@ impl std::fmt::Display for ComponentTypeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixFeaturesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     ///Lifetime field
@@ -610,7 +610,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixPropertiesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     ///Lifetime field
@@ -766,7 +766,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCooperativeMatrixPropertiesNV")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesNV<'lt> {
     ///Lifetime field

@@ -935,7 +935,7 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugReportCallbackCreateInfoEXT")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT<'lt> {
     ///Lifetime field

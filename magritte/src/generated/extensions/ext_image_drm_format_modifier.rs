@@ -312,7 +312,7 @@ pub type FNGetImageDrmFormatModifierPropertiesExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesListEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesListEXT<'lt> {
     ///Lifetime field
@@ -659,7 +659,7 @@ impl DrmFormatModifierPropertiesEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageDrmFormatModifierInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
     ///Lifetime field
@@ -844,7 +844,7 @@ impl<'lt> PhysicalDeviceImageDrmFormatModifierInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierListCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageDrmFormatModifierListCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -1020,7 +1020,7 @@ impl<'lt> ImageDrmFormatModifierListCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierExplicitCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -1182,7 +1182,7 @@ impl<'lt> ImageDrmFormatModifierExplicitCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageDrmFormatModifierPropertiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageDrmFormatModifierPropertiesEXT<'lt> {
     ///Lifetime field
@@ -1315,7 +1315,7 @@ impl<'lt> ImageDrmFormatModifierPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDrmFormatModifierPropertiesList2EXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesList2EXT<'lt> {
     ///Lifetime field

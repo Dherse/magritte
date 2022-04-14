@@ -360,7 +360,7 @@ impl SampleLocationEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSampleLocationsInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SampleLocationsInfoEXT<'lt> {
     ///Lifetime field
@@ -539,7 +539,7 @@ impl<'lt> SampleLocationsInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAttachmentSampleLocationsEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AttachmentSampleLocationsEXT<'lt> {
     ///Lifetime field
@@ -568,8 +568,8 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
         self.attachment_index
     }
     ///Gets the value of [`Self::sample_locations_info`]
-    pub fn sample_locations_info(&self) -> SampleLocationsInfoEXT<'lt> {
-        self.sample_locations_info
+    pub fn sample_locations_info(&self) -> &SampleLocationsInfoEXT<'lt> {
+        &self.sample_locations_info
     }
     ///Gets a mutable reference to the value of [`Self::attachment_index`]
     pub fn attachment_index_mut(&mut self) -> &mut u32 {
@@ -637,7 +637,7 @@ impl<'lt> AttachmentSampleLocationsEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassSampleLocationsEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SubpassSampleLocationsEXT<'lt> {
     ///Lifetime field
@@ -666,8 +666,8 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
         self.subpass_index
     }
     ///Gets the value of [`Self::sample_locations_info`]
-    pub fn sample_locations_info(&self) -> SampleLocationsInfoEXT<'lt> {
-        self.sample_locations_info
+    pub fn sample_locations_info(&self) -> &SampleLocationsInfoEXT<'lt> {
+        &self.sample_locations_info
     }
     ///Gets a mutable reference to the value of [`Self::subpass_index`]
     pub fn subpass_index_mut(&mut self) -> &mut u32 {
@@ -765,7 +765,7 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassSampleLocationsBeginInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///Lifetime field
@@ -993,7 +993,7 @@ impl<'lt> RenderPassSampleLocationsBeginInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineSampleLocationsStateCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -1061,8 +1061,8 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
         unsafe { std::mem::transmute(self.sample_locations_enable as u8) }
     }
     ///Gets the value of [`Self::sample_locations_info`]
-    pub fn sample_locations_info(&self) -> SampleLocationsInfoEXT<'lt> {
-        self.sample_locations_info
+    pub fn sample_locations_info(&self) -> &SampleLocationsInfoEXT<'lt> {
+        &self.sample_locations_info
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -1168,7 +1168,7 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSampleLocationsPropertiesEXT")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     ///Lifetime field
@@ -1381,7 +1381,7 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultisamplePropertiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MultisamplePropertiesEXT<'lt> {
     ///Lifetime field

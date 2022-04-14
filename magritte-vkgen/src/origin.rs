@@ -10,7 +10,6 @@ use std::{
 use heck::{ToLowerCamelCase, ToSnakeCase};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
-use syn::PathSegment;
 
 use crate::{imports::Imports, source::Source, symbols::SymbolName};
 
@@ -211,76 +210,27 @@ impl<'a> Origin<'a> {
     }
 
     /// Turns the origin into a tokenized rust path
-    pub fn as_path(&self) -> syn::Path {
+    pub fn as_path(&self) -> TokenStream {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
-            Origin::Core => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("core", Span::call_site())),
-                ]
-                .into_iter()
-                .collect(),
+            Origin::Core => quote! {
+                crate::core
             },
-            Origin::Extension(name, _, _) => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("extensions", Span::call_site())),
-                    PathSegment::from(Ident::new(
-                        &name.trim_start_matches("VK_").to_snake_case(),
-                        Span::call_site(),
-                    )),
-                ]
-                .into_iter()
-                .collect(),
+            Origin::Extension(name, _, _) => {
+                let ident = Ident::new(
+                    &name.trim_start_matches("VK_").to_snake_case(),
+                    Span::call_site(),
+                );
+
+                quote! {
+                    crate::extensions::#ident
+                }
             },
-            Origin::Vulkan1_0 => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("vulkan1_0", Span::call_site())),
-                ]
-                .into_iter()
-                .collect(),
-            },
-            Origin::Vulkan1_1 => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("vulkan1_1", Span::call_site())),
-                ]
-                .into_iter()
-                .collect(),
-            },
-            Origin::Vulkan1_2 => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("vulkan1_2", Span::call_site())),
-                ]
-                .into_iter()
-                .collect(),
-            },
-            Origin::Vulkan1_3 => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("vulkan1_3", Span::call_site())),
-                ]
-                .into_iter()
-                .collect(),
-            },
-            Origin::Opaque => syn::Path {
-                leading_colon: None,
-                segments: [
-                    PathSegment::from(Ident::new("crate", Span::call_site())),
-                    PathSegment::from(Ident::new("native", Span::call_site())),
-                ]
-                .into_iter()
-                .collect(),
-            },
+            Origin::Vulkan1_0 => quote! { crate::vulkan1_0 },
+            Origin::Vulkan1_1 => quote! { crate::vulkan1_1 },
+            Origin::Vulkan1_2 => quote! { crate::vulkan1_2 },
+            Origin::Vulkan1_3 => quote! { crate::vulkan1_3 },
+            Origin::Opaque => quote! { crate::native },
         }
     }
 

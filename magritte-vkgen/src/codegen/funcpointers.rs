@@ -36,7 +36,7 @@ impl<'a> FunctionPointer<'a> {
         let lifetime = has_lifetime.then(|| {
             let lt = lifetime_as_generic_argument();
             quote! {
-                for<#lt>
+                for #lt
             }
         });
 

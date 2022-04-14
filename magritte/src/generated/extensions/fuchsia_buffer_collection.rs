@@ -971,7 +971,7 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryBufferCollectionFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA<'lt> {
     ///Lifetime field
@@ -1100,7 +1100,7 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionImageCreateInfoFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1230,7 +1230,7 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionBufferCreateInfoFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1531,7 +1531,7 @@ impl<'lt> BufferCollectionCreateInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionPropertiesFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA<'lt> {
     ///Lifetime field
@@ -1636,8 +1636,8 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
         self.format_features
     }
     ///Gets the value of [`Self::sysmem_color_space_index`]
-    pub fn sysmem_color_space_index(&self) -> SysmemColorSpaceFUCHSIA<'lt> {
-        self.sysmem_color_space_index
+    pub fn sysmem_color_space_index(&self) -> &SysmemColorSpaceFUCHSIA<'lt> {
+        &self.sysmem_color_space_index
     }
     ///Gets the value of [`Self::sampler_ycbcr_conversion_components`]
     pub fn sampler_ycbcr_conversion_components(&self) -> ComponentMapping {
@@ -1834,7 +1834,7 @@ impl<'lt> BufferCollectionPropertiesFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferConstraintsInfoFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1887,16 +1887,16 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::create_info`]
-    pub fn create_info(&self) -> BufferCreateInfo<'lt> {
-        self.create_info
+    pub fn create_info(&self) -> &BufferCreateInfo<'lt> {
+        &self.create_info
     }
     ///Gets the value of [`Self::required_format_features`]
     pub fn required_format_features(&self) -> FormatFeatureFlags {
         self.required_format_features
     }
     ///Gets the value of [`Self::buffer_collection_constraints`]
-    pub fn buffer_collection_constraints(&self) -> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
-        self.buffer_collection_constraints
+    pub fn buffer_collection_constraints(&self) -> &BufferCollectionConstraintsInfoFUCHSIA<'lt> {
+        &self.buffer_collection_constraints
     }
     ///Gets a mutable reference to the value of [`Self::s_type`]
     pub fn s_type_mut(&mut self) -> &mut StructureType {
@@ -1980,7 +1980,7 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSysmemColorSpaceFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA<'lt> {
     ///Lifetime field
@@ -2110,7 +2110,7 @@ impl<'lt> SysmemColorSpaceFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageFormatConstraintsInfoFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -2185,8 +2185,8 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
         &*self.p_next
     }
     ///Gets the value of [`Self::image_create_info`]
-    pub fn image_create_info(&self) -> ImageCreateInfo<'lt> {
-        self.image_create_info
+    pub fn image_create_info(&self) -> &ImageCreateInfo<'lt> {
+        &self.image_create_info
     }
     ///Gets the value of [`Self::required_format_features`]
     pub fn required_format_features(&self) -> FormatFeatureFlags {
@@ -2363,7 +2363,7 @@ impl<'lt> ImageFormatConstraintsInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageConstraintsInfoFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -2446,8 +2446,8 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
         std::slice::from_raw_parts(self.format_constraints, self.format_constraints_count as usize)
     }
     ///Gets the value of [`Self::buffer_collection_constraints`]
-    pub fn buffer_collection_constraints(&self) -> BufferCollectionConstraintsInfoFUCHSIA<'lt> {
-        self.buffer_collection_constraints
+    pub fn buffer_collection_constraints(&self) -> &BufferCollectionConstraintsInfoFUCHSIA<'lt> {
+        &self.buffer_collection_constraints
     }
     ///Gets the value of [`Self::flags`]
     pub fn flags(&self) -> ImageConstraintsInfoFlagsFUCHSIA {
@@ -2568,7 +2568,7 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionConstraintsInfoFUCHSIA")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field

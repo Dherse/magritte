@@ -360,7 +360,7 @@ pub type FNGetMemoryAndroidHardwareBufferAndroid = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportAndroidHardwareBufferInfoANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID<'lt> {
     ///Lifetime field
@@ -493,7 +493,7 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferUsageANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID<'lt> {
     ///Lifetime field
@@ -614,7 +614,7 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferPropertiesANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID<'lt> {
     ///Lifetime field
@@ -761,7 +761,7 @@ unsafe impl<'lt> crate::Chain<'lt, AndroidHardwareBufferFormatProperties2ANDROID
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetAndroidHardwareBufferInfoANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
     ///Lifetime field
@@ -939,7 +939,7 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatPropertiesANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
     ///Lifetime field
@@ -1182,7 +1182,7 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFormatANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalFormatANDROID<'lt> {
     ///Lifetime field
@@ -1331,7 +1331,7 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatProperties2ANDROID")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
     ///Lifetime field

@@ -201,7 +201,7 @@ pub type FNCmdSetVertexInputExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
     ///Lifetime field
@@ -358,7 +358,7 @@ impl<'lt> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputBindingDescription2EXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT<'lt> {
     ///Lifetime field
@@ -556,7 +556,7 @@ impl<'lt> VertexInputBindingDescription2EXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVertexInputAttributeDescription2EXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT<'lt> {
     ///Lifetime field

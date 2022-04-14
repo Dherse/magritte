@@ -3,7 +3,6 @@ use std::fmt::Write;
 use proc_macro2::{Literal, TokenStream};
 use pyo3::Python;
 use quote::quote;
-use syn::parse_quote;
 
 use crate::{
     expr::Expr,
@@ -13,9 +12,9 @@ use crate::{
 
 impl<'a> Expr<'a> {
     /// Turns an expression into a tokenized const-evaluable rust expression.
-    pub fn as_const_expr(&self, source: &Source<'a>, imports: Option<&Imports>) -> syn::Expr {
+    pub fn as_const_expr(&self, source: &Source<'a>, imports: Option<&Imports>) -> TokenStream {
         match self {
-            Expr::String(value) => parse_quote! {
+            Expr::String(value) => quote! {
                 crate::cstr!(#value)
             },
             Expr::Variable(_) => panic!("variable are not supported in const expressions"),
@@ -33,11 +32,11 @@ impl<'a> Expr<'a> {
                 if let Some(imports) = imports {
                     imports.push_origin(origin, &ident);
 
-                    parse_quote! { #ident }
+                    quote! { #ident }
                 } else {
                     let path = origin.as_path();
 
-                    parse_quote! {
+                    quote! {
                         #path :: #ident
                     }
                 }
@@ -45,19 +44,19 @@ impl<'a> Expr<'a> {
             Expr::ConstantInt(int) => {
                 let lit = Literal::i64_unsuffixed(*int);
 
-                parse_quote! { #lit }
+                quote! { #lit }
             },
             Expr::ConstantFloat(float) => {
                 let lit = Literal::f32_unsuffixed(*float);
 
-                parse_quote! { #lit }
+                quote! { #lit }
             },
             Expr::Resolve(_, _) => panic!("resolves are not supported in const expressions"),
             Expr::Divide(a, b) => {
                 let a = a.as_const_expr(source, imports);
                 let b = b.as_const_expr(source, imports);
 
-                parse_quote! {
+                quote! {
                     (#a / #b)
                 }
             },
@@ -65,7 +64,7 @@ impl<'a> Expr<'a> {
                 let a = a.as_const_expr(source, imports);
                 let b = b.as_const_expr(source, imports);
 
-                parse_quote! {
+                quote! {
                     (#a * #b)
                 }
             },
@@ -73,7 +72,7 @@ impl<'a> Expr<'a> {
                 let a = a.as_const_expr(source, imports);
                 let b = b.as_const_expr(source, imports);
 
-                parse_quote! {
+                quote! {
                     (#a + #b)
                 }
             },
@@ -81,21 +80,21 @@ impl<'a> Expr<'a> {
                 let a = a.as_const_expr(source, imports);
                 let b = b.as_const_expr(source, imports);
 
-                parse_quote! {
+                quote! {
                     (#a - #b)
                 }
             },
             Expr::BitwiseNot(a) => {
                 let a = a.as_const_expr(source, imports);
 
-                parse_quote! {
+                quote! {
                     !#a
                 }
             },
             Expr::Neg(a) => {
                 let a = a.as_const_expr(source, imports);
 
-                parse_quote! {
+                quote! {
                     - #a
                 }
             },

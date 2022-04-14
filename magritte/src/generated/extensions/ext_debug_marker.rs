@@ -776,7 +776,7 @@ impl std::fmt::Display for DebugReportObjectTypeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugMarkerObjectNameInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DebugMarkerObjectNameInfoEXT<'lt> {
     ///Lifetime field
@@ -946,7 +946,7 @@ impl<'lt> DebugMarkerObjectNameInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugMarkerObjectTagInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DebugMarkerObjectTagInfoEXT<'lt> {
     ///Lifetime field
@@ -1135,7 +1135,7 @@ impl<'lt> DebugMarkerObjectTagInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugMarkerMarkerInfoEXT")]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct DebugMarkerMarkerInfoEXT<'lt> {
     ///Lifetime field

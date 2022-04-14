@@ -1527,7 +1527,7 @@ impl std::fmt::Display for ShaderGroupShaderKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -1919,7 +1919,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2297,7 +2297,7 @@ unsafe impl<'lt> crate::Chain<'lt, PipelineCreationFeedbackCreateInfo<'lt>> for 
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelineFeaturesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     ///Lifetime field
@@ -2632,7 +2632,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelinePropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     ///Lifetime field
@@ -3085,7 +3085,7 @@ impl TraceRaysIndirectCommandKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineInterfaceCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     ///Lifetime field

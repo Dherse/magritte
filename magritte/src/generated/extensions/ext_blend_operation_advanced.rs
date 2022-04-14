@@ -300,7 +300,7 @@ impl std::fmt::Display for BlendOverlapEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     ///Lifetime field
@@ -469,7 +469,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     ///Lifetime field
@@ -816,7 +816,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineColorBlendAdvancedStateCreateInfoEXT")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
     ///Lifetime field

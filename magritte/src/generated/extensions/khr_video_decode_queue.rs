@@ -968,7 +968,7 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeCapabilitiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoDecodeCapabilitiesKHR<'lt> {
     ///Lifetime field
@@ -1143,7 +1143,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265CapabilitiesEXT<'lt>> for Vide
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoDecodeInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoDecodeInfoKHR<'lt> {
     ///Lifetime field
@@ -1286,8 +1286,8 @@ impl<'lt> VideoDecodeInfoKHR<'lt> {
         self.src_buffer_range
     }
     ///Gets the value of [`Self::dst_picture_resource`]
-    pub fn dst_picture_resource(&self) -> VideoPictureResourceKHR<'lt> {
-        self.dst_picture_resource
+    pub fn dst_picture_resource(&self) -> &VideoPictureResourceKHR<'lt> {
+        &self.dst_picture_resource
     }
     ///Gets the value of [`Self::setup_reference_slot`]
     ///# Safety

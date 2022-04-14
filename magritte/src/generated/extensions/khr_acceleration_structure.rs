@@ -5054,7 +5054,7 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWriteDescriptorSetAccelerationStructureKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureKHR<'lt> {
     ///Lifetime field
@@ -5219,7 +5219,7 @@ impl<'lt> WriteDescriptorSetAccelerationStructureKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceAccelerationStructureFeaturesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
     ///Lifetime field
@@ -5575,7 +5575,7 @@ impl<'lt> PhysicalDeviceAccelerationStructureFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceAccelerationStructurePropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
     ///Lifetime field
@@ -5874,7 +5874,7 @@ impl<'lt> PhysicalDeviceAccelerationStructurePropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryTrianglesDataKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct AccelerationStructureGeometryTrianglesDataKHR<'lt> {
     ///Lifetime field
@@ -6106,7 +6106,7 @@ unsafe impl<'lt> crate::Chain<'lt, AccelerationStructureGeometryMotionTrianglesD
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryAabbsDataKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct AccelerationStructureGeometryAabbsDataKHR<'lt> {
     ///Lifetime field
@@ -6238,7 +6238,7 @@ impl<'lt> AccelerationStructureGeometryAabbsDataKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryInstancesDataKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct AccelerationStructureGeometryInstancesDataKHR<'lt> {
     ///Lifetime field
@@ -6415,7 +6415,6 @@ impl<'lt> AccelerationStructureGeometryInstancesDataKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryKHR")]
-#[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AccelerationStructureGeometryKHR<'lt> {
     ///Lifetime field
@@ -6473,8 +6472,8 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
         self.geometry_type
     }
     ///Gets the value of [`Self::geometry`]
-    pub fn geometry(&self) -> AccelerationStructureGeometryDataKHR<'lt> {
-        self.geometry
+    pub fn geometry(&self) -> &AccelerationStructureGeometryDataKHR<'lt> {
+        &self.geometry
     }
     ///Gets the value of [`Self::flags`]
     pub fn flags(&self) -> GeometryFlagsKHR {
@@ -6681,7 +6680,7 @@ impl<'lt> AccelerationStructureGeometryKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildGeometryInfoKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct AccelerationStructureBuildGeometryInfoKHR<'lt> {
     ///Lifetime field
@@ -7197,7 +7196,7 @@ impl AccelerationStructureBuildRangeInfoKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -7811,7 +7810,7 @@ impl AccelerationStructureInstanceKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureDeviceAddressInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureDeviceAddressInfoKHR<'lt> {
     ///Lifetime field
@@ -7911,8 +7910,8 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 ///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
 ///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span></span><span class="base"><span
+///   class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
 ///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
 ///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
@@ -7933,7 +7932,7 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureVersionInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureVersionInfoKHR<'lt> {
     ///Lifetime field
@@ -8070,7 +8069,7 @@ impl<'lt> AccelerationStructureVersionInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyAccelerationStructureInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CopyAccelerationStructureInfoKHR<'lt> {
     ///Lifetime field
@@ -8229,7 +8228,7 @@ impl<'lt> CopyAccelerationStructureInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyAccelerationStructureToMemoryInfoKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct CopyAccelerationStructureToMemoryInfoKHR<'lt> {
     ///Lifetime field
@@ -8392,7 +8391,7 @@ impl<'lt> CopyAccelerationStructureToMemoryInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCopyMemoryToAccelerationStructureInfoKHR")]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 #[repr(C)]
 pub struct CopyMemoryToAccelerationStructureInfoKHR<'lt> {
     ///Lifetime field
@@ -8546,7 +8545,7 @@ impl<'lt> CopyMemoryToAccelerationStructureInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureBuildSizesInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AccelerationStructureBuildSizesInfoKHR<'lt> {
     ///Lifetime field
@@ -8770,7 +8769,6 @@ impl Default for DeviceOrHostAddressConstKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAccelerationStructureGeometryDataKHR")]
-#[derive(Clone, Copy)]
 #[repr(C)]
 pub union AccelerationStructureGeometryDataKHR<'lt> {
     ///[`triangles`] is a

@@ -1826,7 +1826,7 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeInfoKHR<'lt> {
     ///Lifetime field
@@ -1983,8 +1983,8 @@ impl<'lt> VideoEncodeInfoKHR<'lt> {
         self.dst_bitstream_buffer_max_range
     }
     ///Gets the value of [`Self::src_picture_resource`]
-    pub fn src_picture_resource(&self) -> VideoPictureResourceKHR<'lt> {
-        self.src_picture_resource
+    pub fn src_picture_resource(&self) -> &VideoPictureResourceKHR<'lt> {
+        &self.src_picture_resource
     }
     ///Gets the value of [`Self::setup_reference_slot`]
     ///# Safety
@@ -2219,7 +2219,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265EmitPictureParametersEXT<'lt>>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeRateControlInfoKHR<'lt> {
     ///Lifetime field
@@ -2455,7 +2455,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265RateControlInfoEXT<'lt>> for V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlLayerInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeRateControlLayerInfoKHR<'lt> {
     ///Lifetime field
@@ -2722,7 +2722,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265RateControlLayerInfoEXT<'lt>>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeCapabilitiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeCapabilitiesKHR<'lt> {
     ///Lifetime field

@@ -1,8 +1,6 @@
 use std::{
     error::Error,
-    ffi::CStr,
-    io::ErrorKind,
-    sync::{atomic::Ordering, Arc},
+    sync::Arc,
 };
 
 use log::{debug, error, info, trace, Level};
@@ -17,7 +15,7 @@ use magritte::{
     },
     vulkan1_1::PhysicalDeviceProperties2,
     window::{create_surface, enable_required_extensions},
-    AsRaw, InstanceExtensions, DeviceExtensions, Unique, Version,
+    AsRaw, InstanceExtensions, DeviceExtensions, Unique, Version, Chain,
 };
 use magritte_vma::VmaAllocator;
 use winit::window::Window;
@@ -230,11 +228,18 @@ impl Vulkan {
             queue_family_index
         );
 
-        let mut properties = PhysicalDeviceProperties2::default();
+        let mut driver_properties = magritte::vulkan1_2::PhysicalDeviceDriverProperties::default();
 
-        let properties = unsafe { physical_device.get_physical_device_properties2(Some(properties)) };
+        {
+            let properties = PhysicalDeviceProperties2::default().chain(&mut driver_properties);
+    
+            let properties2 = unsafe { physical_device.get_physical_device_properties2(Some(properties)) };
 
-        // println!("{:#?}", properties);
+            drop(properties2);
+        }
+
+
+        // println!("{:?}", driver_properties.driver_name().as_cstr());
 
         // We get the properties of the device just so we can get its name.
         let properties = unsafe { physical_device.get_physical_device_properties() };

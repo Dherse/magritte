@@ -342,7 +342,7 @@ pub type FNCmdSubpassShadingHuawei = Option<unsafe extern "system" fn(command_bu
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassShadingPipelineCreateInfoHUAWEI")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
     ///Lifetime field
@@ -483,7 +483,7 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubpassShadingPropertiesHUAWEI")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
     ///Lifetime field
@@ -608,7 +608,7 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubpassShadingFeaturesHUAWEI")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
     ///Lifetime field

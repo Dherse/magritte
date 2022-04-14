@@ -4037,7 +4037,7 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoQueueFamilyProperties2KHR<'lt> {
     ///Lifetime field
@@ -4154,7 +4154,7 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusProperties2KHR<'lt> {
     ///Lifetime field
@@ -4298,7 +4298,7 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfilesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoProfilesKHR<'lt> {
     ///Lifetime field
@@ -4449,7 +4449,7 @@ impl<'lt> VideoProfilesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
     ///Lifetime field
@@ -4598,7 +4598,7 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoFormatPropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR<'lt> {
     ///Lifetime field
@@ -4734,7 +4734,7 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfileKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoProfileKHR<'lt> {
     ///Lifetime field
@@ -4951,7 +4951,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265ProfileEXT<'lt>> for VideoProf
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilitiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoCapabilitiesKHR<'lt> {
     ///Lifetime field
@@ -5213,7 +5213,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeCapabilitiesKHR<'lt>> for VideoCap
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoGetMemoryPropertiesKHR<'lt> {
     ///Lifetime field
@@ -5364,7 +5364,7 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoBindMemoryKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoBindMemoryKHR<'lt> {
     ///Lifetime field
@@ -5534,7 +5534,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoPictureResourceKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoPictureResourceKHR<'lt> {
     ///Lifetime field
@@ -5699,7 +5699,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoReferenceSlotKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoReferenceSlotKHR<'lt> {
     ///Lifetime field
@@ -5907,7 +5907,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoDecodeH265DpbSlotInfoEXT<'lt>> for Video
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -6198,7 +6198,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersCreateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoSessionParametersCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -6358,7 +6358,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265SessionParametersCreateInfoEXT
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersUpdateInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoSessionParametersUpdateInfoKHR<'lt> {
     ///Lifetime field
@@ -6531,7 +6531,7 @@ unsafe impl<'lt> crate::Chain<'lt, VideoEncodeH265SessionParametersAddInfoEXT<'l
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoBeginCodingInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR<'lt> {
     ///Lifetime field
@@ -6754,7 +6754,7 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEndCodingInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEndCodingInfoKHR<'lt> {
     ///Lifetime field
@@ -6869,7 +6869,7 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlInfoKHR")]
-#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoCodingControlInfoKHR<'lt> {
     ///Lifetime field
