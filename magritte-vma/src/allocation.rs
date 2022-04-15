@@ -1,6 +1,6 @@
 use std::{
     ffi::{c_void, CStr},
-    ops::{Bound, Deref, DerefMut, RangeBounds}, sync::atomic::AtomicBool,
+    ops::{Bound, Deref, DerefMut, RangeBounds}, sync::atomic::{AtomicBool, Ordering},
 };
 
 use log::error;
@@ -124,7 +124,7 @@ impl Allocation {
             Bound::Unbounded => self.metadata().1.size as usize,
         };
 
-        assert!(min >= self.metadata().1.size as usize);
+        assert!(min <= self.metadata().1.size as usize);
         assert!(max <= self.metadata().1.size as usize);
         assert!(min <= max);
 
@@ -322,7 +322,7 @@ impl Default for Allocation {
 impl Handle for Allocation {
     type Parent = Unique<Allocator>;
     type VTable = ();
-    type Metadata = (Option<Unique<Pool>>, AllocationInfo);
+    type Metadata = (Option<Unique<Pool>>, AllocationInfo, AtomicBool);
     type Storage = *mut ();
 
     #[inline]
@@ -338,7 +338,9 @@ impl Handle for Allocation {
     #[inline]
     #[track_caller]
     unsafe fn destroy(self: &mut Unique<Self>) {
-        vmaFreeMemory(self.parent().as_raw(), self.as_raw())
+        if !self.metadata().2.load(Ordering::Acquire) {
+            vmaFreeMemory(self.parent().as_raw(), self.as_raw())
+        }
     }
 
     #[inline]
@@ -383,7 +385,7 @@ impl<'a> Mapped<'a> {
             Bound::Unbounded => self.len,
         };
 
-        assert!(min >= self.len);
+        assert!(min <= self.len);
         assert!(max <= self.len);
         assert!(min <= max);
 
@@ -430,7 +432,7 @@ impl<'a> Mapped<'a> {
             Bound::Unbounded => self.len,
         };
 
-        assert!(min >= self.len);
+        assert!(min <= self.len);
         assert!(max <= self.len);
         assert!(min <= max);
 

@@ -1,4 +1,4 @@
-use std::ffi::c_void;
+use std::{sync::atomic::AtomicBool, ffi::c_void};
 
 use magritte::{
     vulkan1_0::{Image as VkImage, ImageCreateInfo, VulkanResultCodes, MemoryPropertyFlags},
@@ -34,23 +34,23 @@ impl Default for ImageUsage {
 pub struct VmaImage {
     allocator: Unique<Allocator>,
     pool: Option<Unique<Pool>>,
-    allocation: Allocation,
+    allocation: Unique<Allocation>,
     allocation_info: AllocationInfo,
-    image: VkImage,
+    image: Unique<VkImage>,
 }
 
 impl AsRaw for VmaImage {
     type Raw = VkImage;
 
     fn as_raw(&self) -> Self::Raw {
-        self.image
+        self.image.as_raw()
     }
 }
 
 impl Drop for VmaImage {
     fn drop(&mut self) {
         unsafe {
-            vmaDestroyImage(self.allocator.as_raw(), self.image, self.allocation);
+            vmaDestroyImage(self.allocator.as_raw(), self.image.as_raw(), self.allocation.as_raw());
         }
     }
 }
@@ -101,9 +101,9 @@ impl VmaImage {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
                 pool: None,
-                allocation,
+                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
                 allocation_info,
-                image,
+                image: unsafe { Unique::new(allocator.parent(), image, AtomicBool::new(true)) },
             }),
             other => Err(other)
         }
@@ -146,10 +146,10 @@ impl VmaImage {
         match res {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
-                pool: Some(pool.clone()),
-                allocation,
+                pool: None,
+                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
                 allocation_info,
-                image,
+                image: unsafe { Unique::new(allocator.parent(), image, AtomicBool::new(true)) },
             }),
             other => Err(other)
         }
@@ -165,9 +165,9 @@ impl VmaImage {
         self.pool.as_ref()
     }
 
-    /// Get a copy of the image's allocation.
-    pub fn allocation(&self) -> Allocation {
-        self.allocation
+    /// Get a reference to the image's allocation.
+    pub fn allocation(&self) -> &Unique<Allocation> {
+        &self.allocation
     }
 
     /// Get a reference to the image's allocation info.
@@ -175,8 +175,8 @@ impl VmaImage {
         self.allocation_info
     }
 
-    /// Get a copy of the image's image.
-    pub fn image(&self) -> VkImage {
-        self.image
+    /// Get a reference to the image's image.
+    pub fn image(&self) -> &Unique<VkImage> {
+        &self.image
     }
 }

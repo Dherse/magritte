@@ -16,13 +16,13 @@ mod image;
 pub use allocation::Allocation;
 pub use allocator::Allocator;
 pub use defragmentation_context::DefragmentationContext;
-pub use buffer::VmaBuffer;
-pub use image::VmaImage;
+pub use buffer::{VmaBuffer, BufferUsage};
+pub use image::{VmaImage, ImageUsage};
 pub use ffi::{
     AllocationCreateInfo, AllocatorInfo, Budget, DetailedStatistics, PoolCreateInfo, Statistics, TotalStatistics,
     MemoryUsage,
 };
-pub use flags::*;
+pub use flags::{AllocationCreateFlags, PoolCreateFlags, DefragmentationFlags};
 pub use pool::{MemoryCorruptionState, Pool};
 
 pub(crate) trait AsCStr {

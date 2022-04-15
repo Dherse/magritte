@@ -1,4 +1,4 @@
-use std::ffi::{c_void, CStr};
+use std::{ffi::{c_void, CStr}, sync::atomic::AtomicBool};
 
 use magritte::{
     core::MAX_MEMORY_HEAPS,
@@ -329,7 +329,7 @@ impl Allocator {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self, allocation, (None, allocation_info)) },
+                unsafe { Unique::new(self, allocation, (None, allocation_info, AtomicBool::new(false))) },
                 allocation_info,
             )),
             other => Err(other),
@@ -375,7 +375,7 @@ impl Allocator {
                 .zip(allocation_infos.into_iter())
                 .map(|(alloc, allocation_info)| {
                     (
-                        unsafe { Unique::new(self, alloc, (None, allocation_info)) },
+                        unsafe { Unique::new(self, alloc, (None, allocation_info, AtomicBool::new(false))) },
                         allocation_info,
                     )
                 })
@@ -417,7 +417,7 @@ impl Allocator {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self, allocation, (None, allocation_info)) },
+                unsafe { Unique::new(self, allocation, (None, allocation_info, AtomicBool::new(false))) },
                 allocation_info,
             )),
             other => Err(other),
@@ -457,7 +457,7 @@ impl Allocator {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self, allocation, (None, allocation_info)) },
+                unsafe { Unique::new(self, allocation, (None, allocation_info, AtomicBool::new(false))) },
                 allocation_info,
             )),
             other => Err(other),
@@ -593,6 +593,7 @@ impl Allocator {
     pub fn enable_extensions(
         physical_device: &Unique<PhysicalDevice>,
         extensions: &mut DeviceExtensions,
+        device_address: bool,
     ) -> Result<(), VulkanResultCodes> {
         const DEDICATED_ALLOCATION: &str = "VK_KHR_dedicated_allocation";
         const BIND_MEMORY2: &str = "VK_KHR_bind_memory2";
@@ -626,9 +627,13 @@ impl Allocator {
                     sum += 1;
                     extensions.enable_amd_device_coherent_memory()
                 },
-                BUFFER_DEVICE_ADDRESS => {
+                BUFFER_DEVICE_ADDRESS if device_address => {
                     sum += 1;
                     extensions.enable_khr_buffer_device_address()
+                },
+                BUFFER_DEVICE_ADDRESS if !device_address => {
+                    sum += 1;
+                    continue
                 },
                 MEMORY_PRIORITY => {
                     sum += 1;

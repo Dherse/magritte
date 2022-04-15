@@ -1,4 +1,4 @@
-use std::ffi::c_void;
+use std::{sync::atomic::AtomicBool, ffi::c_void};
 
 use magritte::{
     vulkan1_0::{Buffer as VkBuffer, BufferCreateInfo, VulkanResultCodes, MemoryPropertyFlags, DeviceSize},
@@ -34,23 +34,23 @@ impl Default for BufferUsage {
 pub struct VmaBuffer {
     allocator: Unique<Allocator>,
     pool: Option<Unique<Pool>>,
-    allocation: Allocation,
+    allocation: Unique<Allocation>,
     allocation_info: AllocationInfo,
-    buffer: VkBuffer,
+    buffer: Unique<VkBuffer>,
 }
 
 impl AsRaw for VmaBuffer {
     type Raw = VkBuffer;
 
     fn as_raw(&self) -> Self::Raw {
-        self.buffer
+        self.buffer.as_raw()
     }
 }
 
 impl Drop for VmaBuffer {
     fn drop(&mut self) {
         unsafe {
-            vmaDestroyBuffer(self.allocator.as_raw(), self.buffer, self.allocation);
+            vmaDestroyBuffer(self.allocator.as_raw(), self.buffer.as_raw(), self.allocation.as_raw());
         }
     }
 }
@@ -110,13 +110,14 @@ impl VmaBuffer {
             }
         };
 
+
         match res {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
                 pool: None,
-                allocation,
+                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
                 allocation_info,
-                buffer,
+                buffer: unsafe { Unique::new(allocator.parent(), buffer, AtomicBool::new(true)) },
             }),
             other => Err(other)
         }
@@ -172,10 +173,10 @@ impl VmaBuffer {
         match res {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
-                pool: Some(pool.clone()),
-                allocation,
+                pool: None,
+                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
                 allocation_info,
-                buffer,
+                buffer: unsafe { Unique::new(allocator.parent(), buffer, AtomicBool::new(true)) },
             }),
             other => Err(other)
         }
@@ -191,9 +192,9 @@ impl VmaBuffer {
         self.pool.as_ref()
     }
 
-    /// Get a copy of the buffer's allocation.
-    pub fn allocation(&self) -> Allocation {
-        self.allocation
+    /// Get a reference to the buffer's allocation.
+    pub fn allocation(&self) -> &Unique<Allocation> {
+        &self.allocation
     }
 
     /// Get a reference to the buffer's allocation info.
@@ -201,8 +202,8 @@ impl VmaBuffer {
         self.allocation_info
     }
 
-    /// Get a copy of the buffer's buffer.
-    pub fn buffer(&self) -> VkBuffer {
-        self.buffer
+    /// Get a reference to the buffer's buffer.
+    pub fn buffer(&self) -> &Unique<VkBuffer> {
+        &self.buffer
     }
 }

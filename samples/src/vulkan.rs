@@ -228,7 +228,7 @@ impl Vulkan {
         // in a easier and more performant way using the Vulkan Memory Allocator.
         // Note that both the use of VMA and raw Vulkan allocations are covered in this
         // sample.
-        Allocator::enable_extensions(&physical_device, &mut device_extensions)?;
+        Allocator::enable_extensions(&physical_device, &mut device_extensions, false)?;
 
         // We need to tell Vulkan that we want a queue from a certain family.
         // We got the family from the previous step. We will get one queue with max priority (1.0)
@@ -321,5 +321,10 @@ impl Vulkan {
     /// Get a reference to the vulkan's queue family index.
     pub fn queue_family_index(&self) -> u32 {
         self.queue_family_index
+    }
+
+    /// Get a reference to the vulkan's allocator.
+    pub fn allocator(&self) -> &Unique<Allocator> {
+        &self.allocator
     }
 }

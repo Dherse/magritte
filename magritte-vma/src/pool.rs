@@ -1,4 +1,4 @@
-use std::{ffi::{CStr, c_void}, ops::Not, os::raw::c_char};
+use std::{ffi::{CStr, c_void}, ops::Not, os::raw::c_char, sync::atomic::AtomicBool};
 
 use magritte::{
     vulkan1_0::{Buffer, DeviceSize, Image, MemoryRequirements, VulkanResultCodes, BufferCreateInfo, ImageCreateInfo},
@@ -130,7 +130,7 @@ impl Pool {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info)) },
+                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
                 allocation_info,
             )),
             other => Err(other),
@@ -175,7 +175,7 @@ impl Pool {
                 .zip(allocation_infos.into_iter())
                 .map(|(alloc, allocation_info)| {
                     (
-                        unsafe { Unique::new(self.parent(), alloc, (Some(self.clone()), allocation_info)) },
+                        unsafe { Unique::new(self.parent(), alloc, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
                         allocation_info,
                     )
                 })
@@ -217,7 +217,7 @@ impl Pool {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info)) },
+                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
                 allocation_info,
             )),
             other => Err(other),
@@ -257,7 +257,7 @@ impl Pool {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info)) },
+                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
                 allocation_info,
             )),
             other => Err(other),
