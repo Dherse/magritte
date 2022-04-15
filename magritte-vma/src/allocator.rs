@@ -1,4 +1,7 @@
-use std::{ffi::{c_void, CStr}, sync::atomic::AtomicBool};
+use std::{
+    ffi::{c_void, CStr},
+    sync::atomic::AtomicBool,
+};
 
 use magritte::{
     core::MAX_MEMORY_HEAPS,
@@ -11,18 +14,21 @@ use magritte::{
 use smallvec::SmallVec;
 
 use crate::{
+    buffer::{BufferUsage, VmaBuffer},
     defragmentation_context::{DefragmentationContext, DefragmentationContextHandle},
     ffi::{
         vmaAllocateMemory, vmaAllocateMemoryForBuffer, vmaAllocateMemoryForImage, vmaAllocateMemoryPages,
-        vmaBeginDefragmentation, vmaCalculateStatistics, vmaCheckCorruption, vmaCreatePool, vmaDestroyAllocator,
-        vmaFindMemoryTypeIndex, vmaFindMemoryTypeIndexForBufferInfo, vmaFindMemoryTypeIndexForImageInfo,
-        vmaGetAllocatorInfo, vmaGetHeapBudgets, vmaGetMemoryProperties, vmaGetMemoryTypeProperties,
-        vmaGetPhysicalDeviceProperties, vmaSetCurrentFrameIndex, AllocationCreateInfo, AllocationInfo,
-        AllocatorCreateInfo, AllocatorInfo, Budget, DefragmentationInfo, TotalStatistics, VulkanFunctions, vmaBuildStatsString, vmaFreeStatsString,
+        vmaBeginDefragmentation, vmaBuildStatsString, vmaCalculateStatistics, vmaCheckCorruption, vmaCreatePool,
+        vmaDestroyAllocator, vmaFindMemoryTypeIndex, vmaFindMemoryTypeIndexForBufferInfo,
+        vmaFindMemoryTypeIndexForImageInfo, vmaFreeStatsString, vmaGetAllocatorInfo, vmaGetHeapBudgets,
+        vmaGetMemoryProperties, vmaGetMemoryTypeProperties, vmaGetPhysicalDeviceProperties, vmaSetCurrentFrameIndex,
+        AllocationCreateInfo, AllocationInfo, AllocatorCreateInfo, AllocatorInfo, Budget, DefragmentationInfo,
+        TotalStatistics, VulkanFunctions,
     },
     flags::AllocatorCreateFlags,
+    image::{ImageUsage, VmaImage},
     pool::Pool,
-    Allocation, AsCStr, DefragmentationFlags, MemoryCorruptionState, PoolCreateInfo, buffer::{VmaBuffer, BufferUsage}, AllocationCreateFlags, image::{ImageUsage, VmaImage},
+    Allocation, AllocationCreateFlags, AsCStr, DefragmentationFlags, MemoryCorruptionState, PoolCreateInfo,
 };
 
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
@@ -521,7 +527,16 @@ impl Allocator {
         priority: Option<f32>,
         user_data: Option<*mut c_void>,
     ) -> Result<VmaBuffer, VulkanResultCodes> {
-        VmaBuffer::new(self, buffer_create_info, flags, usage, memory_type_bits, priority, user_data, None)
+        VmaBuffer::new(
+            self,
+            buffer_create_info,
+            flags,
+            usage,
+            memory_type_bits,
+            priority,
+            user_data,
+            None,
+        )
     }
 
     /// Creates a new [`VmaBuffer`] with additional minimum alignment.
@@ -543,7 +558,16 @@ impl Allocator {
         priority: Option<f32>,
         user_data: Option<*mut c_void>,
     ) -> Result<VmaBuffer, VulkanResultCodes> {
-        VmaBuffer::new(self, buffer_create_info, flags, usage, memory_type_bits, priority, user_data, Some(alignment))
+        VmaBuffer::new(
+            self,
+            buffer_create_info,
+            flags,
+            usage,
+            memory_type_bits,
+            priority,
+            user_data,
+            Some(alignment),
+        )
     }
 
     /// Creates a new [`VmaImage`], allocates and binds memory for it.
@@ -564,25 +588,26 @@ impl Allocator {
         priority: Option<f32>,
         user_data: Option<*mut c_void>,
     ) -> Result<VmaImage, VulkanResultCodes> {
-        VmaImage::new(self, image_create_info, flags, usage, memory_type_bits, priority, user_data)
+        VmaImage::new(
+            self,
+            image_create_info,
+            flags,
+            usage,
+            memory_type_bits,
+            priority,
+            user_data,
+        )
     }
 
     /// Builds and returns statistics as a string in JSON format.
     pub fn stats_string(self: &Unique<Allocator>, detailed: bool) -> String {
         let mut stats = std::ptr::null_mut();
         unsafe {
-            vmaBuildStatsString(
-                self.as_raw(),
-                &mut stats,
-                detailed as u8 as u32
-            );
+            vmaBuildStatsString(self.as_raw(), &mut stats, detailed as u8 as u32);
 
             let out = CStr::from_ptr(stats).to_string_lossy().to_string();
 
-            vmaFreeStatsString(
-                self.as_raw(),
-                stats
-            );
+            vmaFreeStatsString(self.as_raw(), stats);
 
             out
         }
@@ -633,7 +658,7 @@ impl Allocator {
                 },
                 BUFFER_DEVICE_ADDRESS if !device_address => {
                     sum += 1;
-                    continue
+                    continue;
                 },
                 MEMORY_PRIORITY => {
                     sum += 1;

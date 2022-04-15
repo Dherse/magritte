@@ -1,12 +1,7 @@
 use std::{marker::PhantomData, mem::size_of};
 
-use bytemuck::{Pod, Zeroable, cast_slice};
-use magritte::{
-    vulkan1_0::{
-        BufferCreateInfo, BufferUsageFlags,
-        SharingMode, VulkanResultCodes, MemoryPropertyFlags,
-    },
-};
+use bytemuck::{cast_slice, Pod, Zeroable};
+use magritte::vulkan1_0::{BufferCreateInfo, BufferUsageFlags, MemoryPropertyFlags, SharingMode, VulkanResultCodes};
 use magritte_vma::VmaBuffer;
 
 use crate::vulkan::Vulkan;
@@ -49,7 +44,11 @@ where
             None,
         )?;
 
-        buffer.allocation().map_range(0..size as usize).expect("Failed to map").copy_from_slice(cast_slice(data));
+        buffer
+            .allocation()
+            .map_range(0..size as usize)
+            .expect("Failed to map")
+            .copy_from_slice(cast_slice(data));
 
         Ok(Self {
             buffer,

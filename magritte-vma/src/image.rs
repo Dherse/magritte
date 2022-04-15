@@ -1,13 +1,13 @@
-use std::{sync::atomic::AtomicBool, ffi::c_void};
+use std::{ffi::c_void, sync::atomic::AtomicBool};
 
 use magritte::{
-    vulkan1_0::{Image as VkImage, ImageCreateInfo, VulkanResultCodes, MemoryPropertyFlags},
+    vulkan1_0::{Image as VkImage, ImageCreateInfo, MemoryPropertyFlags, VulkanResultCodes},
     AsRaw, Unique,
 };
 
 use crate::{
-    ffi::{vmaCreateImage, AllocationInfo, vmaDestroyImage},
-    Allocation, AllocationCreateInfo, Allocator, Pool, AllocationCreateFlags, MemoryUsage,
+    ffi::{vmaCreateImage, vmaDestroyImage, AllocationInfo},
+    Allocation, AllocationCreateFlags, AllocationCreateInfo, Allocator, MemoryUsage, Pool,
 };
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -22,7 +22,7 @@ pub enum ImageUsage {
     Flags {
         required: MemoryPropertyFlags,
         preferred: MemoryPropertyFlags,
-    }
+    },
 }
 
 impl Default for ImageUsage {
@@ -69,8 +69,12 @@ impl VmaImage {
         let mut allocation = Allocation::null();
         let mut allocation_info = unsafe { std::mem::zeroed() };
 
-        let(usage, required_flags, preferred_flags) = match usage {
-            ImageUsage::Auto => (MemoryUsage::AUTO, MemoryPropertyFlags::empty(), MemoryPropertyFlags::empty()),
+        let (usage, required_flags, preferred_flags) = match usage {
+            ImageUsage::Auto => (
+                MemoryUsage::AUTO,
+                MemoryPropertyFlags::empty(),
+                MemoryPropertyFlags::empty(),
+            ),
             ImageUsage::Usage(usage) => (usage, MemoryPropertyFlags::empty(), MemoryPropertyFlags::empty()),
             ImageUsage::Flags { required, preferred } => (MemoryUsage::UNKNOWN, required, preferred),
         };
@@ -101,11 +105,13 @@ impl VmaImage {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
                 pool: None,
-                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
+                allocation: unsafe {
+                    Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true)))
+                },
                 allocation_info,
                 image: unsafe { Unique::new(allocator.parent(), image, AtomicBool::new(true)) },
             }),
-            other => Err(other)
+            other => Err(other),
         }
     }
 
@@ -147,11 +153,13 @@ impl VmaImage {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
                 pool: None,
-                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
+                allocation: unsafe {
+                    Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true)))
+                },
                 allocation_info,
                 image: unsafe { Unique::new(allocator.parent(), image, AtomicBool::new(true)) },
             }),
-            other => Err(other)
+            other => Err(other),
         }
     }
 

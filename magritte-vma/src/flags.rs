@@ -13,7 +13,7 @@ bitflags::bitflags! {
 
 bitflags::bitflags! {
     /// Flags to be passed as [`AllocationCreateInfo::flags`].
-    /// 
+    ///
     /// [`AllocationCreateInfo::flags`]: crate::AllocationCreateInfo::flags
     #[repr(transparent)]
     pub struct AllocationCreateFlags: u32 {
@@ -97,7 +97,7 @@ bitflags::bitflags! {
         const HOST_ACCESS_SEQUENTIAL_WRITE = 0x00000400;
 
         /// Requests possibility to map the allocation (using vmaMapMemory() or [`Self::MAPPED`]).
-        /// 
+        ///
         /// - If you use [`MemoryUsage::AUTO`] or other `USAGE_AUTO*` value,
         /// you must use this flag to be able to map the allocation. Otherwise, mapping is incorrect.
         /// - If you use other value of [`MemoryUsage`], this flag is ignored and mapping is always possible in memory types that are `HOST_VISIBLE`.
@@ -114,14 +114,14 @@ bitflags::bitflags! {
         /// Together with [`Self::HOST_ACCESS_SEQUENTIAL_WRITE`] or [`Self::HOST_ACCESS_RANDOM`],
         /// it says that despite request for host access, a not-`HOST_VISIBLE` memory type can be selected
         /// if it may improve performance.
-        /// 
+        ///
         /// By using this flag, you declare that you will check if the allocation ended up in a `HOST_VISIBLE` memory type
         /// (e.g. using [`Allocation::memory_properties`]) and if not, you will create some "staging" buffer and
         /// issue an explicit transfer to write/read your data.
-        /// 
+        ///
         /// To prepare for this possibility, don't forget to add appropriate flags like
         /// [`BufferUsageFlags::TRANSFER_DST`], [`BufferUsageFlags::TRANSFER_SRC`] to the parameters of created buffer or image.
-        /// 
+        ///
         /// [`Allocation::memory_properties`]: crate::Allocation::memory_properties
         /// [`BufferUsageFlags::TRANSFER_DST`]: magritte::vulkan1_0::BufferUsageFlags::TRANSFER_DST
         /// [`BufferUsageFlags::TRANSFER_SRC`]: magritte::vulkan1_0::BufferUsageFlags::TRANSFER_SRC

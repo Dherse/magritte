@@ -1,20 +1,22 @@
 use std::{
     ffi::{c_void, CStr},
-    ops::{Bound, Deref, DerefMut, RangeBounds}, sync::atomic::{AtomicBool, Ordering},
+    ops::{Bound, Deref, DerefMut, RangeBounds},
+    sync::atomic::{AtomicBool, Ordering},
 };
 
 use log::error;
 use magritte::{
-    vulkan1_0::{Buffer, DeviceSize, Image, MemoryPropertyFlags, VulkanResultCodes, ImageCreateInfo, BufferCreateInfo},
+    vulkan1_0::{Buffer, BufferCreateInfo, DeviceSize, Image, ImageCreateInfo, MemoryPropertyFlags, VulkanResultCodes},
     AsRaw, Handle, Unique,
 };
 
 use crate::{
     allocator::Allocator,
     ffi::{
-        vmaBindBufferMemory, vmaBindBufferMemory2, vmaBindImageMemory, vmaBindImageMemory2, vmaFlushAllocation,
-        vmaFreeMemory, vmaGetAllocationInfo, vmaGetAllocationMemoryProperties, vmaInvalidateAllocation, vmaMapMemory,
-        vmaSetAllocationName, vmaSetAllocationUserData, vmaUnmapMemory, AllocationInfo, vmaCreateAliasingImage, vmaCreateAliasingBuffer,
+        vmaBindBufferMemory, vmaBindBufferMemory2, vmaBindImageMemory, vmaBindImageMemory2, vmaCreateAliasingBuffer,
+        vmaCreateAliasingImage, vmaFlushAllocation, vmaFreeMemory, vmaGetAllocationInfo,
+        vmaGetAllocationMemoryProperties, vmaInvalidateAllocation, vmaMapMemory, vmaSetAllocationName,
+        vmaSetAllocationUserData, vmaUnmapMemory, AllocationInfo,
     },
     pool::Pool,
 };
@@ -266,48 +268,35 @@ impl Allocation {
     /// - Binds the buffer with the supplied memory.
     pub fn create_aliasing_buffer<'lt>(
         self: &Unique<Allocation>,
-        buffer_create_info: &BufferCreateInfo<'lt>
+        buffer_create_info: &BufferCreateInfo<'lt>,
     ) -> Result<Unique<Buffer>, VulkanResultCodes> {
         let mut out = Buffer::null();
 
-        let res = unsafe {
-            vmaCreateAliasingBuffer(
-                self.parent().as_raw(),
-                self.as_raw(),
-                buffer_create_info,
-                &mut out
-            )
-        };
+        let res =
+            unsafe { vmaCreateAliasingBuffer(self.parent().as_raw(), self.as_raw(), buffer_create_info, &mut out) };
 
         match res {
-            VulkanResultCodes::SUCCESS => Ok(unsafe {
-                Unique::new(self.parent().parent(), out, AtomicBool::default())
-            }),
-            other => Err(other)
+            VulkanResultCodes::SUCCESS => {
+                Ok(unsafe { Unique::new(self.parent().parent(), out, AtomicBool::default()) })
+            },
+            other => Err(other),
         }
     }
 
     /// Function similar to [`Self::create_aliasing_buffer`].
     pub fn create_aliasing_image<'lt>(
         self: &Unique<Allocation>,
-        image_create_info: &ImageCreateInfo<'lt>
+        image_create_info: &ImageCreateInfo<'lt>,
     ) -> Result<Unique<Image>, VulkanResultCodes> {
         let mut out = Image::null();
 
-        let res = unsafe {
-            vmaCreateAliasingImage(
-                self.parent().as_raw(),
-                self.as_raw(),
-                image_create_info,
-                &mut out
-            )
-        };
+        let res = unsafe { vmaCreateAliasingImage(self.parent().as_raw(), self.as_raw(), image_create_info, &mut out) };
 
         match res {
-            VulkanResultCodes::SUCCESS => Ok(unsafe {
-                Unique::new(self.parent().parent(), out, AtomicBool::default())
-            }),
-            other => Err(other)
+            VulkanResultCodes::SUCCESS => {
+                Ok(unsafe { Unique::new(self.parent().parent(), out, AtomicBool::default()) })
+            },
+            other => Err(other),
         }
     }
 }

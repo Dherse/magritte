@@ -1,13 +1,13 @@
-use std::{sync::atomic::AtomicBool, ffi::c_void};
+use std::{ffi::c_void, sync::atomic::AtomicBool};
 
 use magritte::{
-    vulkan1_0::{Buffer as VkBuffer, BufferCreateInfo, VulkanResultCodes, MemoryPropertyFlags, DeviceSize},
+    vulkan1_0::{Buffer as VkBuffer, BufferCreateInfo, DeviceSize, MemoryPropertyFlags, VulkanResultCodes},
     AsRaw, Unique,
 };
 
 use crate::{
-    ffi::{vmaCreateBuffer, AllocationInfo, vmaCreateBufferWithAlignment, vmaDestroyBuffer},
-    Allocation, AllocationCreateInfo, Allocator, Pool, AllocationCreateFlags, MemoryUsage,
+    ffi::{vmaCreateBuffer, vmaCreateBufferWithAlignment, vmaDestroyBuffer, AllocationInfo},
+    Allocation, AllocationCreateFlags, AllocationCreateInfo, Allocator, MemoryUsage, Pool,
 };
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -22,7 +22,7 @@ pub enum BufferUsage {
     Flags {
         required: MemoryPropertyFlags,
         preferred: MemoryPropertyFlags,
-    }
+    },
 }
 
 impl Default for BufferUsage {
@@ -70,8 +70,12 @@ impl VmaBuffer {
         let mut allocation = Allocation::null();
         let mut allocation_info = unsafe { std::mem::zeroed() };
 
-        let(usage, required_flags, preferred_flags) = match usage {
-            BufferUsage::Auto => (MemoryUsage::AUTO, MemoryPropertyFlags::empty(), MemoryPropertyFlags::empty()),
+        let (usage, required_flags, preferred_flags) = match usage {
+            BufferUsage::Auto => (
+                MemoryUsage::AUTO,
+                MemoryPropertyFlags::empty(),
+                MemoryPropertyFlags::empty(),
+            ),
             BufferUsage::Usage(usage) => (usage, MemoryPropertyFlags::empty(), MemoryPropertyFlags::empty()),
             BufferUsage::Flags { required, preferred } => (MemoryUsage::UNKNOWN, required, preferred),
         };
@@ -110,16 +114,17 @@ impl VmaBuffer {
             }
         };
 
-
         match res {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
                 pool: None,
-                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
+                allocation: unsafe {
+                    Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true)))
+                },
                 allocation_info,
                 buffer: unsafe { Unique::new(allocator.parent(), buffer, AtomicBool::new(true)) },
             }),
-            other => Err(other)
+            other => Err(other),
         }
     }
 
@@ -174,11 +179,13 @@ impl VmaBuffer {
             VulkanResultCodes::SUCCESS => Ok(Self {
                 allocator: allocator.clone(),
                 pool: None,
-                allocation: unsafe { Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true))) },
+                allocation: unsafe {
+                    Unique::new(allocator, allocation, (None, allocation_info, AtomicBool::new(true)))
+                },
                 allocation_info,
                 buffer: unsafe { Unique::new(allocator.parent(), buffer, AtomicBool::new(true)) },
             }),
-            other => Err(other)
+            other => Err(other),
         }
     }
 

@@ -1,20 +1,27 @@
-use std::{ffi::{CStr, c_void}, ops::Not, os::raw::c_char, sync::atomic::AtomicBool};
+use std::{
+    ffi::{c_void, CStr},
+    ops::Not,
+    os::raw::c_char,
+    sync::atomic::AtomicBool,
+};
 
 use magritte::{
-    vulkan1_0::{Buffer, DeviceSize, Image, MemoryRequirements, VulkanResultCodes, BufferCreateInfo, ImageCreateInfo},
+    vulkan1_0::{Buffer, BufferCreateInfo, DeviceSize, Image, ImageCreateInfo, MemoryRequirements, VulkanResultCodes},
     AsRaw, Handle, Unique,
 };
 use smallvec::SmallVec;
 
 use crate::{
     allocator::Allocator,
+    buffer::VmaBuffer,
     defragmentation_context::DefragmentationContextHandle,
     ffi::{
         vmaAllocateMemory, vmaAllocateMemoryForBuffer, vmaAllocateMemoryForImage, vmaAllocateMemoryPages,
         vmaBeginDefragmentation, vmaCalculatePoolStatistics, vmaCheckPoolCorruption, vmaDestroyPool, vmaGetPoolName,
         vmaGetPoolStatistics, vmaSetPoolName, AllocationInfo, DefragmentationInfo, DetailedStatistics, Statistics,
     },
-    Allocation, AllocationCreateInfo, DefragmentationContext, DefragmentationFlags, buffer::VmaBuffer, AllocationCreateFlags, image::VmaImage,
+    image::VmaImage,
+    Allocation, AllocationCreateFlags, AllocationCreateInfo, DefragmentationContext, DefragmentationFlags,
 };
 
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
@@ -130,7 +137,13 @@ impl Pool {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
+                unsafe {
+                    Unique::new(
+                        self.parent(),
+                        allocation,
+                        (Some(self.clone()), allocation_info, AtomicBool::new(false)),
+                    )
+                },
                 allocation_info,
             )),
             other => Err(other),
@@ -175,7 +188,13 @@ impl Pool {
                 .zip(allocation_infos.into_iter())
                 .map(|(alloc, allocation_info)| {
                     (
-                        unsafe { Unique::new(self.parent(), alloc, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
+                        unsafe {
+                            Unique::new(
+                                self.parent(),
+                                alloc,
+                                (Some(self.clone()), allocation_info, AtomicBool::new(false)),
+                            )
+                        },
                         allocation_info,
                     )
                 })
@@ -217,7 +236,13 @@ impl Pool {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
+                unsafe {
+                    Unique::new(
+                        self.parent(),
+                        allocation,
+                        (Some(self.clone()), allocation_info, AtomicBool::new(false)),
+                    )
+                },
                 allocation_info,
             )),
             other => Err(other),
@@ -257,7 +282,13 @@ impl Pool {
 
         match res {
             VulkanResultCodes::SUCCESS => Ok((
-                unsafe { Unique::new(self.parent(), allocation, (Some(self.clone()), allocation_info, AtomicBool::new(false))) },
+                unsafe {
+                    Unique::new(
+                        self.parent(),
+                        allocation,
+                        (Some(self.clone()), allocation_info, AtomicBool::new(false)),
+                    )
+                },
                 allocation_info,
             )),
             other => Err(other),
@@ -308,7 +339,15 @@ impl Pool {
         priority: Option<f32>,
         user_data: Option<*mut c_void>,
     ) -> Result<VmaBuffer, VulkanResultCodes> {
-        VmaBuffer::new_pool(self.parent(), buffer_create_info, flags, self, priority, user_data, None)
+        VmaBuffer::new_pool(
+            self.parent(),
+            buffer_create_info,
+            flags,
+            self,
+            priority,
+            user_data,
+            None,
+        )
     }
 
     /// Creates a new [`VmaBuffer`] with additional minimum alignment.
@@ -328,7 +367,15 @@ impl Pool {
         priority: Option<f32>,
         user_data: Option<*mut c_void>,
     ) -> Result<VmaBuffer, VulkanResultCodes> {
-        VmaBuffer::new_pool(self.parent(), buffer_create_info, flags, self, priority, user_data, Some(alignment))
+        VmaBuffer::new_pool(
+            self.parent(),
+            buffer_create_info,
+            flags,
+            self,
+            priority,
+            user_data,
+            Some(alignment),
+        )
     }
 
     /// Creates a new [`VmaImage`], allocates and binds memory for it.

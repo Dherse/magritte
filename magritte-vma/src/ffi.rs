@@ -25,9 +25,7 @@ use crate::{
     allocation::Allocation,
     allocator::Allocator,
     defragmentation_context::DefragmentationContextHandle,
-    flags::{
-        AllocationCreateFlags, AllocatorCreateFlags, DefragmentationFlags, PoolCreateFlags,
-    },
+    flags::{AllocationCreateFlags, AllocatorCreateFlags, DefragmentationFlags, PoolCreateFlags},
     pool::Pool,
 };
 
@@ -526,21 +524,21 @@ pub struct AllocationCreateInfo {
     /// Intended usage of memory.
     ///
     /// You can leave [`MemoryUsage::UNKNOWN`] if you specify memory requirements in other way.
-    /// 
+    ///
     /// If [`Self::pool`] is not null, this member is ignored.
     pub usage: MemoryUsage,
 
     /// Flags that must be set in a Memory Type chosen for an allocation.
     ///
     /// Leave 0 if you specify memory requirements in other way.
-    /// 
+    ///
     /// If [`Self::pool`] is not null, this member is ignored.
     pub required_flags: MemoryPropertyFlags,
 
     /// Flags that preferably should be set in a memory type chosen for an allocation.
     ///
     /// Set to [`MemoryPropertyFlags::empty`] if no additional flags are preferred.
-    /// 
+    ///
     /// If [`Self::pool`] is not null, this member is ignored.
     pub preferred_flags: MemoryPropertyFlags,
 
@@ -549,16 +547,17 @@ pub struct AllocationCreateInfo {
     /// Value 0 is equivalent to [`u32::MAX`] - it means any memory type is accepted if
     /// it meets other requirements specified by this structure, with no further
     /// restrictions on memory type index.
-    /// 
+    ///
     /// If [`Self::pool`] is not null, this member is ignored.
-    /// 
+    ///
     /// [`u32::MAX`]: std::u32::MAX
     pub memory_type_bits: u32,
 
     /// Pool that this allocation should be created in.
     ///
     /// Leave [`Pool::null`] to allocate from default pool. If not null, members:
-    /// [`Self::usage`], [`Self::required_flags`], [`Self::preferred_flags`], [`Self::memory_type_bits`] are ignored.
+    /// [`Self::usage`], [`Self::required_flags`], [`Self::preferred_flags`],
+    /// [`Self::memory_type_bits`] are ignored.
     pub pool: Pool,
 
     /// Custom general-purpose pointer that will be stored in [`Allocation`], can be read as
