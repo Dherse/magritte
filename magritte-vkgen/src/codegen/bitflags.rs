@@ -82,7 +82,7 @@ impl<'a> BitFlag<'a> {
             .bits()
             .iter()
             .filter(|v| !v.origin().is_disabled())
-            .map(|bit| bit.generate_debug_variant(source, self.origin()))
+            .map(|bit| bit.generate_debug_variant(source, self.origin(), &name))
             .collect::<Vec<_>>();
 
         // get the underlying bit type
@@ -135,21 +135,28 @@ impl<'a> BitFlag<'a> {
 
             impl std::fmt::Debug for #name {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                    f.debug_tuple(stringify!(#name))
-                        .field(match *self {
-                            #(#debugs,)*
-                            other => unreachable!(concat!("invalid value for", stringify!(#name), ": {:?}"), other),
-                        })
-                        .finish()
-                }
-            }
+                    struct Flags(#name);
+                    impl std::fmt::Debug for Flags {
+                        #[allow(unused_assignments, unused_mut, unused_variables)]
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                            if self.0 == #name::empty() {
+                                f.write_str("empty")?;
+                            } else {
+                                match self.0 {
+                                    #(
+                                        #debugs,
+                                    )*
+                                    _ => f.write_str("invalid")?
+                                }
+                            }
 
-            impl std::fmt::Display for #name {
-                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                    f.write_str(match *self {
-                        #(#debugs,)*
-                        other => unreachable!(concat!("invalid value for", stringify!(#name), ": {:?}"), other),
-                    })
+                            Ok(())
+                        }
+                    }
+
+                    f.debug_tuple(stringify!(#name))
+                        .field(&Flags(*self))
+                        .finish()
                 }
             }
         }

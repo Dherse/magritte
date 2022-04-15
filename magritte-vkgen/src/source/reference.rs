@@ -414,7 +414,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub fn as_path(&self) -> TokenStream {
         let path = self.origin().as_path();
         let ident = self.as_ident();
-        
+
         quote! { #path::#ident }
     }
 
@@ -460,7 +460,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         match self {
             TypeRef::OpaqueType(_) => false,
             TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_copy(source),
-            TypeRef::Struct(struct_) => struct_.is_copy(source) && struct_.has_p_next().is_none(), 
+            TypeRef::Struct(struct_) => struct_.is_copy(source) && struct_.has_p_next().is_none(),
             TypeRef::Union(union_) => union_.is_copy(source),
             TypeRef::Handle(_)
             | TypeRef::Basetype(_)

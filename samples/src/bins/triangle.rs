@@ -12,7 +12,7 @@ use magritte::{
         PipelineStageFlags, Rect2D, RenderPassBeginInfo, Semaphore, SemaphoreCreateInfo, SubpassContents,
     },
     window::create_surface,
-    AsRaw, InstanceExtensions, SmallVec, Unique, DeviceExtensions,
+    AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique,
 };
 
 use magritte_samples::{
@@ -48,7 +48,12 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     // We initialize the basics, from which we get a `Vulkan` and a `SurfaceKHR` protected in a
     // `Unique`. This is **not** part of Magritte, go see `Vulkan` to see how it works.
-    let (vulkan, surface) = Vulkan::new(&window, InstanceExtensions::vulkan1_0(), DeviceExtensions::vulkan1_0(), true)?;
+    let (vulkan, surface) = Vulkan::new(
+        &window,
+        InstanceExtensions::vulkan1_0(),
+        DeviceExtensions::vulkan1_0(),
+        true,
+    )?;
 
     // Now that we have the basic state and the surface, we will create all additional
     // state required to get a swapchain!

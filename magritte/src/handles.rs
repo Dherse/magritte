@@ -90,7 +90,7 @@ impl<T: Handle> Unique<T> {
 
     /// Gets a mutable reference to inner storage of this value.
     /// Returns `None` if there is more than one strong reference.
-    /// 
+    ///
     /// # Safety
     /// This is safe because we ensure that there is only one reference
     /// to the value. And by taking a mutable reference to the unique value,
@@ -101,7 +101,7 @@ impl<T: Handle> Unique<T> {
     }
 
     /// Gets a mutable reference to the inner storage of this value.
-    /// 
+    ///
     /// # Safety
     /// The caller must ensure that synchronization is done.
     #[inline]

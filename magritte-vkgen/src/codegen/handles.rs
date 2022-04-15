@@ -294,11 +294,12 @@ impl<'a> Handle<'a> {
             quote! { _ }
         };
 
-        let metadata_ident = if load_vtable.is_some() && (self.original_name() == "VkInstance" || self.original_name() == "VkDevice") {
-            quote! { metadata }
-        } else {
-            quote! { _ }
-        };
+        let metadata_ident =
+            if load_vtable.is_some() && (self.original_name() == "VkInstance" || self.original_name() == "VkDevice") {
+                quote! { metadata }
+            } else {
+                quote! { _ }
+            };
 
         if self.original_name() != "VkInstance" && self.original_name() != "VkDevice" {
             imports.push("std::sync::atomic::Ordering");

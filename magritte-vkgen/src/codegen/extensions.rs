@@ -4,7 +4,8 @@ use tracing::warn;
 
 use crate::{
     doc::Documentation,
-    source::{Extension, ExtensionType, Source, DeprecationStatus}, origin::Origin,
+    origin::Origin,
+    source::{DeprecationStatus, Extension, ExtensionType, Source},
 };
 
 impl<'a> Extension<'a> {
@@ -56,13 +57,13 @@ impl<'a> Extension<'a> {
                     #[deprecated = #note]
                 })
             },
-            DeprecationStatus::PromotedVersion(_) | DeprecationStatus::DeprecatedVersion(_) | DeprecationStatus::ObsoletedVersion(_) => None,
+            DeprecationStatus::PromotedVersion(_)
+            | DeprecationStatus::DeprecatedVersion(_)
+            | DeprecationStatus::ObsoletedVersion(_) => None,
         }
     }
 
-    fn generate_field_code(
-        &self,
-    ) -> TokenStream {
+    fn generate_field_code(&self) -> TokenStream {
         let ident = self.as_ident();
         let name = self.name();
 
@@ -72,9 +73,7 @@ impl<'a> Extension<'a> {
         }
     }
 
-    fn generate_initialization(
-        &self
-    ) -> TokenStream {
+    fn generate_initialization(&self) -> TokenStream {
         let ident = self.as_ident();
         let name = self.name();
 
@@ -84,9 +83,7 @@ impl<'a> Extension<'a> {
         }
     }
 
-    fn generate_getter_function(
-        &self
-    ) -> TokenStream {
+    fn generate_getter_function(&self) -> TokenStream {
         let ident = self.as_ident();
         let name = self.name();
 
@@ -99,10 +96,7 @@ impl<'a> Extension<'a> {
         }
     }
 
-    fn generate_setter_function(
-        &self,
-        source: &Source<'a>,
-    ) -> TokenStream {
+    fn generate_setter_function(&self, source: &Source<'a>) -> TokenStream {
         let ident = self.as_ident();
         let enable_ident = self.as_enable_ident();
         let name = self.name();
@@ -110,15 +104,15 @@ impl<'a> Extension<'a> {
         let deprecation = self.generate_deprecation();
 
         let max_version = match self.deprecation_status() {
-            DeprecationStatus::PromotedVersion(version) 
-            | DeprecationStatus::DeprecatedVersion(version) 
+            DeprecationStatus::PromotedVersion(version)
+            | DeprecationStatus::DeprecatedVersion(version)
             | DeprecationStatus::ObsoletedVersion(version) => {
                 let max = match version {
                     Origin::Vulkan1_0 => quote! { Version::VULKAN1_0 },
                     Origin::Vulkan1_1 => quote! { Version::VULKAN1_1 },
                     Origin::Vulkan1_2 => quote! { Version::VULKAN1_2 },
                     Origin::Vulkan1_3 => quote! { Version::VULKAN1_3 },
-                    other => unreachable!("not a vulkan version: {:?}", other)
+                    other => unreachable!("not a vulkan version: {:?}", other),
                 };
 
                 Some(quote! {
@@ -135,10 +129,12 @@ impl<'a> Extension<'a> {
             Origin::Vulkan1_1 => Some(quote! { assert!(self.version() >= Version::VULKAN1_1); }),
             Origin::Vulkan1_2 => Some(quote! { assert!(self.version() >= Version::VULKAN1_2); }),
             Origin::Vulkan1_3 => Some(quote! { assert!(self.version() >= Version::VULKAN1_3); }),
-            other => unreachable!("not a vulkan version: {:?}", other)
+            other => unreachable!("not a vulkan version: {:?}", other),
         };
 
-        let dependencies = self.required().iter()
+        let dependencies = self
+            .required()
+            .iter()
             .filter_map(|other| source.extensions.get_by_name(other))
             .filter(|other| !other.disabled())
             .filter(|other| other.ty() == self.ty())
@@ -178,14 +174,13 @@ impl<'a> Extension<'a> {
     }
 
     /// Generate the code for extensions of a certain type
-    pub fn generate_extensions<'b>(
-        source: &Source<'a>,
-        extension_type: ExtensionType,
-        mut out: &mut TokenStream,
-    ) where
+    pub fn generate_extensions<'b>(source: &Source<'a>, extension_type: ExtensionType, mut out: &mut TokenStream)
+    where
         'a: 'b,
     {
-        let exts = source.extensions.iter()
+        let exts = source
+            .extensions
+            .iter()
             .filter(|ext| !ext.disabled())
             .filter(|ext| ext.ty() == extension_type)
             .collect::<Vec<_>>();
@@ -200,7 +195,7 @@ impl<'a> Extension<'a> {
         let getters = exts.iter().map(|ext| ext.generate_getter_function());
         let setters = exts.iter().map(|ext| ext.generate_setter_function(source));
         let extension_names = exts.iter().map(|ext| ext.generate_name_code());
-        
+
         quote_each_token! {
             out
 

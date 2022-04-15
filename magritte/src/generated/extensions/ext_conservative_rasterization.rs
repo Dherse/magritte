@@ -95,23 +95,23 @@ pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr =
 ///    VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT = 2,
 ///} VkConservativeRasterizationModeEXT;
 ///```
-///# Description
+/// # Description
 /// - [`DISABLED`] specifies that conservative rasterization is disabled and rasterization proceeds
 ///   as normal.
 /// - [`OVERESTIMATE`] specifies that conservative rasterization is enabled in overestimation mode.
 /// - [`UNDERESTIMATE`] specifies that conservative rasterization is enabled in underestimation
 ///   mode.
-///# Related
+/// # Related
 /// - [`ext_conservative_rasterization`]
 /// - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkConservativeRasterizationModeEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -154,38 +154,26 @@ impl ConservativeRasterizationModeEXT {
 }
 impl std::fmt::Debug for ConservativeRasterizationModeEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(ConservativeRasterizationModeEXT);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == ConservativeRasterizationModeEXT::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        ConservativeRasterizationModeEXT::DISABLED => f.write_str("DISABLED")?,
+                        ConservativeRasterizationModeEXT::OVERESTIMATE => f.write_str("OVERESTIMATE")?,
+                        ConservativeRasterizationModeEXT::UNDERESTIMATE => f.write_str("UNDERESTIMATE")?,
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(ConservativeRasterizationModeEXT))
-            .field(match *self {
-                Self::DISABLED => &"DISABLED",
-                Self::OVERESTIMATE => &"OVERESTIMATE",
-                Self::UNDERESTIMATE => &"UNDERESTIMATE",
-                other => unreachable!(
-                    concat!(
-                        "invalid value for",
-                        stringify!(ConservativeRasterizationModeEXT),
-                        ": {:?}"
-                    ),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for ConservativeRasterizationModeEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::DISABLED => &"DISABLED",
-            Self::OVERESTIMATE => &"OVERESTIMATE",
-            Self::UNDERESTIMATE => &"UNDERESTIMATE",
-            other => unreachable!(
-                concat!(
-                    "invalid value for",
-                    stringify!(ConservativeRasterizationModeEXT),
-                    ": {:?}"
-                ),
-                other
-            ),
-        })
     }
 }
 ///[VkPipelineRasterizationConservativeStateCreateFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationConservativeStateCreateFlagsEXT.html) - Reserved for future use
@@ -194,17 +182,17 @@ impl std::fmt::Display for ConservativeRasterizationModeEXT {
 ///// Provided by VK_EXT_conservative_rasterization
 ///typedef VkFlags VkPipelineRasterizationConservativeStateCreateFlagsEXT;
 ///```
-///# Related
+/// # Related
 /// - [`ext_conservative_rasterization`]
 /// - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -241,7 +229,7 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 ///    VkBool32           conservativeRasterizationPostDepthCoverage;
 ///} VkPhysicalDeviceConservativeRasterizationPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`primitive_overestimation_size`] is the size in pixels the generating primitive is increased
@@ -286,27 +274,27 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 ///   conservative rasterization with the `PostDepthCoverage` execution mode enabled. Otherwise the
 ///   `PostDepthCoverage` execution mode  **must**  not be used when conservative rasterization is
 ///   enabled.
-///# Description
-///If the [`PhysicalDeviceConservativeRasterizationPropertiesEXT`] structure is included in the
+/// # Description
+/// If the [`PhysicalDeviceConservativeRasterizationPropertiesEXT`] structure is included in the
 /// [`p_next`] chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`get_physical_device_properties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`ext_conservative_rasterization`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConservativeRasterizationPropertiesEXT")]
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]
@@ -733,7 +721,7 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 ///    float                                                     extraPrimitiveOverestimationSize;
 ///} VkPipelineRasterizationConservativeStateCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
@@ -742,31 +730,31 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 ///   primitive during conservative rasterization at each of its edges in `X` and `Y` equally in
 ///   screen space beyond the base overestimation specified in
 ///   [`PhysicalDeviceConservativeRasterizationPropertiesEXT::primitive_overestimation_size`].
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`extra_primitive_overestimation_size`] **must**  be in the range of `0.0` to
 ///   [`PhysicalDeviceConservativeRasterizationPropertiesEXT::
 ///   max_extra_primitive_overestimation_size`] inclusive
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
 /// - [`conservative_rasterization_mode`] **must**  be a valid [`ConservativeRasterizationModeEXT`]
 ///   value
-///# Related
+/// # Related
 /// - [`ext_conservative_rasterization`]
 /// - [`ConservativeRasterizationModeEXT`]
 /// - [`PipelineRasterizationConservativeStateCreateFlagsEXT`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationConservativeStateCreateInfoEXT")]
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]

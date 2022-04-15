@@ -217,10 +217,7 @@ impl<'a> Origin<'a> {
                 crate::core
             },
             Origin::Extension(name, _, _) => {
-                let ident = Ident::new(
-                    &name.trim_start_matches("VK_").to_snake_case(),
-                    Span::call_site(),
-                );
+                let ident = Ident::new(&name.trim_start_matches("VK_").to_snake_case(), Span::call_site());
 
                 quote! {
                     crate::extensions::#ident

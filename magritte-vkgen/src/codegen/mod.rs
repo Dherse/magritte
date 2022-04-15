@@ -27,7 +27,7 @@ use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Extension, Source, ExtensionType},
+    source::{Extension, ExtensionType, Source},
 };
 
 use self::handles::loader::HandleFunction;
@@ -309,17 +309,9 @@ impl<'a> Source<'a> {
             use crate::Version;
         };
 
-        Extension::generate_extensions(
-            self,
-            ExtensionType::Device,
-            &mut out_ts,
-        );
+        Extension::generate_extensions(self, ExtensionType::Device, &mut out_ts);
 
-        Extension::generate_extensions(
-            self,
-            ExtensionType::Instance,
-            &mut out_ts,
-        );
+        Extension::generate_extensions(self, ExtensionType::Instance, &mut out_ts);
 
         out.push_str(&out_ts.to_string());
 

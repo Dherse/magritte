@@ -81,7 +81,7 @@ pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 ///    VkDeviceSize       heapUsage[VK_MAX_MEMORY_HEAPS];
 ///} VkPhysicalDeviceMemoryBudgetPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`heap_budget`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory
@@ -92,29 +92,29 @@ pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 /// - [`heap_usage`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory usages
 ///   are returned, with one element for each memory heap. A heap’s usage is an estimate of how much
 ///   memory the process is currently using in that heap.
-///# Description
-///The values returned in this structure are not invariant.
-///The [`heap_budget`] and [`heap_usage`] values  **must**  be zero for array
-///elements greater than or equal to
-///[`PhysicalDeviceMemoryProperties::memory_heap_count`].
-///The [`heap_budget`] value  **must**  be non-zero for array elements less than
-///[`PhysicalDeviceMemoryProperties::memory_heap_count`].
-///The [`heap_budget`] value  **must**  be less than or equal to
-///[`MemoryHeap::size`] for each heap.
-///## Valid Usage (Implicit)
+/// # Description
+/// The values returned in this structure are not invariant.
+/// The [`heap_budget`] and [`heap_usage`] values  **must**  be zero for array
+/// elements greater than or equal to
+/// [`PhysicalDeviceMemoryProperties::memory_heap_count`].
+/// The [`heap_budget`] value  **must**  be non-zero for array elements less than
+/// [`PhysicalDeviceMemoryProperties::memory_heap_count`].
+/// The [`heap_budget`] value  **must**  be less than or equal to
+/// [`MemoryHeap::size`] for each heap.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`ext_memory_budget`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryBudgetPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

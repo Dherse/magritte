@@ -510,9 +510,8 @@ impl<'a> Ty<'a> {
                     quote! {
                         *#mutability #ty
                     },
-                    pointer_has_lifetime
+                    pointer_has_lifetime,
                 )
-                
             },
         }
     }
@@ -522,10 +521,7 @@ impl<'a> Ty<'a> {
         match self {
             Ty::Native(_) | Ty::StringArray(_) => (self.as_const_ty(source, imports), false),
             Ty::Pointer(_, ty) => (ty.as_raw_ty(source, imports, true).0, true),
-            Ty::Named(Cow::Borrowed("VkBool32")) => (
-                quote! { bool },
-                false,
-            ),
+            Ty::Named(Cow::Borrowed("VkBool32")) => (quote! { bool }, false),
             Ty::Named(name) => source
                 .find(name)
                 .expect("type not found")
@@ -562,7 +558,7 @@ impl<'a> Ty<'a> {
             Ty::Pointer(mutability, ty) | Ty::Slice(mutability, ty, _) => {
                 let mutability = mutability.as_ptr_token();
                 let elem = ty.as_const_ty(source, imports);
-                
+
                 quote! {
                     *#mutability #elem
                 }
@@ -576,7 +572,7 @@ impl<'a> Ty<'a> {
             Ty::StringArray(len) => {
                 let len = len.as_const_expr(source, imports);
                 let elem = Native::Char.as_type(None);
-                
+
                 quote! {
                     [#elem; #len as usize]
                 }
@@ -584,7 +580,7 @@ impl<'a> Ty<'a> {
             Ty::Array(ty, len) => {
                 let len = len.as_const_expr(source, imports);
                 let elem = box ty.as_const_ty(source, imports);
-                
+
                 quote! {
                     [#elem; #len as usize]
                 }
@@ -604,7 +600,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
 
         if let Some(imports) = imports {
             self.import(imports);
-            
+
             self.as_ident().to_token_stream()
         } else {
             let path = self.origin().as_path();
@@ -631,19 +627,22 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         let lifetime = lt.then(lifetime_as_generic_argument);
 
         let ident = self.as_ident();
-        (if let Some(imports) = imports {
-            self.import(imports);
+        (
+            if let Some(imports) = imports {
+                self.import(imports);
 
-            quote! {
-                #ident #lifetime
-            }
-        } else {
-            let path = self.origin().as_path();
+                quote! {
+                    #ident #lifetime
+                }
+            } else {
+                let path = self.origin().as_path();
 
-            quote! {
-                #path :: #ident #lifetime
-            }
-        }, lt)
+                quote! {
+                    #path :: #ident #lifetime
+                }
+            },
+            lt,
+        )
     }
 
     /*/// Gets the list of generic type parameters
@@ -725,7 +724,7 @@ impl Native {
                 Self::NullTerminatedString => quote! {
                     &#lifetime std::ffi::CStr
                 },
-                _ => self.as_type_path()
+                _ => self.as_type_path(),
             }
         }
     }

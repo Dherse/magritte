@@ -198,8 +198,10 @@ impl<'a> Function<'a> {
             }
         };
 
-        let update_vtable = gen.returns_device.then(|| quote! {
-            self.instance().update_vtable(&extensions);
+        let update_vtable = gen.returns_device.then(|| {
+            quote! {
+                self.instance().update_vtable(&extensions);
+            }
         });
 
         let return_expr = match self.return_type() {

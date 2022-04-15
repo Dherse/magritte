@@ -7,13 +7,23 @@ mod ffi;
 
 mod allocation;
 mod allocator;
+mod buffer;
 mod defragmentation_context;
 mod flags;
 mod pool;
-mod virtual_allocation;
-mod virtual_block;
+mod image;
 
-pub use allocator::VmaAllocator;
+pub use allocation::Allocation;
+pub use allocator::Allocator;
+pub use defragmentation_context::DefragmentationContext;
+pub use buffer::VmaBuffer;
+pub use image::VmaImage;
+pub use ffi::{
+    AllocationCreateInfo, AllocatorInfo, Budget, DetailedStatistics, PoolCreateInfo, Statistics, TotalStatistics,
+    MemoryUsage,
+};
+pub use flags::*;
+pub use pool::{MemoryCorruptionState, Pool};
 
 pub(crate) trait AsCStr {
     fn as_cstr(&self) -> &CStr;

@@ -83,19 +83,19 @@ pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static CStr =
 /// VK_PIPELINE_CACHE_CREATE_EXTERNALLY_SYNCHRONIZED_BIT,
 ///} VkPipelineCacheCreateFlagBits;
 ///```
-///# Description
+/// # Description
 /// - [`EXTERNALLY_SYNCHRONIZED`] specifies that all commands that modify the created [`PipelineCache`] will be [externally synchronized](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fundamentals-threadingbehavior). When set, the implementation  **may**  skip any unnecessary processing needed to support simultaneous modification from multiple threads where allowed.
-///# Related
+/// # Related
 /// - [`ext_pipeline_creation_cache_control`]
 /// - [`PipelineCacheCreateFlags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCacheCreateFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -137,25 +137,25 @@ impl PipelineCacheCreateFlagBits {
 }
 impl std::fmt::Debug for PipelineCacheCreateFlagBits {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(PipelineCacheCreateFlagBits);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == PipelineCacheCreateFlagBits::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        PipelineCacheCreateFlagBits::EXTERNALLY_SYNCHRONIZED => {
+                            f.write_str("EXTERNALLY_SYNCHRONIZED")?
+                        },
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(PipelineCacheCreateFlagBits))
-            .field(match *self {
-                Self::EXTERNALLY_SYNCHRONIZED => &"EXTERNALLY_SYNCHRONIZED",
-                other => unreachable!(
-                    concat!("invalid value for", stringify!(PipelineCacheCreateFlagBits), ": {:?}"),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for PipelineCacheCreateFlagBits {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::EXTERNALLY_SYNCHRONIZED => &"EXTERNALLY_SYNCHRONIZED",
-            other => unreachable!(
-                concat!("invalid value for", stringify!(PipelineCacheCreateFlagBits), ": {:?}"),
-                other
-            ),
-        })
     }
 }

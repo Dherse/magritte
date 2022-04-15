@@ -83,40 +83,40 @@ pub const FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    const VkSemaphoreGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo,
 ///    zx_handle_t*                                pZirconHandle);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that created the semaphore being exported.
 /// - [`p_get_zircon_handle_info`] is a pointer to a [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 ///   structure containing parameters of the export operation.
 /// - [`p_zircon_handle`] will return the Zircon event handle representing the semaphore payload.
-///# Description
-///Each call to [`get_semaphore_zircon_handle_fuchsia`] **must**  create a Zircon
-///event handle and transfer ownership of it to the application.
-///To avoid leaking resources, the application  **must**  release ownership of the
-///Zircon event handle when it is no longer needed.Exporting a Zircon event handle from a semaphore
+/// # Description
+/// Each call to [`get_semaphore_zircon_handle_fuchsia`] **must**  create a Zircon
+/// event handle and transfer ownership of it to the application.
+/// To avoid leaking resources, the application  **must**  release ownership of the
+/// Zircon event handle when it is no longer needed.Exporting a Zircon event handle from a semaphore
 /// **may**  have side effects
-///depending on the transference of the specified handle type, as described in
-///[Importing Semaphore State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
-///## Valid Usage (Implicit)
+/// depending on the transference of the specified handle type, as described in
+/// [Importing Semaphore State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_get_zircon_handle_info`] **must**  be a valid pointer to a valid
 ///   [`SemaphoreGetZirconHandleInfoFUCHSIA`] structure
 /// - [`p_zircon_handle`] **must**  be a valid pointer to a [`zx_handle_t`] value
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-///# Related
+/// # Related
 /// - [`fuchsia_external_semaphore`]
 /// - [`Device`]
 /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetSemaphoreZirconHandleFUCHSIA")]
 pub type FNGetSemaphoreZirconHandleFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -134,43 +134,43 @@ pub type FNGetSemaphoreZirconHandleFuchsia = Option<
 ///    VkDevice                                    device,
 ///    const VkImportSemaphoreZirconHandleInfoFUCHSIA* pImportSemaphoreZirconHandleInfo);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`device`] is the logical device that created the semaphore.
 /// - [`p_import_semaphore_zircon_handle_info`] is a pointer to a
 ///   [`ImportSemaphoreZirconHandleInfoFUCHSIA`] structure specifying the semaphore and import
 ///   parameters.
-///# Description
-///Importing a semaphore payload from a Zircon event handle transfers ownership
-///of the handle from the application to the Vulkan implementation.
-///The application  **must**  not perform any operations on the handle after a
-///successful import.Applications  **can**  import the same semaphore payload into multiple
+/// # Description
+/// Importing a semaphore payload from a Zircon event handle transfers ownership
+/// of the handle from the application to the Vulkan implementation.
+/// The application  **must**  not perform any operations on the handle after a
+/// successful import.Applications  **can**  import the same semaphore payload into multiple
 /// instances
-///of Vulkan, into the same instance from which it was exported, and multiple
-///times into a given Vulkan instance.
-///## Valid Usage
+/// of Vulkan, into the same instance from which it was exported, and multiple
+/// times into a given Vulkan instance.
+/// ## Valid Usage
 /// - `semaphore` **must**  not be associated with any queue command that has not yet completed
 ///   execution on that queue
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_import_semaphore_zircon_handle_info`] **must**  be a valid pointer to a valid
 ///   [`ImportSemaphoreZirconHandleInfoFUCHSIA`] structure
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-///# Related
+/// # Related
 /// - [`fuchsia_external_semaphore`]
 /// - [`Device`]
 /// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkImportSemaphoreZirconHandleFUCHSIA")]
 pub type FNImportSemaphoreZirconHandleFuchsia = Option<
     for<'lt> unsafe extern "system" fn(
@@ -192,7 +192,7 @@ pub type FNImportSemaphoreZirconHandleFuchsia = Option<
 ///    zx_handle_t                              zirconHandle;
 ///} VkImportSemaphoreZirconHandleInfoFUCHSIA;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the semaphore into which the payload will be imported.
@@ -201,9 +201,9 @@ pub type FNImportSemaphoreZirconHandleFuchsia = Option<
 /// - [`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value specifying the type of
 ///   [`zircon_handle`].
 /// - [`zircon_handle`] is the external handle to import.
-///# Description
-///The handle types supported by [`handle_type`] are:
-///## Valid Usage
+/// # Description
+/// The handle types supported by [`handle_type`] are:
+/// ## Valid Usage
 /// - [`handle_type`] **must**  be a value included in the [Handle Types Supported by [`ImportSemaphoreZirconHandleInfoFUCHSIA`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphore-handletypes-fuchsia)
 ///   table
 /// -  [`zircon_handle`] **must**  obey any requirements listed for [`handle_type`] in [external semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
@@ -211,16 +211,16 @@ pub type FNImportSemaphoreZirconHandleFuchsia = Option<
 /// - The [`SemaphoreTypeCreateInfo::semaphore_type`] field  **must**  not be
 ///   `VK_SEMAPHORE_TYPE_TIMELINE`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`flags`] **must**  be a valid combination of [`SemaphoreImportFlagBits`] values
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`semaphore`] **must**  be externally synchronized
-///# Related
+/// # Related
 /// - [`fuchsia_external_semaphore`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
@@ -228,13 +228,13 @@ pub type FNImportSemaphoreZirconHandleFuchsia = Option<
 /// - [`StructureType`]
 /// - [`import_semaphore_zircon_handle_fuchsia`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportSemaphoreZirconHandleInfoFUCHSIA")]
 #[repr(C)]
 pub struct ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
@@ -379,18 +379,18 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
 ///    VkExternalSemaphoreHandleTypeFlagBits    handleType;
 ///} VkSemaphoreGetZirconHandleInfoFUCHSIA;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`semaphore`] is the semaphore from which state will be exported.
 /// - [`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value specifying the type of
 ///   handle requested.
-///# Description
-///The properties of the Zircon event handle returned depend on the value of
-///[`handle_type`].
-///See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
-///properties of the defined external semaphore handle types.
-///## Valid Usage
+/// # Description
+/// The properties of the Zircon event handle returned depend on the value of
+/// [`handle_type`].
+/// See [`ExternalSemaphoreHandleTypeFlagBits`] for a description of the
+/// properties of the defined external semaphore handle types.
+/// ## Valid Usage
 /// - [`handle_type`] **must**  have been included in [`ExportSemaphoreCreateInfo::handle_types`]
 ///   when [`semaphore`]’s current payload was created
 /// -  [`semaphore`] **must**  not currently have its payload replaced by an imported payload as described below in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing) unless that imported payload’s handle type was included in [`ExternalSemaphoreProperties::export_from_imported_handle_types`] for [`handle_type`]
@@ -400,25 +400,25 @@ impl<'lt> ImportSemaphoreZirconHandleInfoFUCHSIA<'lt> {
 /// - [`semaphore`] **must**  have been created with a [`SemaphoreType`] of
 ///   `VK_SEMAPHORE_TYPE_BINARY`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`semaphore`] **must**  be a valid [`Semaphore`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
-///# Related
+/// # Related
 /// - [`fuchsia_external_semaphore`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`Semaphore`]
 /// - [`StructureType`]
 /// - [`get_semaphore_zircon_handle_fuchsia`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreGetZirconHandleInfoFUCHSIA")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -521,41 +521,41 @@ impl Device {
     ///    const VkSemaphoreGetZirconHandleInfoFUCHSIA* pGetZirconHandleInfo,
     ///    zx_handle_t*                                pZirconHandle);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device that created the semaphore being exported.
     /// - [`p_get_zircon_handle_info`] is a pointer to a [`SemaphoreGetZirconHandleInfoFUCHSIA`]
     ///   structure containing parameters of the export operation.
     /// - [`p_zircon_handle`] will return the Zircon event handle representing the semaphore
     ///   payload.
-    ///# Description
-    ///Each call to [`get_semaphore_zircon_handle_fuchsia`] **must**  create a Zircon
-    ///event handle and transfer ownership of it to the application.
-    ///To avoid leaking resources, the application  **must**  release ownership of the
-    ///Zircon event handle when it is no longer needed.Exporting a Zircon event handle from a
+    /// # Description
+    /// Each call to [`get_semaphore_zircon_handle_fuchsia`] **must**  create a Zircon
+    /// event handle and transfer ownership of it to the application.
+    /// To avoid leaking resources, the application  **must**  release ownership of the
+    /// Zircon event handle when it is no longer needed.Exporting a Zircon event handle from a
     /// semaphore  **may**  have side effects
-    ///depending on the transference of the specified handle type, as described in
-    ///[Importing Semaphore State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
-    ///## Valid Usage (Implicit)
+    /// depending on the transference of the specified handle type, as described in
+    /// [Importing Semaphore State](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing).
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_get_zircon_handle_info`] **must**  be a valid pointer to a valid
     ///   [`SemaphoreGetZirconHandleInfoFUCHSIA`] structure
     /// - [`p_zircon_handle`] **must**  be a valid pointer to a [`zx_handle_t`] value
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    ///# Related
+    /// # Related
     /// - [`fuchsia_external_semaphore`]
     /// - [`Device`]
     /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetSemaphoreZirconHandleFUCHSIA")]
     #[track_caller]
@@ -598,43 +598,43 @@ impl Device {
     ///    VkDevice                                    device,
     ///    const VkImportSemaphoreZirconHandleInfoFUCHSIA* pImportSemaphoreZirconHandleInfo);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`device`] is the logical device that created the semaphore.
     /// - [`p_import_semaphore_zircon_handle_info`] is a pointer to a
     ///   [`ImportSemaphoreZirconHandleInfoFUCHSIA`] structure specifying the semaphore and import
     ///   parameters.
-    ///# Description
-    ///Importing a semaphore payload from a Zircon event handle transfers ownership
-    ///of the handle from the application to the Vulkan implementation.
-    ///The application  **must**  not perform any operations on the handle after a
-    ///successful import.Applications  **can**  import the same semaphore payload into multiple
+    /// # Description
+    /// Importing a semaphore payload from a Zircon event handle transfers ownership
+    /// of the handle from the application to the Vulkan implementation.
+    /// The application  **must**  not perform any operations on the handle after a
+    /// successful import.Applications  **can**  import the same semaphore payload into multiple
     /// instances
-    ///of Vulkan, into the same instance from which it was exported, and multiple
-    ///times into a given Vulkan instance.
-    ///## Valid Usage
+    /// of Vulkan, into the same instance from which it was exported, and multiple
+    /// times into a given Vulkan instance.
+    /// ## Valid Usage
     /// - `semaphore` **must**  not be associated with any queue command that has not yet completed
     ///   execution on that queue
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_import_semaphore_zircon_handle_info`] **must**  be a valid pointer to a valid
     ///   [`ImportSemaphoreZirconHandleInfoFUCHSIA`] structure
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-    ///# Related
+    /// # Related
     /// - [`fuchsia_external_semaphore`]
     /// - [`Device`]
     /// - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkImportSemaphoreZirconHandleFUCHSIA")]
     #[track_caller]

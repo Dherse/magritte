@@ -103,20 +103,20 @@ pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VK_RASTERIZATION_ORDER_RELAXED_AMD = 1,
 ///} VkRasterizationOrderAMD;
 ///```
-///# Description
+/// # Description
 /// - [`STRICT`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
 /// - [`RELAXED`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
-///# Related
+/// # Related
 /// - [`amd_rasterization_order`]
 /// - [`PipelineRasterizationStateRasterizationOrderAMD`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRasterizationOrderAMD")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -155,28 +155,25 @@ impl RasterizationOrderAMD {
 }
 impl std::fmt::Debug for RasterizationOrderAMD {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(RasterizationOrderAMD);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == RasterizationOrderAMD::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        RasterizationOrderAMD::STRICT => f.write_str("STRICT")?,
+                        RasterizationOrderAMD::RELAXED => f.write_str("RELAXED")?,
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(RasterizationOrderAMD))
-            .field(match *self {
-                Self::STRICT => &"STRICT",
-                Self::RELAXED => &"RELAXED",
-                other => unreachable!(
-                    concat!("invalid value for", stringify!(RasterizationOrderAMD), ": {:?}"),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for RasterizationOrderAMD {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::STRICT => &"STRICT",
-            Self::RELAXED => &"RELAXED",
-            other => unreachable!(
-                concat!("invalid value for", stringify!(RasterizationOrderAMD), ": {:?}"),
-                other
-            ),
-        })
     }
 }
 ///[VkPipelineRasterizationStateRasterizationOrderAMD](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html) - Structure defining rasterization order for a graphics pipeline
@@ -194,33 +191,33 @@ impl std::fmt::Display for RasterizationOrderAMD {
 ///    VkRasterizationOrderAMD    rasterizationOrder;
 ///} VkPipelineRasterizationStateRasterizationOrderAMD;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`rasterization_order`] is a [`RasterizationOrderAMD`] value specifying the primitive
 ///   rasterization order to use.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD`
 /// - [`rasterization_order`] **must**  be a valid [`RasterizationOrderAMD`] value
-///If the `[`amd_rasterization_order`]` device extension is not enabled
-///or the application does not request a particular rasterization order through
-///specifying a [`PipelineRasterizationStateRasterizationOrderAMD`]
-///structure then the rasterization order used by the graphics pipeline
-///defaults to `VK_RASTERIZATION_ORDER_STRICT_AMD`.
-///# Related
+/// If the `[`amd_rasterization_order`]` device extension is not enabled
+/// or the application does not request a particular rasterization order through
+/// specifying a [`PipelineRasterizationStateRasterizationOrderAMD`]
+/// structure then the rasterization order used by the graphics pipeline
+/// defaults to `VK_RASTERIZATION_ORDER_STRICT_AMD`.
+/// # Related
 /// - [`amd_rasterization_order`]
 /// - [`RasterizationOrderAMD`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationStateRasterizationOrderAMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

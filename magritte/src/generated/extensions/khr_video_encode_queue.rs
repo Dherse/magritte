@@ -139,12 +139,12 @@ pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkVideoEncodeInfoKHR*                 pEncodeInfo);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer to be filled with this function for encoding to
 ///   generate a bitstream.
 /// - [`p_encode_info`] is a pointer to a [`VideoEncodeInfoKHR`] structure.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_encode_info`] **must**  be a valid pointer to a valid [`VideoEncodeInfoKHR`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -153,23 +153,23 @@ pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - This command  **must**  only be called outside of a render pass instance
 /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`CommandBuffer`]
 /// - [`VideoEncodeInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdEncodeVideoKHR")]
 pub type FNCmdEncodeVideoKhr = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_encode_info: *const VideoEncodeInfoKHR<'lt>),
@@ -185,19 +185,19 @@ pub type FNCmdEncodeVideoKhr = Option<
 ///    VK_VIDEO_ENCODE_RESERVED_0_BIT_KHR = 0x00000001,
 ///} VkVideoEncodeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeFlagBitsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -235,28 +235,25 @@ impl VideoEncodeFlagBitsKHR {
 }
 impl std::fmt::Debug for VideoEncodeFlagBitsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeFlagBitsKHR);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeFlagBitsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        VideoEncodeFlagBitsKHR::DEFAULT => f.write_str("DEFAULT")?,
+                        VideoEncodeFlagBitsKHR::RESERVED0 => f.write_str("RESERVED0")?,
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(VideoEncodeFlagBitsKHR))
-            .field(match *self {
-                Self::DEFAULT => &"DEFAULT",
-                Self::RESERVED0 => &"RESERVED0",
-                other => unreachable!(
-                    concat!("invalid value for", stringify!(VideoEncodeFlagBitsKHR), ": {:?}"),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for VideoEncodeFlagBitsKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::DEFAULT => &"DEFAULT",
-            Self::RESERVED0 => &"RESERVED0",
-            other => unreachable!(
-                concat!("invalid value for", stringify!(VideoEncodeFlagBitsKHR), ": {:?}"),
-                other
-            ),
-        })
     }
 }
 ///[VkVideoEncodeCapabilityFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilityFlagBitsKHR.html) - Video encode capability flags
@@ -270,20 +267,20 @@ impl std::fmt::Display for VideoEncodeFlagBitsKHR {
 ///    VK_VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_BIT_KHR = 0x00000001,
 ///} VkVideoEncodeCapabilityFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of
 ///   [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeCapabilityFlagBitsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -322,36 +319,27 @@ impl VideoEncodeCapabilityFlagBitsKHR {
 }
 impl std::fmt::Debug for VideoEncodeCapabilityFlagBitsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeCapabilityFlagBitsKHR);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeCapabilityFlagBitsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        VideoEncodeCapabilityFlagBitsKHR::DEFAULT => f.write_str("DEFAULT")?,
+                        VideoEncodeCapabilityFlagBitsKHR::PRECEDING_EXTERNALLY_ENCODED_BYTES => {
+                            f.write_str("PRECEDING_EXTERNALLY_ENCODED_BYTES")?
+                        },
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(VideoEncodeCapabilityFlagBitsKHR))
-            .field(match *self {
-                Self::DEFAULT => &"DEFAULT",
-                Self::PRECEDING_EXTERNALLY_ENCODED_BYTES => &"PRECEDING_EXTERNALLY_ENCODED_BYTES",
-                other => unreachable!(
-                    concat!(
-                        "invalid value for",
-                        stringify!(VideoEncodeCapabilityFlagBitsKHR),
-                        ": {:?}"
-                    ),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for VideoEncodeCapabilityFlagBitsKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::DEFAULT => &"DEFAULT",
-            Self::PRECEDING_EXTERNALLY_ENCODED_BYTES => &"PRECEDING_EXTERNALLY_ENCODED_BYTES",
-            other => unreachable!(
-                concat!(
-                    "invalid value for",
-                    stringify!(VideoEncodeCapabilityFlagBitsKHR),
-                    ": {:?}"
-                ),
-                other
-            ),
-        })
     }
 }
 ///[VkVideoEncodeRateControlFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlFlagBitsKHR.html) - Reserved for future use
@@ -363,20 +351,20 @@ impl std::fmt::Display for VideoEncodeCapabilityFlagBitsKHR {
 ///    VK_VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_BIT_KHR = 0x00000001,
 ///} VkVideoEncodeRateControlFlagBitsKHR;
 ///```
-///# Description
-///[`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
-///[`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
-///# Related
+/// # Description
+/// [`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
+/// [`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlFlagBitsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -413,36 +401,25 @@ impl VideoEncodeRateControlFlagBitsKHR {
 }
 impl std::fmt::Debug for VideoEncodeRateControlFlagBitsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeRateControlFlagBitsKHR);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeRateControlFlagBitsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        VideoEncodeRateControlFlagBitsKHR::DEFAULT => f.write_str("DEFAULT")?,
+                        VideoEncodeRateControlFlagBitsKHR::RESERVED0 => f.write_str("RESERVED0")?,
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(VideoEncodeRateControlFlagBitsKHR))
-            .field(match *self {
-                Self::DEFAULT => &"DEFAULT",
-                Self::RESERVED0 => &"RESERVED0",
-                other => unreachable!(
-                    concat!(
-                        "invalid value for",
-                        stringify!(VideoEncodeRateControlFlagBitsKHR),
-                        ": {:?}"
-                    ),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for VideoEncodeRateControlFlagBitsKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::DEFAULT => &"DEFAULT",
-            Self::RESERVED0 => &"RESERVED0",
-            other => unreachable!(
-                concat!(
-                    "invalid value for",
-                    stringify!(VideoEncodeRateControlFlagBitsKHR),
-                    ": {:?}"
-                ),
-                other
-            ),
-        })
     }
 }
 ///[VkVideoEncodeRateControlModeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlModeFlagBitsKHR.html) - Video encode rate control modes
@@ -456,22 +433,22 @@ impl std::fmt::Display for VideoEncodeRateControlFlagBitsKHR {
 ///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR = 2,
 ///} VkVideoEncodeRateControlModeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`NONE`] for disabling rate control.
 /// - [`CBR`] for constant bitrate rate control mode.
 /// - [`VBR`] for variable bitrate rate control mode.
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlInfoKHR`]
 /// - [`VideoEncodeRateControlModeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlModeFlagBitsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -513,38 +490,26 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
 }
 impl std::fmt::Debug for VideoEncodeRateControlModeFlagBitsKHR {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(VideoEncodeRateControlModeFlagBitsKHR);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == VideoEncodeRateControlModeFlagBitsKHR::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        VideoEncodeRateControlModeFlagBitsKHR::NONE => f.write_str("NONE")?,
+                        VideoEncodeRateControlModeFlagBitsKHR::CBR => f.write_str("CBR")?,
+                        VideoEncodeRateControlModeFlagBitsKHR::VBR => f.write_str("VBR")?,
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(VideoEncodeRateControlModeFlagBitsKHR))
-            .field(match *self {
-                Self::NONE => &"NONE",
-                Self::CBR => &"CBR",
-                Self::VBR => &"VBR",
-                other => unreachable!(
-                    concat!(
-                        "invalid value for",
-                        stringify!(VideoEncodeRateControlModeFlagBitsKHR),
-                        ": {:?}"
-                    ),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for VideoEncodeRateControlModeFlagBitsKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::NONE => &"NONE",
-            Self::CBR => &"CBR",
-            Self::VBR => &"VBR",
-            other => unreachable!(
-                concat!(
-                    "invalid value for",
-                    stringify!(VideoEncodeRateControlModeFlagBitsKHR),
-                    ": {:?}"
-                ),
-                other
-            ),
-        })
     }
 }
 ///[VkVideoEncodeFlagBitsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeFlagBitsKHR.html) - Video Encode Command Flags
@@ -558,19 +523,19 @@ impl std::fmt::Display for VideoEncodeRateControlModeFlagBitsKHR {
 ///    VK_VIDEO_ENCODE_RESERVED_0_BIT_KHR = 0x00000001,
 ///} VkVideoEncodeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`RESERVED0`] The current version of the specification has reserved this value for future use.
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -842,20 +807,20 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
 ///    VK_VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_BIT_KHR = 0x00000001,
 ///} VkVideoEncodeCapabilityFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of
 ///   [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeCapabilityFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1131,20 +1096,20 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
 ///    VK_VIDEO_ENCODE_RATE_CONTROL_RESERVED_0_BIT_KHR = 0x00000001,
 ///} VkVideoEncodeRateControlFlagBitsKHR;
 ///```
-///# Description
-///[`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
-///[`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
-///# Related
+/// # Description
+/// [`VideoEncodeRateControlFlagBitsKHR`] defines bits which may be set in a
+/// [`VideoEncodeRateControlFlagsKHR`] value, but is currently unused.
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1419,22 +1384,22 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
 ///    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR = 2,
 ///} VkVideoEncodeRateControlModeFlagBitsKHR;
 ///```
-///# Description
+/// # Description
 /// - [`NONE`] for disabling rate control.
 /// - [`CBR`] for constant bitrate rate control mode.
 /// - [`VBR`] for variable bitrate rate control mode.
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`VideoEncodeRateControlInfoKHR`]
 /// - [`VideoEncodeRateControlModeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlModeFlagsKHR")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1734,7 +1699,7 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 ///    uint32_t                          precedingExternallyEncodedBytes;
 ///} VkVideoEncodeInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is a pointer to a structure extending this structure. A codec-specific extension
 ///   structure  **must**  be chained to specify what bitstream unit to generate with this encode
@@ -1779,23 +1744,23 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 ///   [`VideoEncodeInfoKHR`] belongs to, by accounting for the bitrate budget consumed by these
 ///   externally encoded bytes. See [`VideoEncodeRateControlInfoKHR`] for additional information
 ///   about encode rate control.
-///# Description
-///Multiple [`cmd_encode_video_khr`] commands  **may**  be recorded within a Vulkan
-///Video Encode Context.
-///The execution of each [`cmd_encode_video_khr`] command will result in
-///generating codec-specific bitstream units.
-///These bitstream units are generated consecutively into the bitstream buffer
-///specified in [`dst_bitstream_buffer`] of a [`VideoEncodeInfoKHR`]
-///structure within the [`cmd_begin_video_coding_khr`] command.
-///The produced bitstream is the sum of all these bitstream units, including
-///any padding between the bitstream units.
-///Any bitstream padding  **must**  be filled with data compliant to the codec
-///standard so as not to cause any syntax errors during decoding of the
-///bitstream units with the padding included.
-///The range of the bitstream buffer written  **can**  be queried via
-///[video encode bitstream buffer
-///range queries](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-video-encode-bitstream-buffer-range).
-///## Valid Usage (Implicit)
+/// # Description
+/// Multiple [`cmd_encode_video_khr`] commands  **may**  be recorded within a Vulkan
+/// Video Encode Context.
+/// The execution of each [`cmd_encode_video_khr`] command will result in
+/// generating codec-specific bitstream units.
+/// These bitstream units are generated consecutively into the bitstream buffer
+/// specified in [`dst_bitstream_buffer`] of a [`VideoEncodeInfoKHR`]
+/// structure within the [`cmd_begin_video_coding_khr`] command.
+/// The produced bitstream is the sum of all these bitstream units, including
+/// any padding between the bitstream units.
+/// Any bitstream padding  **must**  be filled with data compliant to the codec
+/// standard so as not to cause any syntax errors during decoding of the
+/// bitstream units with the padding included.
+/// The range of the bitstream buffer written  **can**  be queried via
+/// [video encode bitstream buffer
+/// range queries](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-video-encode-bitstream-buffer-range).
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_INFO_KHR`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
@@ -1809,7 +1774,7 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 ///   structure
 /// - If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an
 ///   array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`Buffer`]
 /// - [`DeviceSize`]
@@ -1820,13 +1785,13 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 /// - [`VideoReferenceSlotKHR`]
 /// - [`cmd_encode_video_khr`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeInfoKHR")]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2210,7 +2175,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    const VkVideoEncodeRateControlLayerInfoKHR*    pLayerConfigs;
 ///} VkVideoEncodeRateControlInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`VideoEncodeRateControlFlagBitsKHR`] specifying encode rate control
@@ -2220,28 +2185,28 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`layer_count`] specifies the number of rate control layers in the video encode stream.
 /// - [`layer_configs`] is a pointer to an array of [`VideoEncodeRateControlLayerInfoKHR`]
 ///   structures specifying the rate control configurations of [`layer_count`] rate control layers.
-///# Description
-///In order to provide video encode stream rate control settings, add a
-///[`VideoEncodeRateControlInfoKHR`] structure to the [`p_next`] chain of
-///the [`VideoCodingControlInfoKHR`] structure passed to the
-///[`cmd_control_video_coding_khr`] command.A codec-specific extension structure for further encode
+/// # Description
+/// In order to provide video encode stream rate control settings, add a
+/// [`VideoEncodeRateControlInfoKHR`] structure to the [`p_next`] chain of
+/// the [`VideoCodingControlInfoKHR`] structure passed to the
+/// [`cmd_control_video_coding_khr`] command.A codec-specific extension structure for further encode
 /// stream rate control
-///parameter settings  **may**  be chained to [`VideoEncodeRateControlInfoKHR`].To ensure that the
+/// parameter settings  **may**  be chained to [`VideoEncodeRateControlInfoKHR`].To ensure that the
 /// video session is properly initalized with stream-level
-///rate control settings, the application  **must**  call
-///[`cmd_control_video_coding_khr`] with stream-level rate control settings at
-///least once in execution order before the first [`cmd_encode_video_khr`]
-///command that is executed after video session reset.
-///If not provided, default implementation-specific stream rate control
-///settings will be used.Stream rate control settings  **can**  also be re-initialized during an
+/// rate control settings, the application  **must**  call
+/// [`cmd_control_video_coding_khr`] with stream-level rate control settings at
+/// least once in execution order before the first [`cmd_encode_video_khr`]
+/// command that is executed after video session reset.
+/// If not provided, default implementation-specific stream rate control
+/// settings will be used.Stream rate control settings  **can**  also be re-initialized during an
 /// active
-///video encoding session.
-///The re-initialization takes effect whenever the
-///[`VideoEncodeRateControlInfoKHR`] structure is included in the
-///[`p_next`] chain of the [`VideoCodingControlInfoKHR`] structure in the
-///call to [`cmd_control_video_coding_khr`], and only impacts
-///[`cmd_encode_video_khr`] operations that follow in execution order.
-///## Valid Usage
+/// video encoding session.
+/// The re-initialization takes effect whenever the
+/// [`VideoEncodeRateControlInfoKHR`] structure is included in the
+/// [`p_next`] chain of the [`VideoCodingControlInfoKHR`] structure in the
+/// call to [`cmd_control_video_coding_khr`], and only impacts
+/// [`cmd_encode_video_khr`] operations that follow in execution order.
+/// ## Valid Usage
 /// - [`VideoEncodeH264RateControlInfoEXT`] **must**  be included in the [`p_next`] chain of
 ///   [`VideoEncodeRateControlInfoKHR`] if and only if
 ///   [`VideoEncodeRateControlInfoKHR`]::[`rate_control_mode`] is not
@@ -2260,26 +2225,26 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - If [`VideoEncodeRateControlInfoKHR`]::[`layer_count`] is greater than `1`, then
 ///   [`VideoEncodeH265RateControlInfoEXT::sub_layer_count`] **must**  be equal to [`layer_count`].
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_INFO_KHR`
 /// - [`rate_control_mode`] **must**  be a valid [`VideoEncodeRateControlModeFlagBitsKHR`] value
 /// - [`layer_configs`] **must**  be a valid pointer to an array of [`layer_count`] valid
 ///   [`VideoEncodeRateControlLayerInfoKHR`] structures
 /// - [`layer_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`StructureType`]
 /// - [`VideoEncodeRateControlFlagsKHR`]
 /// - [`VideoEncodeRateControlLayerInfoKHR`]
 /// - [`VideoEncodeRateControlModeFlagBitsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlInfoKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2476,7 +2441,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    uint32_t           initialVirtualBufferSizeInMs;
 ///} VkVideoEncodeRateControlLayerInfoKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is a pointer to a structure extending this structure.
 /// - [`average_bitrate`] is the average bitrate in bits/second. Valid when rate control mode is not
@@ -2494,58 +2459,58 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`initial_virtual_buffer_size_in_ms`] is the initial occupancy in milliseconds of the virtual
 ///   buffer in the leaky bucket model. Valid when the rate control mode is not
 ///   `VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`.
-///# Description
-///A codec-specific structure specifying additional per-layer rate control
-///settings  **must**  be chained to [`VideoEncodeRateControlLayerInfoKHR`].
-///If multiple rate control layers are enabled
-///([`VideoEncodeRateControlInfoKHR::layer_count`] is greater than 1),
-///then the chained codec-specific extension structure also identifies the
-///specific video coding layer its parent
-///[`VideoEncodeRateControlLayerInfoKHR`] applies to.
-///If multiple rate control layers are enabled, the number of rate control
-///layers  **must**  match the number of video coding layers.
-///The specification for an encode codec-specific extension would describe how
-///multiple video coding layers are enabled for the corresponding codec.Per-layer rate control
+/// # Description
+/// A codec-specific structure specifying additional per-layer rate control
+/// settings  **must**  be chained to [`VideoEncodeRateControlLayerInfoKHR`].
+/// If multiple rate control layers are enabled
+/// ([`VideoEncodeRateControlInfoKHR::layer_count`] is greater than 1),
+/// then the chained codec-specific extension structure also identifies the
+/// specific video coding layer its parent
+/// [`VideoEncodeRateControlLayerInfoKHR`] applies to.
+/// If multiple rate control layers are enabled, the number of rate control
+/// layers  **must**  match the number of video coding layers.
+/// The specification for an encode codec-specific extension would describe how
+/// multiple video coding layers are enabled for the corresponding codec.Per-layer rate control
 /// settings for all enabled rate control layers  **must**  be
-///initialized or re-initialized whenever stream rate control settings are
-///provided via [`VideoEncodeRateControlInfoKHR`].
-///This is done by specifying settings for all enabled rate control layers in
-///[`VideoEncodeRateControlInfoKHR::layer_configs`].To adjust rate control settings for an
+/// initialized or re-initialized whenever stream rate control settings are
+/// provided via [`VideoEncodeRateControlInfoKHR`].
+/// This is done by specifying settings for all enabled rate control layers in
+/// [`VideoEncodeRateControlInfoKHR::layer_configs`].To adjust rate control settings for an
 /// individual layer at runtime, add a
-///[`VideoEncodeRateControlLayerInfoKHR`] structure to the [`p_next`]
-///chain of the [`VideoCodingControlInfoKHR`] structure passed to the
-///[`cmd_control_video_coding_khr`] command.
-///This adjustment only impacts the specified layer without impacting the rate
-///control settings or implementation rate control algorithm behavior for any
-///other enabled rate control layers.
-///The adjustment takes effect whenever the corresponding
-///[`cmd_control_video_coding_khr`] is executed, and only impacts
-///[`cmd_encode_video_khr`] operations pertaining to the corresponding video
-///coding layer that follow in execution order.It is possible for an application to enable multiple
+/// [`VideoEncodeRateControlLayerInfoKHR`] structure to the [`p_next`]
+/// chain of the [`VideoCodingControlInfoKHR`] structure passed to the
+/// [`cmd_control_video_coding_khr`] command.
+/// This adjustment only impacts the specified layer without impacting the rate
+/// control settings or implementation rate control algorithm behavior for any
+/// other enabled rate control layers.
+/// The adjustment takes effect whenever the corresponding
+/// [`cmd_control_video_coding_khr`] is executed, and only impacts
+/// [`cmd_encode_video_khr`] operations pertaining to the corresponding video
+/// coding layer that follow in execution order.It is possible for an application to enable multiple
 /// video coding layers
-///(via codec-specific extensions to encoding operations) while only enabling a
-///single layer of rate control for the entire video stream.
-///To achieve this, `layerCount` in [`VideoEncodeRateControlInfoKHR`] **must**  be set to 1, and
+/// (via codec-specific extensions to encoding operations) while only enabling a
+/// single layer of rate control for the entire video stream.
+/// To achieve this, `layerCount` in [`VideoEncodeRateControlInfoKHR`] **must**  be set to 1, and
 /// the single [`VideoEncodeRateControlLayerInfoKHR`]
-///provided in `pLayerConfigs` would apply to all encoded segments of the
-///video stream, regardless of which codec-defined video coding layer they
-///belong to.
-///In this case, the implementation decides bitrate distribution across video
-///coding layers (if applicable to the specified stream rate control mode).
-///## Valid Usage (Implicit)
+/// provided in `pLayerConfigs` would apply to all encoded segments of the
+/// video stream, regardless of which codec-defined video coding layer they
+/// belong to.
+/// In this case, the implementation decides bitrate distribution across video
+/// coding layers (if applicable to the specified stream rate control mode).
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`StructureType`]
 /// - [`VideoEncodeRateControlInfoKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlLayerInfoKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2770,7 +2735,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkExtent2D                              inputImageDataFillAlignment;
 ///} VkVideoEncodeCapabilitiesKHR;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`VideoEncodeCapabilityFlagBitsKHR`] describing supported encoding
@@ -2785,60 +2750,60 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`input_image_data_fill_alignment`] reports alignment of data that should be filled in the
 ///   input image horizontally and vertically in pixels before encode operations are performed on
 ///   the input image.
-///# Description
-///The input content and encode resolution (specified in
-///[`VideoEncodeInfoKHR::coded_extent`]) may not be aligned with the
-///codec-specific coding block size.
-///For example, the input content may be 1920x1080 and the coding block size
-///may be 16x16 pixel blocks.
-///In this example, the content is horizontally aligned with the coding block
-///size, but not vertically aligned with the coding block size.
-///Encoding of the last row of blocks may be impacted by contents of the input
-///image in pixel rows 1081 to 1088 (the next vertical alignment with the
-///coding block size).
-///In general, to ensure efficient encoding for the last row/column of blocks,
-///and/or to ensure consistent encoding results between repeated encoding of
-///the same input content, these extra pixel rows/columns should be filled to
-///known values up to the coding block size alignment before encoding
-///operations are performed.
-///Some implementations support performing auto-fill of unaligned pixels beyond
-///a specific alignment, which is reported in
-///[`input_image_data_fill_alignment`].
-///For example, if an implementation reports 1x1 in
-///[`input_image_data_fill_alignment`], then the implementation will perform
-///auto-fill for any unaligned pixels beyond the encode resolution up to the
-///next coding block size.
-///For a coding block size of 16x16, if the implementation reports 16x16 in
-///[`input_image_data_fill_alignment`], then it is the application’s
-///responsibility to fill any unaligned pixels, if desired.
-///If not, it may impact the encoding efficiency, but it will not affect the
-///validity of the generated bitstream.
-///If the implementation reports 8x8 in [`input_image_data_fill_alignment`], then
-///for the 1920x1080 example, since the content is aligned to 8 pixels
-///vertically, the implementation will auto-fill pixel rows 1081 to 1088 (up to
-///the 16x16 coding block size in the example).
-///The auto-fill value(s) are implementation-specific.
-///The auto-fill value(s) are not written to the input image memory, but are
-///used as part of the encoding operation on the input image.
-///## Valid Usage (Implicit)
+/// # Description
+/// The input content and encode resolution (specified in
+/// [`VideoEncodeInfoKHR::coded_extent`]) may not be aligned with the
+/// codec-specific coding block size.
+/// For example, the input content may be 1920x1080 and the coding block size
+/// may be 16x16 pixel blocks.
+/// In this example, the content is horizontally aligned with the coding block
+/// size, but not vertically aligned with the coding block size.
+/// Encoding of the last row of blocks may be impacted by contents of the input
+/// image in pixel rows 1081 to 1088 (the next vertical alignment with the
+/// coding block size).
+/// In general, to ensure efficient encoding for the last row/column of blocks,
+/// and/or to ensure consistent encoding results between repeated encoding of
+/// the same input content, these extra pixel rows/columns should be filled to
+/// known values up to the coding block size alignment before encoding
+/// operations are performed.
+/// Some implementations support performing auto-fill of unaligned pixels beyond
+/// a specific alignment, which is reported in
+/// [`input_image_data_fill_alignment`].
+/// For example, if an implementation reports 1x1 in
+/// [`input_image_data_fill_alignment`], then the implementation will perform
+/// auto-fill for any unaligned pixels beyond the encode resolution up to the
+/// next coding block size.
+/// For a coding block size of 16x16, if the implementation reports 16x16 in
+/// [`input_image_data_fill_alignment`], then it is the application’s
+/// responsibility to fill any unaligned pixels, if desired.
+/// If not, it may impact the encoding efficiency, but it will not affect the
+/// validity of the generated bitstream.
+/// If the implementation reports 8x8 in [`input_image_data_fill_alignment`], then
+/// for the 1920x1080 example, since the content is aligned to 8 pixels
+/// vertically, the implementation will auto-fill pixel rows 1081 to 1088 (up to
+/// the 16x16 coding block size in the example).
+/// The auto-fill value(s) are implementation-specific.
+/// The auto-fill value(s) are not written to the input image memory, but are
+/// used as part of the encoding operation on the input image.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_CAPABILITIES_KHR`
 /// - [`rate_control_modes`] **must**  be a valid combination of
 ///   [`VideoEncodeRateControlModeFlagBitsKHR`] values
 /// - [`rate_control_modes`] **must**  not be `0`
-///# Related
+/// # Related
 /// - [`khr_video_encode_queue`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 /// - [`VideoEncodeCapabilityFlagsKHR`]
 /// - [`VideoEncodeRateControlModeFlagsKHR`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeCapabilitiesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3037,12 +3002,12 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkVideoEncodeInfoKHR*                 pEncodeInfo);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`command_buffer`] is the command buffer to be filled with this function for encoding to
     ///   generate a bitstream.
     /// - [`p_encode_info`] is a pointer to a [`VideoEncodeInfoKHR`] structure.
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_encode_info`] **must**  be a valid pointer to a valid [`VideoEncodeInfoKHR`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
@@ -3051,23 +3016,23 @@ impl CommandBuffer {
     /// - This command  **must**  only be called outside of a render pass instance
     /// - [`command_buffer`] **must**  be a primary [`CommandBuffer`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///# Related
+    /// ## Command Properties
+    /// # Related
     /// - [`khr_video_encode_queue`]
     /// - [`CommandBuffer`]
     /// - [`VideoEncodeInfoKHR`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdEncodeVideoKHR")]
     #[track_caller]

@@ -178,24 +178,24 @@ pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    const VkDeviceMemoryReportCallbackDataEXT*  pCallbackData,
 ///    void*                                       pUserData);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`p_callback_data`] contains all the callback related data in the
 ///   [`DeviceMemoryReportCallbackDataEXT`] structure.
 /// - [`p_user_data`] is the user data provided when the [`DeviceDeviceMemoryReportCreateInfoEXT`]
 ///   was created.
-///# Description
-///The callback  **must**  not make calls to any Vulkan commands.
-///# Related
+/// # Description
+/// The callback  **must**  not make calls to any Vulkan commands.
+/// # Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "PFN_vkDeviceMemoryReportCallbackEXT")]
 pub type PFNDeviceMemoryReportCallbackEXT = Option<
     for<'lt> unsafe extern "system" fn(
@@ -218,7 +218,7 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 ///    VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT = 4,
 ///} VkDeviceMemoryReportEventTypeEXT;
 ///```
-///# Description
+/// # Description
 /// - [`ALLOCATE`] specifies this event corresponds to the allocation of an internal device memory
 ///   object or a [`DeviceMemory`].
 /// - [`FREE`] specifies this event corresponds to the deallocation of an internally-allocated
@@ -227,17 +227,17 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 /// - [`UNIMPORT`] specifies this event is the release of an imported external memory object.
 /// - [`ALLOCATION_FAILED`] specifies this event corresponds to the failed allocation of an internal
 ///   device memory object or a [`DeviceMemory`].
-///# Related
+/// # Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -288,42 +288,28 @@ impl DeviceMemoryReportEventTypeEXT {
 }
 impl std::fmt::Debug for DeviceMemoryReportEventTypeEXT {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        struct Flags(DeviceMemoryReportEventTypeEXT);
+        impl std::fmt::Debug for Flags {
+            #[allow(unused_assignments, unused_mut, unused_variables)]
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                if self.0 == DeviceMemoryReportEventTypeEXT::empty() {
+                    f.write_str("empty")?;
+                } else {
+                    match self.0 {
+                        DeviceMemoryReportEventTypeEXT::ALLOCATE => f.write_str("ALLOCATE")?,
+                        DeviceMemoryReportEventTypeEXT::FREE => f.write_str("FREE")?,
+                        DeviceMemoryReportEventTypeEXT::IMPORT => f.write_str("IMPORT")?,
+                        DeviceMemoryReportEventTypeEXT::UNIMPORT => f.write_str("UNIMPORT")?,
+                        DeviceMemoryReportEventTypeEXT::ALLOCATION_FAILED => f.write_str("ALLOCATION_FAILED")?,
+                        _ => f.write_str("invalid")?,
+                    }
+                }
+                Ok(())
+            }
+        }
         f.debug_tuple(stringify!(DeviceMemoryReportEventTypeEXT))
-            .field(match *self {
-                Self::ALLOCATE => &"ALLOCATE",
-                Self::FREE => &"FREE",
-                Self::IMPORT => &"IMPORT",
-                Self::UNIMPORT => &"UNIMPORT",
-                Self::ALLOCATION_FAILED => &"ALLOCATION_FAILED",
-                other => unreachable!(
-                    concat!(
-                        "invalid value for",
-                        stringify!(DeviceMemoryReportEventTypeEXT),
-                        ": {:?}"
-                    ),
-                    other
-                ),
-            })
+            .field(&Flags(*self))
             .finish()
-    }
-}
-impl std::fmt::Display for DeviceMemoryReportEventTypeEXT {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        f.write_str(match *self {
-            Self::ALLOCATE => &"ALLOCATE",
-            Self::FREE => &"FREE",
-            Self::IMPORT => &"IMPORT",
-            Self::UNIMPORT => &"UNIMPORT",
-            Self::ALLOCATION_FAILED => &"ALLOCATION_FAILED",
-            other => unreachable!(
-                concat!(
-                    "invalid value for",
-                    stringify!(DeviceMemoryReportEventTypeEXT),
-                    ": {:?}"
-                ),
-                other
-            ),
-        })
     }
 }
 ///[VkDeviceMemoryReportFlagsEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportFlagsEXT.html) - Reserved for future use
@@ -332,18 +318,18 @@ impl std::fmt::Display for DeviceMemoryReportEventTypeEXT {
 ///// Provided by VK_EXT_device_memory_report
 ///typedef VkFlags VkDeviceMemoryReportFlagsEXT;
 ///```
-///# Related
+/// # Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -372,34 +358,34 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 ///    VkBool32           deviceMemoryReport;
 ///} VkPhysicalDeviceDeviceMemoryReportFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_memory_report`] indicates whether the implementation supports the ability to register
 ///   device memory report callbacks.
-///If the [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`ext_device_memory_report`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -521,34 +507,34 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 ///    void*                                  pUserData;
 ///} VkDeviceDeviceMemoryReportCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is 0 and reserved for future use.
 /// - [`pfn_user_callback`] is the application callback function to call.
 /// - [`user_data`] is user data to be passed to the callback.
-///# Description
-///The callback  **may**  be called from multiple threads simultaneously.The callback  **must**  be
+/// # Description
+/// The callback  **may**  be called from multiple threads simultaneously.The callback  **must**  be
 /// called only once by the implementation when a
-///[`DeviceMemoryReportEventTypeEXT`] event occurs.
-///## Valid Usage (Implicit)
+/// [`DeviceMemoryReportEventTypeEXT`] event occurs.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
 /// - [`pfn_user_callback`] **must**  be a valid [`PFNDeviceMemoryReportCallbackEXT`] value
 /// - [`user_data`] **must**  be a pointer value
-///# Related
+/// # Related
 /// - [`PFNDeviceMemoryReportCallbackEXT`]
 /// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportFlagsEXT`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
 #[derive(Clone)]
 #[repr(C)]
@@ -689,7 +675,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 ///    uint32_t                            heapIndex;
 ///} VkDeviceMemoryReportCallbackDataEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is 0 and reserved for future use.
@@ -720,22 +706,22 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 ///   `VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT`, [`heap_index`] corresponds to one
 ///   of the valid heaps from the [`PhysicalDeviceMemoryProperties`] structure. Otherwise,
 ///   [`heap_index`] is undefined.
-///# Description
-///[`memory_object_id`] is used to avoid double-counting on the same memory
-///object.If an internally-allocated device memory object or a [`DeviceMemory`] **cannot**  be
+/// # Description
+/// [`memory_object_id`] is used to avoid double-counting on the same memory
+/// object.If an internally-allocated device memory object or a [`DeviceMemory`] **cannot**  be
 /// exported, [`memory_object_id`] **must**  be unique in the
-///[`Device`].If an internally-allocated device memory object or a [`DeviceMemory`]
-///supports being exported, [`memory_object_id`] **must**  be unique system wide.If an internal
+/// [`Device`].If an internally-allocated device memory object or a [`DeviceMemory`]
+/// supports being exported, [`memory_object_id`] **must**  be unique system wide.If an internal
 /// device memory object or a [`DeviceMemory`] is backed by
-///an imported external memory object, [`memory_object_id`] **must**  be unique
-///system wide.
-///## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be used to
-///back [`DeviceMemory`], implementations  **can**  advertise that heap with no
-///types.
-///## Valid Usage (Implicit)
+/// an imported external memory object, [`memory_object_id`] **must**  be unique
+/// system wide.
+/// ## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be used to
+/// back [`DeviceMemory`], implementations  **can**  advertise that heap with no
+/// types.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`
 /// - [`p_next`] **must**  be `NULL`
-///# Related
+/// # Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportEventTypeEXT`]
 /// - [`DeviceMemoryReportFlagsEXT`]
@@ -743,13 +729,13 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// - [`ObjectType`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

@@ -1,5 +1,5 @@
 use ahash::AHashMap;
-use proc_macro2::{Literal, TokenStream};
+use proc_macro2::{Ident, Literal, TokenStream};
 use quote::quote;
 use tracing::warn;
 
@@ -50,7 +50,7 @@ impl<'a> Bit<'a> {
     }
 
     /// Generate the matching code for a debug of this variant/bit
-    pub fn generate_debug_variant(&self, source: &Source<'a>, parent: &Origin<'a>) -> TokenStream {
+    pub fn generate_debug_variant(&self, source: &Source<'a>, parent: &Origin<'a>, owner: &Ident) -> TokenStream {
         let name = self.as_ident();
         let name_as_str = self.name();
 
@@ -59,7 +59,7 @@ impl<'a> Bit<'a> {
 
         quote! {
             #conditional_compilation
-            Self::#name => &#name_as_str
+            #owner::#name => f.write_str(#name_as_str)?
         }
     }
 }
@@ -93,7 +93,7 @@ impl<'a> Enum<'a> {
             .variants()
             .iter()
             .filter(|v| !v.origin().is_disabled())
-            .map(|bit| bit.generate_debug_variant(source, self.origin()))
+            .map(|bit| bit.generate_debug_variant(source, self.origin(), &name))
             .collect::<Vec<_>>();
 
         // creates a doc alias if the name has been changed
@@ -140,25 +140,28 @@ impl<'a> Enum<'a> {
 
             impl std::fmt::Debug for #name {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                    f.debug_tuple(stringify!(#name))
-                        .field(match *self {
-                            #(
-                                #debugs,
-                            )*
-                            other => unreachable!(concat!("invalid value for", stringify!(#name), ": {:?}"), other),
-                        })
-                        .finish()
-                }
-            }
+                    struct Flags(#name);
+                    impl std::fmt::Debug for Flags {
+                        #[allow(unused_assignments, unused_mut, unused_variables)]
+                        fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+                            if self.0 == #name::empty() {
+                                f.write_str("empty")?;
+                            } else {
+                                match self.0 {
+                                    #(
+                                        #debugs,
+                                    )*
+                                    _ => f.write_str("invalid")?
+                                }
+                            }
 
-            impl std::fmt::Display for #name {
-                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                    f.write_str(match *self {
-                        #(
-                            #debugs,
-                        )*
-                        other => unreachable!(concat!("invalid value for", stringify!(#name), ": {:?}"), other),
-                    })
+                            Ok(())
+                        }
+                    }
+
+                    f.debug_tuple(stringify!(#name))
+                        .field(&Flags(*self))
+                        .finish()
                 }
             }
         }

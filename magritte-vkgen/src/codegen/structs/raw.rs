@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 
 use ahash::AHashMap;
-use proc_macro2::{Span, TokenStream, Ident};
+use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token};
 use tracing::warn;
 
@@ -13,8 +13,9 @@ use crate::{
     doc::Documentation,
     expr::Expr,
     imports::Imports,
+    origin::Origin,
     source::{Field, Source, Struct},
-    ty::{Mutability, Ty}, origin::Origin,
+    ty::{Mutability, Ty},
 };
 
 impl<'a> Struct<'a> {
@@ -31,11 +32,13 @@ impl<'a> Struct<'a> {
 
         // generate the derives
         let debug = self.is_debug(source).then(|| quote! { #[derive(Debug)] });
-        
-        let copy = self.is_copy(source).then(|| if self.has_p_next().is_some() {
-            quote! { #[derive(Clone)]  }
-        } else {
-            quote! { #[derive(Clone, Copy)] }
+
+        let copy = self.is_copy(source).then(|| {
+            if self.has_p_next().is_some() {
+                quote! { #[derive(Clone)]  }
+            } else {
+                quote! { #[derive(Clone, Copy)] }
+            }
         });
 
         let partial_eq_ord = self

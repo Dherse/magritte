@@ -1,7 +1,4 @@
-use std::{
-    error::Error,
-    sync::Arc,
-};
+use std::{error::Error, sync::Arc};
 
 use log::{debug, error, info, trace, Level};
 use magritte::{
@@ -14,9 +11,9 @@ use magritte::{
         PhysicalDeviceFeatures, Queue, QueueFlags,
     },
     window::{create_surface, enable_required_extensions},
-    AsRaw, InstanceExtensions, DeviceExtensions, Unique, Version
+    AsRaw, DeviceExtensions, InstanceExtensions, Unique, Version,
 };
-use magritte_vma::VmaAllocator;
+use magritte_vma::Allocator;
 use winit::window::Window;
 
 use crate::AsCStr;
@@ -39,7 +36,7 @@ pub struct Vulkan {
     pub device: Unique<Device>,
 
     /// The allocator
-    pub allocator: Unique<VmaAllocator>,
+    pub allocator: Unique<Allocator>,
 
     /// The graphics queue we will render on
     pub graphics_queue: Unique<Queue>,
@@ -106,7 +103,8 @@ impl Vulkan {
         // - we need a swapchain to actually display things on screen
         // - we need an annoying set of extensions for showing the window, this is why Magritte comes with
         //   `enable_required_extensions` that will automatically deal with extensions for your window!
-        let mut instance_extensions = enable_required_extensions(window, instance_extensions)?;
+        let mut instance_extensions =
+            enable_required_extensions(window, instance_extensions)?.enable_khr_get_physical_device_properties2();
 
         // If we have the validation layers, enable the extension (optional)
         if validation {
@@ -181,19 +179,6 @@ impl Vulkan {
 
         info!("We have {} physical devices", physical_devices.len());
 
-        // Completely optional property printing
-        for physical_device in &physical_devices {
-            let properties = unsafe { physical_device.get_physical_device_properties() };
-
-            debug!(
-                " - {}, type: {:?}, max vulkan version: {}, driver version: {}",
-                properties.device_name().as_cstr().to_string_lossy(),
-                properties.device_type(),
-                Version(properties.api_version()),
-                Version(properties.driver_version())
-            );
-        }
-
         // We want to try and find a device that:
         // - Has a graphics submission queue (should be the case on most platforms)
         // - Is capable of supporting our surface
@@ -243,7 +228,7 @@ impl Vulkan {
         // in a easier and more performant way using the Vulkan Memory Allocator.
         // Note that both the use of VMA and raw Vulkan allocations are covered in this
         // sample.
-        VmaAllocator::enable_extensions(&physical_device, &mut device_extensions)?;
+        Allocator::enable_extensions(&physical_device, &mut device_extensions)?;
 
         // We need to tell Vulkan that we want a queue from a certain family.
         // We got the family from the previous step. We will get one queue with max priority (1.0)
@@ -282,11 +267,11 @@ impl Vulkan {
         info!("We have obtained the graphics queue: {:?}", graphics_queue.as_raw());
 
         // We create the allocator:
-        let allocator = VmaAllocator::new(&device, None, None)?;
+        let allocator = Allocator::new(&device, None, None)?;
 
         info!("Created the VMA allocator instance: {:?}", allocator.as_raw());
 
-        // Fewww... after all of this work, we have the basic graphic elements of a Vulkan-backed
+        // Fewww... after all of this work, we have the basic elements of a Vulkan-backed
         // game/application!
         Ok((
             Self {

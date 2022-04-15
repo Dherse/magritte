@@ -8,7 +8,7 @@ use quote::{quote, quote_each_token};
 use crate::{
     imports::Imports,
     origin::Origin,
-    source::{CommandAlias, Function, Handle, Source, ExtensionType},
+    source::{CommandAlias, ExtensionType, Function, Handle, Source},
     symbols::SymbolName,
     ty::Ty,
 };
@@ -212,7 +212,7 @@ impl<'a> Handle<'a> {
 
         let opt_types = origins.iter().map(|o| {
             let ty = self.vtable_ident(*o);
-            if o.as_bool_tokens(Some(imports), &quote! { }).is_some() {
+            if o.as_bool_tokens(Some(imports), &quote! {}).is_some() {
                 quote! {
                     Option<&#ty>
                 }
@@ -224,7 +224,7 @@ impl<'a> Handle<'a> {
         });
 
         let as_refs = origins.iter().map(|o| {
-            if o.as_bool_tokens(Some(imports), &quote! { }).is_some() {
+            if o.as_bool_tokens(Some(imports), &quote! {}).is_some() {
                 Some(quote! {
                     .as_ref()
                 })
@@ -234,7 +234,7 @@ impl<'a> Handle<'a> {
         });
 
         let refs = origins.iter().map(|o| {
-            if o.as_bool_tokens(Some(imports), &quote! { }).is_some() {
+            if o.as_bool_tokens(Some(imports), &quote! {}).is_some() {
                 None
             } else {
                 Some(quote! {
@@ -243,16 +243,19 @@ impl<'a> Handle<'a> {
             }
         });
 
-        let device_extensions = origins.iter().filter_map(|o| match o {
-            Origin::Extension(name, _, false) => source.extensions.get_by_name(&name),
-            _ => None
-        }).any(|o| o.ty() == ExtensionType::Device).then(|| {
-            imports.push("crate::extensions::DeviceExtensions");
-            quote! {
-                device_extensions: &DeviceExtensions,
-            }
-        });
-        
+        let device_extensions = origins
+            .iter()
+            .filter_map(|o| match o {
+                Origin::Extension(name, _, false) => source.extensions.get_by_name(&name),
+                _ => None,
+            })
+            .any(|o| o.ty() == ExtensionType::Device)
+            .then(|| {
+                imports.push("crate::extensions::DeviceExtensions");
+                quote! {
+                    device_extensions: &DeviceExtensions,
+                }
+            });
 
         quote_each_token! {
             out

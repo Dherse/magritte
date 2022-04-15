@@ -2,7 +2,6 @@ use std::env;
 
 use cc::Build;
 
-extern crate bindgen;
 extern crate cc;
 
 // This code is heavily based off of the vk-mem-rs one.
@@ -15,6 +14,12 @@ fn main() {
 
     #[cfg(not(debug_assertions))]
     build.define("NDEBUG", "");
+
+    // Enable corruption detection in debug mode
+    #[cfg(debug_assertions)]
+    build.define("VMA_DEBUG_MARGIN", "16");
+    #[cfg(debug_assertions)]
+    build.define("VMA_DEBUG_DETECT_CORRUPTION", "1");
 
     // Disable static linking
     build.define("VMA_STATIC_VULKAN_FUNCTIONS", "0");
@@ -101,68 +106,5 @@ fn main() {
     // build and link
     build.compile("vma");
 
-    generate_bindings("bindings.rs")
-}
-
-fn generate_bindings(output_file: &str) {
-    let bindings = bindgen::Builder::default()
-        .clang_arg("-I../vendors/Vulkan-Headers/include/")
-        .header("../vendors/VulkanMemoryAllocator/include/vk_mem_alloc.h")
-        .rustfmt_bindings(true)
-        .size_t_is_usize(true)
-        .blocklist_type("__darwin_.*")
-        .blocklist_type("VmaAllocator")
-        .blocklist_type("VmaPool")
-        .blocklist_type("VmaAllocation")
-        .blocklist_type("VmaDefragmentationContext")
-        .blocklist_type("VmaVirtualAllocation")
-        .blocklist_type("VmaVirtualBlock")
-        .blocklist_type("VmaAllocator_T")
-        .blocklist_type("VmaPool_T")
-        .blocklist_type("VmaAllocation_T")
-        .blocklist_type("VmaDefragmentationContext_T")
-        .blocklist_type("VmaVirtualAllocation_T")
-        .blocklist_type("VmaVirtualBlock_T")
-        .blocklist_type("VmaVulkanFunctions")
-        .blocklist_type("VmaAllocatorCreateFlags")
-        .blocklist_type("VmaAllocationCreateFlags")
-        .blocklist_type("VmaPoolCreateFlags")
-        .blocklist_type("VmaDefragmentationFlags")
-        .blocklist_type("VmaVirtualBlockCreateFlags")
-        .blocklist_type("VmaVirtualAllocationCreateFlags")
-        .blocklist_type("Vk.*")
-        .blocklist_type("PFN_vk.*")
-        .allowlist_function("vma.*")
-        .parse_callbacks(Box::new(FixMagritteTypes))
-        .trust_clang_mangling(false)
-        .layout_tests(false)
-        .generate()
-        .expect("Unable to generate bindings!");
-
-    bindings
-        .write_to_file(std::path::Path::new(output_file))
-        .expect("Unable to write bindings!");
-}
-
-#[derive(Debug)]
-struct FixMagritteTypes;
-
-impl bindgen::callbacks::ParseCallbacks for FixMagritteTypes {
-    fn item_name(&self, original_item_name: &str) -> Option<String> {
-        if original_item_name.starts_with("Vk") {
-            // Strip `Vk` prefix, will use `ash::vk::*` instead
-            Some(original_item_name.trim_start_matches("Vk").to_string())
-        } else {
-            None
-        }
-    }
-
-    // When ignoring `Vk` types, bindgen loses derives for some type. Quick workaround.
-    fn add_derives(&self, name: &str) -> Vec<String> {
-        if name.starts_with("VmaAllocationInfo") || name.starts_with("VmaDefragmentationStats") {
-            vec!["Debug".into(), "Copy".into(), "Clone".into()]
-        } else {
-            vec![]
-        }
-    }
+    println!("cargo:rerun-if-changed=wrapper.cpp");
 }
