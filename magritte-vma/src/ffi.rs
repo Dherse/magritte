@@ -478,6 +478,7 @@ pub struct DetailedStatistics {
 ///These are slower to calculate. Use for debugging purposes.
 ///See function vmaCalculateStatistics().
 #[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct TotalStatistics {
     pub memoryType: [DetailedStatistics; 32usize],
     pub memoryHeap: [DetailedStatistics; 16usize],

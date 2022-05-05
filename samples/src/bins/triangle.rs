@@ -333,7 +333,7 @@ impl Renderer {
         info!("Reset all commands buffer at {:?}", start.elapsed());
 
         let (surface, _) = unsafe { create_surface(self.vulkan().instance(), window, None)? };
-        
+
         // Resize the surface
         self.surface = Surface::new(self.vulkan(), surface)?;
 

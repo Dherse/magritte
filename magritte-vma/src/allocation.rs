@@ -24,6 +24,7 @@ use crate::{
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]
 pub struct Allocation(pub *mut ());
+
 impl Allocation {
     ///Creates a new null handle
     #[inline]

@@ -70,7 +70,7 @@ impl Surface {
         }
 
         // First we want to list the supported format to find the one we want to use.
-        let (mut surface_formats, code) = unsafe {
+        let (mut surface_formats, _) = unsafe {
             vulkan
                 .physical_device()
                 .get_physical_device_surface_formats_khr(Some(surface.as_raw()), None)?

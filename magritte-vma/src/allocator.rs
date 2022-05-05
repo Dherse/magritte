@@ -47,7 +47,7 @@ impl Allocator {
     ///
     /// # Heap size limits
     /// A slice of limits on maximum number of bytes that can be allocated out of particular Vulkan
-    /// memory heap. The number of heaps must be stricly equal to the number of heaps returned
+    /// memory heap. The number of heaps must be strictly equal to the number of heaps returned
     /// by [`get_physical_device_memory_properties`].
     ///
     /// [device]: magritte::vulkan1_0::Device
