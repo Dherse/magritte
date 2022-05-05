@@ -14,7 +14,7 @@ use magritte::{
     },
     AsRaw, Unique,
 };
-use magritte_samples::{renderpass::RenderPass, shader::Shader, surface::Surface, vulkan::Vulkan};
+use magritte_samples::{renderpass::RenderPass, shader::Shader, surface::Surface, vulkan::Vulkan, cache::PipelineCache};
 
 use crate::Vertex;
 
@@ -24,6 +24,20 @@ static VERTEX_SHADER: &[u8] = include_bytes!("./shaders/triangle.vert.spv");
 /// The SPIR-V of the compiled fragment shader
 static FRAGMENT_SHADER: &[u8] = include_bytes!("./shaders/triangle.frag.spv");
 
+pub struct PipelineShaders{
+    vertex: Shader,
+    fragment: Shader,
+}
+
+impl PipelineShaders{
+    pub fn new(vulkan: &Vulkan) -> Result<Self, Box<dyn Error>> {
+        Ok(Self {
+            vertex: Shader::new(vulkan, VERTEX_SHADER, ShaderStageFlagBits::VERTEX)?,
+            fragment: Shader::new(vulkan, FRAGMENT_SHADER, ShaderStageFlagBits::FRAGMENT)?
+        })
+    }
+}
+
 /// Container for a simple graphics pipeline
 pub struct Pipeline {
     pub pipeline: Unique<VkPipeline>,
@@ -31,10 +45,7 @@ pub struct Pipeline {
 
 impl Pipeline {
     /// Creates a new very simple pipeline
-    pub fn new(vulkan: &Vulkan, renderpass: &RenderPass, surface: &Surface) -> Result<Self, Box<dyn Error>> {
-        let vertex = Shader::new(vulkan, VERTEX_SHADER, ShaderStageFlagBits::VERTEX)?;
-        let fragment = Shader::new(vulkan, FRAGMENT_SHADER, ShaderStageFlagBits::FRAGMENT)?;
-
+    pub fn new(vulkan: &Vulkan, renderpass: &RenderPass, surface: &Surface, shaders: &PipelineShaders, cache: Option<&PipelineCache>) -> Result<Self, Box<dyn Error>> {
         // We don't have any information to put in the layout
         let layout_create_info = PipelineLayoutCreateInfo::default();
 
@@ -45,8 +56,8 @@ impl Pipeline {
 
         // Here we prepare the shader stages that are part of the pipeline
         let shader_stage_create_infos = [
-            vertex.as_shader_stage_create_info(),
-            fragment.as_shader_stage_create_info(),
+            shaders.vertex.as_shader_stage_create_info(),
+            shaders.fragment.as_shader_stage_create_info(),
         ];
 
         // Here we set the input sized, in our case, a single vertex.
@@ -181,7 +192,7 @@ impl Pipeline {
         let (mut pipelines, _) = unsafe {
             vulkan
                 .device()
-                .create_graphics_pipelines(None, std::slice::from_ref(&graphics_pipeline_info), None)?
+                .create_graphics_pipelines(cache.map(PipelineCache::cache).map(AsRaw::as_raw), std::slice::from_ref(&graphics_pipeline_info), None)?
         };
 
         let pipeline = pipelines.pop().unwrap();

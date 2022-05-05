@@ -8,10 +8,10 @@ The goal of this limitation is to make it easier to support modern features such
 
 ## Build instructions
 
-Detailing binding generation instructions are present in `BUILD.md` and an overwiew of the project's structure is available in `STRUCTURE.md`.
+Detailing binding generation instructions are present in `BUILD.md` and an overview of the project's structure is available in `STRUCTURE.md`.
 Note that to generate the bindings, you will need docker and python. However, for Magritte itself, you don't need anything.
 
-## Overwiew of features
+## Overview of features
 
 - Low overhead
 - Higher level (than raw *Vulkan*)
@@ -112,32 +112,13 @@ Most features blocking features in the API will be made optionally asynchronous.
 
 Asynchronous code can be disabled by disabling the `async` feature flag.
 
-### Levels (**WIP**)
-
-Similar to the recently announced [Vulkan profiles](https://www.khronos.org/blog/vulkan-1.3-and-roadmap-2022), Magritte will use the abstraction of *levels*. A level is a pre-defined set of features that will be automatically detected and enabled, combined with guarantees for the hardware capabilities (limits). A game can therefore be created with a minimum profile and use different renderers or components based on which profiles the platform supports.
-
-This abstraction will limit the number of variables the developper has to take into account as well as homogenise the features of the different platforms.
-
-Currently, the design calls for 3 levels defined based on the *Vulkan* API:
-
-1. *Vulkan* 1.1 support with a set of *basic* extensions
-2. *Vulkan* 1.2 support with a set of additional extensions
-3. *Vulkan* 1.2 support with a set of additional extensions and *with ray tracing*
-
-These levels are expected to be similar to the capabilities of devices that would play modern titles on settings like
-1. low, medium ;
-2. high ;
-3. ultra or ray-traced.
-
-To learn more, have a look at the `level` folder containing [ron](https://github.com/ron-rs/ron) definitions of the levels.
-
 ### Builder pattern (**WIP**)
 
 All structs in Magritte are highly generic and use the builder pattern to make them easier to create. These builders change and validate the generic arguments as you are building the structure. This makes the API less error-prone and ensures that required fiels are set.
 
 ### Readability and documentation (**WIP**)
 
-The generated bindings are fully documented using the [*Vulkan* docs](https://github.com/KhronosGroup/Vulkan-Docs). They are formatted using [*rustfmt*](https://github.com/rust-lang/rustfmt). This ensures that the code is readable and understandable. The API is therefore transparent and can be understood clearly. The adds an extrea layer of complexity to the binding generator but makes working with the API much easier.
+The generated bindings are fully documented using the [*Vulkan* docs](https://github.com/KhronosGroup/Vulkan-Docs). They are formatted using [*rustfmt*](https://github.com/rust-lang/rustfmt). This ensures that the code is readable and understandable. The API is therefore transparent and can be understood clearly. The adds an extra layer of complexity to the binding generator but makes working with the API much easier.
 
 The documentation extends to all parts of the generated bindings, as in:
 - vulkan versions ;

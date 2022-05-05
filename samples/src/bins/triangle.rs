@@ -17,7 +17,7 @@ use magritte::{
 
 use magritte_samples::{
     buffer::Buffer, commands::Commands, depth::Depth, queue::Queue, renderpass::RenderPass, surface::Surface,
-    vulkan::Vulkan,
+    vulkan::Vulkan, cache::PipelineCache,
 };
 use pipeline::Pipeline;
 use winit::{
@@ -26,6 +26,9 @@ use winit::{
     event_loop::{ControlFlow, EventLoop},
     window::{Window, WindowBuilder},
 };
+
+use crate::pipeline::PipelineShaders;
+
 #[derive(Clone, Copy, Pod, Zeroable, Default)]
 #[repr(C)]
 pub struct Vertex {
@@ -198,6 +201,12 @@ pub struct Renderer {
     /// The depth buffer
     depth: Depth,
 
+    /// The pipeline cache
+    cache: PipelineCache,
+
+    /// The pre-compiled pipeline shaders
+    shaders: PipelineShaders,
+
     /// The renderpass
     renderpass: RenderPass,
 
@@ -254,6 +263,7 @@ impl Renderer {
 
         info!("Created {} semaphores", surface.image_count() * 2);
 
+        // Create the renderpass
         let renderpass = RenderPass::new(&vulkan, &surface, &depth)?;
 
         // Create the index buffer
@@ -279,7 +289,11 @@ impl Renderer {
             ],
         )?;
 
-        let pipeline = Pipeline::new(&vulkan, &renderpass, &surface)?;
+        let cache = PipelineCache::new(&vulkan, "./triangle_pipeline_cache.dat")?;
+
+        let shaders = PipelineShaders::new(&vulkan)?;
+
+        let pipeline = Pipeline::new(&vulkan, &renderpass, &surface, &shaders, Some(&cache))?;
 
         Ok(Self {
             rendering_enabled: true,
@@ -287,6 +301,8 @@ impl Renderer {
             surface,
             commands: ManuallyDrop::new(commands),
             depth,
+            cache,
+            shaders,
             renderpass,
             present_complete_semaphores,
             rendering_complete_semaphores,
@@ -314,19 +330,29 @@ impl Renderer {
         // We clear the command buffers
         self.commands_mut().wait_and_reset_all()?;
 
-        let (surface, _) = unsafe { create_surface(self.vulkan().instance(), window, None)? };
+        info!("Reset all commands buffer at {:?}", start.elapsed());
 
+        let (surface, _) = unsafe { create_surface(self.vulkan().instance(), window, None)? };
+        
         // Resize the surface
         self.surface = Surface::new(self.vulkan(), surface)?;
+
+        info!("Recreated surface at {:?}", start.elapsed());
 
         // We created a new depth buffer
         self.depth = Depth::new(self.vulkan(), self.commands(), self.surface())?;
 
+        info!("Recreated depth texture at {:?}", start.elapsed());
+
         // We update the framebuffers
         self.renderpass.resize(&self.surface, &self.depth)?;
 
+        info!("Recreated renderpass at {:?}", start.elapsed());
+
         // We recreate the pipeline
-        self.pipeline = Pipeline::new(self.vulkan(), self.renderpass(), self.surface())?;
+        self.pipeline = Pipeline::new(self.vulkan(), self.renderpass(), self.surface(), self.shaders(), Some(self.cache()))?;
+
+        info!("Recreated pipeline at {:?}", start.elapsed());
 
         info!("Resizing took {:?}", start.elapsed());
 
@@ -414,5 +440,17 @@ impl Renderer {
     /// Set the renderer's rendering enabled.
     pub fn set_rendering_enabled(&mut self, rendering_enabled: bool) {
         self.rendering_enabled = rendering_enabled;
+    }
+
+    /// Get a reference to the renderer's cache.
+    #[must_use]
+    pub fn cache(&self) -> &PipelineCache {
+        &self.cache
+    }
+
+    /// Get a reference to the renderer's shaders.
+    #[must_use]
+    pub fn shaders(&self) -> &PipelineShaders {
+        &self.shaders
     }
 }

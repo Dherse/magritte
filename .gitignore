@@ -16,3 +16,6 @@ out.log
 flamegraph.svg
 perf.data
 perf.data.old
+
+# Data caches
+*_pipeline_cache.dat

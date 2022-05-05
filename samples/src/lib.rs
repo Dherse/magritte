@@ -8,6 +8,7 @@ pub mod renderpass;
 pub mod shader;
 pub mod surface;
 pub mod vulkan;
+pub mod cache;
 
 pub trait AsCStr {
     fn as_cstr(&self) -> &CStr;
