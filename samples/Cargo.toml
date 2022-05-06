@@ -17,6 +17,20 @@ log = "0.4.16"
 pretty_env_logger = "0.4.0"
 crossbeam-channel = "0.5.4"
 
+[dependencies.smallvec]
+version = '1.8.0'
+features = [
+    'const_new',
+    'const_generics',
+    'union',
+]
+
+[dependencies.clap]
+version = "3.1.16"
+features = [
+    "derive"
+]
+
 [dependencies.bytemuck]
 version = '1.9.1'
 features = [ "derive" ]

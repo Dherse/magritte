@@ -1,8 +1,15 @@
-
-use std::{path::{Path, PathBuf}, error::Error, ops::Deref};
+use std::{
+    error::Error,
+    ops::Deref,
+    path::{Path, PathBuf},
+};
 
 use log::{error, info};
-use magritte::{vulkan1_0::{PipelineCache as VkPipelineCache, VulkanResultCodes, PipelineCacheCreateInfo}, Unique, size::Size, AsRaw};
+use magritte::{
+    size::Size,
+    vulkan1_0::{PipelineCache as VkPipelineCache, PipelineCacheCreateInfo},
+    AsRaw, Unique,
+};
 
 use crate::vulkan::Vulkan;
 
@@ -17,7 +24,10 @@ impl Drop for PipelineCache {
 
         // first we get the data length
         if let Err(e) = unsafe {
-            self.cache().device().get_pipeline_cache_data(self.cache().as_raw(), &mut len, None).result()
+            self.cache()
+                .device()
+                .get_pipeline_cache_data(self.cache().as_raw(), &mut len, None)
+                .result()
         } {
             error!("Failed to get pipeline cache data length: {}", e);
             return;
@@ -26,7 +36,10 @@ impl Drop for PipelineCache {
         // then we get the data
         let mut data = vec![0_u8; len];
         if let Err(e) = unsafe {
-            self.cache().device().get_pipeline_cache_data(self.cache().as_raw(), &mut len, Some(data.as_mut_ptr().cast())).result()
+            self.cache()
+                .device()
+                .get_pipeline_cache_data(self.cache().as_raw(), &mut len, Some(data.as_mut_ptr().cast()))
+                .result()
         } {
             error!("Failed to get pipeline cache data: {}", e);
             return;
@@ -48,18 +61,14 @@ impl PipelineCache {
         if path.exists() {
             let data = std::fs::read(path)?;
 
-            info = info.set_initial_data(unsafe {
-                std::slice::from_raw_parts(data.as_ptr().cast(), data.len())
-            });
+            info = info.set_initial_data(unsafe { std::slice::from_raw_parts(data.as_ptr().cast(), data.len()) });
         }
 
-        let (cache, _) = unsafe {
-            vulkan.device().create_pipeline_cache(&info, None)?
-        };
-        
+        let (cache, _) = unsafe { vulkan.device().create_pipeline_cache(&info, None)? };
+
         Ok(Self {
             path: path.to_owned(),
-            cache
+            cache,
         })
     }
 

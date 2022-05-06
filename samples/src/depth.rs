@@ -28,8 +28,8 @@ pub struct Depth {
 impl Depth {
     /// Creates a new depth buffer
     #[inline]
-    pub fn new(vulkan: &Vulkan, commands: &Commands, surface: &Surface) -> Result<Self, VulkanResultCodes> {
-        let (image, image_view, image_memory) = Self::create_new_image_view_memory(vulkan, commands, surface)?;
+    pub fn new(vulkan: &Vulkan, commands: &Commands, surface: &Surface, msaa: SampleCountFlagBits) -> Result<Self, VulkanResultCodes> {
+        let (image, image_view, image_memory) = Self::create_new_image_view_memory(vulkan, commands, surface, msaa)?;
 
         Ok(Self {
             image,
@@ -40,8 +40,8 @@ impl Depth {
 
     /// Sizes the depth image
     #[inline]
-    pub fn resize(&mut self, vulkan: &Vulkan, commands: &Commands, surface: &Surface) -> Result<(), VulkanResultCodes> {
-        let (image, image_view, image_memory) = Self::create_new_image_view_memory(vulkan, commands, surface)?;
+    pub fn resize(&mut self, vulkan: &Vulkan, commands: &Commands, surface: &Surface, msaa: SampleCountFlagBits) -> Result<(), VulkanResultCodes> {
+        let (image, image_view, image_memory) = Self::create_new_image_view_memory(vulkan, commands, surface, msaa)?;
 
         self.image_view = image_view;
         self.image_memory = image_memory;
@@ -72,6 +72,7 @@ impl Depth {
         vulkan: &Vulkan,
         commands: &Commands,
         surface: &Surface,
+        msaa: SampleCountFlagBits
     ) -> Result<(Unique<Image>, Unique<ImageView>, Unique<DeviceMemory>), VulkanResultCodes> {
         // First we get the memory properties, we will use this when allocating our image
         let memory_properties = unsafe { vulkan.physical_device().get_physical_device_memory_properties() };
@@ -96,7 +97,7 @@ impl Depth {
             })
             .set_mip_levels(1)
             .set_array_layers(1)
-            .set_samples(SampleCountFlagBits::_1)
+            .set_samples(msaa)
             .set_tiling(ImageTiling::OPTIMAL)
             .set_usage(ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT)
             .set_sharing_mode(SharingMode::EXCLUSIVE);

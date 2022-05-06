@@ -5,19 +5,19 @@ use std::{error::Error, mem::ManuallyDrop, time::Instant};
 
 use bytemuck::{Pod, Zeroable};
 use log::{error, info, trace, LevelFilter};
+use clap::Parser;
 use magritte::{
     extensions::khr_swapchain::PresentInfoKHR,
     vulkan1_0::{
         BufferUsageFlags, ClearColorValue, ClearDepthStencilValue, ClearValue, IndexType, Offset2D, PipelineBindPoint,
-        PipelineStageFlags, Rect2D, RenderPassBeginInfo, Semaphore, SemaphoreCreateInfo, SubpassContents,
+        PipelineStageFlags, Rect2D, RenderPassBeginInfo, Semaphore, SemaphoreCreateInfo, SubpassContents, SampleCountFlagBits,
     },
-    window::create_surface,
     AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique,
 };
 
 use magritte_samples::{
     buffer::Buffer, commands::Commands, depth::Depth, queue::Queue, renderpass::RenderPass, surface::Surface,
-    vulkan::Vulkan, cache::PipelineCache,
+    vulkan::Vulkan, cache::PipelineCache, render_target::RenderTarget,
 };
 use pipeline::Pipeline;
 use winit::{
@@ -36,10 +36,37 @@ pub struct Vertex {
     color: [u8; 4],
 }
 
+#[derive(Parser, Debug)]
+struct Opts {
+    /// Enables the Vulkan validation layers if they are present
+    #[clap(short = 'l', long)]
+    pub validation_layers: bool,
+
+    /// The level of verbosity (1: INFO, 2: DEBUG, 3: TRACE)
+    #[clap(short = 'v', long, parse(from_occurrences))]
+    pub verbose: u8,
+
+    /// The level of multisampling, must be a multiple of 2 (i.e 1, 2, 4, 8, 16).
+    /// Some platforms even support very high MSAA such as 32 or 64 but that is rarer.
+    #[clap(short = 'm', long, default_value_t = 1)]
+    pub msaa: u32,
+}
+
 pub fn main() -> Result<(), Box<dyn Error>> {
+    let opts = Opts::parse();
+    
+    let msaa = unsafe {
+        SampleCountFlagBits::from_bits_unchecked(opts.msaa)
+    };
+
     // Initialization of logging
     pretty_env_logger::formatted_builder()
-        .filter_level(LevelFilter::Info)
+        .filter_level(match opts.verbose {
+            0 => LevelFilter::Warn,
+            1 => LevelFilter::Info,
+            2 => LevelFilter::Debug,
+            _ => LevelFilter::Trace,
+        })
         .init();
 
     // First we create the window and the event loop
@@ -55,7 +82,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         &window,
         InstanceExtensions::vulkan1_0(),
         DeviceExtensions::vulkan1_0(),
-        true,
+        opts.validation_layers,
     )?;
 
     // Now that we have the basic state and the surface, we will create all additional
@@ -76,9 +103,9 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     let commands = Commands::new(queue, surface.swapchain_images().len())?;
 
     // Here we create a depth buffer we will later use.
-    let depth = Depth::new(&vulkan, &commands, &surface)?;
+    let depth = Depth::new(&vulkan, &commands, &surface, msaa)?;
 
-    let mut renderer = Renderer::new(vulkan, surface, commands, depth)?;
+    let mut renderer = Renderer::new(vulkan, surface, commands, depth, msaa)?;
 
     event_loop.run(move |event, _, control_flow| {
         *control_flow = ControlFlow::Poll;
@@ -201,6 +228,11 @@ pub struct Renderer {
     /// The depth buffer
     depth: Depth,
 
+    msaa: SampleCountFlagBits,
+
+    /// The optional multisampled image to be used as a render target
+    msaa_images: Option<SmallVec<RenderTarget>>,
+
     /// The pipeline cache
     cache: PipelineCache,
 
@@ -240,7 +272,17 @@ impl Drop for Renderer {
 
 impl Renderer {
     /// Creates a new renderer
-    pub fn new(vulkan: Vulkan, surface: Surface, commands: Commands, depth: Depth) -> Result<Self, Box<dyn Error>> {
+    pub fn new(vulkan: Vulkan, surface: Surface, commands: Commands, depth: Depth, msaa: SampleCountFlagBits) -> Result<Self, Box<dyn Error>> {
+        let msaa_images = if msaa.bits() <= 1 {
+            None
+        } else {
+            let mut out = SmallVec::default();
+            for _ in 0..surface.image_count() {
+                out.push(RenderTarget::new(&vulkan, &commands, &surface, vulkan.allocator(), surface.format(), msaa)?);
+            }
+            Some(out)
+        };
+        
         let mut present_complete_semaphores = SmallVec::with_capacity(surface.image_count());
         let mut rendering_complete_semaphores = SmallVec::with_capacity(surface.image_count());
 
@@ -264,7 +306,7 @@ impl Renderer {
         info!("Created {} semaphores", surface.image_count() * 2);
 
         // Create the renderpass
-        let renderpass = RenderPass::new(&vulkan, &surface, &depth)?;
+        let renderpass = RenderPass::new(&vulkan, &surface, &depth, msaa, msaa_images.as_ref())?;
 
         // Create the index buffer
         let index_buffer = Buffer::new(&vulkan, BufferUsageFlags::INDEX_BUFFER, &[0u32, 1, 2])?;
@@ -289,17 +331,22 @@ impl Renderer {
             ],
         )?;
 
+        // Create the pipeline cache from a file
         let cache = PipelineCache::new(&vulkan, "./triangle_pipeline_cache.dat")?;
 
+        // Pre-compile the shaders
         let shaders = PipelineShaders::new(&vulkan)?;
 
-        let pipeline = Pipeline::new(&vulkan, &renderpass, &surface, &shaders, Some(&cache))?;
+        // Create the pipeline
+        let pipeline = Pipeline::new(&vulkan, &renderpass, &surface, &shaders, Some(&cache), msaa)?;
 
         Ok(Self {
             rendering_enabled: true,
             vulkan,
             surface,
             commands: ManuallyDrop::new(commands),
+            msaa,
+            msaa_images,
             depth,
             cache,
             shaders,
@@ -332,25 +379,38 @@ impl Renderer {
 
         info!("Reset all commands buffer at {:?}", start.elapsed());
 
-        let (surface, _) = unsafe { create_surface(self.vulkan().instance(), window, None)? };
-
         // Resize the surface
-        self.surface = Surface::new(self.vulkan(), surface)?;
+        self.surface.resize(&self.vulkan)?;
 
         info!("Recreated surface at {:?}", start.elapsed());
 
         // We created a new depth buffer
-        self.depth = Depth::new(self.vulkan(), self.commands(), self.surface())?;
+        self.depth = Depth::new(self.vulkan(), self.commands(), self.surface(), self.msaa())?;
 
         info!("Recreated depth texture at {:?}", start.elapsed());
 
+        // We update the MSAA resolve images
+        self.msaa_images = if self.msaa().bits() <= 1 {
+            None
+        } else {
+            let mut out = SmallVec::default();
+            for _ in 0..self.surface().image_count() {
+                out.push(RenderTarget::new(self.vulkan(), self.commands(), self.surface(), self.vulkan().allocator(), self.surface().format(), self.msaa())?);
+            }
+
+            info!("Recreated MSAA textures at {:?}", start.elapsed());
+
+            Some(out)
+        };
+
+
         // We update the framebuffers
-        self.renderpass.resize(&self.surface, &self.depth)?;
+        self.renderpass.resize(&self.surface, &self.depth, self.msaa_images.as_ref())?;
 
         info!("Recreated renderpass at {:?}", start.elapsed());
 
         // We recreate the pipeline
-        self.pipeline = Pipeline::new(self.vulkan(), self.renderpass(), self.surface(), self.shaders(), Some(self.cache()))?;
+        self.pipeline = Pipeline::new(self.vulkan(), self.renderpass(), self.surface(), self.shaders(), Some(self.cache()), self.msaa())?;
 
         info!("Recreated pipeline at {:?}", start.elapsed());
 
@@ -452,5 +512,17 @@ impl Renderer {
     #[must_use]
     pub fn shaders(&self) -> &PipelineShaders {
         &self.shaders
+    }
+
+    /// Get a reference to the renderer's msaa images.
+    #[must_use]
+    pub fn msaa_images(&self) -> Option<&SmallVec<RenderTarget>> {
+        self.msaa_images.as_ref()
+    }
+
+    /// Get the renderer's msaa.
+    #[must_use]
+    pub fn msaa(&self) -> SampleCountFlagBits {
+        self.msaa
     }
 }

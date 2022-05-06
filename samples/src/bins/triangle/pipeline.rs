@@ -14,7 +14,9 @@ use magritte::{
     },
     AsRaw, Unique,
 };
-use magritte_samples::{renderpass::RenderPass, shader::Shader, surface::Surface, vulkan::Vulkan, cache::PipelineCache};
+use magritte_samples::{
+    cache::PipelineCache, renderpass::RenderPass, shader::Shader, surface::Surface, vulkan::Vulkan,
+};
 
 use crate::Vertex;
 
@@ -24,16 +26,16 @@ static VERTEX_SHADER: &[u8] = include_bytes!("./shaders/triangle.vert.spv");
 /// The SPIR-V of the compiled fragment shader
 static FRAGMENT_SHADER: &[u8] = include_bytes!("./shaders/triangle.frag.spv");
 
-pub struct PipelineShaders{
+pub struct PipelineShaders {
     vertex: Shader,
     fragment: Shader,
 }
 
-impl PipelineShaders{
+impl PipelineShaders {
     pub fn new(vulkan: &Vulkan) -> Result<Self, Box<dyn Error>> {
         Ok(Self {
             vertex: Shader::new(vulkan, VERTEX_SHADER, ShaderStageFlagBits::VERTEX)?,
-            fragment: Shader::new(vulkan, FRAGMENT_SHADER, ShaderStageFlagBits::FRAGMENT)?
+            fragment: Shader::new(vulkan, FRAGMENT_SHADER, ShaderStageFlagBits::FRAGMENT)?,
         })
     }
 }
@@ -45,7 +47,14 @@ pub struct Pipeline {
 
 impl Pipeline {
     /// Creates a new very simple pipeline
-    pub fn new(vulkan: &Vulkan, renderpass: &RenderPass, surface: &Surface, shaders: &PipelineShaders, cache: Option<&PipelineCache>) -> Result<Self, Box<dyn Error>> {
+    pub fn new(
+        vulkan: &Vulkan,
+        renderpass: &RenderPass,
+        surface: &Surface,
+        shaders: &PipelineShaders,
+        cache: Option<&PipelineCache>,
+        msaa: SampleCountFlagBits,
+    ) -> Result<Self, Box<dyn Error>> {
         // We don't have any information to put in the layout
         let layout_create_info = PipelineLayoutCreateInfo::default();
 
@@ -133,7 +142,8 @@ impl Pipeline {
 
         // We don't do multisampling
         let multisample_state_info =
-            PipelineMultisampleStateCreateInfo::default().set_rasterization_samples(SampleCountFlagBits::_1);
+            PipelineMultisampleStateCreateInfo::default()
+                .set_rasterization_samples(msaa);
 
         // We don't care about the stencil, we create a NOOP stencil state.
         let depth_stencil_state = StencilOpState::default()
@@ -190,9 +200,11 @@ impl Pipeline {
 
         // Create the pipeline
         let (mut pipelines, _) = unsafe {
-            vulkan
-                .device()
-                .create_graphics_pipelines(cache.map(PipelineCache::cache).map(AsRaw::as_raw), std::slice::from_ref(&graphics_pipeline_info), None)?
+            vulkan.device().create_graphics_pipelines(
+                cache.map(PipelineCache::cache).map(AsRaw::as_raw),
+                std::slice::from_ref(&graphics_pipeline_info),
+                None,
+            )?
         };
 
         let pipeline = pipelines.pop().unwrap();

@@ -665,56 +665,62 @@ pub struct PoolCreateInfo {
 pub struct AllocationInfo {
     /// Memory type index that this allocation was allocated from.
     ///
-    ///It never changes.
+    /// It never changes.
     pub memory_type: u32,
+    
     /// Handle to Vulkan memory object.
     ///
-    ///Same memory object can be shared by multiple allocations.
+    /// Same memory object can be shared by multiple allocations.
     ///
-    ///It can change after the allocation is moved during \ref defragmentation.
+    /// It can change after the allocation is moved during \ref defragmentation.
     pub device_memory: DeviceMemory,
+
     /// Offset in `VkDeviceMemory` object to the beginning of this allocation, in bytes.
     /// `(deviceMemory, offset)` pair is unique to this allocation.
     ///
-    ///You usually don't need to use this offset. If you create a buffer or an image together with
+    /// You usually don't need to use this offset. If you create a buffer or an image together with
     /// the allocation using e.g. function
-    ///vmaCreateBuffer(), vmaCreateImage(), functions that operate on these resources refer to the
+    /// vmaCreateBuffer(), vmaCreateImage(), functions that operate on these resources refer to the
     /// beginning of the buffer or image,
-    ///not entire device memory block. Functions like vmaMapMemory(), vmaBindBufferMemory() also
+    /// not entire device memory block. Functions like vmaMapMemory(), vmaBindBufferMemory() also
     /// refer to the beginning of the allocation
-    ///and apply this offset automatically.
+    /// and apply this offset automatically.
     ///
-    ///It can change after the allocation is moved during \ref defragmentation.
+    /// It can change after the allocation is moved during \ref defragmentation.
     pub offset: DeviceSize,
+
     /// Size of this allocation, in bytes.
     ///
-    ///It never changes.
+    /// It never changes.
     ///
-    ///\note Allocation size returned in this variable may be greater than the size
-    ///requested for the resource e.g. as `VkBufferCreateInfo::size`. Whole size of the
-    ///allocation is accessible for operations on memory e.g. using a pointer after
-    ///mapping with vmaMapMemory(), but operations on the resource e.g. using
-    ///`vkCmdCopyBuffer` must be limited to the size of the resource.
+    /// Allocation size returned in this variable may be greater than the size
+    /// requested for the resource e.g. as `VkBufferCreateInfo::size`. Whole size of the
+    /// allocation is accessible for operations on memory e.g. using a pointer after
+    /// mapping with vmaMapMemory(), but operations on the resource e.g. using
+    /// `vkCmdCopyBuffer` must be limited to the size of the resource.
     pub size: DeviceSize,
+
     /// Pointer to the beginning of this allocation as mapped data.
     ///
-    ///If the allocation hasn't been mapped using vmaMapMemory() and hasn't been
-    ///created with #VMA_ALLOCATION_CREATE_MAPPED_BIT flag, this value is null.
+    /// If the allocation hasn't been mapped using vmaMapMemory() and hasn't been
+    /// created with #VMA_ALLOCATION_CREATE_MAPPED_BIT flag, this value is null.
     ///
-    ///It can change after call to vmaMapMemory(), vmaUnmapMemory().
-    ///It can also change after the allocation is moved during \ref defragmentation.
+    /// It can change after call to vmaMapMemory(), vmaUnmapMemory().
+    /// It can also change after the allocation is moved during \ref defragmentation.
     pub mapped_data: *mut c_void,
+
     /// Custom general-purpose pointer that was passed as AllocationCreateInfo::pUserData
     /// or set using vmaSetAllocationUserData().
     ///
-    ///It can change after call to vmaSetAllocationUserData() for this allocation.
+    /// It can change after call to vmaSetAllocationUserData() for this allocation.
     pub user_data: *mut c_void,
+
     /// Custom allocation name that was set with vmaSetAllocationName().
     ///
-    ///It can change after call to vmaSetAllocationName() for this allocation.
+    /// It can change after call to vmaSetAllocationName() for this allocation.
     ///
-    ///Another way to set custom name is to pass it in AllocationCreateInfo::pUserData with
-    ///additional flag #VMA_ALLOCATION_CREATE_USER_DATA_COPY_STRING_BIT set [DEPRECATED].
+    /// Another way to set custom name is to pass it in AllocationCreateInfo::pUserData with
+    /// additional flag #VMA_ALLOCATION_CREATE_USER_DATA_COPY_STRING_BIT set [DEPRECATED].
     pub name: *const c_char,
 }
 
